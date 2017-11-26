@@ -1,0 +1,35 @@
+.clubplan {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+.clubplan .icon {
+	text-align: center;
+}
+.clubplan .vs {
+	text-align: center;
+}
+.clubplan .td_r {
+	text-align: right;
+	width: 20%;
+}
+.clubplan .td_l {
+	text-align: left;
+	width: 20%;
+}
+
+.clubplan .td_r_t {
+	text-align: right;
+	vertical-align: top;
+}
+.clubplan .td_r_right {
+	text-align: right;
+}
+.clubplan .td_r_left {
+	text-align: left;
+	width: 20px;
+}
+.clubplan .td_r_center {
+	text-align: center;
+}

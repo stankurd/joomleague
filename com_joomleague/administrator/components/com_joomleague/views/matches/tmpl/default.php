@@ -1,0 +1,29 @@
+<?php 
+/**
+ * Joomleague
+ *
+ * @copyright	Copyright (C) 2006-2015 joomleague.at. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @link		http://www.joomleague.at
+ */
+
+defined('_JEXEC') or die;
+
+JHtml::_('behavior.tooltip');
+JHtml::_('behavior.modal');
+
+$app 		= JFactory::getApplication();
+$jinput		= $app->input;
+$massadd	= $jinput->getInt('massadd',0);
+?>
+<div id="j-main-container" class="span12">
+<div id="alt_decision_enter" style="display:<?php echo ($massadd == 0) ? 'none' : 'block'; ?>">
+<?php echo $this->loadTemplate('massadd'); ?>
+</div>
+<?php 
+echo $this->loadTemplate('matches');
+if(count($this->teams) > 1) {
+	echo $this->loadTemplate('matrix');
+} 
+?>
+</div>

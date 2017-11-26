@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<form>
+	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_PAGE_ELEMENTS"
+		description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_PAGE_ELEMENTS">
+		<field name="show_sectionheader" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_SHOW_SECTIONHEADER"
+			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_SHOW_SECTIONHEADER"
+			class="switcher"
+			>
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="show_club_info" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_CLUBINFO"
+			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_CLUBINFO"
+			class="switcher"
+			>
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="show_description" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_DESCRIPTION" 
+			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_DESCRIPTION"
+			class="switcher"
+			>
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="show_extended" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_EXTENDED"
+			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_EXTENDED"
+			class="switcher"
+			>
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="show_maps" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_MAPS"
+			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_MAPS"
+			class="switcher"
+			>
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="show_teams_of_club" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_TEAMS_CLUB"
+			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_TEAMS_CLUB"
+			class="switcher"
+			>
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+	</fieldset>
+	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_OPTIONS"
+		description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_OPTIONS"
+		addfieldpath="/administrator/components/com_joomleague/models/fields">
+		<field	name="page_title_format" type="pagetitleformat" default="0"
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_PAGE_TITLE_FORMAT"
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_PAGE_TITLE_FORMAT">
+		</field>
+		<field name="show_club_logo" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_CLUB_LOGO"
+			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_CLUB_LOGO"
+			class="switcher"
+			>
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="team_picture_width" type="text" default="0"
+			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_WIDTH"
+			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAM_PICTURE_WIDTH">
+		</field>
+		<field name="team_picture_height" type="text" default="150"
+			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_HEIGHT"
+			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAM_PICTURE_HEIGHT">
+		</field>
+		<field name="show_route" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_ROUTE"
+			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_ROUTE"
+			class="switcher"
+			>
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="show_playgrounds_of_club" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_VENUES_CLUB"
+			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_VENUES_CLUB"
+			class="switcher"
+			>
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="show_club_season_calendar" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_SEASON"
+			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_SEASON"
+			class="switcher"
+			>
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="show_club_shirt" type="radio" default="0"
+			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_SHIRT"
+			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_SHIRT"
+			class="switcher"
+			>
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+	</fieldset>
+</form>

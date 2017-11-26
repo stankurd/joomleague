@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form
+	addrulepath="/administrator/components/com_joomleague/models/rules"
+	addfieldpath="/administrator/components/com_joomleague/models/fields">
+	<fieldset name="details">
+		<field
+			name="name"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_NAME"
+			description="COM_JOOMLEAGUE_GLOBAL_NAME_DESC"
+			class="inputbox"
+			required="true"/>
+		<field
+			name="alias"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_ALIAS"
+			description="COM_JOOMLEAGUE_GLOBAL_ALIAS_DESC"
+			class="inputbox"/>
+		<field
+			name="middle_name"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_TEAM_MID_NAME"
+			description="COM_JOOMLEAGUE_ADMIN_TEAM_MID_NAME_DESC"
+			class="inputbox"/>
+		<field
+			name="short_name"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_TEAM_SHORT_NAME"
+			description="COM_JOOMLEAGUE_ADMIN_TEAM_SHORT_NAME_DESC"
+			class="inputbox"
+			required="true"/>
+		<field
+			name="website"
+			type="url"
+			label="COM_JOOMLEAGUE_ADMIN_TEAM_WEBSITE"
+			class="inputbox"
+			validate="url"
+			scheme="http,https"
+			/>
+		<field
+			name="info"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_TEAM_INFO"
+			description="COM_JOOMLEAGUE_ADMIN_TEAM_INFO_DESC"
+			class="inputbox"/>
+		<field
+			name="club_id"
+			type="sql"
+			class="inputbox"
+			default="0"
+			size="1"
+			required="true"
+			label="COM_JOOMLEAGUE_ADMIN_TEAM_CLUB"
+			description="COM_JOOMLEAGUE_ADMIN_TEAM_CLUB_DESC"
+			query="SELECT id AS value, name AS club_id FROM #__joomleague_club ORDER BY name ASC">
+			<option
+				value="0">
+				COM_JOOMLEAGUE_GLOBAL_SELECT_CLUB</option>
+		</field>
+		<field name="ordering" type="text" label="JFIELD_ORDERING_LABEL"
+			size="6" default="0" />
+		<field name="id" type="text" class="readonly" label="JGLOBAL_FIELD_ID_LABEL"
+		description ="JGLOBAL_FIELD_ID_DESC" size="10" default="0" readonly="true" />
+	</fieldset>
+	<fieldset name="picture">
+		<field
+			name="picture"
+			type="media"
+			default="images/com_joomleague/database/placeholders/placeholder_450_2.png"
+			label="COM_JOOMLEAGUE_ADMIN_TEAM_PIC"
+			description="COM_JOOMLEAGUE_ADMIN_TEAM_PIC_DESC"
+			class="inputbox"
+			showon="show_info:1[AND]show_image:1"
+			directory="com_joomleague/database/teams"/>
+	</fieldset>
+	<fieldset name="description">
+		<field
+			name="notes"
+			type="editor"
+			label="COM_JOOMLEAGUE_ADMIN_TEAM_DESCRIPTION"
+			description="COM_JOOMLEAGUE_ADMIN_TEAM_DESCRIPTION_DESC"
+			width="450"
+			filter="JComponentHelper::filterText"/>
+	</fieldset>
+	<fieldset	name="extended"
+	  			label="COM_JOOMLEAGUE_TABS_EXTENDED"
+	  			description="COM_JOOMLEAGUE_TABS_EXTENDED_DESC">
+		<field
+			name="extended"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_TEAM_EXTENDED"
+			description="COM_JOOMLEAGUE_ADMIN_TEAM_EXTENDED_DESC"
+			class="inputbox"/>
+	</fieldset>
+	<fieldset name="Permissions" label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC">
+		<field name="asset_id" type="hidden" filter="unset" />
+		<field name="rules" type="rules" label="COM_JOOMLEAGUE_SETTINGS_ACCESS_COMPONENT"
+			class="inputbox" filter="rules" validate="rules" component="com_joomleague"
+			section="team" />
+	</fieldset>
+</form>

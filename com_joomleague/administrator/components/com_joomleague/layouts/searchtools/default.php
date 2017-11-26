@@ -1,0 +1,52 @@
+<?php
+/**
+ * @package     Joomleague
+ * @subpackage  Layout
+ *
+ * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * 
+ * overriding default layout
+ */
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Uri\Uri;
+
+defined('JPATH_BASE') or die;
+
+$data = $displayData;
+
+// Receive overridable options
+$data['options'] = !empty($data['options']) ? $data['options'] : array();
+
+// Set some basic options
+$customOptions = array(
+	'filtersHidden'       => isset($data['options']['filtersHidden']) ? $data['options']['filtersHidden'] : empty($data['view']->activeFilters),
+	'defaultLimit'        => isset($data['options']['defaultLimit']) ? $data['options']['defaultLimit'] : Factory::getApplication()->get('list_limit', 20),
+	'searchFieldSelector' => '#filter_search',
+	'orderFieldSelector'  => '#list_fullordering'
+);
+
+$data['options'] = array_merge($customOptions, $data['options']);
+
+$formSelector = !empty($data['options']['formSelector']) ? $data['options']['formSelector'] : '#adminForm';
+
+// Load search tools
+JHtml::_('searchtools.form', $formSelector, $data['options']);
+
+?>
+<div class="js-stools clearfix">
+	<div class="clearfix">
+		<div class="js-stools-container-bar">
+			<?php echo LayoutHelper::render('searchtools.default.bar',$data,Uri::root().'administrator/components/com_joomleague/layouts') ?>
+		</div>
+		<div class="js-stools-container-list hidden-phone hidden-tablet">
+			<?php echo LayoutHelper::render('joomla.searchtools.default.list',$data,Uri::root().'administrator/components/com_joomleague/layouts'); ?>
+		</div>
+	</div>
+	<!-- Filters div -->
+	<div class="js-stools-container-filters hidden-phone clearfix">
+		<?php echo LayoutHelper::render('joomla.searchtools.default.filters',$data,Uri::root().'administrator/components/com_joomleague/layouts'); ?>
+	</div>
+</div>

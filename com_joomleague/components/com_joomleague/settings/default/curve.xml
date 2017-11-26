@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<form>
+	<fieldset name= "COM_JOOMLEAGUE_FES_PARAMS_GROUP_PAGE_ELEMENTS"
+			description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_PAGE_ELEMENTS">
+
+		<field 	name="show_sectionheader" type="radio" default="1" 
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_SHOW_SECTIONHEADER" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_SHOW_SECTIONHEADER"
+				class="switcher">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+
+		<field 	name="show_curve" type="radio" default="1" 
+				label="COM_JOOMLEAGUE_FES_CURVE_PARAM_LABEL_SHOW_CURVE" 
+				description="COM_JOOMLEAGUE_FES_CURVE_PARAM_DESCR_SHOW_CURVE"
+				class="switcher">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		
+		<field 	name="show_colorlegend" type="radio" default="1" 
+				label="COM_JOOMLEAGUE_FES_CURVE_PARAM_LABEL_SHOW_COLOR" 
+				description="COM_JOOMLEAGUE_FES_CURVE_PARAM_DESCR_SHOW_COLOR"
+				class="switcher">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+
+	</fieldset>
+
+	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_OPTIONS"
+		description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_OPTIONS"
+		addfieldpath="/administrator/components/com_joomleague/models/fields">
+
+		<field	name="page_title_format" type="pagetitleformat" default="0"
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_PAGE_TITLE_FORMAT"
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_PAGE_TITLE_FORMAT">
+		</field>
+
+	</fieldset>
+
+	<fieldset name= "COM_JOOMLEAGUE_FES_PARAMS_GROUP_ADVANCED_OPTIONS" 
+			description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_ADVANCED_OPTIONS">
+
+		<field name="expiry_time" type="text" default="0"
+			label="COM_JOOMLEAGUE_FES_CURVE_PARAM_LABEL_EXPIRY_TIME"
+			description="COM_JOOMLEAGUE_FES_CURVE_PARAM_DESCR_EXPIRY_TIME">
+		</field>
+
+	</fieldset>
+
+</form>

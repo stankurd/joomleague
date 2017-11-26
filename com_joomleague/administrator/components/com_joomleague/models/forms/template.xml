@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form
+	addrulepath="/administrator/components/com_joomleague/models/rules"
+	addfieldpath="/administrator/components/com_joomleague/models/fields">
+	<fieldset name="details" label="COM_JOOMLEAGUE_TEMPLATE_FIELDSET_DETAILS">
+		<field name="id" type="text" class="readonly" label="JGLOBAL_FIELD_ID_LABEL"
+		description ="JGLOBAL_FIELD_ID_DESC" size="10" default="0" readonly="true" />
+		<field name="template" type="text" class="readonly" label="COM_JOOMLEAGUE_TEMPLATE_TEMPLATE"
+			description="COM_JOOMLEAGUE_TEMPLATE_TEMPLATE_DESC" readonly="true" required="false" />
+		<field name="project_id" type="text" class="readonly" label="COM_JOOMLEAGUE_TEMPLATE_PROJECTID"
+		description ="COM_JOOMLEAGUE_TEMPLATE_PROJECTID_DESC" size="10" default="0" readonly="true" />
+		<field name="published" type="radio" class="switcher"
+			default="1" size="1" label="JSTATUS" description="JFIELD_PUBLISHED_DESC">
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+	</fieldset>
+</form>

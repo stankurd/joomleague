@@ -1,0 +1,34 @@
+.red {
+	font-weight: bold;
+	color: red;
+}
+
+div.current select {
+    margin-bottom: 0 !important;
+	width: 300px;
+}
+
+td.leftdashed, th.leftdashed {
+    text-align: left;
+	padding: 0 !important;  
+	border-left: 1px dashed #AAA !important;
+}
+
+.inputbox.player-out {
+	width: 210px;
+}
+
+.inputbox.player-in {
+    width: 210px;
+}
+
+#project_position_id {
+	width: 210px;
+}
+
+#startingSquadsForm .configuration,
+#matchdetails .configuration,
+#gamesevents .configuration,
+#jlstatsform .configuration {
+	padding:10px 0 15px 0;
+}

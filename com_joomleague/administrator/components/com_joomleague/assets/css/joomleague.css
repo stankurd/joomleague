@@ -1,0 +1,377 @@
+@CHARSET "UTF-8";
+
+div#addNewEvent,
+div#addNewComment {
+	background-color: grey;
+	padding: 10px;
+	display:block;
+	width:100%;
+	border: 2px solid black;
+	box-sizing: border-box;
+}
+
+div#addNewEvent input,
+div#addNewComment input {
+	border: 2px solid black;
+}
+
+div#addNewEvent select,
+div#addNewComment select,
+div#addNewComment textarea,
+div#addNewEvent textarea
+ {
+	border: 2px solid black;
+}
+
+div#addNewEvent .control-label,
+div#addNewComment .control-label
+{
+	color: #CECECE;
+	font-weight: bold;
+}
+
+
+div.home_away_container {
+    border: 1px solid black;
+    height: 100%;
+}
+
+div.away_container {
+    background-color: yellow;
+    border: 1px solid grey;
+    padding: 4px;
+}
+
+div.home_container {
+    background-color: #9ED7AD;
+    border: 1px solid grey;
+    padding: 4px;
+}
+
+button#multiselect_moveUp {
+    margin-top: 80px;
+    width: 40px;
+}
+
+button#multiselect_moveDown {
+    width: 40px;
+}
+
+h1 span.toolbarTitleType {
+    color: #c7c7c7;
+}
+
+button#multiselect_rightAll, button#multiselect_rightSelected, button#multiselect_leftSelected,
+button#multiselect_leftAll, button#multiselect2_rightAll, button#multiselect2_rightSelected,
+button#multiselect2_leftSelected, button#multiselect2_leftAll {
+    width: 40px;
+    margin-left: 60px;
+}
+
+button#multiselect_rightAll, button#multiselect2_rightAll {
+    margin-top: 80px;
+}
+
+.tools.table-hover tbody tr:hover>td, .tools.table-hover tbody tr:hover>th {
+    background-color: #d0d5d3;
+}
+
+img.calendar.btn {
+    padding: 5px 13px !important;
+}
+
+div.panel .table {
+    margin: 0;
+}
+
+div.panel .table th, div.panel .table td {
+
+}
+
+/*
+.table input {
+	width: auto;
+}
+*/
+
+/** Toolbar section **/
+div.container-title {
+    height: 60px;
+}
+
+body.com_joomleague h1.page-title {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+body.com_joomleague h1 span[class^="icon-jl-"] {
+    width: 48px;
+    height: 48px;
+    vertical-align: middle;
+    margin-bottom: 8px;
+}
+
+body.com_joomleague div.container-logo {
+    margin-top: 10px;
+}
+
+
+
+div#ajaxresponse {
+  height: 1.2em;
+}
+.ajax-loading {
+    background: url("../images/ajaxload_1.gif") no-repeat 100px;
+}
+
+/** header icons **/
+.icon-jl-sportstypes {
+  background-image: url(../images/icon-48-sportstypes.png);
+}
+
+.icon-jl-leagues {
+	background-image: url(../images/icon-48-leagues.png);
+}
+
+.icon-jl-seasons {
+  background-image: url(../images/icon-48-seasons.png);
+}
+
+.icon-jl-clubs {
+  background-image: url(../images/icon-48-clubs.png);
+}
+
+.icon-jl-statistics {
+	background-image: url(../images/icon-48-statistics.png);
+}
+
+.icon-jl-eventtypes {
+	background-image: url(../images/icon-48-events.png);
+}
+
+.icon-jl-playground {
+	background-image: url(../images/icon-48-playground.png);
+}
+
+.icon-jl-ProjectSettings {
+  background-image: url(../images/icon-48-ProjectSettings.png);
+}
+
+.icon-jl-FrontendSettings {
+  background-image: url(../images/icon-48-FrontendSettings.png);
+}
+
+.icon-jl-divisions {
+  background-image: url(../images/icon-48-Divisions.png);
+}
+.icon-jl-Tree {
+  background-image: url(../images/icon-48-Tree.png);
+}
+
+.icon-jl-Positions {
+  background-image: url(../images/icon-48-Positions.png);
+}
+
+.icon-jl-Referees {
+  background-image: url(../images/icon-48-Referees.png);
+}
+
+.icon-jl-Teams {
+  background-image: url(../images/icon-48-Teams.png);
+}
+
+.icon-jl-Matchdays {
+  background-image: url(../images/icon-48-Matchdays.png);
+}
+
+.icon-jl-Rounds {
+  background-image: url(../images/icon-48-Rounds.png);
+}
+
+#adminForm {
+    float: left;
+    width: 100%;
+}
+
+/*Because admintable class does not exist in default Joomla 1.6.x -2.5x template,I created one here*/
+table.admintable td.key.vtop {
+    vertical-align: top;
+}
+
+table.admintable td {
+    text-align: left;
+    width: 100%;
+    color: #666;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+table.admintable td.key, table.admintable td.paramlist_key {
+    white-space: nowrap;
+    background-color: #FFFFFF;
+    text-align: left;
+    width: 200px;
+    color: #666;
+    font-weight: bold;
+    border-bottom: 1px solid #e9e9e9;
+    border-right: 1px solid #e9e9e9;
+    vertical-align: top;
+}
+
+fieldset img {
+    margin: 0 !important;
+}
+
+div.pagetitle {
+    float: left;
+}
+
+/* -- PANE SLIDER STYLES ----------------------------- */
+/* Taken from Bluestork template, Joomla! */
+.pane-sliders {
+	margin: 18px 0 0 0;
+	position: relative;
+}
+
+.pane-sliders .title {
+	margin: 0;
+	padding: 2px 2px 2px 5px;
+	color: #666;
+	cursor: pointer;
+}
+
+#content-pane {
+	margin: 8px 10px 15px 15px;
+}
+
+.pane-sliders .panel {
+	margin-bottom: 3px;
+	border: solid 1px #ccc;
+}
+
+.pane-sliders .panel h3 {
+	background: #fafafa;
+	color: #666;
+}
+
+.pane-sliders .content {
+	background: #fff;
+}
+
+.pane-sliders .adminlist {
+	border: 0 none;
+	font-size: 1em;
+}
+
+.pane-sliders .adminlist td {
+	border: 0 none;
+}
+
+.pane-toggler span {
+	background: transparent url(../images/j_arrow.png) 5px 50% no-repeat;
+	padding-left: 20px;
+}
+
+.pane-toggler-down span {
+	background: transparent url(../images/j_arrow_down.png) 5px 50% no-repeat;
+	padding-left: 20px;
+}
+
+.pane-toggler-down {
+	border-bottom: 1px solid #ccc;
+}
+
+h3.pane-toggler-down a:hover, h3.pane-toggler a:hover {
+	text-decoration: none;
+}
+
+.pane-slider.pane-hide {
+	display: none;
+}
+
+.pane-slider ol li {
+	list-style: none;
+	margin-left: -25px;
+	margin-top: 10px;
+}
+
+input#jformparams_link_titles1, input#jformparams_show_title1, input#jformparams_link_category1 {
+	margin-left: 13px;
+}
+
+div#position-icon.pane-sliders div.pane-down div.icon-wrapper {
+	margin: 5px 0 5px 0;
+}
+
+div#position-icon.pane-sliders div.pane-down .icon-wrapper .icon {
+	padding: 5px 0 5px 10px;
+	margin: 0;
+}
+
+div#position-icon.pane-sliders .icon {
+	background: #fff;
+}
+
+
+/* -- CONTROL PANEL STYLES ----------------------------- */
+/* Taken from Bluestork template, Joomla! */
+.cpanel div.cpicon, #cpanel div.cpicon {
+    text-align: center;
+    margin-right: 15px;
+    float: left;
+    margin-bottom: 15px;
+}
+
+.cpanel div.cpicon a, #cpanel div.cpicon a {
+    background: #fff -30px;
+    display: block;
+    float: left;
+    min-height: 100px;
+    width: 108px;
+    color: #565656;
+    vertical-align: middle;
+    text-decoration: none;
+    border: 1px solid #CCC;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-transition-property: background-position,
+    -webkit-border-bottom-left-radius, -webkit-box-shadow;
+    -moz-transition-property: background-position,
+    -moz-border-radius-bottomleft, -moz-box-shadow;
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+}
+
+#cpanel div.cpicon a:hover, #cpanel div.cpicon a:focus, #cpanel div.cpicon a:active,
+.cpanel div.cpicon a:hover, .cpanel div.cpicon a:focus, .cpanel div.cpicon a:active
+{
+    background-position: 0;
+    -webkit-border-bottom-left-radius: 50% 20px;
+    -moz-border-radius-bottomleft: 50% 20px;
+    border-bottom-left-radius: 50% 20px;
+    -webkit-box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+    box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+    position: relative;
+    z-index: 10;
+}
+
+#cpanel img, .cpanel img {
+    padding: 10px 0;
+    margin: 0 auto;
+}
+
+#cpanel span, .cpanel span {
+    display: block;
+    text-align: center;
+}
+
+div.cpanel-left {
+    width: 54%;
+    float: left;
+}
+
+div.cpanel-right {
+    width: 45%;
+    float: right;
+}

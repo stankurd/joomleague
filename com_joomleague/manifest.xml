@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<extension type="component" version="3.0" method="upgrade">
+	<name>com_joomleague</name>
+	<creationDate>2015</creationDate>
+	<author>JoomLeague Developers</author>
+	<authorEmail>andone@mfga.at</authorEmail>
+	<authorUrl>http://www.joomleague.at</authorUrl>
+	<copyright>(C) 2005-2016 joomleague.at. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<version>3.0.22.57ae969</version>
+	<description>League Management component for Joomla 3.0.x - Release 3.0.22.57ae969</description>
+
+	<!-- Site Main File Copy Section -->
+	<files folder="components/com_joomleague">
+		<filename>LICENSE.txt</filename>
+		<filename>controller.php</filename>
+		<filename>index.html</filename>
+		<filename>joomleague.php</filename>
+		<filename>joomleague.core.php</filename>
+		<filename>router.php</filename>
+		<folder>assets</folder>
+		<folder>controllers</folder>
+		<folder>extensions</folder>
+		<folder>settings</folder>
+		<folder>help</folder>
+		<folder>helpers</folder>
+		<folder>language</folder>
+		<folder>models</folder>
+		<folder>modules</folder>
+		<folder>plugins</folder>
+		<folder>views</folder>
+	</files>
+
+	<!-- Site Main Media File Copy Section -->
+	<media destination="com_joomleague" folder="media/com_joomleague">
+		<filename>index.html</filename>
+		<folder>bootstrap-editable</folder>
+		<folder>colorpicker</folder>
+		<folder>database</folder>
+		<folder>event_icons</folder>
+		<folder>flags</folder>
+		<folder>images</folder>
+		<folder>jl_images</folder>
+		<folder>treebracket</folder>
+	</media>
+
+	<!-- Runs on install/uninstall/update -->
+	<scriptfile>install.php</scriptfile>
+
+	<!-- Install Database Section -->
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+		</sql>
+	</uninstall>
+	<update>
+		<schemas>
+			<schemapath type="mysql">sql/updates/mysql</schemapath>
+		</schemas>
+	</update>
+
+	<administration>
+		<!-- Administration Menu Section -->
+		<menu link="option=com_joomleague" view="projects" img="components/com_joomleague/assets/images/joomleague_icon.png">com_joomleague</menu>
+		<files folder="administrator/components/com_joomleague">
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<filename>controller.php</filename>
+			<filename>defines.php</filename>
+			<filename>index.html</filename>
+			<filename>joomleague.php</filename>
+			<folder>assets</folder>
+			<folder>controllers</folder>
+			<folder>help</folder>
+			<folder>helpers</folder>
+			<folder>language</folder>
+			<folder>layouts</folder>
+			<folder>models</folder>
+			<folder>modules</folder>
+			<folder>sql</folder>
+			<folder>statistics</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+		</files>
+	</administration>
+
+	<updateservers>
+		<server type="collection">http://www.joomleague.at/joomleague/build/3/list.xml</server>
+	</updateservers>
+</extension>

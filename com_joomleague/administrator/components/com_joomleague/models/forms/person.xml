@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form
+	addrulepath="/administrator/components/com_joomleague/models/rules"
+	addfieldpath="/administrator/components/com_joomleague/models/fields">
+	<fieldset name="details">
+		<field
+			name="firstname"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_F_NAME"
+			class="inputbox"/>
+		<field
+			name="lastname"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_L_NAME"
+			class="inputbox"
+			required="true"/>
+		<field
+			name="nickname"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_N_NAME"
+			class="inputbox"/>
+		<field
+			name="published"
+			type="radio"
+			class="switcher"
+			default="1"
+			size="1"
+			label="JSTATUS"
+			description="JFIELD_PUBLISHED_DESC">
+			<option
+				value="0">
+				JUNPUBLISHED</option>
+			<option
+				value="1">
+				JPUBLISHED</option>
+		</field>
+		<field
+			name="alias"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_ALIAS"
+			description="COM_JOOMLEAGUE_GLOBAL_ALIAS_DESC"
+			class="inputbox"/>
+
+		<field name="contact_id"
+			addfieldpath="/administrator/components/com_contact/models/fields"
+			type="modal_contact"
+			description="COM_CONTACT_SELECT_CONTACT_DESC"
+			label="COM_CONTACT_SELECT_CONTACT_LABEL"
+			required="false"
+			default="0"/>
+
+		<field
+			name="position_id"
+			class="inputbox"
+			default="0"
+			size="1"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_POSITION"
+			description="COM_JOOMLEAGUE_ADMIN_PERSON_POSITION_DESC"
+			type="position">
+		</field>
+		<field
+			name="birthday"
+			type="calendar"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_BIRTHDAY"
+			class="inputbox"
+			format="%Y-%m-%d"
+			default="0000-00-00"/>
+		<field
+			name="deathday"
+			type="calendar"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_DEATHDAY"
+			class="inputbox"
+			format="%Y-%m-%d"
+			default="0000-00-00"/>
+		<field
+			name="height"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_HEIGHT"
+			description="COM_JOOMLEAGUE_ADMIN_PERSON_HEIGHT_DESC"
+			class="inputbox"
+			default="0"/>
+		<field
+			name="weight"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_WEIGHT"
+			description="COM_JOOMLEAGUE_ADMIN_PERSON_WEIGHT_DESC"
+			class="inputbox"
+			default="0"/>
+		<field
+			name="info"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_INFO"
+			description="COM_JOOMLEAGUE_ADMIN_PERSON_INFO_DESC"
+			class="inputbox"/>
+		<field
+			name="knvbnr"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_REGISTRATION_NUMBER"
+			description="COM_JOOMLEAGUE_ADMIN_PERSON_REGISTRATION_NUMBER_DESC"
+			class="inputbox"/>
+
+		<field
+			name="country"
+			type="country"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_NATIONALITY"
+			class="inputbox">
+			<option value="">COM_JOOMLEAGUE_GLOBAL_SELECT_COUNTRY</option>
+		</field>
+		<field
+			name="address"
+			type="textarea"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_ADDRESS"
+			class="inputbox"/>
+		<field
+			name="zipcode"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_POSTAL_CODE"
+			class="inputbox"/>
+		<field
+			name="location"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_CITY"
+			class="inputbox"/>
+		<field
+			name="state"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_STATE"
+			class="inputbox"/>
+		<field
+			name="address_country"
+			type="country"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_COUNTRY"
+			description="COM_JOOMLEAGUE_ADMIN_PERSON_COUNTRY_DESC"
+			class="inputbox">
+			<option value="">COM_JOOMLEAGUE_GLOBAL_SELECT_COUNTRY</option>
+		</field>
+		<field
+			name="phone"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_PHONE"
+			class="inputbox"/>
+		<field
+			name="mobile"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_MOBILE"
+			class="inputbox"/>
+		<field
+			name="email"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_EMAIL"
+			class="inputbox"/>
+		<field
+			name="website"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_WEBSITE"
+			class="inputbox"/>
+		<field name="id" type="text" class="readonly" label="JGLOBAL_FIELD_ID_LABEL"
+		description ="JGLOBAL_FIELD_ID_DESC" size="10" default="0" readonly="true" />
+		<field name="ordering" type="text" label="JFIELD_ORDERING_LABEL"
+			size="6" default="0" />
+	</fieldset>
+	<fieldset name="picture">
+		<field
+			name="picture"
+			type="media"
+			default="images/com_joomleague/database/placeholders/placeholder_150_2.png"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_PICTURE"
+			description="COM_JOOMLEAGUE_ADMIN_PERSON_PICTURE_DESC"
+			class="inputbox"
+			showon="show_info:1[AND]show_image:1"
+			directory="com_joomleague/database/persons"/>
+	</fieldset>
+	<fieldset name="description">
+		<field
+			name="notes"
+			type="editor"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_DESCRIPTION"
+			description="COM_JOOMLEAGUE_ADMIN_PERSON_DESCRIPTION_DESC"
+			width="450"
+			filter="safehtml"/>
+	</fieldset>
+	<fieldset	name="extended"
+				label="COM_JOOMLEAGUE_TABS_EXTENDED"
+				description="COM_JOOMLEAGUE_TABS_EXTENDED_DESC">
+		<field	name="extended"
+				type="text"
+				label="COM_JOOMLEAG UE_ADMIN_PERSON_EXTENDED"
+				description="COM_JOOMLEAGUE_ADMIN_PERSON_EXTENDED_DESC"
+				class="inputbox"/>
+	</fieldset>
+	<fieldset name="advanced">
+		<field
+			name="show_pic"
+			type="radio"
+			class="switcher"
+			default="1"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_SHOW_PICTURE"
+			description="COM_JOOMLEAGUE_ADMIN_PERSON_SHOW_PICTURE_DESC">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		<field
+			name="show_persdata"
+			type="radio"
+			class="switcher"
+			default="1"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_SHOW_P_DATA"
+			description="COM_JOOMLEAGUE_ADMIN_PERSON_SHOW_P_DATA_DESC">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		<field
+			name="show_teamdata"
+			type="radio"
+			class="switcher"
+			default="1"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_SHOW_T_DATA"
+			description="COM_JOOMLEAGUE_ADMIN_PERSON_SHOW_T_DATA_DESC">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		<field
+			name="show_on_frontend"
+			type="radio"
+			class="switcher"
+			default="1"
+			label="COM_JOOMLEAGUE_ADMIN_PERSON_SHOW_FE"
+			description="COM_JOOMLEAGUE_ADMIN_PERSON_SHOW_FE">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+	</fieldset>
+</form>

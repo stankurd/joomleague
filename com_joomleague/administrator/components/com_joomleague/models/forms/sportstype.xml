@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form
+	addrulepath="/administrator/components/com_joomleague/models/rules"
+	addfieldpath="/administrator/components/com_joomleague/models/fields">
+	<fieldset name="details">
+		<field
+			name="name"
+			type="text"
+			class="inputbox"
+			label="COM_JOOMLEAGUE_GLOBAL_NAME"
+			description="COM_JOOMLEAGUE_GLOBAL_NAME_DESC"
+			default="COM_JOOMLEAGUE_ST_"
+			required="true" />
+		<field
+			name="id"
+			type="text"
+			class="readonly"
+			label="JGLOBAL_FIELD_ID_LABEL"
+			description ="JGLOBAL_FIELD_ID_DESC"
+			default="0"
+			size="10"
+			readonly="true" />
+		<field
+			name="ordering"
+			type="text"
+			label="JFIELD_ORDERING_LABEL"
+			default="0"
+			size="6" />
+	</fieldset>
+
+	<fieldset name="picture">
+		<field
+			name="icon"
+			type="media"
+			class="inputbox"
+			label="COM_JOOMLEAGUE_GLOBAL_ICON"
+			description="COM_JOOMLEAGUE_GLOBAL_ICON_DESC"
+			default="images/com_joomleague/database/placeholders/placeholder_21.png"
+			directory="com_joomleague/database/sport_types"
+			preview="show" />
+	</fieldset>
+</form>

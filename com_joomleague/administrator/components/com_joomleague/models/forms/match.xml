@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form
+	addrulepath="/administrator/components/com_joomleague/models/rules"
+	addfieldpath="/administrator/components/com_joomleague/models/fields">
+	<fieldset name="matchpreview">
+		<field
+				name="preview"
+				type="editor"
+				label="COM_JOOMLEAGUE_ADMIN_MATCH_F_MP"
+				description="COM_JOOMLEAGUE_ADMIN_MATCH_F_MP_DESC"
+				width="450" 
+				filter="safehtml"/>		
+	</fieldset>
+	<fieldset name="matchdetails">
+		<field
+				name="cancel"
+				type="radio"
+				class="switcher"
+				default="0"				
+				label="COM_JOOMLEAGUE_ADMIN_MATCH_F_MD_CANCEL"
+				description="COM_JOOMLEAGUE_ADMIN_MATCH_F_MD_CANCEL_DESC">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>	
+		<field
+				name="cancel_reason"
+				type="text"
+				label="COM_JOOMLEAGUE_ADMIN_MATCH_F_MD_REASON_CANCEL"
+				description="COM_JOOMLEAGUE_ADMIN_MATCH_F_MD_REASON_CANCEL_DESC"/>	
+		<field
+				name="playground_id"
+				type="sql"
+				class="inputbox"
+				default="0"
+				size="1"
+				label="COM_JOOMLEAGUE_ADMIN_MATCH_F_MD_VENUE"
+				description="COM_JOOMLEAGUE_ADMIN_MATCH_F_MD_VENUE_DESC"
+				query="SELECT id AS value, name AS playground_id FROM #__joomleague_playground ORDER BY name ASC">
+				<option
+					value="0">
+					COM_JOOMLEAGUE_GLOBAL_SELECT_PLAYGROUND</option>
+		</field>
+		<field name="id" type="text" class="readonly" label="JGLOBAL_FIELD_ID_LABEL"
+		description ="JGLOBAL_FIELD_ID_DESC" size="10" default="0" readonly="true" />
+	</fieldset>
+	<fieldset name="altdecision">
+		<field name="count_result" type="radio"
+			label="COM_JOOMLEAGUE_ADMIN_MATCH_F_AD_INCL"
+			description="COM_JOOMLEAGUE_ADMIN_MATCH_F_AD_INCL"
+			class="switcher" 
+			>
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="alt_decision" type="list"
+			label="COM_JOOMLEAGUE_ADMIN_MATCH_F_AD_SUB_DEC"
+			description="COM_JOOMLEAGUE_ADMIN_MATCH_F_AD_SUB_DEC" 
+			>
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+	</fieldset>			
+	<fieldset name="matchreport">
+		<field
+				name="show_report"
+				type="radio"
+				class="switcher"
+				default="0"				
+				label="COM_JOOMLEAGUE_ADMIN_MATCH_F_MR_SHOW"
+				description="COM_JOOMLEAGUE_ADMIN_MATCH_F_MR_SHOW_DESC">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>	
+		<field
+				name="summary"
+				type="editor"
+				label="COM_JOOMLEAGUE_ADMIN_MATCH_F_MR"
+				description="COM_JOOMLEAGUE_ADMIN_MATCH_F_MR_DESC"
+				width="450" 
+				filter="safehtml"/>				
+	</fieldset>	
+		<fieldset name="Permissions" label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC">
+		<field name="asset_id" type="hidden" filter="unset" />
+		<field name="rules" type="rules" label="COM_JOOMLEAGUE_SETTINGS_ACCESS_COMPONENT"
+			class="inputbox" filter="rules" validate="rules" component="com_joomleague"
+			section="match" />
+	</fieldset>
+</form>

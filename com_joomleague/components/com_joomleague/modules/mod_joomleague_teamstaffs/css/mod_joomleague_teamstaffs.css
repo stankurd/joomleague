@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+
+.modjlgteamstaffs {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	vertical-align: middle;
+	text-align: center;
+}
+
+div.modjlteamstaffs .projectname {
+	font-weight: bold;
+	text-align: center;
+}
+
+div.modjlgteamstaffs .stafflink {
+	text-align: center;
+	vertical-align: middle;
+}
+
+div.modjlgteamstaffs .teamname {
+	text-align: center;
+	vertical-align: middle;
+}
+
+div.modjlgteamstaffs table {
+	
+}
+
+div.modjlgteamstaffs td {
+	
+}
+
+ul.modjlgstaff {
+	display: block;
+	list-style: none;
+}
+
+ul.modjlgposition {
+	list-style: none;
+	display: block;
+}

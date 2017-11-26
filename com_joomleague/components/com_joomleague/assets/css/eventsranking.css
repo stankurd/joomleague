@@ -1,0 +1,28 @@
+.eventsranking .rank {
+	width: 25px;
+	text-align: right;
+	padding: 2px;
+}
+
+.eventsranking table.eventsranking {
+	width: 100%;
+}
+
+.eventsranking .td_l {
+	text-align: left;
+	padding: 2px;
+}
+
+.eventsranking .td_c {
+	text-align: center;
+	padding: 2px;
+}
+
+.eventsranking .td_r {
+	text-align: right;
+	padding: 2px;
+}
+
+.fulltablelink {
+	text-align: center;
+}

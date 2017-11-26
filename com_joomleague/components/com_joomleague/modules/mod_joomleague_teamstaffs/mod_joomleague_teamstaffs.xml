@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" client="site" method="upgrade">
+	<name>mod_joomleague_teamstaffs</name>
+	<creationDate>July 2015</creationDate>
+	<author>JoomLeague Developers</author>
+	<authorEmail>andone@mfga.at</authorEmail>
+	<authorUrl>http://www.joomleague.at</authorUrl>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<copyright>(C) 2005-2016 joomleague.at. All rights reserved.</copyright>
+	<version>3.0.22.57ae969</version>
+	<description>MOD_JOOMLEAGUE_TEAMSTAFFS_XML_DESC</description>
+
+	<files>
+		<filename module="mod_JOOMLEAGUE_TEAMSTAFFS">mod_joomleague_teamstaffs.php</filename>
+		<filename>index.html</filename>
+		<filename>helper.php</filename>
+		<folder>css</folder>
+		<folder>tmpl</folder>
+		<folder>language</folder>
+	</files>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic"
+				addfieldpath="/administrator/components/com_joomleague/models/fields">
+				<field type="project" name="p" label="MOD_JOOMLEAGUE_TEAMSTAFFS_PROJECT_LABEL"
+					description="MOD_JOOMLEAGUE_TEAMSTAFFS_PROJECT_LABEL_DESC" />
+				<field name="team" type="dependsql" default="0" depends="p"
+					task="projectteamsoptions" 
+					label="MOD_JOOMLEAGUE_TEAMSTAFFS_TEAM_ID_LABEL" 
+					description="MOD_JOOMLEAGUE_TEAMSTAFFS_TEAM_ID_LABEL_DESC" />
+				<field name="show_project_name" type="radio"  class="btn-group btn-group-yesno" default="0"
+					label="MOD_JOOMLEAGUE_TEAMSTAFFS_SHOW_PROJECT_NAME" 
+					description="MOD_JOOMLEAGUE_TEAMSTAFFS_SHOW_PROJECT_NAME_DESC">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="show_team_name" type="radio" class="btn-group btn-group-yesno" default="0"
+					label="MOD_JOOMLEAGUE_TEAMSTAFFS_SHOW_TEAM_NAME" 
+					description="SHOW TEAM NAME DESC">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="show_staff_link" type="radio" class="btn-group btn-group-yesno" default="1"
+					label="MOD_JOOMLEAGUE_TEAMSTAFFS_SHOW_STAFF_LINK" 
+					description="MOD_JOOMLEAGUE_TEAMSTAFFS_SHOW_STAFF_LINK_DESC">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="show_flag" type="radio" class="btn-group btn-group-yesno" default="1"
+					label="MOD_JOOMLEAGUE_TEAMSTAFFS_SHOW_STAFF_FLAG" 
+					description="MOD_JOOMLEAGUE_TEAMSTAFFS_SHOW_STAFF_FLAG_DESC">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				<field name="name_format" type="nameformat"
+					label="COM_JOOMLEAGUE_FES_STAFF_PARAM_LABEL_NAME_FORMAT" 
+					description="COM_JOOMLEAGUE_FES_STAFF_PARAM_DESCR_NAME_FORMAT" />
+			</fieldset>
+			<fieldset name="advanced">
+				<field name="cache" type="list" default="1"
+					label="MOD_JOOMLEAGUE_TEAMSTAFFS_CACHING_LABEL" 
+					description="MOD_JOOMLEAGUE_TEAMSTAFFS_CACHING_DESCR">
+					<option value="1">MOD_JOOMLEAGUE_TEAMSTAFFS_CACHING_USE_GLOBAL</option>
+					<option value="0">MOD_JOOMLEAGUE_TEAMSTAFFS_CACHING_NO_CACHING</option>
+				</field>
+				<field name="cache_time" type="text" default="900"
+					label="MOD_JOOMLEAGUE_TEAMSTAFFS_CACHE_TIME_LABEL" 
+					description="MOD_JOOMLEAGUE_TEAMSTAFFS_CACHE_TIME_DESCR">
+				</field>
+				<field name="moduleclass_sfx" type="text" default=""
+					label="MOD_JOOMLEAGUE_TEAMSTAFFS_MODULE_CLASS_SUFFIX_LABEL"
+					description="MOD_JOOMLEAGUE_TEAMSTAFFS_MODULE_CLASS_SUFFIX_DESCR">
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

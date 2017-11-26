@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="system" method="upgrade">
+    <name>System - Single Login</name>
+    <author>Branko Wilhelm</author>
+    <creationDate>Dez 2013</creationDate>
+    <copyright>Copyright (C) 2013 Branko Wilhelm. All rights reserved.</copyright>
+    <license>GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html</license>
+    <authorEmail>branko.wilhelm@gmail.com</authorEmail>
+    <authorUrl>www.z-index.net</authorUrl>
+    <version>rev 1</version>
+    <description>Auto login into backend or frontend if session on the other site already exists.</description>
+    <files>
+        <filename plugin="single_login">single_login.php</filename>
+    </files>
+    <updateservers>
+        <server type="collection" priority="1" name="z-index development">http://www.z-index.net/en/extensions.xml</server>
+    </updateservers>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="login" type="radio" class="btn-group" default="both" required="true" label="Auto-Login">
+                    <option value="frontend">frontend</option>
+                    <option value="backend">backend</option>
+                    <option value="both">both</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

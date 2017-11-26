@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<access component="com_joomleague">
+	<!-- task actions, corresponding to toolbar buttons -->
+	<section name="component">
+		<action name="core.admin" title="JACTION_ADMIN" description="JACTION_ADMIN_COMPONENT_DESC" />
+		<action name="core.manage" title="JACTION_MANAGE" description="JACTION_MANAGE_COMPONENT_DESC" />
+		<action name="core.create" title="JACTION_CREATE" description="JACTION_CREATE_COMPONENT_DESC" />
+		<action name="core.delete" title="JACTION_DELETE" description="JACTION_DELETE_COMPONENT_DESC" />
+		<action name="core.edit" title="JACTION_EDIT" description="JACTION_EDIT_COMPONENT_DESC" />
+		<action name="core.edit.state" title="JACTION_EDITSTATE" description="JACTION_EDITSTATE_COMPONENT_DESC" />
+		<action name="settings.edit" title="COM_JOOMLEAGUE_SETTINGS_ACCESS_EDIT" description="COM_JOOMLEAGUE_SETTINGS_ACCESS_EDIT_DESC" />
+		<action name="settings.save" title="COM_JOOMLEAGUE_SETTINGS_ACCESS_SAVE" description="COM_JOOMLEAGUE_SETTINGS_ACCESS_SAVE_DESC" />
+		<!-- project -->
+		<action name="project.add" title="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_ADD" description="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_ADD_DESC" />
+		<action name="project.cancel" title="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_CANCEL" description="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_CANCEL_DESC" />
+		<action name="project.copysave" title="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_COPYSAVE" description="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_COPYSAVE_DESC" />
+		<action name="project.create" title="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_CREATE" description="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_CREATE_DESC" />
+		<action name="project.display" title="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_DISPLAY" description="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_DISPLAY_DESC" />
+		<action name="project.edit" title="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_EDIT" description="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_EDIT_DESC" />
+		<action name="project.export" title="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_EXPORT" description="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_EXPORT_DESC" />
+		<action name="project.import" title="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_REMOVE" description="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_REMOVE_DESC" />
+		<action name="project.publish" title="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_PUBLISH" description="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_PUBLISH_DESC" />
+		<action name="project.orderdown" title="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_ORDERDOWN" description="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_ORDERDOWN_DESC" />
+		<action name="project.orderup" title="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_ORDERUP" description="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_ORDERUP_DESC" />
+		<action name="project.remove" title="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_REMOVE" description="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_REMOVE_DESC" />
+		<action name="project.save" title="COM_JOOMLEAGUE_SETTINGS_PROJECT_SAVE_REMOVE" description="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_SAVE_DESC" />
+		<action name="project.saveorder" title="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_SAVEORDER" description="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_SAVEORDER_DESC" />
+		<action name="project.unpublish" title="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_UNPUBLISH" description="COM_JOOMLEAGUE_SETTINGS_PROJECT_ACCESS_UNPUBLISH_DESC" />
+		<!-- workspace -->
+		<action name="joomleague.workspace" title="COM_JOOMLEAGUE_SETTINGS_ACCESS_WORKSPACE" description="COM_JOOMLEAGUE_SETTINGS_ACCESS_WORKSPACE_DESC" />
+		<action name="projectreferee.display" title="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_DISPLAY" description="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_DISPLAY_DESC" />
+		<action name="projectteam.display" title="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_DISPLAY" description="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_DISPLAY_DESC" />
+		<action name="round.display" title="COM_JOOMLEAGUE_SETTINGS_ROUND_ACCESS_DISPLAY" description="COM_JOOMLEAGUE_SETTINGS_ROUND_ACCESS_DISPLAY_DESC" />
+		<action name="jlxmlexport.display" title="COM_JOOMLEAGUE_SETTINGS_JLXMLEXPORT_ACCESS_DISPLAY" description="COM_JOOMLEAGUE_SETTINGS_JLXMLEXPORT_ACCESS_DISPLAY_DESC" />
+		<!-- template -->
+		<action name="template.display" title="COM_JOOMLEAGUE_SETTINGS_TEMPLATE_ACCESS_DISPLAY" description="COM_JOOMLEAGUE_SETTINGS_TEMPLATE_ACCESS_DISPLAY_DESC" />
+		<action name="template.edit" title="COM_JOOMLEAGUE_SETTINGS_TEMPLATE_ACCESS_EDIT" description="COM_JOOMLEAGUE_SETTINGS_TEMPLATE_ACCESS_EDIT_DESC" />
+		<action name="template.apply" title="COM_JOOMLEAGUE_SETTINGS_TEMPLATE_ACCESS_APPLY" description="COM_JOOMLEAGUE_SETTINGS_TEMPLATE_ACCESS_APPLY_DESC" />
+		<action name="template.save" title="COM_JOOMLEAGUE_SETTINGS_TEMPLATE_ACCESS_SAVE" description="COM_JOOMLEAGUE_SETTINGS_TEMPLATE_ACCESS_SAVE_DESC" />
+		<action name="template.cancel" title="COM_JOOMLEAGUE_SETTINGS_TEMPLATE_ACCESS_CANCEL" description="COM_JOOMLEAGUE_SETTINGS_TEMPLATE_ACCESS_CANCEL_DESC" />
+		<action name="template.reset" title="COM_JOOMLEAGUE_SETTINGS_TEMPLATE_ACCESS_RESET" description="COM_JOOMLEAGUE_SETTINGS_TEMPLATE_ACCESS_RESET_DESC" />
+		<!-- projectpositions -->
+		<action name="projectposition.display" title="COM_JOOMLEAGUE_SETTINGS_PROJECTPOSITION_ACCESS_DISPLAY" description="COM_JOOMLEAGUE_SETTINGS_PROJECTPOSITION_ACCESS_DISPLAY_DESC" />
+		<action name="projectposition.save_positionslist" title="COM_JOOMLEAGUE_SETTINGS_PROJECTPOSITION_ACCESS_SAVE" description="COM_JOOMLEAGUE_SETTINGS_PROJECTPOSITION_ACCESS_SAVE_DESC" />
+		<action name="projectposition.cancel" title="COM_JOOMLEAGUE_SETTINGS_PROJECTPOSITION_ACCESS_CANCEL" description="COM_JOOMLEAGUE_SETTINGS_PROJECTPOSITION_ACCESS_CANCEL_DESC" />
+		<!-- divisions -->
+		<action name="division.display" title="COM_JOOMLEAGUE_SETTINGS_DIVISION_ACCESS_DISPLAY" description="COM_JOOMLEAGUE_SETTINGS_DIVISION_ACCESS_DISPLAY_DESC" />
+		<action name="division.edit" title="COM_JOOMLEAGUE_SETTINGS_DIVISION_ACCESS_EDIT" description="COM_JOOMLEAGUE_SETTINGS_DIVISION_ACCESS_EDIT_DESC" />
+		<action name="division.apply" title="COM_JOOMLEAGUE_SETTINGS_DIVISION_ACCESS_APPLY" description="COM_JOOMLEAGUE_SETTINGS_DIVISION_ACCESS_APPLY_DESC" />
+		<action name="division.save" title="COM_JOOMLEAGUE_SETTINGS_DIVISION_ACCESS_SAVE" description="COM_JOOMLEAGUE_SETTINGS_DIVISION_ACCESS_SAVE_DESC" />
+		<action name="division.cancel" title="COM_JOOMLEAGUE_SETTINGS_DIVISION_ACCESS_CANCEL" description="COM_JOOMLEAGUE_SETTINGS_DIVISION_ACCESS_CANCEL_DESC" />
+		<!-- projectreferee -->
+		<action name="projectreferee.display" title="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_DISPLAY" description="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_DISPLAY_DESC" />
+		<action name="projectreferee.edit" title="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_EDIT" description="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_EDIT_DESC" />
+		<action name="projectreferee.apply" title="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_SAVESHORT" description="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_SAVESHORT_DESC" />
+		<action name="projectreferee.save" title="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_SAVE" description="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_SAVE_DESC" />
+		<action name="projectreferee.cancel" title="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_CANCEL" description="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_CANCEL_DESC" />
+		<action name="projectreferee.assign" title="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_ASSIGN" description="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_ASSIGN_DESC" />
+		<action name="projectreferee.unassign" title="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_UNSSIGN" description="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_UNASSIGN_DESC" />
+		<action name="projectreferee.saveshort" title="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_SAVESHORT" description="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_SAVESHORT_DESC" />
+		<!-- club -->
+		<action name="club.display" title="COM_JOOMLEAGUE_SETTINGS_CLUB_ACCESS_DISPLAY" description="COM_JOOMLEAGUE_SETTINGS_CLUB_ACCESS_DISPLAY_DESC" />
+		<action name="club.edit" title="COM_JOOMLEAGUE_SETTINGS_CLUB_ACCESS_EDIT" description="COM_JOOMLEAGUE_SETTINGS_CLUB_ACCESS_EDIT_DESC" />
+		<action name="club.apply" title="COM_JOOMLEAGUE_SETTINGS_CLUB_ACCESS_APPLY" description="COM_JOOMLEAGUE_SETTINGS_CLUB_ACCESS_APPLY_DESC" />
+		<action name="club.save" title="COM_JOOMLEAGUE_SETTINGS_CLUB_ACCESS_SAVE" description="COM_JOOMLEAGUE_SETTINGS_CLUB_ACCESS_SAVE_DESC" />
+		<action name="club.cancel" title="COM_JOOMLEAGUE_SETTINGS_CLUB_ACCESS_CANCEL" description="COM_JOOMLEAGUE_SETTINGS_CLUB_ACCESS_CANCEL_DESC" />
+		<action name="club.import" title="COM_JOOMLEAGUE_SETTINGS_CLUB_ACCESS_IMPORT" description="COM_JOOMLEAGUE_SETTINGS_CLUB_ACCESS_IMPORT_DESC" />
+		<action name="club.export" title="COM_JOOMLEAGUE_SETTINGS_CLUB_ACCESS_EXPORT" description="COM_JOOMLEAGUE_SETTINGS_CLUB_ACCESS_EXPORT_DESC" />
+		<!-- person -->
+		<action name="person.display" title="COM_JOOMLEAGUE_SETTINGS_PERSON_ACCESS_DISPLAY" description="COM_JOOMLEAGUE_SETTINGS_PERSON_ACCESS_DISPLAY_DESC" />
+		<action name="person.edit" title="COM_JOOMLEAGUE_SETTINGS_PERSON_ACCESS_EDIT" description="COM_JOOMLEAGUE_SETTINGS_PERSON_ACCESS_EDIT_DESC" />
+		<action name="person.apply" title="COM_JOOMLEAGUE_SETTINGS_PERSON_ACCESS_APPLY" description="COM_JOOMLEAGUE_SETTINGS_PERSON_ACCESS_APPLY_DESC" />
+		<action name="person.save" title="COM_JOOMLEAGUE_SETTINGS_PERSON_ACCESS_SAVE" description="COM_JOOMLEAGUE_SETTINGS_PERSON_ACCESS_SAVE_DESC" />
+		<action name="person.cancel" title="COM_JOOMLEAGUE_SETTINGS_PERSON_ACCESS_CANCEL" description="COM_JOOMLEAGUE_SETTINGS_PERSON_ACCESS_CANCEL_DESC" />
+		<action name="person.import" title="COM_JOOMLEAGUE_SETTINGS_PERSON_ACCESS_IMPORT" description="COM_JOOMLEAGUE_SETTINGS_PERSON_ACCESS_IMPORT_DESC" />
+		<action name="person.export" title="COM_JOOMLEAGUE_SETTINGS_PERSON_ACCESS_EXPORT" description="COM_JOOMLEAGUE_SETTINGS_PERSON_ACCESS_EXPORT_DESC" />
+		<!-- projectteam -->
+		<action name="projectteam.edit" title="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_EDIT" description="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_EDIT_DESC" />
+		<action name="projectteam.apply" title="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_APPLY" description="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_APPLY_DESC" />
+		<action name="projectteam.save" title="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_SAVE" description="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_SAVE_DESC" />
+		<action name="projectteam.cancel" title="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_CANCEL" description="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_CANCEL_DESC" />
+		<!-- match -->
+		<action name="match.display" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_DISPLAY" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_DISPLAY_DESC" />
+		<action name="match.saveshort" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVESHORT" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVESHORT_DESC" />
+		<action name="match.edit" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDIT" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDIT_DESC" />
+		<action name="match.savedetails" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVEDETAILS" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVEDETAILS_DESC" />
+		<action name="match.publish" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_PUBLISH" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_PUBLISH_DESC" />
+		<action name="match.unpublish" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_UNPUBLISH" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_UNPUBLISH_DESC" />
+		<action name="match.massadd" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_MASSADD" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_MASSADD_DESC" />
+		<action name="match.addmatch" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_ADDMATCH" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_ADDMATCH_DESC" />
+		<action name="match.remove" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_REMOVE" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_REMOVE_DESC" />
+		<action name="match.cancelmassadd" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_CANCELMASSADD" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_CANCELMASSADD_DESC" />
+		<action name="match.saveeventbb" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVEEVENTBB" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVEEVENTBB_DESC" />
+		<action name="match.saveroster" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVEROSTER" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVEROSTER_DESC" />
+		<action name="match.savereferees" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVEREFEREES" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVEREFEREES_DESC" />
+		<action name="match.savestats" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVESTATS" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVESTATS_DESC" />
+		<action name="match.savesubst" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVESTATS" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVESTATS_DESC" />
+		<action name="match.removeSubst" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVESTATS" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVESTATS_DESC" />
+		<action name="match.copyfrom" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_COPYFROM" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_COPYFROM_DESC" />
+		<action name="match.editlineup" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDITLINEUP" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDITLINEUP_DESC" />
+		<action name="match.editevents" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDITEVENTS" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDITEVENTS_DESC" />
+		<action name="match.editeventsbb" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDITEVENTSBB" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDITEVENTSBB_DESC" />
+		<action name="match.editstats" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDITSTATS" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDITSTATS_DESC" />
+		<action name="match.editreferees" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDITREFEREES" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDITREFEREES_DESC" />
+		<!-- round -->
+		<action name="round.display" title="COM_JOOMLEAGUE_SETTINGS_ROUND_ACCESS_DISPLAY" description="COM_JOOMLEAGUE_SETTINGS_ROUND_ACCESS_DISPLAY_DESC" />
+	</section>
+	<!-- item actions -->
+	<section name="project">
+		<action name="core.admin" title="JACTION_ADMIN" description="JACTION_ADMIN_COMPONENT_DESC" />
+		<action name="core.manage" title="JACTION_MANAGE" description="JACTION_MANAGE_COMPONENT_DESC" />
+		<action name="core.create" title="JACTION_CREATE" description="JACTION_CREATE_COMPONENT_DESC" />
+		<action name="core.delete" title="JACTION_DELETE" description="JACTION_DELETE_COMPONENT_DESC" />
+		<action name="core.edit" title="JACTION_EDIT" description="JACTION_EDIT_COMPONENT_DESC" />
+		<action name="core.edit.state" title="JACTION_EDITSTATE" description="JACTION_EDITSTATE_COMPONENT_DESC" />
+	</section>
+	<section name="project_team">
+		<action name="core.admin" title="JACTION_ADMIN" description="JACTION_ADMIN_COMPONENT_DESC" />
+		<action name="core.manage" title="JACTION_MANAGE" description="JACTION_MANAGE_COMPONENT_DESC" />
+		<action name="core.create" title="JACTION_CREATE" description="JACTION_CREATE_COMPONENT_DESC" />
+		<action name="core.delete" title="JACTION_DELETE" description="JACTION_DELETE_COMPONENT_DESC" />
+		<action name="core.edit" title="JACTION_EDIT" description="JACTION_EDIT_COMPONENT_DESC" />
+		<action name="core.edit.state" title="JACTION_EDITSTATE" description="JACTION_EDITSTATE_COMPONENT_DESC" />
+	</section>
+	<section name="project_referee">
+		<action name="core.admin" title="JACTION_ADMIN" description="JACTION_ADMIN_COMPONENT_DESC" />
+		<action name="core.manage" title="JACTION_MANAGE" description="JACTION_MANAGE_COMPONENT_DESC" />
+		<action name="core.create" title="JACTION_CREATE" description="JACTION_CREATE_COMPONENT_DESC" />
+		<action name="core.delete" title="JACTION_DELETE" description="JACTION_DELETE_COMPONENT_DESC" />
+		<action name="core.edit" title="JACTION_EDIT" description="JACTION_EDIT_COMPONENT_DESC" />
+		<action name="core.edit.state" title="JACTION_EDITSTATE" description="JACTION_EDITSTATE_COMPONENT_DESC" />
+	</section>
+	<section name="club">
+		<action name="core.admin" title="JACTION_ADMIN" description="JACTION_ADMIN_COMPONENT_DESC" />
+		<action name="core.manage" title="JACTION_MANAGE" description="JACTION_MANAGE_COMPONENT_DESC" />
+		<action name="core.create" title="JACTION_CREATE" description="JACTION_CREATE_COMPONENT_DESC" />
+		<action name="core.delete" title="JACTION_DELETE" description="JACTION_DELETE_COMPONENT_DESC" />
+		<action name="core.edit" title="JACTION_EDIT" description="JACTION_EDIT_COMPONENT_DESC" />
+		<action name="core.edit.state" title="JACTION_EDITSTATE" description="JACTION_EDITSTATE_COMPONENT_DESC" />
+	</section>
+	<section name="team">
+		<action name="core.admin" title="JACTION_ADMIN" description="JACTION_ADMIN_COMPONENT_DESC" />
+		<action name="core.manage" title="JACTION_MANAGE" description="JACTION_MANAGE_COMPONENT_DESC" />
+		<action name="core.create" title="JACTION_CREATE" description="JACTION_CREATE_COMPONENT_DESC" />
+		<action name="core.delete" title="JACTION_DELETE" description="JACTION_DELETE_COMPONENT_DESC" />
+		<action name="core.edit" title="JACTION_EDIT" description="JACTION_EDIT_COMPONENT_DESC" />
+		<action name="core.edit.state" title="JACTION_EDITSTATE" description="JACTION_EDITSTATE_COMPONENT_DESC" />
+	</section>
+	<section name="team_player">
+		<action name="core.admin" title="JACTION_ADMIN" description="JACTION_ADMIN_COMPONENT_DESC" />
+		<action name="core.manage" title="JACTION_MANAGE" description="JACTION_MANAGE_COMPONENT_DESC" />
+		<action name="core.create" title="JACTION_CREATE" description="JACTION_CREATE_COMPONENT_DESC" />
+		<action name="core.delete" title="JACTION_DELETE" description="JACTION_DELETE_COMPONENT_DESC" />
+		<action name="core.edit" title="JACTION_EDIT" description="JACTION_EDIT_COMPONENT_DESC" />
+		<action name="core.edit.state" title="JACTION_EDITSTATE" description="JACTION_EDITSTATE_COMPONENT_DESC" />
+	</section>
+	<section name="team_staff">
+		<action name="core.admin" title="JACTION_ADMIN" description="JACTION_ADMIN_COMPONENT_DESC" />
+		<action name="core.manage" title="JACTION_MANAGE" description="JACTION_MANAGE_COMPONENT_DESC" />
+		<action name="core.create" title="JACTION_CREATE" description="JACTION_CREATE_COMPONENT_DESC" />
+		<action name="core.delete" title="JACTION_DELETE" description="JACTION_DELETE_COMPONENT_DESC" />
+		<action name="core.edit" title="JACTION_EDIT" description="JACTION_EDIT_COMPONENT_DESC" />
+		<action name="core.edit.state" title="JACTION_EDITSTATE" description="JACTION_EDITSTATE_COMPONENT_DESC" />
+	</section>
+	<section name="match">
+		<action name="core.admin" title="JACTION_ADMIN" description="JACTION_ADMIN_COMPONENT_DESC" />
+		<action name="core.manage" title="JACTION_MANAGE" description="JACTION_MANAGE_COMPONENT_DESC" />
+		<action name="core.create" title="JACTION_CREATE" description="JACTION_CREATE_COMPONENT_DESC" />
+		<action name="core.delete" title="JACTION_DELETE" description="JACTION_DELETE_COMPONENT_DESC" />
+		<action name="core.edit" title="JACTION_EDIT" description="JACTION_EDIT_COMPONENT_DESC" />
+		<action name="core.edit.state" title="JACTION_EDITSTATE" description="JACTION_EDITSTATE_COMPONENT_DESC" />
+	</section>
+</access>

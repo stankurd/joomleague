@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form
+	addrulepath="/administrator/components/com_joomleague/models/rules"
+	addfieldpath="/administrator/components/com_joomleague/models/fields">
+	<fieldset name="details">
+		<field
+			name="name"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_NAME"
+			description="COM_JOOMLEAGUE_GLOBAL_NAME_DESC"
+			class="inputbox"
+			required="true"/>
+	<field
+			name="middle_name"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_LEAGUE_MIDDLE_NAME"
+			description="COM_JOOMLEAGUE_ADMIN_LEAGUE_MIDDLE_NAME_DESC"
+			class="inputbox"/>
+	<field
+			name="short_name"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_LEAGUE_SHORT_NAME"
+			description="COM_JOOMLEAGUE_ADMIN_LEAGUE_SHORT_NAME_DESC"
+			class="inputbox"
+			required="true"/>
+	<field
+			name="alias"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_ALIAS"
+			description="COM_JOOMLEAGUE_GLOBAL_ALIAS_DESC"
+			class="inputbox"/>	
+	<field
+			name="country"
+			type="country"
+			label="COM_JOOMLEAGUE_ADMIN_LEAGUE_COUNTRY"
+			description="COM_JOOMLEAGUE_ADMIN_LEAGUE_COUNTRY_DESC"
+			class="inputbox">
+		<option value="">COM_JOOMLEAGUE_GLOBAL_SELECT_COUNTRY</option>
+		<field name="ordering" type="text" label="JFIELD_ORDERING_LABEL"
+			size="6"
+			default="0" />
+		<field name="id" type="text" class="readonly" label="JGLOBAL_FIELD_ID_LABEL"
+		description ="JGLOBAL_FIELD_ID_DESC" size="10" default="0" readonly="true" />
+	</field>	
+		
+	</fieldset>			
+		<fieldset	name="extended"
+	  			label="COM_JOOMLEAGUE_TABS_EXTENDED"
+	  			description="COM_JOOMLEAGUE_TABS_EXTENDED_DESC">
+		<field	name="extended"
+				type="text"
+				label="COM_JOOMLEAGUE_ADMIN_LEAGUE_EXTENDED"
+				description="COM_JOOMLEAGUE_ADMIN_LEAGUE_EXTENDED_DESC"
+				class=""/>
+	</fieldset>
+</form>

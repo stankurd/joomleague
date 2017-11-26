@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_JOOMLEAGUE_XML_ROSTER_LAYOUT_TITLE">
+		<message>
+			<![CDATA[COM_JOOMLEAGUE_XML_ROSTER_LAYOUT_DESCR]]>
+		</message>
+	</layout>
+	<fields name="request">
+		<fieldset name="request" label="COM_JOOMLEAGUE_XML_BASIC_FIELDSET_LABEL"
+			addfieldpath="/administrator/components/com_joomleague/models/fields">
+
+			<field name="p" type="project" label="COM_JOOMLEAGUE_XML_SELECT_PROJECT_LABEL"
+				description="COM_JOOMLEAGUE_XML_SELECT_PROJECT_DESCR" required="true">
+			</field>
+			<field name="division" type="dependsql" depends="p"
+				task="projectdivisionsoptions" label="COM_JOOMLEAGUE_XML_SELECT_DIVISION_LABEL"
+				description="COM_JOOMLEAGUE_XML_SELECT_DIVISION_DESCR" required="false">
+			</field>
+			<field name="tid" type="dependsql" depends="p,division"
+				task="projectteamsoptions" label="COM_JOOMLEAGUE_XML_SELECT_TEAM_LABEL"
+				description="COM_JOOMLEAGUE_XML_SELECT_TEAM_DESCR" required="true">
+			</field>
+			<field 	name="playerlayout" type="radio" default="player_standard" 
+					label="COM_JOOMLEAGUE_FES_ROSTER_PARAM_LABEL_SHOW_PLAYERS_LAYOUT" 
+					description="COM_JOOMLEAGUE_FES_ROSTER_PARAM_DESCR_SHOW_PLAYERS_LAYOUT">
+				<option value="player_standard">COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION1_PLAYER_STANDARD</option>
+				<option value="player_card">COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION2_PLAYER_CARD</option>
+			</field>
+			<field 	name="stafflayout" type="radio" default="staff_standard" 
+					label="COM_JOOMLEAGUE_FES_ROSTER_PARAM_LABEL_SHOW_STAFF_LAYOUT" 
+					description="COM_JOOMLEAGUE_FES_ROSTER_PARAM_DESCR_SHOW_STAFF_LAYOUT">
+				<option value="staff_standard">COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION1_STAFF_STANDARD</option>
+				<option value="staff_card">COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION2_STAFF_CARD</option>
+			</field>
+	
+			
+		</fieldset>
+	</fields>
+</metadata>

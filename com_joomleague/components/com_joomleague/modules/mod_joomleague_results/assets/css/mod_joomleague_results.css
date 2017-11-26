@@ -1,0 +1,84 @@
+@CHARSET "UTF-8";
+
+div.modjlgresults .teamlogo {
+	max-height: 20px;
+	max-width: 20px;
+	vertical-align: middle;
+}
+
+div.modjlgresults .projectname {
+	font-weight:bold;
+}
+
+div.modjlgresults .fulltablelink {
+	text-align:center;
+}
+
+div.modjlgresults table {
+	width: 95%;
+	white-space:nowrap;
+}
+
+div.modjlgresults .left {
+	text-align: left;
+}
+
+div.modjlgresults .right {
+	text-align: right;
+}
+
+div.modjlgresults .mrscore {
+	text-align: center;
+	white-space: nowrap;
+}
+
+.mod_jl_results {
+    width: 100%;
+}
+.mod_jl_results a:link, a:visited, a:hover, a:active {
+    color: #C3C3C3;
+}
+.mod_jl_results_matches {
+    width: 95%;
+}
+.mod_jl_results_project_name {
+    font-weight: bold;
+    text-align: left;
+}
+.mod_jl_results_round_name {
+    font-weight: bold;
+    text-align: left;
+}
+.mod_jl_results_date {
+    font-weight: bold;
+    text-align: left;
+}
+.mod_jl_results_time {
+    font-weight: bold;
+    text-align: left;
+}
+.mod_jl_results_score {
+    font-weight: bold;
+    text-align: center;
+}
+.mod_jl_results_opponent_left {
+    font-weight: bold;
+    text-align: right;
+}
+.mod_jl_results_opponent_right {
+    font-weight: bold;
+    text-align: left;
+}
+.mod_jl_results_fulltablelink {
+    padding: 5px 0;
+    text-align: center;
+}
+.mod_jl_results_matchwin {
+    color: #72FF00;
+}
+.mod_jl_results_matchloss {
+    color: #FF0000;
+}
+.mod_jl_results_matchdraw {
+    color: #FFAE00;
+}

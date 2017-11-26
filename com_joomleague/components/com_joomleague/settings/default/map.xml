@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<form>
+	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_OPTIONS"
+		group="COM_JOOMLEAGUE_FES_PARAMS_GROUP_OPTIONS" description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_OPTIONS">
+
+		<field name="width" type="text" default="100%"
+			label="COM_JOOMLEAGUE_FES_MAP_PARAM_LABEL_WIDTH" description="COM_JOOMLEAGUE_FES_MAP_PARAM_DESCR_WIDTH">
+		</field>
+
+		<field name="height" type="text" default="300"
+			label="COM_JOOMLEAGUE_FES_MAP_PARAM_LABEL_HEIGHT" description="COM_JOOMLEAGUE_FES_MAP_PARAM_DESCR_HEIGHT">
+		</field>
+
+		<field name="zoom" type="text" default="13"
+			label="COM_JOOMLEAGUE_FES_MAP_PARAM_LABEL_ZOOM" description="COM_JOOMLEAGUE_FES_MAP_PARAM_DESCR_ZOOM">
+		</field>
+
+		<field name="default_map_type" type="list" default="G_NORMAL_MAP"
+			label="COM_JOOMLEAGUE_FES_MAP_PARAM_LABEL_TYPE" description="COM_JOOMLEAGUE_FES_MAP_PARAM_DESCR_TYPE">
+			<option value="Normal">COM_JOOMLEAGUE_FES_MAP_PARAM_OPTION0_TYPE
+			</option>
+			<option value="Satellite">COM_JOOMLEAGUE_FES_MAP_PARAM_OPTION1_TYPE
+			</option>
+			<option value="Hybrid">COM_JOOMLEAGUE_FES_MAP_PARAM_OPTION2_TYPE
+			</option>
+		</field>
+
+		<field name="map_control" type="list" default="3D-large"
+			label="COM_JOOMLEAGUE_FES_MAP_PARAM_LABEL_ZOOM_CONTROL" description="COM_JOOMLEAGUE_FES_MAP_PARAM_DESCR_ZOOM_CONTROL">
+			<option value="NONE">COM_JOOMLEAGUE_FES_MAP_PARAM_OPTION0_ZOOM
+			</option>
+			<option value="3D-large">COM_JOOMLEAGUE_FES_MAP_PARAM_OPTION1_ZOOM
+			</option>
+			<option value="3D-small">COM_JOOMLEAGUE_FES_MAP_PARAM_OPTION2_ZOOM
+			</option>
+			<option value="Large">COM_JOOMLEAGUE_FES_MAP_PARAM_OPTION3_ZOOM
+			</option>
+			<option value="Small">COM_JOOMLEAGUE_FES_MAP_PARAM_OPTION4_ZOOM
+			</option>
+		</field>
+		<field name="zoom_wheel" description="COM_JOOMLEAGUE_FES_MAP_PARAM_DESCR_ZOOM_WHEEL"
+			class="switcher"
+			 label="COM_JOOMLEAGUE_FES_MAP_PARAM_LABEL_ZOOM_WHEEL" default="0" type="radio">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+	</fieldset>
+</form>

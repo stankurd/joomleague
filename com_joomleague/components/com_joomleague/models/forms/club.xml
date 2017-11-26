@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form
+	addrulepath="/administrator/components/com_joomleague/models/rules"
+	addfieldpath="/administrator/components/com_joomleague/models/fields">
+	<fieldset name="details">
+		<field
+			name="name"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_NAME"
+			class="inputbox"
+			required="true"/>
+		<field
+			name="alias"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_ALIAS"
+			class="inputbox"/>
+		<field
+			name="address"
+			type="textarea"
+			label="COM_JOOMLEAGUE_FIELD_CLUB_ADDRESS"
+			class="inputbox"/>
+		<field
+			name="zipcode"
+			type="text"
+			label="COM_JOOMLEAGUE_FIELD_CLUB_POSTAL_CODE"
+			class="inputbox"/>
+		<field
+			name="location"
+			type="text"
+			label="COM_JOOMLEAGUE_FIELD_CLUB_CITY"
+			class="inputbox"/>
+		<field
+			name="state"
+			type="text"
+			label="COM_JOOMLEAGUE_FIELD_CLUB_STATE"
+			class="inputbox"/>
+		<field
+			name="country"
+			type="country"
+			label="COM_JOOMLEAGUE_FIELD_CLUB_COUNTRY"
+			class="inputbox">
+			<option value="">COM_JOOMLEAGUE_GLOBAL_SELECT_COUNTRY</option>
+		</field>
+		<field
+			name="phone"
+			type="text"
+			label="COM_JOOMLEAGUE_FIELD_CLUB_PHONE"
+			class="inputbox"/>
+		<field
+			name="fax"
+			type="text"
+			label="COM_JOOMLEAGUE_FIELD_CLUB_FAX"
+			class="inputbox"/>
+		<field
+			name="email"
+			type="email"
+			label="COM_JOOMLEAGUE_FIELD_CLUB_EMAIL"
+			class="inputbox"
+			validate="email"
+			/>
+		<field
+			name="website"
+			type="url"
+			label="COM_JOOMLEAGUE_FIELD_CLUB_WEBSITE"
+			class="inputbox"
+			validate="url"
+			scheme="http,https"
+			/>
+		<field
+			name="manager"
+			type="text"
+			label="COM_JOOMLEAGUE_FIELD_CLUB_GENERAL_MANAGER"
+			class="inputbox"/>
+		<field
+			name="president"
+			type="text"
+			label="COM_JOOMLEAGUE_FIELD_CLUB_PRESIDENT"
+			class="inputbox"/>
+		<field
+			name="founded"
+			type="calendar"
+			label="COM_JOOMLEAGUE_FIELD_CLUB_FOUNDED"
+			class="inputbox"/>
+		<field
+			name="dissolved"
+			type="calendar"
+			label="COM_JOOMLEAGUE_FIELD_CLUB_DISSOLVED"
+			class="inputbox"/>
+		<field
+			name="standard_playground"
+			type="sql"
+			class="inputbox"
+			default="0"
+			size="1"
+			label="COM_JOOMLEAGUE_FIELD_CLUB_VENUE"
+			query="SELECT id AS value, name AS standard_playground FROM #__joomleague_playground ORDER BY name ASC">
+			<option
+				value="0">
+				COM_JOOMLEAGUE_GLOBAL_SELECT_PLAYGROUND</option>
+		</field>
+		<field name="id" type="text" class="readonly" label="COM_JOOMLEAGUE_GLOBAL_ID"
+		size="10" default="0" readonly="true" />
+		<field name="ordering" type="text" label="JFIELD_ORDERING_LABEL" size="6"
+			default="0" />
+		<field name="asset_id" type="hidden" filter="unset" />
+	</fieldset>
+	<fieldset name="picture">
+		<field
+			name="logo_small"
+			type="media"
+			default="images/com_joomleague/database/placeholders/placeholder_small.gif"
+			label="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_SMALL"
+			class="inputbox"
+			preview="show"
+			directory="com_joomleague/database/clubs/small"/>
+		<field
+			name="logo_middle"
+			type="media"
+			default="images/com_joomleague/database/placeholders/placeholder_50.png"
+			label="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_MIDDLE"
+			class="inputbox"
+			preview="show"
+			directory="com_joomleague/database/clubs/medium"/>
+		<field
+			name="logo_big"
+			type="media"
+			default="images/com_joomleague/database/placeholders/placeholder_150.png"
+			label="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_LARGE"
+			class="inputbox"
+			preview="show"
+			directory="com_joomleague/database/clubs/large"/>
+	</fieldset>
+	<fieldset	name="extended"
+				label="COM_JOOMLEAGUE_TABS_EXTENDED"
+				description="COM_JOOMLEAGUE_TABS_EXTENDED_DESC">
+		<field
+			name="extended"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_CLUB_EXTENDED"
+			description="COM_JOOMLEAGUE_ADMIN_CLUB_EXTENDED_DESC"
+			class="inputbox"/>
+	</fieldset>
+	<fieldset name="description">
+		<field
+			name="notes"
+			type="editor"
+			label="COM_JOOMLEAGUE_FIELD_CLUB_DESCRIPTION"
+			width="450"
+			filter="JComponentHelper::filterText"/>
+	</fieldset>
+</form>

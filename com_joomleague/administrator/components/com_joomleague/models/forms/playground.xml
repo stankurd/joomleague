@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form
+	addrulepath="/administrator/components/com_joomleague/models/rules"
+	addfieldpath="/administrator/components/com_joomleague/models/fields">
+	<fieldset name="details">
+		<field
+			name="name"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_NAME"
+			description="COM_JOOMLEAGUE_GLOBAL_NAME_DESC"
+			class="inputbox"
+			required="true"/>
+		<field
+			name="alias"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_ALIAS"
+			description="COM_JOOMLEAGUE_GLOBAL_ALIAS_DESC"
+			class="inputbox"/>
+		<field
+			name="short_name"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_S_NAME"
+			description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_S_NAME_DESC"
+			class="inputbox"
+			required="true"/>
+		<field
+			name="address"
+			type="textarea"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_ADDRESS"
+			class="inputbox"/>
+		<field
+			name="zipcode"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_ZIPCODE"
+			class="inputbox"/>
+		<field
+			name="city"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_CITY"
+			class="inputbox"/>
+		<field
+			name="country"
+			type="country"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_COUNTRY"
+			class="inputbox">
+			<option value="">COM_JOOMLEAGUE_GLOBAL_SELECT_COUNTRY</option>
+		</field>
+		<field
+			name="website"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_WEBSITE"
+			class="inputbox"/>
+		<field
+			name="max_visitors"
+			type="text"
+			default="0"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_CAPACITY"
+			class="inputbox"/>
+		<field
+			name="club_id"
+			type="sql"
+			class="inputbox"
+			default="0"
+			size="1"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_CLUB"
+			query="SELECT id AS value, name AS club_id FROM #__joomleague_club ORDER BY name ASC">
+			<option
+				value="0">
+				COM_JOOMLEAGUE_GLOBAL_SELECT_CLUB</option>
+		</field>
+		<field name="ordering" type="text" label="JFIELD_ORDERING_LABEL"
+			description="JFIELD_ORDERING_DESC" size="6"
+			default="0" />
+		<field name="id" type="text" class="readonly" label="JGLOBAL_FIELD_ID_LABEL"
+		description ="JGLOBAL_FIELD_ID_DESC" size="10" default="0" readonly="true" />
+	</fieldset>
+	<fieldset name="picture">
+		<field
+			name="picture"
+			type="media"
+			default="images/com_joomleague/database/placeholders/placeholder_150_2.png"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_PICTURE"
+			description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_PICTURE_DESC"
+			class="inputbox"
+			showon="show_info:1[AND]show_image:1"
+			directory="com_joomleague/database/playgrounds"/>
+	</fieldset>
+	<fieldset name="description">
+		<field
+			name="notes"
+			type="editor"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_DESCRIPTION"
+			description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_DESCRIPTION_DESC"
+			width="450"
+			filter="JComponentHelper::filterText"/>
+	</fieldset>
+	<fieldset	name="extended"
+				label="COM_JOOMLEAGUE_TABS_EXTENDED"
+				description="COM_JOOMLEAGUE_TABS_EXTENDED_DESC">
+		<field
+			name="extended"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_EXTENDED"
+			description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_EXTENDED_DESC"
+			class="inputbox"/>
+	</fieldset>
+</form>

@@ -1,0 +1,57 @@
+<?php
+/**
+ * Joomleague
+ *
+ * @copyright	Copyright (C) 2006-2015 joomleague.at. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @link		http://www.joomleague.at
+ */
+defined('_JEXEC') or die;
+
+JHtml::_('behavior.tooltip');
+jimport('joomla.html.pane');
+
+JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_TITLE'));
+
+JLToolBarHelper::apply('treetonode.apply');
+JLToolBarHelper::save('treetonode.save');
+JToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetonodes');
+JLToolBarHelper::custom('treetonode.unpublishnode','delete.png','delete_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_UNPUBLISH'),false);
+
+JToolBarHelper::help('screen.joomleague',true);
+?>
+
+<script>
+		function submitbutton(pressbutton) {
+			var form = $('adminForm');
+			if (pressbutton == 'cancel') {
+				submitform(pressbutton);
+				return;
+			}
+			submitform(pressbutton);
+			return;
+		}
+
+</script>
+<form action="index.php" method="post" id="adminForm" name="adminForm">
+	<div class="col50">
+
+<?php
+$p = 1;
+echo JHtml::_('bootstrap.startTabSet','tabs',array(
+		'active' => 'panel1'
+));
+echo JHtml::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_DETAILS',true));
+echo $this->loadTemplate('description');
+echo JHtml::_('bootstrap.endTab');
+echo JHtml::_('bootstrap.endTabSet');
+?>
+
+		<div class="clr"></div>
+		<input type="hidden" name="option" value="com_joomleague" />
+		<input type="hidden" name="id" value="<?php echo $this->item->id; ?>" />
+		<input type="hidden" name="project_id" value="<?php echo $this->project->id; ?>" />
+		<input type="hidden" name="task" value="" />
+	</div>
+	<?php echo JHtml::_('form.token'); ?>
+</form>
