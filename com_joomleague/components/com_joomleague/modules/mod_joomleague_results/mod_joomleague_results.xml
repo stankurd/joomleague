@@ -28,7 +28,7 @@
 
 				<field name="sportstype" type="sportstypes" required="true"
 					label="MOD_JOOMLEAGUE_RESULTS_SPORTSTYPE_ID_LABEL" description="MOD_JOOMLEAGUE_RESULTS_SPORTSTYPE_ID_DESCR" />
-				<field name="p" type="dependsql" required="true" depends="sportstype"
+				<field name="project" type="project" required="true" depends="sportstypes"
 					task="projectsbysportstypesoptions" label="MOD_JOOMLEAGUE_RESULTS_PROJECT_ID_LABEL"
 					description="MOD_JOOMLEAGUE_RESULTS_PROJECT_ID_DESCR" />
 				<field name="division_id" type="dependsql" required="false" depends="p" task="projectdivisionsoptions" 

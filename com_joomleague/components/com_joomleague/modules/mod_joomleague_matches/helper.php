@@ -7,9 +7,13 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\Utilities\ArrayHelper;
+
 defined('_JEXEC') or die;
 
-class modMatchesHelper {
+abstract class modMatchesHelper {
 
 	public function __construct(& $params, $id, $match_id = 0) {
 		$this->module_id = $id;
@@ -30,13 +34,13 @@ class modMatchesHelper {
 			return $string;
 		}
 		$ids = explode($sep, $string);
-		JArrayHelper :: toInteger($ids);
+		ArrayHelper :: toInteger($ids);
 		$string = implode($sep, $ids);
 		return $string;
 	}
 
 	public function getFromDB($query, $key = "", $type = "objlist") {
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		$db->setQuery($query);
 		switch ($type) {
 			case "obj" :
@@ -206,8 +210,8 @@ class modMatchesHelper {
 				$appendimage .= $whichparam . '="' . $this->params->get('xsize') . '"';
 				elseif ($this->params->get('ysize') > 0) $appendimage .= $whichparam . '="' . $this->params->get('ysize') . '"';
 			}
-			$pic['src'] = (trim($matchpart_pic) != "" && file_exists(JPATH_ROOT.'/'.trim($matchpart_pic))) ? JUri :: root(true) .
-			'/' . $matchpart_pic : JUri :: root(true) . '/' . $defaultlogos[$pt];
+			$pic['src'] = (trim($matchpart_pic) != "" && file_exists(JPATH_ROOT.'/'.trim($matchpart_pic))) ? Uri :: root(true) .
+			'/' . $matchpart_pic : Uri :: root(true) . '/' . $defaultlogos[$pt];
 			$pic['alt'] = $this->jl_utf8_convert($team->name, 'iso-8859-1', 'utf-8');
 		}
 		$pic['append'] = $appendimage;
@@ -328,7 +332,7 @@ class modMatchesHelper {
 		$teams = $this->getTeamsFromMatches($matches);
 		$rows = array ();
 		$useicons = $this->iconpath;
-		$cnt = JRequest :: getVar('nr', 0, 'default', 'POST');
+		$cnt = Factory::getApplication()->input->get('nr', 0, 'default', 'POST');
 		$hteam = false;
 		$ateam = false;
 		foreach ((array) $matches AS $key => $match) {
@@ -436,7 +440,7 @@ class modMatchesHelper {
 		else {
 		$this->next_last($row);
 		}
-		$origin = JRequest :: getVar('origin', $row->match_id, 'default', 'POST');
+		$origin = Factory ::getApplication()->input-> get('origin', $row->match_id, 'default', 'POST');
 		$jsfunc = "jlml_loadMatch('%s', '%s', '" . $this->module_id . "', '" . $cnt . "', '%s')";
 		$options = array (
 			'height' => '16',

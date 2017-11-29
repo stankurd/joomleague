@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\Factory;
+
 /*
  * @package 			Joomleague
  * @subpackage		Module-Matches
@@ -87,6 +89,8 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 	}
 
 	public function buildWhere() {
+	    $db = Factory :: getDBO();
+	    $query = $db->getQuery(true);
 		$this->getUsedTeams();
 		if ($this->id > 0) {
 			$this->conditions[0] = "(m.id = '" . $this->id . "')";
@@ -111,7 +115,8 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 		}
 	}
 	public function buildOrder() {
-
+	    $db = Factory :: getDBO();
+	    $query = $db->getQuery(true);
 		$limit = ($this->params->get('limit', 0) > 0) ? $this->params->get('limit', 0) : 1;
 
 		if ($this->params->get('order_by_project') == 0) {
@@ -128,8 +133,9 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 	}
 
 	public function getMatches() {
-		$db = JFactory :: getDBO();
-		$limit = ($this->params->get('limit', 0) > 0) ? $this->params->get('limit', 0) : 1;
+	    $db = Factory :: getDBO();
+	    $query = $db->getQuery(true);
+	    $limit = ($this->params->get('limit', 0) > 0) ? $this->params->get('limit', 0) : 1;
 		$query	= " SELECT m.*,m.id as match_id, t1.id team1_id, t2.id team2_id,"
 				. " " . $this->getDateStringNoTime() . " AS match_date_notime,"
 				. " " . $this->getDateString() . " AS match_date,"
@@ -202,7 +208,7 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 		$this->buildWhere();
 		$query .= implode(' AND ', $this->conditions);
 		$query .= " )"
-				. " GROUP BY m.id ";
+				. " GROUP BY m.id, mref.project_referee_id ";
 		$query .= $this->buildOrder();
 		$matches = $this->getFromDB($query);
 		if ($matches)
@@ -266,6 +272,8 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 	}
 
 	public function getTeamsFromMatches(& $matches) {
+	    $db = Factory :: getDBO();
+	    $query = $db->getQuery(true);
 		if (!count($matches))
 		return Array ();
 		foreach ($matches as $m) {
@@ -300,7 +308,7 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 	public function getUsedTeams() {
 		
 		$customteams = array();
-		$ajaxteam = JRequest :: getVar('usedteam', 0, 'default', 'POST');
+		$ajaxteam = Factory ::getApplication()->input-> get('usedteam', 0, 'default', 'POST');
 		if ($ajaxteam > 0) {
 			array_push($customteams, $ajaxteam);
 		}
@@ -485,7 +493,8 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
           $match_date_utc_object->setTimezone(new DateTimeZone('UTC'));
           $match_date_utc = $match_date_utc_object->format('Y-m-d H:i:s');
         }
-		$database = JFactory :: getDBO();
+		$db = Factory :: getDBO();
+		$query = $db->getQuery(true);
 		$query = "SELECT m.id
 				FROM #__joomleague_match AS m
 				LEFT JOIN #__joomleague_project_team pt1
@@ -553,6 +562,8 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 	}
 
 	public function next_last2(& $match) {
+	    $db = Factory :: getDBO();
+	    $query = $db->getQuery(true);
 		$match->lasthome = $match->nexthome = $match->lastaway = $match->nextaway = false;
         if ($match->match_date)
         {
@@ -565,7 +576,7 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 			$projectstring = (is_array($p)) ? implode(",", $p) : $p;
 			//$this->conditions[] = "((pt1.project_id IN (" . $projectstring . "))";
 		}
-		$database = JFactory :: getDBO();
+		$query = $db->getQuery(true);
 		$query = "SELECT m.id
 				FROM #__joomleague_match AS m
 				LEFT JOIN #__joomleague_project_team pt1

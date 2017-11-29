@@ -81,6 +81,7 @@ class modJoomleagueNavigationMenuHelper {
 		$options = array(JHtml::_('select.option', 0, JText::_($this->getParam('seasons_text'))));
 		$query = ' SELECT s.id AS value, s.name AS text '
 				. ' FROM #__joomleague_season AS s '
+				. ' ORDER BY s.name DESC'
 				;
 		$this->_db->setQuery($query);
 		$res = $this->_db->loadObjectList();
@@ -157,7 +158,7 @@ class modJoomleagueNavigationMenuHelper {
 			$query .= ' AND p.season_id = '. $this->getProject()->season_id;
 			$query .= ' AND p.league_id = '. $this->getProject()->league_id;
 		}
-		$query .= ' GROUP BY p.id ';
+		$query .= ' GROUP BY s.name, p.name, p.id ';
 		
 		switch ($this->getParam('project_ordering', 0)) 
 		{

@@ -7,12 +7,15 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Form\FormField;
+
 defined('_JEXEC') or die;
 
 jimport('joomla.form.formfield');
 jimport( 'joomla.filesystem.folder' );
 
-class JFormFieldFlagsFolder extends JFormField
+class JFormFieldFlagsFolder extends FormField
 {
 	protected $type = 'FlagsFolder';
 
@@ -30,7 +33,7 @@ class JFormFieldFlagsFolder extends JFormField
 	    	$folderlist[] = str_replace(JPATH_ROOT.'/', '', $val);
 	    }
 
-		$lang = JFactory::getLanguage();
+		$lang = Factory::getLanguage();
 		$lang->load("com_joomleague", JPATH_ADMINISTRATOR);
 		$items = array(JHtml::_('select.option',  '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DO_NOT_USE')));
 

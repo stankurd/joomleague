@@ -27,10 +27,10 @@
 			<fieldset name="basic"
 				addfieldpath="/administrator/components/com_joomleague/models/fields">
 
-				<field name="projects" type="projects" default="" required="true"
+				<field name="project" type="project" default="" required="true"
 					label="MOD_JOOMLEAGUE_BIRTHDAY_SELECT_PROJECTS_LABEL" description="MOD_JOOMLEAGUE_BIRTHDAY_SELECT_PROJECTS_DESCR" />
 
-				<field name="use_fav" type="radio" class="btn-group btn-group-yesno" default="1"
+				<field name="use_fav" type="radio" class="switcher" default="1"
 					label="MOD_JOOMLEAGUE_BIRTHDAY_USE_FAVORITE_TEAM_LABEL"
 					description="MOD_JOOMLEAGUE_BIRTHDAY_USE_FAVORITE_TEAM_DESCR">
 					<option value="0">MOD_JOOMLEAGUE_BIRTHDAY_NO</option>
@@ -78,7 +78,7 @@
 				<field name="name_format" type="nameformat"
 					label="MOD_JOOMLEAGUE_BIRTHDAY_NAME_FORMAT_LABEL" description="MOD_JOOMLEAGUE_BIRTHDAY_NAME_FORMAT_DESCR" />
 
-				<field name="show_player_flag" type="radio" class="btn-group btn-group-yesno" default="1"
+				<field name="show_player_flag" type="radio" class="switcher" default="1"
 					label="MOD_JOOMLEAGUE_BIRTHDAY_SHOW_PLAYER_FLAG_LABEL" description="MOD_JOOMLEAGUE_BIRTHDAY_SHOW_PLAYER_FLAG_DESCR">
 					<option value="0">MOD_JOOMLEAGUE_BIRTHDAY_NO</option>
 					<option value="1">MOD_JOOMLEAGUE_BIRTHDAY_YES</option>
@@ -87,7 +87,7 @@
 				<field name="heading_style" type="text" default="sectiontableheader"
 					label="MOD_JOOMLEAGUE_BIRTHDAY_HEADING_STYLE_LABEL" description="MOD_JOOMLEAGUE_BIRTHDAY_HEADING_STYLE_DESCR" />
 
-				<field name="show_picture" type="radio" class="btn-group btn-group-yesno" default="0"
+				<field name="show_picture" type="radio" class="switcher" default="0"
 					label="MOD_JOOMLEAGUE_BIRTHDAY_SHOW_PLAYER_PICTURE_LABEL"
 					description="MOD_JOOMLEAGUE_BIRTHDAY_SHOW_PLAYER_PICTURE_DESCR">
 					<option value="0">MOD_JOOMLEAGUE_BIRTHDAY_NO</option>

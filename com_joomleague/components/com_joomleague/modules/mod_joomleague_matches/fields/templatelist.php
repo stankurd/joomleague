@@ -7,11 +7,14 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Form\FormField;
+
 defined('_JEXEC') or die;
  
 jimport('joomla.form.formfield');
  
-class JFormFieldTemplatelist extends JFormField
+class JFormFieldTemplatelist extends FormField
 {
 	protected $type = 'Templatelist';
 	
@@ -37,7 +40,7 @@ class JFormFieldTemplatelist extends JFormField
 			$options[] = JHtml::_('select.option', $folder, $folder);
 		}
 		
-		$lang = JFactory::getLanguage();
+		$lang = Factory::getLanguage();
 		$lang->load("com_joomleague", JPATH_ADMINISTRATOR);
 		if (!$this->element['hide_none'])
 		{
@@ -49,7 +52,7 @@ class JFormFieldTemplatelist extends JFormField
 			array_unshift($options, JHtml::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_USE_DEFAULT')));
 		}
 		
-		$doc = JFactory::getDocument();
+		$doc = Factory::getDocument();
 		$doc->addScriptDeclaration('
 			function getPosition(element)
 			{
@@ -79,14 +82,14 @@ class JFormFieldTemplatelist extends JFormField
 			}
 			');
 		
-		$mainframe = JFactory::getApplication();
+		$app = Factory::getApplication();
 
 		$select = '<table>'
 				. '<tr>'
 				. '<td>'
 				. JHtml::_('select.genericlist',  $options, $this->name,
 						   'class="inputbox" onchange="$(\'TemplateImage\').src=\''
-				           .$mainframe->getCfg('live_site')
+				           .$app->getCfg('live_site')
 						   .'/modules/mod_joomleague_matches/tmpl/\'+this.options[this.selectedIndex].value+\'/template.png\';"', 
 						   'value', 'text', $this->value, $this->id)
 				. '<br /><br />'

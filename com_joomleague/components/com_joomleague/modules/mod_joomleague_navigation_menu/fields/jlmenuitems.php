@@ -7,12 +7,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
-use Joomla\CMS\Form\FormHelper;
-
 defined('_JEXEC') or die;
 
 jimport('joomla.filesystem.folder');
-FormHelper::loadFieldClass('list');
+JFormHelper::loadFieldClass('list');
 
 /**
  * JLMenuItems form field class

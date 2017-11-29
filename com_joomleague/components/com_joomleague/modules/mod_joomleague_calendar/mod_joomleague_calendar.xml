@@ -26,15 +26,15 @@
 
 			<fieldset name="basic"
 				addfieldpath="/administrator/components/com_joomleague/models/fields">
-				<field name="project_ids" type="projects" default=""
+				<field name="project_ids" type="project" default=""
 					label="MOD_JOOMLEAGUE_CALENDAR_LIMITPROJECTSLBL" description="MOD_JOOMLEAGUE_CALENDAR_LIMITPROJECTSDESC">
 				</field>
 
-				<field name="club_ids" type="clubs" default="" label="MOD_JOOMLEAGUE_CALENDAR_LIMITCLUBSLBL"
+				<field name="club_ids" type="club" default="" label="MOD_JOOMLEAGUE_CALENDAR_LIMITCLUBSLBL"
 					description="MOD_JOOMLEAGUE_CALENDAR_LIMITCLUBSDESC">
 				</field>
 
-				<field name="team_ids" type="teams" default="" label="MOD_JOOMLEAGUE_CALENDAR_LIMITTEAMSLBL"
+				<field name="team_ids" type="team" default="" label="MOD_JOOMLEAGUE_CALENDAR_LIMITTEAMSLBL"
 					description="MOD_JOOMLEAGUE_CALENDAR_LIMITTEAMSDESC">
 				</field>
 				

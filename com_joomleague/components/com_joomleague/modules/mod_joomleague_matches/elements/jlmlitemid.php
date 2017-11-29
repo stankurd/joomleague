@@ -1,15 +1,20 @@
 <?php
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Application\CMSApplication;
+use Joomla\CMS\Form\FormField;
+use Joomla\Utilities\ArrayHelper;
+
 defined('_JEXEC') or die();
 
-class JElementJLMLItemid extends JElement
-{
+class JElementJLMLItemid extends FormField 
+    {
 
 	var	$_name = 'jlmlitemid';
 
 	function fetchElement($name, $value, &$node, $control_name)
 	{
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 
 		$options 	= array(JHtml::_('select.option', '', '- '.JText::_('Select Item').' -'));
 
@@ -17,7 +22,7 @@ class JElementJLMLItemid extends JElement
 		$db->setQuery( $query );
 		$mtypes = $db->loadObjectList();
 
-		$menu =& JApplication::getMenu('site', $options);
+		$menu = CMSApplication::getMenu('site', $options);
 		$mitems = $menu->getMenu();		
 		foreach ($mitems as &$item) {
 		 	
@@ -60,10 +65,10 @@ class JElementJLMLItemid extends JElement
 					$item = &$olist[$type->menutype][$x];
 					
 					//If menutype is changed but item is not saved yet, use the new type in the list
-					if ( JRequest::getString('option', '', 'get') == 'com_menus' ) {
-						$currentItemArray = JRequest::getVar('cid', array(0), '', 'array');
+					if ( Factory :: getApplication()->input->get('option', '', 'get') == 'com_menus' ) {
+						$currentItemArray = Factory :: getApplication()->input->get('cid', array(0), '', 'array');
 						$currentItemId = (int) $currentItemArray[0];
-						$currentItemType = JRequest::getString('type', $item->type, 'get');
+						$currentItemType = Factory :: getApplication()->input->get('type', $item->type, 'get');
 						if ( $currentItemId == $item->id && $currentItemType != $item->type) {
 							$item->type = $currentItemType;
 						}
@@ -82,17 +87,17 @@ class JElementJLMLItemid extends JElement
 	function fetchElementOLD($name, $value, &$node, $control_name)
 	{
 		$options = array();
-		$menu =& JApplication::getMenu('site', $options);
+		$menu = CMSApplication::getMenu('site', $options);
 		$items = $menu->getMenu();		
 		
 		$items2 = $menu->getItems("component","com_joomleague");
-		JArrayHelper::sortObjects($items2,"menutype");
+		ArrayHelper::sortObjects($items2,"menutype");
 		foreach ($items2 as &$item) {
 			$item->title = $item->name. " (".$item->menutype." - ".$item->component.")";
 			unset($item);
 		}
 		
-		JArrayHelper::sortObjects($items,"menutype");
+		ArrayHelper::sortObjects($items,"menutype");
 		foreach ($items as &$item) {
 			if ($item->component!="com_joomleague"){
 				$item->title = $item->name. " (".$item->menutype." - ".$item->component.")";

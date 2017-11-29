@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+
 /**
  * Joomleague
  * @subpackage	Module-Ranking
@@ -28,7 +30,7 @@ abstract class modJLGRankingHelper
 		if (!class_exists('JoomleagueModelRanking')) {
 			require_once JLG_PATH_SITE.'/models/ranking.php';
 		}
-		$model = JLGModel::getInstance('project', 'JoomleagueModel');
+		$model = BaseDatabaseModel::getInstance('project', 'JoomleagueModel');
 		$model->setProjectId($params->get('p'));
 
 		$project = $model->getProject();

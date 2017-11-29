@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 class JEventsConnector extends JLCalendar{
@@ -46,7 +48,7 @@ class JEventsConnector extends JLCalendar{
       
         foreach($row['events'] AS $event) {
           $newrow = array();
-          $user = JFactory::getUser();
+          $user = Factory::getUser();
           if ($user->id == 62) {
             /*
             echo '<pre>';

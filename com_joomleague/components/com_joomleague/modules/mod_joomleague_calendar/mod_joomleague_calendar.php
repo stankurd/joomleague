@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Joomleague
  * @subpackage	Module-Calendar
@@ -13,31 +14,38 @@
  * 
  * Modified by Johncage for uw with Joomleague
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Date\Date;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Helper\ModuleHelper;
+
 defined('_JEXEC') or die;
 
 require_once dirname(__FILE__).'/helper.php';
 require_once JPATH_SITE.'/components/com_joomleague/joomleague.core.php';
 
-JHtml::_('behavior.tooltip');
-$ajax= JRequest::getVar('ajaxCalMod',0,'default','POST');
-$ajaxmod= JRequest::getVar('ajaxmodid',0,'default','POST');
+$app = Factory::getApplication();
+$input = $app->input;
+//JHtml::_('behavior.tooltip');
+$ajax= $input->get('ajaxCalMod',0,'default','POST');
+$ajaxmod= $input->get('ajaxmodid',0,'default','POST');
 if(!$params->get('cal_start_date')){
-	$year = JRequest::getVar('year',date('Y'));    /*if there is no date requested, use the current month*/
-	$month  = JRequest::getVar('month',date('m'));
-	$day  = JRequest::getVar('day',0);
+	$year = $input->get('year',date('Y'));    /*if there is no date requested, use the current month*/
+	$month  = $input->get('month',date('m'));
+	$day  = $input->get('day',0);
 }
 else{
-	$startDate= new JDate($params->get('cal_start_date'));
-	$year = JRequest::getVar('year', $startDate->format('%Y'));
-	$month  = JRequest::getVar('month', $startDate->format('%m'));
-	$day  = $ajax? '' : JRequest::getVar('day', $startDate->format('%d'));
+	$startDate= new Date($params->get('cal_start_date'));
+	$year = $input->get('year', $startDate->format('%Y'));
+	$month  = $input->get('month', $startDate->format('%m'));
+	$day  = $ajax? '' : $input->get('day', $startDate->format('%d'));
 }
 $helper = new modJLCalendarHelper;
-$doc = JFactory::getDocument();
+$doc = Factory::getDocument();
 $lightbox    = $params->get('lightbox', 1);
 
-JHtml::_('behavior.framework');
-JHtml::_('behavior.modal');
+//JHtml::_('behavior.framework');
+//JHtml::_('behavior.modal');
 if ($lightbox ==1 && (!isset($_GET['format']) OR ($_GET['format'] != 'pdf'))) {
 	$doc->addScriptDeclaration(";
       window.addEvent('domready', function() {
@@ -57,13 +65,13 @@ $doc->addScriptDeclaration(';
       ');
 
 if (!defined('JLC_MODULESCRIPTLOADED')) {
-	$doc->addScript( JUri::base().'modules/mod_joomleague_calendar/assets/js/mod_joomleague_calendar.js' );
+	$doc->addScript( Uri::base().'modules/mod_joomleague_calendar/assets/js/mod_joomleague_calendar.js' );
 	$doc->addScriptDeclaration(';
-    var calendar_baseurl=\''. JUri::base() . '\';
+    var calendar_baseurl=\''. Uri::base() . '\';
       ');
-	$doc->addStyleSheet(JUri::base().'modules/mod_joomleague_calendar/assets/css/mod_joomleague_calender.css');
+	$doc->addStyleSheet(Uri::base().'modules/mod_joomleague_calendar/assets/css/mod_joomleague_calender.css');
 	define('JLC_MODULESCRIPTLOADED', 1);
 }
 $calendar = $helper->showCal($params,$year,$month,$ajax,$module->id);
 
-require JModuleHelper::getLayoutPath('mod_joomleague_calendar');
+require ModuleHelper::getLayoutPath('mod_joomleague_calendar', $params->get('layout', 'default'));

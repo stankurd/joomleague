@@ -29,25 +29,25 @@
 					task="projectteamsoptions" 
 					label="MOD_JOOMLEAGUE_TEAMPLAYERS_TEAM_ID_LABEL" 
 					description="MOD_JOOMLEAGUE_TEAMPLAYERS_TEAM_ID_LABEL_DESC" />
-				<field name="show_project_name" type="radio" class="btn-group btn-group-yesno" default="0"
+				<field name="show_project_name" type="radio" class="switcher" default="0"
 					label="MOD_JOOMLEAGUE_TEAMPLAYERS_SHOW_PROJECT_NAME" 
 					description="MOD_JOOMLEAGUE_TEAMPLAYERS_SHOW_PROJECT_NAME_DESC">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
-				<field name="show_team_name" type="radio" class="btn-group btn-group-yesno" default="0"
+				<field name="show_team_name" type="radio" class="switcher" default="0"
 					label="MOD_JOOMLEAGUE_TEAMPLAYERS_SHOW_TEAM_NAME" 
 					description="SHOW TEAM NAME DESC">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
-				<field name="show_player_link" type="radio" class="btn-group btn-group-yesno" default="1"
+				<field name="show_player_link" type="radio" class="switcher" default="1"
 					label="MOD_JOOMLEAGUE_TEAMPLAYERS_SHOW_PLAYER_LINK" 
 					description="MOD_JOOMLEAGUE_TEAMPLAYERS_SHOW_PLAYER_LINK_DESC">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
-				<field name="show_player_flag" type="radio" class="btn-group btn-group-yesno" default="1"
+				<field name="show_player_flag" type="radio" class="switcher" default="1"
 					label="MOD_JOOMLEAGUE_TEAMPLAYERS_SHOW_PLAYER_FLAG" 
 					description="MOD_JOOMLEAGUE_TEAMPLAYERS_SHOW_PLAYER_FLAG_DESC">
 					<option value="0">No</option>

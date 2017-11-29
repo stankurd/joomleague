@@ -25,43 +25,43 @@
 			<fieldset name="basic"
 				addfieldpath="/administrator/components/com_joomleague/models/fields">
 
-				<field name="projects" type="projects" default="" required="true"
+				<field name="project" type="project" default="" required="true"
 					label="MOD_JOOMLEAGUE_RANDOMPLAYER_PROJECT_ID_LABEL" 
 					description="MOD_JOOMLEAGUE_RANDOMPLAYER_PROJECT_ID_LABEL_DESC" />
-				<field name="teams" type="teams" default=""
+				<field name="team" type="team" default=""
 					label="MOD_JOOMLEAGUE_RANDOMPLAYER_TEAM_ID_LABEL" 
 					description="MOD_JOOMLEAGUE_RANDOMPLAYER_TEAM_ID_LABEL_DESC" />
-				<field name="show_project_name" type="radio" class="btn-group btn-group-yesno" default="1"
+				<field name="show_project_name" type="radio" class="switcher" default="1"
 					label="MOD_JOOMLEAGUE_RANDOMPLAYER_SHOW_PROJECT_NAME" 
 					description="MOD_JOOMLEAGUE_RANDOMPLAYER_SHOW_PROJECT_NAME_DESC">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
-				<field name="show_team_name" type="radio" class="btn-group btn-group-yesno" default="1"
+				<field name="show_team_name" type="radio" class="switcher" default="1"
 					label="MOD_JOOMLEAGUE_RANDOMPLAYER_SHOW_TEAM_NAME" 
 					description="MOD_JOOMLEAGUE_RANDOMPLAYER_SHOW_TEAM_NAME_DESC">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
-				<field name="show_team_link" type="radio" class="btn-group btn-group-yesno" default="1"
+				<field name="show_team_link" type="radio" class="switcher" default="1"
 					label="MOD_JOOMLEAGUE_RANDOMPLAYER_SHOW_TEAM_LINK" 
 					description="MOD_JOOMLEAGUE_RANDOMPLAYER_SHOW_TEAM_LINK_DESC">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
-				<field name="show_position_name" type="radio" class="btn-group btn-group-yesno" default="1"
+				<field name="show_position_name" type="radio" class="switcher" default="1"
 					label="MOD_JOOMLEAGUE_RANDOMPLAYER_SHOW_POSITION_NAME" 
 					description="MOD_JOOMLEAGUE_RANDOMPLAYER_SHOW_POSITION_NAME_DESC">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
-				<field name="show_player_link" type="radio" class="btn-group btn-group-yesno" default="1"
+				<field name="show_player_link" type="radio" class="switcher" default="1"
 					label="MOD_JOOMLEAGUE_RANDOMPLAYER_SHOW_PLAYER_LINK" 
 					description="MOD_JOOMLEAGUE_RANDOMPLAYER_SHOW_PLAYER_LINK_DESC">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
-				<field name="show_player_flag" type="radio" class="btn-group btn-group-yesno" default="1"
+				<field name="show_player_flag" type="radio" class="switcher" default="1"
 					label="MOD_JOOMLEAGUE_RANDOMPLAYER_SHOW_PLAYER_FLAG" 
 					description="MOD_JOOMLEAGUE_RANDOMPLAYER_SHOW_PLAYER_FLAG_DESC">
 					<option value="0">No</option>

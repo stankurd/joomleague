@@ -48,7 +48,7 @@
 					<option value="1">MOD_JOOMLEAGUE_NAVIGATION_INCLUDE_SEASON_NAME_BEFORE</option>
 					<option value="2">MOD_JOOMLEAGUE_NAVIGATION_INCLUDE_SEASON_NAME_AFTER</option>
 				</field>
-				<field name="project_include_sports_type_name" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_JOOMLEAGUE_NAVIGATION_INCLUDE_SPORTS_TYPE_NAME_LABEL" description="MOD_JOOMLEAGUE_NAVIGATION_INCLUDE_SPORTS_TYPE_NAME_DESC">
+				<field name="project_include_sports_type_name" type="radio" class="switcher" default="0" label="MOD_JOOMLEAGUE_NAVIGATION_INCLUDE_SPORTS_TYPE_NAME_LABEL" description="MOD_JOOMLEAGUE_NAVIGATION_INCLUDE_SPORTS_TYPE_NAME_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
@@ -77,7 +77,7 @@
 		
 				<field type="spacer" hr="true" />
 		
-				<field name="show_teams_dropdown" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_JOOMLEAGUE_NAVIGATION_Show_team_dropdown_LABEL" description="MOD_JOOMLEAGUE_NAVIGATION_Show_team_dropdown_DESC">
+				<field name="show_teams_dropdown" type="radio" class="switcher" default="0" label="MOD_JOOMLEAGUE_NAVIGATION_Show_team_dropdown_LABEL" description="MOD_JOOMLEAGUE_NAVIGATION_Show_team_dropdown_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
@@ -94,18 +94,18 @@
 
 				<field type="spacer" hr="true" />
 		
-				<field name="show_division_dropdown" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_JOOMLEAGUE_NAVIGATION_SHOW_DIVISION_DROPDOWN_LABEL" description="MOD_JOOMLEAGUE_NAVIGATION_SHOW_DIVISION_DROPDOWN_DESC">
+				<field name="show_division_dropdown" type="radio" class="switcher" default="0" label="MOD_JOOMLEAGUE_NAVIGATION_SHOW_DIVISION_DROPDOWN_LABEL" description="MOD_JOOMLEAGUE_NAVIGATION_SHOW_DIVISION_DROPDOWN_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
-				<field name="show_only_subdivisions" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_JOOMLEAGUE_NAVIGATION_SHOW_ONLY_SUBDIVISIONS_LABEL" description="MOD_JOOMLEAGUE_NAVIGATION_SHOW_ONLY_SUBDIVISIONS_DESC">
+				<field name="show_only_subdivisions" type="radio" class="switcher" default="0" label="MOD_JOOMLEAGUE_NAVIGATION_SHOW_ONLY_SUBDIVISIONS_LABEL" description="MOD_JOOMLEAGUE_NAVIGATION_SHOW_ONLY_SUBDIVISIONS_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
 		
 				<field type="spacer" hr="true" />
 		
-				<field name="show_nav_links" type="radio" class="btn-group btn-group-yesno" default="none" label="MOD_JOOMLEAGUE_NAVIGATION_NAV_MENU_ITEM_LABEL" description="MOD_JOOMLEAGUE_NAVIGATION_NAV_MENU_ITEM_DESC">
+				<field name="show_nav_links" type="radio" class="switcher" default="none" label="MOD_JOOMLEAGUE_NAVIGATION_NAV_MENU_ITEM_LABEL" description="MOD_JOOMLEAGUE_NAVIGATION_NAV_MENU_ITEM_DESC">
 					<option value="0">MOD_JOOMLEAGUE_NAVIGATION_NAV_MENU_ITEM_OPTION1</option>
 					<option value="1">MOD_JOOMLEAGUE_NAVIGATION_NAV_MENU_ITEM_OPTION2</option>
 				</field>

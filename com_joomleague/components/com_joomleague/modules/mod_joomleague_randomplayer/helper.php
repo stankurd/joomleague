@@ -7,6 +7,9 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+
 defined('_JEXEC') or die;
 
 
@@ -33,7 +36,7 @@ abstract class modJLGRandomplayerHelper
 		$teamstring		= (is_array($usedtid)) ? implode(",", $usedtid) : $usedtid;
 		
 		// Project-teamids
-		$db  = JFactory::getDbo();
+		$db  = Factory::getDbo();
 		$query = $db->getQuery(true);
 		$query->select('id');
 		$query->from('#__joomleague_project_team tt');
@@ -66,7 +69,7 @@ abstract class modJLGRandomplayerHelper
 			# at this point we do have a project-teamid
 			
 			// Retrieve persons related to a projectteam
-			$db  = JFactory::getDbo();
+			$db  = Factory::getDbo();
 			$query = $db->getQuery(true);
 			$query->select(array('pt.person_id', 'tt.project_id'));
 			$query->from('#__joomleague_team_player AS pt');
@@ -91,16 +94,16 @@ abstract class modJLGRandomplayerHelper
 		$result = $result[$key];
 				
 		// Setting variables
-		JRequest::setVar('p', $result->project_id); 		// projectid
-		JRequest::setVar('pid', $result->person_id); 	// personid
-		JRequest::setVar('pt', $projectteamid); // project-team
+		Factory :: getApplication()->input->set('p', $result->project_id); 		// projectid
+		Factory :: getApplication()->input->set('pid', $result->person_id); 	// personid
+		Factory :: getApplication()->input->set('pt', $projectteamid); // project-team
 
 		if (!class_exists('JoomleagueModelPlayer')) {
 			require_once JLG_PATH_SITE.'/models/player.php';
 		}
 
 		// Player model + info
-		$mdlPerson 	= JLGModel::getInstance('Player', 'JoomleagueModel');
+		$mdlPerson 	= BaseDatabaseModel::getInstance('Player', 'JoomleagueModel');
 
 		$person 	= $mdlPerson->getPerson();
 		$project	= $mdlPerson->getProject();

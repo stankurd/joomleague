@@ -10,7 +10,10 @@
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
+JHtml::_('formbehavior.chosen', 'select');
+
 ?>
+
 <div id="jl-nav-module">
 <div class="jl-nav-module<?php echo $params->get('moduleclass_sfx'); ?>">
 

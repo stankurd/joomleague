@@ -13,16 +13,20 @@
  * 
  * Modified by Johncage for uw with Joomleague
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Date\Date;
+use Joomla\CMS\Uri\Uri;
+
 defined('_JEXEC') or die;
 
 require_once (dirname(__FILE__).'/calendarClass.php');
 
-class modJLCalendarHelper
+abstract class modJLCalendarHelper
 {
 	function showCal(&$params,$year,$month,$ajax=0,$modid) //this function returns the html of the calendar for a given month
 	{
 		// $offset = 0; //$mainframe->getCfg('offset');
-		$language= JFactory::getLanguage(); //get the current language
+		$language= Factory::getLanguage(); //get the current language
 		$language->load( 'mod_joomleague_calendar' ); //load the language ini file of the module
 		$article= $language->_('MOD_JOOMLEAGUE_CALENDAR_VALUEMATCH');
 		$articles= $language->_('MOD_JOOMLEAGUE_CALENDAR_VALUEMATCHES'); //this strings are used for the titles of the links
@@ -78,8 +82,8 @@ class modJLCalendarHelper
 		foreach ( $cal->matches as $row )
 		{
 			// @todo check/fix!
-			/* $created= new JDate($row['date'], -$offset); */
-			$created= new JDate($row['date']);
+			/* $created= new Date($row['date'], -$offset); */
+			$created= new Date($row['date']);
 			$createdYear=$created->format('%Y');
 			$createdMonth=$created->format('%m');
 			$createdDay=$created->format('%d'); //have to use %d because %e doesn't works on windows
@@ -116,21 +120,23 @@ class modJLCalendarHelper
 
 	function getDate_byId($id)
 	{
+	    $db = Factory::getDbo();
+	    $query = $db->getQuery(true);
 		// $offset = 0; // $mainframe->getCfg('offset');
 		$prefix = $params->get('custom_prefix');
 		$query=	' SELECT match_date' .
 			' FROM #__joomleague_matches'.
 			' WHERE match_id=\'' . $id . '\'';
 		$query = ($prefix != '') ? str_replace('#__', $prefix, $query) : $query;
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		$db->setQuery($query);
 		$row= $db->loadObjectList();
 
 		jimport('joomla.utilities.date');
 		
 		// @todo check/fix! 
-		/* $created=new JDate($row[0]->match_date, -$offset); */
-		$created=new JDate($row[0]->match_date);
+		/* $created=new Date($row[0]->match_date, -$offset); */
+		$created=new Date($row[0]->match_date);
 
 		$createdYear=$created->format('%Y');
 		$createdMonth=$created->format('%m');
@@ -146,7 +152,7 @@ class modJLCalendarHelper
 		$results= $this->setTheQuery($params,$year,$month,$day,$ajax,1);
 
 		foreach($results as $key => $result){
-			$created=new JDate($results[$key]->match_date);
+			$created=new Date($results[$key]->match_date);
 			$createdYear= $created->format('%Y');
 			$createdMonth= $created->format('%m');
 
@@ -232,8 +238,8 @@ class JLCalendar extends PHPCalendar
 	//this function is called to get the links of the two arrows in the header.
 	function getCalendarLink($month, $year)
 	{
-		$getquery = JRequest::get('GET'); //get the GET query
-		$calendarLink= JUri::current().'?'; //get the current url, without the GET query; and add "?", to set the GET vars
+		$getquery = Factory::getApplication()->input->get->get(); //get the GET query
+		$calendarLink= Uri::current().'?'; //get the current url, without the GET query; and add "?", to set the GET vars
 
 		foreach($getquery as $key => $value){  /*this bucle goes through every GET variable that was in the url*/
 			if($key!='month' && $key!='year' && $key!='day' && $value){ /*the month,year, and day Variables must be diferent of the current ones, because this is a link for a diferent month */
@@ -321,7 +327,7 @@ class JLCalendar extends PHPCalendar
 		$entries = new JoomleagueConnector($this->params);
 		$entries->getEntries($caldates, $this->params, $this->matches);
 		
-		/* JoomleagueConnector::getEntries($caldates, $this->params, $this->matches); */
+		// JoomleagueConnector::getEntries($caldates, $this->params, $this->matches); 
 
 		if ($livescore != ''){
 			require_once (dirname(__FILE__).'/connectors/livescore.php');
@@ -335,7 +341,7 @@ class JLCalendar extends PHPCalendar
 	}
 
 	function matches_output($month, $year) {
-		$language= JFactory::getLanguage(); //get the current language
+		$language= Factory::getLanguage(); //get the current language
 		$language->load( 'mod_joomleague_calendar' ); //load the language ini file of the module
 		$article= $language->_('MOD_JOOMLEAGUE_CALENDAR_VALUEMATCH');
 		$articles= $language->_('MOD_JOOMLEAGUE_CALENDAR_VALUEMATCHES'); //this strings are used for the titles of the links
@@ -345,7 +351,7 @@ class JLCalendar extends PHPCalendar
 		$todaystring = '';
 		$matches = $this->matches;
 		$div = '';
-		$now = new JDate();
+		$now = new Date();
 		$today = $now->format('%Y-%m-%d');
 		$todaytitle = '';
 		$pm='';
@@ -367,8 +373,8 @@ class JLCalendar extends PHPCalendar
 			$row = $matches[$x];
 			$thispm = $row['project_id'].'_'.$row['matchcode'].'_'.$row['type'];
 			// @todo check/fix!
-			/* $da= new JDate($row['date'], -$offset); */
-			$da= new JDate($row['date']);
+			/* $da= new Date($row['date'], -$offset); */
+			$da= new Date($row['date']);
 			if ($div !=$da->format('%Y-%m-%d')) {
 				$counter = 0;
 				$div = $da->format('%Y-%m-%d');
@@ -384,8 +390,8 @@ class JLCalendar extends PHPCalendar
 			$format[] = $row;
 			$counter++;
 			// @todo check/fix!
-			/* if (isset($matches[$x+1])) $nd= new JDate($matches[$x+1]['date'], -$offset); */
-			if (isset($matches[$x+1])) $nd= new JDate($matches[$x+1]['date']);
+			/* if (isset($matches[$x+1])) $nd= new Date($matches[$x+1]['date'], -$offset); */
+			if (isset($matches[$x+1])) $nd= new Date($matches[$x+1]['date']);
 			else $nd = false;
 			if (!$nd || $nd->format('%Y-%m-%d') != $da->format('%Y-%m-%d')) {
 

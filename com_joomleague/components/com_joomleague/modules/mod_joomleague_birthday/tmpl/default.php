@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Uri\Uri;
+
 defined('_JEXEC') or die; 
 
 
@@ -62,7 +64,7 @@ if(count($persons) > 0) {
 			elseif (file_exists(JPATH_BASE.'/'.$person['default_picture'])&&$person['default_picture']!='') {
 				$thispic = $person['default_picture'];
 			}
-			echo '<img src="'.JUri::base().$thispic.'" alt="'.$text.'" title="'.$text.'"';
+			echo '<img src="'.Uri::base().$thispic.'" alt="'.$text.'" title="'.$text.'"';
 			if ($params->get('picture_width') != '') echo ' width="'.$params->get('picture_width').'"';
 			echo ' /><br />';
 

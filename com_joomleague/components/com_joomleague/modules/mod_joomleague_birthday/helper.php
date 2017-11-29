@@ -7,12 +7,22 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
-$database = JFactory::getDbo();
+    
+    /**
+     * Method to get the list
+     *
+     * @access public
+     * @return array
+     */
+   
+$db = Factory::getDbo();
 $players = array();
 $crew = array();
-
+    
 if(!function_exists('jl_birthday_sort'))
 {
 	// snippet taken from http://de3.php.net/manual/en/function.uasort.php
@@ -34,17 +44,19 @@ if(!function_exists('jl_birthday_sort'))
 	}
 }
 
-$usedp = $params->get('projects','0');
+$usedp = $params->get('project','0');
 $p = (is_array($usedp)) ? implode(",", $usedp) : $usedp;
 $usedteams = "";
 // get favorite team(s), we have to make a function for this
 if ($params->get('use_fav')==1)
 {
+   $db = Factory::getDbo();
+    $query =$db->getQuery(true);
 	$query='SELECT fav_team FROM #__joomleague_project';
 	if ($p!='' && $p>0) $query.= ' WHERE id IN ('.$p.')';
 
-	$database->setQuery($query);
-	$temp=$database->loadColumn();
+	$db->setQuery($query);
+	$temp=$db->loadColumn();
 
 	if (count($temp)>0)
 	{
@@ -63,6 +75,7 @@ $dateformat = "DATE_FORMAT(p.birthday,'%Y-%m-%d') AS date_of_birth";
 
 if ($params->get('use_which') <= 1)
 {
+    $query = $db->getQuery(true);
 	$query="SELECT p.id, p.birthday, p.firstname, p.nickname, p.lastname,
 			p.picture AS default_picture, p.country, 
 			DATE_FORMAT(p.birthday, '%m-%d')AS daymonth,
@@ -93,7 +106,7 @@ if ($params->get('use_which') <= 1)
 
 	if ($p!='' && $p>0) $query .= " AND pt.project_id IN (".$p.") ";
 
-	$query .= " GROUP BY p.id ";
+	$query .= " GROUP BY p.id, tp.picture, pt.team_id, pt.project_id ";
 
 	$maxDays = $params->get('maxdays');
 	if ((strlen($maxDays) > 0) && (intval($maxDays) >= 0))
@@ -105,13 +118,14 @@ if ($params->get('use_which') <= 1)
 
 	if ($params->get('limit') > 0) $query .= " LIMIT " . $params->get('limit');
 
-	$database->setQuery($query);
-	$players = $database->loadAssocList();
+	$db->setQuery($query);
+	$players =$db->loadAssocList();
 }
 
 // get staff info, we have to make a function for this
 if ($params->get('use_which') == 2 || $params->get('use_which') == 0)
 {
+    $query = $db->getQuery(true);
 	$query="SELECT p.id, p.birthday, p.firstname, p.nickname, p.lastname,
 			p.picture AS default_picture, p.country, 
 			DATE_FORMAT(p.birthday, '%m-%d')AS daymonth,
@@ -153,7 +167,7 @@ if ($params->get('use_which') == 2 || $params->get('use_which') == 0)
 
 	if ($p!='' && $p>0) $query .= " AND pt.project_id IN (".$p.") ";
 
-	$query .= " GROUP BY p.id ";
+	$query .= " GROUP BY p.id, ts.picture, pt.team_id, pt.project_id ";
 
 	$maxDays = $params->get('maxdays');
 	if ((strlen($maxDays) > 0) && (intval($maxDays) >= 0))
@@ -165,8 +179,10 @@ if ($params->get('use_which') == 2 || $params->get('use_which') == 0)
 
 	if ($params->get('limit') > 0) $query .= " LIMIT " . $params->get('limit');
 
-	$database->setQuery($query);
-	//echo("<hr>".$database->getQuery($query));
-	$crew = $database->loadAssocList();
+	$db->setQuery($query);
+	echo("<hr>".$db->getQuery($query));
+	$crew =$db->loadAssocList();
+
 }
+    
 ?>
