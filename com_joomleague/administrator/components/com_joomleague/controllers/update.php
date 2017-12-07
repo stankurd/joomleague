@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Helper\TagsHelper;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Toolbar\ToolbarHelper;
 
 defined('_JEXEC') or die;
@@ -32,7 +33,7 @@ class JoomleagueControllerUpdate extends JoomleagueController
 
 	public function update()
 	{
-		ToolbarHelper::back(JText::_('COM_JOOMLEAGUE_BACK_UPDATELIST'),JRoute::_('index.php?option=com_joomleague&view=updates'));
+		ToolbarHelper::back(JText::_('COM_JOOMLEAGUE_BACK_UPDATELIST'),Route::_('index.php?option=com_joomleague&view=updates'));
 		$input = $this->input;
 		$post = $input->post->getArray();
 		$file_name=$input->getString('file_name');

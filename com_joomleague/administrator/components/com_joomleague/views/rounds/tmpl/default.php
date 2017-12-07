@@ -6,8 +6,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Session\Session;
+
 defined('_JEXEC') or die;
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 
 $inplaceEditing = $this->params->get('inplaceEditing',0);
 $inplaceEditing = 1;
@@ -34,7 +38,7 @@ jQuery(document).ready(function() {
 		    emptytext: '<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_EMPTY'); ?>',
 		    params: function(params) {
 		        // originally params contain pk, name and value
-		        params.token = '<?php echo JSession::getFormToken();?>';
+		        params.token = '<?php echo Session::getFormToken();?>';
 		        params.tokenvalue = '1';
 		        return params;
 		    }
@@ -57,7 +61,7 @@ jQuery(document).ready(function() {
 		    emptytext: '<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_EMPTY'); ?>',
 		    params: function(params) {
 		        // originally params contain pk, name and value
-		        params.token = '<?php echo JSession::getFormToken();?>';
+		        params.token = '<?php echo Session::getFormToken();?>';
 		        params.tokenvalue = '1';
 		        return params;
 		    }
@@ -84,7 +88,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 						<td class='key' nowrap='nowrap'><?php echo JText::_('COM_JOOMLEAGUE_P_MENU_DIVISIONS'); ?></td>
 						<td>
 				<?php
-		echo JHtml::_('select.genericlist',$this->lists['divisions'],'division_id','class="inputbox" size="1"','value','text',0);
+		echo HTMLHelper::_('select.genericlist',$this->lists['divisions'],'division_id','class="inputbox" size="1"','value','text',0);
 	?>
 
 						<td>
@@ -95,7 +99,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 			</table>
 			<input type='hidden' name='project_id' value='<?php echo $this->project->id; ?>' />
 			<input type='hidden' name='task' value='rounds.populate' />
-			<?php echo JHtml::_('form.token'); ?>
+			<?php echo HTMLHelper::_('form.token'); ?>
 		</form>
 	</fieldset>
 </div>
@@ -135,7 +139,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 					<div class='controls'>
 						<?php
 						$now = new DateTime('now',new DateTimeZone('UTC'));
-						echo JHtml::calendar($now->format('d-m-Y'),'start_date','start_date','%d-%m-%Y',
+						echo HTMLHelper::calendar($now->format('d-m-Y'),'start_date','start_date','%d-%m-%Y',
 								'size="10" style="width:80px;" class="center" ');
 						?>
 					</div>
@@ -154,7 +158,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 			<input type='hidden' name='project_id' value='<?php echo $this->project->id; ?>' />
 			<input type='hidden' name='task' value='rounds.startmassadd' />
 		</fieldset>
-		<?php echo JHtml::_('form.token'); ?>
+		<?php echo HTMLHelper::_('form.token'); ?>
 	</form>
 </div>
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm" name="adminForm">
@@ -164,7 +168,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 				<thead>
 					<tr>
 						<th width="1%" class="center">
-							<?php echo JHtml::_('grid.checkall'); ?>
+							<?php echo HTMLHelper::_('grid.checkall'); ?>
 						</th>
 						<th width="20">&nbsp;</th>
 						<th width="1%">
@@ -183,7 +187,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 						<th width="20">
 							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_RESULT_CHECK'); ?></th>
 						<th width="1%">
-							<?php echo JHtml::_('grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ID', 'a.id',$this->lists['order_Dir'],$this->lists['order']); ?></th>
+							<?php echo HTMLHelper::_('grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ID', 'a.id',$this->lists['order_Dir'],$this->lists['order']); ?></th>
 					</tr>
 				</thead>
 				<tfoot>
@@ -195,9 +199,9 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 					<?php
 					$n = count($this->items);
 					foreach($this->items as $i=>$row) :
-						$link1 = JRoute::_('index.php?option=com_joomleague&task=round.edit&id='.$row->id);
-						$link2 = JRoute::_('index.php?option=com_joomleague&view=matches&rid[]='.$row->id);
-						$checked = JHtml::_('grid.checkedout',$row,$i);
+						$link1 = Route::_('index.php?option=com_joomleague&task=round.edit&id='.$row->id);
+						$link2 = Route::_('index.php?option=com_joomleague&view=matches&rid[]='.$row->id);
+						$checked = HTMLHelper::_('grid.checkedout',$row,$i);
 						?>
 						<tr class="row<?php echo $i % 2; ?>">
 						<td class="center"><?php echo $checked; ?></td>
@@ -205,7 +209,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_EDIT_DETAILS');
 						$imageFile = 'administrator/components/com_joomleague/assets/images/edit.png';
 						$imageParams = "title='$imageTitle'";
-						echo JHtml::link($link1,JHtml::image($imageFile,$imageTitle,$imageParams));
+						echo HTMLHelper::link($link1,HTMLHelper::image($imageFile,$imageTitle,$imageParams));
 						?></td>
 						<td class="center">
 							<?php 
@@ -249,7 +253,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 						{
 							$append = ' style="background-color:#FFCCCC;" ';
 						}
-						echo JHtml::calendar($date1,'round_date_first' . $row->id,'round_date_first' . $row->id,'%d-%m-%Y',
+						echo HTMLHelper::calendar($date1,'round_date_first' . $row->id,'round_date_first' . $row->id,'%d-%m-%Y',
 								'size="10" ' . $append . 'tabindex="3" ' . 'class="input-small center" ' . 'onchange="document.getElementById(\'cb' . $i .
 										 '\').checked=true"');
 						?>
@@ -262,7 +266,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 						{
 							$append = ' style="background-color:#FFCCCC;"';
 						}
-						echo JHtml::calendar($date2,'round_date_last' . $row->id,'round_date_last' . $row->id,'%d-%m-%Y',
+						echo HTMLHelper::calendar($date2,'round_date_last' . $row->id,'round_date_last' . $row->id,'%d-%m-%Y',
 								'size="10" ' . $append . 'tabindex="3" ' . 'class="input-small center" ' . 'onchange="document.getElementById(\'cb' . $i .
 										 '\').checked=true"');
 						?></td>
@@ -270,7 +274,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 						if($this->countProjectTeams > 0)
 						{
 							$link2Title = JText::plural('COM_JOOMLEAGUE_ADMIN_ROUNDS_EDIT_MATCHES_LINK',$row->countMatches);
-							echo JHtml::link($link2,$link2Title);
+							echo HTMLHelper::link($link2,$link2Title);
 						}
 						else
 						{
@@ -284,7 +288,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 							$imageTitle = JText::plural('COM_JOOMLEAGUE_ADMIN_ROUNDS_ALL_PUBLISHED',$row->countMatches);
 							$imageFile = 'administrator/components/com_joomleague/assets/images/ok.png';
 							$imageParams = "title='$imageTitle'";
-							echo JHtml::image($imageFile,$imageTitle,$imageParams);
+							echo HTMLHelper::image($imageFile,$imageTitle,$imageParams);
 						}
 						else
 						{
@@ -298,7 +302,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 							}
 							$imageFile = 'administrator/components/com_joomleague/assets/images/error.png';
 							$imageParams = "title='$imageTitle'";
-							echo JHtml::image($imageFile,$imageTitle,$imageParams);
+							echo HTMLHelper::image($imageFile,$imageTitle,$imageParams);
 						}
 						?></td>
 						<td class="center nowrap"><?php
@@ -307,7 +311,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 							$imageTitle = JText::plural('COM_JOOMLEAGUE_ADMIN_ROUNDS_ALL_RESULTS',$row->countMatches);
 							$imageFile = 'administrator/components/com_joomleague/assets/images/ok.png';
 							$imageParams = "title='$imageTitle'";
-							echo JHtml::image($imageFile,$imageTitle,$imageParams);
+							echo HTMLHelper::image($imageFile,$imageTitle,$imageParams);
 						}
 						else
 						{
@@ -321,7 +325,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 							}
 							$imageFile = 'administrator/components/com_joomleague/assets/images/error.png';
 							$imageParams = "title='$imageTitle'";
-							echo JHtml::image($imageFile,$imageTitle,$imageParams);
+							echo HTMLHelper::image($imageFile,$imageTitle,$imageParams);
 						}
 						?></td>
 						<td class="center"><?php echo $row->id; ?></td>
@@ -337,5 +341,5 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 	<input type="hidden" name="boxchecked" value="0" />
 	<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
 	<input type="hidden" name="filter_order_Dir" value="" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

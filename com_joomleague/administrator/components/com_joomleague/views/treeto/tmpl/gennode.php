@@ -6,8 +6,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 ?>
 <form method="post" name="adminForm" id="generatenode" class="">
 	<div>
@@ -28,6 +30,6 @@ JHtml::_('behavior.tooltip');
 		value='<?php echo $this->project->id; ?>' /> <input type="hidden"
 		name="id" value='<?php echo $this->item->id; ?>' /> <input
 		type="hidden" name="task" value="treeto.generatenode" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>
 

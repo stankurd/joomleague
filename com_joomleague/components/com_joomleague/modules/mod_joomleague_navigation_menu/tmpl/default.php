@@ -7,10 +7,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
-JHtml::_('formbehavior.chosen', 'select');
+HTMLHelper::_('formbehavior.chosen', 'select');
 
 ?>
 
@@ -56,7 +58,7 @@ JHtml::_('formbehavior.chosen', 'select');
 
 		<?php for ($i = 1; $i < 17; $i++): ?>
 			<?php if ($params->get('navpoint'.$i) && $link = $helper->getLink($params->get('navpoint'.$i))): ?>
-				<li class="nav-item"><?php echo JHtml::link(JRoute::_($link), $params->get('navpoint_label'.$i)); ?></li>
+				<li class="nav-item"><?php echo HTMLHelper::link(Route::_($link), $params->get('navpoint_label'.$i)); ?></li>
 			<?php elseif ($params->get('navpoint'.$i) == "separator"): ?>
 				<li class="nav-item separator"><?php echo $params->get('navpoint_label'.$i); ?></li>
 			<?php endif; ?>

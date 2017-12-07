@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Form\FormField;
 use Joomla\CMS\Form\FormHelper;
 
 defined('_JEXEC') or die;
@@ -36,7 +37,7 @@ class JFormFieldCurrentround extends JFormFieldList
 		$options = array();
 
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 		
 		$id = $this->form->getField('id')->value;
 		$isNew = ($id == 0);

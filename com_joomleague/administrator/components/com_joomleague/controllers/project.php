@@ -21,17 +21,17 @@ class JoomleagueControllerProject extends JLGControllerForm
 	public function __construct($config = array())
 	{
 		$app = Factory::getApplication('administrator');
-		$jinput = $app->input;
-		$jinput->set('layout','form');
+		$input = $app->input;
+		$input->set('layout','form');
 		
 		parent::__construct($config);
 		
-		if($jinput->get('return') == 'projects')
+		if($input->get('return') == 'projects')
 		{
 			$this->view_list = 'projects';
 			$this->view_item = 'project&return=projects';
 		}
-		if($jinput->get('return') == 'cpanel')
+		if($input->get('return') == 'cpanel')
 		{
 			$this->view_list = 'joomleague&layout=panel';
 			$this->view_item = 'project&return=cpanel';

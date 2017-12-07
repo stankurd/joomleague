@@ -1,4 +1,6 @@
 <?php 
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Joomleague
  *
@@ -8,12 +10,12 @@
  */
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 
-JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ASSIGN'));
+JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ASSIGN'));
 JLToolBarHelper::save('treetomatch.save_matcheslist');
-JToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetonodes&task=treetonode.display');
-JToolBarHelper::help('screen.joomleague', true);
+JLToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetonodes&task=treetonode.display');
+JLToolBarHelper::help('screen.joomleague', true);
 ?>
 <script>
 	function submitbutton(pressbutton)

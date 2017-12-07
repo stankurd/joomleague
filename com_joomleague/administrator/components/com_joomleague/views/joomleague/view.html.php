@@ -11,6 +11,8 @@
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -28,11 +30,11 @@ class JoomleagueViewJoomleague extends JLGView
 	public function display($tpl = null)
 	{
 		$app 	= Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 		 // Add submenu
        // JoomleagueHelper::addSubmenu($this->getName());
 		// hide main menu in result/match edit view
-		$viewName = $jinput->getCmd('view');
+		$viewName = $input->getCmd('view');
 
 		if($viewName == 'matches')
 		{
@@ -67,7 +69,7 @@ class JoomleagueViewJoomleague extends JLGView
 		// get the project
 		// $project = $this->get('data');
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 
 		$mdlJoomleague  = BaseDatabaseModel::getInstance('joomleague','JoomleagueModel');
 		$project_id = $app->getUserState('com_joomleagueproject');
@@ -122,11 +124,11 @@ class JoomleagueViewJoomleague extends JLGView
 	function _displayMenu($tpl = null)
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$lists = array();
 
-		//JHtml::_('behavior.framework');
+		//HTMLHelper::_('behavior.framework');
 		$db = Factory::getDbo();
 		$document = Factory::getDocument();
 		$version = urlencode(JoomleagueHelper::getVersion());
@@ -138,7 +140,7 @@ class JoomleagueViewJoomleague extends JLGView
 		$params = ComponentHelper::getParams($option);
 
 		// catch Projectid (primary)
-		$project_id = $jinput->get('pid',array(),'array');
+		$project_id = $input->get('pid',array(),'array');
 		ArrayHelper::toInteger($project_id);
 		if(empty($project_id))
 		{
@@ -161,7 +163,7 @@ class JoomleagueViewJoomleague extends JLGView
 		}
 		
 		// catch SportType
-		$sporttype_id = $jinput->get('stid',array(),'array');
+		$sporttype_id = $input->get('stid',array(),'array');
 		ArrayHelper::toInteger($sporttype_id);
 		
 		if(empty($sporttype_id))
@@ -207,10 +209,10 @@ class JoomleagueViewJoomleague extends JLGView
 		$allSportstypes = $mdlSportsTypes->getSportsTypes();
 
 		$sportstypes = array();
-		$sportstypes[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_SPORTSTYPE'),'id','name');
+		$sportstypes[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_SPORTSTYPE'),'id','name');
 		$allSportstypes = array_merge($sportstypes,$allSportstypes);
 
-		$lists['sportstypes'] = JHtml::_('select.genericList',$allSportstypes,'stid[]','class="inputbox" style="width:100%"','id','name',
+		$lists['sportstypes'] = HTMLHelper::_('select.genericList',$allSportstypes,'stid[]','class="inputbox" style="width:100%"','id','name',
 				$sporttype_id);
 
 		if($sporttype_id)
@@ -218,7 +220,7 @@ class JoomleagueViewJoomleague extends JLGView
 			// seasons
 			$availableSeasons = $mdlJoomleague->getSeasons();
 			$seasons = array();
-			$seasons[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_SEASON'),'id','name');
+			$seasons[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_SEASON'),'id','name');
 			
 			if ($availableSeasons) {
 				$allSeasons = array_merge($seasons, $availableSeasons);
@@ -226,11 +228,11 @@ class JoomleagueViewJoomleague extends JLGView
 				$allSeasons = array_merge($seasons);
 			}
 			
-			$lists['seasons'] = JHtml::_('select.genericList',$allSeasons,'seasonnav','class="inputbox" style="width:100%"','id','name',$seasonid);
+			$lists['seasons'] = HTMLHelper::_('select.genericList',$allSeasons,'seasonnav','class="inputbox" style="width:100%"','id','name',$seasonid);
 
 			// build the html select list for projects
 			$projects = array();
-			$projects[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_PROJECT'),'id','name');
+			$projects[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_PROJECT'),'id','name');
 
 			// check if the season filter is set and select the needed projects
 			if(! $use_seasons)
@@ -248,18 +250,18 @@ class JoomleagueViewJoomleague extends JLGView
 				}
 			}
 
-			$lists['projects'] = JHtml::_('select.genericList',$projects,'pid[]','class="inputbox" style="width:100%"','id','name',$project_id);
+			$lists['projects'] = HTMLHelper::_('select.genericList',$projects,'pid[]','class="inputbox" style="width:100%"','id','name',$project_id);
 		}
 
 		// if a project is active we create the teams and rounds select lists
 		if($project_id > 0)
 		{
-			$team_id = $jinput->getInt('ptid',0);
+			$team_id = $input->getInt('ptid',0);
 			if($team_id == 0)
 			{
 				$team_id = $app->getUserState($option . 'project_team_id');
 			}
-			$projectteams[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'),'value','text');
+			$projectteams[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'),'value','text');
 
 			if($res = $mdlJoomleague->getProjectteams())
 			{
@@ -268,26 +270,26 @@ class JoomleagueViewJoomleague extends JLGView
 
 			$lDummy = 'class="inputbox" ';
 			$lDummy .= 'style="width:100%"';
-			$lists['projectteams'] = JHtml::_('select.genericList',$projectteams,'tid[]','class="inputbox" style="width:100%"','value','text',
+			$lists['projectteams'] = HTMLHelper::_('select.genericList',$projectteams,'tid[]','class="inputbox" style="width:100%"','value','text',
 					$team_id);
 
 			$round_id = $app->getUserState($option . 'round_id');
-			$projectrounds[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_ROUND'),'value','text');
+			$projectrounds[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_ROUND'),'value','text');
 
 			$mdlRound = BaseDatabaseModel::getInstance('Round','JoomleagueModel');
 			$round = $mdlRound->getItem($project->current_round);
 
-			$projectrounds[] = JHtml::_('select.option',$round->id,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_CURRENT_ROUND'),'value','text');
+			$projectrounds[] = HTMLHelper::_('select.option',$round->id,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_CURRENT_ROUND'),'value','text');
 			if($ress = JoomleagueHelper::getRoundsOptions($project_id,'ASC',true))
 			{
 				foreach($ress as $res)
 				{
-					$project_roundslist[] = JHtml::_('select.option',$res->value,$res->text);
+					$project_roundslist[] = HTMLHelper::_('select.option',$res->value,$res->text);
 				}
 				$projectrounds = array_merge($projectrounds,$project_roundslist);
 			}
 
-			$lists['projectrounds'] = JHtml::_('select.genericList',$projectrounds,'rid[]','class="inputbox" style="width:100%"','value','text',
+			$lists['projectrounds'] = HTMLHelper::_('select.genericList',$projectrounds,'rid[]','class="inputbox" style="width:100%"','value','text',
 					$round_id);
 		}
 
@@ -310,49 +312,49 @@ class JoomleagueViewJoomleague extends JLGView
 		$limage1 = array();
 
 		// Project
-		$link1[] = JRoute::_('index.php?option=com_joomleague&view=projects');
+		$link1[] = Route::_('index.php?option=com_joomleague&view=projects');
 		$label1[] = JText::_('COM_JOOMLEAGUE_D_MENU_PROJECTS');
-		$limage1[] = JHtml::_('image',$imagePath . 'projects.png',JText::_('COM_JOOMLEAGUE_D_MENU_PROJECTS'));
+		$limage1[] = HTMLHelper::_('image',$imagePath . 'projects.png',JText::_('COM_JOOMLEAGUE_D_MENU_PROJECTS'));
 		// SportsType
-		$link1[] = JRoute::_('index.php?option=com_joomleague&view=sportstypes');
+		$link1[] = Route::_('index.php?option=com_joomleague&view=sportstypes');
 		$label1[] = JText::_('COM_JOOMLEAGUE_D_MENU_SPORTSTYPES');
-		$limage1[] = JHtml::_('image',$imagePath . 'sportstypes.png',JText::_('COM_JOOMLEAGUE_D_MENU_SPORTSTYPES'));
+		$limage1[] = HTMLHelper::_('image',$imagePath . 'sportstypes.png',JText::_('COM_JOOMLEAGUE_D_MENU_SPORTSTYPES'));
 		// League
-		$link1[] = JRoute::_('index.php?option=com_joomleague&view=leagues');
+		$link1[] = Route::_('index.php?option=com_joomleague&view=leagues');
 		$label1[] = JText::_('COM_JOOMLEAGUE_D_MENU_LEAGUES');
-		$limage1[] = JHtml::_('image',$imagePath . 'leagues.png',JText::_('COM_JOOMLEAGUE_D_MENU_LEAGUES'));
+		$limage1[] = HTMLHelper::_('image',$imagePath . 'leagues.png',JText::_('COM_JOOMLEAGUE_D_MENU_LEAGUES'));
 		// Season
-		$link1[] = JRoute::_('index.php?option=com_joomleague&view=seasons');
+		$link1[] = Route::_('index.php?option=com_joomleague&view=seasons');
 		$label1[] = JText::_('COM_JOOMLEAGUE_D_MENU_SEASONS');
-		$limage1[] = JHtml::_('image',$imagePath . 'seasons.png',JText::_('COM_JOOMLEAGUE_D_MENU_SEASONS'));
+		$limage1[] = HTMLHelper::_('image',$imagePath . 'seasons.png',JText::_('COM_JOOMLEAGUE_D_MENU_SEASONS'));
 		// Club
-		$link1[] = JRoute::_('index.php?option=com_joomleague&view=clubs');
+		$link1[] = Route::_('index.php?option=com_joomleague&view=clubs');
 		$label1[] = JText::_('COM_JOOMLEAGUE_D_MENU_CLUBS');
-		$limage1[] = JHtml::_('image',$imagePath . 'clubs.png',JText::_('COM_JOOMLEAGUE_D_MENU_CLUBS'));
+		$limage1[] = HTMLHelper::_('image',$imagePath . 'clubs.png',JText::_('COM_JOOMLEAGUE_D_MENU_CLUBS'));
 		// Team
-		$link1[] = JRoute::_('index.php?option=com_joomleague&view=teams');
+		$link1[] = Route::_('index.php?option=com_joomleague&view=teams');
 		$label1[] = JText::_('COM_JOOMLEAGUE_D_MENU_TEAMS');
-		$limage1[] = JHtml::_('image',$imagePath . 'icon-16-Teams.png',JText::_('COM_JOOMLEAGUE_D_MENU_TEAMS'));
+		$limage1[] = HTMLHelper::_('image',$imagePath . 'icon-16-Teams.png',JText::_('COM_JOOMLEAGUE_D_MENU_TEAMS'));
 		// Person
-		$link1[] = JRoute::_('index.php?option=com_joomleague&view=persons');
+		$link1[] = Route::_('index.php?option=com_joomleague&view=persons');
 		$label1[] = JText::_('COM_JOOMLEAGUE_D_MENU_PERSONS');
-		$limage1[] = JHtml::_('image',$imagePath . 'players.png',JText::_('COM_JOOMLEAGUE_D_MENU_PERSONS'));
+		$limage1[] = HTMLHelper::_('image',$imagePath . 'players.png',JText::_('COM_JOOMLEAGUE_D_MENU_PERSONS'));
 		// EventType
-		$link1[] = JRoute::_('index.php?option=com_joomleague&view=eventtypes');
+		$link1[] = Route::_('index.php?option=com_joomleague&view=eventtypes');
 		$label1[] = JText::_('COM_JOOMLEAGUE_D_MENU_EVENTTYPES');
-		$limage1[] = JHtml::_('image',$imagePath . 'events.png',JText::_('COM_JOOMLEAGUE_D_MENU_EVENTTYPES'));
+		$limage1[] = HTMLHelper::_('image',$imagePath . 'events.png',JText::_('COM_JOOMLEAGUE_D_MENU_EVENTTYPES'));
 		// Statistic
-		$link1[] = JRoute::_('index.php?option=com_joomleague&view=statistics');
+		$link1[] = Route::_('index.php?option=com_joomleague&view=statistics');
 		$label1[] = JText::_('COM_JOOMLEAGUE_D_MENU_STATISTICS');
-		$limage1[] = JHtml::_('image',$imagePath . 'calc16.png',JText::_('COM_JOOMLEAGUE_D_MENU_STATISTICS'));
+		$limage1[] = HTMLHelper::_('image',$imagePath . 'calc16.png',JText::_('COM_JOOMLEAGUE_D_MENU_STATISTICS'));
 		// Position
-		$link1[] = JRoute::_('index.php?option=com_joomleague&view=positions');
+		$link1[] = Route::_('index.php?option=com_joomleague&view=positions');
 		$label1[] = JText::_('COM_JOOMLEAGUE_D_MENU_POSITIONS');
-		$limage1[] = JHtml::_('image',$imagePath . 'icon-16-Positions.png',JText::_('COM_JOOMLEAGUE_D_MENU_POSITIONS'));
+		$limage1[] = HTMLHelper::_('image',$imagePath . 'icon-16-Positions.png',JText::_('COM_JOOMLEAGUE_D_MENU_POSITIONS'));
 		// Playground
-		$link1[] = JRoute::_('index.php?option=com_joomleague&view=playgrounds');
+		$link1[] = Route::_('index.php?option=com_joomleague&view=playgrounds');
 		$label1[] = JText::_('COM_JOOMLEAGUE_D_MENU_VENUES');
-		$limage1[] = JHtml::_('image',$imagePath . 'playground.png',JText::_('COM_JOOMLEAGUE_D_MENU_VENUES'));
+		$limage1[] = HTMLHelper::_('image',$imagePath . 'playground.png',JText::_('COM_JOOMLEAGUE_D_MENU_VENUES'));
 
 		// Asign to array
 		$link[] = $link1;
@@ -377,46 +379,46 @@ class JoomleagueViewJoomleague extends JLGView
 				$tabs[] = $pane;
 
 				// Project
-				$link2[] = JRoute::_('index.php?option=com_joomleague&task=project.edit&id=' . $project->id.'&return=cpanel');
+				$link2[] = Route::_('index.php?option=com_joomleague&task=project.edit&id=' . $project->id.'&return=cpanel');
 				$label2[] = JText::_('COM_JOOMLEAGUE_P_MENU_PSETTINGS');
-				$limage2[] = JHtml::_('image',$imagePath . 'projects.png',JText::_('COM_JOOMLEAGUE_P_MENU_PSETTINGS'));
+				$limage2[] = HTMLHelper::_('image',$imagePath . 'projects.png',JText::_('COM_JOOMLEAGUE_P_MENU_PSETTINGS'));
 				// Template
-				$link2[] = JRoute::_('index.php?option=com_joomleague&view=templates&task=template.display');
+				$link2[] = Route::_('index.php?option=com_joomleague&view=templates&task=template.display');
 				$label2[] = JText::_('COM_JOOMLEAGUE_P_MENU_FES');
-				$limage2[] = JHtml::_('image',$imagePath . 'icon-16-FrontendSettings.png',JText::_('COM_JOOMLEAGUE_P_MENU_FES'));
+				$limage2[] = HTMLHelper::_('image',$imagePath . 'icon-16-FrontendSettings.png',JText::_('COM_JOOMLEAGUE_P_MENU_FES'));
 
 				if((isset($project->project_type)) && ($project->project_type == 'DIVISIONS_LEAGUE'))
 				{
-					$link2[] = JRoute::_('index.php?option=com_joomleague&view=divisions');
+					$link2[] = Route::_('index.php?option=com_joomleague&view=divisions');
 					$label2[] = JText::_('COM_JOOMLEAGUE_P_MENU_DIVISIONS');
-					$limage2[] = JHtml::_('image',$imagePath . 'icon-16-Divisions.png',JText::_('COM_JOOMLEAGUE_P_MENU_DIVISIONS'));
+					$limage2[] = HTMLHelper::_('image',$imagePath . 'icon-16-Divisions.png',JText::_('COM_JOOMLEAGUE_P_MENU_DIVISIONS'));
 				}
 				if((isset($project->project_type)) && (($project->project_type == 'TOURNAMENT_MODE') || ($project->project_type == 'DIVISIONS_LEAGUE')))
 				{
-					$link2[] = JRoute::_('index.php?option=com_joomleague&view=treetos');
+					$link2[] = Route::_('index.php?option=com_joomleague&view=treetos');
 					$label2[] = JText::_('COM_JOOMLEAGUE_P_MENU_TREE');
-					$limage2[] = JHtml::_('image',$imagePath . 'icon-16-Tree.png',JText::_('COM_JOOMLEAGUE_P_MENU_TREE'));
+					$limage2[] = HTMLHelper::_('image',$imagePath . 'icon-16-Tree.png',JText::_('COM_JOOMLEAGUE_P_MENU_TREE'));
 				}
 				// Project-Position
-				$link2[] = JRoute::_('index.php?option=com_joomleague&view=projectpositions');
+				$link2[] = Route::_('index.php?option=com_joomleague&view=projectpositions');
 				$label2[] = JText::_('COM_JOOMLEAGUE_P_MENU_POSITIONS');
-				$limage2[] = JHtml::_('image',$imagePath . 'icon-16-Positions.png',JText::_('COM_JOOMLEAGUE_P_MENU_POSITIONS'));
+				$limage2[] = HTMLHelper::_('image',$imagePath . 'icon-16-Positions.png',JText::_('COM_JOOMLEAGUE_P_MENU_POSITIONS'));
 				// Project-Referee
-				$link2[] = JRoute::_('index.php?option=com_joomleague&view=projectreferees');
+				$link2[] = Route::_('index.php?option=com_joomleague&view=projectreferees');
 				$label2[] = JText::_('COM_JOOMLEAGUE_P_MENU_REFEREES');
-				$limage2[] = JHtml::_('image',$imagePath . 'icon-16-Referees.png',JText::_('COM_JOOMLEAGUE_P_MENU_REFEREES'));
+				$limage2[] = HTMLHelper::_('image',$imagePath . 'icon-16-Referees.png',JText::_('COM_JOOMLEAGUE_P_MENU_REFEREES'));
 				// Project-Team
-				$link2[] = JRoute::_('index.php?option=com_joomleague&view=projectteams');
+				$link2[] = Route::_('index.php?option=com_joomleague&view=projectteams');
 				$label2[] = JText::_('COM_JOOMLEAGUE_P_MENU_TEAMS');
-				$limage2[] = JHtml::_('image',$imagePath . 'icon-16-Teams.png',JText::_('COM_JOOMLEAGUE_P_MENU_TEAMS'));
+				$limage2[] = HTMLHelper::_('image',$imagePath . 'icon-16-Teams.png',JText::_('COM_JOOMLEAGUE_P_MENU_TEAMS'));
 				// Round
-				$link2[] = JRoute::_('index.php?option=com_joomleague&view=rounds');
+				$link2[] = Route::_('index.php?option=com_joomleague&view=rounds');
 				$label2[] = JText::_('COM_JOOMLEAGUE_P_MENU_ROUNDS');
-				$limage2[] = JHtml::_('image',$imagePath . 'icon-16-Matchdays.png',JText::_('COM_JOOMLEAGUE_P_MENU_ROUNDS'));
+				$limage2[] = HTMLHelper::_('image',$imagePath . 'icon-16-Matchdays.png',JText::_('COM_JOOMLEAGUE_P_MENU_ROUNDS'));
 				// JLXML-Export
-				$link2[] = JRoute::_('index.php?option=com_joomleague&task=jlxmlexport.export');
+				$link2[] = Route::_('index.php?option=com_joomleague&task=jlxmlexport.export');
 				$label2[] = JText::_('COM_JOOMLEAGUE_P_MENU_XML_EXPORT');
-				$limage2[] = JHtml::_('image',$imagePath . 'icon-16-XMLExportData.png',JText::_('COM_JOOMLEAGUE_P_MENU_XML_EXPORT'));
+				$limage2[] = HTMLHelper::_('image',$imagePath . 'icon-16-XMLExportData.png',JText::_('COM_JOOMLEAGUE_P_MENU_XML_EXPORT'));
 			}
 			// Assign to array
 			$link[] = $link2;
@@ -439,21 +441,21 @@ class JoomleagueViewJoomleague extends JLGView
 		if(Factory::getUser()->authorise('core.manage'))
 		{
 			// Settings
-			$link3[] = JRoute::_('index.php?option=com_joomleague&task=settings.edit');
+			$link3[] = Route::_('index.php?option=com_joomleague&task=settings.edit');
 			$label3[] = JText::_('COM_JOOMLEAGUE_M_MENU_SETTINGS');
-			$limage3[] = JHtml::_('image',$imagePath.'settings.png',JText::_('COM_JOOMLEAGUE_M_MENU_SETTINGS'));
+			$limage3[] = HTMLHelper::_('image',$imagePath.'settings.png',JText::_('COM_JOOMLEAGUE_M_MENU_SETTINGS'));
 			// XML Import
-			$link3[] = JRoute::_('index.php?option=com_joomleague&view=jlxmlimports');
+			$link3[] = Route::_('index.php?option=com_joomleague&view=jlxmlimports');
 			$label3[] = JText::_('COM_JOOMLEAGUE_M_MENU_XML_IMPORT');
-			$limage3[] = JHtml::_('image',$imagePath.'import.png',JText::_('COM_JOOMLEAGUE_M_MENU_XML_IMPORT'));
+			$limage3[] = HTMLHelper::_('image',$imagePath.'import.png',JText::_('COM_JOOMLEAGUE_M_MENU_XML_IMPORT'));
 			// Updates
-			$link3[] = JRoute::_('index.php?option=com_joomleague&view=updates');
+			$link3[] = Route::_('index.php?option=com_joomleague&view=updates');
 			$label3[] = JText::_('COM_JOOMLEAGUE_M_MENU_UPDATES');
-			$limage3[] = JHtml::_('image',$imagePath.'update.png',JText::_('COM_JOOMLEAGUE_M_MENU_UPDATES'));
+			$limage3[] = HTMLHelper::_('image',$imagePath.'update.png',JText::_('COM_JOOMLEAGUE_M_MENU_UPDATES'));
 			// Tools
-			$link3[] = JRoute::_('index.php?option=com_joomleague&view=tools');
+			$link3[] = Route::_('index.php?option=com_joomleague&view=tools');
 			$label3[] = JText::_('Tools');
-			$limage3[] = JHtml::_('image',$imagePath.'repair.gif',JText::_('Tools'));
+			$limage3[] = HTMLHelper::_('image',$imagePath.'repair.gif',JText::_('Tools'));
 		}
 		// Assign to array
 		$link[] = $link3;
@@ -461,11 +463,11 @@ class JoomleagueViewJoomleague extends JLGView
 		$limage[] = $limage3;
 
 		// active pane selector (project)
-		$view = $jinput->getCmd('view');
+		$view = $input->getCmd('view');
 		if (preg_match("/^(project|league|season|sportstype|club|team|person|eventtype|statistic|position|playground)s?$/", $view))
 		{
 			// For General list and item views
-			if ($view == 'project' && $jinput->getCmd('return') == 'cpanel' && $project)
+			if ($view == 'project' && $input->getCmd('return') == 'cpanel' && $project)
 			{
 				// If editing a project was initiated from the Project menu, show the project menu
 				$active = 1;
@@ -484,7 +486,7 @@ class JoomleagueViewJoomleague extends JLGView
 		else
 		{
 			// For Project views (depending if $project is set)
-			$active = $jinput->getInt('active', $project ? 1 : 0);
+			$active = $input->getInt('active', $project ? 1 : 0);
 		}
 
 		$this->version = $version;

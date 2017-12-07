@@ -43,8 +43,8 @@ class JoomleagueModelItem extends AdminModel
 	{
 		parent::__construct();
 		$app = Factory::getApplication();
-		$array = $app->input->getVar( 'cid', array(0), '', 'array' );
-		$edit = $app->input->getVar( 'edit', true );
+		$array = $app->input->get( 'cid', array(0), '', 'array' );
+		$edit = $app->input->get( 'edit', true );
 		if( $edit )
 		{
 			$this->setId( (int)$array[0] );

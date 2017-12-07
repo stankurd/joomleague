@@ -8,6 +8,10 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Object\CMSObject;
+
 defined('_JEXEC') or die;
 
 require_once JLG_PATH_ADMIN.'/helpers/jlparameter.php';
@@ -15,7 +19,7 @@ require_once JLG_PATH_ADMIN.'/helpers/jlparameter.php';
  * base class for statistics handling
  *
  */
-class JLGStatistic extends JObject {
+class JLGStatistic extends CMSObject {
 	
 	var $_name = 'default';
 	
@@ -319,7 +323,7 @@ class JLGStatistic extends JObject {
 			{
 				$iconPath = "images/com_joomleague/database/statistics/" . $iconPath;
 			}
-			return JHtml::image($iconPath, JText::_($this->name),	array( "title" => JText::_($this->name) ));
+			return HTMLHelper::image($iconPath, JText::_($this->name),	array( "title" => JText::_($this->name) ));
 		}
 		return '<span class="stat-alternate hasTip" title="'.JText::_($this->name).'">'.JText::_($this->short).'</span>';
 	}
@@ -456,8 +460,9 @@ class JLGStatistic extends JObject {
 	 */
 	protected function getPlayerStatsByGameForIds($teamplayer_ids, $project_id, $sids, $factors = NULL)
 	{
-		$db = JFactory::getDbo();
-
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$quoted_sids = array();
 		foreach ($sids as $sid) {
 			$quoted_sids[] = $db->Quote($sid);
@@ -544,8 +549,9 @@ class JLGStatistic extends JObject {
 	 */
 	protected function getPlayerStatsByProjectForIds($person_id, $projectteam_id, $project_id, $sports_type_id, $sids, $factors = NULL)
 	{
-		$db = JFactory::getDbo();
-
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$quoted_sids = array();
 		foreach ($sids as $sid) {
 			$quoted_sids[] = $db->Quote($sid);
@@ -619,8 +625,9 @@ class JLGStatistic extends JObject {
 	 */
 	protected function getGamesPlayedByPlayer($person_id, $projectteam_id, $project_id, $sports_type_id)
 	{
-		$db = JFactory::getDbo();
-
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query 	= ' SELECT COUNT(DISTINCT m.id)'
 				. ' FROM #__joomleague_match AS m'
 				. ' INNER JOIN #__joomleague_match_player AS mp ON mp.match_id=m.id'
@@ -660,8 +667,9 @@ class JLGStatistic extends JObject {
 	 */
 	protected function getPlayerStatsByProjectForEvents($person_id, $projectteam_id, $project_id, $sports_type_id, $sids)
 	{
-		$db = JFactory::getDbo();
-
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$quoted_sids = array();
 		foreach ($sids as $sid) {
 			$quoted_sids[] = $db->Quote($sid);
@@ -712,7 +720,8 @@ class JLGStatistic extends JObject {
 	 */
 	protected function getRosterStatsForIds($team_id, $project_id, $position_id, $sids, $factors = NULL)
 	{
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		
 		$quoted_sids = array();
 		foreach ($sids as $sid) {
@@ -791,8 +800,9 @@ class JLGStatistic extends JObject {
 	 */
 	protected function getGamesPlayedByProjectTeam($team_id, $project_id, $position_id)
 	{
-		$db = JFactory::getDbo();
-
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		// Get the number of matches played per teamplayer of the projectteam.
 		$query	= ' FROM #__joomleague_match AS m'
 				. ' INNER JOIN #__joomleague_match_player AS mp ON mp.match_id=m.id'
@@ -832,8 +842,9 @@ class JLGStatistic extends JObject {
 	 */
 	protected function getRosterStatsForEvents($team_id, $project_id, $position_id, $sids)
 	{
-		$db = JFactory::getDbo();
-
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$quoted_sids = array();
 		foreach ($sids as $sid) {
 			$quoted_sids[] = $db->Quote($sid);
@@ -872,8 +883,9 @@ class JLGStatistic extends JObject {
 	 */
 	protected function getGamesPlayedQuery($project_id, $division_id, $team_id)
 	{
-		$db = JFactory::getDbo();
-
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query 	  = ' SELECT gp.person_id, gp.tpid, COUNT(gp.mid) AS played '
 				  . ' FROM ( '
 				  . '   SELECT m.id AS mid, tp.person_id, tp.id AS tpid'

@@ -20,7 +20,7 @@ foreach($this->extended->getFieldsets() as $fieldset)
 	{
 		echo JText::_('COM_JOOMLEAGUE_GLOBAL_NO_PARAMS');
 	}
-	
+    
 	foreach($fields as $field)
 	{
 		?>

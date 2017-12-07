@@ -7,6 +7,9 @@
  * @link		http://www.joomleague.at
  */
 
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 ?>
 <div id='editcell'>
@@ -22,18 +25,19 @@ defined('_JEXEC') or die;
 		foreach ($this->importData as $key => $value)
 		{
 			$ret = '';
-			$ret .= JHtml::_('sliders.start','sliders',array(
+			$ret .= HTMLHelper::_('bootstrap.startAccordion','sliders',array(
 					'allowAllClose' => false,
 					'startOffset' => 1,
 					'startTransition' => true,
 					true));
-			$ret .= JHtml::_('sliders.panel', JText::_($key), 'slider'.($iSlider++));
+			$ret .= HTMLHelper::_('bootstrap.addSlide', JText::_($key), 'slider'.($iSlider++));
 			$ret .= '<table class="table table-striped"><tr><td>'.$value.'</td></tr></table>';
-			$ret .= JHtml::_('sliders.end');
+			$ret .=  HTMLHelper::_('bootstrap.endSlide');
+			$ret = HTMLHelper::_('bootstrap.endAccordion');
 			echo $ret;
 		}
 	}
-	if (JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0))
+	if (ComponentHelper::getParams('com_joomleague')->get('show_debug_info',0))
 	{
 		?><fieldset>
 			<legend><?php echo JText::_('Post data from importform was:'); ?></legend>
@@ -44,7 +48,7 @@ defined('_JEXEC') or die;
 </div>
 <p style='text-align:right;'><a href='#page_top'><?php echo JText::_('top'); ?></a></p>
 <?php
-if (JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0))
+if (ComponentHelper::getParams('com_joomleague')->get('show_debug_info',0))
 {
 	echo '<center><hr>';
 		echo JText::sprintf('Memory Limit is %1$s',ini_get('memory_limit')) . '<br />';

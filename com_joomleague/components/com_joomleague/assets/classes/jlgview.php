@@ -1,4 +1,4 @@
- <?php
+<?php
 /**
  * @copyright	Copyright (C) 2005-2016 joomleague.at. All rights reserved.
  * @license		GNU/GPL, see LICENSE.php
@@ -12,12 +12,13 @@
 // Check to ensure this file is within the rest of the framework
 defined('JPATH_BASE') or die;
 
-use Joomla\Registry\Registry;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Application\ApplicationHelper;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
+use Joomla\Registry\Registry;
+use Joomla\Utilities\ArrayHelper;
 
 class JLGView extends BaseHtmlView
 {
@@ -80,7 +81,7 @@ class JLGView extends BaseHtmlView
 				// set the alternative template search dir
 				if (isset($app))
 				{
-					if ($app->isClient('administrator')) {
+				    if ($app->isClient('administrator')) {
 						$this->_addPath('template', $JLGPATH_EXTENSION.'/admin/views/'.$this->getName().'/tmpl');
 					}
 					else {
@@ -103,7 +104,6 @@ class JLGView extends BaseHtmlView
 		$option 	= $input->get('option');
 		$document	= Factory::getDocument();
 		$version 	= urlencode(JoomleagueHelper::getVersion());
-		//$baseurl    = Uri::root('true');
 		
 		// support for global client side lang res
 		//JHtml::_('behavior.formvalidator');
@@ -117,7 +117,7 @@ class JLGView extends BaseHtmlView
 		$props 		= $jllang->getProperties();
 		$strings 	= $props['strings'];
 		foreach ($strings as $key => $value) {
-			if($app->isClient('administrator')) {
+		    if($app->isClient('administrator')) {
 				if(strpos($key, 'COM_JOOMLEAGUE_ADMIN_'.strtoupper($this->getName()).'_CSJS') !== false) {
 					JText::script($key, true);
 				}
@@ -128,7 +128,7 @@ class JLGView extends BaseHtmlView
 			}
 		}
 
-		if ($app->isAdmin()) {
+		if ($app->isClient('administrator')) {
 			// include backend.css
 			$file = JPATH_COMPONENT.'/assets/css/backend.css';
 			if(file_exists(JPath::clean($file))) {
@@ -249,12 +249,12 @@ class JLGView extends BaseHtmlView
 		}
 
 		if (is_array($data)) {
-			$data = json_encode($data);
+		    $data = json_encode($data);
 		}
 
 		// Convert the extended field to an array.
 		$registry = new Registry;
-		$registry->loadString($data);
+		//$registry->loadString($data); //FIXME Error decoding JSON data: Syntax error 
 
 		/*
 		 * extended data

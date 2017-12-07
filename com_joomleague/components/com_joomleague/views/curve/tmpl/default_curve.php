@@ -1,4 +1,5 @@
 <?php use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 ?>
@@ -38,7 +39,7 @@ foreach ($this->divisions as $division)
 			<input type="hidden" name="division" value="<?php echo $division->id; ?>" /> 
 			<input type="submit" style="font-size: 9px;" class="inputbox"
 				value="<?php echo JText::_('COM_JOOMLEAGUE_CURVE_GO'); ?>" />
-			<?php echo JHtml::_( 'form.token' ); ?>
+			<?php echo HTMLHelper::_( 'form.token' ); ?>
 		</form>
 	</td>
 	</tr>

@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Joomleague
  * @subpackage	Module-Eventsranking
@@ -132,7 +134,7 @@ if (count($list['eventtypes']) > 0)
 						}
 						if ($teamLink)
 						{
-							echo JHtml::link(modJLGEventsrankingHelper::getTeamLink($team, $params, $list['project']), $team->$teamnametype);
+							echo HTMLHelper::link(modJLGEventsrankingHelper::getTeamLink($team, $params, $list['project']), $team->$teamnametype);
 						}
 						else
 						{
@@ -179,7 +181,7 @@ else
 ?>
 <?php if ($params->get('show_full_link', 1)):?>
 <p class="fulltablelink">
-	<?php echo JHtml::link(	JoomleagueHelperRoute::getEventsRankingRoute($list['project']->slug, $params->get('divisionid',0) , $params->get('tid',0), $params->get('evid',0), $params->get('mid',0)),
+	<?php echo HTMLHelper::link(	JoomleagueHelperRoute::getEventsRankingRoute($list['project']->slug, $params->get('divisionid',0) , $params->get('tid',0), $params->get('evid',0), $params->get('mid',0)),
 							JText::_('MOD_JOOMLEAGUE_EVENTSRANKING_VIEW_FULL_TABLE')); ?>
 </p>
 <?php endif; ?>

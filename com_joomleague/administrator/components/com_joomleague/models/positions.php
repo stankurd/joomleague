@@ -73,7 +73,7 @@ class JoomleagueModelPositions extends JLGModelList
 		$query = $db->getQuery(true);
 		$user = Factory::getUser();
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 
 		// Select the required fields from the table.
 		$query->select($this->getState('list.select','a.*'));
@@ -154,8 +154,8 @@ class JoomleagueModelPositions extends JLGModelList
 	function getParentsPositions()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option.'project');
 
 		// get positions already in project for parents list
@@ -192,7 +192,7 @@ class JoomleagueModelPositions extends JLGModelList
 		$result = true;
 		$db = Factory::getDbo();
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 
 		for($x = 0;$x < count($cid);$x ++)
 		{

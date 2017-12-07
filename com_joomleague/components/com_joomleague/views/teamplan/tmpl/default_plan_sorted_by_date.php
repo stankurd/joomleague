@@ -1,5 +1,7 @@
-<?php use Joomla\CMS\Factory;
+<?php
+use Joomla\CMS\Factory;
 use Joomla\CMS\Date\Date;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -32,10 +34,10 @@ if (!empty($this->matches))
     {
         usort($this->matches, function($a, $b) {
             if (empty($a->match_date)) {
-                $a->match_date = new JDate('9999-12-31 0:00:00', 'UTC');
+                $a->match_date = new Date('9999-12-31 0:00:00', 'UTC');
             }
             if (empty($b->match_date)) {
-                $b->match_date = new JDate('9999-12-31 0:00:00', 'UTC');
+                $b->match_date = new Date('9999-12-31 0:00:00', 'UTC');
             }
                 return strnatcasecmp($b->match_date->format('Y-m-d H:i:s'), $a->match_date->format('Y-m-d H:i:s'));
         });
@@ -133,10 +135,10 @@ if (!empty($this->matches))
             if ($hasEvents)
             {
                 $link = 'javascript:void(0);';
-                $img = JHtml::image('media/com_joomleague/jl_images/events.png', 'events.png');
+                $img = HTMLHelper::image('media/com_joomleague/jl_images/events.png', 'events.png');
                 $params = array('title'   => JText::_('COM_JOOMLEAGUE_TEAMPLAN_EVENTS'),
                                 'onclick' => 'switchMenu(\'info'.$match->id.'\');return false;');
-                echo JHtml::link($link,$img,$params);
+                echo HTMLHelper::link($link,$img,$params);
             }
             ?>
                 </td>
@@ -347,7 +349,7 @@ if (!empty($this->matches))
 
             if ($this->config['results_linkable'] == 1)
             {
-                $result = JHtml::link($link,$result);
+                $result = HTMLHelper::link($link,$result);
             }
 
             $ResultsTooltipTp = '(';
@@ -474,7 +476,7 @@ if (!empty($this->matches))
                         if ($this->config['show_referee_link'])
                         {
                             $link = JoomleagueHelperRoute::getRefereeRoute($this->project->slug, $match->referees[$i]->referee_id, 3);
-                            $ref = JHtml::link($link, $ref);
+                            $ref = HTMLHelper::link($link, $ref);
                         }
                         $output .= $ref;
                         $output .= '</span>';
@@ -524,18 +526,18 @@ if (!empty($this->matches))
             if (isset($match->team1_result))
             {
                 $href_text = $this->config['show_matchreport_image']
-                    ? JHtml::image($this->config['matchreport_image'], JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHREPORT'))
+                    ? HTMLHelper::image($this->config['matchreport_image'], JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHREPORT'))
                     : JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHREPORT');
                 $link = JoomleagueHelperRoute::getMatchReportRoute($this->project->slug, $match->id);
             }
             else
             {
                 $href_text = $this->config['show_matchreport_image']
-                    ? JHtml::image($this->config['matchpreview_image'], JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHPREVIEW'))
+                    ? HTMLHelper::image($this->config['matchpreview_image'], JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHPREVIEW'))
                     : JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHPREVIEW');
                 $link = JoomleagueHelperRoute::getNextMatchRoute($this->project->slug, $match->id);
             }
-            echo JHtml::link($link, $href_text);
+            echo HTMLHelper::link($link, $href_text);
         }
         ?>
                 </td>

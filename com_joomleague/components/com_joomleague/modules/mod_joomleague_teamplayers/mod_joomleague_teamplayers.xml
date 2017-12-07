@@ -25,7 +25,7 @@
 				addfieldpath="/administrator/components/com_joomleague/models/fields">
 				<field type="project" name="p" label="MOD_JOOMLEAGUE_TEAMPLAYERS_PROJECT_LABEL"
 					description="MOD_JOOMLEAGUE_TEAMPLAYERS_PROJECT_LABEL_DESC" />
-				<field name="team" type="dependsql" default="0" depends="p"
+				<field name="team" type="team" default="0" depends="p"
 					task="projectteamsoptions" 
 					label="MOD_JOOMLEAGUE_TEAMPLAYERS_TEAM_ID_LABEL" 
 					description="MOD_JOOMLEAGUE_TEAMPLAYERS_TEAM_ID_LABEL_DESC" />

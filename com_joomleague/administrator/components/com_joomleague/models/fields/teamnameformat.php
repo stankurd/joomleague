@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -24,11 +25,11 @@ class JFormFieldTeamNameFormat extends FormField
 		||	$lang->load($extension, JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
 		||	$lang->load($extension, $source, $lang->getDefault(), false, false);
 		$mitems = array();
-		$mitems[] = JHtml::_('select.option', 0, JText::_('COM_JOOMLEAGUE_GLOBAL_TEAM_NAME_FORMAT_SHORT'));
-		$mitems[] = JHtml::_('select.option', 1, JText::_('COM_JOOMLEAGUE_GLOBAL_TEAM_NAME_FORMAT_MEDIUM'));
-		$mitems[] = JHtml::_('select.option', 2, JText::_('COM_JOOMLEAGUE_GLOBAL_TEAM_NAME_FORMAT_FULL'));
+		$mitems[] = HTMLHelper::_('select.option', 0, JText::_('COM_JOOMLEAGUE_GLOBAL_TEAM_NAME_FORMAT_SHORT'));
+		$mitems[] = HTMLHelper::_('select.option', 1, JText::_('COM_JOOMLEAGUE_GLOBAL_TEAM_NAME_FORMAT_MEDIUM'));
+		$mitems[] = HTMLHelper::_('select.option', 2, JText::_('COM_JOOMLEAGUE_GLOBAL_TEAM_NAME_FORMAT_FULL'));
 
-		$output= JHtml::_('select.genericlist',  $mitems,
+		$output= HTMLHelper::_('select.genericlist',  $mitems,
 				$this->name,
 				'class="inputbox" size="1"',
 				'value', 'text', $this->value, $this->id);

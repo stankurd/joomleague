@@ -1,6 +1,8 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -44,7 +46,7 @@ class JoomleagueViewResults extends JLGView
 		$rounds = JoomleagueHelper::getRoundsOptions($this->project->id, 'ASC', true);
 
 		//add js file // TODO is this really needed here?
-		//JHtml::_('behavior.framework');
+		//HTMLHelper::_('behavior.framework');
 
 		$this->lists=array();
 		if (isset($this->project))
@@ -114,7 +116,7 @@ class JoomleagueViewResults extends JLGView
 
 		// add the links
 		$document = Factory::getDocument();
-		$document->addHeadLink(JRoute::_($feed.'&type=rss'), 'alternate', 'rel', $rss);
+		$document->addHeadLink(Route::_($feed.'&type=rss'), 'alternate', 'rel', $rss);
 	}
 
 	function setStyleSheet($option)
@@ -200,11 +202,11 @@ class JoomleagueViewResults extends JLGView
 			{
 				if (!empty($team->logo_small) && JFile::exists($team->logo_small))
 				{
-					$image=JHtml::image($team->logo_small, $title, $attribs);
+					$image=HTMLHelper::image($team->logo_small, $title, $attribs);
 				}
 				else
 				{
-					$image=JHtml::image(JoomleagueHelper::getDefaultPlaceholder('clublogosmall'), $title, $attribs);
+					$image=HTMLHelper::image(JoomleagueHelper::getDefaultPlaceholder('clublogosmall'), $title, $attribs);
 				}
 			}
 			elseif ($type == 2 && !empty($team->country))
@@ -212,7 +214,7 @@ class JoomleagueViewResults extends JLGView
 				$image = Countries::getCountryFlag($team->country);
 				if (empty($image))
 				{
-					$image=JHtml::image(JoomleagueHelper::getDefaultPlaceholder('icon'), $title, $attribs);
+					$image=HTMLHelper::image(JoomleagueHelper::getDefaultPlaceholder('icon'), $title, $attribs);
 				}
 			}
 			else
@@ -399,7 +401,7 @@ class JoomleagueViewResults extends JLGView
 				$imgTitle = JText::_('Has match summary');
 				$img = 'media/com_joomleague/jl_images/zoom.png';
 			}
-			$output = JHtml::_(	'link', $report_link, JHtml::image($img, $imgTitle, array('border' => 0,'title' => $imgTitle)),
+			$output = HTMLHelper::_(	'link', $report_link, HTMLHelper::image($img, $imgTitle, array('border' => 0,'title' => $imgTitle)),
 				array('title' => $imgTitle));
 		}
 		else
@@ -426,7 +428,7 @@ class JoomleagueViewResults extends JLGView
 			// Make event tabs
 			$iPanel = 1;
 			$selector = 'events';
-			$output .= JHtml::_('bootstrap.startTabSet', $selector, array('active'=>'panel'.$iPanel)); 
+			$output .= HTMLHelper::_('bootstrap.startTabSet', $selector, array('active'=>'panel'.$iPanel)); 
 	
 			// Size of the event icons in the tabs (when used)
 			$width = 20; $height = 20; $type = 4;
@@ -462,7 +464,7 @@ class JoomleagueViewResults extends JLGView
 				{
 					$tab_content = JText::_($event->name);
 				}
-				$output .= JHtml::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $tab_content);
+				$output .= HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $tab_content);
 				$output .= '<table class="matchreport" border="0">';
 				$output .= '<tr>';
 
@@ -487,7 +489,7 @@ class JoomleagueViewResults extends JLGView
 				$output .= '</td>';
 				$output .= '</tr>';
 				$output .= '</table>';
-				$output .= JHtml::_('bootstrap.endTab');
+				$output .= HTMLHelper::_('bootstrap.endTab');
 			}
 
 			if (!empty($substitutions))
@@ -507,14 +509,14 @@ class JoomleagueViewResults extends JLGView
 				$pic_time	= 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/playtime.gif';
 				$pic_out	= 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png';
 				$pic_in		= 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/in.png';
-				$imgTime = JHtml::image($pic_time, JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE'),
+				$imgTime = HTMLHelper::image($pic_time, JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE'),
 					array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE')));
-				$imgOut  = JHtml::image($pic_out, JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT'),
+				$imgOut  = HTMLHelper::image($pic_out, JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT'),
 					array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT')));
-				$imgIn   = JHtml::image($pic_in, JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN'),
+				$imgIn   = HTMLHelper::image($pic_in, JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN'),
 					array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN')));
 
-				$output .= JHtml::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $tab_content);
+				$output .= HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $tab_content);
 				$output .= '<table class="matchreport" border="0">';
 				$output .= '<tr>';
 				$output .= '<td class="list">';
@@ -537,9 +539,9 @@ class JoomleagueViewResults extends JLGView
 				$output .= '</td>';
 				$output .= '</tr>';
 				$output .= '</table>';
-				$output .= JHtml::_('bootstrap.endTab');
+				$output .= HTMLHelper::_('bootstrap.endTab');
 			}
-			$output .= JHtml::_('bootstrap.endTabSet');
+			$output .= HTMLHelper::_('bootstrap.endTabSet');
 		}
 		else
 		{
@@ -591,7 +593,7 @@ class JoomleagueViewResults extends JLGView
 		// 2 = For favorite team(s) only
 		if($this->config['show_link_matchreport'] == 1 || ($this->config['show_link_matchreport'] == 2 && $fav))
 		{
-			$output = JHtml::_(	'link', $reportLink,
+			$output = HTMLHelper::_(	'link', $reportLink,
 				'<span class="score0">' . $this->showMatchState($game,$this->config) . '</span>',
 				array('title' => JText::_('COM_JOOMLEAGUE_RESULTS_SHOW_MATCHREPORT')));
 		}
@@ -730,9 +732,9 @@ class JoomleagueViewResults extends JLGView
 		foreach ($rounds as $r)
 		{
 			$link = JoomleagueHelperRoute::getResultsRoute($this->project->slug, $r->id, $division_id);
-			$options[] = JHtml::_('select.option', $link, $r->roundcode);
+			$options[] = HTMLHelper::_('select.option', $link, $r->roundcode);
 		}
-		return JHtml::_('select.genericlist', $options, 'select-round', 'onchange="joomleague_changedoc(this);"',
+		return HTMLHelper::_('select.genericlist', $options, 'select-round', 'onchange="joomleague_changedoc(this);"',
 			'value', 'text', $currentUrl);
 	}
 

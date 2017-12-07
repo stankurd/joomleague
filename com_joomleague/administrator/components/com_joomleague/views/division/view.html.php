@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -78,12 +79,12 @@ class JoomleagueViewDivision extends JLGView
 		$project = $mdlProject->getItem($project_id);
 
 		// build the html select list for parent divisions
-		$parents[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
+		$parents[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
 		if($res = $model->getParentsDivisions())
 		{
 			$parents = array_merge($parents,$res);
 		}
-		$lists['parents'] = JHtml::_('select.genericlist',$parents,'parent_id','class="inputbox" size="1"','value','text',$this->item->parent_id);
+		$lists['parents'] = HTMLHelper::_('select.genericlist',$parents,'parent_id','class="inputbox" size="1"','value','text',$this->item->parent_id);
 		unset($parents);
 
 		$this->project = $project;

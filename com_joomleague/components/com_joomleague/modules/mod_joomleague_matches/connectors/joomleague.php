@@ -1,5 +1,7 @@
 <?php
 use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\HTML\HTMLHelper;
 
 /*
  * @package 			Joomleague
@@ -50,7 +52,7 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 		);
 		foreach ($linkstructure AS $linktype => $urlarray) {
 			if ($this->params->get('link_team_' . $linktype, 1) == 1) {
-				$linktext .= '<a href="' . JRoute :: _('index.php?option=com_joomleague' . $this->arrayToUri($urlarray) . $this->itemid) . '">' . $this->addteamicon('link_team_' . $linktype) . '</a>';
+				$linktext .= '<a href="' . Route :: _('index.php?option=com_joomleague' . $this->arrayToUri($urlarray) . $this->itemid) . '">' . $this->addteamicon('link_team_' . $linktype) . '</a>';
 			}
 		}
 		if ($this->params->get('link_team_www', 1) == 1) {
@@ -246,7 +248,7 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 		$heading2 = '';
 		if ($this->params->get('show_project_title') != 0) {
 			if ($this->params->get('link_project_title') != 0) {
-				$heading = '<a href="' . JRoute :: _('index.php?option=com_joomleague' . $this->arrayToUri($linkstructure['project']) . $this->itemid) . '">';
+				$heading = '<a href="' . Route :: _('index.php?option=com_joomleague' . $this->arrayToUri($linkstructure['project']) . $this->itemid) . '">';
 			}
 			$heading .= $this->jl_utf8_convert($match->pname, 'iso-8859-1', 'utf-8');
 			if ($this->params->get('link_project_title') != 0) {
@@ -260,7 +262,7 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 		$row['pname'] = $heading;
 		if ($this->params->get('show_matchday_title') != 0) {
 			if ($this->params->get('link_matchday_title') != 0) {
-				$heading2 .= '<a href="' . JRoute :: _('index.php?option=com_joomleague' . $this->arrayToUri($linkstructure['matchday']) . $this->itemid) . '">';
+				$heading2 .= '<a href="' . Route :: _('index.php?option=com_joomleague' . $this->arrayToUri($linkstructure['matchday']) . $this->itemid) . '">';
 			}
 			$heading2 .= $this->jl_utf8_convert($match->name, 'iso-8859-1', 'utf-8');
 			if ($this->params->get('link_matchday_title') != 0) {
@@ -386,8 +388,8 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 		);
 		if ($this->params->get('show_act_report_link', 0) == 1 && $match->show_report == 1) {
 			$uri = 'index.php?option=com_joomleague' . $this->arrayToUri($linkstructure['report']) . $this->itemid;
-			$row['reportlink'] = '<a href="' . JRoute :: _($uri) . '" title="' . $this->params->get('show_act_report_text') . '">';
-			$row['reportlink'] .= ($useicons) ? JHtml :: _('image', $this->iconpath . 'report.png', $this->params->get('show_act_report_text'), array (
+			$row['reportlink'] = '<a href="' . Route :: _($uri) . '" title="' . $this->params->get('show_act_report_text') . '">';
+			$row['reportlink'] .= ($useicons) ? HTMLHelper::_('image', $this->iconpath . 'report.png', $this->params->get('show_act_report_text'), array (
 				'title' => $this->params->get('show_act_report_text'),
 				'height' => '16',
 				'width' => '16'
@@ -396,8 +398,8 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 		}
 		if ($this->params->get('show_statistic_link', 0) == 1 && ($match->team1_result || $match->team2_result)) {
 			$uri = 'index.php?option=com_joomleague' . $this->arrayToUri($linkstructure['statistic']) . $this->itemid;
-			$row['statisticlink'] = '<a href="' . JRoute :: _($uri) . '" title="' . $this->params->get('statistic_link_text') . '">';
-			$row['statisticlink'] .= ($useicons) ? JHtml :: _('image', $this->iconpath . 'history.png', $this->params->get('statistic_link_text'), array (
+			$row['statisticlink'] = '<a href="' . Route :: _($uri) . '" title="' . $this->params->get('statistic_link_text') . '">';
+			$row['statisticlink'] .= ($useicons) ? HTMLHelper:: _('image', $this->iconpath . 'history.png', $this->params->get('statistic_link_text'), array (
 				'title' => $this->params->get('statistic_link_text'),
 				'height' => '16',
 				'width' => '16'
@@ -406,8 +408,8 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 		}
 		if ($this->params->get('show_nextmatch_link', 0) == 1 && !($match->team1_result || $match->team2_result)) {
 			$uri = 'index.php?option=com_joomleague' . $this->arrayToUri($linkstructure['nextmatch']) . $this->itemid;
-			$row['nextmatchlink'] = '<a href="' . JRoute :: _($uri) . '" title="' . $this->params->get('statistic_link_text') . '">';
-			$row['nextmatchlink'] .= ($useicons) ? JHtml :: _('image', $this->iconpath . 'history.png', $this->params->get('nextmatch_link_text'), array (
+			$row['nextmatchlink'] = '<a href="' . Route :: _($uri) . '" title="' . $this->params->get('statistic_link_text') . '">';
+			$row['nextmatchlink'] .= ($useicons) ? HTMLHelper :: _('image', $this->iconpath . 'history.png', $this->params->get('nextmatch_link_text'), array (
 				'title' => $this->params->get('nextmatch_link_text'),
 				'height' => '16',
 				'width' => '16'
@@ -455,14 +457,14 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 							'p' => $match->project_id
 						)
 					);
-					$venuelink = JRoute :: _('index.php?option=com_joomleague' . $this->arrayToUri($linkstructure['venue']) . $this->itemid);
+					$venuelink = Route :: _('index.php?option=com_joomleague' . $this->arrayToUri($linkstructure['venue']) . $this->itemid);
 					$venuetext = '<a href="' . $venuelink . '" title="'. $venue['name'] .'">'. $venue['name'] .'</a>';
 					$thisvenue = sprintf($venuetext, $venuetip.' '.$venuename, $venuename);
 				} else {
 					$thisvenue = sprintf($venuetext, $venuename);
 				}
 				if ($this->iconpath) {
-					$thisvenue = JHtml :: _('image', $this->iconpath . 'house.png', $venuetip, array (
+					$thisvenue = HTMLHelper :: _('image', $this->iconpath . 'house.png', $venuetip, array (
 						'title' => $venuetip,
 						'height' => '16',
 						'width' => '16'

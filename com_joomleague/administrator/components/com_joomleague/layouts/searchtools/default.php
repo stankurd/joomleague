@@ -12,6 +12,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('JPATH_BASE') or die;
 
@@ -33,7 +34,7 @@ $data['options'] = array_merge($customOptions, $data['options']);
 $formSelector = !empty($data['options']['formSelector']) ? $data['options']['formSelector'] : '#adminForm';
 
 // Load search tools
-JHtml::_('searchtools.form', $formSelector, $data['options']);
+HTMLHelper::_('searchtools.form', $formSelector, $data['options']);
 
 ?>
 <div class="js-stools clearfix">

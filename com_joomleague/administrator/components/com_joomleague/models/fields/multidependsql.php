@@ -9,10 +9,11 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.framework');
+//JHtml::_('behavior.framework');
 
 /**
  * Renders a Dynamic SQL element
@@ -82,7 +83,7 @@ class JFormFieldMultiDependSQL extends FormField
 		}
 		else
 		{
-			$options = array(JHtml::_('select.option', '', JText::_('Select'), $key, $val));
+			$options = array(HTMLHelper::_('select.option', '', JText::_('Select'), $key, $val));
 		}
 
 		if ($query!='')
@@ -100,7 +101,7 @@ class JFormFieldMultiDependSQL extends FormField
 		}
 
 		// Render the HTML SELECT list.
-		$text = JHtml::_('select.genericlist', $options, 'l'.$ctrl, $attribs, $key, $val, $selected );
+		$text = HTMLHelper::_('select.genericlist', $options, 'l'.$ctrl, $attribs, $key, $val, $selected );
 		$text .= '<input type="hidden" name="'.$ctrl.'" id="'.$this->id.'" value="'.$value.'"/>';
 		return $text;
 	}

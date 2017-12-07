@@ -12,7 +12,7 @@ use Joomla\CMS\Uri\Uri;
  */
 defined('_JEXEC') or die;
 
-abstract class JoomleagueConnector extends JLCalendar{
+class JoomleagueConnector extends JLCalendar{
 	//var $db = Factory::getDbo();
 	var $xparams;
 	var $prefix;

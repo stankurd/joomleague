@@ -6,9 +6,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+
 jimport('cms.html.bootstrap');
 defined('_JEXEC') or die;
-$option = JFactory::getApplication()->input->get('option');
+$option = Factory::getApplication()->input->get('option');
 ?>
 <style type="text/css">
 	<!--
@@ -25,11 +28,11 @@ $option = JFactory::getApplication()->input->get('option');
     <?php
 		$selector = 'settings';
 		$i = 1;
-		echo JHtml::_('bootstrap.startTabSet', $selector, array('active'=>'panel'.$i)); 
+		echo HTMLHelper::_('bootstrap.startTabSet', $selector, array('active'=>'panel'.$i)); 
 		$fieldSets = $this->form->getFieldsets();
         foreach ($fieldSets as $name => $fieldSet) :
             $label = $fieldSet->name;
-			echo JHtml::_('bootstrap.addTab', $selector, 'panel'.$i++, JText::_($label));
+			echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$i++, JText::_($label));
 			?>
 			<fieldset class="form-vertical">
 				<?php
@@ -47,15 +50,15 @@ $option = JFactory::getApplication()->input->get('option');
 				</div>
 				<?php endforeach; ?>
 			</fieldset><?php 
- 			echo JHtml::_('bootstrap.endTab');
+ 			echo HTMLHelper::_('bootstrap.endTab');
  			?>
     	<div class="clr"></div>
     	<?php endforeach; ?>
-    	<?php echo JHtml::_('bootstrap.endTabSet'); ?>
+    	<?php echo HTMLHelper::_('bootstrap.endTabSet'); ?>
 	</div>
 	<div>	
 	<input type="hidden" name="task" value="setting.display">
 	<input type="hidden" name="option" value="<?php echo $option; ?>">
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 	</div>
 </form>

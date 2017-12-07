@@ -6,6 +6,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Uri\Uri;
+use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+
 defined('_JEXEC') or die;
 
 
@@ -53,9 +59,9 @@ class JoomleagueViewProjectteams extends JLGView
 	 */
 	function _displayChangeTeams($tpl)
 	{
-		$app = JFactory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$app = Factory::getApplication();
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option.'project');
 
 		$this->items = $this->get('Items');
@@ -66,7 +72,7 @@ class JoomleagueViewProjectteams extends JLGView
 
 		// build the html select list for all teams
 		$all_Teams = array();
-		$all_teams[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
+		$all_teams[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
 
 		if($allTeams = $model->getAllTeams($project_id))
 		{
@@ -78,9 +84,9 @@ class JoomleagueViewProjectteams extends JLGView
 		$this->lists = $lists;
 
 		// Toolbar for ChangeTeams
-		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_CHANGEASSIGN_TEAMS'),'');
+		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_CHANGEASSIGN_TEAMS'),'');
 		JLToolBarHelper::custom('projectteam.storechangeteams','move.png','move_f2.png','COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_BUTTON_STORE_CHANGE_TEAMS',false);
-		JToolBarHelper::back();
+		JLToolbarHelper::back();
 
 		parent::display($tpl);
 	}
@@ -91,16 +97,16 @@ class JoomleagueViewProjectteams extends JLGView
 	 */
 	function _displayEditlist($tpl)
 	{
-		$app = JFactory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$app = Factory::getApplication();
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option.'project');
 
-		$db = JFactory::getDbo();
-		$uri = JUri::getInstance();
-		$baseurl = JUri::root();
+		$db = Factory::getDbo();
+		$uri = Uri::getInstance();
+		$baseurl = Uri::root();
 
-		$document = JFactory::getDocument();
+		$document = Factory::getDocument();
 		$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/multiselect.js');
 
 		$this->items = $this->get('Items');
@@ -109,7 +115,7 @@ class JoomleagueViewProjectteams extends JLGView
 
 		$model = $this->getModel(); // model Projectteams
 
-		$mdlProject = JModelLegacy::getInstance('project','JoomleagueModel');
+		$mdlProject = BaseDataBaseModel::getInstance('project','JoomleagueModel');
 		$project 	= $mdlProject->getItem($project_id);
 
 		// build the html select list for project assigned teams
@@ -201,7 +207,7 @@ class JoomleagueViewProjectteams extends JLGView
 		unset($res1);
 		unset($notusedteams);
 
-		$this->user = JFactory::getUser();
+		$this->user = Factory::getUser();
 		$this->lists = $lists;
 		$this->project = $project;
 		$this->request_url = $uri->toString();
@@ -216,14 +222,14 @@ class JoomleagueViewProjectteams extends JLGView
 	 */
 	function _displayDefault($tpl)
 	{
-		$app = JFactory::getApplication();
-		$jinput = $app->input;
-		$document = JFactory::getDocument();
-		$option = $jinput->getCmd('option');
+		$app = Factory::getApplication();
+		$input = $app->input;
+		$document = Factory::getDocument();
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option.'project');
 
-		$db = JFactory::getDbo();
-		$uri = JUri::getInstance();
+		$db = Factory::getDbo();
+		$uri = Uri::getInstance();
 
 		$this->items = $this->get('Items');
 		$this->pagination = $this->get('Pagination');
@@ -234,24 +240,24 @@ class JoomleagueViewProjectteams extends JLGView
 		// build the html options for divisions
 		$divisions = array();
 		$divisions[] = JHtmlSelect::option('0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'),'value','text');
-		$mdlDivisions = JModelLegacy::getInstance('divisions','JoomleagueModel');
+		$mdlDivisions = BaseDataBaseModel::getInstance('divisions','JoomleagueModel');
 		if($res = $mdlDivisions->getDivisions($project_id))
 		{
 			$divisions = array_merge($divisions,$res);
 		}
-		$lists['divisions'] = JHtml::_('select.genericList',$divisions,'filter_division','class="input-medium" onChange="this.form.submit();"',
+		$lists['divisions'] = HTMLHelper::_('select.genericList',$divisions,'filter_division','class="input-medium" onChange="this.form.submit();"',
 				'value','text',$this->state->get('filter.division'));
 		$this->divisions = $divisions;
 		unset($divisions);
 
-		$mdlProject = JModelLegacy::getInstance('project','JoomleagueModel');
+		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$project 	= $mdlProject->getItem($project_id);
 
 		$this->lists = $lists;
 		$this->project = $project;
 
-		JHtml::_('bootstrap.framework');
-		$baseurl = JUri::root();
+		HTMLHelper::_('bootstrap.framework');
+		$baseurl = Uri::root();
 		$document->addStyleSheet($baseurl.'administrator/components/com_joomleague/assets/css/Autocompleter.css');
 		$document->addScript($baseurl.'media/com_joomleague/bootstrap-editable/js/bootstrap-editable.js');
 		$document->addStyleSheet($baseurl.'media/com_joomleague/bootstrap-editable/css/bootstrap-editable.css');
@@ -269,14 +275,14 @@ class JoomleagueViewProjectteams extends JLGView
 	 */
 	function _displayCopy($tpl)
 	{
-		$document = JFactory::getDocument();
-		$app = JFactory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$document = Factory::getDocument();
+		$app = Factory::getApplication();
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option.'project');
-		$uri = JUri::getInstance();
-		$ptids = $jinput->get('cid',array(),'array');
-		JArrayHelper::toInteger($ptids);
+		$uri = Uri::getInstance();
+		$ptids = $input->get('cid',array(),'array');
+		ArrayHelper::toInteger($ptids);
 
 		$model = $this->getModel();
 
@@ -286,7 +292,7 @@ class JoomleagueViewProjectteams extends JLGView
 		$ignoreId = $project_id;
 		$options = JoomleagueHelper::getProjects($ignoreId);
 
-		$lists['projects'] = JHtml::_('select.genericlist',$options,'dest','','id','name');
+		$lists['projects'] = HTMLHelper::_('select.genericlist',$options,'dest','','id','name');
 		$this->ptids = $ptids;
 		$this->lists = $lists;
 		$this->request_url = $uri->toString();
@@ -301,7 +307,7 @@ class JoomleagueViewProjectteams extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_TITLE'));
+		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_TITLE'));
 		JLToolBarHelper::apply('projectteams.saveshort');
 		JLToolBarHelper::custom('projectteams.changeteams','move.png','move_f2.png','COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_BUTTON_CHANGE_TEAMS',false);
 		JLToolBarHelper::custom('projectteams.editlist','upload.png','upload_f2.png','COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_BUTTON_ASSIGN',false);
@@ -310,8 +316,8 @@ class JoomleagueViewProjectteams extends JLGView
 		/*
 		 * JLToolBarHelper::custom('projectteams.copy','copy','copy','COM_JOOMLEAGUE_GLOBAL_COPY', true);
 		 */
-		JToolBarHelper::divider();
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolbarHelper::divider();
+		JLToolbarHelper::help('screen.joomleague',true);
 	}
 
 
@@ -320,10 +326,10 @@ class JoomleagueViewProjectteams extends JLGView
 	 */
 	protected function addToolbar_Editlist()
 	{
-		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN'));
+		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN'));
 		JLToolBarHelper::save('projectteams.save_teamslist');
 		JLToolBarHelper::cancel('projectteams.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolbarHelper::help('screen.joomleague',true);
 	}
 
 
@@ -332,8 +338,8 @@ class JoomleagueViewProjectteams extends JLGView
 	 */
 	protected function addToolbar_Copy()
 	{
-		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_COPY_DEST'),'Teams');
+		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_COPY_DEST'),'Teams');
 		JLToolBarHelper::apply('projectteam.copy');
-		JToolBarHelper::back();
+		JLToolbarHelper::back();
 	}
 }

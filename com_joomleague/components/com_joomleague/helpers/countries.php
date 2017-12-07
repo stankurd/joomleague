@@ -10,6 +10,7 @@
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -309,7 +310,7 @@ class Countries
 		$options = array();
 		foreach ($countries AS $k => $c)
 		{
-			$options[] = JHtml::_('select.option',$k,JText::_($c['name']),$value_tag,$text_tag);
+			$options[] = HTMLHelper::_('select.option',$k,JText::_($c['name']),$value_tag,$text_tag);
 		}
 		
 		// Sort

@@ -8,6 +8,7 @@
  */
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -106,7 +107,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 		if(!is_array($cid) || count($cid) < 1)
 		{
 			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
-			$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=' . $this->view_list,false));
+			$this->setRedirect(Route::_('index.php?option=com_joomleague&view=' . $this->view_list,false));
 			return;
 		}
 		else
@@ -127,11 +128,11 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 				$this->setRedirect('index.php?option=com_joomleague&view=projects&layout=progressDelete');
 				return;
 			} else {
-				$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=' . $this->view_list,false));
+				$this->setRedirect(Route::_('index.php?option=com_joomleague&view=' . $this->view_list,false));
 			}
 		}
 
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=' . $this->view_list,false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view=' . $this->view_list,false));
 	}
 
 
@@ -235,7 +236,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 			$app->setUserState('com_joomleague.edit.project' . '.data',$post);
 
 			// Redirect back to the edit screen.
-			$this->setRedirect(JRoute::_('index.php?option=com_joomleague&task=project.edit&cid[]=' . $post['id'],false));
+			$this->setRedirect(Route::_('index.php?option=com_joomleague&task=project.edit&cid[]=' . $post['id'],false));
 
 			return false;
 		}
@@ -283,7 +284,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 	 */
 	public function import()
 	{
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=import&table=project',false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view=import&table=project',false));
 	}
 
 

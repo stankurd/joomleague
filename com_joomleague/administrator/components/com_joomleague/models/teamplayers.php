@@ -70,8 +70,8 @@ class JoomleagueModelTeamPlayers extends JLGModelList
 	protected function getListQuery()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 
 		$project_id = $this->getState('filter.project_id');
 		$projectteam_id = $this->getState('filter.projectteam_id');
@@ -283,8 +283,8 @@ class JoomleagueModelTeamPlayers extends JLGModelList
 	function getDivisions()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 
 		$project_id = $app->getUserState($option . 'project');
 
@@ -318,8 +318,8 @@ class JoomleagueModelTeamPlayers extends JLGModelList
 	function getPositions()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 
 		$project_id = $app->getUserState($option . 'project');
 

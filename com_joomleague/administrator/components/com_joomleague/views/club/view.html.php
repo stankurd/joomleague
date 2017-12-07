@@ -30,8 +30,8 @@ class JoomleagueViewClub extends JLGView
 		$this->item = $this->get('Item');
 		$this->state = $this->get('State');
 		
-		//$extended = $this->getExtended($this->item->extended, 'club');
-		//$this->extended = $extended;
+		$extended = $this->getExtended($this->item->extended, 'club');
+		$this->extended = $extended;
 		
 		// Check for errors.
 		if(count($errors = $this->get('Errors')))

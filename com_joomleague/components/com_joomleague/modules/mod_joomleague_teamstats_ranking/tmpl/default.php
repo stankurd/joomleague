@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Joomleague
  * @subpackage	Module-TeamstatsRanking
@@ -70,7 +72,7 @@ $teamnametype = $params->get('teamnametype', 'short_name');
 			</td>
 			<td class="team">
 				<?php if ($params->get('teamlink', '')): ?>
-				<?php echo JHtml::link(modJLGTeamStatHelper::getTeamLink($team, $params, $list['project']), $team->$teamnametype); ?>
+				<?php echo HTMLHelper::link(modJLGTeamStatHelper::getTeamLink($team, $params, $list['project']), $team->$teamnametype); ?>
 				<?php else: ?>
 				<?php echo $team->$nametype; ?>
 				<?php endif; ?>

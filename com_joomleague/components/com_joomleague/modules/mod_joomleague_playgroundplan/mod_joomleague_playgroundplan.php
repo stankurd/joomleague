@@ -7,6 +7,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Helper\ModuleHelper;
+
 defined('_JEXEC') or die;
 
 require_once dirname(__FILE__).'/helper.php';
@@ -18,19 +22,19 @@ if (empty($list)) {
 	return;
 }
 
-$document = JFactory::getDocument();
-$document->addStyleSheet(JUri::base().'modules/mod_joomleague_playgroundplan/css/mod_joomleague_playgroundplan.css');
+$document = Factory::getDocument();
+$document->addStyleSheet(Uri::base().'modules/mod_joomleague_playgroundplan/css/mod_joomleague_playgroundplan.css');
 
 $mode = $params->def("mode");
 
 switch ($mode)
 	{
 	case 0:
-		$document->addScript(JUri::base().'modules/mod_joomleague_playgroundplan/js/qscroller.js');
+		$document->addScript(Uri::base().'modules/mod_joomleague_playgroundplan/js/qscroller.js');
 		require_once dirname(__FILE__).'/js/ticker.js';
 		break;
 	case 1:
 		break;
 }
 
-require JModuleHelper::getLayoutPath('mod_joomleague_playgroundplan');
+require ModuleHelper::getLayoutPath('mod_joomleague_playgroundplan', $params->get('layout', 'default'));

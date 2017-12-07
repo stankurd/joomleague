@@ -120,21 +120,21 @@ class JoomleagueModelTeamStaff extends JLGModelItem
 	public function save($data)
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 		
-		$post = $jinput->post->getArray();
+		$post = $input->post->getArray();
 				
-		$data['project_position_id'] = $jinput->get('project_position_id');
-		$data['extended'] = $jinput->get('extended',array(),'array');
-		$data['project_id'] = $jinput->get('project_id');
+		$data['project_position_id'] = $input->get('project_position_id');
+		$data['extended'] = $input->get('extended',array(),'array');
+		$data['project_id'] = $input->get('project_id');
 		
-		$data['injury_date'] = $jinput->getString('injury_date');
-		$data['injury_end'] = $jinput->getString('injury_end');
-		$data['suspension_date'] = $jinput->getString('suspension_date');
-		$data['suspension_end'] = $jinput->getString('suspension_end');
-		$data['away_date'] = $jinput->getString('away_date');
-		$data['away_end'] = $jinput->getString('away_end');
-		/* $data['team'] = $jinput->get('team'); */
+		$data['injury_date'] = $input->getString('injury_date');
+		$data['injury_end'] = $input->getString('injury_end');
+		$data['suspension_date'] = $input->getString('suspension_date');
+		$data['suspension_end'] = $input->getString('suspension_end');
+		$data['away_date'] = $input->getString('away_date');
+		$data['away_end'] = $input->getString('away_end');
+		/* $data['team'] = $input->get('team'); */
 		
 		if(parent::save($data))
 		{
@@ -158,8 +158,8 @@ class JoomleagueModelTeamStaff extends JLGModelItem
 	function getProjectPositions()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option.'project');
 
 		$db = Factory::getDbo();

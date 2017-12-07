@@ -8,6 +8,8 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 require_once JLG_PATH_ADMIN.'/statistics/base.php';
@@ -49,7 +51,7 @@ class JLGStatisticEventPergame extends JLGStatistic {
 
 	function getQuotedSids()
 	{
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		$params = $this->getParams();
 		if(!is_array($params->get('event_ids'))) {
 			$event_ids = explode(',', $params->get('event_ids'));
@@ -61,7 +63,7 @@ class JLGStatisticEventPergame extends JLGStatistic {
 			return(array(0));
 		}
 				
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		$ids = array();
 		foreach ($event_ids as $s) {
 			$ids[] = $db->Quote((int)$s);
@@ -111,7 +113,9 @@ class JLGStatisticEventPergame extends JLGStatistic {
 	{
 		$sids = $this->getQuotedSids();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query_num = ' SELECT SUM(me.event_sum) AS num, tp.id AS tpid, tp.person_id '
 			. ' FROM #__joomleague_team_player AS tp '
 			. ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -195,7 +199,9 @@ class JLGStatisticEventPergame extends JLGStatistic {
 	{
 		$sids = $this->getQuotedSids();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query_num = ' SELECT SUM(es.event_sum) AS num, pt.id '
 		       . ' FROM #__joomleague_team_player AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -216,7 +222,7 @@ class JLGStatisticEventPergame extends JLGStatistic {
 		       . ' WHERE pt.project_id = '. $db->Quote($project_id)
 		       . ' GROUP BY pt.id '
 		       ;
-		       
+		$query = $db->getQuery(true);
 		$query = ' SELECT (n.num / d.value) AS total, pt.team_id ' 
 		       . ' FROM #__joomleague_project_team AS pt '
 		       . ' INNER JOIN ('.$query_num.') AS n ON n.id = pt.id '
@@ -256,7 +262,9 @@ class JLGStatisticEventPergame extends JLGStatistic {
 	{
 		$sids = $this->getQuotedSids();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query = ' SELECT SUM(ms.value) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -271,7 +279,7 @@ class JLGStatisticEventPergame extends JLGStatistic {
 		       ;
 		$db->setQuery($query);
 		$num = $db->loadResult();
-		
+		$query = $db->getQuery(true);
 		$query = ' SELECT COUNT(ms.id) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -294,7 +302,9 @@ class JLGStatisticEventPergame extends JLGStatistic {
 	{
 		$sids = $this->getQuotedSids();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query = ' SELECT SUM(ms.value) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -308,6 +318,7 @@ class JLGStatisticEventPergame extends JLGStatistic {
 		$db->setQuery($query);
 		$num = $db->loadResult();
 		
+		$query = $db->getQuery(true);
 		$query = ' SELECT COUNT(ms.id) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '

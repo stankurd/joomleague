@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -39,13 +40,13 @@ class JoomleagueViewEventtypes extends JLGView
 
 		// build the html select list for sportstypes
 		$sportstypes = array();
-		$sportstypes[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_EVENTTYPES_SPORTSTYPE_FILTER'),'id','name');
+		$sportstypes[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_EVENTTYPES_SPORTSTYPE_FILTER'),'id','name');
 
 		$modelST = BaseDatabaseModel::getInstance('sportstypes','JoomleagueModel');
 		$allSportstypes = $modelST->getSportsTypes();
 		$sportstypes = array_merge($sportstypes,$allSportstypes);
 
-		$lists['sportstypes'] = JHtml::_('select.genericList',$sportstypes,'filter_sportstype','class="input-medium" onChange="this.form.submit();"',
+		$lists['sportstypes'] = HTMLHelper::_('select.genericList',$sportstypes,'filter_sportstype','class="input-medium" onChange="this.form.submit();"',
 				'id','name',$this->state->get('filter.sportstype'));
 		unset($sportstypes);
 

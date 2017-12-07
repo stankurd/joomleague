@@ -6,6 +6,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 ?>
 <script>
@@ -81,29 +83,29 @@ defined('_JEXEC') or die;
 					<tr>
 						<th width="5" style="vertical-align: top;"><?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_NUM'); ?></th>
 						<th width="1%" class="center">
-							<?php echo JHtml::_('grid.checkall'); ?>
+							<?php echo HTMLHelper::_('grid.checkall'); ?>
 					</th>
 						<th class="title" class="nowrap">
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_L_NAME','pl.lastname',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_L_NAME','pl.lastname',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th class="title" class="nowrap">
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_F_NAME','pl.firstname',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_F_NAME','pl.firstname',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th class="title" class="nowrap">
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_N_NAME','pl.nickname',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_N_NAME','pl.nickname',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th class="title" class="nowrap">
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_INFO','pl.info',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_INFO','pl.info',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th class="title" class="nowrap"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_IMAGE'); ?></th>
 						<th class="title" class="nowrap">
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_BIRTHDAY','pl.birthday',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_BIRTHDAY','pl.birthday',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th class="title" class="nowrap">
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_NATIONALITY','pl.country',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_NATIONALITY','pl.country',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th width="1%" class="nowrap">
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','pl.id',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','pl.id',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 
 
@@ -124,7 +126,7 @@ defined('_JEXEC') or die;
 						                                                                      // for
 						                                                                      // match-events
 						{
-							$checked = JHtml::_('grid.checkedout',$row,$i);
+							$checked = HTMLHelper::_('grid.checkedout',$row,$i);
 							?>
 							<tr class="row<?php echo $i % 2; ?>">
 						<td class="center"><?php echo $this->pagination->getRowOffset($i); ?></td>
@@ -140,13 +142,13 @@ defined('_JEXEC') or die;
 							if($row->picture == '')
 							{
 								$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_NO_IMAGE');
-								echo JHtml::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,
+								echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,
 										'title= "' . $imageTitle . '"');
 							}
 							elseif($row->picture == JoomleagueHelper::getDefaultPlaceholder("player"))
 							{
 								$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_DEFAULT_IMAGE');
-								echo JHtml::_('image','administrator/components/com_joomleague/assets/images/information.png',$imageTitle,
+								echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/information.png',$imageTitle,
 										'title= "' . $imageTitle . '"');
 							}
 							elseif($row->picture == ! '')
@@ -178,5 +180,5 @@ defined('_JEXEC') or die;
 	<input type="hidden" name="filter_order"
 		value="<?php echo $this->lists['order']; ?>" /> <input type="hidden"
 		name="filter_order_Dir" value="" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

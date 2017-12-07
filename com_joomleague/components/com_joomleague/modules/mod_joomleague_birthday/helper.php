@@ -50,7 +50,7 @@ $usedteams = "";
 // get favorite team(s), we have to make a function for this
 if ($params->get('use_fav')==1)
 {
-   $db = Factory::getDbo();
+    $db = Factory::getDbo();
     $query =$db->getQuery(true);
 	$query='SELECT fav_team FROM #__joomleague_project';
 	if ($p!='' && $p>0) $query.= ' WHERE id IN ('.$p.')';

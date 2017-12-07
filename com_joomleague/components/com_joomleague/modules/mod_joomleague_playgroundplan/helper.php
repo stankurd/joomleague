@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 /**
@@ -29,9 +31,10 @@ abstract class modJLGPlaygroundplanHelper
 		$playgroundstring = (is_array($usedpid)) ? implode(",", $usedpid) : $usedpid;
 		$numberofmatches = $params->get('maxmatches','5');
 
-		$db  = JFactory::getDbo();
+		$db  = Factory::getDbo();
 		$result = array();
-			
+		$query =$db->getQuery(true);
+		
 		$query = 'SELECT  m.match_date, DATE_FORMAT(m.time_present, "%H:%i") time_present,
                           p.name AS project_name, p.id AS project_id, p.timezone, 
 				 tj1.team_id team1, tj2.team_id team2, lg.name AS league_name,
@@ -86,11 +89,12 @@ abstract class modJLGPlaygroundplanHelper
 
 	public static function getTeams( $team1_id, $teamformat)
 	{
+	    $db  = Factory::getDbo();
+	    $query =$db->getQuery(true);
 
 		$query = "SELECT ". $teamformat. "
                  FROM #__joomleague_team
                  WHERE id=".(int)$team1_id;
-		$db  = JFactory::getDbo();
 		$db->setQuery( $query );
 		$team_name = $db->loadResult();
 
@@ -99,13 +103,15 @@ abstract class modJLGPlaygroundplanHelper
 
 	public static function getTeamLogo($team_id)
 	{
+	    $db  = Factory::getDbo();
+	    $query =$db->getQuery(true);
+	    
 		$query = "
             SELECT c.logo_small
             FROM #__joomleague_team t
             LEFT JOIN #__joomleague_club c ON c.id = t.club_id
             WHERE t.id = ".$team_id;
 
-		$db  = JFactory::getDbo();
 		$db->setQuery( $query );
 		$club_logo = $db->loadResult();
 

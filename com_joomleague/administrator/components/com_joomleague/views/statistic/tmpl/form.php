@@ -7,11 +7,13 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.formvalidator');
+HTMLHelper::_('behavior.formvalidator');
 Factory::getDocument()->addScriptDeclaration('
 	Joomla.submitbutton = function(task)
 	{
@@ -23,29 +25,29 @@ Factory::getDocument()->addScriptDeclaration('
 ');
 $isNew = $this->isNew;
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_joomleague&layout=form&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate">
+<form action="<?php echo Route::_('index.php?option=com_joomleague&layout=form&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate">
 	<?php
 	$p = 1;
-	echo JHtml::_('bootstrap.startTabSet','tabs',array('active' => 'panel1'));
-	echo JHtml::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_DETAILS',true));
+	echo HTMLHelper::_('bootstrap.startTabSet','tabs',array('active' => 'panel1'));
+	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_DETAILS',true));
 	echo $this->loadTemplate('details');
-	echo JHtml::_('bootstrap.endTab');
+	echo HTMLHelper::_('bootstrap.endTab');
 
-	echo JHtml::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_PICTURE',true));
+	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_PICTURE',true));
 	echo $this->loadTemplate('picture');
-	echo JHtml::_('bootstrap.endTab');
+	echo HTMLHelper::_('bootstrap.endTab');
 
 	if (!$isNew) {
-		echo JHtml::_('bootstrap.addTab','tabs','panel3',JText::_('COM_JOOMLEAGUE_TABS_PARAMETERS',true));
+		echo HTMLHelper::_('bootstrap.addTab','tabs','panel3',JText::_('COM_JOOMLEAGUE_TABS_PARAMETERS',true));
 		echo $this->loadTemplate('param');
-		echo JHtml::_('bootstrap.endTab');
+		echo HTMLHelper::_('bootstrap.endTab');
 
-		echo JHtml::_('bootstrap.addTab','tabs','panel4',JText::_('COM_JOOMLEAGUE_TABS_GENERAL_PARAMETERS',true));
+		echo HTMLHelper::_('bootstrap.addTab','tabs','panel4',JText::_('COM_JOOMLEAGUE_TABS_GENERAL_PARAMETERS',true));
 		echo $this->loadTemplate('gparam');
-		echo JHtml::_('bootstrap.endTab');
+		echo HTMLHelper::_('bootstrap.endTab');
 	}
 
-	echo JHtml::_('bootstrap.endTabSet');
+	echo HTMLHelper::_('bootstrap.endTabSet');
 	?>
 	<div class="clearfix"></div>
 	<?php if (!$isNew): ?>
@@ -54,5 +56,5 @@ $isNew = $this->isNew;
 	<input type="hidden" name="option" value="com_joomleague" />
 	<input type="hidden" name="cid[]" value="<?php echo $this->form->getValue('id'); ?>" />
 	<input type="hidden" name="task" value="" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

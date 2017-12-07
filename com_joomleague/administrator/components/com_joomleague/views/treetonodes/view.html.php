@@ -6,6 +6,11 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
 
@@ -20,7 +25,7 @@ class JoomleagueViewTreetonodes extends JLGView
 
 	public function display($tpl = null)
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 		if($this->getLayout() == 'default')
 		{
 			$this->_displayDefault($tpl);
@@ -32,11 +37,11 @@ class JoomleagueViewTreetonodes extends JLGView
 
 	function _displayDefault($tpl)
 	{
-		$app = JFactory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
-		$db = JFactory::getDbo();
-		$uri = JUri::getInstance();
+		$app = Factory::getApplication();
+		$input = $app->input;
+		$option = $input->getCmd('option');
+		$db = Factory::getDbo();
+		$uri = Uri::getInstance();
 		$project_id = $app->getUserState($option.'project');
 		$treeto_id = $app->getUserState($option.'treeto_id');
 
@@ -46,14 +51,14 @@ class JoomleagueViewTreetonodes extends JLGView
 
 		$model = $this->getModel();
 
-		$mdlProject = JModelLegacy::getInstance('project','JoomleagueModel');
+		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$project = $mdlProject->getItem($project_id);
 
-		$mdlTreeto = JModelLegacy::getInstance('treeto','JoomleagueModel');
+		$mdlTreeto = BaseDatabaseModel::getInstance('treeto','JoomleagueModel');
 		$treeto = $mdlTreeto->getItem($treeto_id);
 
 		// build the html options for teams
-		$team_id[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
+		$team_id[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
 		if($projectteams = $model->getProjectTeamsOptions())
 		{
 			$team_id = array_merge($team_id,$projectteams);
@@ -113,7 +118,7 @@ class JoomleagueViewTreetonodes extends JLGView
 	
 	protected function addToolbar()
 	{
-		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TITLE'));
+		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TITLE'));
 		$isleafed = $this->treeto->leafed;
 		if($isleafed == 1)
 		{
@@ -129,6 +134,6 @@ class JoomleagueViewTreetonodes extends JLGView
 			}
 		JLToolBarHelper::custom('treetonodes.removenode','delete.png','delete_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_DELETE'),false);
 		}
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::help('screen.joomleague',true);
 	}
 }

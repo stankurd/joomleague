@@ -17,7 +17,6 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Table\Table;
 
 defined('_JEXEC') or die;
-jimport('cms.toolbar.helper');
 
 if (version_compare(phpversion(), '7.0.0', '<')===true) {
 	echo  '<div style="font:12px/1.35em arial, helvetica, sans-serif;"><div style="margin:0 0 25px 0; border-bottom:1px solid #ccc;"><h3 style="margin:0; font-size:1.7em; font-weight:normal; text-transform:none; text-align:left; color:#2f2f2f;">'.JText::_("COM_JOOMLEAGUE_INVALID_PHP1").'</h3></div>'.JText::_("COM_JOOMLEAGUE_INVALID_PHP2").'</div>';
@@ -44,7 +43,7 @@ require_once JLG_PATH_SITE.'/helpers/joomleague.php';
 require_once JLG_PATH_SITE.'/helpers/ranking.php';
 require_once JLG_PATH_SITE.'/helpers/html.php';
 
-//require_once JLG_PATH_ADMIN.'/helpers/joomleaguehelper.php';
+require_once JLG_PATH_ADMIN.'/helpers/joomleaguehelper.php';
 require_once JLG_PATH_ADMIN.'/tables/jltable.php';
 JLoader::register('JoomleagueHelper', JLG_PATH_ADMIN.'/helpers/joomleaguehelper.php');
 

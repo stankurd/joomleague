@@ -7,8 +7,11 @@
  * @link		http://www.joomleague.at
  */
 
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
+
 defined('_JEXEC') or die;
-JHtml::_('behavior.tooltip');
+
 ?>
 <script>
 	function searchTemplate(val,key)
@@ -29,20 +32,20 @@ JHtml::_('behavior.tooltip');
 				<thead>
 					<tr>
 						<th width="1%" class="center">
-							<?php echo JHtml::_('grid.checkall'); ?>
+							<?php echo HTMLHelper::_('grid.checkall'); ?>
 						</th>
 						<th width="20">&nbsp;</th>
 						<th>
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_TEMPLATES_TEMPLATE','tmpl.template',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_TEMPLATES_TEMPLATE','tmpl.template',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th>
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_TEMPLATES_DESCR','tmpl.template',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_TEMPLATES_DESCR','tmpl.template',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th>
 							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_TYPE'); ?>
 						</th>
 						<th width="1%">
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','tmpl.id',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','tmpl.id',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 					</tr>
 				</thead>
@@ -51,8 +54,8 @@ JHtml::_('behavior.tooltip');
 					$n = count($this->templates);
 					foreach ($this->templates as $i => $row) :
 						$row = $this->templates[$i];
-						$link1=JRoute::_('index.php?option=com_joomleague&task=template.edit&cid[]='.$row->id);
-						$checked=JHtml::_('grid.checkedout',$row,$i);
+						$link1=Route::_('index.php?option=com_joomleague&task=template.edit&cid[]='.$row->id);
+						$checked=HTMLHelper::_('grid.checkedout',$row,$i);
 						?>
 						<tr class="row<?php echo $i % 2; ?>">
 							<td class="center"><?php echo $checked; ?></td>
@@ -60,9 +63,9 @@ JHtml::_('behavior.tooltip');
 								$imageFile='administrator/components/com_joomleague/assets/images/edit.png';
 								$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_EDIT_DETAILS');
 								$imageParams='title= "'.$imageTitle.'"';
-								$image=JHtml::image($imageFile,$imageTitle,$imageParams);
+								$image=HTMLHelper::image($imageFile,$imageTitle,$imageParams);
 								$linkParams='';
-								echo JHtml::link($link1,$image);
+								echo HTMLHelper::link($link1,$image);
 								?></td>
 							<td><?php echo $row->template; ?></td>
 							<td><?php echo JText::_($row->title); ?></td>
@@ -87,6 +90,6 @@ JHtml::_('behavior.tooltip');
 			<input type="hidden" name="filter_order_Dir" value="" />
 			<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
 			<input type="hidden" name="search_mode" value="<?php echo $this->lists['search_mode'];?>" />
-			<?php echo JHtml::_('form.token'); ?>
+			<?php echo HTMLHelper::_('form.token'); ?>
 		</form>
 	</fieldset>

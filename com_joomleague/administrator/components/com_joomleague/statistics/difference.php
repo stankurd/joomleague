@@ -8,6 +8,8 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 require_once JLG_PATH_ADMIN.'/statistics/base.php';
@@ -54,7 +56,7 @@ class JLGStatisticDifference extends JLGStatistic {
 
 	function getQuotedSids()
 	{
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		$ids = $this->getSids();
 		
 		foreach ($ids['add'] as $k => $s) {
@@ -145,7 +147,9 @@ class JLGStatisticDifference extends JLGStatistic {
 	{
 		$sids = $this->getQuotedSids();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query_add = ' SELECT SUM(ms.value) AS num, tp.id AS tpid, tp.person_id '
 			. ' FROM #__joomleague_team_player AS tp '
 			. ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -248,7 +252,9 @@ class JLGStatisticDifference extends JLGStatistic {
 	{
 		$sids = $this->getQuotedSids();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query_add = ' SELECT SUM(ms.value) AS num, tp.person_id '
 		       . ' FROM #__joomleague_team_player AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -338,7 +344,9 @@ class JLGStatisticDifference extends JLGStatistic {
 	{
 		$sids = $this->getQuotedSids();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query = ' SELECT SUM(ms.value) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -354,7 +362,7 @@ class JLGStatisticDifference extends JLGStatistic {
 		$db->setQuery($query);
 		$add = $db->loadResult();
 		$add = isset($add->value) ? $add->value : 0;
-		
+		$query = $db->getQuery(true);
 		$query = ' SELECT SUM(ms.value) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -380,7 +388,9 @@ class JLGStatisticDifference extends JLGStatistic {
 	{
 		$sids = $this->getQuotedSids();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query = ' SELECT SUM(ms.value) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -394,7 +404,7 @@ class JLGStatisticDifference extends JLGStatistic {
 		$db->setQuery($query);
 		$add = $db->loadResult();
 		$add = isset($add->value) ? $add->value : 0;
-		
+		$query = $db->getQuery(true);
 		$query = ' SELECT SUM(ms.value) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '

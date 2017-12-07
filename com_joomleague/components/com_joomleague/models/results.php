@@ -11,11 +11,12 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
 jimport('joomla.html.pane');
-JHtml::_('bootstrap.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 
 require_once JLG_PATH_SITE.'/models/project.php';
 

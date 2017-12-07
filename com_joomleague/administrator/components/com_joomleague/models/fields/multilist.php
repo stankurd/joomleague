@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Form\FormField;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -34,7 +35,7 @@ class JFormFieldMultiList extends FormField
 		{
 			$val	= $option->attributes('value');
 			$text	= $option->data();
-			$options[] = JHtml::_('select.option', $val, JText::_($text));
+			$options[] = HTMLHelper::_('select.option', $val, JText::_($text));
 		}
  
 		// Construct the various argument calls that are supported.
@@ -55,6 +56,6 @@ class JFormFieldMultiList extends FormField
  
 		// Render the HTML SELECT list.
 		//return JHtml::_('select.genericlist', $options, $ctrl, $attribs, 'value', 'text', $value, $control_name.$name );
-		return JHtml::_('select.genericlist', $options, $ctrl, $attribs, 'value', 'text', array_map('trim', explode(',', $value)), $control_name.$name );
+		return HTMLHelper::_('select.genericlist', $options, $ctrl, $attribs, 'value', 'text', array_map('trim', explode(',', $value)), $control_name.$name );
 	}
 }

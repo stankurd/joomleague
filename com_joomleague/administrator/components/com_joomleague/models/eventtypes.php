@@ -71,7 +71,7 @@ class JoomleagueModelEventtypes extends JLGModelList
 	protected function getListQuery()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 
 		// Query
 		$db = Factory::getDbo();

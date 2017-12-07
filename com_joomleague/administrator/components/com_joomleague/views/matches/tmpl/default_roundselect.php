@@ -7,6 +7,9 @@
  * @link		http://www.joomleague.at
  */
 
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
+
 defined('_JEXEC') or die;
 ?>
 
@@ -16,7 +19,7 @@ defined('_JEXEC') or die;
 			<input type="hidden" name="task" value="" />
 			<input type="hidden" name='boxchecked' value="0" />
 			<div style="float: right; vertical-align: middle; line-height: 27px;">
-			<?php echo JHtml::_('form.token'); ?>
+			<?php echo HTMLHelper::_('form.token'); ?>
 
 				<?php
 				$lv=""; $nv=""; $sv=false;
@@ -27,8 +30,8 @@ defined('_JEXEC') or die;
 				if ($lv != "")
 				{
 					$query="option=com_joomleague&view=matches&rid[]=".$lv;
-					$link=JRoute::_('index.php?'.$query);
-					$prevlink=JHtml::link($link,JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PREV_ROUND'));
+					$link=Route::_('index.php?'.$query);
+					$prevlink=HTMLHelper::link($link,JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PREV_ROUND'));
 					echo $prevlink;
 				}
 				else
@@ -43,8 +46,8 @@ defined('_JEXEC') or die;
 				if (($nv != "") && ($nv != $this->round->id))
 				{
 					$query="option=com_joomleague&view=matches&rid[]=".$nv;
-					$link=JRoute::_('index.php?'.$query);
-					$nextlink=JHtml::link($link,JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_NEXT_ROUND'));
+					$link=Route::_('index.php?'.$query);
+					$nextlink=HTMLHelper::link($link,JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_NEXT_ROUND'));
 					echo $nextlink;
 				}
 				else

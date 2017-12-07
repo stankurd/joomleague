@@ -11,9 +11,11 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Table\Table;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -137,7 +139,7 @@ class JoomleagueHelperHtml {
 			if ($config['show_division_link'])
 			{
 				$link = JoomleagueHelperRoute::getRankingRoute($projectId, null, null, null, 0, $homeTeam->division_id);
-				$output .= JHtml::link($link, $homeTeam->$nametype);
+				$output .= HTMLHelper::link($link, $homeTeam->$nametype);
 			}
 			else
 			{
@@ -150,7 +152,7 @@ class JoomleagueHelperHtml {
 				if ($config['show_division_link'] == 1)
 				{
 					$link = JoomleagueHelperRoute::getRankingRoute($projectId, null, null, null, 0, $guestTeam->division_id);
-					$output .= JHtml::link($link, $guestTeam->$nametype);
+					$output .= HTMLHelper::link($link, $guestTeam->$nametype);
 				}
 				else
 				{
@@ -196,7 +198,7 @@ class JoomleagueHelperHtml {
 				if ($mode == 1)
 				{
 					$link=JoomleagueHelperRoute::getRankingRoute($projectid,$thisround->id);
-					echo JHtml::link($link,$thisround->name);
+					echo HTMLHelper::link($link,$thisround->name);
 				}
 				else
 				{
@@ -213,14 +215,14 @@ class JoomleagueHelperHtml {
 				echo " (";
 				if (! strstr($thisround->round_date_first,"0000-00-00"))
 				{
-					echo JHtml::date($thisround->round_date_first .' UTC',
+					echo HTMLHelper::date($thisround->round_date_first .' UTC',
 										'COM_JOOMLEAGUE_GLOBAL_CALENDAR_DATE',
 										JoomleagueHelper::getTimezone($project,$config));
 				}
 				if (($thisround->round_date_last != $thisround->round_date_first) &&
 				(! strstr($thisround->round_date_last,"0000-00-00")))
 				{
-					echo " - ".JHtml::date($thisround->round_date_last .' UTC',
+					echo " - ".HTMLHelper::date($thisround->round_date_last .' UTC',
 											'COM_JOOMLEAGUE_GLOBAL_CALENDAR_DATE',
 											JoomleagueHelper::getTimezone($project,$config));
 				}
@@ -287,7 +289,7 @@ class JoomleagueHelperHtml {
 			$playgroundName = $config['show_playground_name'] == 'name' ? $pginfo->name : $pginfo->short_name;
 			?>
 		<span class='hasTip' title='<?php echo $toolTipTitle; ?> :: <?php echo $toolTipText; ?>'>
-			<?php	echo JHtml::link($link, $boldStart . $playgroundName . $boldEnd); ?>
+			<?php	echo HTMLHelper::link($link, $boldStart . $playgroundName . $boldEnd); ?>
 		</span>
 	<?php
 		}
@@ -375,7 +377,7 @@ class JoomleagueHelperHtml {
 			$attributes = $def_attribs;
 		}
 
-		return JHtml::image($img, $alt, $attributes);
+		return HTMLHelper::image($img, $alt, $attributes);
 	}
 
 	/**
@@ -397,8 +399,8 @@ class JoomleagueHelperHtml {
 		if (is_array($attributes)) {
 			$attribs = array_merge($attributes, $attribs);
 		}
-		$url = JRoute::_(JoomleagueHelperRoute::getMatchReportRoute($game->project_slug, $game->slug));
-		return JHtml::link($url, $img);
+		$url = Route::_(JoomleagueHelperRoute::getMatchReportRoute($game->project_slug, $game->slug));
+		return HTMLHelper::link($url, $img);
 	}
 
 	/**
@@ -440,7 +442,7 @@ class JoomleagueHelperHtml {
 		else {
 			$attributes = $def_attribs;
 		}
-		return JHtml::image($imgsrc,$alt,$attributes);
+		return HTMLHelper::image($imgsrc,$alt,$attributes);
 		}
 
 	}
@@ -464,7 +466,7 @@ class JoomleagueHelperHtml {
 				$params["order"] = $paramName;
 				$params["dir"] = ( $app->input->getVar( 'dir', '') == 'ASC' ) ? 'DESC' : 'ASC';
 				$imgname = 'sort'.($app->input->getVar( 'dir', '') == 'ASC' ? "02" :"01" ).'.gif';
-				$img = JHtml::image(
+				$img = HTMLHelper::image(
 										'media/com_joomleague/jl_images/' . $imgname,
 				$params["dir"] );
 			}
@@ -474,8 +476,8 @@ class JoomleagueHelperHtml {
 				$params["dir"] = $default;
 			}
 			$query = Uri::buildQuery( $params );
-			echo JHtml::link(
-			JRoute::_( "index.php?".$query ),
+			echo HTMLHelper::link(
+			Route::_( "index.php?".$query ),
 			JText::_($columnTitle),
 			array( "class" => "jl_rankingheader" ) ).$img;
 		}
@@ -513,13 +515,13 @@ class JoomleagueHelperHtml {
 			array(
 					"limit" => $limit,
 					"limitstart" => 0 ) );
-			echo JHtml::link( $url.$query, '&lt;&lt;&lt;' );
+			echo HTMLHelper::link( $url.$query, '&lt;&lt;&lt;' );
 			echo '&nbsp;&nbsp;&nbsp';
 			$query = Uri::buildQuery(
 			array(
 					"limit" => $limit,
 					"limitstart" => $latestlimitstart ) );
-			echo JHtml::link( $url.$query, '&lt;&lt;' );
+			echo HTMLHelper::link( $url.$query, '&lt;&lt;' );
 			echo '&nbsp;&nbsp;&nbsp;';
 		}
 		echo '</td>';
@@ -539,13 +541,13 @@ class JoomleagueHelperHtml {
 			array(
 					"limit" => $limit,
 					"limitstart" => $nextlimitstart ) );
-			echo JHtml::link( $url.$query, '&gt;&gt;' );
+			echo HTMLHelper::link( $url.$query, '&gt;&gt;' );
 			echo '&nbsp;&nbsp;&nbsp';
 			$query = Uri::buildQuery(
 			array(
 					"limit" => $limit,
 					"limitstart" => $lastlimitstart ) );
-			echo JHtml::link( $url.$query, '&gt;&gt;&gt;' );
+			echo HTMLHelper::link( $url.$query, '&gt;&gt;&gt;' );
 		}
 		echo '</td>';
 		echo '</tr>';

@@ -1,4 +1,8 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
+?>
 <?php
 if ( $this->config['show_sectionheader'] == 1 )
 {
@@ -21,9 +25,9 @@ if ( $this->config['show_sectionheader'] == 1 )
 						{
 							$link = JoomleagueHelperRoute::getResultsRoute( $this->project->id, $this->roundid, $this->divisionid, 0, 0, 'match.display');
 							$imgTitle = JText::_('COM_JOOMLEAGUE_RESULTS_ENTER_EDIT_RESULTS');
-							$desc = JHtml::image('media/com_joomleague/jl_images/edit.png', $imgTitle, array('title' => $imgTitle));
+							$desc = HTMLHelper::image('media/com_joomleague/jl_images/edit.png', $imgTitle, array('title' => $imgTitle));
 							echo ' ';
-							echo JHtml::link( $link, $desc );
+							echo HTMLHelper::link( $link, $desc );
 						}
 
 				}

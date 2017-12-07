@@ -8,6 +8,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die; 
 
@@ -49,7 +50,7 @@ if(count($persons) > 0) {
 																$person['team_id'],
 																$person['id']);
 		}
-		$showname = JHtml::link( $person_link, $usedname );
+		$showname = HTMLHelper::link( $person_link, $usedname );
 		?>
 	<tr class="<?php echo $params->get('heading_style');?>">
 		<td class="birthday"><?php echo $showname;?></td>
@@ -79,8 +80,8 @@ if(count($persons) > 0) {
 		$birthdayformat = htmlentities(trim($params->get('birthdayformat')));
 		$birthdaytext = str_replace('%WHEN%', $whenmessage, $birthdaytext);
 		$birthdaytext = str_replace('%AGE%', $person['age'], $birthdaytext);
-		$birthdaytext = str_replace('%DATE%', JHtml::_('date', $person['year'].'-'.$person['daymonth'], $dayformat, $params->get('time_zone')), $birthdaytext);
-		$birthdaytext = str_replace('%DATE_OF_BIRTH%', JHtml::_('date', $person['date_of_birth'], $birthdayformat, $params->get('time_zone')), $birthdaytext);
+		$birthdaytext = str_replace('%DATE%', HTMLHelper::_('date', $person['year'].'-'.$person['daymonth'], $dayformat, $params->get('time_zone')), $birthdaytext);
+		$birthdaytext = str_replace('%DATE_OF_BIRTH%', HTMLHelper::_('date', $person['date_of_birth'], $birthdayformat, $params->get('time_zone')), $birthdaytext);
 		$birthdaytext = str_replace('%BR%', '<br />', $birthdaytext);
 		$birthdaytext = str_replace('%BOLD%', '<b>', $birthdaytext);
 		$birthdaytext = str_replace('%BOLDEND%', '</b>', $birthdaytext);

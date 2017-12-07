@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Joomleague
  * @subpackage	Module-Logo
@@ -42,7 +44,7 @@ $typel = $params->get('show_logo', 0);
 <ul id="modjlglogo">
 <?php foreach (array_slice($list['teams'], 0, $params->get('limit', 12)) as $item) :  ?>
 	<li class="logo<?php echo $typel; ?>">
-	<?php $link = JHtml::link(modJLGLogoHelper::getTeamLink($item, 
+	<?php $link = HTMLHelper::link(modJLGLogoHelper::getTeamLink($item, 
 															$params, 
 															$list['project']), 
 															isset($item->team->$nametype));

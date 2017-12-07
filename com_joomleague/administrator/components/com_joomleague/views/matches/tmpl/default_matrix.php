@@ -15,6 +15,9 @@
  * See COPYRIGHT.php for copyright notices and details.
  */
 
+use Joomla\CMS\Date\Date;
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 ?>
 <div class="clr"></div>
@@ -121,7 +124,7 @@ if (isset($this->teams) && count($this->teams) > 1) {
 echo $matrix;
 ?></fieldset>
 <?php 
-$round_date_first = new JDate($this->round->round_date_first);
+$round_date_first = new Date($this->round->round_date_first);
 $dValue = $round_date_first->format(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT')).' '.$this->project->start_time; 
 ?>
 <input type='hidden' name='match_date' value='<?php echo $dValue; ?>' />
@@ -130,5 +133,5 @@ $dValue = $round_date_first->format(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_
 <input type='hidden' name='published' value='1' />
 <input type='hidden' name='task' value='match.addmatch' />
 
-<?php echo JHtml::_('form.token'); ?>
+<?php echo HTMLHelper::_('form.token'); ?>
 </form>

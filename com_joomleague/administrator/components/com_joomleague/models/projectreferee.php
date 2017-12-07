@@ -130,11 +130,11 @@ class JoomleagueModelProjectReferee extends JLGModelItem
 	public function save($data)
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 
-		$data['extended'] = $jinput->get('extended',array(),'array');
-		$data['project_position_id'] = $jinput->get('project_position_id');
-		$data['project_id'] = $jinput->get('project_id');
+		$data['extended'] = $input->get('extended',array(),'array');
+		$data['project_position_id'] = $input->get('project_position_id');
+		$data['project_id'] = $input->get('project_id');
 	
 		if(parent::save($data))
 		{
@@ -156,8 +156,8 @@ class JoomleagueModelProjectReferee extends JLGModelItem
 	function getRefereePositions()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option.'project');
 
 		$db = Factory::getDbo();
@@ -201,8 +201,8 @@ class JoomleagueModelProjectReferee extends JLGModelItem
 	function getProjectMatchdays()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option.'project');
 
 		$db = Factory::getDbo();

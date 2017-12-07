@@ -9,8 +9,10 @@
 
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die;
-jimport('cms.html.bootstrap');
 jimport('joomla.form.form');
+use Joomla\CMS\Factory;
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Form\Form;
 use Joomla\Registry\Registry;
 
 /**
@@ -20,13 +22,13 @@ class JoomleagueViewSettings extends JLGView
 {
 	public function display($tpl = null)
 	{
-		$option = JFactory::getApplication()->input->get('option');
-		$params = JComponentHelper::getParams($option);
+		$option = Factory::getApplication()->input->get('option');
+		$params = ComponentHelper::getParams($option);
 		$xmlfile = JPATH_ADMINISTRATOR.'/components/'.$option.'/config.xml';
 		
 		$jRegistry = new Registry;
 		$jRegistry->loadString($params->toString('ini'), 'ini');
-		$form = JForm::getInstance($option, $xmlfile, array('control'=> 'params'), false, "/config");
+		$form = Form::getInstance($option, $xmlfile, array('control'=> 'params'), false, "/config");
 		$form->bind($jRegistry);
 		$this->form=$form;
 
@@ -40,11 +42,11 @@ class JoomleagueViewSettings extends JLGView
 	protected function addToolbar()
 	{
 		//create the toolbar
-		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_SETTINGS_TITLE'),'jl-ProjectSettings');
+		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_SETTINGS_TITLE'),'jl-ProjectSettings');
 		JLToolBarHelper::apply('settings.apply');
 		JLToolBarHelper::save('settings.save');
 		JLToolBarHelper::cancel('settings.cancel');
-		JToolBarHelper::spacer();
-		JToolBarHelper::help('screen.joomleague',true);		
+		JLToolBarHelper::spacer();
+		JLToolBarHelper::help('screen.joomleague',true);		
 	}
 }

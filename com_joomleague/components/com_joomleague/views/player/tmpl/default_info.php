@@ -9,6 +9,7 @@
  * @todo: rename option show_photo to show_player_photo
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die; 
 
@@ -74,14 +75,14 @@ defined('_JEXEC') or die;
 					{
 						case 1:	 // Link to Joomla Contact Page
 							$link = JoomleagueHelperRoute::getContactRoute( $this->person->contact_id );
-							$outputName = JHtml::link( $link, $outputName );
+							$outputName = HTMLHelper::link( $link, $outputName );
 							break;
 
 						case 2:	 // Link to CBE User Page with support for JoomLeague Tab
 							$link = JoomleagueHelperRoute::getUserProfileRouteCBE(	$this->person->id,
 							$this->project->id,
 							$this->person->id );
-							$outputName = JHtml::link( $link, $outputName );
+							$outputName = HTMLHelper::link( $link, $outputName );
 							break;
 
 						default:	break;
@@ -139,7 +140,7 @@ defined('_JEXEC') or die;
 				{
 					case 1:	 // show Birthday and Age
 						$birthdateStr =	$this->person->birthday != "0000-00-00" ?
-						JHtml::date($this->person->birthday .' UTC', 
+						HTMLHelper::date($this->person->birthday .' UTC', 
 									JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
 									JoomleagueHelper::getTimezone($this->project, $this->overallconfig)) : "-";
 						$birthdateStr .= "&nbsp;(" . JoomleagueHelper::getAge( $this->person->birthday,$this->person->deathday ) . ")";
@@ -147,7 +148,7 @@ defined('_JEXEC') or die;
 
 					case 2:	 // show Only Birthday
 						$birthdateStr =	$this->person->birthday != "0000-00-00" ?
-						JHtml::date($this->person->birthday .' UTC',
+						HTMLHelper::date($this->person->birthday .' UTC',
 									JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
 									JoomleagueHelper::getTimezone($this->project, $this->overallconfig)) : "-";
 						break;
@@ -158,7 +159,7 @@ defined('_JEXEC') or die;
 
 					case 4:	 // show Only Year of birth
 						$birthdateStr =	$this->person->birthday != "0000-00-00" ?
-						JHtml::date($this->person->birthday .' UTC',
+						HTMLHelper::date($this->person->birthday .' UTC',
 									JText::_('%Y'),
 									JoomleagueHelper::getTimezone($this->project, $this->overallconfig)) : "-";
 						break;
@@ -180,7 +181,7 @@ defined('_JEXEC') or die;
 				</td>
 				<td class="data">
 					<?php
-					$deathdateStr =	JHtml::date($this->person->deathday .' UTC', 
+					$deathdateStr =	HTMLHelper::date($this->person->deathday .' UTC', 
 												JText::_('COM_JOOMLEAGUE_GLOBAL_DEATHDATE'), 
 												JoomleagueHelper::getTimezone($this->project, $this->overallconfig)) ;
 					echo '&dagger; '.$deathdateStr;
@@ -253,7 +254,7 @@ defined('_JEXEC') or die;
 				}
 				else
 				{
-					echo JHtml::_('email.cloak', $this->person->email );
+					echo HTMLHelper::_('email.cloak', $this->person->email );
 				}
 				?></td>
 			</tr>
@@ -268,7 +269,7 @@ defined('_JEXEC') or die;
 				echo JText::_( 'COM_JOOMLEAGUE_PERSON_WEBSITE' );
 				?></td>
 				<td class="data"><?php
-				echo JHtml::_(	'link',
+				echo HTMLHelper::_(	'link',
 				$this->person->website,
 				$this->person->website,
 				array( 'target' => '_blank' ) );
@@ -316,7 +317,7 @@ defined('_JEXEC') or die;
 				if ( $this->config['player_number_picture'] )
 				{
 					$posnumber = $this->teamPlayer->jerseynumber;
-					echo JHtml::image('components/com_joomleague/helpers/shirt.php?text='.$posnumber.'&picpath='.urlencode($this->config['player_numbers_picture']),
+					echo HTMLHelper::image('components/com_joomleague/helpers/shirt.php?text='.$posnumber.'&picpath='.urlencode($this->config['player_numbers_picture']),
 										$posnumber,
 										array( 'title' => $posnumber ) );
 				}

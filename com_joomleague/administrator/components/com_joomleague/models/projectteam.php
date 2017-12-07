@@ -139,10 +139,10 @@ class JoomleagueModelProjectteam extends JLGModelItem
 	public function save($data)
 	{
 		$app = factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 
-		$data['extended'] = $jinput->get('extended',array(),'array');
-		$data['project_id'] = $jinput->get('project_id');
+		$data['extended'] = $input->get('extended',array(),'array');
+		$data['project_id'] = $input->get('project_id');
 		
 		if(parent::save($data))
 		{
@@ -162,7 +162,7 @@ class JoomleagueModelProjectteam extends JLGModelItem
 				}
 			}
 
-			$post = $jinput->post->getArray();
+			$post = $input->post->getArray();
 			if(isset($post['tdCount'])) // Existing Team Trainingdata
 			{
 				if($model->saveTrainingData($post))
@@ -233,8 +233,8 @@ class JoomleagueModelProjectteam extends JLGModelItem
 	function getDivisions()
 	{
 		$app 	= factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 
 		$project_id = $app->getUserState($option.'project');
 
@@ -269,8 +269,8 @@ class JoomleagueModelProjectteam extends JLGModelItem
 	function getTrainingData($projectTeamID,$project_id=false)
 	{
 		$app 	= factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 
 		if ($project_id) {
 			// take the given project_id
@@ -325,8 +325,8 @@ class JoomleagueModelProjectteam extends JLGModelItem
 		$app = factory::getApplication();
 		$db = factory::getDbo();
 		$query = $db->getQuery(true);
-		$jinput = $app->input;
-		$tdids = $jinput->get('tdids',array(),'array');
+		$input = $app->input;
+		$tdids = $input->get('tdids',array(),'array');
 		ArrayHelper::toInteger($tdids);
 
 		foreach($tdids as $tdid)
@@ -363,8 +363,8 @@ class JoomleagueModelProjectteam extends JLGModelItem
 	{
 		$result = true;
 		$app 	= factory::getApplication();
-		$jinput = $app->input;
-		$tdids	= $jinput->get('tdids',array(),'array');
+		$input = $app->input;
+		$tdids	= $input->get('tdids',array(),'array');
 		ArrayHelper::toInteger($tdids);
 
 		$db = factory::getDbo();

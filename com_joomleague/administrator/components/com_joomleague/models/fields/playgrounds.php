@@ -28,7 +28,7 @@ class JFormFieldPlaygrounds extends FormField
 		
 		// Let's get the id for the current item
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 		
 		// language
 		$lang = Factory::getLanguage();

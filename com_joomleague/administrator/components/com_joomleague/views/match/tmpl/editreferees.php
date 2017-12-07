@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Joomleague
  *
@@ -69,6 +71,6 @@ defined('_JEXEC') or die;
 		<input type="hidden" name="option" value="com_joomleague" id="option" />
 		<input type="hidden" name="positionscount" value="<?php echo count($this->positions); ?>" id="positioncount" />
 		<input type="hidden" name="team_id" value="<?php echo $this->team_id; ?>" id="team" />
-		<?php echo JHtml::_('form.token'); ?>
+		<?php echo HTMLHelper::_('form.token'); ?>
 	</form>
 </div>

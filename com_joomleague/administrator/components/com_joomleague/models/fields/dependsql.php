@@ -7,15 +7,17 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Form\Form;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
 FormHelper::loadFieldClass('list');
 
-JHtml::_( 'behavior.framework' );
+//JHtml::_( 'behavior.framework' );
 
 /**
  * Renders a Dynamic SQL field
@@ -80,8 +82,8 @@ class JFormFieldDependSQL extends FormField
 			$options = array();
 		}
 		else {
-			// $options = array(JHtml::_('select.option', '', JText::_('Loading..'), $key, JText::_($val)));
-			$options = array();
+			$options = array(HTMLHelper::_('select.option', '', JText::_('Loading..'), $key, JText::_($val)));
+			//$options = array();
 		}
 
 		$query = $this->element['query'];
@@ -99,7 +101,7 @@ class JFormFieldDependSQL extends FormField
 			$doc->addScript(Uri::base() . 'components/com_joomleague/assets/js/depend.js' );
 		}
 
-		return JHtml::_('select.genericlist',  $options, $this->name, trim($attribs), $key, $val, $this->value, $this->id);
+		return HTMLHelper::_('select.genericlist',  $options, $this->name, trim($attribs), $key, $val, $this->value, $this->id);
 		
 	}
 }

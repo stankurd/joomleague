@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -44,14 +45,14 @@ class JFormFieldPosition extends FormField
 			$position->name=JText::_($position->name);
 		}
 		if($this->required == false) {
-			$mitems = array(JHtml::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_POSITION')));
+			$mitems = array(HTMLHelper::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_POSITION')));
 		}
 		
 		foreach ( $result as $item )
 		{
-			$mitems[] = JHtml::_('select.option',  $item->id, '&nbsp;'.$item->name. ' ('.$item->id.')' );
+			$mitems[] = HTMLHelper::_('select.option',  $item->id, '&nbsp;'.$item->name. ' ('.$item->id.')' );
 		}
-		return JHtml::_('select.genericlist',  $mitems, $this->name, 
+		return HTMLHelper::_('select.genericlist',  $mitems, $this->name, 
 						'class="inputbox" size="1"', 'value', 'text', $this->value, $this->id);
 	}
 }

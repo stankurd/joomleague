@@ -51,8 +51,8 @@ class JoomleagueModelTreetos extends JLGModelList
 		$query = $db->getQuery(true);
 		$user = Factory::getUser();
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 
 		$project_id = $app->getUserState($option . 'project');
 		$division = (int) $app->getUserStateFromRequest($option . '.division','division',0);

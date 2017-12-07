@@ -1,6 +1,7 @@
 <?php 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Registry\Registry;
 
@@ -198,20 +199,20 @@ class JoomleagueViewMatchReport extends JLGView
 
 		//$imgTitle=JText::_('COM_JOOMLEAGUE_MATCHREPORT_MINUTE');
 		//$imgTitle2=array(' title' => $imgTitle);
-		//$result=JHtml::image($pic_time,$imgTitle,$imgTitle2).'&nbsp;'.$sub->in_out_time;
+		//$result=HTMLHelper::image($pic_time,$imgTitle,$imgTitle2).'&nbsp;'.$sub->in_out_time;
 		$result='<b>'.$sub->in_out_time.'. '. JText::_('COM_JOOMLEAGUE_MATCHREPORT_MINUTE') .'</b>';
 		$result .= '<br />';
 		$outName = JoomleagueHelper::formatName(null, $sub->out_firstname, $sub->out_nickname, $sub->out_lastname, $this->config["name_format"]);
 		if($outName != '') {
 			$imgTitle=JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT');
 			$imgTitle2=array(' title' => $imgTitle);
-			$result .= JHtml::image($pic_out,$imgTitle,$imgTitle2).'&nbsp;';
+			$result .= HTMLHelper::image($pic_out,$imgTitle,$imgTitle2).'&nbsp;';
 
 			$isFavTeam = in_array( $sub->team_id, explode(",",$this->project->fav_team));
 
 			if ( ($this->config['show_player_profile_link'] == 1) || (($this->config['show_player_profile_link'] == 2) && ($isFavTeam)) )
 			{
-			    $result .= JHtml::link(JoomleagueHelperRoute::getPlayerRoute($this->project->id,$sub->team_id,$sub->out_person_id),$outName);
+			    $result .= HTMLHelper::link(JoomleagueHelperRoute::getPlayerRoute($this->project->id,$sub->team_id,$sub->out_person_id),$outName);
 			} else {
 			    $result .= $outName;
 			}
@@ -225,13 +226,13 @@ class JoomleagueViewMatchReport extends JLGView
 		if($inName!='') {
 			$imgTitle=JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN');
 			$imgTitle2=array(' title' => $imgTitle);
-			$result .= JHtml::image($pic_in,$imgTitle,$imgTitle2).'&nbsp;';
+			$result .= HTMLHelper::image($pic_in,$imgTitle,$imgTitle2).'&nbsp;';
 
 			$isFavTeam = in_array( $sub->team_id, explode(",",$this->project->fav_team));
 
 			if ( ($this->config['show_player_profile_link'] == 1) || (($this->config['show_player_profile_link'] == 2) && ($isFavTeam)) )
 			{
-			    $result .= JHtml::link(JoomleagueHelperRoute::getPlayerRoute($this->project->id,$sub->team_id,$sub->person_id),$inName);
+			    $result .= HTMLHelper::link(JoomleagueHelperRoute::getPlayerRoute($this->project->id,$sub->team_id,$sub->person_id),$inName);
 			} else {
 			    $result .= $inName;
 			}
@@ -266,7 +267,7 @@ class JoomleagueViewMatchReport extends JLGView
                         if ($this->config['event_link_player'] == 1 && $me->playerid != 0)
                         {
                             $player_link=JoomleagueHelperRoute::getPlayerRoute($this->project->slug,$me->team_id,$me->playerid);
-                            $match_player = JHtml::link($player_link,$match_player);
+                            $match_player = HTMLHelper::link($player_link,$match_player);
                         }
 					$result .= $match_player;
 					if($this->config['show_event_team_name']) {

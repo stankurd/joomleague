@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\HTML\HTMLHelper;
 
 /**
  * Joomleague
@@ -187,7 +188,7 @@ abstract class modJLGRankingHelper
 		{
 			if (!empty($item->team->logo_small))
 			{
-				return JHtml::image($item->team->logo_small, $item->team->short_name, 'class="teamlogo"');
+				return HTMLHelper::image($item->team->logo_small, $item->team->short_name, 'class="teamlogo"');
 			}
 		}
 		else if ($type == 2 && !empty($item->team->country))

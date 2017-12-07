@@ -6,15 +6,17 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 ?>
 <form method="post" id="adminForm" name="adminForm" action="<?php echo $this->request_url; ?>">
 	<fieldset class="adminform">
 	<?php echo Jtext::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_DESC'); ?>
 	<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_LEGEND','<i>'.$this->project->name.'</i>'); ?></legend>
-		<?php echo JHtml::_('form.token'); ?>
+		<?php echo HTMLHelper::_('form.token'); ?>
 		<table class='admintable'>
 			<tbody>
 
@@ -55,7 +57,7 @@ JHtml::_('behavior.tooltip');
 						title="<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_STARTDATE_LABEL').'::'.JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_STARTDATE_TIP'); ?>">
 						<label for="start"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_STARTDATE_LABEL'); ?></label>
 					</td>
-					<td><?php echo JHtml::calendar(strftime('%Y-%m-%d'), 'start', 'start', '%Y-%m-%d'); ?></td>
+					<td><?php echo HTMLHelper::calendar(strftime('%Y-%m-%d'), 'start', 'start', '%Y-%m-%d'); ?></td>
 				</tr>
 
 				<tr>

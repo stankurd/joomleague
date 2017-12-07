@@ -1,4 +1,6 @@
 <?php 
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Joomleague
  *
@@ -9,7 +11,7 @@
 
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 switch ($this->selectType)
 {
 	case '10':	{		// New Club Selection

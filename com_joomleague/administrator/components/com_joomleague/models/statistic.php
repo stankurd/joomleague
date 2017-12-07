@@ -236,7 +236,7 @@ class JoomleagueModelStatistic extends JLGModelItem
 	protected function loadForm($name,$source = null,$options = array(),$clear = false,$xpath = false)
 	{
 		$app 	= Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 		
 		$item = $this->loadFormData();
 		
@@ -350,11 +350,11 @@ class JoomleagueModelStatistic extends JLGModelItem
 	public function save($data)
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 		
-		$data['calculated'] = $jinput->get('calculated',0);
+		$data['calculated'] = $input->get('calculated',0);
 		
-		$post = $jinput->post->getArray();
+		$post = $input->post->getArray();
 		if (isset($post['jform']['params'])) {
 			$data['params'] = $post['jform']['params'];
 		}

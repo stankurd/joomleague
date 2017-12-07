@@ -11,7 +11,9 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -73,7 +75,7 @@ class JoomleaguePagination
 		}
 		
 		$query = Uri::buildQuery($params);
-		$link = JRoute::_('index.php?' . $query);
+		$link = Route::_('index.php?' . $query);
 		$backward = $mdlRound->getRoundId($currentRoundcode-1, $project->id);
 		$forward = $mdlRound->getRoundId($currentRoundcode+1, $project->id);
 
@@ -81,13 +83,13 @@ class JoomleaguePagination
 		{
 			$params['r'] = $backward;
 			$query = Uri::buildQuery($params);
-			$link = JRoute::_('index.php?' . $query . '#com_joomleague_top');
-			$prevlink = JHtml::link($link,JText::_('COM_JOOMLEAGUE_GLOBAL_PREV'));
+			$link = Route::_('index.php?' . $query . '#com_joomleague_top');
+			$prevlink = HTMLHelper::link($link,JText::_('COM_JOOMLEAGUE_GLOBAL_PREV'));
 
 			$params['r'] = $firstRound['id'];
 			$query = Uri::buildQuery($params);
-			$link = JRoute::_('index.php?' . $query . '#com_joomleague_top');
-			$firstlink = JHtml::link($link,JText::_('COM_JOOMLEAGUE_GLOBAL_PAGINATION_START')) . $spacer4;
+			$link = Route::_('index.php?' . $query . '#com_joomleague_top');
+			$firstlink = HTMLHelper::link($link,JText::_('COM_JOOMLEAGUE_GLOBAL_PAGINATION_START')) . $spacer4;
 		}
 		else
 		{
@@ -98,14 +100,14 @@ class JoomleaguePagination
 		{
 			$params['r'] = $forward;
 			$query = Uri::buildQuery($params);
-			$link = JRoute::_('index.php?'.$query.'#com_joomleague_top');
+			$link = Route::_('index.php?'.$query.'#com_joomleague_top');
 			$nextlink = $spacer4;
-			$nextlink .= JHtml::link($link,JText::_('COM_JOOMLEAGUE_GLOBAL_NEXT'));
+			$nextlink .= HTMLHelper::link($link,JText::_('COM_JOOMLEAGUE_GLOBAL_NEXT'));
 
 			$params['r'] = $lastRound['id'];
 			$query = Uri::buildQuery($params);
-			$link = JRoute::_('index.php?' . $query . '#com_joomleague_top');
-			$lastlink = $spacer4 . JHtml::link($link,JText::_('COM_JOOMLEAGUE_GLOBAL_PAGINATION_END'));
+			$link = Route::_('index.php?' . $query . '#com_joomleague_top');
+			$lastlink = $spacer4 . HTMLHelper::link($link,JText::_('COM_JOOMLEAGUE_GLOBAL_PAGINATION_END'));
 		}
 		else
 		{
@@ -132,8 +134,8 @@ class JoomleaguePagination
 				{
 					$params['r']= $round->id;
 					$query		= Uri::buildQuery($params);
-					$link		= JRoute::_('index.php?' . $query . '#com_joomleague_top');
-					$pageNav   .= $spacer4 . JHtml::link($link,$pagenumber);
+					$link		= Route::_('index.php?' . $query . '#com_joomleague_top');
+					$pageNav   .= $spacer4 . HTMLHelper::link($link,$pagenumber);
 				}
 				else
 				{
@@ -170,7 +172,7 @@ class JoomleaguePagination
 			{
 				$params['r'] = $counter;
 				$query = Uri::buildQuery($params);
-				$link  = JRoute::_('index.php?' . $query);
+				$link  = Route::_('index.php?' . $query);
 
 				$pageNav2 .= "<option value='".$link."'";
 				if ($counter==$currentRoundcode)

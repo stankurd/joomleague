@@ -6,9 +6,11 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 ?>
 <script>
 jQuery(document).ready(function($) {
@@ -63,6 +65,6 @@ jQuery(document).ready(function($) {
 	<input type="hidden" name="option" value="com_joomleague" />
 	<input type="hidden" name="cid[]" value="<?php echo $this->project->id; ?>" />
 	<input type="hidden" name="task" value="" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>
 </div>

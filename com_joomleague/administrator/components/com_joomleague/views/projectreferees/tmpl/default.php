@@ -7,11 +7,13 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
-//JHtml::_('behavior.framework');
+//HTMLHelper::_('behavior.framework');
 
 $app = Factory::getApplication();
 $user = Factory::getUser();
@@ -55,11 +57,11 @@ jQuery(document).ready(function() {
 			e.stopPropagation();
 		});";
 
-JHtml::_('script','media/jui/js/jquery.autocomplete.min.js',false,false,false,false,true);
+HTMLHelper::_('script','media/jui/js/jquery.autocomplete.min.js',false,false,false,false,true);
 
 $script .= "
 	var suggest = jQuery('#quickadd').autocomplete({
-		serviceUrl: '" . JRoute::_('index.php?option=com_joomleague&task=quickadd.searchreferee&project_id=' . $this->project->id,false) . "',
+		serviceUrl: '" . Route::_('index.php?option=com_joomleague&task=quickadd.searchreferee&project_id=' . $this->project->id,false) . "',
 		paramName: 'q',
 		minChars: 1,
 		maxHeight: 400,
@@ -85,11 +87,11 @@ $uri = Uri::root();
 			<input type="text" name="p" id="quickadd" size="50"value="<?php htmlspecialchars(Factory::getApplication()->input->getString('q',false)); ?>" />
 			<input class="btn" type="submit" name="submit" id="submit" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_ADD');?>" />
 		</div>
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>
 </fieldset>
 <br>
-<form action="<?php echo JRoute::_('index.php?option=com_joomleague&view=projectreferees'); ?>" method="post" id="adminForm" name="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_joomleague&view=projectreferees'); ?>" method="post" id="adminForm" name="adminForm">
 	<div id="j-main-container" class="j-main-container">	
 	<fieldset class="form-horizontal">
 		<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PREF_TITLE2','<i>'.$this->project->name.'</i>');?></legend>
@@ -116,17 +118,17 @@ $uri = Uri::root();
 		<thead>
 			<tr>
 				<th width="1%" class="center">
-					<?php echo JHtml::_('grid.checkall'); ?>
+					<?php echo HTMLHelper::_('grid.checkall'); ?>
 				</th>
 				<th width="20">&nbsp;</th>
 				<th>
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PREF_NAME','a.lastname',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PREF_NAME','a.lastname',$listDirn, $listOrder);?>
 				</th>
 				<th width="5%" class="center">
 					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PREF_IMAGE');?>
 				</th>
 				<th class="center">
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PREF_POS','pref.project_position_id',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PREF_POS','pref.project_position_id',$listDirn, $listOrder);?>
 				</th>
 				<th width="1%">
 					<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');?>
@@ -135,7 +137,7 @@ $uri = Uri::root();
 					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PREF_PID');?>
 				</th>
 				<th width="1%">
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder);?>
 				</th>
 			</tr>
 		</thead>
@@ -143,10 +145,10 @@ $uri = Uri::root();
 		<?php
 		$n = count($this->items);
 		foreach($this->items as $i=>$row) :
-			$link = JRoute::_('index.php?option=com_joomleague&task=projectreferee.edit&id='.$row->id);
-			$checked = JHtml::_('grid.checkedout',$row,$i);
+			$link = Route::_('index.php?option=com_joomleague&task=projectreferee.edit&id='.$row->id);
+			$checked = HTMLHelper::_('grid.checkedout',$row,$i);
 			$inputappend = '';
-			$published = JHtml::_('jgrid.published',$row->published,$i,'projectreferees.');
+			$published = HTMLHelper::_('jgrid.published',$row->published,$i,'projectreferees.');
 		?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center"><?php echo $checked;?></td>
@@ -165,7 +167,7 @@ $uri = Uri::root();
 					<a href="<?php echo $link; ?>">
 					<?php
 						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PREF_EDIT_DETAILS');
-						echo JHtml::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "' . $imageTitle . '"');
+						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "' . $imageTitle . '"');
 					?>
 					</a>
 				</td>
@@ -182,12 +184,12 @@ $uri = Uri::root();
 				if($row->picture == '')
 				{
 					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PREF_NO_IMAGE');
-					echo JHtml::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "' . $imageTitle . '"');
+					echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "' . $imageTitle . '"');
 				}
 				elseif($row->picture == JoomleagueHelper::getDefaultPlaceholder("player"))
 				{
 					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PREF_DEFAULT_IMAGE');
-					echo JHtml::_('image','administrator/components/com_joomleague/assets/images/information.png',$imageTitle,'title= "' . $imageTitle . '"');
+					echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/information.png',$imageTitle,'title= "' . $imageTitle . '"');
 				}
 				elseif($row->picture == ! '')
 				{
@@ -219,7 +221,7 @@ $uri = Uri::root();
 				{
 					$append = ' style="background-color:#FFCCCC"';
 				}
-					echo JHtml::_('select.genericlist',$this->lists['project_position_id'],'project_position_id' . $row->id,
+					echo HTMLHelper::_('select.genericlist',$this->lists['project_position_id'],'project_position_id' . $row->id,
 					$inputappend . 'class="inputbox" size="1" onchange="document.getElementById(\'cb' . $i . '\').checked=true"' . $append,
 					'value','text',$selectedvalue);
 				?>
@@ -227,7 +229,7 @@ $uri = Uri::root();
 				<td class="center"><?php echo $published;?></td>
 				<td class="center" width="1%">
 				<?php
-					$person_edit_link = JRoute::_('index.php?option=com_joomleague&task=person.edit&id=' . $row->person_id.'&return=projectreferees');
+					$person_edit_link = Route::_('index.php?option=com_joomleague&task=person.edit&id=' . $row->person_id.'&return=projectreferees');
 				?>
 					<a href="<?php echo $person_edit_link ?>">
 					<?php
@@ -250,5 +252,5 @@ $uri = Uri::root();
 	<!-- input fields -->
 	<input type="hidden" name="task" value="" />
 	<input type="hidden" name="boxchecked" value="0" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

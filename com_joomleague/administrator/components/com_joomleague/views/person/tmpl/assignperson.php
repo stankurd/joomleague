@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Joomleague
  * 
@@ -53,6 +55,6 @@ defined('_JEXEC') or die;
 		<input type="hidden" name="option" value="com_joomleague" />
 		<input type="hidden" name="view" value="person" />
 		<input type="hidden" name="task" value="person.personassign" />
-		<?php echo JHtml::_('form.token'); ?>
+		<?php echo HTMLHelper::_('form.token'); ?>
 	</form>
 </div>

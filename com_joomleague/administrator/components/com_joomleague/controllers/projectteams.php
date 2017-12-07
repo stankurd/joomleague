@@ -1,6 +1,7 @@
 <?php
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Router\Route;
 use Joomla\Utilities\ArrayHelper;
 
 /**
@@ -59,7 +60,7 @@ class JoomleagueControllerProjectteams extends JLGControllerAdmin
 	 */
 	public function changeteams()
 	{
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view='.$this->view_list.'&layout=changeteams',false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view='.$this->view_list.'&layout=changeteams',false));
 	}
 
 
@@ -68,7 +69,7 @@ class JoomleagueControllerProjectteams extends JLGControllerAdmin
 	 */
 	public function cancel()
 	{
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view='.$this->view_list,false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view='.$this->view_list,false));
 	}
 
 
@@ -77,7 +78,7 @@ class JoomleagueControllerProjectteams extends JLGControllerAdmin
 	 */
 	function editlist()
 	{
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view='.$this->view_list.'&layout=editlist',false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view='.$this->view_list.'&layout=editlist',false));
 	}
 
 

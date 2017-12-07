@@ -63,9 +63,9 @@ class JoomleagueModelTeams extends JLGModelList
 	protected function getListQuery()
 	{
 		$app 	= Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
-		$clubid = $jinput->get->getInt('clubid',false);
+		$input = $app->input;
+		$option = $input->getCmd('option');
+		$clubid = $input->get->getInt('clubid',false);
 		
 		$filter_order 		= $this->state->get('list.ordering','a.id');
 		$filter_order_Dir	= $this->state->get('list.direction','desc');

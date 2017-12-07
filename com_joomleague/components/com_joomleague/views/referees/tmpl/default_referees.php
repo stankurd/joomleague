@@ -1,4 +1,6 @@
-<?php defined('_JEXEC') or die;
+<?php use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
 // Show referees as defined
 if (!empty($this->referees)): ?>
 <table class='table'>
@@ -23,7 +25,7 @@ if (!empty($this->referees)): ?>
 			<td style='text-align:center;'>
 				<?php
 				$imageTitle = JText::_('COM_JOOMLEAGUE_REFEREES_GAMES');
-				echo JHtml::image('media/com_joomleague/event_icons/refereed.png',
+				echo HTMLHelper::image('media/com_joomleague/event_icons/refereed.png',
 					$imageTitle, array('title' => $imageTitle, 'height' => 20));
 				?>
 			</td>
@@ -50,7 +52,7 @@ if (!empty($this->referees)): ?>
 				if ($this->config['link_name'] == 1)
 				{
 					$link = JoomleagueHelperRoute::getRefereeRoute($this->project->slug, $referee->slug);
-					echo JHtml::link($link, '<i>' . $refereeName . '</i>');
+					echo HTMLHelper::link($link, '<i>' . $refereeName . '</i>');
 				}
 				else
 				{

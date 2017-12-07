@@ -6,6 +6,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+
 defined('_JEXEC') or die;
 
 
@@ -44,12 +50,12 @@ class JoomleagueViewTeamplayers extends JLGView
 
 	function _displayDefault($tpl)
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 		$jinput = $app->input;
 		$option = $jinput->getCmd('option');
-		$document = JFactory::getDocument();
-		$baseurl = JUri::root();
-		$uri = JUri::getInstance();
+		$document = Factory::getDocument();
+		$baseurl = Uri::root();
+		$uri = Uri::getInstance();
 
 		$pid = $jinput->get('pid');
 		if($pid)
@@ -87,14 +93,14 @@ class JoomleagueViewTeamplayers extends JLGView
 		$this->pagination = $this->get('Pagination');
 		$this->state = $this->get('State');
 
-		$mdlProject = JModelLegacy::getInstance('project','JoomleagueModel');
+		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$project = $mdlProject->getItem($project_id);
 
-		$mdlProjectteam = JModelLegacy::getInstance('projectteam','JoomleagueModel');
+		$mdlProjectteam = BaseDatabaseModel::getInstance('projectteam','JoomleagueModel');
 		$projectteam = $mdlProjectteam->getItem($project_team_id);
 
 		// build the html options for position
-		$position_id[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_POSITION'));
+		$position_id[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_POSITION'));
 		if($res = $this->get('positions'))
 		{
 			$position_id = array_merge($position_id,$res);
@@ -102,17 +108,17 @@ class JoomleagueViewTeamplayers extends JLGView
 		$lists['project_position_id'] = $position_id;
 		unset($position_id);
 
-		$mdlProject = JModelLegacy::getInstance('project','JoomleagueModel');
+		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$project = $mdlProject->getItem($project_id);
 
-		$this->user = JFactory::getUser();
+		$this->user = Factory::getUser();
 		$this->lists = $lists;
 		$this->project = $project;
 		$this->projectteam = $projectteam;
 
-		JHtml::_('bootstrap.framework');
+		HTMLHelper::_('bootstrap.framework');
 
-		$baseurl = JUri::root();
+		$baseurl = Uri::root();
 		$document->addStyleSheet($baseurl.'administrator/components/com_joomleague/assets/css/Autocompleter.css');
 		$document->addScript($baseurl.'media/com_joomleague/bootstrap-editable/js/bootstrap-editable.js');
 		$document->addStyleSheet($baseurl.'media/com_joomleague/bootstrap-editable/css/bootstrap-editable.css');
@@ -130,17 +136,17 @@ class JoomleagueViewTeamplayers extends JLGView
 	 */
 	function _displayAssignPlayers($tpl = null)
 	{
-		$app 	= JFactory::getApplication();
+		$app 	= Factory::getApplication();
 		$jinput = $app->input;
 		$option = $jinput->getCmd('option');
-		$params = JComponentHelper::getParams($option);
-		$uri 	= JUri::getInstance();
+		$params = ComponentHelper::getParams($option);
+		$uri 	= Uri::getInstance();
 
 		$project_id = $app->getUserState($option.'project');
 
-		$mdlProject 	= JModelLegacy::getInstance('project','JoomLeagueModel');
-		$mdlPerson  	= JModelLegacy::getInstance('persons','JoomLeagueModel');
-		$mdlTeamplayers = JModelLegacy::getInstance('teamplayers','JoomLeagueModel');
+		$mdlProject 	= BaseDatabaseModel::getInstance('project','JoomLeagueModel');
+		$mdlPerson  	= BaseDatabaseModel::getInstance('persons','JoomLeagueModel');
+		$mdlTeamplayers = BaseDatabaseModel::getInstance('teamplayers','JoomLeagueModel');
 
 		$project_name = $mdlProject->getProjectName($project_id);
 		$project_team_id = $app->getUserState($option.'project_team_id');
@@ -164,9 +170,9 @@ class JoomleagueViewTeamplayers extends JLGView
 		
 		// save icon should be replaced by the apply
 		JLToolBarHelper::apply('teamplayers.saveassigned','COM_JOOMLEAGUE_ADMIN_PERSONS_SAVE_SELECTED');
-		JToolBarHelper::back('COM_JOOMLEAGUE_ADMIN_PERSONS_BACK','index.php?option=com_joomleague&view=teamplayers');
-		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_ASSIGN_PLAYERS'),'generic.png');
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolbarHelper::back('COM_JOOMLEAGUE_ADMIN_PERSONS_BACK','index.php?option=com_joomleague&view=teamplayers');
+		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_ASSIGN_PLAYERS'),'generic.png');
+		JLToolbarHelper::help('screen.joomleague',true);
 
 		parent::display($tpl);
 	}
@@ -177,16 +183,16 @@ class JoomleagueViewTeamplayers extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TPLAYERS_TITLE'));
+		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TPLAYERS_TITLE'));
 		JLToolBarHelper::publishList('teamplayers.publish');
 		JLToolBarHelper::unpublishList('teamplayers.unpublish');
 		JLToolBarHelper::apply('teamplayers.saveshort','COM_JOOMLEAGUE_ADMIN_TPLAYERS_APPLY');
-		JToolBarHelper::divider();
+		JLToolbarHelper::divider();
 		JLToolBarHelper::custom('teamplayers.assign','upload.png','upload_f2.png','COM_JOOMLEAGUE_ADMIN_TPLAYERS_ASSIGN',false);
 		JLToolBarHelper::custom('teamplayers.unassign','cancel.png','cancel_f2.png','COM_JOOMLEAGUE_ADMIN_TPLAYERS_UNASSIGN',false);
-		JToolBarHelper::divider();
-		JToolBarHelper::back('COM_JOOMLEAGUE_ADMIN_TPLAYERS_BACK','index.php?option=com_joomleague&view=projectteams');
-		JToolBarHelper::divider();
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolbarHelper::divider();
+		JLToolbarHelper::back('COM_JOOMLEAGUE_ADMIN_TPLAYERS_BACK','index.php?option=com_joomleague&view=projectteams');
+		JLToolbarHelper::divider();
+		JLToolbarHelper::help('screen.joomleague',true);
 	}
 }

@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 ?>
 <?php if ($this->config['show_teams_seasons'] == "1"): ?>
@@ -46,23 +48,23 @@ defined('_JEXEC') or die;
 			}
 
 			$picture_descr = JText::_("COM_JOOMLEAGUE_TEAMINFO_PLAYERS_PICTURE") . ' ' . $this->team->name . ' (' . $season->projectname . ')';
-			echo JHtml::image($picture, $picture_descr, array("title" => $picture_descr));
+			echo HTMLHelper::image($picture, $picture_descr, array("title" => $picture_descr));
 		}
 		?>
 		<br />
 		<?php
 		$link = JoomleagueHelperRoute::getPlayersRoute($season->project_slug, $season->team_slug);
-		echo JHtml::link($link, JText::_('COM_JOOMLEAGUE_TEAMINFO_SEASON_PLAYERS'));
+		echo HTMLHelper::link($link, JText::_('COM_JOOMLEAGUE_TEAMINFO_SEASON_PLAYERS'));
 		?>
 		<br />
 		<?php
 		$link = JoomleagueHelperRoute::getResultsRoute($season->project_slug);
-		echo JHtml::link($link, JText::_('COM_JOOMLEAGUE_TEAMINFO_SEASON_RESULTS'));
+		echo HTMLHelper::link($link, JText::_('COM_JOOMLEAGUE_TEAMINFO_SEASON_RESULTS'));
 		?>
 		<br />
 		<?php
 		$link = JoomleagueHelperRoute::getRankingRoute($season->project_slug);
-		echo JHtml::link($link, JText::_('COM_JOOMLEAGUE_TEAMINFO_SEASON_TABLES'));
+		echo HTMLHelper::link($link, JText::_('COM_JOOMLEAGUE_TEAMINFO_SEASON_TABLES'));
 		?>
 		<br />
 	</div>

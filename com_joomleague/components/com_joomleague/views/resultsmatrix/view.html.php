@@ -2,6 +2,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -128,7 +129,7 @@ class JoomleagueViewResultsmatrix extends JoomleagueViewResults  {
 		foreach ($rounds as $r)
 		{
 			$link = JoomleagueHelperRoute::getResultsMatrixRoute($this->project->slug, $r->value);
-			$options[] = JHtml::_('select.option', $link, $r->text);
+			$options[] = HTMLHelper::_('select.option', $link, $r->text);
 		}
 		return $options;
 	}

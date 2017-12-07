@@ -7,9 +7,12 @@
  * @link		http://www.joomleague.at
  */
 
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
+
 defined('_JEXEC') or die;
 
-JHtml::_('bootstrap.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 ?>
 <script>
 	function searchposition(val,key)
@@ -31,29 +34,29 @@ JHtml::_('bootstrap.tooltip');
 				<thead>
 					<tr>
 						<th>
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_P_POSITION_STANDARD_NAME_OF_POSITION','po.name',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_P_POSITION_STANDARD_NAME_OF_POSITION','po.name',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_TRANSLATION'); ?></th>
 						<th>
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_P_POSITION_PARENTNAME','po.parent_id',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_P_POSITION_PARENTNAME','po.parent_id',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th width="20">
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_P_POSITION_PLAYER_POSITION','persontype',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_P_POSITION_PLAYER_POSITION','persontype',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th width="20">
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_P_POSITION_STAFF_POSITION','persontype',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_P_POSITION_STAFF_POSITION','persontype',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th width="20">
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_P_POSITION_REFEREE_POSITION','persontype',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_P_POSITION_REFEREE_POSITION','persontype',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th width="20">
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_P_POSITION_CLUBSTAFF_POSITION','persontype',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_P_POSITION_CLUBSTAFF_POSITION','persontype',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<?php
 						/*
 						?>
 						<th class="title">
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_P_POSITION_SPORTSTYPE','po.sports_type_id',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_P_POSITION_SPORTSTYPE','po.sports_type_id',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<?php
 						*/
@@ -61,10 +64,10 @@ JHtml::_('bootstrap.tooltip');
 						<th width="5%"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_HAS_EVENTS'); ?></th>
 						<th width="5%"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_HAS_STATS'); ?></th>
 						<th width="1%">
-							<?php echo JHtml::_('grid.sort','PID','po.id',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','PID','po.id',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th width="1%">
-							<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','pt.id',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','pt.id',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 					</tr>
 				</thead>
@@ -86,7 +89,7 @@ JHtml::_('bootstrap.tooltip');
 								{
 									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_PLAYER_POSITION');
 									$imageParams='title= "'.$imageTitle.'"';
-									echo JHtml::image($imageFileOk,$imageTitle,$imageParams);
+									echo HTMLHelper::image($imageFileOk,$imageTitle,$imageParams);
 								}
 								?>
 							</td>
@@ -96,7 +99,7 @@ JHtml::_('bootstrap.tooltip');
 								{
 									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_STAFF_POSITION');
 									$imageParams='title= "'.$imageTitle.'"';
-									echo JHtml::image($imageFileOk,$imageTitle,$imageParams);
+									echo HTMLHelper::image($imageFileOk,$imageTitle,$imageParams);
 								}
 								?>
 							</td>
@@ -106,7 +109,7 @@ JHtml::_('bootstrap.tooltip');
 								{
 									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_REFEREE_POSITION');
 									$imageParams='title= "'.$imageTitle.'"';
-									echo JHtml::image($imageFileOk,$imageTitle,$imageParams);
+									echo HTMLHelper::image($imageFileOk,$imageTitle,$imageParams);
 								}
 								?>
 							</td>
@@ -116,7 +119,7 @@ JHtml::_('bootstrap.tooltip');
 								{
 									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CLUBSTAFF_POSITION');
 									$imageParams='title= "'.$imageTitle.'"';
-									echo JHtml::image($imageFileOk,$imageTitle,$imageParams);
+									echo HTMLHelper::image($imageFileOk,$imageTitle,$imageParams);
 								}
 								?>
 							</td>
@@ -134,13 +137,13 @@ JHtml::_('bootstrap.tooltip');
 									$imageFile='administrator/components/com_joomleague/assets/images/error.png';
 									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_NO_EVENTS');
 									$imageParams='title= "'.$imageTitle.'"';
-									echo JHtml::image($imageFile,$imageTitle,$imageParams);
+									echo HTMLHelper::image($imageFile,$imageTitle,$imageParams);
 								}
 								else
 								{
 									$imageTitle=JText::sprintf('COM_JOOMLEAGUE_ADMIN_P_POSITION_NR_EVENTS',$row->countEvents);
 									$imageParams='title= "'.$imageTitle.'"';
-									echo JHtml::image($imageFileOk,$imageTitle,$imageParams);
+									echo HTMLHelper::image($imageFileOk,$imageTitle,$imageParams);
 								}
 								?>
 							</td>
@@ -151,19 +154,19 @@ JHtml::_('bootstrap.tooltip');
 									$imageFile='administrator/components/com_joomleague/assets/images/error.png';
 									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_NO_STATISTICS');
 									$imageParams='title= "'.$imageTitle.'"';
-									echo JHtml::image($imageFile,$imageTitle,$imageParams);
+									echo HTMLHelper::image($imageFile,$imageTitle,$imageParams);
 								}
 								else
 								{
 									$imageTitle=JText::sprintf('COM_JOOMLEAGUE_ADMIN_P_POSITION_NR_STATISTICS',$row->countStats);
 									$imageParams='title= "'.$imageTitle.'"';
-									echo JHtml::image($imageFileOk,$imageTitle,$imageParams);
+									echo HTMLHelper::image($imageFileOk,$imageTitle,$imageParams);
 								}
 								?>
 							</td>
 							<td class="center">
 								<?php 
-									$position_edit_link = JRoute::_('index.php?option=com_joomleague&task=position.edit&id=' . $row->id.'&return=projectposition');
+									$position_edit_link = Route::_('index.php?option=com_joomleague&task=position.edit&id=' . $row->id.'&return=projectposition');
 								?>
 								<a href="<?php echo $position_edit_link ?>">
 								<?php
@@ -183,5 +186,5 @@ JHtml::_('bootstrap.tooltip');
 	<input type="hidden" name="task" value="" />
 	<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
 	<input type="hidden" name="filter_order_Dir" value="" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

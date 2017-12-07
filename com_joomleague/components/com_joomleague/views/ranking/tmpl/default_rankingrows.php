@@ -1,5 +1,8 @@
 <?php
-//JHtml::_('behavior.tooltip');
+//HTMLHelper::_('behavior.tooltip');
+
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
 
 $current  = $this->current;
 $previous = $this->previousRanking[$this->division];
@@ -219,7 +222,7 @@ foreach ($current as $ptid => $team)
 				if (($config['show_wdl_teamplan_link']) == 1)
 				{
 					$teamplan_link  = JoomleagueHelperRoute::getTeamPlanRoute($this->project->id, $team->_teamid, 0, 1);
-					$content = JHtml::link($teamplan_link, $team->cnt_won);
+					$content = HTMLHelper::link($teamplan_link, $team->cnt_won);
 				}
 				else
 				{
@@ -231,7 +234,7 @@ foreach ($current as $ptid => $team)
 				if (($config['show_wdl_teamplan_link']) == 1)
 				{
 					$teamplan_link  = JoomleagueHelperRoute::getTeamPlanRoute($this->project->id, $team->_teamid, 0, 2);
-					$content = JHtml::link($teamplan_link, $team->cnt_draw);
+					$content = HTMLHelper::link($teamplan_link, $team->cnt_draw);
 				}
 				else
 				{
@@ -243,7 +246,7 @@ foreach ($current as $ptid => $team)
 				if (($config['show_wdl_teamplan_link']) == 1)
 				{
 					$teamplan_link  = JoomleagueHelperRoute::getTeamPlanRoute($this->project->id, $team->_teamid, 0, 3);
-					$content = JHtml::link($teamplan_link, $team->cnt_lost);
+					$content = HTMLHelper::link($teamplan_link, $team->cnt_lost);
 				}
 				else
 				{
@@ -396,8 +399,8 @@ foreach ($current as $ptid => $team)
 							break;
 					}
 
-					$url = JRoute::_(JoomleagueHelperRoute::getMatchReportRoute($g->project_slug, $g->slug));
-					$content .= JHtml::link($url, $img, $attr);
+					$url = Route::_(JoomleagueHelperRoute::getMatchReportRoute($g->project_slug, $g->slug));
+					$content .= HTMLHelper::link($url, $img, $attr);
 				}
 				break;
 		}

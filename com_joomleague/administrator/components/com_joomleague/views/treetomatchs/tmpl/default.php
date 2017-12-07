@@ -6,18 +6,20 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 jimport('joomla.html.pane');
 
-JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_TITLE'));
+JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_TITLE'));
 
 //JLToolBarHelper::save();
 JLToolBarHelper::custom('treetomatch.editlist','upload.png','upload_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_BUTTON_ASSIGN'),false);
-JToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetonodes&task=treetonode.display');
+JLToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetonodes&task=treetonode.display');
 
-JToolBarHelper::help('screen.joomleague',true);
+JLToolBarHelper::help('screen.joomleague',true);
 ?>
 
 	<fieldset class="adminform">
@@ -44,8 +46,8 @@ JToolBarHelper::help('screen.joomleague',true);
 					<?php
 					$n = count($this->match);
 					foreach ($this->match as $i => $row) :
-						$checked	= JHtml::_('grid.checkedout',$row,$i,'mid');
-						$published	= JHtml::_('grid.published',$row,$i,'tick.png','publish_x.png','treetomatch.');
+						$checked	= HTMLHelper::_('grid.checkedout',$row,$i,'mid');
+						$published	= HTMLHelper::_('grid.published',$row,$i,'tick.png','publish_x.png','treetomatch.');
 						?>
 						<tr class="row<?php echo $i % 2; ?>">
 					
@@ -93,6 +95,6 @@ JToolBarHelper::help('screen.joomleague',true);
 			<input type="hidden" name="boxchecked" value="0" />
 			<input type="hidden" name="act" value="" />
 			<input type="hidden" name="task" value="treetomatchs.display" id="task" />
-			<?php echo JHtml::_('form.token'); ?>
+			<?php echo HTMLHelper::_('form.token'); ?>
 		</form>
 	</fieldset>

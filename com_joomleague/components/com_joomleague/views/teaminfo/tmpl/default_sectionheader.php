@@ -6,9 +6,11 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die; 
 
-JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
+HTMLHelper::addIncludePath(JPATH_COMPONENT.'/helpers');
 
 $canEdit = $this->showediticon;
 ?>
@@ -18,7 +20,7 @@ $canEdit = $this->showediticon;
 		<?php 
 		echo $this->pagetitle;
 		if ($canEdit) {
-			echo JHtml::_('icon.edit',$this->project->id,$this->team,$this->team->project_team_id,'projectteamform.edit','teaminfo');
+			echo HTMLHelper::_('icon.edit',$this->project->id,$this->team,$this->team->project_team_id,'projectteamform.edit','teaminfo');
 		} 		
 		?>
 	</div>

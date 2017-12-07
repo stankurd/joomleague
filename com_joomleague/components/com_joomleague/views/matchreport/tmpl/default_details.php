@@ -1,4 +1,6 @@
-<?php defined('_JEXEC') or die; ?>
+<?php use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die; ?>
 
 <!-- Details-->
 <h2><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_DETAILS'); ?></h2>
@@ -11,7 +13,7 @@
 		<tr>
 			<td colspan="3" >
 				<span class="label"><?php echo JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_OLD_MATCH' ); ?></span>
-				<span><?php echo JHtml :: link(JoomleagueHelperRoute::getMatchReportRoute( $this->project->id, 
+				<span><?php echo HTMLHelper :: link(JoomleagueHelperRoute::getMatchReportRoute( $this->project->id, 
 																							$this->match->old_match_id ), 
 												$this->oldmatchtext); ?></span>
 			</td>
@@ -27,7 +29,7 @@
 		<tr>
 			<td colspan="3" >
 				<span class="label"><?php echo JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_NEW_MATCH' ); ?></span>
-				<span><?php echo JHtml :: link(JoomleagueHelperRoute::getNextMatchRoute( $this->project->id, 
+				<span><?php echo HTMLHelper :: link(JoomleagueHelperRoute::getNextMatchRoute( $this->project->id, 
 																							$this->match->new_match_id ), 
 												$this->newmatchtext); ?></span>
 			</td>
@@ -111,7 +113,7 @@
         <tr>
             <td colspan="3" >
                 <span class="label"><?php echo JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_PLAYGROUND' ); ?></span>
-                <span><?php echo JHtml::link ($playground_link, $this->playground->name); ?></span>
+                <span><?php echo HTMLHelper::link ($playground_link, $this->playground->name); ?></span>
             </td>
         </tr>
         <?php endif;
@@ -134,7 +136,7 @@
                         if (!$first) {
                             echo ', ';
                         }
-                        $link = JHtml::link( $referee_link, JoomleagueHelper::formatName(null,$referee->firstname,$referee->nickname,$referee->lastname, $this->config["name_format"]));
+                        $link = HTMLHelper::link( $referee_link, JoomleagueHelper::formatName(null,$referee->firstname,$referee->nickname,$referee->lastname, $this->config["name_format"]));
                         if ($this->config["show_referee_position"] == 1) $link .= ' ('.$referee->position_name.')';
                         ?><span><?php echo $link; ?></span>
                         <?php

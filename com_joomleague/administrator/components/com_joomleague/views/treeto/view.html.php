@@ -6,6 +6,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Uri\Uri;
+
 defined('_JEXEC') or die;
 
 /**
@@ -37,10 +41,10 @@ class JoomleagueViewTreeto extends JLGView
 
 	function _displayForm($tpl)
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 		$jinput = $app->input;
 		$option = $jinput->getCmd('option');
-		$user = JFactory::getUser();
+		$user = Factory::getUser();
 		$model = $this->getModel();
 		
 		$this->form = $this->get('Form');
@@ -69,12 +73,12 @@ class JoomleagueViewTreeto extends JLGView
 
 	function _displayGennode($tpl)
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 		$jinput = $app->input;
 		$lists = array();
 		$project_id = $app->getUserState('com_joomleagueproject');
 		
-		$mdlProject = JModelLegacy::getInstance('project','JoomleagueModel');
+		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$project = $mdlProject->getItem($project_id);
 		
 		$itemId = $jinput->get('cid');
@@ -95,24 +99,24 @@ class JoomleagueViewTreeto extends JLGView
 
 	protected function addToolBar_Gennode()
 	{
-		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETO_TITLE_GENERATE'));
-		JToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetos');
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETO_TITLE_GENERATE'));
+		JLToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetos');
+		JLToolBarHelper::help('screen.joomleague',true);
 	}
 
 	protected function addToolbar()
 	{
-		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETO_TITLE'));
+		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETO_TITLE'));
 		JLToolBarHelper::save('treeto.save');
 		JLToolBarHelper::apply('treeto.apply');
-		JToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetos');
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetos');
+		JLToolBarHelper::help('screen.joomleague',true);
 	}
 
 	protected function setDocument()
 	{
-		$document = JFactory::getDocument();
+		$document = Factory::getDocument();
 		$version = urlencode(JoomleagueHelper::getVersion());
-		$document->addScript(JUri::root() . $this->script);
+		$document->addScript(Uri::root() . $this->script);
 	}
 }

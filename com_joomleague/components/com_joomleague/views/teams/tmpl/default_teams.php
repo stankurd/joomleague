@@ -1,4 +1,8 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
+?>
 <table style='width:96%; border: 0; text-align:center;'>
 	<thead>
 	<tr class='sectiontableheader'>
@@ -32,7 +36,7 @@
 				$image = JoomleagueHelper::getPictureThumb($picture, $team->team_name,
 					$this->config['team_picture_width'], $this->config['team_picture_height'], 5);
 			?>
-			<td class='team_logo'><?php echo JHtml::link($teaminfo_link, $image); ?></td>
+			<td class='team_logo'><?php echo HTMLHelper::link($teaminfo_link, $image); ?></td>
 			<?php endif; ?>
 
 			<td class='team_name'>
@@ -41,7 +45,7 @@
 				{
 					if (!empty($team->team_www))
 					{
-						echo JHtml::link($team->team_www, $team->team_name, array('target' => '_blank'));
+						echo HTMLHelper::link($team->team_www, $team->team_name, array('target' => '_blank'));
 					}
 					else
 					{
@@ -50,7 +54,7 @@
 				}
 				if ($this->config['which_link1'] == 1)
 				{
-					echo JHtml::link($teaminfo_link, $team->team_name);
+					echo HTMLHelper::link($teaminfo_link, $team->team_name);
 				}
 				?>
 			</td>
@@ -61,7 +65,7 @@
 				{
 					if (!empty($team->club_www))
 					{
-						echo JHtml::link($team->club_www, $team->club_name, array('target' => '_blank'));
+						echo HTMLHelper::link($team->club_www, $team->club_name, array('target' => '_blank'));
 					}
 					else
 					{
@@ -70,7 +74,7 @@
 				}
 				if ($this->config['which_link2']==1)
 				{
-					echo JHtml::link($clubinfo_link, $team->club_name);
+					echo HTMLHelper::link($clubinfo_link, $team->club_name);
 				}
 				?>
 			</td>
@@ -82,7 +86,7 @@
 				$image = JoomleagueHelper::getPictureThumb($picture, $team->team_name,
 					$this->config['club_picture_width'], $this->config['club_picture_height'], 1);
 			?>
-			<td class='club_logo'><?php echo JHtml::link($clubinfo_link, $image); ?></td>
+			<td class='club_logo'><?php echo HTMLHelper::link($clubinfo_link, $image); ?></td>
 			<?php endif; ?>
 
 			<td class='club_address'>

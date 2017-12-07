@@ -1,4 +1,8 @@
-<?php defined('_JEXEC') or die('Restricted access');
+<?php
+
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die('Restricted access');
 
 // Make sure that in case extensions are written for mentioned (common) views,
 // that they are loaded i.s.o. of the template of this view
@@ -57,13 +61,13 @@ if (isset($this->person))
 		//$document->addStyleSheet($css);
 		$idxTab = 1;
 		$selector = 'player';
-		echo JHtml::_('bootstrap.startTabSet', $selector, array('active' => 'panel' . $idxTab));
+		echo HTMLHelper::_('bootstrap.startTabSet', $selector, array('active' => 'panel' . $idxTab));
 		foreach ($output as $templ) {
-		    echo JHtml::_('bootstrap.addTab', $selector, 'panel' .($idxTab++), JText::_('COM_JOOMLEAGUE_PLAYER_TAB_LABEL_'.strtoupper($templ)));
+		    echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel' .($idxTab++), JText::_('COM_JOOMLEAGUE_PLAYER_TAB_LABEL_'.strtoupper($templ)));
 			echo $this->loadTemplate($templ);
-			echo JHtml::_('bootstrap.endTab');
+			echo HTMLHelper::_('bootstrap.endTab');
 		}		
-		echo JHtml::_('bootstrap.endTabSet');
+		echo HTMLHelper::_('bootstrap.endTabSet');
 	} else {
 		foreach ($output as $templ)
 		{

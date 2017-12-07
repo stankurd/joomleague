@@ -7,6 +7,9 @@
  * @link		http://www.joomleague.at
  */
 
+use Joomla\CMS\Date\Date;
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 ?>
 	<div id="editcell">
@@ -21,7 +24,7 @@ defined('_JEXEC') or die;
 				<input type='hidden' name='addtype' value='0' id='addtype' />
 				<input type='hidden' name='add_match_count' value='0' id='addmatchescount' />
 				<?php 
-				echo JHtml::_('form.token');
+				echo HTMLHelper::_('form.token');
 				if (empty($this->project->timezone)) {
 					$timezone = 'UTC';
 				} elseif (is_null($this->project->timezone)) {
@@ -29,7 +32,7 @@ defined('_JEXEC') or die;
 				} else {
 					$timezone = $this->project->timezone;
 				}
-				$date = new JDate($this->round->round_date_first,new DateTimeZone($timezone));
+				$date = new Date($this->round->round_date_first,new DateTimeZone($timezone));
 				?>
 				<table class="table table-striped">
 					<thead>
@@ -72,7 +75,7 @@ defined('_JEXEC') or die;
 														<td width="100" align="right" class="key"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_STARTTIME'); ?></td>
 														<td>
 															<?php
-															echo JHtml::calendar(	$date->format(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT'), true),
+															echo HTMLHelper::calendar(	$date->format(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT'), true),
 																					'match_date','match_date',
 																					JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT_CAL'), 'size="10" ');
                                                            ?>
@@ -103,7 +106,7 @@ defined('_JEXEC') or die;
 										<td width="100" align="right" class="key"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_DEFAULT_DATE'); ?></td>
 										<td>
 											<?php
-											echo JHtml::calendar(	$date->format(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT'), true),
+											echo HTMLHelper::calendar(	$date->format(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT'), true),
 																	'date','date',
 																	JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT_CAL'),'size="10" ');
 											?>

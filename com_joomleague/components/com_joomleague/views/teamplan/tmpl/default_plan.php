@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Registry\Registry;
 
@@ -274,10 +275,10 @@ if (!empty($this->matches))
 			if ($hasEvents)
 			{
 				$link = 'javascript:void(0);';
-				$img = JHtml::image('media/com_joomleague/jl_images/events.png', 'events.png');
+				$img = HTMLHelper::image('media/com_joomleague/jl_images/events.png', 'events.png');
 				$params = array('title'   => JText::_('COM_JOOMLEAGUE_TEAMPLAN_EVENTS'),
 								'onclick' => 'switchMenu(\'info'.$match->id.'\');return false;');
-				echo JHtml::link($link,$img,$params);
+				echo HTMLHelper::link($link,$img,$params);
 			}
 		?>
 		</td>
@@ -294,7 +295,7 @@ if (!empty($this->matches))
 		<td width='5%'>
 			<?php
 			$link=JoomleagueHelperRoute::getResultsRoute($this->project->slug, $match->roundid, $match->division_id);
-			echo JHtml::link($link, $match->roundcode);
+			echo HTMLHelper::link($link, $match->roundcode);
 			?>
 		</td>
 		<?php endif; ?>
@@ -515,7 +516,7 @@ if (!empty($this->matches))
 
 			if ($this->config['results_linkable'] == 1)
 			{
-				$result = JHtml::link($link, $result);
+				$result = HTMLHelper::link($link, $result);
 			}
 
 			$ResultsTooltipTp = '(';
@@ -641,7 +642,7 @@ if (!empty($this->matches))
 						if ($this->config['show_referee_link'])
 						{
 							$link = JoomleagueHelperRoute::getRefereeRoute($this->project->slug, $match->referees[$i]->referee_id, 3);
-							$ref = JHtml::link($link, $ref);
+							$ref = HTMLHelper::link($link, $ref);
 						}
 						$output .= $ref . '</span>';
 
@@ -691,18 +692,18 @@ if (!empty($this->matches))
 			if (isset($match->team1_result))
 			{
 				$href_text = $this->config['show_matchreport_image']
-					? JHtml::image($this->config['matchreport_image'], JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHREPORT'))
+					? HTMLHelper::image($this->config['matchreport_image'], JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHREPORT'))
 					: JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHREPORT');
 				$link = JoomleagueHelperRoute::getMatchReportRoute($this->project->slug, $match->id);
 			}
 			else
 			{
 				$href_text = $this->config['show_matchreport_image']
-					? JHtml::image($this->config['matchpreview_image'], JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHPREVIEW'))
+					? HTMLHelper::image($this->config['matchpreview_image'], JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHPREVIEW'))
 					: JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHPREVIEW');
 				$link = JoomleagueHelperRoute::getNextMatchRoute($this->project->slug, $match->id);
 			}
-			echo JHtml::link($link, $href_text);
+			echo HTMLHelper::link($link, $href_text);
 		}
 		?>
 		</td>
@@ -743,7 +744,7 @@ if (!empty($this->matches))
 				$imgTitle = $count . ' ' . JText::_('COM_JOOMLEAGUE_TEAMPLAN_COMMENTS_COUNT_SINGULAR');
 				if ($this->config['show_comments_count'] == 1)
 				{
-					$href_text = JHtml::image('media/com_joomleague/jl_images/discuss_active.gif', $imgTitle, array(' title' => $imgTitle,' border' => 0,' style' => 'vertical-align: middle'));
+					$href_text = HTMLHelper::image('media/com_joomleague/jl_images/discuss_active.gif', $imgTitle, array(' title' => $imgTitle,' border' => 0,' style' => 'vertical-align: middle'));
 				}
 				elseif ($this->config['show_comments_count'] == 2)
 				{
@@ -752,14 +753,14 @@ if (!empty($this->matches))
 				$link = isset($match->team1_result)
 					? JoomleagueHelperRoute::getMatchReportRoute($this->project->slug, $match->id) . '#comments'
 					: JoomleagueHelperRoute::getNextMatchRoute($this->project->slug, $match->id) . '#comments';
-				echo JHtml::link($link, $href_text);
+				echo HTMLHelper::link($link, $href_text);
 			}
 			elseif ($count > 1)
 			{
 				$imgTitle = $count . ' ' . JText::_('COM_JOOMLEAGUE_TEAMPLAN_COMMENTS_COUNT_PLURAL');
 				if ($this->config['show_comments_count'] == 1)
 				{
-					$href_text = JHtml::image('media/com_joomleague/jl_images/discuss_active.gif', $imgTitle, array(' title' => $imgTitle,' border' => 0,' style' => 'vertical-align: middle'));
+					$href_text = HTMLHelper::image('media/com_joomleague/jl_images/discuss_active.gif', $imgTitle, array(' title' => $imgTitle,' border' => 0,' style' => 'vertical-align: middle'));
 				}
 				elseif ($this->config['show_comments_count'] == 2)
 				{
@@ -768,14 +769,14 @@ if (!empty($this->matches))
 				$link = isset($match->team1_result)
 					? JoomleagueHelperRoute::getMatchReportRoute($this->project->slug,$match->id).'#comments'
 					: JoomleagueHelperRoute::getNextMatchRoute($this->project->slug,$match->id).'#comments';
-				echo JHtml::link($link, $href_text);
+				echo HTMLHelper::link($link, $href_text);
 			}
 			else
 			{
 				$imgTitle = JText::_('COM_JOOMLEAGUE_TEAMPLAN_COMMENTS_COUNT_NOCOMMENT');
 				if ($this->config['show_comments_count'] == 1)
 				{
-					$href_text = JHtml::image('media/com_joomleague/jl_images/discuss.gif', $imgTitle, array(' title' => $imgTitle,' border' => 0,' style' => 'vertical-align: middle'));
+					$href_text = HTMLHelper::image('media/com_joomleague/jl_images/discuss.gif', $imgTitle, array(' title' => $imgTitle,' border' => 0,' style' => 'vertical-align: middle'));
 				}
 				elseif ($this->config['show_comments_count'] == 2)
 				{
@@ -784,7 +785,7 @@ if (!empty($this->matches))
 				$link = isset($match->team1_result)
 					? JoomleagueHelperRoute::getMatchReportRoute($this->project->slug,$match->id).'#comments'
 					: JoomleagueHelperRoute::getNextMatchRoute($this->project->slug,$match->id).'#comments';
-				echo JHtml::link($link, $href_text);
+				echo HTMLHelper::link($link, $href_text);
 			}
 		?>
 		</td>

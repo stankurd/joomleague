@@ -65,7 +65,7 @@ class JoomleagueModelSeasons extends JLGModelList
 	protected function getListQuery()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 
 		$filter_order = $this->state->get('list.ordering','a.id');
 		$filter_order_Dir = $this->state->get('list.direction','desc');

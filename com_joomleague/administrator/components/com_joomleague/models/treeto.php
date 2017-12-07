@@ -103,7 +103,7 @@ class JoomleagueModelTreeto extends JLGModelItem
 		}
 
 		/*
-		 * $jinput = Factory::getApplication()->input;
+		 * $input = Factory::getApplication()->input;
 		 *
 		 * if ($this->getState('treeto.id'))
 		 * {
@@ -144,7 +144,7 @@ class JoomleagueModelTreeto extends JLGModelItem
 	public function save($data)
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 
 		if(parent::save($data))
 		{

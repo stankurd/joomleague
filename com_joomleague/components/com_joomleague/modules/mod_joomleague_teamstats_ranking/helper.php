@@ -7,6 +7,9 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
 
@@ -24,7 +27,7 @@ abstract class modJLGTeamStatHelper
 	 */
 	public static function getData(&$params)
 	{
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 
 		if (!class_exists('JoomleagueModelProject')) {
 			require_once JLG_PATH_SITE.'/models/project.php';
@@ -74,7 +77,7 @@ abstract class modJLGTeamStatHelper
 		{
 			if (!empty($item->logo_small))
 			{
-				return JHtml::image($item->logo_small, $item->short_name, 'class="teamlogo"');
+				return HTMLHelper::image($item->logo_small, $item->short_name, 'class="teamlogo"');
 			}
 		}		
 		else if ($type == 2 && !empty($item->country))
@@ -111,7 +114,7 @@ abstract class modJLGTeamStatHelper
 		{
 			$imgTitle=JText::_($stat->name);
 			$imgTitle2=array(' title' => $imgTitle, ' alt' => $imgTitle);
-			$txt=JHtml::image($stat->icon, $imgTitle, $imgTitle2);
+			$txt=HTMLHelper::image($stat->icon, $imgTitle, $imgTitle2);
 		}
 		return $txt;
 	}

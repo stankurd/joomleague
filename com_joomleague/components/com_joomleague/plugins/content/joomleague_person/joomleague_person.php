@@ -9,11 +9,12 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\Registry\Registry;
 use Joomla\String\StringHelper;
 
-class plgContentJoomleague_Person extends PluginHelper
+class plgContentJoomleague_Person extends CMSPlugin
 {
 	public $params = null;
 
@@ -38,7 +39,7 @@ class plgContentJoomleague_Person extends PluginHelper
 		}
 		
 		// load language file for frontend
-		PluginHelper::loadLanguage('plg_content_joomleague_person',JPATH_ADMINISTRATOR);
+		CMSPlugin::loadLanguage('plg_content_joomleague_person',JPATH_ADMINISTRATOR);
 	}
 	
 	

@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 <table class="contentpaneopen">
@@ -14,7 +15,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 		$modalwidth = ComponentHelper::getParams('com_joomleague')->get('modal_popup_width', 900);
 		$link = JoomleagueHelperRoute::getPlayerRoute( $this->project->id, $this->teamPlayer->team_id, $this->person->id, 'person.edit' );
 		echo ' <a rel="{handler: \'iframe\',size: {x:'.$modalwidth.',y:'.$modalheight.'}}" href="'.$link.'" class="modal">';
-		echo JHtml::image("media/com_joomleague/jl_images/edit.png",
+		echo HTMLHelper::image("media/com_joomleague/jl_images/edit.png",
 							JText::_( 'COM_JOOMLEAGUE_PERSON_EDIT' ),
 							array( "title" => JText::_( "COM_JOOMLEAGUE_PERSON_EDIT" ) )
 		);
@@ -24,7 +25,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 	if ( isset($this->teamPlayer->injury) && $this->teamPlayer->injury )
 	{
 		$imageTitle = JText::_( 'COM_JOOMLEAGUE_PERSON_INJURED' );
-		echo "&nbsp;&nbsp;" . JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/injured.gif',
+		echo "&nbsp;&nbsp;" . HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/injured.gif',
 							$imageTitle,
 							array( 'title' => $imageTitle ) );
 	}
@@ -32,7 +33,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 	if ( isset($this->teamPlayer->suspension) && $this->teamPlayer->suspension )
 	{
 		$imageTitle = JText::_( 'COM_JOOMLEAGUE_PERSON_SUSPENDED' );
-		echo "&nbsp;&nbsp;" . JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/suspension.gif',
+		echo "&nbsp;&nbsp;" . HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/suspension.gif',
 							$imageTitle,
 							array( 'title' => $imageTitle ) );
 	}
@@ -41,7 +42,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 	if ( isset($this->teamPlayer->away) && $this->teamPlayer->away )
 	{
 		$imageTitle = JText::_( 'COM_JOOMLEAGUE_PERSON_AWAY' );
-		echo "&nbsp;&nbsp;" . JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/away.gif',
+		echo "&nbsp;&nbsp;" . HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/away.gif',
 							$imageTitle,
 							array( 'title' => $imageTitle ) );
 	}

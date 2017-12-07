@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
 
@@ -56,7 +58,7 @@ abstract class modJLGStatHelper
 		{
 			if (!empty($item->logo_small))
 			{
-				return JHtml::image($item->logo_small, $item->short_name, 'class="teamlogo"');
+				return HTMLHelper::image($item->logo_small, $item->short_name, 'class="teamlogo"');
 			}
 		}		
 		else if ($type == 2 && !empty($item->country))
@@ -66,13 +68,13 @@ abstract class modJLGStatHelper
 		else if ($type == 3) {
 			if (!empty($item->team_picture))
 			{
-				return JHtml::image($item->team_picture, $item->short_name, 'class="teamlogo"');
+				return HTMLHelper::image($item->team_picture, $item->short_name, 'class="teamlogo"');
 			}
 		}
 		else if ($type == 4) {
 			if (!empty($item->projectteam_picture))
 			{
-				return JHtml::image($item->projecteam_picture, $item->short_name, 'class="teamlogo"');
+				return HTMLHelper::image($item->projecteam_picture, $item->short_name, 'class="teamlogo"');
 			}
 		}
 		return '';
@@ -102,7 +104,7 @@ abstract class modJLGStatHelper
 													$params->get("name_format"));
 				if ($params->get('show_player_link')) 
 				{
-					return JHtml::link(JoomleagueHelperRoute::getPlayerRoute($project->slug, $team->team_slug, $item->person_id), $name);	
+					return HTMLHelper::link(JoomleagueHelperRoute::getPlayerRoute($project->slug, $team->team_slug, $item->person_id), $name);	
 				}
 				else
 				{
@@ -122,7 +124,7 @@ abstract class modJLGStatHelper
 		{
 			$imgTitle=JText::_($stat->name);
 			$imgTitle2=array(' title' => $imgTitle, ' alt' => $imgTitle);
-			$txt=JHtml::image($stat->icon, $imgTitle, $imgTitle2);
+			$txt=HTMLHelper::image($stat->icon, $imgTitle, $imgTitle2);
 		}
 		return $txt;
 	}

@@ -1,4 +1,6 @@
-<?php use Joomla\CMS\Uri\Uri;
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die; ?>
 
@@ -12,10 +14,10 @@ defined('_JEXEC') or die; ?>
 			<td class='contentheading' style='text-align: right;'>
 			<?php
 				$link = JoomleagueHelperRoute::getIcalRoute(0,null,$this->playground->id);
-				$text = JHtml::image('administrator/components/com_joomleague/assets/images/calendar.png',
+				$text = HTMLHelper::image('administrator/components/com_joomleague/assets/images/calendar.png',
 					JText::_('COM_JOOMLEAGUE_PLAYGROUND_ICAL_EXPORT'));
 				$attribs = array('title' => JText::_('COM_JOOMLEAGUE_PLAYGROUND_ICAL_EXPORT'));
-				echo JHtml::_('link',$link,$text,$attribs);
+				echo HTMLHelper::_('link',$link,$text,$attribs);
 			?>
 			</td>
 		</tr>
@@ -148,7 +150,7 @@ defined('_JEXEC') or die; ?>
 								if ($this->config['show_referee_link'])
 								{
 									$link = JoomleagueHelperRoute::getRefereeRoute($this->project->slug, $game->referees[$i]->referee_id, 3);
-									$ref = JHtml::link($link, $ref);
+									$ref = HTMLHelper::link($link, $ref);
 								}
 								$output .= $ref;
 								$output .= '</span>';

@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -76,9 +77,9 @@ else
 				$user = Factory::getUser();
 				if (($user->id) or (!$this->overallconfig['nospam_email']))
 				{
-					echo JHtml::link('mailto:'. $this->club->email, $this->club->email);
+					echo HTMLHelper::link('mailto:'. $this->club->email, $this->club->email);
 				} else {
-					echo JHtml::_('email.cloak', $this->club->email);
+					echo HTMLHelper::_('email.cloak', $this->club->email);
 				}
 				?>
 			</span>
@@ -91,7 +92,7 @@ else
 			<span class='clubinfo_listing_value'>
 				<?php
 				$link = JoomleagueHelperRoute::getClubInfoRoute($this->project->slug, $this->club->slug);
-				echo JHtml::link($link, $this->club->name);
+				echo HTMLHelper::link($link, $this->club->name);
 				?>
 			</span>
 		</div>
@@ -101,7 +102,7 @@ else
 		<div class='jl_parentContainer'>
 			<span class='clubinfo_listing_item'> <?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_CLUB_SITE'); ?></span>
 			<span class='clubinfo_listing_value'> 
-				<?php echo JHtml::link($this->club->website, $this->club->website, array('target' => '_blank')); ?>
+				<?php echo HTMLHelper::link($this->club->website, $this->club->website, array('target' => '_blank')); ?>
 			</span>
 		</div>
 			<?php endif; ?>
@@ -113,7 +114,7 @@ else
 			<span class='clubinfo_listing_value'>
 				<?php
 				$link = JoomleagueHelperRoute::getTeamInfoRoute($this->project->slug, $this->team->slug);
-				echo JHtml::link($link, $this->team->tname);
+				echo HTMLHelper::link($link, $this->team->tname);
 				?>
 			</span>
 		</div>
@@ -122,7 +123,7 @@ else
 			<span class='clubinfo_listing_value'>
 				<?php
 				$link = JoomleagueHelperRoute::getTeamStatsRoute($this->project->slug, $this->team->slug);
-				echo JHtml::link($link, $this->team->short_name);
+				echo HTMLHelper::link($link, $this->team->short_name);
 				?>
 			</span>
 		</div>
@@ -137,7 +138,7 @@ else
 		<div class='jl_parentContainer'>
 			<span class='clubinfo_listing_item'> <?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TEAM_SITE'); ?></span>
 			<span class='clubinfo_listing_value'> <?php
-				echo JHtml::link($this->team->team_website, $this->team->team_website, array('target' => '_blank')); ?>
+				echo HTMLHelper::link($this->team->team_website, $this->team->team_website, array('target' => '_blank')); ?>
 			</span>
 		</div>
 			<?php endif; ?>

@@ -1,4 +1,5 @@
 <?php use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die; ?>
 
@@ -29,7 +30,7 @@ defined('_JEXEC') or die; ?>
 				   href="<?php echo $link; ?>" class='modal'>
 					<?php
 					$imgTitle = JText::_('COM_JOOMLEAGUE_RESULTS_ENTER_EDIT_RESULTS');
-					echo JHtml::image('media/com_joomleague/jl_images/edit.png', $imgTitle, array(' title' => $imgTitle));
+					echo HTMLHelper::image('media/com_joomleague/jl_images/edit.png', $imgTitle, array(' title' => $imgTitle));
 					?>
 				</a>
 				<?php

@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 
 defined('_JEXEC') or die;
@@ -110,7 +111,7 @@ class JoomleagueControllerSportsTypes extends JLGControllerAdmin
 	 */
 	public function import()
 	{
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=import&table=sports_type',false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view=import&table=sports_type',false));
 	}
 
 	

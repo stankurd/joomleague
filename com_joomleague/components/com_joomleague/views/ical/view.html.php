@@ -1,11 +1,12 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
 jimport('joomla.html.pane');
 jimport('joomla.functions');
-JHtml::_('bootstrap.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 
 /**
  * View-Ical

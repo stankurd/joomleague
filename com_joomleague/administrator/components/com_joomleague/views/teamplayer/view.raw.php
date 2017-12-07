@@ -6,6 +6,9 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
 /**
@@ -22,12 +25,12 @@ class JoomleagueViewTeamPlayer extends JLGView
 	 */
 	function display($tpl = null)
 	{
-		$app = JFactory::getApplication();
-		$jinput = $app->input;
-		$pid = $jinput->get('p');
+		$app = Factory::getApplication();
+		$input = $app->input;
+		$pid = $input->get('p');
 		
 		// Get some data from the model
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		
 		$db->setQuery(
 				"	SELECT	pl.id AS value,
@@ -37,7 +40,7 @@ class JoomleagueViewTeamPlayer extends JLGView
 							INNER JOIN #__joomleague_person AS pl ON pl.id=plt.person_id
 							WHERE pt.project_id='" . $pid . "' AND pl.published = '1' ORDER BY pl.lastname");
 		
-		$dropdrowlistoptions = JHtml::_('select.options',$db->loadObjectList(),'value','pid');
+		$dropdrowlistoptions = HTMLHelper::_('select.options',$db->loadObjectList(),'value','pid');
 		
 		echo $dropdrowlistoptions;
 	}

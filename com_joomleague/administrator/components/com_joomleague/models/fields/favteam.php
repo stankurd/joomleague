@@ -7,7 +7,9 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Form\FormField;
 use Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -16,7 +18,7 @@ FormHelper::loadFieldClass('list');
 /**
  * Favteam form field class
  */
-class JFormFieldFavteam extends JFormFieldList
+class JFormFieldFavteam extends JFormFieldList  
 {
 	/**
 	 * field type
@@ -56,13 +58,13 @@ class JFormFieldFavteam extends JFormFieldList
 		// Create a read-only list (no name) with a hidden input to store the value.
 		if ((string) $this->readonly == '1' || (string) $this->readonly == 'true')
 		{
-			$html[] = JHtml::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value,$this->id);
+			$html[] = HTMLHelper::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value,$this->id);
 			$html[] = '<input type="hidden" name="' . $this->name . '" value="' . htmlspecialchars($this->value, ENT_COMPAT, 'UTF-8') . '"/>';
 		}
 		else
 		// Create a regular list.
 		{
-			$html[] = JHtml::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value,$this->id);
+			$html[] = HTMLHelper::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value,$this->id);
 		}
 	
 		return implode($html);

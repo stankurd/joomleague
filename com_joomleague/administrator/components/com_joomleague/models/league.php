@@ -219,9 +219,9 @@ class JoomleagueModelLeague extends JLGModelItem
 	public function save($data)
 	{
 		$app 	= Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 		
-		$data['extended'] = $jinput->get('extended',array(),'array');
+		$data['extended'] = $input->get('extended',array(),'array');
 			
 		if(parent::save($data))
 		{

@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Table\Table;
 use Joomla\Utilities\ArrayHelper;
@@ -58,7 +59,7 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		$input = $app->input;
 		$match_id = $input->getInt('match_id');
 		
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=match&layout=editevents&match_id='.$match_id,false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view=match&layout=editevents&match_id='.$match_id,false));
 	}
 
 	public function editEventsbb()
@@ -67,7 +68,7 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		$input = $app->input;
 		$match_id = $input->getInt('match_id');
 		
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=match&layout=editeventsbb&match_id='.$match_id,false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view=match&layout=editeventsbb&match_id='.$match_id,false));
 	}
 
 	public function editstats()
@@ -81,7 +82,7 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		$cid 		= $input->get('cid',array(),'array');
 		ArrayHelper::toInteger($cid);
 		
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=match&layout=editstats',false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view=match&layout=editstats',false));
 	}
 
 	
@@ -99,7 +100,7 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		$cid		= $input->get('cid',array(),'array');
 		ArrayHelper::toInteger($cid);
 
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=match&layout=editreferees',false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view=match&layout=editreferees',false));
 	}
 
 	
@@ -114,7 +115,7 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		$match_id = $input->getInt('match_id');
 		$team_id = $input->getInt('team_id');
 		
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=match&layout=editlineup&match_id='.$match_id.'&team_id='.$team_id,false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view=match&layout=editlineup&match_id='.$match_id.'&team_id='.$team_id,false));
 	}
 
 	

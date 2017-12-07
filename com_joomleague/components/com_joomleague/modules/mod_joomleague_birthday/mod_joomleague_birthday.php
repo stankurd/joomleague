@@ -14,7 +14,6 @@ defined('_JEXEC') or die;
 
 require_once dirname(__FILE__).'/helper.php';
 require_once JPATH_SITE.'/components/com_joomleague/joomleague.core.php';
-//$list = modJLGBirthdayHelper::getData($params);
 
 $document = Factory::getDocument();
 $document->addStyleSheet(Uri::base().'modules/mod_joomleague_birthday/css/mod_joomleague_birthday.css');

@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -60,12 +61,12 @@ class JoomleagueViewProjectReferee extends JLGView
 		
 		// build the html select list for positions
 		$refereepositions = array();
-		$refereepositions[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_REF_POS'));
+		$refereepositions[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_REF_POS'));
 		if($res = $model->getRefereePositions())
 		{
 			$refereepositions = array_merge($refereepositions,$res);
 		}
-		$lists['refereepositions'] = JHtml::_('select.genericlist',$refereepositions,'project_position_id','class="inputbox" size="1"','value','text',
+		$lists['refereepositions'] = HTMLHelper::_('select.genericlist',$refereepositions,'project_position_id','class="inputbox" size="1"','value','text',
 				$this->item->project_position_id);
 		unset($refereepositions);
 		
@@ -75,8 +76,8 @@ class JoomleagueViewProjectReferee extends JLGView
 		$this->project = $project;
 		$this->lists = $lists;
 		
-		//$extended = $this->getExtended($this->item->extended,'projectreferee');
-		//$this->extended = $extended;
+		$extended = $this->getExtended($this->item->extended,'projectreferee');
+		$this->extended = $extended;
 		
 		$this->addToolbar();
 		parent::display($tpl);

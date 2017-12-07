@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
 // check if any player returned
@@ -51,7 +53,7 @@ if(isset($list['inprojectinfo']->picture)) {
 		$link = JoomleagueHelperRoute::getPlayerRoute($list['project']->slug, 
 														$list['infoteam']->team_id, 
 														$person->slug );
-		echo JHtml::link($link, $text);
+		echo HTMLHelper::link($link, $text);
 	}
 	else
 	{
@@ -72,7 +74,7 @@ if(isset($list['inprojectinfo']->picture)) {
 	{
 		$link = JoomleagueHelperRoute::getTeamInfoRoute($list['project']->slug, 
 														$list['infoteam']->team_id);
-		echo JHtml::link($link, $text);
+		echo HTMLHelper::link($link, $text);
 	}
 	else
 	{

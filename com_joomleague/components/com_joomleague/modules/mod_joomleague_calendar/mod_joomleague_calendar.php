@@ -18,6 +18,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Date\Date;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Helper\ModuleHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -26,7 +27,7 @@ require_once JPATH_SITE.'/components/com_joomleague/joomleague.core.php';
 
 $app = Factory::getApplication();
 $input = $app->input;
-//JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 $ajax= $input->get('ajaxCalMod',0,'default','POST');
 $ajaxmod= $input->get('ajaxmodid',0,'default','POST');
 if(!$params->get('cal_start_date')){
@@ -44,8 +45,8 @@ $helper = new modJLCalendarHelper;
 $doc = Factory::getDocument();
 $lightbox    = $params->get('lightbox', 1);
 
-//JHtml::_('behavior.framework');
-//JHtml::_('behavior.modal');
+HTMLHelper::_('behavior.framework');
+HTMLHelper::_('behavior.modal');
 if ($lightbox ==1 && (!isset($_GET['format']) OR ($_GET['format'] != 'pdf'))) {
 	$doc->addScriptDeclaration(";
       window.addEvent('domready', function() {

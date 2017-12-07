@@ -1,5 +1,6 @@
 <?php use Joomla\CMS\Factory;
 use Joomla\CMS\Date\Date;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die; ?>
 
@@ -146,12 +147,12 @@ foreach ($this->matches as $game)
 				?>
 				<?php if ($this->config['which_link'] == 1) { ?>
 				<?php
-				echo JHtml::link($result_link, $game->roundid);
+				echo HTMLHelper::link($result_link, $game->roundid);
 				}
 				?>
 				<?php if ($this->config['which_link'] == 2) { ?>
 				<?php
-				echo JHtml::link($nextmatch_link, $game->roundid);
+				echo HTMLHelper::link($nextmatch_link, $game->roundid);
 				}
 				?>
 			</td>
@@ -203,12 +204,12 @@ foreach ($this->matches as $game)
 			?>
 			<?php if ($this->config['which_link2'] == 1) { ?>
 			<?php
-			echo JHtml::link($teaminfo1_link, $tname1);
+			echo HTMLHelper::link($teaminfo1_link, $tname1);
 			}
 			?>
 			<?php if ($this->config['which_link2'] == 2) { ?>
 			<?php
-			echo JHtml::link($teamstats1_link, $tname1);
+			echo HTMLHelper::link($teamstats1_link, $tname1);
 			}
 			?>
 			</td>
@@ -346,12 +347,12 @@ foreach ($this->matches as $game)
 
 			<?php if ($this->config['which_link2'] == 1) { ?>
 			<?php
-			echo JHtml::link($teaminfo2_link, $tname2);
+			echo HTMLHelper::link($teaminfo2_link, $tname2);
 			}
 			?>
 			<?php if ($this->config['which_link2'] == 2) { ?>
 			<?php
-			echo JHtml::link($teamstats2_link, $tname2);
+			echo HTMLHelper::link($teamstats2_link, $tname2);
 			}
 			?>
 			</td>
@@ -363,7 +364,7 @@ foreach ($this->matches as $game)
 			foreach ($matchReferees AS $matchReferee)
 			{
 				$referee_link = JoomleagueHelperRoute::getRefereeRoute($game->project_id, $matchReferee->id);
-				echo JHtml::link($referee_link, $matchReferee->firstname . ' ' . $matchReferee->lastname);
+				echo HTMLHelper::link($referee_link, $matchReferee->firstname . ' ' . $matchReferee->lastname);
 				echo '<br />';
 			}
 			?>
@@ -373,7 +374,7 @@ foreach ($this->matches as $game)
 			<?php if ($this->config['show_playground'] == 1) { ?>
 			<td>
 			<?php
-			echo JHtml::link($playground_link, $game->pl_name);
+			echo HTMLHelper::link($playground_link, $game->pl_name);
 			?>
 			</td>
 			<?php } ;?>
@@ -427,14 +428,14 @@ foreach ($this->matches as $game)
 			<td>
 				<?php
 				if(isset($team1) && isset($team2) && ($team1 == $team2)) {
-					echo JHtml::image("media/com_joomleague/jl_images/draw.png", "draw.png",
+					echo HTMLHelper::image("media/com_joomleague/jl_images/draw.png", "draw.png",
 						array("title" => JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_DRAW')))."&nbsp;";
 				} else {
 					if($team1 > $team2) {
-						echo JHtml::image("media/com_joomleague/jl_images/thumbs_up.png", "thumbs_up.png",
+						echo HTMLHelper::image("media/com_joomleague/jl_images/thumbs_up.png", "thumbs_up.png",
 							array("title" => JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_WON')))."&nbsp;";
 					} elseif($team2 > $team1) {
-						echo JHtml::image("media/com_joomleague/jl_images/thumbs_down.png", "thumbs_down.png",
+						echo HTMLHelper::image("media/com_joomleague/jl_images/thumbs_down.png", "thumbs_down.png",
 							array("title" => JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_LOST')))."&nbsp;";
 					}
 					else

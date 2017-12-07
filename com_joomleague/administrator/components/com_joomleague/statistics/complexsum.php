@@ -8,6 +8,8 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 require_once JLG_PATH_ADMIN.'/statistics/base.php';
@@ -79,7 +81,7 @@ class JLGStatisticComplexsum extends JLGStatistic {
 			return(array(0));
 		}
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		$sids = array();
 		foreach ($stat_ids as $s) {
 			$sids[] = $db->Quote($s);
@@ -156,7 +158,8 @@ class JLGStatisticComplexsum extends JLGStatistic {
 		$sqids = $this->getQuotedSids();
 		$factors  = $this->getFactors();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		
 		// get all stats
 		$query	= ' SELECT ms.value, ms.statistic_id, tp.id AS tpid'
@@ -202,6 +205,7 @@ class JLGStatisticComplexsum extends JLGStatistic {
 
 		$players = array_slice($players, $limitstart, $limit, true);
 		$ids = array_keys($players);
+		$query = $db->getQuery(true);
 		
 		$query  = ' SELECT tp.id AS teamplayer_id, tp.person_id, tp.picture AS teamplayerpic,'
 				. ' p.firstname, p.nickname, p.lastname, p.picture, p.country,'
@@ -260,7 +264,8 @@ class JLGStatisticComplexsum extends JLGStatistic {
 		$sqids = $this->getQuotedSids();
 		$factors  = $this->getFactors();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		
 		// get all stats
 		$query = ' SELECT ms.value, ms.statistic_id, pt.team_id '
@@ -352,7 +357,8 @@ class JLGStatisticComplexsum extends JLGStatistic {
 		$sqids = $this->getQuotedSids();
 		$factors  = $this->getFactors();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		
 		$query = ' SELECT ms.value, ms.statistic_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
@@ -386,7 +392,8 @@ class JLGStatisticComplexsum extends JLGStatistic {
 		$sqids = $this->getQuotedSids();
 		$factors  = $this->getFactors();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		
 		$query = ' SELECT ms.value AS value, ms.statistic_id '
 		       . ' FROM #__joomleague_team_staff AS tp '

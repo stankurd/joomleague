@@ -8,6 +8,7 @@
  */
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
 use Joomla\Utilities\ArrayHelper;
 
 /**
@@ -115,7 +116,7 @@ class JoomleagueControllerJoomleague extends JLGControllerAdmin
 			$app->setUserState($option . 'project_team_id',$tid);
 		}
 
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=joomleague&layout=panel',false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view=joomleague&layout=panel',false));
 	}
 	
 	

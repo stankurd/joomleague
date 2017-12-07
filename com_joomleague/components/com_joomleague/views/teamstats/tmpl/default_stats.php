@@ -1,4 +1,8 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
+?>
 
 <div id='jl_teamstats'>
 	<div class='jl_teamsubstats'>
@@ -93,14 +97,14 @@
 							$link=JoomleagueHelperRoute::getMatchReportRoute($this->project->id, $this->highest_home->matchid);
 							$highest_home_result = $this->highest_home->homegoals . $this->overallconfig['seperator'] .
 								$this->highest_home->guestgoals;
-							echo JHtml::link($link, $highest_home_result);
+							echo HTMLHelper::link($link, $highest_home_result);
 						?>
 						<br>
 						<?php 
 							$team1 	= JoomleagueHelperRoute::getTeamInfoRoute($this->project->id, $this->highest_home->team1_id);
 							$team2 	= JoomleagueHelperRoute::getTeamInfoRoute($this->project->id, $this->highest_home->team2_id);
-							$match	= JHtml::link($team1,$this->highest_home->hometeam) . '<br>' . $this->overallconfig['seperator'] .
-								'<br>' . JHtml::link($team2,$this->highest_home->guestteam);
+							$match	= HTMLHelper::link($team1,$this->highest_home->hometeam) . '<br>' . $this->overallconfig['seperator'] .
+								'<br>' . HTMLHelper::link($team2,$this->highest_home->guestteam);
 							echo $match;
 						?>
 					</td>
@@ -116,14 +120,14 @@
 							$link=JoomleagueHelperRoute::getMatchReportRoute($this->project->id,$this->highest_away->matchid);
 							$highest_away_result = $this->highest_away->homegoals . $this->overallconfig['seperator'] .
 								$this->highest_away->guestgoals;
-							echo JHtml::link($link,$highest_away_result);
+							echo HTMLHelper::link($link,$highest_away_result);
 						?>
 						<br>
 						<?php 
 							$team1 	= JoomleagueHelperRoute::getTeamInfoRoute($this->project->id, $this->highest_away->team1_id);
 							$team2 	= JoomleagueHelperRoute::getTeamInfoRoute($this->project->id, $this->highest_away->team2_id);
-							$match	= JHtml::link($team1,$this->highest_away->hometeam) . '<br>' . $this->overallconfig['seperator'] .
-								'<br>' . JHtml::link($team2,$this->highest_away->guestteam);
+							$match	= HTMLHelper::link($team1,$this->highest_away->hometeam) . '<br>' . $this->overallconfig['seperator'] .
+								'<br>' . HTMLHelper::link($team2,$this->highest_away->guestteam);
 							echo $match;
 						?>
 					</td>
@@ -149,14 +153,14 @@
 							$link=JoomleagueHelperRoute::getMatchReportRoute($this->project->id,$this->highestdef_home->matchid);
 							$highestdef_home_result = $this->highestdef_home->homegoals . $this->overallconfig['seperator'] .
 								$this->highestdef_home->guestgoals;
-							echo JHtml::link($link,$highestdef_home_result);
+							echo HTMLHelper::link($link,$highestdef_home_result);
 						?>
 						<br>
 						<?php 
 							$team1 	= JoomleagueHelperRoute::getTeamInfoRoute($this->project->id, $this->highestdef_home->team1_id);
 							$team2 	= JoomleagueHelperRoute::getTeamInfoRoute($this->project->id, $this->highestdef_home->team2_id);
-							$match	= JHtml::link($team1,$this->highestdef_home->hometeam) . '<br>' . $this->overallconfig['seperator'] .
-								'<br>' . JHtml::link($team2,$this->highestdef_home->guestteam);
+							$match	= HTMLHelper::link($team1,$this->highestdef_home->hometeam) . '<br>' . $this->overallconfig['seperator'] .
+								'<br>' . HTMLHelper::link($team2,$this->highestdef_home->guestteam);
 							echo $match;
 						?>
 					</td>
@@ -172,14 +176,14 @@
 							$link=JoomleagueHelperRoute::getMatchReportRoute($this->project->id,$this->highestdef_away->matchid);
 							$highestdef_away_result = $this->highestdef_away->homegoals . $this->overallconfig['seperator'] .
 								$this->highestdef_away->guestgoals;
-							echo JHtml::link($link,$highestdef_away_result);
+							echo HTMLHelper::link($link,$highestdef_away_result);
 						?>
 						<br>
 						<?php 
 							$team1 	= JoomleagueHelperRoute::getTeamInfoRoute($this->project->id, $this->highestdef_away->team1_id);
 							$team2 	= JoomleagueHelperRoute::getTeamInfoRoute($this->project->id, $this->highestdef_away->team2_id);
-							$match	= JHtml::link($team1,$this->highestdef_away->hometeam) . '<br>' . $this->overallconfig['seperator'] .
-								'<br>' . JHtml::link($team2,$this->highestdef_away->guestteam);
+							$match	= HTMLHelper::link($team1,$this->highestdef_away->hometeam) . '<br>' . $this->overallconfig['seperator'] .
+								'<br>' . HTMLHelper::link($team2,$this->highestdef_away->guestteam);
 							echo $match;
 						?>
 					</td>

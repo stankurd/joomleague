@@ -1,6 +1,7 @@
 <?php 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Document\Feed\FeedItem;
+use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
 
@@ -12,7 +13,7 @@ class JoomleagueViewClubplan extends JLGView
 	public function display($tpl = null)
 	{
 		$document	= Factory::getDocument();
-		$document->link = JRoute::_('index.php?option=com_joomleague');
+		$document->link = Route::_('index.php?option=com_joomleague');
 		$model = $this->getModel();
 		$config=$model->getTemplateConfig($this->getName());
 		$this->config=$config;
@@ -40,7 +41,7 @@ class JoomleagueViewClubplan extends JLGView
 			}
 
 			$item->title 		= $team1. " - ".$team2. " : ".$result;
-			$item->link 		= JRoute::_( $link . $game->project_id . '&mid=' . $game->id);
+			$item->link 		= Route::_( $link . $game->project_id . '&mid=' . $game->id);
 			$item->description 	= $game->summary;
 			$item->date			= $date;
 			$item->category   	= "clubplan";

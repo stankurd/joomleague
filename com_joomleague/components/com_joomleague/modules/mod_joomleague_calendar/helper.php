@@ -15,15 +15,16 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Date\Date;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
 
 require_once (dirname(__FILE__).'/calendarClass.php');
 
-abstract class modJLCalendarHelper
-{
-	function showCal(&$params,$year,$month,$ajax=0,$modid) //this function returns the html of the calendar for a given month
+class modJLCalendarHelper{
+	public function showCal(&$params,$year,$month,$ajax=0,$modid) //this function returns the html of the calendar for a given month
 	{
 		// $offset = 0; //$mainframe->getCfg('offset');
 		$language= Factory::getLanguage(); //get the current language
@@ -70,7 +71,7 @@ abstract class modJLCalendarHelper
 		$cal->usedclubs = $params->get('usedclubs');
 		$cal->params = $params;
 		//set the link for the month, this will be the link for the calendar header (ex. December 2007)
-		$cal->monthLink=JRoute::_('index.php?option=com_joomleague_calendar' . '&year=' . $year .
+		$cal->monthLink=Route::_('index.php?option=com_joomleague_calendar' . '&year=' . $year .
 					'&month=' . $month . '&modid=' . $modid);
 		$cal->modid= $modid;
 		$cal->ajax = $ajax;
@@ -324,10 +325,10 @@ class JLCalendar extends PHPCalendar
 		$this->params->prefix = $this->prefix;
 		
 		// @todo Check!
-		$entries = new JoomleagueConnector($this->params);
+		$entries = JoomleagueConnector($this->params);
 		$entries->getEntries($caldates, $this->params, $this->matches);
 		
-		// JoomleagueConnector::getEntries($caldates, $this->params, $this->matches); 
+		 JoomleagueConnector::getEntries($caldates, $this->params, $this->matches); 
 
 		if ($livescore != ''){
 			require_once (dirname(__FILE__).'/connectors/livescore.php');
@@ -416,9 +417,9 @@ class JLCalendar extends PHPCalendar
 		$teamslist = array();
 		if(count($this->teams) > 0 && $this->params->get('show_teamslist', 0) == 1) {
 			$teams = $this->sortObject($this->teamslist, 'asc', 'name');
-			$teamslist[] = JHtml::_('select.option', 0, JText::_($this->params->get('teamslist_option')));
+			$teamslist[] = HTMLHelper::_('select.option', 0, JText::_($this->params->get('teamslist_option')));
 			foreach ($teams AS $id => $obj) {
-				$teamslist[] = JHtml::_('select.option', $obj->value, JText::_($obj->name));
+				$teamslist[] = HTMLHelper::_('select.option', $obj->value, JText::_($obj->name));
 			}
 		}
 		return $teamslist;

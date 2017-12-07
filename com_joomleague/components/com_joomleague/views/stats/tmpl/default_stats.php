@@ -1,4 +1,8 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
+?>
 
 <div id="jl_stats">
 
@@ -54,7 +58,7 @@
 			if ($this->config['show_teaminfo_link']==1)
 			{
 				$link = JoomleagueHelperRoute::getProjectTeamInfoRoute($this->project->id, $this->highest_home->project_hometeam_id);
-				echo JHtml::link($link, $team);
+				echo HTMLHelper::link($link, $team);
 			} else {
 				echo $team;
 			}
@@ -76,7 +80,7 @@
 			if ($this->config['show_teaminfo_link']==1)
 			{
 				$link = JoomleagueHelperRoute::getProjectTeamInfoRoute($this->project->id, $this->highest_home->project_awayteam_id);
-				echo JHtml::link($link, $team);
+				echo HTMLHelper::link($link, $team);
 			} else {
 				echo $team;
 			}
@@ -110,7 +114,7 @@
 			if ($this->config['show_teaminfo_link']==1)
 			{
 				$link = JoomleagueHelperRoute::getProjectTeamInfoRoute($this->project->id, $this->highest_away->project_hometeam_id);
-				echo JHtml::link($link, $team);
+				echo HTMLHelper::link($link, $team);
 			} else {
 				echo $team;
 			}
@@ -130,7 +134,7 @@
 			if ($this->config['show_teaminfo_link']==1)
 			{
 				$link = JoomleagueHelperRoute::getProjectTeamInfoRoute($this->project->id, $this->highest_away->project_awayteam_id);
-				echo JHtml::link($link, $team);
+				echo HTMLHelper::link($link, $team);
 			} else {
 				echo $team;
 			}

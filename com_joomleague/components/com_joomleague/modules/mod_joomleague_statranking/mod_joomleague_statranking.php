@@ -7,6 +7,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Helper\ModuleHelper;
+
 defined('_JEXEC') or die;
 
 require_once dirname(__FILE__).'/helper.php';
@@ -14,7 +18,7 @@ require_once JPATH_SITE.'/components/com_joomleague/joomleague.core.php';
 
 $list = modJLGStatHelper::getData($params);
 
-$document = JFactory::getDocument();
-$document->addStyleSheet(JUri::base().'modules/mod_joomleague_statranking/css/mod_joomleague_statranking.css');
+$document = Factory::getDocument();
+$document->addStyleSheet(Uri::base().'modules/mod_joomleague_statranking/css/mod_joomleague_statranking.css');
 
-require JModuleHelper::getLayoutPath('mod_joomleague_statranking');
+require ModuleHelper::getLayoutPath('mod_joomleague_statranking', $params->get('layout', 'default'));

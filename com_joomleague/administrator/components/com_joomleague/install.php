@@ -389,7 +389,6 @@ class com_joomleagueInstallerScript
 	
 	public function updateDatabase() {
 		$time_start = microtime(true);
-		$selector = 'databasetools';
 
 		echo 'Updating Database';
 		echo ' - <span style="color:green">'.JText::_('Success').'</span>';
@@ -397,7 +396,7 @@ class com_joomleagueInstallerScript
 						'allowAllClose' => true,
 						'startTransition' => true,
 						true));
-		echo JHtml::_('bootstrap.addSlide', $selector, 'Details', 'panel-details');
+		echo JHtml::_('bootstrap.addSlide', 'Details', 'panel-details');
 
 		echo '<div style="width:100%; height: 200px; overflow: auto">';
 		JoomleagueModelDatabaseTools::ImportTables();

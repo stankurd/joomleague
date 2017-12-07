@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -63,13 +64,13 @@ class JoomleagueViewReferees extends JLGView
 		{
 			switch ($this->config['show_birthday']) {
 				case 1:     // show Birthday and Age
-					$birthdayStr = JHtml::date($referee->birthday . ' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
+					$birthdayStr = HTMLHelper::date($referee->birthday . ' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
 							JoomleagueHelper::getTimezone($this->project, $this->overallconfig)) .
 						'&nbsp;(' . JoomleagueHelper::getAge($referee->birthday, $referee->deathday) . ')';
 					break;
 
 				case 2:     // show Only Birthday
-					$birthdayStr = JHtml::date($referee->birthday . ' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
+					$birthdayStr = HTMLHelper::date($referee->birthday . ' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
 						JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					break;
 
@@ -78,7 +79,7 @@ class JoomleagueViewReferees extends JLGView
 					break;
 
 				case 4:     // show Only Year of birth
-					$birthdayStr = JHtml::date($referee->birthday . ' UTC', JText::_('%Y'),
+					$birthdayStr = HTMLHelper::date($referee->birthday . ' UTC', JText::_('%Y'),
 						JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					break;
 

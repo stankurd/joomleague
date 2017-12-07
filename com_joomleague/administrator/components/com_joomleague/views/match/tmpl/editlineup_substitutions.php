@@ -6,6 +6,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Uri\Uri;
 
@@ -33,14 +34,14 @@ var str_delete="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_REMOVE'); ?>";
 				<tr>
 					<th>
 							<?php
-							echo JHtml::image ( 'administrator/components/com_joomleague/assets/images/out.png', JText::_ ( 'Out' ) );
+							echo HTMLHelper::image ( 'administrator/components/com_joomleague/assets/images/out.png', JText::_ ( 'Out' ) );
 							echo '&nbsp;' . JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_OUT' );
 							?>
 						</th>
 					<th>
 							<?php
 							echo JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_IN' ) . '&nbsp;';
-							echo JHtml::image ( 'administrator/components/com_joomleague/assets/images/in.png', JText::_ ( 'In' ) );
+							echo HTMLHelper::image ( 'administrator/components/com_joomleague/assets/images/in.png', JText::_ ( 'In' ) );
 							?>
 						</th>
 					<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_POS'); ?></th>
@@ -91,8 +92,8 @@ var str_delete="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_REMOVE'); ?>";
 					}
 					?>
 					<tr id="row-new">
-					<td><?php echo JHtml::_('select.genericlist',$this->playersoptions_subs_out,'out','class="inputbox player-out"'); ?></td>
-					<td><?php echo JHtml::_('select.genericlist',$this->playersoptions_subs_in,'in','class="inputbox player-in"'); ?></td>
+					<td><?php echo HTMLHelper::_('select.genericlist',$this->playersoptions_subs_out,'out','class="inputbox player-out"'); ?></td>
+					<td><?php echo HTMLHelper::_('select.genericlist',$this->playersoptions_subs_in,'in','class="inputbox player-in"'); ?></td>
 					<td><?php echo $this->lists['projectpositions']; ?></td>
 					<td><input type="text" size="3" id="in_out_time" name="in_out_time"
 						class="inputbox" /></td>

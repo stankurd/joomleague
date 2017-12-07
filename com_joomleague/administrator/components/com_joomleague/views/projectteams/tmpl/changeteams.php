@@ -6,9 +6,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
+
 defined('_JEXEC') or die;
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_joomleague&view=projectteams&layout=changeteams'); ?>" method="post" id="adminForm" name="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_joomleague&view=projectteams&layout=changeteams'); ?>" method="post" id="adminForm" name="adminForm">
 	<fieldset class="adminform" style="float: left;">
 		<legend>
 		<?php
@@ -33,7 +36,7 @@ defined('_JEXEC') or die;
 
 			foreach($this->items as $row)
 			{
-				$checked = JHtml::_('grid.id','oldptid' . $i,$row->id,$row->checked_out,'oldptid');
+				$checked = HTMLHelper::_('grid.id','oldptid' . $i,$row->id,$row->checked_out,'oldptid');
 				$append = ' style="background-color:#bbffff"';
 				$inputappend = '';
 				$selectedvalue = 0;
@@ -48,7 +51,7 @@ defined('_JEXEC') or die;
 				?>
 				</td>
 				<td class="nowrap" class="center"><?php
-				echo JHtml::_('select.genericlist',$this->lists['all_teams'],'newptid[' . $row->id . ']',
+				echo HTMLHelper::_('select.genericlist',$this->lists['all_teams'],'newptid[' . $row->id . ']',
 						$inputappend . 'class="inputbox" size="1" onchange="document.getElementById(\'cboldptid' . $i . '\').checked=true"' . $append,
 						'value','text',$selectedvalue);
 				?>
@@ -63,5 +66,5 @@ defined('_JEXEC') or die;
 	</fieldset>
 	<input type="hidden" name="task" value="" />
 	<input type="hidden" name="boxchecked" value="0" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

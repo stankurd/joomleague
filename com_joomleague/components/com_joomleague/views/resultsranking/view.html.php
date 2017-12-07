@@ -11,6 +11,7 @@ jimport('joomla.html.pane');
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\HTML\HTMLHelper;
 /**
  * View-ResultsRanking
  */
@@ -139,9 +140,9 @@ class JoomleagueViewResultsranking extends JoomleagueViewResults {
 		foreach ($rounds as $r)
 		{
 			$link = JoomleagueHelperRoute::getResultsRankingRoute($this->project->slug, $r->id, $division_id);
-			$options[] = JHtml::_('select.option', $link, $r->roundcode);
+			$options[] = HTMLHelper::_('select.option', $link, $r->roundcode);
 		}
-		return JHtml::_('select.genericlist', $options, 'select-round', 'onchange="joomleague_changedoc(this);"',	'value', 'text', $currentUrl);
+		return HTMLHelper::_('select.genericlist', $options, 'select-round', 'onchange="joomleague_changedoc(this);"',	'value', 'text', $currentUrl);
 	}
 	
 }

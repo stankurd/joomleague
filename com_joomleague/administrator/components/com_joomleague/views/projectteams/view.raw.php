@@ -6,6 +6,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 /**
@@ -22,12 +24,12 @@ class JoomleagueViewProjectteams extends JLGView
 	 */
 	function display($tpl = null)
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 		$jinput = $app->input;
 		$pid = $jinput->getInt('p');
 		
 		// Get some data from the model
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		$db->setQuery(
 				"	SELECT CASE WHEN CHAR_LENGTH(t.alias) THEN CONCAT_WS(':', t.id, t.alias) ELSE t.id END AS value,
 									t.name AS text

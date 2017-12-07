@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\Archive\Archive;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 
 defined('_JEXEC') or die;
@@ -81,7 +82,7 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 		// Check for request forgeries
 		Session::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
 		$msg='';
-		JLToolBarHelper::back(JText::_('COM_JOOMLEAGUE_GLOBAL_BACK'),JRoute::_('index.php?option=com_joomleague&task=jlxmlimport.display'));
+		JLToolBarHelper::back(JText::_('COM_JOOMLEAGUE_GLOBAL_BACK'),Route::_('index.php?option=com_joomleague&task=jlxmlimport.display'));
 		$input = $app->input;
 		$post=$input->post->getArray();
 
@@ -169,7 +170,7 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 	public function insert()
 	{
 		$app = Factory::getApplication();
-		JLToolBarHelper::back(JText::_('COM_JOOMLEAGUE_GLOBAL_BACK'),JRoute::_('index.php?option=com_joomleague'));
+		JLToolBarHelper::back(JText::_('COM_JOOMLEAGUE_GLOBAL_BACK'),Route::_('index.php?option=com_joomleague'));
 		$input = $app->input;
 		$post=$input->post->getArray();
 

@@ -9,6 +9,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
  
@@ -37,19 +38,19 @@ class JFormFieldTemplatelist extends FormField
 					continue;
 				}
 			}
-			$options[] = JHtml::_('select.option', $folder, $folder);
+			$options[] = HTMLHelper::_('select.option', $folder, $folder);
 		}
 		
 		$lang = Factory::getLanguage();
 		$lang->load("com_joomleague", JPATH_ADMINISTRATOR);
 		if (!$this->element['hide_none'])
 		{
-			array_unshift($options, JHtml::_('select.option', '-1', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DO_NOT_USE')));
+			array_unshift($options, HTMLHelper::_('select.option', '-1', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DO_NOT_USE')));
 		}
 		
 		if (!$this->element['hide_default'])
 		{
-			array_unshift($options, JHtml::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_USE_DEFAULT')));
+			array_unshift($options, HTMLHelper::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_USE_DEFAULT')));
 		}
 		
 		$doc = Factory::getDocument();
@@ -87,7 +88,7 @@ class JFormFieldTemplatelist extends FormField
 		$select = '<table>'
 				. '<tr>'
 				. '<td>'
-				. JHtml::_('select.genericlist',  $options, $this->name,
+				. HTMLHelper::_('select.genericlist',  $options, $this->name,
 						   'class="inputbox" onchange="$(\'TemplateImage\').src=\''
 				           .$app->getCfg('live_site')
 						   .'/modules/mod_joomleague_matches/tmpl/\'+this.options[this.selectedIndex].value+\'/template.png\';"', 
@@ -98,7 +99,7 @@ class JFormFieldTemplatelist extends FormField
 				. '</tr>'
 				. '<tr>'
 				. '<td style="text-align:right;background-color:grey;padding:4px;margin:20px;width:200px;height:150px;">'
-				. JHtml::_('image','modules/mod_joomleague_matches/tmpl/'.$this->value.'/template.png', 
+				. HTMLHelper::_('image','modules/mod_joomleague_matches/tmpl/'.$this->value.'/template.png', 
 						   'TemplateImage', 'id="TemplateImage" width="200"')
 			    . '</td>'
 			    . '</tr>'

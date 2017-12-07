@@ -1,6 +1,7 @@
 <?php
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Router\Route;
 use Joomla\Utilities\ArrayHelper;
 
 /**
@@ -59,7 +60,7 @@ class JoomleagueControllerMatches extends JLGControllerAdmin
 	 */
 	public function massadd()
 	{
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=matches&massadd=1',false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view=matches&massadd=1',false));
 	}
 	
 	
@@ -68,7 +69,7 @@ class JoomleagueControllerMatches extends JLGControllerAdmin
 	 */
 	public function cancelmassadd()
 	{
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=matches',false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view=matches',false));
 	}
 	
 	

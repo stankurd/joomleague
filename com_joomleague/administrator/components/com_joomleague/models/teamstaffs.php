@@ -64,8 +64,8 @@ class JoomleagueModelTeamStaffs extends JLGModelList
 	protected function getListQuery()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option.'project');
 		$projectteam_id = $app->getUserState($option.'project_team_id');
 		$assign = $this->getState('filter.assign',false);
@@ -247,8 +247,8 @@ class JoomleagueModelTeamStaffs extends JLGModelList
 	function getDivisions()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option.'project');
 
 		$db = Factory::getDbo();
@@ -280,8 +280,8 @@ class JoomleagueModelTeamStaffs extends JLGModelList
 	function getPositions()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option.'project');
 
 		$db = Factory::getDbo();

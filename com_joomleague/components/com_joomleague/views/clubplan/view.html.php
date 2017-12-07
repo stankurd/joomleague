@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -84,7 +85,7 @@ class JoomleagueViewClubPlan extends JLGView
 
 		// add the links
 		$document = Factory::getDocument();
-		$document->addHeadLink(JRoute::_($feed.'&type=rss'),'alternate','rel',$rss);
+		$document->addHeadLink(Route::_($feed.'&type=rss'),'alternate','rel',$rss);
 	}
 
 	function formatMatches($matches, $template, $noMatchesString)

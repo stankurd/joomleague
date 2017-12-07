@@ -58,8 +58,8 @@ class JoomleagueModelProjectpositions extends JLGModelList
 	protected function getListQuery()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option.'project');
 
 		// Query

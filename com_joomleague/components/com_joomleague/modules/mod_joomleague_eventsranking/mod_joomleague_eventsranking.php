@@ -9,6 +9,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Helper\ModuleHelper;
 
 defined('_JEXEC') or die;
 
@@ -24,4 +25,4 @@ $list = modJLGEventsrankingHelper::getData($params);
 $document = Factory::getDocument();
 $document->addStyleSheet(Uri::base().'modules/mod_joomleague_eventsranking/css/mod_joomleague_eventsranking.css');
 
-require JModuleHelper::getLayoutPath('mod_joomleague_eventsranking', $params->get('layout', 'default'));
+require ModuleHelper::getLayoutPath('mod_joomleague_eventsranking', $params->get('layout', 'default'));

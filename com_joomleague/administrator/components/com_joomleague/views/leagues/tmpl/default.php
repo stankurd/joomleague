@@ -7,12 +7,14 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 
 $app = Factory::getApplication();
 $user = Factory::getUser();
@@ -25,10 +27,10 @@ $saveOrder = $listOrder == 'a.ordering';
 if($saveOrder)
 {
 	$saveOrderingUrl = 'index.php?option=com_joomleague&task=leagues.saveOrderAjax&tmpl=component';
-	JHtml::_('sortablelist.sortable','leagueList','adminForm',strtolower($listDirn),$saveOrderingUrl);
+	HTMLHelper::_('sortablelist.sortable','leagueList','adminForm',strtolower($listDirn),$saveOrderingUrl);
 }
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_joomleague&view=leagues'); ?>" method="post" id="adminForm" name="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_joomleague&view=leagues'); ?>" method="post" id="adminForm" name="adminForm">
 	<div id="j-main-container" class="j-main-container">
 	<?php
 	// Search tools bar
@@ -45,25 +47,25 @@ if($saveOrder)
 		<thead>
 			<tr>
 				<th width="1%">
-					<?php echo JHtml::_('searchtools.sort', '', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
+					<?php echo HTMLHelper::_('searchtools.sort', '', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
 				</th>
 				<th width="1%" class="center">
-					<?php echo JHtml::_('grid.checkall'); ?>
+					<?php echo HTMLHelper::_('grid.checkall'); ?>
 				</th>
 				<th width="20">
 					&nbsp;
 				</th>
 				<th>
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_LEAGUES_NAME','a.name',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_LEAGUES_NAME','a.name',$listDirn, $listOrder);?>
 				</th>
 				<th>
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_LEAGUES_SHORT_NAME','a.short_name',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_LEAGUES_SHORT_NAME','a.short_name',$listDirn, $listOrder);?>
 				</th>
 				<th width="10%" class="center">
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_LEAGUES_COUNTRY','a.country',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_LEAGUES_COUNTRY','a.country',$listDirn, $listOrder);?>
 				</th>
 				<th width="1%">
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder); ?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder); ?>
 				</th>
 			</tr>
 		</thead>
@@ -71,8 +73,8 @@ if($saveOrder)
 		<?php
 		$n = count($this->items);
 		foreach($this->items as $i=>$row):
-			$link = JRoute::_('index.php?option=com_joomleague&task=league.edit&id='.$row->id);
-			$checked = JHtml::_('grid.checkedout',$row,$i);
+			$link = Route::_('index.php?option=com_joomleague&task=league.edit&id='.$row->id);
+			$checked = HTMLHelper::_('grid.checkedout',$row,$i);
 
 			$canEdit = $user->authorise('core.edit','com_joomleague.league.'.$row->id);
 			$canCheckin = $user->authorise('core.manage','com_checkin') || $row->checked_out == $userId || $row->checked_out == 0;
@@ -86,7 +88,7 @@ if($saveOrder)
 				if (!$canChange) {
 					$iconClass = ' inactive';
 				} elseif (!$saveOrder) {
-					$iconClass = ' inactive tip-top hasTooltip" title="' . JHtml::tooltipText ('JORDERINGDISABLED');
+					$iconClass = ' inactive tip-top hasTooltip" title="' . HTMLHelper::tooltipText ('JORDERINGDISABLED');
 				}
 				?>
 					<span class="sortable-handler<?php echo $iconClass ?>"><span class="icon-menu"></span></span>
@@ -111,7 +113,7 @@ if($saveOrder)
 					<a href="<?php echo $link; ?>">
 					<?php
 						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_LEAGUES_EDIT_DETAILS');
-						echo JHtml::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "' . $imageTitle . '"');
+						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "' . $imageTitle . '"');
 					?>
 					</a>
 				</td>
@@ -134,6 +136,6 @@ if($saveOrder)
 	<?php endif; ?>
 	<input type="hidden" name="task" value="" />
 	<input type="hidden" name="boxchecked" value="0" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 	</div>
 </form>

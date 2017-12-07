@@ -8,11 +8,10 @@
  */
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
-
-JHtml::_('bootstrap.tooltip');
-JHtml::_('script', 'administrator/components/com_joomleague/assets/js/template.js');
 
 ?>
 
@@ -25,7 +24,7 @@ JHtml::_('script', 'administrator/components/com_joomleague/assets/js/template.j
 	}
 	-->
 </style>
-<form action="<?php echo JRoute::_('index.php?option=com_joomleague&view=template') ?>" method="post" id="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_joomleague&view=template') ?>" method="post" id="adminForm">
 	<div class="col50" id="template">
 		<div style='text-align: right;'>
 			<?php echo $this->lists['templates']; ?>
@@ -49,11 +48,11 @@ JHtml::_('script', 'administrator/components/com_joomleague/assets/js/template.j
 		<?php
 		$selector = 'template';
 		$i = 1;
-		echo JHtml::_('bootstrap.startTabSet', $selector, array('active'=>'tab'.$i));
+		echo HTMLHelper::_('bootstrap.startTabSet', $selector, array('active'=>'tab'.$i));
         $fieldSets = $this->form->getFieldsets();
         foreach ($fieldSets as $name => $fieldSet) :
             $label = $fieldSet->name;
-			echo JHtml::_('bootstrap.addTab', $selector, "tab".$i, JText::_($label));
+			echo HTMLHelper::_('bootstrap.addTab', $selector, "tab".$i, JText::_($label));
         	$i++
 			?>
 			<fieldset class="form-vertical">
@@ -74,10 +73,10 @@ JHtml::_('script', 'administrator/components/com_joomleague/assets/js/template.j
 				<?php endforeach; ?>
 				
 			</fieldset>
-			<?php echo JHtml::_('bootstrap.endTab'); ?>
+			<?php echo HTMLHelper::_('bootstrap.endTab'); ?>
     		<div class="clearfix"></div>
     	<?php endforeach; ?>
-    	<?php echo JHtml::_('bootstrap.endTabSet'); ?>
+    	<?php echo HTMLHelper::_('bootstrap.endTabSet'); ?>
 		</fieldset>
     </div>
     <div>		
@@ -85,6 +84,6 @@ JHtml::_('script', 'administrator/components/com_joomleague/assets/js/template.j
 		<input type='hidden' name='user_id' value='<?php echo $this->user->id; ?>'/>
 		<input type="hidden" name="cid[]" value="<?php echo $this->template->id; ?>"/>
 		<input type="hidden" name="task" value=""/>
-		<?php echo JHtml::_('form.token'); ?>
+		<?php echo HTMLHelper::_('form.token'); ?>
 	</div>
 </form>

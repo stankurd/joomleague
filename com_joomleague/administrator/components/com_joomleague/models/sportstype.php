@@ -271,7 +271,7 @@ class JoomleagueModelSportsType extends JLGModelItem
 	public function save($data)
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 	
 		if(parent::save($data))
 		{

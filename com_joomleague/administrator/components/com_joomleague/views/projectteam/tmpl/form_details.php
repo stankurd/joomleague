@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Joomleague
  *
@@ -26,7 +28,7 @@ defined('_JEXEC') or die;
 		{
 			$inputappend = ' style="background-color:#bbffff"';
 		}
-		echo JHtml::_('select.genericlist',$this->lists['divisions'],'division_id',$inputappend . 'class="inputbox" size="1"','value','text',
+		echo HTMLHelper::_('select.genericlist',$this->lists['divisions'],'division_id',$inputappend . 'class="inputbox" size="1"','value','text',
 				$this->item->division_id);
 		?>
 		</div>

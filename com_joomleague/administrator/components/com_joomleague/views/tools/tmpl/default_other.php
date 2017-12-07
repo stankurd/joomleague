@@ -6,9 +6,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
+
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 ?>
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm3" name="adminForm3">
 	<fieldset class="form-horizontal">
@@ -44,7 +47,7 @@ JHtml::_('behavior.tooltip');
 				<tr>
 					<td class="nowrap" valign="top">
 						<?php
-						$link = JRoute::_( 'index.php?option=com_joomleague&task=tools.cleancache' );
+						$link = Route::_( 'index.php?option=com_joomleague&task=tools.cleancache' );
 						?>
 						<a href="<?php echo $link; ?>" title="<?php echo JText::_( 'COM_JOOMLEAGUE_MDL_TOOLS_CLEANCACHE' ); ?>">
 							<?php
@@ -61,7 +64,7 @@ JHtml::_('behavior.tooltip');
 				<tr>
 					<td class="nowrap" valign="top">
 						<?php
-						$link = JRoute::_('index.php?option=com_joomleague&task=tools.removelanguagefiles');
+						$link = Route::_('index.php?option=com_joomleague&task=tools.removelanguagefiles');
 						?>
 						<a href="<?php echo $link; ?>" title="<?php echo JText::_( 'COM_JOOMLEAGUE_MDL_TOOLS_LANGUAGEFILES_REMOVE' ); ?>">
 							<?php
@@ -78,7 +81,7 @@ JHtml::_('behavior.tooltip');
 				<tr>
 					<td class="nowrap" valign="top">
 						<?php
-						$link = JRoute::_('index.php?option=com_joomleague&task=tools.clearuserstate');
+						$link = Route::_('index.php?option=com_joomleague&task=tools.clearuserstate');
 						?>
 						<a href="<?php echo $link; ?>" title="<?php echo JText::_('Clear Userstate'); ?>">
 							<?php
@@ -97,5 +100,5 @@ JHtml::_('behavior.tooltip');
 	</div>
 
 	<input type="hidden" name="task" value="" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

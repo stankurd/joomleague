@@ -9,6 +9,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Helper\ModuleHelper;
 
 defined('_JEXEC') or die;
 
@@ -31,4 +32,4 @@ $teamselect		= $helper->getTeamSelect();
 $defaultview   = $params->get('project_start');
 $defaultitemid = $params->get('custom_item_id');
 
-require JModuleHelper::getLayoutPath('mod_joomleague_navigation_menu');
+require ModuleHelper::getLayoutPath('mod_joomleague_navigation_menu', $params->get('layout', 'default'));

@@ -1,4 +1,8 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
+?>
 <table width='96%' align='center' border='0' cellpadding='0' cellspacing='0' class='venueinfo'>
 	<tr class='sectiontableheader'>
 		<th colspan='2'><?php echo JText::_('COM_JOOMLEAGUE_PLAYGROUND_DATA'); ?></th>
@@ -30,7 +34,7 @@
 	<?php if ($this->playground->website): ?>
 	<tr>
 		<th class='td_r' width='30%'><?php echo JText::_('COM_JOOMLEAGUE_PLAYGROUND_WEBSITE'); ?></th>
-		<td><?php echo JHtml::link($this->playground->website, $this->playground->website, array('target' => '_blank')); ?></td>
+		<td><?php echo HTMLHelper::link($this->playground->website, $this->playground->website, array('target' => '_blank')); ?></td>
 	</tr>
 	<?php endif; ?>
 

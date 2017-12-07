@@ -8,6 +8,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -78,7 +79,7 @@ class modJoomleagueNavigationMenuHelper {
 	 */
 	public function getSeasonSelect()
 	{
-		$options = array(JHtml::_('select.option', 0, JText::_($this->getParam('seasons_text'))));
+		$options = array(HTMLHelper::_('select.option', 0, JText::_($this->getParam('seasons_text'))));
 		$query = ' SELECT s.id AS value, s.name AS text '
 				. ' FROM #__joomleague_season AS s '
 				. ' ORDER BY s.name DESC'
@@ -88,7 +89,7 @@ class modJoomleagueNavigationMenuHelper {
 		if ($res) {
 			$options = array_merge($options, $res);
 		}
-		return JHtml::_('select.genericlist', $options, 's', 'class="jlnav-select"', 'value', 'text', $this->getSeasonId());
+		return HTMLHelper::_('select.genericlist', $options, 's', 'class="jlnav-select"', 'value', 'text', $this->getSeasonId());
 	}	
 	
 	/**
@@ -103,7 +104,7 @@ class modJoomleagueNavigationMenuHelper {
 		if(!$this->_project_id && !($this->_project_id>0) && $project->project_type!='DIVISION_LEAGUE') {
 			return false;
 		}
-		$options = array(JHtml::_('select.option', 0, JText::_($this->getParam('divisions_text'))));
+		$options = array(HTMLHelper::_('select.option', 0, JText::_($this->getParam('divisions_text'))));
 		$query = ' SELECT d.id AS value, d.name AS text ' 
 		       . ' FROM #__joomleague_division AS d ' 
 		       . ' WHERE d.project_id = ' .  $project->id 
@@ -115,7 +116,7 @@ class modJoomleagueNavigationMenuHelper {
 		if ($res) {
 			$options = array_merge($options, $res);
 		}
-		return JHtml::_('select.genericlist', $options, 'd', 'class="jlnav-division"', 'value', 'text', $this->getDivisionId());
+		return HTMLHelper::_('select.genericlist', $options, 'd', 'class="jlnav-division"', 'value', 'text', $this->getDivisionId());
 	}
 	
 	/**
@@ -125,7 +126,7 @@ class modJoomleagueNavigationMenuHelper {
 	 */
 	public function getLeagueSelect()
 	{		
-		$options = array(JHtml::_('select.option', 0, JText::_($this->getParam('leagues_text'))));
+		$options = array(HTMLHelper::_('select.option', 0, JText::_($this->getParam('leagues_text'))));
 		$query = ' SELECT id AS value, name AS text ' 
 		       . ' FROM #__joomleague_league AS l ' 
 		       ;
@@ -134,7 +135,7 @@ class modJoomleagueNavigationMenuHelper {
 		if ($res) {
 			$options = array_merge($options, $res);
 		}
-		return JHtml::_('select.genericlist', $options, 'l', 'class="jlnav-select"', 'value', 'text', $this->getLeagueId());
+		return HTMLHelper::_('select.genericlist', $options, 'l', 'class="jlnav-select"', 'value', 'text', $this->getLeagueId());
 	}
 
 	/**
@@ -144,7 +145,7 @@ class modJoomleagueNavigationMenuHelper {
 	 */
 	public function getProjectSelect()
 	{
-		$options = array(JHtml::_('select.option', 0, JText::_($this->getParam('text_project_dropdown'))));
+		$options = array(HTMLHelper::_('select.option', 0, JText::_($this->getParam('text_project_dropdown'))));
 		$query_base = ' SELECT p.id AS value, p.name AS text, s.name AS season_name, st.name as sports_type_name ' 
 		       . ' FROM #__joomleague_project AS p ' 
 		       . ' INNER JOIN #__joomleague_season AS s on s.id = p.season_id '
@@ -205,14 +206,14 @@ class modJoomleagueNavigationMenuHelper {
 					foreach ($res as $p)
 					{
 						$stText = ($this->getParam('project_include_sports_type_name', 0) ==1) ? ' ('.JText::_($p->sports_type_name). ')': '';
-						$options[] = JHtml::_('select.option', $p->value, $p->text.' - '.$p->season_name . $stText);
+						$options[] = HTMLHelper::_('select.option', $p->value, $p->text.' - '.$p->season_name . $stText);
 					}
 					break;
 				case 1:
 					foreach ($res as $p)
 					{
 						$stText = ($this->getParam('project_include_sports_type_name', 0) ==1) ? ' ('.JText::_($p->sports_type_name). ')': '';
-						$options[] = JHtml::_('select.option', $p->value, $p->season_name .' - '. $p->text. $stText);
+						$options[] = HTMLHelper::_('select.option', $p->value, $p->season_name .' - '. $p->text. $stText);
 					}
 					break;
 				case 0:
@@ -220,11 +221,11 @@ class modJoomleagueNavigationMenuHelper {
 					foreach ($res as $p)
 					{
 						$stText = ($this->getParam('project_include_sports_type_name', 0) ==1) ? ' ('.JText::_($p->sports_type_name). ')': '';
-						$options[] = JHtml::_('select.option', $p->value, $p->text. $stText);
+						$options[] = HTMLHelper::_('select.option', $p->value, $p->text. $stText);
 					}
 				}
 		}
-		return JHtml::_('select.genericlist', $options, 'p', 'class="jlnav-project"', 'value', 'text', $this->_project_id);		
+		return HTMLHelper::_('select.genericlist', $options, 'p', 'class="jlnav-project"', 'value', 'text', $this->_project_id);		
 	}
 
 	/**
@@ -237,13 +238,13 @@ class modJoomleagueNavigationMenuHelper {
 		if (!$this->_project_id) {
 			return false;
 		}
-		$options = array(JHtml::_('select.option', 0, JText::_($this->getParam('text_teams_dropdown'))));
+		$options = array(HTMLHelper::_('select.option', 0, JText::_($this->getParam('text_teams_dropdown'))));
 		$res = $this->getTeamsOptions();
 		if ($res) 
 		{
 			$options = array_merge($options, $res);
 		}
-		return JHtml::_('select.genericlist', $options, 'tid', 'class="jlnav-team"', 'value', 'text', $this->getTeamId());		
+		return HTMLHelper::_('select.genericlist', $options, 'tid', 'class="jlnav-team"', 'value', 'text', $this->getTeamId());		
 	}
 	
 	/**

@@ -7,35 +7,38 @@
  * @link		http://www.joomleague.at
  */
 
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
+
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 ?>
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm" name="adminForm">
 	<div class="j-main-container">	
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th class="title" class="nowrap"><?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_UPDATES_FILE','name',$this->lists['order_Dir'],$this->lists['order']); ?></th>
+				<th class="title" class="nowrap"><?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_UPDATES_FILE','name',$this->lists['order_Dir'],$this->lists['order']); ?></th>
 				<th class="title" class="nowrap"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_UPDATES_DESCR'); ?></th>
-				<th class="title" class="nowrap"><?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_UPDATES_VERSION','version',$this->lists['order_Dir'],$this->lists['order']); ?></th>
-				<th class="title" class="nowrap"><?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_UPDATES_DATE','date',$this->lists['order_Dir'],$this->lists['order']); ?></th>
+				<th class="title" class="nowrap"><?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_UPDATES_VERSION','version',$this->lists['order_Dir'],$this->lists['order']); ?></th>
+				<th class="title" class="nowrap"><?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_UPDATES_DATE','date',$this->lists['order_Dir'],$this->lists['order']); ?></th>
 				<th class="title" class="nowrap"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_UPDATES_EXECUTED'); ?></th>
 				<th class="title" class="nowrap"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_UPDATES_COUNT');?></th>
 			</tr>
 		</thead>
-		<tfoot><tr><td colspan='7'><?php echo '&nbsp;'; ?></td></tr></tfoot>
+		<tfoot><tr><td col-md-7><?php echo '&nbsp;'; ?></td></tr></tfoot>
 		<tbody>
 		<?php
 		$n = count($this->items);
 		foreach ($this->items as $i => $row) :
-			$link=JRoute::_('index.php?option=com_joomleague&view=updates&task=update.update&file_name='.$row['file_name']);
+			$link = Route::_('index.php?option=com_joomleague&view=updates&task=update.update&file_name='.$row['file_name']);
 			?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td><?php
 					$linkTitle=$row['file_name'];
 					$linkParams="title='".JText::_('COM_JOOMLEAGUE_ADMIN_UPDATES_MAKE_UPDATE')."'";
-					echo JHtml::link($link,$linkTitle,$linkParams);
+					echo HTMLHelper::link($link,$linkTitle,$linkParams);
 					?></td>
 				<td><?php
 					if($row['updateDescription'] != "")
@@ -61,5 +64,5 @@ JHtml::_('behavior.tooltip');
 	<input type="hidden" name="boxchecked" value="0" />
 	<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
 	<input type="hidden" name="filter_order_Dir" value="" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

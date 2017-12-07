@@ -9,6 +9,9 @@
  * 
  * @author		Wolfgang Pinitsch <andone@mfga.at>
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
 
@@ -32,7 +35,7 @@ abstract class modJLGTeamStaffsHelper
 		$t = $params->get('team');
 		$t = explode(":", $t);
 		$t = $t[0];
-		$db  = JFactory::getDbo();
+		$db  = Factory::getDbo();
 
 		$query = "SELECT tt.id AS id, t.name AS team_name
 					FROM #__joomleague_project_team tt
@@ -46,9 +49,9 @@ abstract class modJLGTeamStaffsHelper
 		$team_name     = $result[1];
 		
 
-		JRequest::setVar( 'p', $p );
-		JRequest::setVar( 'tid', $t);
-		JRequest::setVar( 'ttid', $projectteamid);
+		Factory::getApplication()->input->set( 'p', $p );
+		Factory::getApplication()->input->set( 'tid', $t);
+		Factory::getApplication()->input->set( 'ttid', $projectteamid);
 
 		if (!class_exists('JoomleagueModelRoster')) {
 			require_once JLG_PATH_SITE.'/models/roster.php';
@@ -89,7 +92,7 @@ abstract class modJLGTeamStaffsHelper
 			$link = JoomleagueHelperRoute::getStaffRoute($params->get('p'), 
 															$params->get('team'), 
 															$item->slug );
-			echo $flag . JHtml::link($link, $text);
+			echo $flag . HTMLHelper::link($link, $text);
 		}
 		else
 		{

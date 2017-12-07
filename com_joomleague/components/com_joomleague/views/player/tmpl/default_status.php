@@ -1,10 +1,14 @@
-<?php defined( '_JEXEC' ) or die( 'Restricted access' );
+<?php
+
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined( '_JEXEC' ) or die( 'Restricted access' );
 
 if (	( isset($this->teamPlayer->injury) && $this->teamPlayer->injury > 0 ) ||
 		( isset($this->teamPlayer->suspension) && $this->teamPlayer->suspension > 0 ) ||
 		( isset($this->teamPlayer->away) && $this->teamPlayer->away > 0 ) )
 {
-	$today = JHtml::date('now' .' UTC',
+	$today = HTMLHelper::date('now' .' UTC',
 						JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 						JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 	?>
@@ -17,14 +21,14 @@ if (	( isset($this->teamPlayer->injury) && $this->teamPlayer->injury > 0 ) ||
 			$injury_date = "";
 			$injury_end  = "";
 
-			$injury_date = JHtml::date($this->teamPlayer->injury_date .' UTC',
+			$injury_date = HTMLHelper::date($this->teamPlayer->injury_date .' UTC',
 										JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 										JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 			if(isset($this->teamPlayer->rinjury_from))
 			$injury_date .= " - ".$this->teamPlayer->rinjury_from;
 
 			//injury end
-			$injury_end = JHtml::date($this->teamPlayer->injury_end .' UTC',
+			$injury_end = HTMLHelper::date($this->teamPlayer->injury_end .' UTC',
 										JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 										JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 			if(isset($this->teamPlayer->rinjury_to))
@@ -37,7 +41,7 @@ if (	( isset($this->teamPlayer->injury) && $this->teamPlayer->injury > 0 ) ||
 					<td class="label">
 							<?php
 							$imageTitle = JText::_( 'COM_JOOMLEAGUE_PERSON_INJURED' );
-							echo "&nbsp;&nbsp;" . JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/injured.gif',
+							echo "&nbsp;&nbsp;" . HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/injured.gif',
 																$imageTitle,
 																array( 'title' => $imageTitle,
 																	   'style' => 'padding-right: 10px; vertical-align: middle;' ) );
@@ -62,7 +66,7 @@ if (	( isset($this->teamPlayer->injury) && $this->teamPlayer->injury > 0 ) ||
 					<td class="label" colspan="2">
 							<?php
 							$imageTitle = JText::_( 'COM_JOOMLEAGUE_PERSON_INJURED' );
-							echo "&nbsp;&nbsp;" . JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/injured.gif',
+							echo "&nbsp;&nbsp;" . HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/injured.gif',
 																$imageTitle,
 																array( 'title' => $imageTitle ) );
 							?>
@@ -125,13 +129,13 @@ if (	( isset($this->teamPlayer->injury) && $this->teamPlayer->injury > 0 ) ||
 			$suspension_end  = "";
 
 			//suspension start
-			$suspension_date = JHtml::date($this->teamPlayer->suspension_date .' UTC',
+			$suspension_date = HTMLHelper::date($this->teamPlayer->suspension_date .' UTC',
 											JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 											JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 			if(isset($this->teamPlayer->rsusp_from))
 			$suspension_date .= " - ".$this->teamPlayer->rsusp_from;
 
-			$suspension_end = JHtml::date($this->teamPlayer->suspension_end .' UTC',
+			$suspension_end = HTMLHelper::date($this->teamPlayer->suspension_end .' UTC',
 											JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 											JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 			if(isset($this->teamPlayer->rsusp_to))
@@ -145,7 +149,7 @@ if (	( isset($this->teamPlayer->injury) && $this->teamPlayer->injury > 0 ) ||
 					<td class="label">
 							<?php
 							$imageTitle = JText::_( 'Suspended' );
-							echo "&nbsp;&nbsp;" . JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/suspension.gif',
+							echo "&nbsp;&nbsp;" . HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/suspension.gif',
 																$imageTitle,
 																array( 'title' => $imageTitle,
 																	   'style' => 'padding-right: 10px; vertical-align: middle;' ) );
@@ -170,7 +174,7 @@ if (	( isset($this->teamPlayer->injury) && $this->teamPlayer->injury > 0 ) ||
 					<td class="label" colspan="2">
 							<?php
 							$imageTitle = JText::_( 'Suspended' );
-							echo "&nbsp;&nbsp;" . JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/suspension.gif',
+							echo "&nbsp;&nbsp;" . HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/suspension.gif',
 																$imageTitle,
 																array( 'title' => $imageTitle ) );
 							?>
@@ -235,13 +239,13 @@ if (	( isset($this->teamPlayer->injury) && $this->teamPlayer->injury > 0 ) ||
 			$away_end  = "";
 
 			//suspension start
-			$away_date = JHtml::date($this->teamPlayer->away_date .' UTC',
+			$away_date = HTMLHelper::date($this->teamPlayer->away_date .' UTC',
 										JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 										JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 			if(isset($this->teamPlayer->raway_from))
 			$away_date .= " - ".$this->teamPlayer->raway_from;
 
-			$away_end = JHtml::date($this->teamPlayer->away_end .' UTC',
+			$away_end = HTMLHelper::date($this->teamPlayer->away_end .' UTC',
 									JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 									JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 			if(isset($this->teamPlayer->raway_to))
@@ -254,7 +258,7 @@ if (	( isset($this->teamPlayer->injury) && $this->teamPlayer->injury > 0 ) ||
 					<td class="label">
 							<?php
 							$imageTitle = JText::_( 'Away' );
-							echo "&nbsp;&nbsp;" . JHtml::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/away.gif',
+							echo "&nbsp;&nbsp;" . HTMLHelper::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/away.gif',
 																$imageTitle,
 																array( 'title' => $imageTitle,
 																	   'style' => 'padding-right: 10px; vertical-align: middle;' ) );
@@ -279,7 +283,7 @@ if (	( isset($this->teamPlayer->injury) && $this->teamPlayer->injury > 0 ) ||
 					<td class="label" colspan="2">
 							<?php
 							$imageTitle = JText::_( 'Away' );
-							echo "&nbsp;&nbsp;" . JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/away.gif',
+							echo "&nbsp;&nbsp;" . HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/away.gif',
 																$imageTitle,
 																array( 'title' => $imageTitle ) );
 							?>

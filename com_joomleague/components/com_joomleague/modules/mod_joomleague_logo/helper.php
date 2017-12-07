@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
 /**
@@ -58,7 +60,7 @@ abstract class modJLGLogoHelper
 			{
 				$picture = JoomleagueHelper::getDefaultPlaceholder('clublogosmall'); 
 			}
-			echo JHtml::image($picture, $item->team_name,'class="logo_small" title="View '.$item->team_name.'"');
+			echo HTMLHelper::image($picture, $item->team_name,'class="logo_small" title="View '.$item->team_name.'"');
 				
 		}
 		else if ($type == 1) // club medium logo
@@ -68,7 +70,7 @@ abstract class modJLGLogoHelper
 			{
 				$picture = JoomleagueHelper::getDefaultPlaceholder('clublogomedium'); 
 			}
-			echo JHtml::image($picture, $item->team_name,'class="logo_middle" title="View '.$item->team_name.'"');
+			echo HTMLHelper::image($picture, $item->team_name,'class="logo_middle" title="View '.$item->team_name.'"');
 
 		}
 		else if ($type == 2 ) // club big logo
@@ -78,7 +80,7 @@ abstract class modJLGLogoHelper
 			{
 				$picture = JoomleagueHelper::getDefaultPlaceholder('clublogobig'); 
 			}
-			echo JHtml::image($picture, $item->team_name,'class="logo_big" title="View '.$item->team_name.'"');
+			echo HTMLHelper::image($picture, $item->team_name,'class="logo_big" title="View '.$item->team_name.'"');
 		}
 		else if ($type == 3 ) // team logo
 		{
@@ -87,7 +89,7 @@ abstract class modJLGLogoHelper
 			{
 				$picture = JoomleagueHelper::getDefaultPlaceholder('team');
 			}
-			echo JHtml::image($picture, $item->team_name,'class="team_picture" title="View '.$item->team_name.'"');
+			echo HTMLHelper::image($picture, $item->team_name,'class="team_picture" title="View '.$item->team_name.'"');
 		}
 		else if ($type == 4 ) // projectteam logo
 		{
@@ -96,7 +98,7 @@ abstract class modJLGLogoHelper
 			{
 				$picture = JoomleagueHelper::getDefaultPlaceholder('team'); 
 			}
-			echo JHtml::image($picture, $item->team_name,'class="projecteam_picture" title="View '.$item->team_name.'"');
+			echo HTMLHelper::image($picture, $item->team_name,'class="projecteam_picture" title="View '.$item->team_name.'"');
 		}
 		return '';
 	}

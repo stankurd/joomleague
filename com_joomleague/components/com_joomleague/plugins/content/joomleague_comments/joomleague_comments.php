@@ -12,9 +12,10 @@ defined('_JEXEC') or die;
 
 use Joomla\Registry\Registry;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Plugin\PluginHelper;
 
-class plgContentJoomleague_Comments extends PluginHelper {
+class plgContentJoomleague_Comments extends CMSPlugin {
 
 	public $params = null;
 	
@@ -23,7 +24,7 @@ class plgContentJoomleague_Comments extends PluginHelper {
 		$app = Factory::getApplication();
 		$jcomments_exists = file_exists(JPATH_SITE.'/components/com_jcomments/jcomments.php');
 		
-		if (!$jcomments_exists && $app->isSite()) {
+		if (!$jcomments_exists && $app->isClient('site')) {
 			return false;
 		}
 		
@@ -44,7 +45,7 @@ class plgContentJoomleague_Comments extends PluginHelper {
 		}
 		
 		// load language file for frontend
-		PluginHelper::load('plg_joomleague_comments', JPATH_ADMINISTRATOR);
+		CMSPlugin::loadLanguage('plg_joomleague_comments', JPATH_ADMINISTRATOR);
 	}
 
 	/**

@@ -8,6 +8,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Utilities\ArrayHelper;
 
@@ -155,7 +156,7 @@ abstract class modMatchesHelper {
 	public function addteamicon($which) {
 		$path = ($this->iconpath) ? $this->iconpath . 'teamlinks/' : false;
 		if ($path) {
-			return JHtml :: _('image', $path . $which . '.png', $this->params->get($which . '_text'), 'title="' . $this->params->get($which . '_text') . '"');
+			return HTMLHelper :: _('image', $path . $which . '.png', $this->params->get($which . '_text'), 'title="' . $this->params->get($which . '_text') . '"');
 		} else {
 			return $this->params->get($which . '_text') . '<br />';
 		}
@@ -296,7 +297,7 @@ abstract class modMatchesHelper {
 		$row['notice'] = ($match->match_result_detail != '' && $this->params->get('show_match_notice') == 1) ? $match->match_result_detail : '';
 		if ($this->params->get('show_referee', 1) == 1 && $match->refname != '') {
 			$row['referee'] = '<span style="float:right;">';
-			$row['referee'] .= ($this->iconpath) ? JHtml :: _('image', $this->iconpath . 'referee.png', 'Referee', array (
+			$row['referee'] .= ($this->iconpath) ? HTMLHelper :: _('image', $this->iconpath . 'referee.png', 'Referee', array (
 				'title' => 'Referee',
 				'height' => '16',
 				'width' => '16'
@@ -307,7 +308,7 @@ abstract class modMatchesHelper {
 		}
 		if ($this->params->get('show_spectators', 1) == 1 && $match->crowd > 0) {
 			$row['spectators'] = '<span style="float:left;">';
-			$row['spectators'] .= ($this->iconpath) ? JHtml :: _('image', $this->iconpath . 'spectators.png', 'Spectators', array (
+			$row['spectators'] .= ($this->iconpath) ? HTMLHelper :: _('image', $this->iconpath . 'spectators.png', 'Spectators', array (
 				'title' => 'Spectators',
 				'height' => '16',
 				'width' => '16'
@@ -336,7 +337,7 @@ abstract class modMatchesHelper {
 		$hteam = false;
 		$ateam = false;
 		foreach ((array) $matches AS $key => $match) {
-			//echo 'NOW(): '.JHtml::_('date', $match->currenttime, $this->params->get('dateformat').' '.$this->params->get('timeformat'),0).'<br />';
+			//echo 'NOW(): '.HTMLHelper::_('date', $match->currenttime, $this->params->get('dateformat').' '.$this->params->get('timeformat'),0).'<br />';
 			if ($match->projectteam1_id) {
 				$hteam = $teams[$match->projectteam1_id];
 			}
@@ -364,7 +365,7 @@ abstract class modMatchesHelper {
 			}
 			$rows[$match->match_id]['date'] = JoomleagueHelper::getMatchDate($match, JText::_($this->params->get('dateformat')));
 			if ($useicons) {
-				$rows[$match->match_id]['date'] = JHtml::_('image', $this->iconpath . 'date.png', 'Datum', array (
+				$rows[$match->match_id]['date'] = HTMLHelper::_('image', $this->iconpath . 'date.png', 'Datum', array (
 						'title' => 'Datum',
 						'height' => '16',
 						'width' => '16'
@@ -374,7 +375,7 @@ abstract class modMatchesHelper {
 			$rows[$match->match_id]['time'] = JoomleagueHelper::getMatchTime($match, JText::_($this->params->get('timeformat')));
 
 			if ($useicons) {
-				$rows[$match->match_id]['time'] = JHtml :: _('image', $this->iconpath . 'time.png', 'Beginn', array (
+				$rows[$match->match_id]['time'] = HTMLHelper :: _('image', $this->iconpath . 'time.png', 'Beginn', array (
 						'title' => 'Beginn',
 						'height' => '16',
 						'width' => '16'
@@ -383,9 +384,9 @@ abstract class modMatchesHelper {
 			}
 
 			if (isset ($match->meeting)) {
-				$rows[$match->match_id]['meeting'] = JHtml :: _('date', $match->meetingtime, $this->params->get('timeformat'), null);
+				$rows[$match->match_id]['meeting'] = HTMLHelper :: _('date', $match->meetingtime, $this->params->get('timeformat'), null);
 				if ($useicons) {
-					$rows[$match->match_id]['meeting'] = JHtml :: _('image', $this->iconpath . 'time_go.png', 'Treffpunkt', array (
+					$rows[$match->match_id]['meeting'] = HTMLHelper :: _('image', $this->iconpath . 'time_go.png', 'Treffpunkt', array (
 							'title' => 'Treffpunkt',
 							'height' => '16',
 							'width' => '16'
@@ -460,7 +461,7 @@ abstract class modMatchesHelper {
 					$tmp['onclick'] = sprintf($jsfunc, $row->team1_id, $row->lasthome, $origin);
 					$alt = $tmp['title'];
 					if ($this->iconpath && $this->params->get('icons_for_ajax') == 1)
-					$temp .= JHtml :: _('image', $this->iconpath . 'page_prev.png', $alt, $tmp);
+					$temp .= HTMLHelper :: _('image', $this->iconpath . 'page_prev.png', $alt, $tmp);
 					else
 					$temp .= '<input type="button" class="' . $this->params->get('reset_class') . '" value="' . $this->params->get('last_text') . '" style="cursor:pointer;" onclick="' . $tmp['onclick'] . '" />';
 				}
@@ -470,7 +471,7 @@ abstract class modMatchesHelper {
 					$tmp['onclick'] = sprintf($jsfunc, $row->team1_id, $row->nexthome, $origin);
 					$alt = $tmp['title'];
 					if ($this->iconpath && $this->params->get('icons_for_ajax') == 1)
-					$temp .= JHtml :: _('image', $this->iconpath . 'page_next.png', $alt, $tmp);
+					$temp .= HTMLHelper :: _('image', $this->iconpath . 'page_next.png', $alt, $tmp);
 					else
 					$temp .= '<input type="button" class="' . $this->params->get('reset_class') . '" value="' . $this->params->get('next_text') . '" style="cursor:pointer;" onclick="' . $tmp['onclick'] . '" />';
 				}
@@ -484,7 +485,7 @@ abstract class modMatchesHelper {
 					$tmp['onclick'] = sprintf($jsfunc, $row->team2_id, $row->lastaway, $origin);
 					$alt = $tmp['title'];
 					if ($this->iconpath && $this->params->get('icons_for_ajax') == 1)
-					$temp .= JHtml :: _('image', $this->iconpath . 'page_prev.png', $alt, $tmp);
+					$temp .= HTMLHelper :: _('image', $this->iconpath . 'page_prev.png', $alt, $tmp);
 					else
 					$temp .= '<input type="button" class="' . $this->params->get('reset_class') . '" value="' . $this->params->get('last_text') . '" style="cursor:pointer;" onclick="' . $tmp['onclick'] . '" />';
 				}
@@ -494,7 +495,7 @@ abstract class modMatchesHelper {
 					$tmp['onclick'] = sprintf($jsfunc, $row->team2_id, $row->nextaway, $origin);
 					$alt = $tmp['title'];
 					if ($this->iconpath && $this->params->get('icons_for_ajax') == 1)
-					$temp .= JHtml :: _('image', $this->iconpath . 'page_next.png', $alt, $tmp);
+					$temp .= HTMLHelper :: _('image', $this->iconpath . 'page_next.png', $alt, $tmp);
 					else
 					$temp .= '<input type="button" class="' . $this->params->get('reset_class') . '" value="' . $this->params->get('next_text') . '" style="cursor:pointer;" onclick="' . $tmp['onclick'] . '" />';
 				}
@@ -507,7 +508,7 @@ abstract class modMatchesHelper {
 				$tmp['onclick'] = sprintf($jsfunc, '0', $origin, $origin);
 				$alt = $tmp['title'];
 				if ($this->iconpath && $this->params->get('icons_for_ajax') == 1)
-				$temp .= JHtml :: _('image', $this->iconpath . 'page_reset.png', $alt, $tmp);
+				$temp .= HTMLHelper :: _('image', $this->iconpath . 'page_reset.png', $alt, $tmp);
 				else
 				$temp .= '<input type="button" class="' . $this->params->get('reset_class') . '" value="' . $this->params->get('reset_text') . '" style="cursor:pointer;" onclick="' . $tmp['onclick'] . '" />';
 				$temp .= '</span>';

@@ -79,8 +79,8 @@ class JoomleagueModelProjects extends JLGModelList
 	protected function getListQuery()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
@@ -607,8 +607,8 @@ class JoomleagueModelProjects extends JLGModelList
 	function cpCopyProjectReferees($post)
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 
 		$old_id = (int) $post['old_id'];
 		$project_id = (int) $post['id'];

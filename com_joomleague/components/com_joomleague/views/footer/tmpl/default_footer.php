@@ -10,6 +10,7 @@
  */
 
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -20,9 +21,9 @@ if (ComponentHelper::getParams('com_joomleague')->get('show_footer',1))
 		<div class="copyright">
 			<?php
 			echo ' :: Powered by ';
-			echo JHtml::link('http://www.joomleague.at','JoomLeague',array('target' => '_blank'));
+			echo HTMLHelper::link('http://www.joomleague.at','JoomLeague',array('target' => '_blank'));
 			echo ' - ';
-			echo JHtml::link('index.php?option=com_joomleague&amp;view=about',sprintf('Version %1$s',JoomleagueHelper::getVersion()));
+			echo HTMLHelper::link('index.php?option=com_joomleague&amp;view=about',sprintf('Version %1$s',JoomleagueHelper::getVersion()));
 			echo ' :: ';
 			?>
 		</div>

@@ -61,7 +61,7 @@ class JoomleagueModelLeagues extends JLGModelList
 	protected function getListQuery()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 
 		// Create a new query object.
 		$db = $this->getDbo();

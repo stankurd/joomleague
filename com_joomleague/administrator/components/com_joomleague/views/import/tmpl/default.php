@@ -7,6 +7,8 @@
  * @link		http://www.joomleague.at
  */
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 ?>
 <script type="text/javascript">
@@ -72,7 +74,7 @@ window.addEvent('domready', function() {
 				</td>
 				<td>
 				<?php
-				echo JHtml::_('select.booleanlist', 'csv-replace', '', 0);
+				echo HTMLHelper::_('select.booleanlist', 'csv-replace', '', 0);
 				?>
 				</td>
 			</tr>
@@ -91,6 +93,6 @@ window.addEvent('domready', function() {
 	</fieldset>
 	<input type="hidden" name="option"		value="com_joomleague" />
 	<input type="hidden" name="task" id="task" value="import.import" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>
 </div>

@@ -6,10 +6,16 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Uri\Uri;
+
 defined('_JEXEC') or die;
 
-$app = JFactory::getApplication();
-$user = JFactory::getUser();
+$app = Factory::getApplication();
+$user = Factory::getUser();
 $userId = $user->get('id');
 $listOrder = $this->escape($this->state->get('list.ordering'));
 $listDirn = $this->escape($this->state->get('list.direction'));
@@ -19,7 +25,7 @@ $saveOrder = $listOrder == 'a.ordering';
 if($saveOrder)
 {
 	$saveOrderingUrl = 'index.php?option=com_joomleague&task=teamstaffs.saveOrderAjax&tmpl=component';
-	JHtml::_('sortablelist.sortable','teamstaffList','adminForm',strtolower($listDirn),$saveOrderingUrl);
+	HTMLHelper::_('sortablelist.sortable','teamstaffList','adminForm',strtolower($listDirn),$saveOrderingUrl);
 }
 ?>
 <script>
@@ -29,7 +35,7 @@ function searchPerson(val)
 	jQuery('#adminForm').submit();
 }
 </script>
-<form action="<?php echo JRoute::_('index.php?option=com_joomleague&view=teamstaffs&layout=assignplayers'); ?>" method="post" id="adminForm" name="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_joomleague&view=teamstaffs&layout=assignplayers'); ?>" method="post" id="adminForm" name="adminForm">
 	<fieldset class="adminform">
 		<legend>
 			<?php
@@ -40,7 +46,7 @@ function searchPerson(val)
 		<div class="clearfix">
 		<?php
 		// Search tools bar
-		echo JLayoutHelper::render('searchtools.default',array('view' => $this),JUri::root().'administrator/components/com_joomleague/layouts');
+		echo LayoutHelper::render('searchtools.default',array('view' => $this),Uri::root().'administrator/components/com_joomleague/layouts');
 		?>
 		<div class="clearfix">
 			<div class="btn-wrapper pull-right">
@@ -56,16 +62,16 @@ function searchPerson(val)
 				<thead>
 					<tr>
 						<th width="1%" class="center">
-							<?php echo JHtml::_('grid.checkall'); ?>
+							<?php echo HTMLHelper::_('grid.checkall'); ?>
 						</th>
 						<th>
-							<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_L_NAME','a.lastname',$listDirn, $listOrder); ?>
+							<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_L_NAME','a.lastname',$listDirn, $listOrder); ?>
 						</th>
 						<th>
-							<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_F_NAME','a.firstname',$listDirn, $listOrder); ?>
+							<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_F_NAME','a.firstname',$listDirn, $listOrder); ?>
 						</th>
 						<th>
-							<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_N_NAME','a.nickname',$listDirn, $listOrder); ?>
+							<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_N_NAME','a.nickname',$listDirn, $listOrder); ?>
 						</th>
 						<th>
 							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_INFO'); ?>
@@ -74,13 +80,13 @@ function searchPerson(val)
 							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_IMAGE'); ?>
 						</th>
 						<th class="center">
-							<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_BIRTHDAY','a.birthday',$listDirn, $listOrder); ?>
+							<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_BIRTHDAY','a.birthday',$listDirn, $listOrder); ?>
 						</th>
 						<th>
-							<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_NATIONALITY','a.country',$listDirn, $listOrder); ?>
+							<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_NATIONALITY','a.country',$listDirn, $listOrder); ?>
 						</th>
 						<th width="1%">
-							<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder); ?>
+							<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder); ?>
 						</th>
 					</tr>
 				</thead>
@@ -90,7 +96,7 @@ function searchPerson(val)
 					foreach($this->items as $i=>$row):
 					if(($row->firstname != '!Unknown') && ($row->lastname != '!Player')) // Ghostplayer for match-events
 					{
-						$checked = JHtml::_('grid.checkedout',$row,$i);
+						$checked = HTMLHelper::_('grid.checkedout',$row,$i);
 					?>
 					<tr class="row<?php echo $i % 2; ?>">
 						<td class="center"><?php echo $checked; ?></td>
@@ -105,12 +111,12 @@ function searchPerson(val)
 							if($row->picture == '')
 							{
 								$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_NO_IMAGE');
-								echo JHtml::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "'.$imageTitle .'"');
+								echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "'.$imageTitle .'"');
 							}
 							elseif($row->picture == JoomleagueHelper::getDefaultPlaceholder("player"))
 							{
 								$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_DEFAULT_IMAGE');
-								echo JHtml::_('image','administrator/components/com_joomleague/assets/images/information.png',$imageTitle,'title= "'.$imageTitle.'"');
+								echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/information.png',$imageTitle,'title= "'.$imageTitle.'"');
 							}
 							elseif($row->picture == ! '')
 							{
@@ -145,5 +151,5 @@ function searchPerson(val)
 	<input type="hidden" name="task" value="" />
 	<input type="hidden" name="boxchecked" value="0" />
 	<input type="hidden" name="project_team_id" value="<?php echo $this->project_team_id; ?>" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

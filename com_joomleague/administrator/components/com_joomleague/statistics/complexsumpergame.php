@@ -8,6 +8,8 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 require_once JLG_PATH_ADMIN.'/statistics/base.php';
@@ -80,7 +82,7 @@ class JLGStatisticComplexsumpergame extends JLGStatistic {
 			return(array(0));
 		}
 				
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		$sids = array();
 		foreach ($stat_ids as $s) {
 			$sids[] = $db->Quote($s);
@@ -131,7 +133,8 @@ class JLGStatisticComplexsumpergame extends JLGStatistic {
 		$sqids = $this->getQuotedSids();
 		$factors  = $this->getFactors();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		
 		// get all stats
 		$query  = ' SELECT ms.value, ms.statistic_id, tp.id AS tpid'
@@ -194,6 +197,7 @@ class JLGStatisticComplexsumpergame extends JLGStatistic {
 
 		$players = array_slice($players, $limitstart, $limit, true);
 		$ids = array_keys($players);
+		$query = $db->getQuery(true);
 		
 		$query  = ' SELECT tp.id AS teamplayer_id, tp.person_id, tp.picture AS teamplayerpic,'
 				. ' p.firstname, p.nickname, p.lastname, p.picture, p.country,'
@@ -255,8 +259,9 @@ class JLGStatisticComplexsumpergame extends JLGStatistic {
 		$sqids = $this->getQuotedSids();
 		$factors  = $this->getFactors();
 		
-		$db = JFactory::getDbo();
-	
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		// team games
 		$query = ' SELECT COUNT(m.id) AS value, pt.team_id '
 		       . ' FROM #__joomleague_project_team AS pt '
@@ -270,6 +275,7 @@ class JLGStatisticComplexsumpergame extends JLGStatistic {
 		$gp = $db->loadObjectList('team_id');
 				
 		// get all stats
+		$query = $db->getQuery(true);
 		$query = ' SELECT ms.value, ms.statistic_id, pt.team_id '
 		       . ' FROM #__joomleague_match_statistic AS ms '
 		       . ' INNER JOIN #__joomleague_team_player AS tp ON ms.teamplayer_id = tp.id '
@@ -352,7 +358,8 @@ class JLGStatisticComplexsumpergame extends JLGStatistic {
 		$sqids = $this->getQuotedSids();
 		$factors  = $this->getFactors();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		
 		$query = ' SELECT ms.value, ms.statistic_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
@@ -378,6 +385,7 @@ class JLGStatisticComplexsumpergame extends JLGStatistic {
 		}
 		
 		//games
+		$query = $db->getQuery(true);
 		$query = ' SELECT COUNT(ms.id) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -401,7 +409,8 @@ class JLGStatisticComplexsumpergame extends JLGStatistic {
 		$sqids = $this->getQuotedSids();
 		$factors  = $this->getFactors();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		
 		$query = ' SELECT ms.value AS value, ms.statistic_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
@@ -427,6 +436,7 @@ class JLGStatisticComplexsumpergame extends JLGStatistic {
 		}
 		
 		//games
+		$query = $db->getQuery(true);
 		$query = ' SELECT COUNT(ms.id) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '

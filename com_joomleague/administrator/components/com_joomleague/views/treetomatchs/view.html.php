@@ -6,6 +6,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+
 defined('_JEXEC') or die;
 
 
@@ -33,25 +37,25 @@ class JoomleagueViewTreetomatchs extends JLGView
 
 	function _displayEditlist($tpl)
 	{
-		$app 		= JFactory::getApplication();
-		$jinput 	= $app->input;
-		$baseurl	= JUri::root();
+		$app 		= Factory::getApplication();
+		$input 	= $app->input;
+		$baseurl	= Uri::root();
 		
 		
-		$document = JFactory::getDocument();
+		$document = Factory::getDocument();
 		$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/multiselect.js');
 		
-		$option = $jinput->getCmd('option');
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option . 'project');
 		$node_id = $app->getUserState($option . 'node_id');
 		
-		$uri = JUri::getInstance();
+		$uri = Uri::getInstance();
 
 		$treetomatchs = $this->get('Data');
 		$total = $this->get('Total');
 		$model = $this->getModel();
 
-		$mdlProject = JModelLegacy::getInstance('project','JoomleagueModel');
+		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$project_id = $app->getUserState($option.'project');
 		$projectws 	= $mdlProject->getItem($project_id);
 		
@@ -150,7 +154,7 @@ class JoomleagueViewTreetomatchs extends JLGView
 		unset($res1);
 		unset($notusedmatches);
 
-		$this->user = JFactory::getUser();
+		$this->user = Factory::getUser();
 		$this->lists = $lists;
 		$this->treetomatchs = $treetomatchs;
 		$this->projectws = $projectws;
@@ -165,10 +169,10 @@ class JoomleagueViewTreetomatchs extends JLGView
 
 	function _displayDefault($tpl)
 	{
-		$app 	= JFactory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
-		$uri 	= JUri::getInstance();
+		$app 	= Factory::getApplication();
+		$input = $app->input;
+		$option = $input->getCmd('option');
+		$uri 	= Uri::getInstance();
 		$match	= $this->get('Data');
 		$total	= $this->get('Total');
 		$pagination = $this->get('Pagination');
@@ -176,7 +180,7 @@ class JoomleagueViewTreetomatchs extends JLGView
 		$model = $this->getModel();
 		
 		$project_id = $app->getUserState($option.'project');
-		$mdlProject = JModelLegacy::getInstance('project','JoomleagueModel');
+		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$projectws 	= $mdlProject->getItem($project_id);
 		
 		// @todo: fix

@@ -1,5 +1,8 @@
-<?php defined('_JEXEC') or die; 
+<?php
 
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die; 
 ?>
 	<table class="matchstats" border="0">
 		<?php
@@ -45,7 +48,7 @@
 										    
 										    if ( ($this->config['show_player_profile_link'] == 1) || (($this->config['show_player_profile_link'] == 2) && ($isFavTeam)) )
 										    {
-											echo JHtml::link( $player_link, $match_player );
+											echo HTMLHelper::link( $player_link, $match_player );
 										    } else {
 										        echo $match_player;
 										    } 
@@ -75,7 +78,7 @@
 										    
 										    if ( ($this->config['show_player_profile_link'] == 1) || (($this->config['show_player_profile_link'] == 2) && ($isFavTeam)) )
 										    {
-											echo JHtml::link( $player_link, $match_player );
+											echo HTMLHelper::link( $player_link, $match_player );
 										    } else {
 										        echo $match_player;
 										    } 
@@ -132,7 +135,7 @@
 										    
 										    if ( ($this->config['show_player_profile_link'] == 1) || (($this->config['show_player_profile_link'] == 2) && ($isFavTeam)) )
 										    {
-											echo JHtml::link( $player_link, $match_player );
+											echo HTMLHelper::link( $player_link, $match_player );
 										    } else {
 										        echo $match_player;
 										    } 

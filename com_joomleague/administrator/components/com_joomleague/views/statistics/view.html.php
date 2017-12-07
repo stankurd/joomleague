@@ -7,7 +7,9 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
 
@@ -39,12 +41,12 @@ class JoomleagueViewStatistics extends JLGView
 		$lists['state'] = JoomleagueHelper::stateOptions($this->state->get('filter.state'));
 
 		// build the html select list for sportstypes
-		$sportstypes[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_EVENTS_SPORTSTYPE_FILTER'),'id','name');
+		$sportstypes[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_EVENTS_SPORTSTYPE_FILTER'),'id','name');
 
-		$modelST = JModelLegacy::getInstance('sportsTypes','JoomleagueModel');
+		$modelST = BaseDatabaseModel::getInstance('sportsTypes','JoomleagueModel');
 		$allSportstypes = $modelST->getSportsTypes();
 		$sportstypes = array_merge($sportstypes,$allSportstypes);
-		$lists['sportstypes'] = JHtml::_('select.genericList',$sportstypes,'filter_sportstype','class="input-medium" onChange="this.form.submit();"',
+		$lists['sportstypes'] = HTMLHelper::_('select.genericList',$sportstypes,'filter_sportstype','class="input-medium" onChange="this.form.submit();"',
 				'id','name',$this->state->get('filter.sportstype'));
 		unset($sportstypes);
 

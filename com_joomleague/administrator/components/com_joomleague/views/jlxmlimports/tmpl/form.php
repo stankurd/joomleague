@@ -8,10 +8,11 @@
  */
 
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 
 if (isset($this->xml) && is_array($this->xml))
 {
@@ -337,7 +338,7 @@ if (isset($this->xml) && is_array($this->xml))
 			<input type='hidden' name='importType' value="<?php echo $xmlImportType; ?>" />
 			<input type='hidden' name='sent' value="2" id='sent' />
 			<input type='hidden' name='task' value="jlxmlimport.insert" />
-			<?php echo JHtml::_('form.token'); ?>
+			<?php echo HTMLHelper::_('form.token'); ?>
 			<?php
 			if (($xmlProjectImport) || ($xmlImportType=='events') || ($xmlImportType=='positions'))
 			{

@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 /**
  * Joomleague
@@ -47,7 +48,7 @@ class JFormFieldStatstypelist extends JFormFieldList
 		{
 			$parts = explode('.', $file);
 			if ($parts[0] != 'base') {
-				$options[] = JHtml::_('select.option', $parts[0], $parts[0]);
+				$options[] = HTMLHelper::_('select.option', $parts[0], $parts[0]);
 			}
 		}
 		
@@ -64,7 +65,7 @@ class JFormFieldStatstypelist extends JFormFieldList
 			{
 				$parts = explode('.', $file);
 				if ($parts[0] != 'base') {
-					$options[] = JHtml::_('select.option', $parts[0], $parts[0]);
+					$options[] = HTMLHelper::_('select.option', $parts[0], $parts[0]);
 				}
 			}	
 		}

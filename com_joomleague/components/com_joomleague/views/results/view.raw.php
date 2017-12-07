@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Uri\Uri;
 
@@ -27,7 +28,7 @@ class JoomleagueViewResults extends JLGView
 		$document->addStyleSheet($css);
 		
 		//add js file
-		//JHtml::_('behavior.framework');
+		//HTMLHelper::_('behavior.framework');
 		$model	= $this->getModel();
 				
 		$matches = $model->getMatches();
@@ -59,7 +60,7 @@ class JoomleagueViewResults extends JLGView
 			$this->model=$model;
 			$this->isAllowed=$model->isAllowed();
 
-			$lists['rounds'] = JHtml::_('select.genericlist',$rounds,'current_round','class="inputbox" size="1" onchange="joomleague_changedoc(this);','value','text',$project->current_round);
+			$lists['rounds'] = HTMLHelper::_('select.genericlist',$rounds,'current_round','class="inputbox" size="1" onchange="joomleague_changedoc(this);','value','text',$project->current_round);
 			$this->lists=$lists;
 		
 			if (!isset($this->config['switch_home_guest'])){$this->config['switch_home_guest']=0;}
@@ -158,11 +159,11 @@ class JoomleagueViewResults extends JLGView
 		{
 			if (!empty($team->logo_small) && JFile::exists($team->logo_small))
 			{
-				$image=JHtml::image($team->logo_small,$title,$attribs);
+				$image=HTMLHelper::image($team->logo_small,$title,$attribs);
 			}
 			else
 			{
-				$image=JHtml::image('images/com_joomleague/database/placeholders/placeholder_small.gif',$title,$attribs);
+				$image=HTMLHelper::image('images/com_joomleague/database/placeholders/placeholder_small.gif',$title,$attribs);
 			}
 		}
 		elseif ($type==2 && !empty($team->country))
@@ -170,7 +171,7 @@ class JoomleagueViewResults extends JLGView
 			$image=Countries::getCountryFlag($team->country);
 			if (empty($image))
 			{
-				$image=JHtml::image('images/com_joomleague/database/placeholders/placeholder_flags.png',$title,$attribs);
+				$image=HTMLHelper::image('images/com_joomleague/database/placeholders/placeholder_flags.png',$title,$attribs);
 			}
 		}
 		else
@@ -211,8 +212,8 @@ class JoomleagueViewResults extends JLGView
 		$link="javascript:void(0)";
 		$params=array("onclick" => "switchMenu('part".$match->id."')");
 		$imgTitle=JText::_('COM_JOOMLEAGUE_ADMIN_EDIT_MATRIX_ROUNDS_PART_RESULT');
-		$desc=JHtml::image("media/com_joomleague/jl_images/sort01.gif", $imgTitle, array("border" => 0,"title" => $imgTitle));
-		echo JHtml::link($link,$desc,$params);
+		$desc=HTMLHelper::image("media/com_joomleague/jl_images/sort01.gif", $imgTitle, array("border" => 0,"title" => $imgTitle));
+		echo HTMLHelper::link($link,$desc,$params);
 
 		echo '<span id="part'.$match->id.'" style="display:none">';
 		echo '<br />';
@@ -428,7 +429,7 @@ class JoomleagueViewResults extends JLGView
 		$attribs=array(	"title" => $imgTitle,
 		 		"id" => 'events-'. $match_id,
 		 		"class" => "eventstoggle");
-		$img=JHtml::image('media/com_joomleague/jl_images/events.png',$imgTitle,$attribs);
+		$img=HTMLHelper::image('media/com_joomleague/jl_images/events.png',$imgTitle,$attribs);
 		return $img;
 	}
 
@@ -497,9 +498,9 @@ class JoomleagueViewResults extends JLGView
 				$imgTitle=JText::_('Has match summary');
 				$img='media/com_joomleague/jl_images/zoom.png';
 			}
-			$output .= JHtml::_(	'link',
+			$output .= HTMLHelper::_(	'link',
 			$report_link,
-			JHtml::image($img,$imgTitle,array("border" => 0,"title" => $imgTitle)),
+			HTMLHelper::image($img,$imgTitle,array("border" => 0,"title" => $imgTitle)),
 			array("title" => $imgTitle));
 		}
 		else
@@ -529,7 +530,7 @@ class JoomleagueViewResults extends JLGView
 		{
 			// Make event tabs
 			$selector = 'projectevents';
-			$output  .= JHtml::_('bootstrap.startTabSet', $selector, array('active'=>!empty($substitutions) ? 'substitutions' : 'tab1'));
+			$output  .= HTMLHelper::_('bootstrap.startTabSet', $selector, array('active'=>!empty($substitutions) ? 'substitutions' : 'tab1'));
 			$i        = 1;
 			foreach ($projectevents AS $event)
 			{
@@ -547,7 +548,7 @@ class JoomleagueViewResults extends JLGView
 				// I think its better to show the event name,the the event image(gives some probs with tabs)
 				$pic_tab	= $event->icon;
 				$imgTitle	= JText::_($event->name); $imgTitle2=array(' title' => $imgTitle);
-				$txt_tab	= JHtml::image($pic_tab,$imgTitle,$imgTitle2);
+				$txt_tab	= HTMLHelper::image($pic_tab,$imgTitle,$imgTitle2);
 
 				$backgroundStyle="background: url(".$pic_tab.") no-repeat transparent";
 				if(empty($pic_tab))
@@ -555,7 +556,7 @@ class JoomleagueViewResults extends JLGView
 					$backgroundStyle="";
 				}
 
-				$output .= JHtml::_('bootstrap.addTab', $selector, 'tab'.$i++, $txt_tab);
+				$output .= HTMLHelper::_('bootstrap.addTab', $selector, 'tab'.$i++, $txt_tab);
 				$output .= '<table class="matchreport" border="0">';
 				$output .= '<tr>';
 				$output .= '<td class="list">';
@@ -576,7 +577,7 @@ class JoomleagueViewResults extends JLGView
 				$output .= '</td>';
 				$output .= '</tr>';
 				$output .= '</table>';
-				$output .= JHtml::_('bootstrap.endTab');
+				$output .= HTMLHelper::_('bootstrap.endTab');
 			}
 
 			if (!empty($substitutions))
@@ -587,13 +588,13 @@ class JoomleagueViewResults extends JLGView
 				$pic_tab	= 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/subst.png';
 
 				$imgTitle	= JText::_('COM_JOOMLEAGUE_IN_OUT'); $imgTitle2=array(' title' => $imgTitle);
-				$txt_tab	= JHtml::image($pic_tab,$imgTitle,$imgTitle2);
+				$txt_tab	= HTMLHelper::image($pic_tab,$imgTitle,$imgTitle2);
 
-				$imgTime=JHtml::image($pic_time,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE'),array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE')));
-				$imgOut=JHtml::image($pic_out,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT'),array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT')));
-				$imgIn=JHtml::image($pic_in,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN'),array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN')));
+				$imgTime=HTMLHelper::image($pic_time,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE'),array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE')));
+				$imgOut=HTMLHelper::image($pic_out,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT'),array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT')));
+				$imgIn=HTMLHelper::image($pic_in,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN'),array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN')));
 
-				$output .= JHtml::_('bootstrap.addTab', $selector, 'substitutions', $txt_tab);
+				$output .= HTMLHelper::_('bootstrap.addTab', $selector, 'substitutions', $txt_tab);
 				$output .= '<table class="matchreport" border="0">';
 				$output .= '<tr>';
 				$output .= '<td class="list">';
@@ -614,9 +615,9 @@ class JoomleagueViewResults extends JLGView
 				$output .= '</td>';
 				$output .= '</tr>';
 				$output .= '</table>';
-				$output .= JHtml::_('bootstrap.endTab');
+				$output .= HTMLHelper::_('bootstrap.endTab');
 			}
-			$output .= JHtml::_('bootstrap.endTabSet');
+			$output .= HTMLHelper::_('bootstrap.endTabSet');
 		}
 		else
 		{
@@ -752,7 +753,7 @@ class JoomleagueViewResults extends JLGView
 		// 2=For favorite team(s) only
 		if($this->config['show_link_matchreport'] == 1 || ($this->config['show_link_matchreport'] == 2 && $fav))
 		{
-			$output = JHtml::_(	'link', $reportLink,
+			$output = HTMLHelper::_(	'link', $reportLink,
 					'<span class="score0">'.$this->showMatchState($game,$this->config).'</span>',
 			array("title" => JText::_('COM_JOOMLEAGUE_RESULTS_SHOW_MATCHREPORT')));
 		}

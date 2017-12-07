@@ -7,13 +7,19 @@
  * @link		http://www.joomleague.at
  */
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Uri\Uri;
+
 defined('_JEXEC') or die;
 
 jimport('joomla.filesystem.file');
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 
-$app = JFactory::getApplication();
-$user = JFactory::getUser();
+$app = Factory::getApplication();
+$user = Factory::getUser();
 $userId = $user->get('id');
 $listOrder = $this->escape($this->state->get('list.ordering'));
 $listDirn = $this->escape($this->state->get('list.direction'));
@@ -23,7 +29,7 @@ $saveOrder = $listOrder == 'a.ordering';
 if($saveOrder)
 {
 	$saveOrderingUrl = 'index.php?option=com_joomleague&task=teams.saveOrderAjax&tmpl=component';
-	JHtml::_('sortablelist.sortable','teamList','adminForm',strtolower($listDirn),$saveOrderingUrl);
+	HTMLHelper::_('sortablelist.sortable','teamList','adminForm',strtolower($listDirn),$saveOrderingUrl);
 }
 
 $action = 'index.php?option=com_joomleague&view=teams';
@@ -32,11 +38,11 @@ if ($clubid) {
 	$action = 'index.php?option=com_joomleague&view=teams&clubid='.$clubid;
 }
 ?>
-<form action="<?php echo JRoute::_($action); ?>" method="post" id="adminForm" name="adminForm">
+<form action="<?php echo Route::_($action); ?>" method="post" id="adminForm" name="adminForm">
 		<div id="j-main-container" class="j-main-container">
 	<?php
 	// Search tools bar
-	echo JLayoutHelper::render('searchtools.default',array('view' => $this),JUri::root().'administrator/components/com_joomleague/layouts');
+	echo LayoutHelper::render('searchtools.default',array('view' => $this),Uri::root().'administrator/components/com_joomleague/layouts');
 	?>
 	<div class="btn-wrapper">
 	<?php
@@ -59,50 +65,50 @@ if ($clubid) {
 			<thead>
 				<tr>
 					<th width="1%">
-						<?php echo JHtml::_('searchtools.sort', '', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
+						<?php echo HTMLHelper::_('searchtools.sort', '', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
 					</th>
 					<th width="1%" class="center">
-						<?php echo JHtml::_('grid.checkall'); ?>
+						<?php echo HTMLHelper::_('grid.checkall'); ?>
 					</th>
 					<th width="20">&nbsp;</th>
 					<th class="left">
 						<?php
-						echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TEAMS_NAME','a.name',$listDirn, $listOrder);
+						echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TEAMS_NAME','a.name',$listDirn, $listOrder);
 						?>
 					</th>
 					<th class="left">
 						<?php
-						echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TEAMS_CLUBNAME','c.name',$listDirn, $listOrder);
+						echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TEAMS_CLUBNAME','c.name',$listDirn, $listOrder);
 						?>
 					</th>
 					<th>
 						<?php
-						echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TEAMS_WEBSITE','a.website',$listDirn, $listOrder);
+						echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TEAMS_WEBSITE','a.website',$listDirn, $listOrder);
 						?>
 					</th>
 					<th>
 						<?php
-						echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TEAMS_ML_NAME','a.middle_name',$listDirn, $listOrder);
+						echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TEAMS_ML_NAME','a.middle_name',$listDirn, $listOrder);
 						?>
 					</th>
 					<th>
 						<?php
-						echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TEAMS_S_NAME','a.short_name',$listDirn, $listOrder);
+						echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TEAMS_S_NAME','a.short_name',$listDirn, $listOrder);
 						?>
 					</th>
 					<th>
 						<?php
-						echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TEAMS_INFO','a.info',$listDirn, $listOrder);
+						echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TEAMS_INFO','a.info',$listDirn, $listOrder);
 						?>
 					</th>
 					<th class="center">
 						<?php
-						echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TEAMS_PICTURE','a.picture',$listDirn, $listOrder);
+						echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TEAMS_PICTURE','a.picture',$listDirn, $listOrder);
 						?>
 					</th>
 					<th width="1%">
 						<?php
-						echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder);
+						echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder);
 						?>
 					</th>
 				</tr>
@@ -112,8 +118,8 @@ if ($clubid) {
 				<?php
 				$n = count($this->items);
 				foreach ($this->items as $i => $row) :
-					$link=JRoute::_('index.php?option=com_joomleague&task=team.edit&id='.$row->id);
-					$checked=JHtml::_('grid.checkedout',$row,$i);
+					$link = Route::_('index.php?option=com_joomleague&task=team.edit&id='.$row->id);
+					$checked=HTMLHelper::_('grid.checkedout',$row,$i);
 					
 					$canEdit = $user->authorise('core.edit','com_joomleague.team.'.$row->id);
 					$canCheckin = $user->authorise('core.manage','com_checkin') || $row->checked_out == $userId || $row->checked_out == 0;
@@ -127,7 +133,7 @@ if ($clubid) {
 						if (!$canChange) {
 							$iconClass = ' inactive';
 						} elseif (!$saveOrder) {
-							$iconClass = ' inactive tip-top hasTooltip" title="' . JHtml::tooltipText ('JORDERINGDISABLED');
+							$iconClass = ' inactive tip-top hasTooltip" title="' . HTMLHelper::tooltipText ('JORDERINGDISABLED');
 						}
 						?>
 							<span class="sortable-handler<?php echo $iconClass ?>"><span class="icon-menu"></span></span>
@@ -150,7 +156,7 @@ if ($clubid) {
 								<a href="<?php echo $link; ?>">
 									<?php
 									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_TEAMS_EDIT_DETAILS');
-									echo JHtml::image('administrator/components/com_joomleague/assets/images/edit.png',
+									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/edit.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');
 									?>
 								</a>
@@ -159,7 +165,7 @@ if ($clubid) {
 						}
 						?>
 						<td><?php echo $row->name; ?></td>
-						<td><?php echo (empty($row->clubname)) ? '<span style="color:red;">'.JText::_('COM_JOOMLEAGUE_ADMIN_TEAMS_NO_CLUB').'</span>' : '<a href="'.JRoute::_("index.php?option=com_joomleague&task=club.edit&id=".$row->club_id.'&return=teams').'">'.$row->clubname.'</a>'; ?></td>
+						<td><?php echo (empty($row->clubname)) ? '<span style="color:red;">'.JText::_('COM_JOOMLEAGUE_ADMIN_TEAMS_NO_CLUB').'</span>' : '<a href="'.Route::_("index.php?option=com_joomleague&task=club.edit&id=".$row->club_id.'&return=teams').'">'.$row->clubname.'</a>'; ?></td>
 						<td>
 							<?php
 							if ($row->website != '')
@@ -181,22 +187,22 @@ if ($clubid) {
 							if ($row->picture == '')
 							{
 								$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_TEAMS_NO_IMAGE');
-								echo JHtml::image('administrator/components/com_joomleague/assets/images/error.png',
+								echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/error.png',
 												  $imageTitle,'title= "'.$imageTitle.'"');
 							}
 							elseif ($row->picture === JoomleagueHelper::getDefaultPlaceholder("team"))
 							{
 								$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_TEAMS_DEFAULT_IMAGE');
-								echo JHtml::image('administrator/components/com_joomleague/assets/images/information.png',
+								echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/information.png',
 				  								  $imageTitle,'title= "'.$imageTitle.'"');
 							} else {
 								if (JFile::exists(JPATH_SITE.'/'.$row->picture)) {
 									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_TEAMS_CUSTOM_IMAGE');
-									echo JHtml::image('administrator/components/com_joomleague/assets/images/ok.png',
+									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/ok.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');
 								} else {
 									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_TEAMS_NO_IMAGE');
-									echo JHtml::image('administrator/components/com_joomleague/assets/images/delete.png',
+									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/delete.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');
 								}
 							}
@@ -212,5 +218,5 @@ if ($clubid) {
 	<!-- input fields -->
 	<input type="hidden" name="task"				value="" />
 	<input type="hidden" name="boxchecked"			value="0" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

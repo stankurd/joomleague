@@ -63,8 +63,8 @@ class JoomleagueModelProjectReferees extends JLGModelList
 	protected function getListQuery()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option.'project');
 		$projectteam_id = $app->getUserState($option.'project_team_id');
 		$assign = $this->getState('filter.assign',false);
@@ -138,8 +138,8 @@ class JoomleagueModelProjectReferees extends JLGModelList
 	function getExcluded()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$projectteam_id = $app->getUserState('com_joomleagueproject_team_id');
 		$project_id = $app->getUserState($option.'project');
 
@@ -242,8 +242,8 @@ class JoomleagueModelProjectReferees extends JLGModelList
 		$app = Factory::getApplication();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);		
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option . 'project');
 		$query = '	SELECT	pp.id AS value,
 				name AS text
@@ -282,8 +282,8 @@ class JoomleagueModelProjectReferees extends JLGModelList
 		$app = Factory::getApplication();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option . 'project');
 		$query = '	SELECT	ppos.id AS value,
 				pos.name AS text

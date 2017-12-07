@@ -7,15 +7,20 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Form\FormField;
+use Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\Filesystem\Helper;
+
 defined('_JEXEC') or die;
 
 jimport('joomla.filesystem.folder');
-JFormHelper::loadFieldClass('list');
+FormHelper::loadFieldClass('list');
 
 /**
  * JLMenuItems form field class
  */
-class JFormFieldJLMenuItems extends JFormFieldList
+class JFormFieldJLMenuItems extends FormField
 {
 	/**
 	 * field type
@@ -32,24 +37,24 @@ class JFormFieldJLMenuItems extends JFormFieldList
 	{
 		// Initialize variables.
 		$options = array(
-				JHtml::_('select.option', '', JText::_('JNONE')),
-				JHtml::_('select.option', 'separator', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_SEPARATOR')),
-				JHtml::_('select.option', 'calendar', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_CALENDAR')),
-				JHtml::_('select.option', 'curve', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_CURVE')),
-				JHtml::_('select.option', 'eventsranking', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_EVENTSRANKING')),
-				JHtml::_('select.option', 'matrix', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_MATRIX')),
-				JHtml::_('select.option', 'ranking', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_TABLE')),
-				JHtml::_('select.option', 'referees', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_REFEREES')),
-				JHtml::_('select.option', 'results', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_RESULTS')),
-				JHtml::_('select.option', 'resultsmatrix', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_RESULTSMATRIX')),
-				JHtml::_('select.option', 'resultsranking', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_TABLE_AND_RESULTS')),
-				JHtml::_('select.option', 'roster', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_ROSTER')),
-				JHtml::_('select.option', 'stats', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_STATS')),
-				JHtml::_('select.option', 'statsranking', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_STATSRANKING')),
-				JHtml::_('select.option', 'teaminfo', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_TEAMINFO')),
-				JHtml::_('select.option', 'teamplan', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_TEAMPLAN')),
-				JHtml::_('select.option', 'teamstats', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_TEAMSTATS')),
-				JHtml::_('select.option', 'treetonode', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_TREETONODE')),
+				HTMLHelper::_('select.option', '', JText::_('JNONE')),
+				HTMLHelper::_('select.option', 'separator', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_SEPARATOR')),
+				HTMLHelper::_('select.option', 'calendar', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_CALENDAR')),
+				HTMLHelper::_('select.option', 'curve', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_CURVE')),
+				HTMLHelper::_('select.option', 'eventsranking', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_EVENTSRANKING')),
+				HTMLHelper::_('select.option', 'matrix', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_MATRIX')),
+				HTMLHelper::_('select.option', 'ranking', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_TABLE')),
+				HTMLHelper::_('select.option', 'referees', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_REFEREES')),
+				HTMLHelper::_('select.option', 'results', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_RESULTS')),
+				HTMLHelper::_('select.option', 'resultsmatrix', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_RESULTSMATRIX')),
+				HTMLHelper::_('select.option', 'resultsranking', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_TABLE_AND_RESULTS')),
+				HTMLHelper::_('select.option', 'roster', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_ROSTER')),
+				HTMLHelper::_('select.option', 'stats', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_STATS')),
+				HTMLHelper::_('select.option', 'statsranking', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_STATSRANKING')),
+				HTMLHelper::_('select.option', 'teaminfo', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_TEAMINFO')),
+				HTMLHelper::_('select.option', 'teamplan', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_TEAMPLAN')),
+				HTMLHelper::_('select.option', 'teamstats', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_TEAMSTATS')),
+				HTMLHelper::_('select.option', 'treetonode', JText::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_TREETONODE')),
 				);
 
 		// Merge any additional options in the XML definition.

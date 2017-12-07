@@ -1,4 +1,9 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
+?>
 
 <!-- START of match details -->
 <h2><?php echo JText::_('COM_JOOMLEAGUE_NEXTMATCH_DETAILS'); ?></h2>
@@ -11,7 +16,7 @@
 		?>
 	<tr>
 		<td colspan="3"><span class=""><?php echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_OLD_MATCH' ); ?></span>
-		<span><?php echo JHtml :: link(JoomleagueHelperRoute::getMatchReportRoute( $this->project->id, 
+		<span><?php echo HTMLHelper :: link(JoomleagueHelperRoute::getMatchReportRoute( $this->project->id, 
 		$this->match->old_match_id ),
 		$this->oldmatchtext); ?></span></td>
 	</tr>
@@ -25,7 +30,7 @@
 		?>
 	<tr>
 		<td colspan="3"><span class=""><?php echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_NEW_MATCH' ); ?></span>
-		<span><?php echo JHtml :: link(JoomleagueHelperRoute::getNextMatchRoute( $this->project->id, 
+		<span><?php echo HTMLHelper :: link(JoomleagueHelperRoute::getNextMatchRoute( $this->project->id, 
 		$this->match->new_match_id ),
 		$this->newmatchtext);?></span></td>
 	</tr>
@@ -106,7 +111,7 @@
 			<?php $playground_link = JoomleagueHelperRoute::getPlaygroundRoute( $this->project->id, $this->match->playground_id);?>
 			<tr>
 				<td colspan="3"><span class=""><?php echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_PLAYGROUND' ); ?></span>
-					<span><?php echo JHtml::link ($playground_link, $this->playground->name); ?></span>
+					<span><?php echo HTMLHelper::link ($playground_link, $this->playground->name); ?></span>
 				</td>
 			</tr>
 		<?php endif;
@@ -121,7 +126,7 @@
 			<tr>
 				<td colspan="3"><span class=""><?php echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_REFEREE' ); ?></span>
 				<?php foreach ($this->referees AS $ref): ?> <?php $referee_link = JoomleagueHelperRoute::getRefereeRoute($this->project->id, $ref->person_id);?>
-				<?php $html[] = JHtml::link ($referee_link, JoomleagueHelper::formatName(null, $ref->firstname, $ref->nickname, $ref->lastname, $this->config["name_format"])) .' ('.$ref->position_name.')'; ?>
+				<?php $html[] = HTMLHelper::link ($referee_link, JoomleagueHelper::formatName(null, $ref->firstname, $ref->nickname, $ref->lastname, $this->config["name_format"])) .' ('.$ref->position_name.')'; ?>
 				<?php endforeach;?> <span><?php echo implode('</span>, <span>', $html); ?></span>
 				</td>
 			</tr>

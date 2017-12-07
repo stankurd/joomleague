@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -103,7 +104,7 @@ class JoomleagueControllerClubs extends JLGControllerAdmin
 			$this->postDeleteHook($model,$cid);
 		}
 
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view='.$this->view_list,false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view='.$this->view_list,false));
 	}
 
 
@@ -112,7 +113,7 @@ class JoomleagueControllerClubs extends JLGControllerAdmin
 	 */
 	public function import()
 	{
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=import&table=club',false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view=import&table=club',false));
 	}
 
 

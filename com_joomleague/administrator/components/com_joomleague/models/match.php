@@ -36,8 +36,8 @@ class JoomleagueModelMatch extends JLGModelItem
 	protected function canDelete($record)
 	{
 		$app 		= Factory::getApplication();
-		$jinput		= $app->input;
-		$option 	= $jinput->getCmd('option');
+		$input		= $app->input;
+		$option 	= $input->getCmd('option');
 		$project_id	= $app->getUserState($option.'project',0);
 		
 		
@@ -263,22 +263,22 @@ class JoomleagueModelMatch extends JLGModelItem
 	public function save($data)
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
         
-        $data['team1_legs'] = $jinput->getString('team1_legs');
-        $data['team2_legs'] = $jinput->getString('team2_legs');
-		$data['team1_bonus'] = $jinput->getString('team1_bonus');
-		$data['team2_bonus'] = $jinput->getString('team2_bonus');
-		$data['match_result_detail'] = $jinput->getString('match_result_detail');
+        $data['team1_legs'] = $input->getString('team1_legs');
+        $data['team2_legs'] = $input->getString('team2_legs');
+		$data['team1_bonus'] = $input->getString('team1_bonus');
+		$data['team2_bonus'] = $input->getString('team2_bonus');
+		$data['match_result_detail'] = $input->getString('match_result_detail');
 		
-		$data['team1_result_decision'] = $jinput->getString('team1_result_decision');
-		$data['team2_result_decision'] = $jinput->getString('team2_result_decision');
-		$data['decision_info'] = $jinput->getString('decision_info');
-		$data['team_won'] = $jinput->getString('team_won');
+		$data['team1_result_decision'] = $input->getString('team1_result_decision');
+		$data['team2_result_decision'] = $input->getString('team2_result_decision');
+		$data['decision_info'] = $input->getString('decision_info');
+		$data['team_won'] = $input->getString('team_won');
 		
-		$data['old_match_id'] = $jinput->getString('old_match_id');
-		$data['new_match_id'] = $jinput->getString('new_match_id');
-		$data['extended'] = $jinput->get('extended',array(),'array');
+		$data['old_match_id'] = $input->getString('old_match_id');
+		$data['new_match_id'] = $input->getString('new_match_id');
+		$data['extended'] = $input->get('extended',array(),'array');
 	
 		if($data['new_match_id'] > 0) {
 			$table = $this->getTable();
@@ -354,8 +354,8 @@ class JoomleagueModelMatch extends JLGModelItem
 function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 	{
 		$app 	= Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
 		$datatable = '#__joomleague_match';
@@ -990,8 +990,8 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 	function getProjectPositions($id=0)
 	{
 		$app 	= Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->get('option');
+		$input = $app->input;
+		$option = $input->get('option');
 		$project_id = $app->getUserState($option.'project');
 		
 		$db = Factory::getDbo();
@@ -1037,8 +1037,8 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 	function getProjectPositionsOptions($id=0, $person_type=1)
 	{
 		$app 	= Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->get('option');
+		$input = $app->input;
+		$option = $input->get('option');
 		$project_id = $app->getUserState($option.'project');
 		$db		= Factory::getDbo();
 		$query = $db->getQuery(true);
@@ -1079,8 +1079,8 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 	function getProjectStaffPositions($id=0)
 	{
 		$app 	= Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->get('option');
+		$input = $app->input;
+		$option = $input->get('option');
 		$project_id = $app->getUserState($option.'project');
 		$db		= Factory::getDbo();
 		$query	= $db->getQuery(true);
@@ -1388,8 +1388,8 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 	function getSubstitutions($tid=0,$match_id)
 	{
 		$app 	= Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->get('option');
+		$input = $app->input;
+		$option = $input->get('option');
 		$project_id = $app->getUserState($option.'project');
 		$db		= Factory::getDbo();
 		

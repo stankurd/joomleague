@@ -1,4 +1,8 @@
-<?php defined('_JEXEC') or die;
+<?php
+
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
 
 $status = $this->projectPerson->status;
 $absenceTypesToShow = array();
@@ -14,7 +18,7 @@ if (count($absenceTypesToShow) > 0): ?>
 <h2><?php echo JText::_('COM_JOOMLEAGUE_PERSON_STATUS'); ?></h2>
 <table class='status'>
 <?php
-$today = JHtml::date('now' .' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
+$today = HTMLHelper::date('now' .' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 	JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 foreach ($absenceTypesToShow as $absenceType):
 	$absenceStatus = $status[$absenceType];

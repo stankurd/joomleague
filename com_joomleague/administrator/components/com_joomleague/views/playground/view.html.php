@@ -29,8 +29,8 @@ class JoomleagueViewPlayground extends JLGView
 		$this->item = $this->get('Item');
 		$this->state = $this->get('State');
 
-		//$extended = $this->getExtended($this->item->extended,'playground');
-		//$this->extended = $extended;
+		$extended = $this->getExtended($this->item->extended,'playground');
+		$this->extended = $extended;
 
 		$this->addToolbar();
 		parent::display($tpl);

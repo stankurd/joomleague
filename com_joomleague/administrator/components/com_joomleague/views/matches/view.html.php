@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\String\StringHelper;
 use Joomla\Utilities\ArrayHelper;
@@ -75,7 +76,7 @@ class JoomleagueViewMatches extends JLGView
 		//build the html options for teams
 		foreach ($matches as $row)
 		{
-			$teams[]=JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
+			$teams[]=HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
 			$divhomeid = 0;
 			//apply the filter only if both teams are from the same division
 			//teams are not from the same division in tournament mode with divisions
@@ -101,15 +102,15 @@ class JoomleagueViewMatches extends JLGView
 		$project_roundslist = array();
 		foreach ($ress as $res)
 		{
-			$project_roundslist[]=JHtml::_('select.option', $res->id, $this->getRoundDescription($res));
+			$project_roundslist[]=HTMLHelper::_('select.option', $res->id, $this->getRoundDescription($res));
 		}
-		$lists['project_rounds']=JHtml::_(	'select.genericList',$project_roundslist,'rid[]',
+		$lists['project_rounds']=HTMLHelper::_(	'select.genericList',$project_roundslist,'rid[]',
 				'class="inputbox" ' .
 				'onChange="document.getElementById(\'short_act\').value=\'rounds\';' .
 				'document.roundForm.submit();" ',
 				'value','text',$round->id);
 
-		$lists['project_rounds2']=JHtml::_('select.genericList',$project_roundslist,'rid','class="inputbox" ','value','text',$round->id);
+		$lists['project_rounds2']=HTMLHelper::_('select.genericList',$project_roundslist,'rid','class="inputbox" ','value','text',$round->id);
 
 		//build the html selectlist for matches
 		$overall_config=$mdlProject->getTemplateConfig('overall');
@@ -117,11 +118,11 @@ class JoomleagueViewMatches extends JLGView
 				(isset($overall_config['use_jl_events']) && $overall_config['use_jl_events']))
 		{
 			$match_list=array();
-			$mdd[]=JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_MATCH'));
+			$mdd[]=HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_MATCH'));
 
 			foreach ($matches as $row)
 			{
-				$mdd[]=JHtml::_('select.option','index3.php?option=com_joomleague&task=match.editEvents&cid[0]='.$row->id,$row->team1.'-'.$row->team2);
+				$mdd[]=HTMLHelper::_('select.option','index3.php?option=com_joomleague&task=match.editEvents&cid[0]='.$row->id,$row->team1.'-'.$row->team2);
 			}
 			$RosterEventMessage=(isset($overall_config['use_jl_substitution']) && $overall_config['use_jl_substitution']) ? JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_LINEUP') : '';
 			if (isset($overall_config['use_jl_events']) && $overall_config['use_jl_events'])
@@ -134,7 +135,7 @@ class JoomleagueViewMatches extends JLGView
 			$RosterEventMessage .= ($RosterEventMessage != '') ? ':' : '';
 			$lists['RosterEventMessage']=$RosterEventMessage;
 
-			$lists['round_matches']=JHtml::_(	'select.genericList',$mdd,'mdd',
+			$lists['round_matches']=HTMLHelper::_(	'select.genericList',$mdd,'mdd',
 					'id="mdd" class="inputbox" onchange="jl_load_new_match_events(this,\'eventscontainer\')"',
 					'value','text','0');
 		}
@@ -203,29 +204,29 @@ class JoomleagueViewMatches extends JLGView
 		$massadd = $input->getInt('massadd',0);
 
 		// Set toolbar items for the page
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_TITLE'),'jl-Matchdays');
+		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_TITLE'),'jl-Matchdays');
 
 		if (!$massadd)
 		{
 			JLToolBarHelper::publishList('matches.publish');
 			JLToolBarHelper::unpublishList('matches.unpublish');
-			JLToolBarHelper::divider();
+			JLToolbarHelper::divider();
 
 			JLToolBarHelper::apply('matches.saveshort');
-			JLToolBarHelper::divider();
+			JLToolbarHelper::divider();
 
 			JLToolBarHelper::custom('matches.massadd','new.png','new_f2.png','COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_MATCHES',false);
 			JLToolBarHelper::addNewX('match.addmatch','COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_ADD_MATCH');
 			JLToolBarHelper::deleteList(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_WARNING'), 'matches.remove');
-			JLToolBarHelper::divider();
+			JLToolbarHelper::divider();
 
-			JLToolBarHelper::back('Back','index.php?option=com_joomleague&view=rounds');
+			JLToolbarHelper::back('Back','index.php?option=com_joomleague&view=rounds');
 		}
 		else
 		{
 			JLToolBarHelper::custom('matches.cancelmassadd','cancel.png','cancel_f2.png','COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_CANCEL_MATCHADD',false);
 		}
-		JLToolBarHelper::help('screen.joomleague',true);
+		JLToolbarHelper::help('screen.joomleague',true);
 	}
 	
 	private function getRoundDescription($round)

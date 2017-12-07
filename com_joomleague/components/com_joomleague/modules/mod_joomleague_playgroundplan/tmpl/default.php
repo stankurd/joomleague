@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
 $teamformat = $params->get ( 'teamformat', 'name' );
@@ -16,10 +18,10 @@ $timeformat = $params->get ( 'timeformat' );
 $mode = $params->get ( 'mode', 0 );
 $textdiv = "";
 $n = 1;
-// if ($mode == 0)
+ if ($mode == 0)
 echo '<div id="modjlplaygroundplan' . $mode . '">';
-// else if ($mode == 1)
-// odjlplaygroundplan1
+ else if ($mode == 1);
+//odjlplaygroundplan1
 foreach ( $list as $match ) {
 	if ($mode == 0) {
 		$textdiv .= '<div class="qslidejl">';
@@ -45,7 +47,7 @@ foreach ( $list as $match ) {
 		
 		if ($params->get ( 'show_playground_link' )) {
 			$link = JoomleagueHelperRoute::getPlaygroundRoute ( $match->project_id, $playground_id );
-			$playgroundname = JHtml::link ( $link, JText::sprintf ( '%1$s', $playgroundname ) );
+			$playgroundname = HTMLHelper::link ( $link, JText::sprintf ( '%1$s', $playgroundname ) );
 		} else {
 			$playgroundname = JText::sprintf ( '%1$s', $playgroundname );
 		}
@@ -70,7 +72,7 @@ foreach ( $list as $match ) {
 	$textdiv .= '<div class="jlplplanetname">';
 	if ($params->get ( 'show_club_logo' )) {
 		$team1logo = modJLGPlaygroundplanHelper::getTeamLogo ( $match->team1 );
-		$textdiv .= '<p>' . JHtml::image ( $team1logo, "" ) . '</p>';
+		$textdiv .= '<p>' . HTMLHelper::image ( $team1logo, "" ) . '</p>';
 	}
 	$textdiv .= '<p>' . modJLGPlaygroundplanHelper::getTeams ( $match->team1, $teamformat ) . '</p>';
 	$textdiv .= '</div>';
@@ -78,7 +80,7 @@ foreach ( $list as $match ) {
 	$textdiv .= '<div class="jlplplanetname">';
 	if ($params->get ( 'show_club_logo' )) {
 		$team2logo = modJLGPlaygroundplanHelper::getTeamLogo ( $match->team2 );
-		$textdiv .= '<p>' . JHtml::image ( $team2logo, "" ) . '</p>';
+		$textdiv .= '<p>' . HTMLHelper::image ( $team2logo, "" ) . '</p>';
 	}
 	$textdiv .= '<p>' . modJLGPlaygroundplanHelper::getTeams ( $match->team2, $teamformat ) . '</p>';
 	$textdiv .= '</div>';

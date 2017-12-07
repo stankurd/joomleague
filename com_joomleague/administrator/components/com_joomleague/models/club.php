@@ -157,7 +157,7 @@ class JoomleagueModelClub extends JLGModelItem
 		{
 			return false;
 		}
-		$jinput = Factory::getApplication()->input;
+		$input = Factory::getApplication()->input;
 
 		if($this->getState('club.id'))
 		{
@@ -250,7 +250,7 @@ class JoomleagueModelClub extends JLGModelItem
 	public function save($data)
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 
 		$createTeam = false;
 
@@ -262,7 +262,7 @@ class JoomleagueModelClub extends JLGModelItem
 			}
 		}
 		
-		$data['extended'] = $jinput->get('extended',array(),'array');
+		$data['extended'] = $input->get('extended',array(),'array');
 		
 		if(parent::save($data))
 		{

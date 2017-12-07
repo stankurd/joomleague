@@ -1,4 +1,6 @@
-<?php defined('_JEXEC') or die;
+<?php use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
 ?>
 <!-- START: game roster -->
 <!-- Show Match players -->
@@ -48,7 +50,7 @@ if (!empty($this->matchplayerpositions))
 												if ($this->config['show_player_picture'] == 2) {
 													echo '';
 												} else {
-													echo JHtml::link($player_link,$match_player);
+													echo HTMLHelper::link($player_link,$match_player);
 												}
                                             } else {
 												if ($this->config['show_player_picture'] == 2) {
@@ -71,7 +73,7 @@ if (!empty($this->matchplayerpositions))
                                                     $picture = JoomleagueHelper::getDefaultPlaceholder("player");
                                                 }
                                                 if ( ($this->config['show_player_picture'] == 2) && ($this->config['show_player_profile_link'] == 1) ){
-													echo JHtml::link($player_link,JoomleagueHelper::getPictureThumb($picture,
+													echo HTMLHelper::link($player_link,JoomleagueHelper::getPictureThumb($picture,
 																													$imgTitle,
 																													$this->config['player_picture_width'],
 																													$this->config['player_picture_height']));
@@ -122,7 +124,7 @@ if (!empty($this->matchplayerpositions))
                                                     $picture = JoomleagueHelper::getDefaultPlaceholder("player");
                                                 }
                                                  if ( ($this->config['show_player_picture'] == 2) && ($this->config['show_player_profile_link'] == 1) ){
-													echo JHtml::link($player_link,JoomleagueHelper::getPictureThumb($picture,
+													echo HTMLHelper::link($player_link,JoomleagueHelper::getPictureThumb($picture,
 																													$imgTitle,
 																													$this->config['player_picture_width'],
 																													$this->config['player_picture_height']));
@@ -140,7 +142,7 @@ if (!empty($this->matchplayerpositions))
 												if ($this->config['show_player_picture'] == 2) {
 													echo '';
 												} else {
-													echo JHtml::link($player_link,$match_player);
+													echo HTMLHelper::link($player_link,$match_player);
 												}
                                             } else {
 												if ($this->config['show_player_picture'] == 2) {

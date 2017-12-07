@@ -1,4 +1,8 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
+?>
 
 <?php if ( ( $this->playground->picture ) ): ?>
 
@@ -7,11 +11,11 @@
     <?php
     if (($this->playground->picture))
     {
-        echo JHtml::image($this->playground->picture, $this->playground->name);
+        echo HTMLHelper::image($this->playground->picture, $this->playground->name);
     }
     else
     {
-        echo JHtml::image(JoomleagueHelper::getDefaultPlaceholder('team'), $this->playground->name);
+        echo HTMLHelper::image(JoomleagueHelper::getDefaultPlaceholder('team'), $this->playground->name);
     }
     ?>
 </div>

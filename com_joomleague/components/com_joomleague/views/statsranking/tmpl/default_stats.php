@@ -1,4 +1,6 @@
-<?php use Joomla\CMS\Pagination\Pagination;
+<?php
+use Joomla\CMS\Pagination\Pagination;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;?>
 
@@ -109,7 +111,7 @@ if ($this->config['show_icons'] == 1) $show_icons = 1;
 		<?php
 		if ( $this->config['link_to_player'] == 1 ) {
 			$link = JoomleagueHelperRoute::getPlayerRoute( $this->project->id, $row->team_id, $row->person_id );
-			echo JHtml::link( $link, $playerName );
+			echo HTMLHelper::link( $link, $playerName );
 		}
 		else {
 			echo $playerName;
@@ -152,7 +154,7 @@ if ($this->multiple_stats == 1)
 {
 ?>
 <div class="fulltablelink">
-<?php echo JHtml::link(JoomleagueHelperRoute::getStatsRankingRoute($this->project->id, ($this->division ? $this->division->id : 0), $this->teamid, $rows->id), JText::_('COM_JOOMLEAGUE_STATSRANKING_VIEW_FULL_TABLE')); ?>
+<?php echo HTMLHelper::link(JoomleagueHelperRoute::getStatsRankingRoute($this->project->id, ($this->division ? $this->division->id : 0), $this->teamid, $rows->id), JText::_('COM_JOOMLEAGUE_STATSRANKING_VIEW_FULL_TABLE')); ?>
 </div>
 <?php
 }

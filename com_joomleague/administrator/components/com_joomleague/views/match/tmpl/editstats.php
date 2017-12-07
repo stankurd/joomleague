@@ -6,8 +6,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined ( '_JEXEC' ) or die ();
-JHtml::_ ( 'behavior.tooltip' );
+HTMLHelper::_ ( 'behavior.tooltip' );
 
 ?>
 <form method="post" name="adminForm" id="adminForm">
@@ -15,19 +17,19 @@ JHtml::_ ( 'behavior.tooltip' );
 		<div class="clear"></div>
 		<?php
 		$selector = 'editstats';
-		echo JHtml::_ ( 'bootstrap.startTabSet', $selector, array (
+		echo HTMLHelper::_ ( 'bootstrap.startTabSet', $selector, array (
 				'active' => 'home' 
 		) );
 		
-		echo JHtml::_ ( 'bootstrap.addTab', $selector, 'home', JText::_ ( $this->teams->team1 ) );
+		echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'home', JText::_ ( $this->teams->team1 ) );
 		echo $this->loadTemplate ( 'home' );
-		echo JHtml::_ ( 'bootstrap.endTab' );
+		echo HTMLHelper::_ ( 'bootstrap.endTab' );
 		
-		echo JHtml::_ ( 'bootstrap.addTab', $selector, 'away', JText::_ ( $this->teams->team2 ) );
+		echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'away', JText::_ ( $this->teams->team2 ) );
 		echo $this->loadTemplate ( 'away' );
-		echo JHtml::_ ( 'bootstrap.endTab' );
+		echo HTMLHelper::_ ( 'bootstrap.endTab' );
 		
-		echo JHtml::_ ( 'bootstrap.endTabSet' );
+		echo HTMLHelper::_ ( 'bootstrap.endTabSet' );
 		?>
 		<input type="hidden" name="task" id="" value="" /> <input
 			type="hidden" name="project_id"
@@ -35,7 +37,7 @@ JHtml::_ ( 'behavior.tooltip' );
 			type="hidden" name="match_id" value="<?php echo $this->match->id; ?>" />
 		<input type="hidden" name="boxchecked" value="0" />
 		
-		<?php echo JHtml::_('form.token'); ?>
+		<?php echo HTMLHelper::_('form.token'); ?>
 	</div>
 </form>
 <div style="clear: both"></div>

@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 
@@ -100,8 +102,8 @@ abstract class modJLGResultsHelper
 	
 	public static function getRound($project_id, $roundid)
 	{
-		$db = JFactory::getDbo();
-		
+		$db = Factory::getDbo();
+		$query =$db->getQuery(true);
 		$query = ' SELECT * FROM #__joomleague_round '
 		       . ' WHERE id = '. $db->Quote($roundid)
 		       . '   AND project_id = '. $db->Quote($project_id)
@@ -151,8 +153,8 @@ abstract class modJLGResultsHelper
 	
 	public static function getLatestRoundId($project_id)
 	{		
-		$db = JFactory::getDbo();
-		
+		$db = Factory::getDbo();
+		$query =$db->getQuery(true);
 		$query = ' SELECT r.id AS roundid, r.round_date_first '
 		       . ' FROM #__joomleague_round AS r '
 		       . ' WHERE project_id = '. $db->Quote($project_id)
@@ -167,8 +169,8 @@ abstract class modJLGResultsHelper
 
 	public static function getNextRoundId($project_id)
 	{
-		$db = JFactory::getDbo();
-		
+		$db = Factory::getDbo();
+		$query =$db->getQuery(true);
 		$query = ' SELECT r.id AS roundid, r.round_date_first '
 		       . ' FROM #__joomleague_round AS r '
 		       . ' WHERE project_id = '. $db->Quote($project_id)

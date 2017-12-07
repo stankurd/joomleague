@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -36,7 +37,7 @@ class JoomleagueViewPosition extends JLGView
 			$pk = 0;
 		}
 		
-		$baseurl = Uri::root();
+		$baseurl = Uri::root(true);
 		$model = $this->getModel();
 		$lists = array();
 		
@@ -49,7 +50,7 @@ class JoomleagueViewPosition extends JLGView
 		$notusedevents = array();
 		if($res = $model->getEventsPosition($pk))
 		{
-			$lists['position_events'] = JHtml::_('select.genericlist',$res,'position_eventslist[]',
+			$lists['position_events'] = HTMLHelper::_('select.genericlist',$res,'position_eventslist[]',
 					' style="width:250px; height:300px;" class="inputbox" multiple="true" size="' . max(10,count($res)) . '"','value','text',false,
 					'multiselect_to');
 		}
@@ -86,7 +87,7 @@ class JoomleagueViewPosition extends JLGView
 		// build the html select list for events
 		if(($notusedevents) && (count($notusedevents) > 0))
 		{
-			$lists['events'] = JHtml::_('select.genericlist',$notusedevents,'eventslist[]',
+			$lists['events'] = HTMLHelper::_('select.genericlist',$notusedevents,'eventslist[]',
 					' style="width:250px; height:300px;" class="inputbox" multiple="true" size="' . max(10,count($notusedevents)) . '"','value','text',
 					false,'multiselect');
 		}
@@ -103,7 +104,7 @@ class JoomleagueViewPosition extends JLGView
 		
 		if(! empty($position_stats))
 		{
-			$lists['position_statistic'] = JHtml::_('select.genericlist',$position_stats,'position_statistic[]',
+			$lists['position_statistic'] = HTMLHelper::_('select.genericlist',$position_stats,'position_statistic[]',
 					' style="width:250px; height:300px;" class="inputbox" multiple="true" size="' . max(10,count($position_stats)) . '"','value',
 					'text',false,'multiselect2_to');
 		}
@@ -116,7 +117,7 @@ class JoomleagueViewPosition extends JLGView
 		
 		if(! empty($available_stats))
 		{
-			$lists['statistic'] = JHtml::_('select.genericlist',$available_stats,'statistic[]',
+			$lists['statistic'] = HTMLHelper::_('select.genericlist',$available_stats,'statistic[]',
 					' style="width:250px; height:300px;" class="inputbox" multiple="true" size="' . max(10,count($available_stats)) . '"','value',
 					'text',false,'multiselect2');
 		}
@@ -125,12 +126,12 @@ class JoomleagueViewPosition extends JLGView
 			$lists['statistic'] = '<select name="statistic[]" id="multiselect2" style="width:250px; height:300px;" class="inputbox" multiple="true" size="10"></select>';
 		}
 		// build the html select list for parent positions
-		$parents[] = JHtml::_('select.option','',JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_IS_P_POSITION'));
+		$parents[] = HTMLHelper::_('select.option','',JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_IS_P_POSITION'));
 		if($res = $model->getParentsPositions($pk))
 		{
 			$parents = array_merge($parents,$res);
 		}
-		$lists['parents'] = JHtml::_('select.genericlist',$parents,'parent_id','class="inputbox" size="1"','value','text',$this->item->parent_id);
+		$lists['parents'] = HTMLHelper::_('select.genericlist',$parents,'parent_id','class="inputbox" size="1"','value','text',$this->item->parent_id);
 		unset($parents);
 		$this->lists = $lists;
 		

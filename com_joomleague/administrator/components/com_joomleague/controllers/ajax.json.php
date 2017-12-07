@@ -9,14 +9,13 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
-use Joomla\CMS\MVC\Controller\BaseController;
 
 defined('_JEXEC') or die;
 
 /**
  * Ajax Controller
  */
-class JoomleagueControllerAjax extends BaseController
+class JoomleagueControllerAjax extends JLGController
 {
 
 	public function __construct()

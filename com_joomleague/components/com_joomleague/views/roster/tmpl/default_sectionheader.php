@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die; ?>
 
@@ -18,7 +19,7 @@ defined('_JEXEC') or die; ?>
 															$this->projectteam->division_id, 
 															$this->projectteam->ptid);
 			echo ' <a rel="{handler: \'iframe\',size: {x:'.$modalwidth.',y:'.$modalheight.'}}" href="'.$link.'" class="modal">';
-			echo JHtml::image("media/com_joomleague/jl_images/edit.png",
+			echo HTMLHelper::image("media/com_joomleague/jl_images/edit.png",
 					JText::_( 'COM_JOOMLEAGUE_ROSTER_EDIT' ),
 					array( "title" => JText::_( "COM_JOOMLEAGUE_ROSTER_EDIT" ) )
 			);

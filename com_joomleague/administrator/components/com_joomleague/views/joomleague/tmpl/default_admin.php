@@ -8,7 +8,9 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\Input\Input;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -47,7 +49,7 @@ $option = 'com_joomleague';
 				<input type="hidden" name="option" value="com_joomleague" />
 				<input type="hidden" name="act" value="" id="jl_short_act" />
 				<input type="hidden" name="task" value="joomleague.selectws" />
-				<?php echo JHtml::_('form.token'); ?>
+				<?php echo HTMLHelper::_('form.token'); ?>
 			</form>
 			<?php
 			$n = 0;
@@ -60,7 +62,7 @@ $option = 'com_joomleague';
 			$image = '';
 			$text = '';
 
-			/**echo JHtml::_('sliders.start','sliders',
+			/**echo HTMLHelper::_('sliders.start','sliders',
 					array(
 							'allowAllClose' => true,
 							'startOffset' => $this->active,
@@ -70,7 +72,7 @@ $option = 'com_joomleague';
 			foreach($tabs as $tab)
 			{
 				$title = $tab->title;
-				//echo JHtml::_('sliders.panel',$title,'jfcpanel-panel-' . $tab->name);
+				//echo HTMLHelper::_('sliders.panel',$title,'jfcpanel-panel-' . $tab->name);
 				?>
 					<div>
 						<table class="table table-hover"><?php
@@ -105,7 +107,7 @@ $option = 'com_joomleague';
 					<?php
 				$n ++;
 			}
-			//echo JHtml::_('sliders.end');
+			//echo HTMLHelper::_('sliders.end');
 			// Extension
 			$extensions = JoomleagueHelper::getExtensions(1);
 			foreach($extensions as $e=>$extension)
@@ -125,13 +127,13 @@ $option = 'com_joomleague';
 			<div class="center">
 						<br />
 				<?php
-				$image = JHtml::_('image','administrator/components/com_joomleague/assets/images/jl.png',JText::_('JoomLeague'),
+				$image = HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/jl.png',JText::_('JoomLeague'),
 						array(
 								"title" => JText::_('JoomLeague')
 						));
 				$url = 'index.php?option=com_joomleague&view=about';
 
-				echo JHtml::_('link',JRoute::_($url),$image);
+				echo HTMLHelper::_('link',Route::_($url),$image);
 				?>
 			</div>
 					<div style="text-align: center;">

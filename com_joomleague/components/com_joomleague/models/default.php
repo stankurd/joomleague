@@ -2,6 +2,7 @@
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Pagination\Pagination;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Table\Table;
 
 defined( '_JEXEC' ) or die( 'Restricted access' ); 
@@ -200,7 +201,7 @@ class JoomleagueModelsDefault extends JModelBase
     // Lets load the content if it doesn't already exist
     if (empty($this->_pagination)) 
     {
-      $this->_pagination = new Pagination( $this->getTotal(), $this->getState($this->_view.'_limitstart'), $this->getState($this->_view.'_limit'),null,JRoute::_('index.php?view='.$this->_view.'&layout='.$this->_layout));
+      $this->_pagination = new Pagination( $this->getTotal(), $this->getState($this->_view.'_limitstart'), $this->getState($this->_view.'_limit'),null,Route::_('index.php?view='.$this->_view.'&layout='.$this->_layout));
     }
     
     return $this->_pagination;

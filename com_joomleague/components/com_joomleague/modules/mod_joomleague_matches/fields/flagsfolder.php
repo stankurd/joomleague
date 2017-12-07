@@ -9,6 +9,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -35,14 +36,14 @@ class JFormFieldFlagsFolder extends FormField
 
 		$lang = Factory::getLanguage();
 		$lang->load("com_joomleague", JPATH_ADMINISTRATOR);
-		$items = array(JHtml::_('select.option',  '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DO_NOT_USE')));
+		$items = array(HTMLHelper::_('select.option',  '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DO_NOT_USE')));
 
 		foreach ( $folderlist as $folder )
 		{
-			$items[] = JHtml::_('select.option',  $folder, '&nbsp;'.$folder );
+			$items[] = HTMLHelper::_('select.option',  $folder, '&nbsp;'.$folder );
 		}
 
-		$output= JHtml::_('select.genericlist',  $items, $this->name,
+		$output= HTMLHelper::_('select.genericlist',  $items, $this->name,
 						  'class="inputbox"', 'value', 'text', $this->value, $this->id );
 		return $output;
 	}

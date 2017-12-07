@@ -6,6 +6,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Uri\Uri;
+
 defined('_JEXEC') or die;
 
 
@@ -20,10 +26,10 @@ class JoomleagueViewTeamPlayer extends JLGView
 
 	public function display($tpl = null)
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 		$jinput = $app->input;
-		$uri = JUri::getInstance();
-		$user = JFactory::getUser();
+		$uri = Uri::getInstance();
+		$user = Factory::getUser();
 		$model = $this->getModel();
 		$lists = array();
 
@@ -34,10 +40,10 @@ class JoomleagueViewTeamPlayer extends JLGView
 		$this->item = $this->get('Item');
 		$this->state = $this->get('State');
 
-		$mdlProject = JModelLegacy::getInstance('project','JoomleagueModel');
+		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$project = $mdlProject->getItem($project_id);
 
-		$mdlProjectteam = JModelLegacy::getInstance('projectteam','JoomleagueModel');
+		$mdlProjectteam = BaseDatabaseModel::getInstance('projectteam','JoomleagueModel');
 		$projectteam = $mdlProjectteam->getItem($project_team_id);
 
 		// get the project_player data of the project_team
@@ -65,12 +71,12 @@ class JoomleagueViewTeamPlayer extends JLGView
 		// build the html select list for positions
 		$selectedvalue = $this->item->project_position_id;
 		$projectpositions = array();
-		$projectpositions[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_POSITION'));
+		$projectpositions[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_POSITION'));
 		if($res = $model->getProjectPositions())
 		{
 			$projectpositions = array_merge($projectpositions,$res);
 		}
-		$lists['projectpositions'] = JHtml::_('select.genericlist',$projectpositions,'project_position_id','class="inputbox" size="1"','value','text',
+		$lists['projectpositions'] = HTMLHelper::_('select.genericlist',$projectpositions,'project_position_id','class="inputbox" size="1"','value','text',
 				$selectedvalue);
 		unset($projectpositions);
 
@@ -78,40 +84,40 @@ class JoomleagueViewTeamPlayer extends JLGView
 
 		// injury details
 		$myoptions = array();
-		$myoptions[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_NO'));
-		$myoptions[] = JHtml::_('select.option','1',JText::_('COM_JOOMLEAGUE_GLOBAL_YES'));
-		$lists['injury'] = JHtml::_('select.radiolist',$myoptions,'injury','class="inputbox" size="1"','value','text',$this->item->injury);
+		$myoptions[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_NO'));
+		$myoptions[] = HTMLHelper::_('select.option','1',JText::_('COM_JOOMLEAGUE_GLOBAL_YES'));
+		$lists['injury'] = HTMLHelper::_('select.radiolist',$myoptions,'injury','class="inputbox" size="1"','value','text',$this->item->injury);
 		unset($myoptions);
 
-		$lists['injury_date'] = JHtml::_('select.genericlist',$matchdays,'injury_date','class="inputbox" size="1"','value','text',
+		$lists['injury_date'] = HTMLHelper::_('select.genericlist',$matchdays,'injury_date','class="inputbox" size="1"','value','text',
 				$this->item->injury_date);
 
-		$lists['injury_end'] = JHtml::_('select.genericlist',$matchdays,'injury_end','class="inputbox" size="1"','value','text',
+		$lists['injury_end'] = HTMLHelper::_('select.genericlist',$matchdays,'injury_end','class="inputbox" size="1"','value','text',
 				$this->item->injury_end);
 
 		// suspension details
 		$myoptions = array();
-		$myoptions[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_NO'));
-		$myoptions[] = JHtml::_('select.option','1',JText::_('COM_JOOMLEAGUE_GLOBAL_YES'));
-		$lists['suspension'] = JHtml::_('select.radiolist',$myoptions,'suspension','class="radio" size="1"','value','text',$this->item->suspension);
+		$myoptions[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_NO'));
+		$myoptions[] = HTMLHelper::_('select.option','1',JText::_('COM_JOOMLEAGUE_GLOBAL_YES'));
+		$lists['suspension'] = HTMLHelper::_('select.radiolist',$myoptions,'suspension','class="radio" size="1"','value','text',$this->item->suspension);
 		unset($myoptions);
 
-		$lists['suspension_date'] = JHtml::_('select.genericlist',$matchdays,'suspension_date','class="inputbox" size="1"','value','text',
+		$lists['suspension_date'] = HTMLHelper::_('select.genericlist',$matchdays,'suspension_date','class="inputbox" size="1"','value','text',
 				$this->item->suspension_date);
 
-		$lists['suspension_end'] = JHtml::_('select.genericlist',$matchdays,'suspension_end','class="inputbox" size="1"','value','text',
+		$lists['suspension_end'] = HTMLHelper::_('select.genericlist',$matchdays,'suspension_end','class="inputbox" size="1"','value','text',
 				$this->item->suspension_end);
 
 		// away details
 		$myoptions = array();
-		$myoptions[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_NO'));
-		$myoptions[] = JHtml::_('select.option','1',JText::_('COM_JOOMLEAGUE_GLOBAL_YES'));
-		$lists['away'] = JHtml::_('select.radiolist',$myoptions,'away','class="inputbox" size="1"','value','text',$this->item->away);
+		$myoptions[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_NO'));
+		$myoptions[] = HTMLHelper::_('select.option','1',JText::_('COM_JOOMLEAGUE_GLOBAL_YES'));
+		$lists['away'] = HTMLHelper::_('select.radiolist',$myoptions,'away','class="inputbox" size="1"','value','text',$this->item->away);
 		unset($myoptions);
 
-		$lists['away_date'] = JHtml::_('select.genericlist',$matchdays,'away_date','class="inputbox" size="1"','value','text',$this->item->away_date);
+		$lists['away_date'] = HTMLHelper::_('select.genericlist',$matchdays,'away_date','class="inputbox" size="1"','value','text',$this->item->away_date);
 
-		$lists['away_end'] = JHtml::_('select.genericlist',$matchdays,'away_end','class="inputbox" size="1"','value','text',$this->item->away_end);
+		$lists['away_end'] = HTMLHelper::_('select.genericlist',$matchdays,'away_end','class="inputbox" size="1"','value','text',$this->item->away_end);
 
 		$extended = $this->getExtended($this->item->extended,'teamplayer');
 		$this->extended = $extended;
@@ -133,21 +139,21 @@ class JoomleagueViewTeamPlayer extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JFactory::getApplication()->input->set('hidemainmenu',true);
-		$user = JFactory::getUser();
+		Factory::getApplication()->input->set('hidemainmenu',true);
+		$user = Factory::getUser();
 		$userId = $user->get('id');
 		$isNew = ($this->item->id == 0);
 		$checkedOut = ! ($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 
 		// Set toolbar items for the page
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 		$jinput = $app->input;
 		$option = $jinput->getCmd('option');
-		$params = JComponentHelper::getParams($option);
+		$params = ComponentHelper::getParams($option);
 		$name = JoomleagueHelper::formatName(null,$this->item->firstname,$this->item->nickname,$this->item->lastname,
 				JoomleagueHelper::defaultNameFormat());
 		$text = $isNew ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_TITLE').': '.$name;
-		JToolBarHelper::title($text);
+		JLToolBarHelper::title($text);
 
 		if($isNew)
 		{
@@ -161,6 +167,6 @@ class JoomleagueViewTeamPlayer extends JLGView
 			JLToolBarHelper::save('teamplayer.save');
 			JLToolBarHelper::cancel('teamplayer.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::help('screen.joomleague',true);
 	}
 }

@@ -8,6 +8,8 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 require_once JLG_PATH_ADMIN.'/statistics/base.php';
@@ -34,7 +36,9 @@ class JLGStatisticWinpergame extends JLGStatistic {
 	 */
 	function getPlayerStatsByProject($person_id, $projectteam_id = 0, $project_id = 0, $sports_type_id = 0)
 	{		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query = ' SELECT COUNT(m.id) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_player AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id ';
@@ -77,8 +81,9 @@ class JLGStatisticWinpergame extends JLGStatistic {
 	 */
 	function getRosterStats($team_id, $project_id, $position_id)
 	{		
-		$db = JFactory::getDbo();
-
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		// Determine the wins per game for each project team player
 		$query	= ' FROM #__joomleague_team_player AS tp' 
 				. ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id' 
@@ -123,7 +128,9 @@ class JLGStatisticWinpergame extends JLGStatistic {
 	 */
 	function getRosterTotalStats($team_id, $project_id, $position_id = 0)
 	{		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query = ' SELECT COUNT(m.id) AS value '
 		       . ' FROM #__joomleague_project_team AS pt '
 		       . ' INNER JOIN #__joomleague_match AS m ON m.projectteam1_id = pt.id OR m.projectteam2_id = pt.id'
@@ -137,6 +144,7 @@ class JLGStatisticWinpergame extends JLGStatistic {
 		$num = $db->loadResult();
 
 		// team games
+		$query = $db->getQuery(true);
 		$query = ' SELECT COUNT(m.id) AS value '
 		       . ' FROM #__joomleague_project_team AS pt '
 		       . ' INNER JOIN #__joomleague_match AS m ON m.projectteam1_id = pt.id OR m.projectteam2_id = pt.id'
@@ -155,7 +163,9 @@ class JLGStatisticWinpergame extends JLGStatistic {
 
 	function getPlayersRanking($project_id, $division_id, $team_id, $limit = 20, $limitstart = 0, $order=null)
 	{		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query_num = ' SELECT COUNT(m.id) AS num, tp.id AS tpid, tp.person_id '
 			. ' FROM #__joomleague_team_player AS tp '
 			. ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -236,7 +246,9 @@ class JLGStatisticWinpergame extends JLGStatistic {
 		
 	function getTeamsRanking($project_id, $limit = 20, $limitstart = 0, $order=null)
 	{		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query_num = ' SELECT COUNT(m.id) AS num, pt.id '
 		       . ' FROM #__joomleague_project_team AS pt '
 		       . ' INNER JOIN #__joomleague_match AS m ON m.projectteam1_id = pt.id OR m.projectteam2_id = pt.id '
@@ -254,7 +266,7 @@ class JLGStatisticWinpergame extends JLGStatistic {
 		       . ' WHERE pt.project_id = '. $db->Quote($project_id)
 		       . ' GROUP BY pt.id '
 		       ;
-		       
+		$query = $db->getQuery(true);
 		$query = ' SELECT (n.num / d.value) AS total, pt.team_id ' 
 		       . ' FROM #__joomleague_project_team AS pt '
 		       . ' INNER JOIN ('.$query_num.') AS n ON n.id = pt.id '
@@ -292,7 +304,9 @@ class JLGStatisticWinpergame extends JLGStatistic {
 	
 	function getStaffStats($person_id, $team_id, $project_id)
 	{		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query = ' SELECT COUNT(m.id) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -307,7 +321,7 @@ class JLGStatisticWinpergame extends JLGStatistic {
 		       ;
 		$db->setQuery($query);
 		$num = $db->loadResult();
-		
+		$query = $db->getQuery(true);
 		$query = ' SELECT COUNT(ms.id) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -328,7 +342,9 @@ class JLGStatisticWinpergame extends JLGStatistic {
 
 	function getHistoryStaffStats($person_id)
 	{		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query = ' SELECT COUNT(m.id) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -341,7 +357,7 @@ class JLGStatisticWinpergame extends JLGStatistic {
 		       ;
 		$db->setQuery($query);
 		$num = $db->loadResult();
-		
+		$query = $db->getQuery(true);
 		$query = ' SELECT COUNT(ms.id) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '

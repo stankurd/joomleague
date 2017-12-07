@@ -25,7 +25,7 @@ class JoomleagueViewProject extends JLGView
 	public function display($tpl = null)
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 
 		$this->form = $this->get('Form');
 		$this->item = $this->get('Item');
@@ -36,8 +36,8 @@ class JoomleagueViewProject extends JLGView
 		{
 			$this->form->setValue('is_utc_converted',null,1);
 		}
-		$edit = $jinput->get('edit');
-		$copy = $jinput->get('copy');
+		$edit = $input->get('edit');
+		$copy = $input->get('copy');
 
 		// add javascript
 		$document = Factory::getDocument();
@@ -46,8 +46,8 @@ class JoomleagueViewProject extends JLGView
 		$this->edit = $edit;
 		$this->copy = $copy;
 
-		//$extended = $this->getExtended($this->item->extended, 'project', $this->item->id);
-		//$this->extended = $extended;
+		$extended = $this->getExtended($this->item->extended, 'project', $this->item->id);
+		$this->extended = $extended;
 
 		$this->addToolbar();
 		parent::display($tpl);

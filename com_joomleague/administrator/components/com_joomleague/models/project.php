@@ -527,7 +527,7 @@ class JoomleagueModelProject extends JLGModelItem
 			}
 			else
 			{
-			    $app->enqueueMessage(sprintf(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECT_MODEL_MISSING_TEMPLATE'),$template),'warning');
+			    //$app->enqueueMessage(sprintf(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECT_MODEL_MISSING_TEMPLATE'),$template),'warning');
 				return array();
 			}
 		}

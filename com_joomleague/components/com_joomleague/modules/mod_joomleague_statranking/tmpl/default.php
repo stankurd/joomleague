@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Joomleague
  * @subpackage	Module-Statranking
@@ -133,7 +135,7 @@ if (count($list['stattypes']) > 0)
 						}
 						if ($teamLink)
 						{
-							echo JHtml::link(modJLGStatHelper::getTeamLink($team, $params, $list['project']), $team->$teamnametype);
+							echo HTMLHelper::link(modJLGStatHelper::getTeamLink($team, $params, $list['project']), $team->$teamnametype);
 						}
 						else
 						{
@@ -184,7 +186,7 @@ else
 //	$divisionid = explode(':', $params->get('division_id', 0));
 //	$divisionid = $divisionid[0];
 //	$teamid = (int)$params->get('tid', 0);
-	echo JHtml::link(JoomleagueHelperRoute::getStatsRankingRoute($list['project']->slug, $params->get('divisionid',0), $params->get('tid',0), $params->get('sid',0), $params->get('ranking_order')), JText::_('VIEW FULL TABLE')); ?>
+	echo HTMLHelper::link(JoomleagueHelperRoute::getStatsRankingRoute($list['project']->slug, $params->get('divisionid',0), $params->get('tid',0), $params->get('sid',0), $params->get('ranking_order')), JText::_('VIEW FULL TABLE')); ?>
 </p>
 <?php endif; ?>
 </div>

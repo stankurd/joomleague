@@ -1,4 +1,6 @@
-<?php	foreach ( $this->rows as $position_id => $players ): ?>
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+foreach ( $this->rows as $position_id => $players ): ?>
 <div style="margin:auto; width:720px;">
 	<!-- position header -->
 	<?php
@@ -44,7 +46,7 @@
 					$playerPicture = JoomleagueHelper::getPictureThumb($picture, $imgTitle,
 										$this->config['player_picture_width'],
 										$this->config['player_picture_height']);
-					echo JHtml::link($link,$playerPicture);
+					echo HTMLHelper::link($link,$playerPicture);
 				}
 				else
 				{
@@ -61,7 +63,7 @@
 				  	if ($this->config['link_player']==1)
 					{
 						$link=JoomleagueHelperRoute::getPlayerRoute($this->project->slug,$this->team->slug,$row->slug);
-						echo JHtml::link($link,'<i>'.$playerName.'</i>');
+						echo HTMLHelper::link($link,'<i>'.$playerName.'</i>');
 					}
 					else
 					{

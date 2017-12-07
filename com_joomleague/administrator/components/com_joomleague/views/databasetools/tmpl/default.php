@@ -7,9 +7,12 @@
  * @link		http://www.joomleague.at
  */
 
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
+
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 ?>
 <div id="j-main-container" class="span10">
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm" name="adminForm">
@@ -42,7 +45,7 @@ JHtml::_('behavior.tooltip');
 				<tr>
 					<td class="nowrap" valign="top">
 						<?php
-						$link = JRoute::_('index.php?option=com_joomleague&task=databasetool.optimize');
+						$link = Route::_('index.php?option=com_joomleague&task=databasetool.optimize');
 						?>
 						<a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_DBTOOLS_OPTIMIZE2'); ?>">
 							<?php
@@ -60,7 +63,7 @@ JHtml::_('behavior.tooltip');
 				<tr>
 					<td class="nowrap" valign="top">
 						<?php
-						$link = JRoute::_('index.php?option=com_joomleague&task=databasetool.repair');
+						$link = Route::_('index.php?option=com_joomleague&task=databasetool.repair');
 						?>
 						<a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_DBTOOLS_REPAIR2'); ?>">
 							<?php
@@ -80,6 +83,6 @@ JHtml::_('behavior.tooltip');
 	</div>
 
 	<input type="hidden" name="task" value="databasetool.execute" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>
 </div>

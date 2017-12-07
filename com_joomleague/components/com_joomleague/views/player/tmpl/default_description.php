@@ -1,4 +1,6 @@
 <?php 
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Joomleague
  *
@@ -29,7 +31,7 @@ defined('_JEXEC') or die; ?>
 		<h2><?php echo JText::_( 'COM_JOOMLEAGUE_PERSON_INFO' );	?></h2>
 		<div class="personinfo">
 			<?php	
-			$description = JHtml::_('content.prepare', $description);
+			$description = HTMLHelper::_('content.prepare', $description);
 			echo stripslashes( $description ); 
 			?>
 		</div>

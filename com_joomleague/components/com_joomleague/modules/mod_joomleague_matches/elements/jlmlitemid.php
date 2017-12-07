@@ -3,6 +3,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Application\CMSApplication;
 use Joomla\CMS\Form\FormField;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\Utilities\ArrayHelper;
 
 defined('_JEXEC') or die();
@@ -16,7 +17,7 @@ class JElementJLMLItemid extends FormField
 	{
 		$db = Factory::getDbo();
 
-		$options 	= array(JHtml::_('select.option', '', '- '.JText::_('Select Item').' -'));
+		$options 	= array(HTMLHelper::_('select.option', '', '- '.JText::_('Select Item').' -'));
 
 		$query = "SELECT menutype, title FROM #__menu_types ORDER BY title";
 		$db->setQuery( $query );
@@ -46,7 +47,7 @@ class JElementJLMLItemid extends FormField
 			}
 		}
 
-		$list = JHtml::_('menu.treerecurse', 0, '', array(), $childs, true, 0, 0 );
+		$list = HTMLHelper::_('menu.treerecurse', 0, '', array(), $childs, true, 0, 0 );
 
 		$cnt = count( $list );
 		$olist = array();
@@ -56,7 +57,7 @@ class JElementJLMLItemid extends FormField
 
 		foreach ($mtypes as $type)
 		{
-			$options[]	= JHtml::_('select.option',  $type->menutype, $type->title , 'value', 'text', true );
+			$options[]	= HTMLHelper::_('select.option',  $type->menutype, $type->title , 'value', 'text', true );
 			if (isset( $olist[$type->menutype] ))
 			{
 				$cnt = count( $olist[$type->menutype] );
@@ -75,13 +76,13 @@ class JElementJLMLItemid extends FormField
 					}
 					
 					$disable = strpos($node->attributes('disable'), $item->type) !== false ? true : false;
-					$options[] = JHtml::_('select.option',  $item->id, $item->id.'&nbsp;&nbsp;&nbsp;' .$item->treename, 'value', 'text', $disable );
+					$options[] = HTMLHelper::_('select.option',  $item->id, $item->id.'&nbsp;&nbsp;&nbsp;' .$item->treename, 'value', 'text', $disable );
 
 				}
 			}
 		}
 
-		return JHtml::_('select.genericlist',  $options, ''.$control_name.'['.$name.']', 'class="inputbox"', 'value', 'text', $value, $control_name.$name);
+		return HTMLHelper::_('select.genericlist',  $options, ''.$control_name.'['.$name.']', 'class="inputbox"', 'value', 'text', $value, $control_name.$name);
 	}
 	
 	function fetchElementOLD($name, $value, &$node, $control_name)
@@ -106,6 +107,6 @@ class JElementJLMLItemid extends FormField
 			}
 		}
 
-		return JHtml::_('select.genericlist',  $items2, ''.$control_name.'['.$name.']', '', 'id', 'title', $value, $control_name.$name );
+		return HTMLHelper::_('select.genericlist',  $items2, ''.$control_name.'['.$name.']', '', 'id', 'title', $value, $control_name.$name );
 	}
 }

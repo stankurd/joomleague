@@ -6,6 +6,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 /**
@@ -37,12 +39,12 @@ class JoomleagueViewRounds extends JLGView
 	 */
 	function _displayJsonOptions($tpl = null)
 	{
-		$app = JFactory::getApplication();
-		$jinput = $app->input;
-		$pid = $jinput->get('p');
+		$app = Factory::getApplication();
+		$input = $app->input;
+		$pid = $input->get('p');
 		
 		// Get some data from the model
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		$db->setQuery(
 				"	SELECT CASE WHEN CHAR_LENGTH(r.alias) THEN CONCAT_WS(':', r.roundcode, r.alias) ELSE r.roundcode END AS value,
 									r.name AS text

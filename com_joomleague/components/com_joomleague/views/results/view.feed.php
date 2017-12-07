@@ -1,6 +1,7 @@
 <?php 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Feed\Feed;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Document\Feed\FeedItem;
 
 defined('_JEXEC') or die;
@@ -14,7 +15,7 @@ class JoomleagueViewResults extends JLGView
 	public function display($tpl = null)
 	{
 		$document	= Factory::getDocument();
-		$document->link = JRoute::_('index.php?option=com_joomleague');
+		$document->link = Route::_('index.php?option=com_joomleague');
 		$model = $this->getModel();
 		$this->config=$model->getTemplateConfig('results');
 		$this->overallconfig=$model->getOverallConfig();
@@ -31,7 +32,7 @@ class JoomleagueViewResults extends JLGView
 				$team2 = $this->teams[$game->projectteam2_id];
 				$result = $game->cancel > 0 ? $game->cancel_reason : $game->team1_result . "-" . $game->team2_result;
 				$item->title 		= $team1->name. " - ".$team2->name." : ".$result;
-				$item->link 		= JRoute::_( 'index.php?option=com_joomleague&view=matchreport&p=' .
+				$item->link 		= Route::_( 'index.php?option=com_joomleague&view=matchreport&p=' .
 				$game->project_id . '&mid=' . $game->id);
 				$item->description 	= $game->summary;
 				$item->date			= JoomleagueHelper::getMatchDate($game);

@@ -11,6 +11,7 @@
  * @todo: 		add ordering for events?
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Uri\Uri;
 
@@ -77,10 +78,10 @@ if (isset ( $this->preFillSuccess ) && $this->preFillSuccess) {
 <form method="post" id="adminForm" name="adminForm">
 <?php
 $p = 1;
-echo JHtml::_ ( 'bootstrap.startTabSet', 'tabs', array (
+echo HTMLHelper::_ ( 'bootstrap.startTabSet', 'tabs', array (
 		'active' => 'panel1' 
 ) );
-echo JHtml::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, JText::_ ( 'Events', true ) );
+echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, JText::_ ( 'Events', true ) );
 ?>	
 	<!-- events -->
 	<fieldset class="form-horizontal">
@@ -192,8 +193,8 @@ echo JHtml::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, JText::_ ( 'Events'
 	</fieldset>
 		
 		<?php
-		echo JHtml::_('bootstrap.endTab');
-		echo JHtml::_('bootstrap.addTab','tabs','panel'.$p ++,JText::_('Comments',true));
+		echo HTMLHelper::_('bootstrap.endTab');
+		echo HTMLHelper::_('bootstrap.addTab','tabs','panel'.$p ++,JText::_('Comments',true));
 		?>
 
 		
@@ -296,10 +297,10 @@ echo JHtml::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, JText::_ ( 'Events'
 		</div>
 	</fieldset>
 <?php
-echo JHtml::_('bootstrap.endTab');
-	echo JHtml::_('bootstrap.endTabSet');
+echo HTMLHelper::_('bootstrap.endTab');
+	echo HTMLHelper::_('bootstrap.endTabSet');
 ?>
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 	<input type="hidden" name="task" value="" />
 </form>
 <div class="clearfix"></div>

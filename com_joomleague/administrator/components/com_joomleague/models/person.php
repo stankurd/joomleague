@@ -241,7 +241,7 @@ class JoomleagueModelPerson extends JLGModelItem
 		{
 			return false;
 		}
-		$jinput = Factory::getApplication()->input;
+		$input = Factory::getApplication()->input;
 
 		if($this->getState('person.id'))
 		{
@@ -320,10 +320,10 @@ class JoomleagueModelPerson extends JLGModelItem
 	public function save($data)
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 
-		$assignPerson = $jinput->get('assignperson',false);
-		$data['extended'] = $jinput->get('extended',array(),'array');
+		$assignPerson = $input->get('assignperson',false);
+		$data['extended'] = $input->get('extended',array(),'array');
 		
 		if(parent::save($data))
 		{
@@ -332,7 +332,7 @@ class JoomleagueModelPerson extends JLGModelItem
 			
 			if ($assignPerson)
 			{
-				$projectTeam_id    = $jinput->getInt('team_id',false);
+				$projectTeam_id    = $input->getInt('team_id',false);
 			
 				if ($projectTeam_id) {
 					$mdlTeamplayers = JLGModel::getInstance('teamplayers','JoomleagueModel');

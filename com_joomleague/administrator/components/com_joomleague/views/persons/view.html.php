@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -26,7 +27,7 @@ class JoomleagueViewPersons extends JLGView
 
 	public function display($tpl = null)
 	{
-		//JHtml::_('behavior.calendar');
+		//HTMLHelper::_('behavior.calendar');
 
 		$app = Factory::getApplication();
 		$jinput = $app->input;
@@ -39,7 +40,7 @@ class JoomleagueViewPersons extends JLGView
 
 		// build the html select list for positions
 		$positionsList = array();
-		$positionsList[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_POSITION'));
+		$positionsList[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_POSITION'));
 		$positions = BaseDatabaseModel::getInstance('person','joomleaguemodel')->getPositions();
 		if($positions)
 		{
@@ -50,7 +51,7 @@ class JoomleagueViewPersons extends JLGView
 
 		// build the html options for nation
 		$nations = array();
-		$nations[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_NATION'));
+		$nations[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_NATION'));
 		if($res = Countries::getCountryOptions())
 		{
 			$nations = array_merge($nations,$res);
@@ -66,7 +67,7 @@ class JoomleagueViewPersons extends JLGView
 		$this->filterForm = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');
 
-		//JHtml::_('bootstrap.framework');
+		//HTMLHelper::_('bootstrap.framework');
 
 		$baseurl = Uri::root();
 		$document = Factory::getDocument();

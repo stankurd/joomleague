@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -40,15 +41,15 @@ class JFormFieldSportsTypes extends FormField
 		
 		$mitems = array(); 
 		if($this->required == false) {
-			$mitems = array(JHtml::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
+			$mitems = array(HTMLHelper::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
 		}
 		
 		foreach ( $results as $item )
 		{
-			$mitems[] = JHtml::_('select.option',  $item->id, '&nbsp;'.JText::_($item->name). ' ('.$item->id.')' );
+			$mitems[] = HTMLHelper::_('select.option',  $item->id, '&nbsp;'.JText::_($item->name). ' ('.$item->id.')' );
 		}
 		
-		return JHtml::_('select.genericlist',  $mitems, $this->name, 
+		return HTMLHelper::_('select.genericlist',  $mitems, $this->name, 
 				'class="inputbox" size="1"', 'value', 'text', $this->value, $this->id);
 	}
 }

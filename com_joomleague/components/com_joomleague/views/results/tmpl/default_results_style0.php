@@ -9,6 +9,7 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\Registry\Registry;
 
 $nbcols = 6;
@@ -47,7 +48,7 @@ if ($this->config['show_comments_count'] > 0)
 		<th colspan="<?php echo $nbcols-$nbcols_header; ?>">
             <?php 
             if ($date != '0000-00-00') {
-               echo JHtml::date($date, 
+               echo HTMLHelper::date($date, 
 								JText::_('COM_JOOMLEAGUE_RESULTS_GAMES_DATE'),
 								JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
                if ($this->config['show_matchday_dateheader']) {
@@ -74,7 +75,7 @@ if ($this->config['show_comments_count'] > 0)
 		<th colspan="<?php echo $nbcols; ?>">
             <?php
             if ($date != '0000-00-00') {
-               echo JHtml::date($date,
+               echo HTMLHelper::date($date,
 								JText::_('COM_JOOMLEAGUE_RESULTS_GAMES_DATE'),
 								JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
                if ($this->config['show_matchday_dateheader']) {
@@ -155,10 +156,10 @@ if ($this->config['show_comments_count'] > 0)
 			if ($hasEvents)
 			{
 				$link = "javascript:void(0);";
-				$img = JHtml::image('media/com_joomleague/jl_images/events.png', 'events.png');
+				$img = HTMLHelper::image('media/com_joomleague/jl_images/events.png', 'events.png');
 				$params = array("title"   => JText::_('COM_JOOMLEAGUE_TEAMPLAN_EVENTS'),
 								"onclick" => 'switchMenu(\'info'.$game->id.'\');return false;');
-				echo JHtml::link($link,$img,$params);
+				echo HTMLHelper::link($link,$img,$params);
 			}
 			else
 			{
@@ -326,7 +327,7 @@ if ($this->config['show_comments_count'] > 0)
 			}
 			if ($this->config['show_comments_count'] == 1)
 			{
-				$href_text = JHtml::image('media/com_joomleague/jl_images/' . $imgFilename, $imgTitle,
+				$href_text = HTMLHelper::image('media/com_joomleague/jl_images/' . $imgFilename, $imgTitle,
 					array(' title' => $imgTitle,' border' => 0,' style' => 'vertical-align: middle'));
 			}
 			elseif ($this->config['show_comments_count'] == 2)
@@ -336,7 +337,7 @@ if ($this->config['show_comments_count'] > 0)
 			$link = isset($game->team1_result)
 				? JoomleagueHelperRoute::getMatchReportRoute($this->project->slug, $game->slug).'#comments'
 				: JoomleagueHelperRoute::getNextMatchRoute($this->project->slug, $game->slug).'#comments';
-			echo JHtml::link($link, $href_text);
+			echo HTMLHelper::link($link, $href_text);
 		?>
 		</td>
 		<?php endif; ?>

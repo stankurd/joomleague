@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
 /**
  * Joomleague
@@ -63,5 +64,5 @@ defined('_JEXEC') or die;
 	<input type="hidden" name="project_id"
 		value="<?php echo Factory::getApplication()->input->get('project_id'); ?>" /> <input
 		type="hidden" name="task" value="" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

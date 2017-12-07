@@ -51,7 +51,7 @@ class JoomleagueModelRounds extends JLGModelList
 			$this->context .= '.'.$layout;
 		}
 
-		$jinput = $app->input;
+		$input = $app->input;
 		$project_id = $app->getUserState('com_joomleagueproject');
 		$this->project_id = $project_id;
 		
@@ -78,8 +78,8 @@ class JoomleagueModelRounds extends JLGModelList
 	protected function getListQuery()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 
 		$project_id = $app->getUserState($option.'project');
 		$params = ComponentHelper::getParams('com_joomleague');
@@ -151,11 +151,11 @@ class JoomleagueModelRounds extends JLGModelList
 	function getProjectTeams()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option . 'project');
 		
-		$division_id = $jinput->getInt('division_id',0);
+		$division_id = $input->getInt('division_id',0);
 
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);

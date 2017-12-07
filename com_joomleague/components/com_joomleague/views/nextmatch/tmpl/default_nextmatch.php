@@ -1,4 +1,9 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
+?>
 
 <!-- Main START -->
 <table width="96%" align="center" border="0" cellpadding="0"
@@ -184,7 +189,7 @@
 			<div class="notice">
 			<?php 
                 $text = JText::_( "COM_JOOMLEAGUE_NEXTMATCH_ALREADYPLAYED" );
-                echo JHtml::link( $report_link, $text );
+                echo HTMLHelper::link( $report_link, $text );
 			?>
 			</div>
 			<?php 

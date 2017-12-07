@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -132,6 +133,6 @@ class JoomleagueControllerEventtypes extends JLGControllerAdmin
 	 */
 	public function import()
 	{
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=import&table=eventtype',false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view=import&table=eventtype',false));
 	}
 }

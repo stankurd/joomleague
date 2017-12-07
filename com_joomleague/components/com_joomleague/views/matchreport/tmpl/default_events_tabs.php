@@ -1,4 +1,6 @@
-<?php defined('_JEXEC') or die; ?>
+<?php use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die; ?>
 <!-- START of match events -->
 
 <h2><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_EVENTS'); ?></h2>
@@ -7,7 +9,7 @@
 		    $txt_tab='';
 			$iPanel = 1;
 			$selector = 'defaulteventstab';
-			echo JHtml::_('bootstrap.startTabSet', $selector, array('active'=>'panel'.$iPanel)); 
+			echo HTMLHelper::_('bootstrap.startTabSet', $selector, array('active'=>'panel'.$iPanel)); 
 		    foreach ($this->eventtypes AS $event)
 			{
 				$pic_tab=$event->icon;
@@ -19,10 +21,10 @@
 				{
 					$imgTitle=JText::_($event->name);
 					$imgTitle2=array(' title' => $imgTitle, ' alt' => $imgTitle, ' style' => 'max-height:40px;');
-					$txt_tab=JHtml::image($pic_tab,$imgTitle,$imgTitle2);
+					$txt_tab=HTMLHelper::image($pic_tab,$imgTitle,$imgTitle2);
 				}
 
-				echo JHtml::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $txt_tab);
+				echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $txt_tab);
 				echo '<table class="matchreport">';
 				echo '<tr>';
 				echo '<td class="list">';
@@ -44,7 +46,7 @@
                         if ($this->config['event_link_player'] == 1 && $me->playerid != 0)
                         {
                             $player_link=JoomleagueHelperRoute::getPlayerRoute($this->project->slug,$me->team_id,$me->playerid);
-                            $match_player = JHtml::link($player_link,$match_player);
+                            $match_player = HTMLHelper::link($player_link,$match_player);
                         }
                         echo $match_player;
 
@@ -96,7 +98,7 @@
 						if ($this->config['event_link_player'] == 1 && $me->playerid != 0)
 						{
 							$player_link=JoomleagueHelperRoute::getPlayerRoute($this->project->slug,$me->team_id,$me->playerid);
-							$match_player = JHtml::link($player_link,$match_player);
+							$match_player = HTMLHelper::link($player_link,$match_player);
 						}
 						echo $match_player;
 
@@ -131,9 +133,9 @@
 				echo '</td>';
 				echo '</tr>';
 				echo '</table>';
-				echo JHtml::_('bootstrap.endTab');
+				echo HTMLHelper::_('bootstrap.endTab');
 			}
-			echo JHtml::_('bootstrap.endTabSet');
+			echo HTMLHelper::_('bootstrap.endTabSet');
 
             ?>
 <!-- END of match events -->

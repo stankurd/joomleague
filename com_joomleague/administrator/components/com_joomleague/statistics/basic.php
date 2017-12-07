@@ -8,6 +8,8 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 require_once JLG_PATH_ADMIN.'/statistics/base.php';
@@ -31,7 +33,8 @@ class JLGStatisticBasic extends JLGStatistic {
 
 	function getMatchPlayersStats($match_id)
 	{
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		
 		$query = ' SELECT SUM(ms.value) AS value, tp.id '
 		       . ' FROM #__joomleague_team_player AS tp '
@@ -97,7 +100,8 @@ class JLGStatisticBasic extends JLGStatistic {
 	
 	function getPlayersRanking($project_id, $division_id, $team_id, $limit = 20, $limitstart = 0, $order = null)
 	{		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		
 		$query_select_count = ' SELECT COUNT(DISTINCT tp.id) as count';
 
@@ -162,7 +166,8 @@ class JLGStatisticBasic extends JLGStatistic {
 	
 	function getTeamsRanking($project_id, $limit = 20, $limitstart = 0, $order=null)
 	{		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		
 		$query = ' SELECT SUM(ms.value) AS total, '
 		       . ' pt.team_id ' 
@@ -214,7 +219,8 @@ class JLGStatisticBasic extends JLGStatistic {
 	
 	function getStaffStats($person_id, $team_id, $project_id)
 	{
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		
 		$query = ' SELECT SUM(ms.value) AS value '
 		       . ' FROM #__joomleague_team_staff AS tp '
@@ -235,7 +241,8 @@ class JLGStatisticBasic extends JLGStatistic {
 
 	function getHistoryStaffStats($person_id)
 	{
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		
 		$query = ' SELECT SUM(ms.value) AS value '
 		       . ' FROM #__joomleague_team_staff AS tp '

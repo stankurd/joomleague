@@ -6,17 +6,23 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Uri\Uri;
+
 defined('_JEXEC') or die;
 
-$app = JFactory::getApplication();
-$user = JFactory::getUser();
+$app = Factory::getApplication();
+$user = Factory::getUser();
 $userId = $user->get('id');
 $listOrder = $this->escape($this->state->get('list.ordering'));
 $listDirn = $this->escape($this->state->get('list.direction'));
 $archived = $this->state->get('filter.published') == 2 ? true : false;
 $trashed = $this->state->get('filter.published') == - 2 ? true : false;
 $saveOrder = $listOrder == 'a.ordering';
-$uri = JUri::root();
+$uri = Uri::root();
 ?>
 <?php
 $script = "
@@ -54,11 +60,11 @@ jQuery(document).ready(function() {
 			e.stopPropagation();
 		});";
 
-JHtml::_('script','media/jui/js/jquery.autocomplete.min.js',false,false,false,false,true);
+HTMLHelper::_('script','media/jui/js/jquery.autocomplete.min.js',false,false,false,false,true);
 
 $script .= "
 	var suggest = jQuery('#quickadd').autocomplete({
-		serviceUrl: '" . JRoute::_('index.php?option=com_joomleague&task=quickadd.searchstaff&projectteam_id=' . $this->projectteam->id,false) . "',
+		serviceUrl: '" . Route::_('index.php?option=com_joomleague&task=quickadd.searchstaff&projectteam_id=' . $this->projectteam->id,false) . "',
 		paramName: 'q',
 		minChars: 1,
 		maxHeight: 400,
@@ -69,23 +75,23 @@ $script .= "
 
 $script .= "});";
 
-JFactory::getDocument()->addScriptDeclaration($script);
+Factory::getDocument()->addScriptDeclaration($script);
 ?>
 <fieldset class="form-horizontal">
 	<legend><?php echo JText::_("COM_JOOMLEAGUE_ADMIN_TEAMSTAFFS_QUICKADD_STAFF");?></legend>
-	<form id="quickaddForm" action="<?php echo JUri::root(); ?>administrator/index.php?option=com_joomleague&task=quickadd.addstaff" method="post">
+	<form id="quickaddForm" action="<?php echo Uri::root(); ?>administrator/index.php?option=com_joomleague&task=quickadd.addstaff" method="post">
 		<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFFS_QUICKADD_DESCR'); ?>
 		<div class="clearfix"></div>
 		<div class="btn-wrapper input-append pull-left">
-			<input type="text" name="p" id="quickadd" size="50" value="<?php htmlspecialchars(JFactory::getApplication()->input->getString('q',false)); ?>" />
+			<input type="text" name="p" id="quickadd" size="50" value="<?php htmlspecialchars(Factory::getApplication()->input->getString('q',false)); ?>" />
 			<input class="btn" type="submit" name="submit" id="submit" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_ADD');?>" />
 		</div>
 		<input type="hidden" name="projectteam_id" id="projectteam_id" value="<?php echo $this->projectteam->id; ?>" />
-		<?php echo JHtml::_('form.token'); ?>
+		<?php echo HTMLHelper::_('form.token'); ?>
 	</form>
 </fieldset>
 <br>
-<form action="<?php echo JRoute::_('index.php?option=com_joomleague&view=teamstaffs'); ?>" method="post" id="adminForm" name="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_joomleague&view=teamstaffs'); ?>" method="post" id="adminForm" name="adminForm">
 	<fieldset class="form-horizontal">
 		<legend>
 			<?php
@@ -95,7 +101,7 @@ JFactory::getDocument()->addScriptDeclaration($script);
 		<div class="clearfix">
 		<?php
 		// Search tools bar
-		echo JLayoutHelper::render('searchtools.default',array('view' => $this),JUri::root().'administrator/components/com_joomleague/layouts');
+		echo LayoutHelper::render('searchtools.default',array('view' => $this),Uri::root().'administrator/components/com_joomleague/layouts');
 		?>
 		<div class="btn-wrapper pull-right">
 		<?php
@@ -114,17 +120,17 @@ JFactory::getDocument()->addScriptDeclaration($script);
 			<thead>
 				<tr>
 					<th width="1%" class="center">
-						<?php echo JHtml::_('grid.checkall'); ?>
+						<?php echo HTMLHelper::_('grid.checkall'); ?>
 					</th>
 					<th width="20">&nbsp;</th>
 					<th>
-						<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TSTAFFS_NAME','a.lastname',$listDirn, $listOrder);?>
+						<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TSTAFFS_NAME','a.lastname',$listDirn, $listOrder);?>
 					</th>
 					<th class="center">
 						<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_IMAGE'); ?>
 					</th>
 					<th>
-						<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TSTAFFS_POS','a.project_position_id',$listDirn, $listOrder);?>
+						<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TSTAFFS_POS','a.project_position_id',$listDirn, $listOrder);?>
 					</th>
 					<th>
 						<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_STATUS');?>
@@ -136,7 +142,7 @@ JFactory::getDocument()->addScriptDeclaration($script);
 						<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_PID');?>
 					</th>
 					<th width="1%">
-						<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder);?>
+						<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder);?>
 					</th>
 				</tr>
 			</thead>
@@ -144,8 +150,8 @@ JFactory::getDocument()->addScriptDeclaration($script);
 			<?php
 			$n = count($this->items);
 			foreach($this->items as $i=>$row):
-				$link = JRoute::_('index.php?option=com_joomleague&task=teamstaff.edit&projectteam='.$this->projectteam->id.'&id='.$row->id);
-				$checked = JHtml::_('grid.checkedout',$row,$i);
+				$link = Route::_('index.php?option=com_joomleague&task=teamstaff.edit&projectteam='.$this->projectteam->id.'&id='.$row->id);
+				$checked = HTMLHelper::_('grid.checkedout',$row,$i);
 				$inputappend = '';
 			?>
 				<tr class="row<?php echo $i % 2; ?>">
@@ -169,7 +175,7 @@ JFactory::getDocument()->addScriptDeclaration($script);
 						<a href="<?php echo $link; ?>">
 						<?php
 							$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_EDIT_DETAILS');
-							echo JHtml::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "'.$imageTitle.'"');
+							echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "'.$imageTitle.'"');
 						?>
 						</a>
 					</td>
@@ -184,11 +190,11 @@ JFactory::getDocument()->addScriptDeclaration($script);
 					if($row->picture == '')
 					{
 						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_NO_IMAGE');
-						echo JHtml::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "'.$imageTitle.'"');
+						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "'.$imageTitle.'"');
 					}
 					elseif($row->picture == JoomleagueHelper::getDefaultPlaceholder("player")){
 						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_DEFAULT_IMAGE');
-						echo JHtml::_('image','administrator/components/com_joomleague/assets/images/information.png',$imageTitle,'title= "'.$imageTitle.'"');
+						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/information.png',$imageTitle,'title= "'.$imageTitle.'"');
 					}
 					elseif($row->picture == ! '')
 					{
@@ -222,7 +228,7 @@ JFactory::getDocument()->addScriptDeclaration($script);
 						$append = ' style="background-color:#FFCCCC"';
 					}
 
-						echo JHtml::_('select.genericlist',$this->lists['project_position_id'],'project_position_id' . $row->id,
+						echo HTMLHelper::_('select.genericlist',$this->lists['project_position_id'],'project_position_id' . $row->id,
 						$inputappend . 'class="inputbox" size="1" onchange="document.getElementById(\'cb' . $i . '\').checked=true"' . $append,
 						'value','text',$selectedvalue);
 						?>
@@ -235,25 +241,25 @@ JFactory::getDocument()->addScriptDeclaration($script);
 					if($row->injury > 0)
 					{
 						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_INJURED');
-						echo JHtml::_('image','administrator/components/com_joomleague/assets/images/injured.gif',$imageTitle,'title= "'.$imageTitle.'"');
+						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/injured.gif',$imageTitle,'title= "'.$imageTitle.'"');
 					}
 					if($row->suspension > 0)
 					{
 						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_SUSPENDED');
-						echo JHtml::_('image','administrator/components/com_joomleague/assets/images/suspension.gif',$imageTitle,'title= "'.$imageTitle.'"');
+						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/suspension.gif',$imageTitle,'title= "'.$imageTitle.'"');
 					}
 					if($row->away > 0)
 					{
 						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_AWAY');
-						echo JHtml::_('image','administrator/components/com_joomleague/assets/images/away.gif',$imageTitle,'title= "'.$imageTitle.'"');
+						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/away.gif',$imageTitle,'title= "'.$imageTitle.'"');
 					}
 					?>
 						&nbsp;
 					</td>
-					<td class="center"><?php echo JHtml::_('jgrid.published',$row->published,$i,'teamstaffs.');?></td>
+					<td class="center"><?php echo HTMLHelper::_('jgrid.published',$row->published,$i,'teamstaffs.');?></td>
 					<td class="center">
 					<?php
-						$player_edit_link = JRoute::_('index.php?option=com_joomleague&task=person.edit&id='.$row->person_id.'&return=teamstaffs');
+						$player_edit_link = Route::_('index.php?option=com_joomleague&task=person.edit&id='.$row->person_id.'&return=teamstaffs');
 					?>
 						<a href="<?php echo $player_edit_link ?>">
 					<?php
@@ -276,5 +282,5 @@ JFactory::getDocument()->addScriptDeclaration($script);
 	<input type="hidden" name="team" value="<?php echo $this->projectteam->id; ?>" />
 	<input type="hidden" name="task" value="" />
 	<input type="hidden" name="boxchecked" value="0" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

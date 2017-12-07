@@ -11,6 +11,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
@@ -85,7 +86,7 @@ class JoomleagueViewProjectReferees extends JLGView
 				}
 				if($used == 0)
 				{
-					$notusedplayers[] = JHtml::_('select.option',$res1->value,
+					$notusedplayers[] = HTMLHelper::_('select.option',$res1->value,
 							JoomleagueHelper::formatName(null,$res1->firstname,$res1->nickname,$res1->lastname,0).' ('.$res1->notes.')');
 				}
 			}
@@ -94,7 +95,7 @@ class JoomleagueViewProjectReferees extends JLGView
 		{
 			foreach($ress1 as $res1)
 			{
-				$notusedplayers[] = JHtml::_('select.option',$res1->value,
+				$notusedplayers[] = HTMLHelper::_('select.option',$res1->value,
 						JoomleagueHelper::formatName(null,$res1->firstname,$res1->nickname,$res1->lastname,0).' ('.$res1->notes.')');
 			}
 		}
@@ -102,7 +103,7 @@ class JoomleagueViewProjectReferees extends JLGView
 		// build the html select list for players
 		if(count($notusedplayers) > 0)
 		{
-			$lists['players'] = JHtml::_('select.genericlist',$notusedplayers,'playerslist[]',
+			$lists['players'] = HTMLHelper::_('select.genericlist',$notusedplayers,'playerslist[]',
 					' style="width:150px" class="inputbox" multiple="true" size="30"','value','text');
 		}
 		else
@@ -149,7 +150,7 @@ class JoomleagueViewProjectReferees extends JLGView
 
 		// build the html options for position
 		$position_id = array();
-		$position_id[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_REF_FUNCTION'));
+		$position_id[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_REF_FUNCTION'));
 		if($res = $model->getRefereePositions())
 		{
 			$position_id = array_merge($position_id,$res);

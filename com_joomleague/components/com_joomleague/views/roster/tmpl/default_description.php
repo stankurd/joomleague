@@ -1,4 +1,8 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
+?>
 
 	<?php
 	// Show team-description if defined.
@@ -29,7 +33,7 @@
 			<tr>
 				<td>
 					<?php
-					$description = JHtml::_('content.prepare', $description);
+					$description = HTMLHelper::_('content.prepare', $description);
 					echo stripslashes( $description );
 					?>
 				</td>

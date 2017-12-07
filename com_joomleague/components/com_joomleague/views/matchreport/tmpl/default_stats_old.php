@@ -1,4 +1,8 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die; ?>
 
 <!-- START: game stats -->
 <?php
@@ -68,7 +72,7 @@ if (!empty($this->matchplayerpositions ))
 										    $player_link = JoomleagueHelperRoute::getPlayerRoute( $this->project->slug, $player->team_slug, $player->person_slug );
 										    $prefix = $player->jerseynumber ? $player->jerseynumber."." : null;
 										    $match_player = JoomleagueHelper::formatName($prefix,$player->firstname,$player->nickname,$player->lastname, $this->config["name_format"]);
-										    echo JHtml::link( $player_link, $match_player );
+										    echo HTMLHelper::link( $player_link, $match_player );
 										?>
 										</td>
 										<?php foreach ($this->stats[$pos->position_id] as $stat): ?>
@@ -86,7 +90,7 @@ if (!empty($this->matchplayerpositions ))
 										<?php
 										    $player_link = JoomleagueHelperRoute::getPlayerRoute( $this->project->slug, $sub->team_slug, $sub->person_slug );
 										    $match_player = JoomleagueHelper::formatName(null,$sub->firstname,$sub->nickname,$sub->lastname, $this->config["name_format"]);
-										    echo JHtml::link( $player_link, $match_player );
+										    echo HTMLHelper::link( $player_link, $match_player );
 										?>
 										</td>
 										<?php foreach ($this->stats[$pos->position_id] as $stat): ?>
@@ -127,7 +131,7 @@ if (!empty($this->matchplayerpositions ))
 										    $player_link = JoomleagueHelperRoute::getPlayerRoute( $this->project->slug, $player->team_slug, $player->person_slug );
 										    $prefix = $player->jerseynumber ? $player->jerseynumber."." : null;
 										    $match_player = JoomleagueHelper::formatName($prefix,$player->firstname,$player->nickname,$player->lastname, $this->config["name_format"]);
-										    echo JHtml::link( $player_link, $match_player );
+										    echo HTMLHelper::link( $player_link, $match_player );
 										?>
 										</td>
 										<?php 
@@ -150,7 +154,7 @@ if (!empty($this->matchplayerpositions ))
 										<?php
 										    $player_link = JoomleagueHelperRoute::getPlayerRoute( $this->project->slug, $sub->team_slug, $sub->person_slug );
 										    $match_player = JoomleagueHelper::formatName(null,$sub->firstname,$sub->nickname,$sub->lastname, $this->config["name_format"]);
-										    echo JHtml::link( $player_link, $match_player );
+										    echo HTMLHelper::link( $player_link, $match_player );
 										?>
 										</td>
 										<?php foreach ($this->stats[$pos->position_id] as $stat): ?>
@@ -200,7 +204,7 @@ if (!empty($this->matchplayerpositions ))
 										<?php
 										    $player_link = JoomleagueHelperRoute::getStaffRoute( $this->project->slug, $player->team_slug, $player->person_slug );
 										    $match_player = JoomleagueHelper::formatName(null,$player->firstname,$player->nickname,$player->lastname, $this->config["name_format"]);
-										    echo JHtml::link( $player_link, $match_player ); ?>
+										    echo HTMLHelper::link( $player_link, $match_player ); ?>
 										</td>
 										<?php foreach ($this->stats[$pos->position_id] as $stat): ?>
 											<?php if ($stat->showInSingleMatchReports() && $stat->showInMatchReport()):?>
@@ -234,7 +238,7 @@ if (!empty($this->matchplayerpositions ))
 										<?php
 										    $player_link = JoomleagueHelperRoute::getStaffRoute( $this->project->slug, $player->team_slug, $player->person_slug );
 										    $match_player = JoomleagueHelper::formatName(null,$player->firstname,$player->nickname,$player->lastname, $this->config["name_format"]);
-										    echo JHtml::link( $player_link, $match_player );
+										    echo HTMLHelper::link( $player_link, $match_player );
 										?>
 										</td>
 										<?php foreach ($this->stats[$pos->position_id] as $stat): ?>

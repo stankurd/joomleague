@@ -70,7 +70,7 @@ class JoomleagueModelPositionstatistic extends JoomleagueModelItem
 		}
 
 		$db->setQuery( $query );
-		if( !$db->query() )
+		if( !$db->execute() )
 		{
 			$this->setError( $db->getErrorMsg() );
 			$result = false;
@@ -80,7 +80,7 @@ class JoomleagueModelPositionstatistic extends JoomleagueModelItem
 		{
 			$query = "UPDATE #__joomleague_position_statistic SET ordering='$x' WHERE position_id = '" . $data['id'] . "' AND statistic_id = '" . $peid[$x] . "'";
  			$db->setQuery( $query );
-			if( !$db->query() )
+			if( !$db->execute() )
 			{
 				$this->setError( $db->getErrorMsg() );
 				$result= false;

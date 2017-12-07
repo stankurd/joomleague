@@ -1,4 +1,6 @@
 <?php 
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Joomleague
  *
@@ -8,6 +10,7 @@
  */
 
 defined('_JEXEC') or die; 
+
 ?>
 <script type="text/javascript">
 <!--
@@ -30,6 +33,6 @@ window.addEvent('domready', function()
 		<?php echo $this->lists['mastertemplates']; ?>
 		<input type="hidden" name="project_id" value="<?php echo $this->project->id; ?>" />
 		<input type="hidden" name="task" value="template.masterimport" />
-		<?php echo JHtml::_('form.token'); ?>
+		<?php echo HTMLHelper::_('form.token'); ?>
 	</form>
 </div>

@@ -1,4 +1,5 @@
 <?php
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -162,7 +163,7 @@ if (count($this->stafflist) > 0)
 				if ($this->config['link_staff']==1)
 				{
 					$link=JoomleagueHelperRoute::getStaffRoute($this->project->slug,$this->team->slug,$row->slug);
-					echo JHtml::link($link, '<span class="staffname">'. $playerName.'</span>');
+					echo HTMLHelper::link($link, '<span class="staffname">'. $playerName.'</span>');
 				}
 				else
 				{
@@ -176,7 +177,7 @@ if (count($this->stafflist) > 0)
 				$mdlStaff = BaseDatabaseModel::getInstance("Staff", "JoomleagueModel");
 				$this->stafftool=$mdlStaff->getTeamStaffByRound($this->project->current_round, $row->pid);
 
-				$today = JHtml::date('now' .' UTC',
+				$today = HTMLHelper::date('now' .' UTC',
 								JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 								JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 
@@ -186,13 +187,13 @@ if (count($this->stafflist) > 0)
 					$injury_end  = "";
 					$injury_text = "";
 
-					$injury_date = JHtml::date($this->stafftool->injury_date .' UTC',
+					$injury_date = HTMLHelper::date($this->stafftool->injury_date .' UTC',
 												JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 												JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					if(isset($this->stafftool->rinjury_from))
 					$injury_date .= " (".$this->stafftool->rinjury_from.")";
 
-					$injury_end = JHtml::date($this->stafftool->injury_end .' UTC',
+					$injury_end = HTMLHelper::date($this->stafftool->injury_end .' UTC',
 												JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 												JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					if(isset($this->stafftool->rinjury_to))
@@ -224,7 +225,7 @@ if (count($this->stafflist) > 0)
 						$injury_detail = htmlspecialchars( $this->stafftool->injury_detail );
 						$injury_text .= "&#013;".JTEXT::_('COM_JOOMLEAGUE_PERSON_INJURY_TYPE')." ".$injury_detail;
 					}
-					echo JHtml::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/injured.gif',
+					echo HTMLHelper::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/injured.gif',
 										$imageTitle,array('title'=> $injury_text,'height'=> 20));
 
 				}
@@ -235,13 +236,13 @@ if (count($this->stafflist) > 0)
 					$suspension_end  = "";
 					$suspension_text = "";
 
-					$suspension_date = JHtml::date($this->stafftool->suspension_date .' UTC',
+					$suspension_date = HTMLHelper::date($this->stafftool->suspension_date .' UTC',
 													JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 													JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					if(isset($this->stafftool->rsusp_from))
 					$suspension_date .= " (".$this->stafftool->rsusp_from.")";
 
-					$suspension_end = JHtml::date($this->stafftool->suspension_end .' UTC',
+					$suspension_end = HTMLHelper::date($this->stafftool->suspension_end .' UTC',
 													JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 													JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					if(isset($this->stafftool->rsusp_to))
@@ -273,7 +274,7 @@ if (count($this->stafflist) > 0)
 						$suspension_detail = htmlspecialchars( $this->stafftool->suspension_detail );
 						$suspension_text .= "&#013;".JTEXT::_('COM_JOOMLEAGUE_PERSON_SUSPENSION_REASON')." ".$suspension_detail;
 					}
-					echo JHtml::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/suspension.gif',
+					echo HTMLHelper::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/suspension.gif',
 										$imageTitle,array('title'=> $suspension_text,'height'=> 20));
 
 				}
@@ -284,13 +285,13 @@ if (count($this->stafflist) > 0)
 					$away_end  = "";
 					$away_text = "";
 
-					$away_date = JHtml::date($this->stafftool->away_date .' UTC',
+					$away_date = HTMLHelper::date($this->stafftool->away_date .' UTC',
 													JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 													JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					if(isset($this->stafftool->rsusp_from))
 					$away_date .= " (".$this->stafftool->rsusp_from.")";
 
-					$away_end = JHtml::date($this->stafftool->away_end .' UTC',
+					$away_end = HTMLHelper::date($this->stafftool->away_end .' UTC',
 													JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 													JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					if(isset($this->stafftool->rsusp_to))
@@ -322,7 +323,7 @@ if (count($this->stafflist) > 0)
 						$away_detail = htmlspecialchars( $this->stafftool->away_detail );
 						$away_text .= "&#013;".JTEXT::_('COM_JOOMLEAGUE_PERSON_AWAY_REASON')." ".$away_detail;
 					}
-					echo JHtml::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/away.gif',
+					echo HTMLHelper::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/away.gif',
 										$imageTitle,array('title'=> $away_text,'height'=> 20));
 
 				}
@@ -338,17 +339,17 @@ if (count($this->stafflist) > 0)
 						switch ($this->config['show_birthday_staff'])
 						{
 							case 1:	 // show Birthday and Age
-								$birthdateStr = JHtml::date($row->birthday, JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']);
+								$birthdateStr = HTMLHelper::date($row->birthday, JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']);
 								$birthdateStr.="&nbsp;(".JoomleagueHelper::getAge($row->birthday, $row->deathday).")";
 								break;
 							case 2:	 // show Only Birthday
-								$birthdateStr = JHtml::date($row->birthday, JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']);
+								$birthdateStr = HTMLHelper::date($row->birthday, JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']);
 								break;
 							case 3:	 // show Only Age
 								$birthdateStr = "(".JoomleagueHelper::getAge($row->birthday, $row->deathday).")";
 								break;
 							case 4:	 // show Only Year of birth
-								$birthdateStr = JHtml::date($row->birthday, 'Y');
+								$birthdateStr = HTMLHelper::date($row->birthday, 'Y');
 								break;
 							default:
 								$birthdateStr = "";
@@ -362,7 +363,7 @@ if (count($this->stafflist) > 0)
 					// deathday
 					if ( $row->deathday !="0000-00-00" )
 					{
-						$birthdateStr .= ' [ &dagger; '.JHtml::date($row->deathday, JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']).']';
+						$birthdateStr .= ' [ &dagger; '.HTMLHelper::date($row->deathday, JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']).']';
 					}
 
 					echo $birthdateStr;

@@ -1,4 +1,6 @@
-<?php defined('_JEXEC') or die;
+<?php use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
 
 // Make sure that in case extensions are written for mentioned (common) views,
 // that they are loaded i.s.o. of the template of this view
@@ -25,23 +27,23 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		{
 			$i = 1;
 			$selector = 'ranking';
-			echo JHtml::_('bootstrap.startTabSet', $selector, array('active' => 'panel' . $i));
+			echo HTMLHelper::_('bootstrap.startTabSet', $selector, array('active' => 'panel' . $i));
 				
-			echo JHtml::_('bootstrap.addTab', $selector, 'panel' . $i++, JText::_('COM_JOOMLEAGUE_RANKING_FULL_RANKING'));
+			echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel' . $i++, JText::_('COM_JOOMLEAGUE_RANKING_FULL_RANKING'));
 			echo $this->loadTemplate('ranking');
-			echo JHtml::_('bootstrap.endTab');
+			echo HTMLHelper::_('bootstrap.endTab');
 			
-			echo JHtml::_('bootstrap.addTab', $selector, 'panel' . $i++, JText::_('COM_JOOMLEAGUE_RANKING_HOME_RANKING'));
+			echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel' . $i++, JText::_('COM_JOOMLEAGUE_RANKING_HOME_RANKING'));
 			$this->currentRanking = $this->homeRanking;
 			echo $this->loadTemplate('ranking');
-			echo JHtml::_('bootstrap.endTab');
+			echo HTMLHelper::_('bootstrap.endTab');
 			
-			echo JHtml::_('bootstrap.addTab', $selector, 'panel' . $i++, JText::_('COM_JOOMLEAGUE_RANKING_AWAY_RANKING'));
+			echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel' . $i++, JText::_('COM_JOOMLEAGUE_RANKING_AWAY_RANKING'));
 			$this->currentRanking = $this->awayRanking;
 			echo $this->loadTemplate('ranking');
-			echo JHtml::_('bootstrap.endTab');
+			echo HTMLHelper::_('bootstrap.endTab');
 			
-			echo JHtml::_('bootstrap.endTabSet');
+			echo HTMLHelper::_('bootstrap.endTabSet');
 		}
 		else
 		{
@@ -51,7 +53,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 
 	if ($this->config['show_colorlegend'] > 0)
 	{
-		echo $this->loadTemplate('colorlegend');
+		//echo $this->loadTemplate('colorlegend');
 	}
 	
 	if ($this->config['show_explanation'] == 1)

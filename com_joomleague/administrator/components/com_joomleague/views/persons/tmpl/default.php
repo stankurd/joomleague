@@ -7,7 +7,9 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Uri\Uri;
 
@@ -28,7 +30,7 @@ $saveOrder = $listOrder == 'a.ordering';
 if($saveOrder)
 {
 	$saveOrderingUrl = 'index.php?option=com_joomleague&task=persons.saveOrderAjax&tmpl=component';
-	JHtml::_('sortablelist.sortable','personList','adminForm',strtolower($listDirn),$saveOrderingUrl);
+	HTMLHelper::_('sortablelist.sortable','personList','adminForm',strtolower($listDirn),$saveOrderingUrl);
 }
 ?>
 <style>
@@ -118,7 +120,7 @@ jQuery(document).ready(function() {
     });
 });
 </script>
-<form action="<?php echo JRoute::_('index.php?option=com_joomleague&view=persons'); ?>" method="post" id="adminForm" name="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_joomleague&view=persons'); ?>" method="post" id="adminForm" name="adminForm">
 	<div id="j-main-container" class="j-main-container">
 	<?php
 	// Search tools bar
@@ -148,38 +150,38 @@ jQuery(document).ready(function() {
 		<thead>
 			<tr>
 				<th width="1%">
-					<?php echo JHtml::_('searchtools.sort', '', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
+					<?php echo HTMLHelper::_('searchtools.sort', '', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
 				</th>
 				<th width="1%" class="center">
-					<?php echo JHtml::_('grid.checkall'); ?>
+					<?php echo HTMLHelper::_('grid.checkall'); ?>
 				</th>
 				<th width="20">&nbsp;</th>
 				<th>
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_F_NAME','a.firstname',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_F_NAME','a.firstname',$listDirn, $listOrder);?>
 				</th>
 				<th>
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_N_NAME','a.nickname',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_N_NAME','a.nickname',$listDirn, $listOrder);?>
 				</th>
 				<th>
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_L_NAME','a.lastname',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_L_NAME','a.lastname',$listDirn, $listOrder);?>
 				</th>
 				<th class="center">
 					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_IMAGE'); ?>
 				</th>
 				<th>
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_BIRTHDAY','a.birthday',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_BIRTHDAY','a.birthday',$listDirn, $listOrder);?>
 				</th>
 				<th>
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_NATIONALITY','a.country',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_NATIONALITY','a.country',$listDirn, $listOrder);?>
 				</th>
 				<th>
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_POSITION','a.position_id',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_POSITION','a.position_id',$listDirn, $listOrder);?>
 				</th>
 				<th width="1%">
 					<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');?>
 				</th>
 				<th width="1%">
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder);?>
 				</th>
 			</tr>
 		</thead>
@@ -189,10 +191,10 @@ jQuery(document).ready(function() {
 		foreach($this->items as $i=>$row) :
 		if(($row->firstname != '!Unknown') && ($row->lastname != '!Player')) // Ghostplayer for match-events
 		{
-			$link = JRoute::_('index.php?option=com_joomleague&task=person.edit&id='.$row->id);
-			$checked = JHtml::_('grid.checkedout',$row,$i);
+			$link = Route::_('index.php?option=com_joomleague&task=person.edit&id='.$row->id);
+			$checked = HTMLHelper::_('grid.checkedout',$row,$i);
 			$is_checked = JLTable::_isCheckedOut($user->get('id'),$row->checked_out);
-			$published = JHtml::_('jgrid.published',$row->published,$i,'persons.');
+			$published = HTMLHelper::_('jgrid.published',$row->published,$i,'persons.');
 
 			$canEdit = $user->authorise('core.edit','com_joomleague.person.'.$row->id);
 			$canCheckin = $user->authorise('core.manage','com_checkin') || $row->checked_out == $userId || $row->checked_out == 0;
@@ -206,7 +208,7 @@ jQuery(document).ready(function() {
 				if (!$canChange) {
 					$iconClass = ' inactive';
 				} elseif (!$saveOrder) {
-					$iconClass = ' inactive tip-top hasTooltip" title="' . JHtml::tooltipText ('JORDERINGDISABLED');
+					$iconClass = ' inactive tip-top hasTooltip" title="' . HTMLHelper::tooltipText ('JORDERINGDISABLED');
 				}
 				?>
 					<span class="sortable-handler<?php echo $iconClass ?>"><span class="icon-menu"></span></span>
@@ -231,7 +233,7 @@ jQuery(document).ready(function() {
 					<a href="<?php echo $link; ?>">
 				<?php
 					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_EDIT_DETAILS');
-					echo JHtml::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "' . $imageTitle . '"');
+					echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "' . $imageTitle . '"');
 				?>
 					</a>
 				</td>
@@ -294,19 +296,19 @@ jQuery(document).ready(function() {
 				if(empty($row->picture) || ! JFile::exists(JPATH_SITE.'/'.$row->picture))
 				{
 					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_NO_IMAGE').$row->picture;
-					echo JHtml::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "'.$imageTitle.'"');
+					echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "'.$imageTitle.'"');
 				}
 				elseif($row->picture == JoomleagueHelper::getDefaultPlaceholder("player"))
 				{
 					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_DEFAULT_IMAGE');
-					echo JHtml::_('image','administrator/components/com_joomleague/assets/images/information.png',$imageTitle,'title= "'.$imageTitle.'"');
+					echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/information.png',$imageTitle,'title= "'.$imageTitle.'"');
 				}
 				else
 				{
 					if(JFile::exists(JPATH_SITE.'/'.$row->picture))
 					{
 						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_TEAMS_CUSTOM_IMAGE');
-						echo JHtml::_('image','administrator/components/com_joomleague/assets/images/ok.png',$imageTitle,'title= "'.$imageTitle.'"');
+						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/ok.png',$imageTitle,'title= "'.$imageTitle.'"');
 
 								/*
 								 * $playerName =
@@ -332,7 +334,7 @@ jQuery(document).ready(function() {
 				}
 				else
 				{
-					$date = JHtml::date($row->birthday,'Y-m-d',true);
+					$date = HTMLHelper::date($row->birthday,'Y-m-d',true);
 				}
 				if($is_checked)
 				{
@@ -350,7 +352,7 @@ jQuery(document).ready(function() {
 				}
 				else
 				{
-					$date = JHtml::date($row->birthday,'Y-m-d',true);
+					$date = HTMLHelper::date($row->birthday,'Y-m-d',true);
 				}
 				echo $date;
 				?>
@@ -398,5 +400,5 @@ jQuery(document).ready(function() {
 	<input type="hidden" name="task" value="" />
 	<input type="hidden" name="inplaceEditing" value="<?php echo $inplaceEditing;?>" />
 	<input type="hidden" name="boxchecked" value="0" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

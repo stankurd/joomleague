@@ -16,6 +16,7 @@
  */
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -165,7 +166,7 @@ class JoomleagueModelStaff extends JoomleagueModelPerson
 				foreach ($this->staffCareer as $job)
 				{
 					$link = JoomleagueHelperRoute::getRefereeRoute($job->project_slug, $this->person->slug);
-					$job->project_link = JHtml::link($link, $job->project_name);
+					$job->project_link = HTMLHelper::link($link, $job->project_name);
 				}
 			}
 		}

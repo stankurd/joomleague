@@ -1,3 +1,6 @@
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+?>
 <div class="mini-team">
 	<table style="width: 100%;" class="contentpaneopen">
 		<tr>
@@ -38,7 +41,7 @@
 						if ($this->config['link_player']==1)
 						{
 							$link=JoomleagueHelperRoute::getPlayerRoute($this->project->slug,$this->team->slug,$row->slug);
-							echo JHtml::link($link,'<i>'.$playerName.'</i>');
+							echo HTMLHelper::link($link,'<i>'.$playerName.'</i>');
 						}
 						else
 						{
@@ -77,7 +80,7 @@
 			$staffPicture = JoomleagueHelper::getPictureThumb($picture, $imgTitle,
 										$this->config['staff_picture_width'],
 										$this->config['staff_picture_height']);
-			echo JHtml::link($link,$staffPicture);
+			echo HTMLHelper::link($link,$staffPicture);
 		}
 		else
 		{
@@ -97,7 +100,7 @@
 					  if ($this->config['link_player']==1)
 					  {
 							$link = JoomleagueHelperRoute::getStaffRoute( $this->project->slug, $this->team->slug, $row->slug );
-							echo JHtml::link($link,'<i>'.$playerName.'</i>');
+							echo HTMLHelper::link($link,'<i>'.$playerName.'</i>');
 					  }
 					  else
 					  {

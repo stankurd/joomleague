@@ -6,6 +6,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 /**
@@ -19,15 +21,15 @@ class JoomleagueViewTeam extends JLGView
 
 	public function display($tpl = null)
 	{
-		$app = JFactory::getApplication();
-		$jinput = $app->input;
+		$app = Factory::getApplication();
+		$input = $app->input;
 		
 		$this->form = $this->get('Form');
 		$this->item = $this->get('Item');
 		$this->state = $this->get('State');
 		
-		//$extended = $this->getExtended($this->item->extended,'team');
-		//$this->extended = $extended;
+		$extended = $this->getExtended($this->item->extended,'team');
+		$this->extended = $extended;
 		
 		// Check for errors.
 		if(count($errors = $this->get('Errors')))
@@ -46,31 +48,31 @@ class JoomleagueViewTeam extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JFactory::getApplication()->input->set('hidemainmenu',true);
-		$user = JFactory::getUser();
+		Factory::getApplication()->input->set('hidemainmenu',true);
+		$user = Factory::getUser();
 		$userId = $user->get('id');
 		$isNew = ($this->item->id == 0);
 		$checkedOut = ! ($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 		
 		// Set toolbar items for the page
 		$text = $isNew ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_GLOBAL_EDIT') . ': ' . $this->form->getValue('name');
-		JToolBarHelper::title((JText::_('COM_JOOMLEAGUE_ADMIN_TEAM') . ': <span class="toolbarTitleType">[ ' . $text . ' ]</span>'),'jl-Teams');
+		JLToolBarHelper::title((JText::_('COM_JOOMLEAGUE_ADMIN_TEAM') . ': <span class="toolbarTitleType">[ ' . $text . ' ]</span>'),'jl-Teams');
 		
 		if($isNew)
 		{
 			JLToolBarHelper::apply('team.apply');
 			JLToolBarHelper::save('team.save');
-			JToolBarHelper::divider();
+			JLToolBarHelper::divider();
 			JLToolBarHelper::cancel('team.cancel');
 		}
 		else
 		{
 			JLToolBarHelper::apply('team.apply');
 			JLToolBarHelper::save('team.save');
-			JToolBarHelper::divider();
+			JLToolBarHelper::divider();
 			JLToolBarHelper::cancel('team.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}
 		
-		JToolBarHelper::help('screen.joomleague.edit');
+		JLToolBarHelper::help('screen.joomleague.edit');
 	}
 }

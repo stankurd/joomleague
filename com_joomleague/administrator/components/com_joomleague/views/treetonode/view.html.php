@@ -6,6 +6,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
 /**
@@ -33,7 +37,7 @@ class JoomleagueViewTreetonode extends JLGView
 
 	function _displayForm($tpl)
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 		$jinput = $app->input;
 		
 		$model = $this->getModel();
@@ -47,7 +51,7 @@ class JoomleagueViewTreetonode extends JLGView
 		
 		$project_id = $app->getUserState('com_joomleagueproject');
 		
-		$mdlProject = JModelLegacy::getInstance('project','JoomleagueModel');
+		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$project = $mdlProject->getItem($project_id);
 		
 		// $node = $this->get('data');
@@ -56,8 +60,8 @@ class JoomleagueViewTreetonode extends JLGView
 		// $projectws = $this->get('Data', 'project');
 		// $model = $this->getModel('project');
 		
-		$mdlTreetonodes = JModelLegacy::getInstance("Treetonodes","JoomleagueModel");
-		$team_id[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
+		$mdlTreetonodes = BaseDatabaseModel::getInstance("Treetonodes","JoomleagueModel");
+		$team_id[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
 		if($projectteams = $mdlTreetonodes->getProjectTeamsOptions($model->_id))
 		{
 			$team_id = array_merge($team_id,$projectteams);
@@ -65,7 +69,7 @@ class JoomleagueViewTreetonode extends JLGView
 		$lists['team'] = $team_id;
 		unset($team_id);
 		
-		$this->user = JFactory::getUser();
+		$this->user = Factory::getUser();
 		$this->project = $project;
 		$this->lists = $lists;
 		// @todo fix!

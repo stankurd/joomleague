@@ -1,4 +1,6 @@
 <?php 
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
 require_once JLG_PATH_SITE.'/views/person/view.html.php';
@@ -36,7 +38,7 @@ class JoomleagueViewStaff extends JoomleagueViewPerson
 		$editInfo = new stdClass;
 		$editInfo->link = JoomleagueHelperRoute::getStaffRoute($this->project->id, $this->projectPerson->project_team_id,
 			$this->projectPerson->id, 'teamstaff.edit');
-		$editInfo->image = JHtml::image('media/com_joomleague/jl_images/edit.png', JText::_('COM_JOOMLEAGUE_STAFF_EDIT'),
+		$editInfo->image = HTMLHelper::image('media/com_joomleague/jl_images/edit.png', JText::_('COM_JOOMLEAGUE_STAFF_EDIT'),
 			array('title' => JText::_('COM_JOOMLEAGUE_STAFF_EDIT')));
 		return $editInfo;
 	}

@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\FileLayout;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Toolbar\Toolbar;
@@ -71,11 +72,11 @@ class JoomleagueViewTemplate extends JLGView
 		
 		$master_id=($project->master_template) ? $project->master_template : '-1';
 		$templates=array();
-		$templates[]=JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_OTHER_TEMPLATE' ),'value','text');
+		$templates[]=HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_OTHER_TEMPLATE' ),'value','text');
 		if ($res=$model->getAllTemplatesList($project->id,$master_id)){
 			$templates=array_merge($templates,$res);
 		}
-		$lists['templates']=JHtml::_('select.genericlist',	$templates,
+		$lists['templates']=HTMLHelper::_('select.genericlist',	$templates,
 		    'select_id',
 		    'class="inputbox" size="1" onchange="javascript: Joomla.submitbutton(\'template.apply\');"',
 		    'value',
@@ -104,15 +105,15 @@ class JoomleagueViewTemplate extends JLGView
 	    
 		// Set toolbar items for the page
 		$edit=Factory::getApplication()->input->get('edit',true);
-		/**ToolbarHelper::saveGroup(
+		ToolbarHelper::saveGroup(
 		    [
 		        ['apply', 'template.apply'],
 		        ['save', 'template.save'],
 		    ],
 		    'btn-success'
-		    );*/
-		ToolbarHelper::save('template.save');
-		ToolbarHelper::apply('template.apply');
+		    );
+		//ToolbarHelper::save('template.save');
+		//ToolbarHelper::apply('template.apply');
 
 		if (!$edit)
 		{
@@ -123,7 +124,7 @@ class JoomleagueViewTemplate extends JLGView
 		else
 		{
 			ToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_EDIT').': '. $this->form->getName(),'jl-FrontendSettings');
-			ToolbarHelper::custom('template.reset','restore','restore','COM_JOOMLEAGUE_GLOBAL_RESET');
+			//ToolbarHelper::custom('template.reset','restore','restore','COM_JOOMLEAGUE_GLOBAL_RESET');
 			ToolbarHelper::divider();
 			
 			// for existing items the button is renamed `close`

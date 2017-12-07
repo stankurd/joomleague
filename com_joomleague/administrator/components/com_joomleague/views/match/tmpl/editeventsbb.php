@@ -8,11 +8,12 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined ( '_JEXEC' ) or die ();
 
-JHtml::_ ( 'behavior.tooltip' );
-JHtml::_ ( 'behavior.modal' );
+HTMLHelper::_ ( 'behavior.tooltip' );
+HTMLHelper::_ ( 'behavior.modal' );
 ?>
 <div id="gamesevents">
 	<form method="post" id="adminForm">
@@ -24,24 +25,24 @@ JHtml::_ ( 'behavior.modal' );
 	$model = $this->getModel ();
 	if (! empty ( $this->teams )) {
 		$selector = 'editeventsbb';
-		echo JHtml::_ ( 'bootstrap.startTabSet', $selector, array (
+		echo HTMLHelper::_ ( 'bootstrap.startTabSet', $selector, array (
 				'active' => 'panel1',
 				'onclick' => 'alert(1)' 
 		) );
 		
 		$teamname = $this->teams->team1;
-		echo JHtml::_ ( 'bootstrap.addTab', $selector, 'panel1', $teamname );
+		echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'panel1', $teamname );
 		$this->_handlePreFillRoster ( $this->teams, $model, $params, $this->teams->projectteam1_id, $teamname );
 		echo $this->loadTemplate ( 'home' );
-		echo JHtml::_ ( 'bootstrap.endTab' );
+		echo HTMLHelper::_ ( 'bootstrap.endTab' );
 		
 		$teamname = $this->teams->team2;
-		echo JHtml::_ ( 'bootstrap.addTab', $selector, 'panel2', $teamname );
+		echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'panel2', $teamname );
 		$this->_handlePreFillRoster ( $this->teams, $model, $params, $this->teams->projectteam2_id, $teamname );
 		echo $this->loadTemplate ( 'away' );
-		echo JHtml::_ ( 'bootstrap.endTab' );
+		echo HTMLHelper::_ ( 'bootstrap.endTab' );
 		
-		echo JHtml::_ ( 'bootstrap.endTabSet' );
+		echo HTMLHelper::_ ( 'bootstrap.endTabSet' );
 	}
 	?>
 		</div>
@@ -49,6 +50,6 @@ JHtml::_ ( 'behavior.modal' );
 			type="hidden" name="view" value="match" /> <input type="hidden"
 			name="option" value="com_joomleague" id="option" /> <input
 			type="hidden" name="boxchecked" value="0" />
-		<?php echo JHtml::_( 'form.token' ); ?>
+		<?php echo HTMLHelper::_( 'form.token' ); ?>
 	</form>
 </div>

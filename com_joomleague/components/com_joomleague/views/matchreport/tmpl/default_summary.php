@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Dispatcher\Dispatcher;
 use Joomla\Registry\Registry;
+use Joomla\CMS\HTML\HTMLHelper;
 ?>
 <!-- START of match summary -->
 <?php
@@ -37,7 +38,7 @@ if (!empty($this->match->summary))
 			<td>
 			<?php
 			$summary = $this->match->summary;
-			$summary = JHtml::_('content.prepare', $summary);
+			$summary = HTMLHelper::_('content.prepare', $summary);
 
 			if ($commentsDisabled) {
 				$summary = preg_replace('#{jcomments\s+(off|lock)}#is', '', $summary);

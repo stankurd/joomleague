@@ -92,8 +92,6 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 		//				true));
 		foreach ($imports as $import)
 		{
-			$db = Factory::getDbo();
-			$query = $db->getQuery(true);
 			$import=trim($import);
 			if (!empty($import))
 			{
@@ -335,8 +333,6 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 	}
 	
 	public static function migratePicturePath() {
-		$db = Factory::getDbo();
-		$query = $db->getQuery(true);
 		$arrQueries = array();
 	
 		$query = "update #__joomleague_club set logo_big = replace(logo_big, 'media/com_joomleague/clubs/large', 'images/com_joomleague/database/clubs/large')";
@@ -405,9 +401,8 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 	
 	public static function dropJoomLeagueTables()
 	{
-		$db = Factory::getDbo();
-		$query = $db->getQuery(true);
 		$query="SHOW TABLES LIKE '%_joomleague%'";
+		$db = Factory::getDbo();
 			
 		$db->setQuery($query);
 		$results = $db->loadColumn();

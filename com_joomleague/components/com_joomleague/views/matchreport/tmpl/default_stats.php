@@ -1,6 +1,7 @@
-<?php defined('_JEXEC') or die;
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
 
-
+defined('_JEXEC') or die;
 jimport('joomla.html.pane');
 ?>
 
@@ -39,17 +40,17 @@ if (!empty($this->matchplayerpositions ))
 		<?php
 		$iPanel = 1;
 		$selector = 'defaultstats';
-		echo JHtml::_('bootstrap.startTabSet', $selector, array('active'=>'details')); 
+		echo HTMLHelper::_('bootstrap.startTabSet', $selector, array('active'=>'details')); 
 			
-		echo JHtml::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $this->team1->name);
+		echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $this->team1->name);
 		echo $this->loadTemplate('stats_home');
-		echo JHtml::_('bootstrap.endTab');
+		echo HTMLHelper::_('bootstrap.endTab');
 		
-		echo JHtml::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $this->team2->name);
+		echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $this->team2->name);
 		echo $this->loadTemplate('stats_away');
-		echo JHtml::_('bootstrap.endTab');
+		echo HTMLHelper::_('bootstrap.endTab');
 		
-		echo JHtml::_('bootstrap.endTabSet');
+		echo HTMLHelper::_('bootstrap.endTabSet');
 		
 	endif;
 }

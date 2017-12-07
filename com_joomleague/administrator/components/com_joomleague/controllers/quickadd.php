@@ -40,12 +40,12 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		header('Content-Type: application/json');
 		
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		
 		$model = JLGModel::getInstance('Quickadd','JoomleagueModel');
-		$query = $jinput->getString('q');
-		$projectteam_id = $jinput->getInt('projectteam_id');
+		$query = $input->getString('q');
+		$projectteam_id = $input->getInt('projectteam_id');
 		$results = $model->getNotAssignedPlayers($query,$projectteam_id);
 		$response = array(
 				"totalCount" => count($results),
@@ -78,9 +78,9 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		header('Content-Type: application/json');
 		
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
-		$query = $jinput->getString('q');
+		$input = $app->input;
+		$option = $input->getCmd('option');
+		$query = $input->getString('q');
 		$projectid = $app->getUserState($option . "project");
 		
 		$model = JLGModel::getInstance('Quickadd','JoomleagueModel');
@@ -116,12 +116,12 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		header('Content-Type: application/json');
 		
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		
 		$model = JLGModel::getInstance('Quickadd','JoomleagueModel');
-		$query = $jinput->get->getString('q');
-		$projectteam_id = $jinput->getInt("projectteam_id");
+		$query = $input->get->getString('q');
+		$projectteam_id = $input->getInt("projectteam_id");
 		$results = $model->getNotAssignedStaff($query,$projectteam_id);
 		$response = array(
 				"totalCount" => count($results),
@@ -154,11 +154,11 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		header('Content-Type: application/json');
 		
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		
 		$model = JLGModel::getInstance('Quickadd','JoomleagueModel');
-		$query = $jinput->getString('q');
+		$query = $input->getString('q');
 		$projectid = $app->getUserState($option . "project");
 		$results = $model->getNotAssignedTeams($query,$projectid);
 		
@@ -195,9 +195,9 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 	public function addPlayer()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$searchText = $jinput->getString('p');
-		$projectteam_id = $jinput->getInt('projectteam_id');
+		$input = $app->input;
+		$searchText = $input->getString('p');
+		$projectteam_id = $input->getInt('projectteam_id');
 		
 		if(empty($searchText))
 		{
@@ -329,10 +329,10 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 	public function addStaff()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 		$db = Factory::getDbo();
-		$searchText = $jinput->getString('p');
-		$projectteam_id = $jinput->getInt('projectteam_id',0);
+		$searchText = $input->getString('p');
+		$projectteam_id = $input->getInt('projectteam_id',0);
 		
 		if(empty($searchText))
 		{
@@ -463,10 +463,10 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 	public function addReferee()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$db = Factory::getDbo();
-		$searchText = $jinput->getString('p');
+		$searchText = $input->getString('p');
 		$project_id = $app->getUserState($option . "project");
 		
 		if(empty($searchText))
@@ -614,12 +614,12 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 	public function addTeam()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 		$db = Factory::getDbo();
 		
 		// catch variables
-		$option = $jinput->getCmd('option');
-		$searchText = $jinput->getString("p","");
+		$option = $input->getCmd('option');
+		$searchText = $input->getString("p","");
 		$project_id = $app->getUserState($option . "project");
 		
 		if(empty($searchText))

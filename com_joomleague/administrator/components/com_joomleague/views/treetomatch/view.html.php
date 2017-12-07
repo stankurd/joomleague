@@ -6,6 +6,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+
 defined('_JEXEC') or die;
 
 
@@ -38,18 +42,18 @@ class JoomleagueViewTreetomatchs extends JLGView
 
 	function _displayEditlist($tpl)
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 		$jinput = $app->input;
-		$baseurl = JUri::root();
+		$uri = Uri::getInstance();
+		$baseurl = Uri::root();
 
-		$document = JFactory::getDocument();
+		$document = Factory::getDocument();
 		$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/multiselect.js');
 
 		$option = $jinput->getCmd('option');
 		$project_id = $app->getUserState($option.'project');
 		$node_id = $app->getUserState($option.'node_id');
 
-		$uri = JUri::getInstance();
 
 		/*
 		$treetomatchs = $this->get('Data');
@@ -68,10 +72,10 @@ class JoomleagueViewTreetomatchs extends JLGView
 		 $pagination = $this->get('Pagination');
 		*/
 
-		$mdlProject = JModelLegacy::getInstance('project','JoomleagueModel');
+		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$project = $mdlProject->getItem($project_id);
 
-		$mdlTreenode = JModelLegacy::getInstance('treetonode','JoomleagueModel');
+		$mdlTreenode = BaseDatabaseModel::getInstance('treetonode','JoomleagueModel');
 		$node = $mdlTreenode->getItem($node_id);
 
 		// build the html select list for node assigned matches
@@ -164,7 +168,7 @@ class JoomleagueViewTreetomatchs extends JLGView
 		unset($res1);
 		unset($notusedmatches);
 
-		$this->user = JFactory::getUser();
+		$this->user = Factory::getUser();
 		$this->lists = $lists;
 		//$this->treetomatchs = $treetomatchs;
 		$this->project = $project;
@@ -180,10 +184,10 @@ class JoomleagueViewTreetomatchs extends JLGView
 
 	function _displayDefault($tpl)
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 		$jinput = $app->input;
 		$option = $jinput->getCmd('option');
-		$uri = JUri::getInstance();
+		$uri = Uri::getInstance();
 
 		$this->form = $this->get('Form');
 		$this->item = $this->get('Item');
@@ -200,10 +204,10 @@ class JoomleagueViewTreetomatchs extends JLGView
 		$project_id = $app->getUserState($option.'project');
 		$node_id 	= $app->getUserState($option.'node_id');
 
-		$mdlProject = JModelLegacy::getInstance('project','JoomleagueModel');
+		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$project = $mdlProject->getItem($project_id);
 
-		$mdlTreenode = JModelLegacy::getInstance('treetonode','JoomleagueModel');
+		$mdlTreenode = BaseDatabaseModel::getInstance('treetonode','JoomleagueModel');
 		$node = $mdlTreenode->getItem($node_id);
 
 		//$this->match = $match;

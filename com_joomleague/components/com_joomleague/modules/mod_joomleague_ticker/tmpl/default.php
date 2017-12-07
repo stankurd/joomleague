@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Uri\Uri;
+
 defined('_JEXEC') or die;
 	
 $showdate 			= $params->def("showdate");
@@ -30,7 +32,7 @@ if($teamformat>3){
 	$height += ($outline==0 ? 50 : 10);
 }
 
-$url = JUri::base();
+$url = Uri::base();
 
 // REFRESH
 if ($refresh == 1)

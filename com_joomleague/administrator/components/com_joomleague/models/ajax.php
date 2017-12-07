@@ -12,15 +12,16 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\HTML\HTMLHelper;
 
 /**
  * Ajax Model
  */
-class JoomleagueModelAjax extends BaseDatabaseModel
+class JoomleagueModelAjax extends JLGModel
 {
 	public function addGlobalSelectElement($elements, $required=false) {
 		if(!$required)  {
-			$mitems = array(JHtml::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
+			$mitems = array(HTMLHelper::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
 			return array_merge($mitems, $elements);
 		}
 		return $elements;

@@ -1,4 +1,7 @@
-<?php defined('_JEXEC') or die;
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
 ?>
 <!-- Show Match staff -->
 <?php
@@ -26,7 +29,7 @@ if (!empty($this->matchstaffpositions))
 										<?php
 										$player_link=JoomleagueHelperRoute::getStaffRoute($this->project->slug,$player->team_slug,$player->person_slug);
 										$match_player=JoomleagueHelper::formatName(null,$player->firstname,$player->nickname,$player->lastname, $this->config["name_format"]);
-										echo JHtml::link($player_link,$match_player);
+										echo HTMLHelper::link($player_link,$match_player);
 										$imgTitle=JText::sprintf('Picture of %1$s',$match_player);
 										$picture=$player->picture;
 										if (!file_exists($picture)){$picture = JoomleagueHelper::getDefaultPlaceholder("player");}
@@ -66,7 +69,7 @@ if (!empty($this->matchstaffpositions))
 												$this->config['staff_picture_height']);
 										echo '&nbsp;';
 										$player_link=JoomleagueHelperRoute::getStaffRoute($this->project->slug,$player->team_slug,$player->person_slug);
-										echo JHtml::link($player_link,$match_player);
+										echo HTMLHelper::link($player_link,$match_player);
 										?>
 									</li>
 									<?php

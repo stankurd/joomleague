@@ -8,6 +8,8 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 require_once JLG_PATH_ADMIN.'/statistics/base.php';
@@ -64,7 +66,7 @@ class JLGStatisticPercentage extends JLGStatistic {
 
 	function getQuotedSids()
 	{
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		$params = $this->getParams();
 		if(!is_array($params->get('numerator_ids'))) {
 			$numerator_ids = explode(',', $params->get('numerator_ids'));
@@ -177,7 +179,9 @@ class JLGStatisticPercentage extends JLGStatistic {
 	{
 		$sids = $this->getQuotedSids();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query_num	= ' SELECT SUM(ms.value) AS num, tp.id AS tpid'
 					. ' FROM #__joomleague_team_player AS tp '
 					. ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -281,7 +285,8 @@ class JLGStatisticPercentage extends JLGStatistic {
 	{
 		$sids = $this->getQuotedSids();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		$query_num = ' SELECT SUM(ms.value) AS num, pt.id '
 		       . ' FROM #__joomleague_team_player AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -304,7 +309,7 @@ class JLGStatisticPercentage extends JLGStatistic {
 		       . '   AND value > 0 '
 		       . ' GROUP BY pt.id '
 		       ;
-		       
+		$query = $db->getQuery(true);
 		$query = ' SELECT (n.num / d.den) AS total, pt.team_id ' 
 		       . ' FROM #__joomleague_project_team AS pt '
 		       . ' INNER JOIN ('.$query_num.') AS n ON n.id = pt.id '
@@ -368,7 +373,9 @@ class JLGStatisticPercentage extends JLGStatistic {
 	{
 		$sids = $this->getQuotedSids();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query = ' SELECT SUM(ms.value) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -383,7 +390,7 @@ class JLGStatisticPercentage extends JLGStatistic {
 		       ;
 		$db->setQuery($query);
 		$num = $db->loadResult();
-		
+		$query = $db->getQuery(true);
 		$query = ' SELECT SUM(ms.value) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -408,7 +415,9 @@ class JLGStatisticPercentage extends JLGStatistic {
 	{
 		$sids = $this->getQuotedSids();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$query = ' SELECT SUM(ms.value) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
@@ -421,7 +430,7 @@ class JLGStatisticPercentage extends JLGStatistic {
 		       ;
 		$db->setQuery($query);
 		$num = $db->loadResult();
-		
+		$query = $db->getQuery(true);
 		$query = ' SELECT SUM(ms.value) AS value, tp.person_id '
 		       . ' FROM #__joomleague_team_staff AS tp '
 		       . ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '

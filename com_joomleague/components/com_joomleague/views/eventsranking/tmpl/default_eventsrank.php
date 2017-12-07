@@ -1,4 +1,6 @@
-<?php defined('_JEXEC') or die;
+<?php use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
 $colspan	= 4;
 $show_icons	= 0;
 if ($this->config['show_picture_thumb'] == 1) $colspan++;
@@ -33,7 +35,7 @@ if ($this->config['show_icons'] == 1) $show_icons = 1;
 			<?php
 				$iconPath=$rows->icon;
 				if (!strpos(' '.$iconPath,'/')){$iconPath='media/com_joomleague/events/'.$iconPath;}
-				echo JHtml::image($iconPath,JText::_($rows->name),array('title'=> JText::_($rows->name),'align'=> 'top','hspace'=> '2'));
+				echo HTMLHelper::image($iconPath,JText::_($rows->name),array('title'=> JText::_($rows->name),'align'=> 'top','hspace'=> '2'));
 			?>
 			</th>
 		<?php else: ?>
@@ -111,7 +113,7 @@ if ($this->config['show_icons'] == 1) $show_icons = 1;
 			if ($this->config['link_to_player'] == 1)
 			{
 				$link=JoomleagueHelperRoute::getPlayerRoute($this->project->id, $row->tid, $row->pid);
-				echo JHtml::link($link, $playerName);
+				echo HTMLHelper::link($link, $playerName);
 			}
 			else
 			{
@@ -152,7 +154,7 @@ if ($this->config['show_icons'] == 1) $show_icons = 1;
 </table>
 <?php if ($this->multiple_events == 1):?>
 <div class="fulltablelink">
-<?php echo JHtml::link($link=JoomleagueHelperRoute::getEventsRankingRoute($this->project->id, (isset($this->division->id) ? $this->division->id : 0), $this->teamid, $rows->id, (isset($this->matchid) ? $this->matchid : 0)), JText::_('COM_JOOMLEAGUE_EVENTSRANKING_MORE')); ?>
+<?php echo HTMLHelper::link($link=JoomleagueHelperRoute::getEventsRankingRoute($this->project->id, (isset($this->division->id) ? $this->division->id : 0), $this->teamid, $rows->id, (isset($this->matchid) ? $this->matchid : 0)), JText::_('COM_JOOMLEAGUE_EVENTSRANKING_MORE')); ?>
 </div>
 <?php else: ?>
 <div class="pageslinks">

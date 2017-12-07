@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Table\Table;
 use Joomla\CMS\Uri\Uri;
@@ -17,10 +18,11 @@ use Joomla\CMS\Uri\Uri;
 defined('_JEXEC') or die;
 
 jimport('joomla.filesystem.file');
-//JHtml::_('behavior.framework');
-//JHtmlJquery::framework();
-//JHtmlBehavior::framework();
-//JHtml::_('jquery.framework');
+//HTMLHelper::_('behavior.framework');
+//HTMLHelperJquery::framework();
+//HTMLHelperBehavior::framework();
+//HTMLHelper::_('jquery.framework');
+HTMLHelper::_('behavior.formvalidator');
 
 /**
  * HTML View class
@@ -85,7 +87,7 @@ class JoomleagueViewMatch extends JLGView
 		}
 	
 		// build the html select booleanlist for published
-		$lists['published'] = JHtml::_('select.booleanlist','published','class="inputbox"',$match->published);
+		$lists['published'] = HTMLHelper::_('select.booleanlist','published','class="inputbox"',$match->published);
 	
 		// get the home team standard playground
 		$tblProjectHomeTeam = Table::getInstance ( 'ProjectTeam', 'Table' );
@@ -94,16 +96,16 @@ class JoomleagueViewMatch extends JLGView
 		$playground_id = (! empty ( $match->playground_id ) && ($match->playground_id > 0)) ? $match->playground_id : $standard_playground_id;
 	
 		// build the html select booleanlist for count match result
-		// $lists ['count_result'] = JHtml::_ ( 'select.booleanlist', 'count_result', 'class="inputbox"', $match->count_result );
+		// $lists ['count_result'] = HTMLHelper::_ ( 'select.booleanlist', 'count_result', 'class="inputbox"', $match->count_result );
 	
 		// build the html select booleanlist which team got the won
 		$myoptions = array ();
-		$myoptions [] = JHtml::_ ( 'select.option', '0', JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCHES_NO_TEAM' ) );
-		$myoptions [] = JHtml::_ ( 'select.option', '1', JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCHES_HOME_TEAM' ) );
-		$myoptions [] = JHtml::_ ( 'select.option', '2', JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCHES_AWAY_TEAM' ) );
-		$myoptions [] = JHtml::_ ( 'select.option', '3', JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCHES_LOSS_BOTH_TEAMS' ) );
-		$myoptions [] = JHtml::_ ( 'select.option', '4', JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCHES_WON_BOTH_TEAMS' ) );
-		$lists ['team_won'] = JHtml::_ ( 'select.genericlist', $myoptions, 'team_won', 'class="inputbox" size="1"', 'value', 'text', $match->team_won );
+		$myoptions [] = HTMLHelper::_ ( 'select.option', '0', JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCHES_NO_TEAM' ) );
+		$myoptions [] = HTMLHelper::_ ( 'select.option', '1', JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCHES_HOME_TEAM' ) );
+		$myoptions [] = HTMLHelper::_ ( 'select.option', '2', JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCHES_AWAY_TEAM' ) );
+		$myoptions [] = HTMLHelper::_ ( 'select.option', '3', JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCHES_LOSS_BOTH_TEAMS' ) );
+		$myoptions [] = HTMLHelper::_ ( 'select.option', '4', JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCHES_WON_BOTH_TEAMS' ) );
+		$lists ['team_won'] = HTMLHelper::_ ( 'select.genericlist', $myoptions, 'team_won', 'class="inputbox" size="1"', 'value', 'text', $match->team_won );
 	
 	
 		$project_id = $app->getUserState($option.'project');
@@ -117,7 +119,7 @@ class JoomleagueViewMatch extends JLGView
 	
 		// match relation tab
 		$mdlMatch = BaseDatabaseModel::getInstance ( 'match', 'JoomleagueModel' );
-		$oldmatches [] = JHtml::_ ( 'select.option', '0', JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_OLD_MATCH' ) );
+		$oldmatches [] = HTMLHelper::_ ( 'select.option', '0', JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_OLD_MATCH' ) );
 		$res = array ();
 		$new_match_id = ($match->new_match_id) ? $match->new_match_id : 0;
 		if ($res = $mdlMatch->getMatchRelationsOptions ( $app->getUserState ( $option . 'project', 0 ), $match->id . "," . $new_match_id )) {
@@ -126,9 +128,9 @@ class JoomleagueViewMatch extends JLGView
 			}
 			$oldmatches = array_merge ( $oldmatches, $res );
 		}
-		$lists ['old_match'] = JHtml::_ ( 'select.genericlist', $oldmatches, 'old_match_id', 'class="inputbox" size="1"', 'value', 'text', $match->old_match_id );
+		$lists ['old_match'] = HTMLHelper::_ ( 'select.genericlist', $oldmatches, 'old_match_id', 'class="inputbox" size="1"', 'value', 'text', $match->old_match_id );
 	
-		$newmatches [] = JHtml::_ ( 'select.option', '0', JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_NEW_MATCH' ) );
+		$newmatches [] = HTMLHelper::_ ( 'select.option', '0', JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_NEW_MATCH' ) );
 		$res = array ();
 		$old_match_id = ($match->old_match_id) ? $match->old_match_id : 0;
 		if ($res = $mdlMatch->getMatchRelationsOptions ( $app->getUserState ( $option . 'project', 0 ), $match->id . "," . $old_match_id )) {
@@ -137,7 +139,7 @@ class JoomleagueViewMatch extends JLGView
 			}
 			$newmatches = array_merge ( $newmatches, $res );
 		}
-		$lists ['new_match'] = JHtml::_ ( 'select.genericlist', $newmatches, 'new_match_id', 'class="inputbox" size="1"', 'value', 'text', $match->new_match_id );
+		$lists ['new_match'] = HTMLHelper::_ ( 'select.genericlist', $newmatches, 'new_match_id', 'class="inputbox" size="1"', 'value', 'text', $match->new_match_id );
 	
 		$this->overall_config=$overall_config;
 		$this->table_config=$table_config;
@@ -171,8 +173,8 @@ class JoomleagueViewMatch extends JLGView
 		// add the js script
 		$baseurl = Uri::root();
 		//$version = urlencode(JoomleagueHelper::getVersion());
-		$document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/editreferees.js');
-		JoomleagueHelpersStyle::load();
+		//$document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/editreferees.js');
+		//JoomleagueHelpersStyle::load();
 		
 		$model = $this->getModel();
 		
@@ -194,22 +196,23 @@ class JoomleagueViewMatch extends JLGView
 
 		if (count ( $projectreferees ) > 0) {
 			foreach ( $projectreferees as $referee ) {
-				$projectreferees2 [] = JHtml::_ ( 'select.option', $referee->value, JoomleagueHelper::formatName ( null, $referee->firstname, $referee->nickname, $referee->lastname, $default_name_format ) . ' - (' . strtolower ( JText::_ ( $referee->positionname ) ) . ')' );
+				$projectreferees2 [] = HTMLHelper::_ ( 'select.option', $referee->value, JoomleagueHelper::formatName ( null, $referee->firstname, $referee->nickname, $referee->lastname, $default_name_format ) . ' - (' . strtolower ( JText::_ ( $referee->positionname ) ) . ')' );
 			}
 		}
-		$lists ['team_referees'] = JHtml::_ ( 'select.genericlist', $projectreferees2, 'roster[]', 'style="font-size:12px;height:auto;min-width:15em;" ' . 'class="inputbox" multiple="true" size="' . max ( 10, count ( $projectreferees2 ) ) . '"', 'value', 'text' );
+		$lists ['team_referees'] = HTMLHelper::_ ( 'select.genericlist', $projectreferees2, 'roster[]', 'style="font-size:12px;height:auto;min-width:15em;" ' . 'class="inputbox" multiple="true" size="' . max ( 10, count ( $projectreferees2 ) ) . '"', 'value', 'text' );
 
-		$selectpositions [] = JHtml::_ ( 'select.option', '0', JText::_ ( 'COM_JOOMLEAGUE_GLOBAL_SELECT_REF_FUNCTION' ) );
+		$selectpositions [] = HTMLHelper::_ ( 'select.option', '0', JText::_ ( 'COM_JOOMLEAGUE_GLOBAL_SELECT_REF_FUNCTION' ) );
 		if ($projectpositions = $model->getProjectPositionsOptions ( 0, 3 )) {
 			$selectpositions = array_merge ( $selectpositions, $projectpositions );
 		}
-		$lists ['projectpositions'] = JHtml::_ ( 'select.genericlist', $selectpositions, 'project_position_id', 'class="inputbox" size="1"', 'value', 'text' );
+		$lists ['projectpositions'] = HTMLHelper::_ ( 'select.genericlist', $selectpositions, 'project_position_id', 'class="inputbox" size="1"', 'value', 'text' );
 
 		$squad = array ();
 		if (! $projectpositions) {
 			JLToolBarHelper::title('ERROR');
 			JLToolBarHelper::back('back');
-			JError::raiseWarning ( 440, '<br />' . JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_NO_REF_POS' ) . '<br /><br />' );
+			$msg = JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_NO_REF_POS' );
+			$app->enqueueMessage($msg, 'warning');
 			return;
 		}
 
@@ -223,10 +226,10 @@ class JoomleagueViewMatch extends JLGView
 				$temp [$key] = array ();
 				if (isset ( $referees )) {
 					foreach ( $referees as $referee ) {
-						$temp [$key] [] = JHtml::_ ( 'select.option', $referee->value, JoomleagueHelper::formatName ( null, $referee->firstname, $referee->nickname, $referee->lastname, $default_name_format ) );
+						$temp [$key] [] = HTMLHelper::_ ( 'select.option', $referee->value, JoomleagueHelper::formatName ( null, $referee->firstname, $referee->nickname, $referee->lastname, $default_name_format ) );
 					}
 				}
-				$lists ['team_referees' . $key] = JHtml::_ ( 'select.genericlist', $temp [$key], 'position' . $key . '[]', 'id="testing" style="font-size:12px;height:auto;min-width:15em;" ' . 'class="inputbox position-starters" multiple="true" ', 'value', 'text' );
+				$lists ['team_referees' . $key] = HTMLHelper::_ ( 'select.genericlist', $temp [$key], 'position' . $key . '[]', 'id="testing" style="font-size:12px;height:auto;min-width:15em;" ' . 'class="inputbox position-starters" multiple="true" ', 'value', 'text' );
 			}
 		}
 		$this->project_id=$project_id;
@@ -295,9 +298,9 @@ class JoomleagueViewMatch extends JLGView
 
 		// teams
 		$teamlist = array();
-		$teamlist [] = JHtml::_('select.option',$matchData->projectteam1_id,$matchData->team1);
-		$teamlist [] = JHtml::_('select.option',$matchData->projectteam2_id,$matchData->team2);
-		$lists['teams'] = JHtml::_('select.genericlist',$teamlist,'team_id','class="span12 select-team"');
+		$teamlist [] = HTMLHelper::_('select.option',$matchData->projectteam1_id,$matchData->team1);
+		$teamlist [] = HTMLHelper::_('select.option',$matchData->projectteam2_id,$matchData->team2);
+		$lists['teams'] = HTMLHelper::_('select.genericlist',$teamlist,'team_id','class="span12 select-team"');
 
 		// eventtypes
 		$events = $model->getEventsOptions($project_id,$match_id);
@@ -310,7 +313,7 @@ class JoomleagueViewMatch extends JLGView
 		$eventlist = array ();
 		$eventlist = array_merge($eventlist,$events);
 
-		$lists['events'] = JHtml::_('select.genericlist',$eventlist,'event_type_id','class="span12 select-event"');
+		$lists['events'] = HTMLHelper::_('select.genericlist',$eventlist,'event_type_id','class="span12 select-event"');
 
 		$this->overall_config=$mdlProject->getTemplateConfig('overall');
 		$this->lists=$lists;
@@ -536,20 +539,20 @@ class JoomleagueViewMatch extends JLGView
 			switch ($default_name_dropdown_list_order) {
 				case 'lastname' :
 				case 'firstname' :
-					$not_assigned_options [] = JHtml::_('select.option', $p->value, $jerseynumber . JoomleagueHelper::formatName ( null, $p->firstname, $p->nickname, $p->lastname, $default_name_format ) );
+					$not_assigned_options [] = HTMLHelper::_('select.option', $p->value, $jerseynumber . JoomleagueHelper::formatName ( null, $p->firstname, $p->nickname, $p->lastname, $default_name_format ) );
 					break;
 
 				case 'position' :
-					$not_assigned_options[] = JHtml::_('select.option', $p->value, '(' . JText::_ ( $p->positionname ) . ') - '.$jerseynumber.JoomleagueHelper::formatName(null,$p->firstname,$p->nickname,$p->lastname,$default_name_format));
+					$not_assigned_options[] = HTMLHelper::_('select.option', $p->value, '(' . JText::_ ( $p->positionname ) . ') - '.$jerseynumber.JoomleagueHelper::formatName(null,$p->firstname,$p->nickname,$p->lastname,$default_name_format));
 					break;
 			}
 		}
-		$lists ['team_players'] = JHtml::_('select.genericlist',$not_assigned_options,'roster[]','style="font-size:12px;height:auto;min-width:15em;" class="inputbox" multiple="true" size="18"','value','text');
+		$lists ['team_players'] = HTMLHelper::_('select.genericlist',$not_assigned_options,'roster[]','style="font-size:12px;height:auto;min-width:15em;" class="inputbox" multiple="true" size="18"','value','text');
 
 		// build position select
-		$selectpositions[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_IN_POSITION'));
+		$selectpositions[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_IN_POSITION'));
 		$selectpositions = array_merge($selectpositions,$model->getProjectPositionsOptions(0,1));
-		$lists ['projectpositions'] = JHtml::_('select.genericlist',$selectpositions,'project_position_id','class="inputbox" size="1"','value','text',NULL,false,true);
+		$lists ['projectpositions'] = HTMLHelper::_('select.genericlist',$selectpositions,'project_position_id','class="inputbox" size="1"','value','text',NULL,false,true);
 
 		// build player select for substitutions
 
@@ -591,7 +594,7 @@ class JoomleagueViewMatch extends JLGView
 		}
 	
 		$playersoptions_subs_out = array ();
-		$playersoptions_subs_out [] = JHtml::_ ( 'select.option', '0', JText::_ ( 'COM_JOOMLEAGUE_GLOBAL_SELECT_PLAYER' ) );
+		$playersoptions_subs_out [] = HTMLHelper::_ ( 'select.option', '0', JText::_ ( 'COM_JOOMLEAGUE_GLOBAL_SELECT_PLAYER' ) );
 		$i = 0;
 		foreach ( ( array ) $new_starters as $player ) {
 			switch ($default_name_dropdown_list_order) {
@@ -600,26 +603,26 @@ class JoomleagueViewMatch extends JLGView
 					if (array_key_exists ( 'came_in', $player )) {
 						$i ++;
 						if ($i == 1) {
-							$playersoptions_subs_out[]=JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_SELECT_PLAYER_ALREADY_IN'));
+							$playersoptions_subs_out[]=HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_SELECT_PLAYER_ALREADY_IN'));
 						}
 					}
-					$playersoptions_subs_out [] = JHtml::_ ( 'select.option', $player->value, JoomleagueHelper::formatName ( null, $player->firstname, $player->nickname, $player->lastname, $default_name_format ) );
+					$playersoptions_subs_out [] = HTMLHelper::_ ( 'select.option', $player->value, JoomleagueHelper::formatName ( null, $player->firstname, $player->nickname, $player->lastname, $default_name_format ) );
 					break;
 
 				case 'position' :
 					if (array_key_exists ( 'came_in', $player )) {
 						$i ++;
 						if ($i == 1) {
-							$playersoptions_subs_out[]=JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_SELECT_PLAYER_ALREADY_IN'));
+							$playersoptions_subs_out[]=HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_SELECT_PLAYER_ALREADY_IN'));
 						}
 					}
-					$playersoptions_subs_out [] = JHtml::_ ( 'select.option', $player->value, '(' . JText::_ ( $player->positionname ) . ') - ' . JoomleagueHelper::formatName ( null, $player->firstname, $player->nickname, $player->lastname, $default_name_format ) );
+					$playersoptions_subs_out [] = HTMLHelper::_ ( 'select.option', $player->value, '(' . JText::_ ( $player->positionname ) . ') - ' . JoomleagueHelper::formatName ( null, $player->firstname, $player->nickname, $player->lastname, $default_name_format ) );
 					break;
 			}
 		}
 
 		$playersoptions_subs_in = array ();
-		$playersoptions_subs_in [] = JHtml::_ ( 'select.option', '0', JText::_ ( 'COM_JOOMLEAGUE_GLOBAL_SELECT_PLAYER' ) );
+		$playersoptions_subs_in [] = HTMLHelper::_ ( 'select.option', '0', JText::_ ( 'COM_JOOMLEAGUE_GLOBAL_SELECT_PLAYER' ) );
 		$i = 0;
 		foreach ( ( array ) $new_not_assigned as $player ) {
 			switch ($default_name_dropdown_list_order) {
@@ -628,11 +631,11 @@ class JoomleagueViewMatch extends JLGView
 					if (array_key_exists ( 'came_in', $player ) && $player->came_in == 1 && $player->in_for > 0) {
 						$i ++;
 						if ($i == 1) {
-							$playersoptions_subs_in[]=JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_SELECT_PLAYER_ALREADY_OUT'));
+							$playersoptions_subs_in[]=HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_SELECT_PLAYER_ALREADY_OUT'));
 						}
-						$playersoptions_subs_in [] = JHtml::_ ( 'select.option', $player->in_for, JoomleagueHelper::formatName ( null, $player->out_firstname, $player->out_nickname, $player->out_lastname, $default_name_format ) );
+						$playersoptions_subs_in [] = HTMLHelper::_ ( 'select.option', $player->in_for, JoomleagueHelper::formatName ( null, $player->out_firstname, $player->out_nickname, $player->out_lastname, $default_name_format ) );
 					} elseif (! array_key_exists ( 'came_in', $player )) {
-						$playersoptions_subs_in [] = JHtml::_ ( 'select.option', $player->value, JoomleagueHelper::formatName ( null, $player->firstname, $player->nickname, $player->lastname, $default_name_format ) );
+						$playersoptions_subs_in [] = HTMLHelper::_ ( 'select.option', $player->value, JoomleagueHelper::formatName ( null, $player->firstname, $player->nickname, $player->lastname, $default_name_format ) );
 					}
 					break;
 
@@ -640,16 +643,16 @@ class JoomleagueViewMatch extends JLGView
 					if (array_key_exists ( 'came_in', $player ) && $player->came_in == 1 && $player->in_for > 0) {
 						$i ++;
 						if ($i == 1) {
-							$playersoptions_subs_in[]=JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_SELECT_PLAYER_ALREADY_OUT'));
+							$playersoptions_subs_in[]=HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_SELECT_PLAYER_ALREADY_OUT'));
 						}
-						$playersoptions_subs_in [] = JHtml::_ ( 'select.option', $player->in_for, '(' . JText::_ ( $player->positionname_out ) . ') - ' . JoomleagueHelper::formatName ( null, $player->out_firstname, $player->out_nickname, $player->out_lastname, $default_name_format ) );
+						$playersoptions_subs_in [] = HTMLHelper::_ ( 'select.option', $player->in_for, '(' . JText::_ ( $player->positionname_out ) . ') - ' . JoomleagueHelper::formatName ( null, $player->out_firstname, $player->out_nickname, $player->out_lastname, $default_name_format ) );
 					} elseif (! array_key_exists ( 'came_in', $player )) {
-						$playersoptions_subs_in [] = JHtml::_ ( 'select.option', $player->value, '(' . JText::_ ( $player->positionname ) . ') - ' . JoomleagueHelper::formatName ( null, $player->firstname, $player->nickname, $player->lastname, $default_name_format ) );
+						$playersoptions_subs_in [] = HTMLHelper::_ ( 'select.option', $player->value, '(' . JText::_ ( $player->positionname ) . ') - ' . JoomleagueHelper::formatName ( null, $player->firstname, $player->nickname, $player->lastname, $default_name_format ) );
 					}
 					break;
 			}
 		}
-		// $lists['all_players']=JHtml::_( 'select.genericlist',$playersoptions,'roster[]',
+		// $lists['all_players']=HTMLHelper::_( 'select.genericlist',$playersoptions,'roster[]',
 		// 'id="roster" style="font-size:12px;height:auto;min-width:15em;" class="inputbox" size="4"',
 		// 'value','text');
 
@@ -668,10 +671,10 @@ class JoomleagueViewMatch extends JLGView
 				} else {
 					$jerseynumber = '';
 				}
-				$options [] = JHtml::_ ( 'select.option', $p->value, $jerseynumber . JoomleagueHelper::formatName ( null, $p->firstname, $p->nickname, $p->lastname, $default_name_format ) );
+				$options [] = HTMLHelper::_ ( 'select.option', $p->value, $jerseynumber . JoomleagueHelper::formatName ( null, $p->firstname, $p->nickname, $p->lastname, $default_name_format ) );
 			}
 
-			$lists ['team_players' . $position_id] = JHtml::_ ( 'select.genericlist', $options, 'position' . $position_id . '[]', 'style="font-size:12px;height:auto;min-width:15em;" size="4" class="inputbox position-starters" multiple="true" ', 'value', 'text' );
+			$lists ['team_players' . $position_id] = HTMLHelper::_ ( 'select.genericlist', $options, 'position' . $position_id . '[]', 'style="font-size:12px;height:auto;min-width:15em;" size="4" class="inputbox position-starters" multiple="true" ', 'value', 'text' );
 		}
 
 		// staff positions //
@@ -690,15 +693,15 @@ class JoomleagueViewMatch extends JLGView
 			switch ($default_name_dropdown_list_order) {
 				case 'lastname' :
 				case 'firstname' :
-					$not_assigned_options [] = JHtml::_ ( 'select.option', $p->value, JoomleagueHelper::formatName ( null, $p->firstname, $p->nickname, $p->lastname, $default_name_format ) );
+					$not_assigned_options [] = HTMLHelper::_ ( 'select.option', $p->value, JoomleagueHelper::formatName ( null, $p->firstname, $p->nickname, $p->lastname, $default_name_format ) );
 					break;
 
 				case 'position' :
-					$not_assigned_options[] = JHtml::_( 'select.option', $p->value,'('.JText::_($p->positionname).') - '.JoomleagueHelper::formatName(null,$p->firstname,$p->nickname,$p->lastname,$default_name_format ) );
+					$not_assigned_options[] = HTMLHelper::_( 'select.option', $p->value,'('.JText::_($p->positionname).') - '.JoomleagueHelper::formatName(null,$p->firstname,$p->nickname,$p->lastname,$default_name_format ) );
 					break;
 			}
 		}
-		$lists['team_staffs'] = JHtml::_('select.genericlist', $not_assigned_options, 'staff[]', 'style="font-size:12px;height:auto;min-width:15em;" size="18" class="inputbox" multiple="true" size="18"', 'value', 'text' );
+		$lists['team_staffs'] = HTMLHelper::_('select.genericlist', $not_assigned_options, 'staff[]', 'style="font-size:12px;height:auto;min-width:15em;" size="18" class="inputbox" multiple="true" size="18"', 'value', 'text' );
 
 		// generate selection list for each position
 		$options = array ();
@@ -707,10 +710,10 @@ class JoomleagueViewMatch extends JLGView
 			$options = array ();
 			foreach ( $assigned as $staff ) {
 				if ($staff->project_position_id == $pos->pposid) {
-					$options [] = JHtml::_ ( 'select.option', $staff->team_staff_id, JoomleagueHelper::formatName(null,$staff->firstname,$staff->nickname,$staff->lastname,$default_name_format));
+					$options [] = HTMLHelper::_ ( 'select.option', $staff->team_staff_id, JoomleagueHelper::formatName(null,$staff->firstname,$staff->nickname,$staff->lastname,$default_name_format));
 				}
 			}
-			$lists ['team_staffs' . $position_id] = JHtml::_ ( 'select.genericlist', $options, 'staffposition' . $position_id . '[]', 'style="font-size:12px;height:auto;min-width:15em;" size="4" class="inputbox position-staff" multiple="true" ', 'value', 'text' );
+			$lists ['team_staffs' . $position_id] = HTMLHelper::_ ( 'select.genericlist', $options, 'staffposition' . $position_id . '[]', 'style="font-size:12px;height:auto;min-width:15em;" size="4" class="inputbox position-staff" multiple="true" ', 'value', 'text' );
 		}
 
 		$this->match=$matchData;

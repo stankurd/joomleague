@@ -48,11 +48,11 @@ class JoomleagueModelTreetomatches extends JLGModelList
 		$query = $db->getQuery(true);
 		$user = Factory::getUser();
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 
 		// Treenode
-		$nid = $jinput->get('nid',array(),'array');
+		$nid = $input->get('nid',array(),'array');
 		ArrayHelper::toInteger($nid);
 		if($nid)
 		{
@@ -154,8 +154,8 @@ class JoomleagueModelTreetomatches extends JLGModelList
 		$app = Factory::getApplication();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$node_id = $app->getUserState($option.'node_id');
 		$treeto_id = $app->getUserState($option.'treeto_id');
 		$project_id = $app->getUserState($option.'project');
@@ -211,7 +211,7 @@ class JoomleagueModelTreetomatches extends JLGModelList
 		$app = Factory::getApplication();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		$jinput = $app->input;
+		$input = $app->input;
 		$node_id = $app->getUserState('com_joomleaguenode_id');
 
 		$query = ' SELECT mc.id AS value ';

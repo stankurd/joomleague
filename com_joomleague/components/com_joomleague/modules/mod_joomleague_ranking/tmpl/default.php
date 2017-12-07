@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Joomleague
  * @subpackage	Module-Ranking
@@ -107,7 +109,7 @@ $colors = $list['colors'];
 				<?php endif; ?>
 				<?php if ($spanStyle != '') echo $spanStyle; ?>
 				<?php if ($params->get('teamlink', 'none') != 'none'): ?>
-				<?php echo JHtml::link(modJLGRankingHelper::getTeamLink($item, $params, $list['project']), $item->team->$nametype); ?>
+				<?php echo HTMLHelper::link(modJLGRankingHelper::getTeamLink($item, $params, $list['project']), $item->team->$nametype); ?>
 				<?php else: ?>
 				<?php echo $item->team->$nametype; ?>
 				<?php endif; ?>
@@ -128,7 +130,7 @@ $colors = $list['colors'];
 <p class="fulltablelink"><?php 
 	$divisionid = explode(':', $params->get('division_id', 0));
 	$divisionid = $divisionid[0];
-	echo JHtml::link(JoomleagueHelperRoute::getRankingRoute($list['project']->slug, null, null, null, null, $divisionid), 
+	echo HTMLHelper::link(JoomleagueHelperRoute::getRankingRoute($list['project']->slug, null, null, null, null, $divisionid), 
 			         JText::_('MOD_JOOMLEAGUE_RANKING_VIEW_FULL_TABLE')); ?></p>
 <?php endif; ?>
 </div>

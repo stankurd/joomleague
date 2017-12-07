@@ -7,12 +7,14 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 
 $app = Factory::getApplication();
 $user = Factory::getUser();
@@ -25,7 +27,7 @@ $saveOrder = $listOrder == 'a.ordering';
 if($saveOrder)
 {
 	$saveOrderingUrl = 'index.php?option=com_joomleague&task=statistics.saveOrderAjax&tmpl=component';
-	JHtml::_('sortablelist.sortable','statisticList','adminForm',strtolower($listDirn),$saveOrderingUrl);
+	HTMLHelper::_('sortablelist.sortable','statisticList','adminForm',strtolower($listDirn),$saveOrderingUrl);
 }
 Factory::getDocument()->addScriptDeclaration('
 	Joomla.submitbutton = function(task)
@@ -40,7 +42,7 @@ Factory::getDocument()->addScriptDeclaration('
 	};
 ');
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_joomleague&view=statistics'); ?>" method="post" id="adminForm" name="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_joomleague&view=statistics'); ?>" method="post" id="adminForm" name="adminForm">
 	<div id="j-main-container" class="j-main-container">
 		<?php
 		// Search tools bar
@@ -61,23 +63,23 @@ Factory::getDocument()->addScriptDeclaration('
 		<thead>
 			<tr>
 				<th width="1%">
-					<?php echo JHtml::_('searchtools.sort', '', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
+					<?php echo HTMLHelper::_('searchtools.sort', '', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
 				</th>
 				<th width="1%" class="center">
-					<?php echo JHtml::_('grid.checkall'); ?>
+					<?php echo HTMLHelper::_('grid.checkall'); ?>
 				</th>
 				<th width="20">&nbsp;</th>
 				<th>
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_STATISTICS_NAME','a.name',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_STATISTICS_NAME','a.name',$listDirn, $listOrder);?>
 				</th>
 				<th width="20">
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_STATISTICS_ABBREV','a.short',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_STATISTICS_ABBREV','a.short',$listDirn, $listOrder);?>
 				</th>
 				<th width="10%" class="center">
 					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_ICON');?>
 				</th>
 				<th width="10%">
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_STATISTICS_SPORTSTYPE','a.sports_type_id',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_STATISTICS_SPORTSTYPE','a.sports_type_id',$listDirn, $listOrder);?>
 				</th>
 				<th>
 					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_NOTE'); ?>
@@ -89,7 +91,7 @@ Factory::getDocument()->addScriptDeclaration('
 					<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');?>
 				</th>
 				<th width="1%">
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder); ?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder); ?>
 				</th>
 			</tr>
 		</thead>
@@ -97,9 +99,9 @@ Factory::getDocument()->addScriptDeclaration('
 		<?php
 		$n = count($this->items);
 		foreach($this->items as $i=>$row):
-			$link = JRoute::_('index.php?option=com_joomleague&task=statistic.edit&id='.$row->id);
-			$checked = JHtml::_('grid.checkedout',$row,$i);
-			$published = JHtml::_('jgrid.published',$row->published,$i,'statistics.');
+			$link = Route::_('index.php?option=com_joomleague&task=statistic.edit&id='.$row->id);
+			$checked = HTMLHelper::_('grid.checkedout',$row,$i);
+			$published = HTMLHelper::_('jgrid.published',$row->published,$i,'statistics.');
 
 			$canEdit = $user->authorise('core.edit','com_joomleague.statistic.'.$row->id);
 			$canCheckin = $user->authorise('core.manage','com_checkin') || $row->checked_out == $userId || $row->checked_out == 0;
@@ -113,7 +115,7 @@ Factory::getDocument()->addScriptDeclaration('
 				if (!$canChange) {
 					$iconClass = ' inactive';
 				} elseif (!$saveOrder) {
-					$iconClass = ' inactive tip-top hasTooltip" title="' . JHtml::tooltipText ('JORDERINGDISABLED');
+					$iconClass = ' inactive tip-top hasTooltip" title="' . HTMLHelper::tooltipText ('JORDERINGDISABLED');
 				}
 				?>
 					<span class="sortable-handler<?php echo $iconClass ?>"><span class="icon-menu"></span></span>
@@ -136,7 +138,7 @@ Factory::getDocument()->addScriptDeclaration('
 					<a href="<?php echo $link; ?>">
 					<?php
 					$imgTitle = JText::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_EDIT_DETAILS');
-					echo JHtml::image('administrator/components/com_joomleague/assets/images/edit.png',$imgTitle,array('border' => 0,'title' => $imgTitle));
+					echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/edit.png',$imgTitle,array('border' => 0,'title' => $imgTitle));
 					?>
 					</a>
 				</td>
@@ -171,5 +173,5 @@ Factory::getDocument()->addScriptDeclaration('
 	<!-- input fields -->
 	<input type="hidden" name="task" value="" />
 	<input type="hidden" name="boxchecked" value="0" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

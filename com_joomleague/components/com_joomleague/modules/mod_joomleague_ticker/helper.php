@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 abstract class modJoomleagueTickerHelper
@@ -103,7 +105,7 @@ abstract class modJoomleagueTickerHelper
 		}
 		$query_END   = " ORDER BY matches.match_date $ordering, matches.match_number DESC LIMIT ".$numberofmatches;
 
-		$database = JFactory::getDbo();
+		$database = Factory::getDbo();
 		$database->setQuery($query_SELECT.$query_FROM.$query_WHERE.$query_END);
 		$result = $database->loadObjectList();
 		if ($result)
@@ -119,7 +121,7 @@ abstract class modJoomleagueTickerHelper
 	public static function getFavs($projects) {
 		$query = "SELECT fav_team FROM #__joomleague_project WHERE fav_team != ''";
 		$query .= " AND id IN (".$projects.")";
-		$database = JFactory::getDbo();
+		$database = Factory::getDbo();
 		$database->setQuery($query);
 		$fav=$database->loadColumn();
 		return implode(',', $fav);

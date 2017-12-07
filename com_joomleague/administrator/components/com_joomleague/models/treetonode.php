@@ -116,11 +116,11 @@ class JoomleagueModelTreetonode extends JoomleagueModelItem
 	function setUnpublishNode()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		$post = $jinput->post->getArray();
+		$post = $input->post->getArray();
 		$id = (int) $post['id'];
 		
 		$query = ' UPDATE #__joomleague_treeto_node AS ttn ';

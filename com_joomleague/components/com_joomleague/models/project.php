@@ -15,6 +15,7 @@ use Joomla\CMS\Form\Form;
 use Joomla\CMS\Table\Table;
 use Joomla\Registry\Registry;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -454,7 +455,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		return $db->loadObject();
 	}
 
-	function & _getTeams()
+	function _getTeams()
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
@@ -956,7 +957,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 				$small_club_icon = JoomleagueHelper::getDefaultPlaceholder("clublogosmall");
 			}
 
-			return JHtml::image($small_club_icon,'',$params);
+			return HTMLHelper::image($small_club_icon,'',$params);
 		}
 		elseif (($type==2) && (isset($team->country)))
 		{

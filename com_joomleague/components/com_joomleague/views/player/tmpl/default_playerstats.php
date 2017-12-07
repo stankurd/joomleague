@@ -7,6 +7,8 @@
  * @link		http://www.joomleague.at
  */
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die; ?>
 
 <!-- Player stats History START -->
@@ -21,7 +23,7 @@ defined('_JEXEC') or die; ?>
 				<th class="td_l" class="nowrap"><?php echo JText::_('COM_JOOMLEAGUE_PERSON_TEAM'); ?></th>
 				<th class="td_c"><?php
 				$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_PLAYED');
-				echo JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/played.png',
+				echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/played.png',
 				$imageTitle,array(' title' => $imageTitle,' width' => 20,' height' => 20));
 				?></th>
 				<?php
@@ -32,22 +34,22 @@ defined('_JEXEC') or die; ?>
 						?>
 				<th class="td_c"><?php
 				$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_STARTROSTER');
-				echo JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/startroster.png',
+				echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/startroster.png',
 				$imageTitle,array(' title' => $imageTitle));
 				?></th>
 				<th class="td_c"><?php
 				$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_IN');
-				echo JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/in.png',
+				echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/in.png',
 				$imageTitle,array(' title' => $imageTitle));
 				?></th>
 				<th class="td_c"><?php
 				$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_OUT');
-				echo JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png',
+				echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png',
 				$imageTitle,array(' title' => $imageTitle));
 				?></th>
 				<th class="td_c"><?php
 				$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_TOTAL_TIME_PLAYED');
-				echo JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/playtime.gif',
+				echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/playtime.gif',
 				$imageTitle,array('title'=> $imageTitle));
 				?></th>
 				<?php
@@ -63,7 +65,7 @@ defined('_JEXEC') or die; ?>
 				<th class="td_c"><?php
 				$iconPath=$eventtype->icon;
 				if (!strpos(" ".$iconPath,"/")){$iconPath="images/com_joomleague/database/events/".$iconPath;}
-				echo JHtml::image($iconPath,
+				echo HTMLHelper::image($iconPath,
 					JText::_($eventtype->name),
 					array(	"title" => JText::_($eventtype->name),
 						"align" => "top",
@@ -115,12 +117,12 @@ defined('_JEXEC') or die; ?>
 					$link2=JoomleagueHelperRoute::getTeamInfoRoute($player_hist->project_slug,$player_hist->team_slug);
 					?>
 			<tr class="<?php echo ($k==0)? $this->config['style_class1'] : $this->config['style_class2']; ?>">
-				<td class="td_l" nowrap="nowrap"><?php echo JHtml::link($link1,$player_hist->project_name); ?>
+				<td class="td_l" nowrap="nowrap"><?php echo HTMLHelper::link($link1,$player_hist->project_name); ?>
 				</td>
 				<td class="td_l" class="nowrap">
 				<?php
 					if ($this->config['show_playerstats_teamlink'] == 1) {
-						echo JHtml::link($link2,$player_hist->team_name);
+						echo HTMLHelper::link($link2,$player_hist->team_name);
 					} else {
 						echo $player_hist->team_name;
 					} 

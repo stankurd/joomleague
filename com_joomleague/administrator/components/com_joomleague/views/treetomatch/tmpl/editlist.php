@@ -6,14 +6,16 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 
-JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ASSIGN'));
+JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ASSIGN'));
 JLToolBarHelper::save('treetomatch.save_matcheslist');
-JToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetonodes');
-JToolBarHelper::help('screen.joomleague',true);
+JLToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetonodes');
+JLToolBarHelper::help('screen.joomleague',true);
 ?>
 <script>
 	function submitbutton(pressbutton)

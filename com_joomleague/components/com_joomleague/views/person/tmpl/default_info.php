@@ -1,4 +1,9 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
+?>
 <!-- person data START -->
 <?php if ($this->person): ?>
 <h2><?php echo JText::_('COM_JOOMLEAGUE_PERSON_PERSONAL_DATA'); ?></h2>
@@ -76,7 +81,7 @@
 				if ($this->person->website != '' && $this->config['show_person_website'] == 1): ?>
 				<tr>
 					<td class='label'><?php echo JText::_('COM_JOOMLEAGUE_PERSON_WEBSITE'); ?></td>
-					<td class='data'><?php echo JHtml::_('link', $this->person->website, $this->person->website,
+					<td class='data'><?php echo HTMLHelper::_('link', $this->person->website, $this->person->website,
 						array('target' => '_blank')); ?>
 					</td>
 				</tr>

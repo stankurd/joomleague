@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 
 /**
@@ -74,7 +76,7 @@ abstract class modJLGEventsrankingHelper
 		{
 			if (!empty($item->logo_small))
 			{
-				return JHtml::image($item->logo_small, $item->short_name, 'class="teamlogo"');
+				return HTMLHelper::image($item->logo_small, $item->short_name, 'class="teamlogo"');
 			}
 		}		
 		else if ($type == 2 && !empty($item->country))
@@ -106,7 +108,7 @@ abstract class modJLGEventsrankingHelper
 		$name = JoomleagueHelper::formatName(null, $item->fname, $item->nname, $item->lname, $params->get("name_format"));
 		if ($params->get('show_player_link'))
 		{
-			return JHtml::link(JoomleagueHelperRoute::getPlayerRoute($project->slug, $team->team_slug, $item->pid), $name);
+			return HTMLHelper::link(JoomleagueHelperRoute::getPlayerRoute($project->slug, $team->team_slug, $item->pid), $name);
 		}
 		else
 		{
@@ -124,7 +126,7 @@ abstract class modJLGEventsrankingHelper
 		{
 			$imgTitle=JText::_($event->name);
 			$imgTitle2=array(' title' => $imgTitle, ' alt' => $imgTitle);
-			$txt=JHtml::image($event->icon, $imgTitle, $imgTitle2);
+			$txt=HTMLHelper::image($event->icon, $imgTitle, $imgTitle2);
 		}
 		return $txt;
 	}

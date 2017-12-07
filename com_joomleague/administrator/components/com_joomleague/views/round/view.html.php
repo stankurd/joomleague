@@ -6,6 +6,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+
 defined('_JEXEC') or die;
 
 
@@ -20,14 +24,14 @@ class JoomleagueViewRound extends JLGView
 
 	public function display($tpl = null)
 	{
-		$app = JFactory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$app = Factory::getApplication();
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option . 'project');
 
-		$db = JFactory::getDbo();
-		$uri = JUri::getInstance();
-		$user = JFactory::getUser();
+		$db = Factory::getDbo();
+		$uri = Uri::getInstance();
+		$user = Factory::getUser();
 		$model = $this->getModel();
 		$lists = array();
 
@@ -60,7 +64,7 @@ class JoomleagueViewRound extends JLGView
 		 * }
 		 */
 
-		$mdlProject = JModelLegacy::getInstance('project','JoomleagueModel');
+		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$project = $mdlProject->getItem($project_id);
 
 		$this->project = $project;
@@ -75,14 +79,14 @@ class JoomleagueViewRound extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JFactory::getApplication()->input->set('hidemainmenu',true);
-		$user = JFactory::getUser();
+		Factory::getApplication()->input->set('hidemainmenu',true);
+		$user = Factory::getUser();
 		$userId = $user->get('id');
 		$isNew = ($this->item->id == 0);
 		$checkedOut = ! ($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 
 		$text = $isNew ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
-		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_ROUND_TITLE') . ': ' . $this->item->name,'jl-Matchdays');
+		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_ROUND_TITLE') . ': ' . $this->item->name,'jl-Matchdays');
 
 		JLToolBarHelper::apply('round.apply');
 		JLToolBarHelper::save('round.save');
@@ -94,6 +98,6 @@ class JoomleagueViewRound extends JLGView
 		{
 			JLToolBarHelper::cancel('round.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::help('screen.joomleague',true);
 	}
 }

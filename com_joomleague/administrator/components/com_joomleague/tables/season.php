@@ -12,7 +12,6 @@ defined('_JEXEC') or die;
 
 // Include library dependencies
 jimport('joomla.filter.input');
-use Joomla\Filter\JFilterOutput;
 
 /**
 * Season Table class

@@ -6,9 +6,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
+
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 ?>
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm2" name="adminForm2">
 	<fieldset class="form-horizontal">
@@ -44,7 +47,7 @@ JHtml::_('behavior.tooltip');
 				<tr>
 					<td class="nowrap" valign="top">
 						<?php
-						$link = JRoute::_( 'index.php?option=com_joomleague&task=tools.optimize' );
+						$link = Route::_( 'index.php?option=com_joomleague&task=tools.optimize' );
 						?>
 						<a href="<?php echo $link; ?>" title="<?php echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_OPTIMIZE2' ); ?>">
 							<?php
@@ -62,7 +65,7 @@ JHtml::_('behavior.tooltip');
 				<tr>
 					<td class="nowrap" valign="top">
 						<?php
-						$link = JRoute::_( 'index.php?option=com_joomleague&task=tools.repair' );
+						$link = Route::_( 'index.php?option=com_joomleague&task=tools.repair' );
 						?>
 						<a href="<?php echo $link; ?>" title="<?php echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_REPAIR2' ); ?>">
 							<?php
@@ -82,5 +85,5 @@ JHtml::_('behavior.tooltip');
 	</div>
 
 	<input type="hidden" name="task" value="" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

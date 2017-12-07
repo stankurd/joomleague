@@ -1,4 +1,5 @@
 <?php use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die; ?>
 <!-- START: matches -->
@@ -165,12 +166,12 @@ foreach ($this->matches as $game)
 			?>
 			<?php if ($this->config['which_link'] == 1) { ?>
 			<?php
-			echo JHtml::link($result_link,$roundcode);
+			echo HTMLHelper::link($result_link,$roundcode);
 			}
 			?>
 			<?php if ($this->config['which_link'] == 2) { ?>
 			<?php
-			echo JHtml::link($nextmatch_link, $roundcode);
+			echo HTMLHelper::link($nextmatch_link, $roundcode);
 			}
 			?>
 		</td>
@@ -359,7 +360,7 @@ foreach ($this->matches as $game)
 			foreach ($matchReferees AS $matchReferee)
 			{
 				$referee_link=JoomleagueHelperRoute::getRefereeRoute($game->project_id,$matchReferee->id);
-				echo JHtml::link($referee_link,$matchReferee->firstname." ".$matchReferee->lastname);
+				echo HTMLHelper::link($referee_link,$matchReferee->firstname." ".$matchReferee->lastname);
 				echo '<br />';
 			}
 			?>
@@ -369,7 +370,7 @@ foreach ($this->matches as $game)
 		<?php if ($this->config['show_playground'] == 1) { ?>
 		<td>
 			<?php
-			echo JHtml::link($playground_link,$game->pl_name);
+			echo HTMLHelper::link($playground_link,$game->pl_name);
 			?>
 		</td>
 		<?php } ;?>
@@ -420,14 +421,14 @@ foreach ($this->matches as $game)
 		   } ?>
 		<td>
 			<?php if(isset($team1) && isset($team2) && ($team1 == $team2)) {
-				echo JHtml::image('media/com_joomleague/jl_images/draw.png', 'draw.png',
+				echo HTMLHelper::image('media/com_joomleague/jl_images/draw.png', 'draw.png',
 					array('title' => JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_DRAW'))) . '&nbsp;';
 			} else {
 				if($team1 > $team2) {
-					echo JHtml::image("media/com_joomleague/jl_images/thumbs_up.png", "thumbs_up.png",
+					echo HTMLHelper::image("media/com_joomleague/jl_images/thumbs_up.png", "thumbs_up.png",
 						array("title" => JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_WON'))) . "&nbsp;";
 				} elseif($team2 > $team1) {
-					echo JHtml::image("media/com_joomleague/jl_images/thumbs_down.png", "thumbs_down.png",
+					echo HTMLHelper::image("media/com_joomleague/jl_images/thumbs_down.png", "thumbs_down.png",
 						array("title" => JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_LOST'))) . "&nbsp;";
 				}
 				else

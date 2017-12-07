@@ -11,6 +11,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\String\StringHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -104,8 +105,8 @@ class JoomleagueViewProjectposition extends JLGView
 
 		if ($ress = $model->getProjectPositions())
 		{ // select all already assigned positions to the project
-			foreach($ress as $res){$project_positionslist[]=JHtml::_('select.option',$res->value,JText::_($res->text));}
-			$lists['project_positions']=JHtml::_(	'select.genericlist',
+			foreach($ress as $res){$project_positionslist[]=HTMLHelper::_('select.option',$res->value,JText::_($res->text));}
+			$lists['project_positions']=HTMLHelper::_(	'select.genericlist',
 													$project_positionslist,
 													'project_positionslist[]',
 													' style="width:250px; height:250px;" class="inputbox" multiple="true" size="'.max(15,count($ress)).'"',
@@ -148,7 +149,7 @@ class JoomleagueViewProjectposition extends JLGView
 		//build the html select list for positions
 		if (count ($notusedpositions) > 0)
 		{
-			$lists['positions']=JHtml::_(	'select.genericlist',
+			$lists['positions']=HTMLHelper::_(	'select.genericlist',
 											$notusedpositions,
 											'positionslist[]',
 											' style="width:250px; height:250px;" class="inputbox" multiple="true" size="'.min(15,count($notusedpositions)).'"',

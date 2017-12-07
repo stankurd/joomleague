@@ -8,6 +8,8 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 require_once JLG_PATH_ADMIN.'/statistics/base.php';
@@ -60,7 +62,7 @@ class JLGStatisticSumevents extends JLGStatistic {
 			return(array(0));
 		}
 				
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		$sids = array();
 		foreach ($stat_ids as $s) {
 			$sids[] = $db->Quote($s);
@@ -86,12 +88,12 @@ class JLGStatisticSumevents extends JLGStatistic {
 	function getPlayerStatsByGame($teamplayer_ids, $project_id)
 	{
 		$sids = $this->getQuotedSids();
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		$quoted_tpids = array();
 		foreach ($teamplayer_ids as $tpid) {
 			$quoted_tpids[] = $db->Quote($tpid);
 		}
-		
+		$query = $db->getQuery(true);
 		$query = ' SELECT SUM(ms.event_sum) AS value, ms.match_id '
 		       . ' FROM #__joomleague_match_event AS ms '
 		       . ' WHERE ms.teamplayer_id IN ('. implode(',', $quoted_tpids) .')'
@@ -151,7 +153,8 @@ class JLGStatisticSumevents extends JLGStatistic {
 	{		
 		$sids = $this->getQuotedSids();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		
 		$query_select_count = ' SELECT COUNT(DISTINCT tp.id) as count';
 
@@ -217,7 +220,8 @@ class JLGStatisticSumevents extends JLGStatistic {
 	{		
 		$sids = $this->getQuotedSids();
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		
 		$query = ' SELECT SUM(ms.event_sum) AS total, '
 		       . ' pt.team_id ' 

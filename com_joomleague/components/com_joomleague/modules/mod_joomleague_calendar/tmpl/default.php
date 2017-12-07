@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
 /**
  * Joomleague
@@ -33,7 +34,7 @@ $display = ($params->get('update_module') == 1) ? 'block' : 'none';
 	id="jlccalendar-<?php echo $module->id ?>"><!--jlccalendar-<?php echo $module->id?> start-->
 <?php echo $calendar['calendar'] ?> <?php } ?> <?php if (count($calendar['teamslist']) > 0) { ?>
 <div style="margin: 0 auto;"><?php
-echo JHtml::_('select.genericlist', $calendar['teamslist'], 'jlcteam'.$module->id, 'class="inputbox" style="width:100%;visibility:show;" size="1" onchange="jlcnewDate('.$month.','.$year.','.$module->id.');"',  'value', 'text', Factory::getApplication()->input->get('jlcteam',0,'default','POST'));
+echo HTMLHelper::_('select.genericlist', $calendar['teamslist'], 'jlcteam'.$module->id, 'class="inputbox" style="width:100%;visibility:show;" size="1" onchange="jlcnewDate('.$month.','.$year.','.$module->id.');"',  'value', 'text', Factory::getApplication()->input->get('jlcteam',0,'default','POST'));
 ?></div>
 <?php
 }
@@ -88,8 +89,8 @@ case 'headingrow':
 	}
 	else {
 		$sclass = ($cnt%2) ? 'sectiontableentry1' : 'sectiontableentry2';
-		$date = JHtml::date ( $row['date'] .' UTC', $params->get('dateformat'), $params->get('time_zone'));
-		$time = JHtml::date ( $row['date'] .' UTC', $params->get('timeformat'), $params->get('time_zone'));
+		$date = HTMLHelper::date ( $row['date'] .' UTC', $params->get('dateformat'), $params->get('time_zone'));
+		$time = HTMLHelper::date ( $row['date'] .' UTC', $params->get('timeformat'), $params->get('time_zone'));
 		switch ($row['type']) {
 			case 'jevents':
 				$style = ($row['color'] != '') ? ' style="border-left:4px '.$row['color'].' solid;"' : '';

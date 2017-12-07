@@ -1,12 +1,13 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
 
 jimport('joomla.html.pane');
 jimport('joomla.functions');
-JHtml::_('bootstrap.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 
 /**
  * View-Teamplan
@@ -77,7 +78,7 @@ class JoomleagueViewTeamPlan extends JLGView
 			// Make event tabs
 			$iPanel = 1;
 			$selector = 'teamplan';
-			echo JHtml::_('bootstrap.startTabSet', $selector, array('active'=>'details'));
+			echo HTMLHelper::_('bootstrap.startTabSet', $selector, array('active'=>'details'));
 
 			// Size of the event icons in the tabs (when used)
 			$width = 20; $height = 20; $type = 4;
@@ -113,7 +114,7 @@ class JoomleagueViewTeamPlan extends JLGView
 					$tab_content = JText::_($event->name);
 				}
 
-				$output .= JHtml::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $tab_content);
+				$output .= HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $tab_content);
 				$output .= '<table class="matchreport" border="0">';
 				$output .= '<tr>';
 
@@ -138,7 +139,7 @@ class JoomleagueViewTeamPlan extends JLGView
 				$output .= '</td>';
 				$output .= '</tr>';
 				$output .= '</table>';
-				$output .= JHtml::_('bootstrap.endTab');
+				$output .= HTMLHelper::_('bootstrap.endTab');
 			}
 
 			if (!empty($substitutions))
@@ -158,14 +159,14 @@ class JoomleagueViewTeamPlan extends JLGView
 				$pic_time	= 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/playtime.gif';
 				$pic_out	= 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png';
 				$pic_in		= 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/in.png';
-				$imgTime = JHtml::image($pic_time,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE'),
+				$imgTime = HTMLHelper::image($pic_time,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE'),
 					array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE')));
-				$imgOut  = JHtml::image($pic_out,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT'),
+				$imgOut  = HTMLHelper::image($pic_out,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT'),
 					array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT')));
-				$imgIn   = JHtml::image($pic_in,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN'),
+				$imgIn   = HTMLHelper::image($pic_in,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN'),
 					array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN')));
 
-				$output .= JHtml::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $tab_content);
+				$output .= HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $tab_content);
 				$output .= '<table class="matchreport" border="0">';
 				$output .= '<tr>';
 				$output .= '<td class="list">';
@@ -186,9 +187,9 @@ class JoomleagueViewTeamPlan extends JLGView
 				$output .= '</td>';
 				$output .= '</tr>';
 				$output .= '</table>';
-				$output .= JHtml::_('bootstrap.endTab');
+				$output .= HTMLHelper::_('bootstrap.endTab');
 			}
-			echo JHtml::_('bootstrap.endTabSet');
+			echo HTMLHelper::_('bootstrap.endTabSet');
 
 		}
 		else

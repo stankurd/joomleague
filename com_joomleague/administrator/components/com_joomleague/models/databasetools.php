@@ -72,20 +72,18 @@ class JoomleagueModelDatabaseTools extends BaseDatabaseModel
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-
+	
 		$imports=file_get_contents(JPATH_ADMINISTRATOR.'/components/com_joomleague/sql/install.mysql.utf8.sql');
 		$imports=preg_replace("%/\*(.*)\*/%Us",'',$imports);
 		$imports=preg_replace("%^--(.*)\n%mU",'',$imports);
 		$imports=preg_replace("%^$\n%mU",'',$imports);
 	
 		$imports=explode(';',$imports);
-		$selector = 'databasetools';
 		$cntPanel=0;
 		//echo JHtml::_('sliders.start','tables',array(
 		//				'allowAllClose' => true,
 		//				'startTransition' => true,
 		//				true));
-		
 		foreach ($imports as $import)
 		{
 			$import=trim($import);
@@ -97,7 +95,7 @@ class JoomleagueModelDatabaseTools extends BaseDatabaseModel
 				$db->setQuery($import);
 				$panelName = substr(str_replace('joomleague','',str_replace('_','',$DummyStr)),1);
 				//echo JHtml::_('sliders.panel',$DummyStr,'panel-'.$panelName);
-	
+					
 				echo '<table class="adminlist" style="width:100%; " border="0"><thead><tr><td colspan="2" class="key" style="text-align:center;"><h3>';
 				echo "Checking existence of table [$DummyStr] - <span style='color:";
 				if ($db->execute()){echo "green'>".JText::_('Success');}else{echo "red'>".JText::_('Failed');}
@@ -325,7 +323,6 @@ class JoomleagueModelDatabaseTools extends BaseDatabaseModel
 			unset($import);
 		}
 		//echo JHtml::_('sliders.end');
-		
 		return '';
 	}
 	
@@ -476,8 +473,8 @@ class JoomleagueModelDatabaseTools extends BaseDatabaseModel
 				'joomleague_treeto_node',
 				'joomleague_version'
 		);
-		$db = Factory::getDbo();
-		$query = $db->getQuery(true);
+		
+		$db 		= Factory::getDbo();
 		$tableList	= $db->getTableList();
 		$prefix 	= $db->getPrefix();
 		

@@ -69,7 +69,7 @@ class JoomleagueModelStatistics extends JLGModelList
 	protected function getListQuery()
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);

@@ -1,4 +1,6 @@
-<?php defined('_JEXEC') or die('Restricted access');
+<?php use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die('Restricted access');
 
 // player staff start
 if (count($this->historyPlayerStaff) > 0)
@@ -23,12 +25,12 @@ if (count($this->historyPlayerStaff) > 0)
 						$link2=JoomleagueHelperRoute::getPlayersRoute($station->project_slug,$station->team_slug);
 						?>
 						<tr class="<?php echo ($k==0)? $this->config['style_class1'] : $this->config['style_class2']; ?>">
-							<td class="td_l"><?php echo JHtml::link($link1,$station->project_name); ?></td>
+							<td class="td_l"><?php echo HTMLHelper::link($link1,$station->project_name); ?></td>
 							<td class="td_l"><?php echo $station->season_name; ?></td>
 							<td class="td_l">
 							<?php 
 							if ($this->config['show_staffcareer_teamlink'] == 1) {
-								echo JHtml::link($link2,$station->team_name); 
+								echo HTMLHelper::link($link2,$station->team_name); 
 							} else {
 								echo $station->team_name;
 							}

@@ -1,6 +1,7 @@
 <?php
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
 
@@ -94,7 +95,7 @@ class JoomleagueControllerTeams extends JLGControllerAdmin
 	 */
 	public function import()
 	{
-		$this->setRedirect(JRoute::_('index.php?option=com_joomleague&view=import&table=team',false));
+		$this->setRedirect(Route::_('index.php?option=com_joomleague&view=import&table=team',false));
 	}
 
 

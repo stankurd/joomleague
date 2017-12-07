@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -93,12 +94,12 @@ abstract class JoomleagueViewPerson extends JLGView
         {
             case 1: // Link to Joomla Contact Page
                 $link = JoomleagueHelperRoute::getContactRoute($this->person->contact_id);
-                $personName = JHtml::link($link, $personName);
+                $personName = HTMLHelper::link($link, $personName);
                 break;
 
             case 2: // Link to CBE User Page with support for JoomLeague Tab
                 $link = JoomleagueHelperRoute::getUserProfileRouteCBE($this->person->contact_id, $this->project->id, $this->person->id);
-                $personName = JHtml::link($link, $personName);
+                $personName = HTMLHelper::link($link, $personName);
                 break;
 
             default:
@@ -149,13 +150,13 @@ abstract class JoomleagueViewPerson extends JLGView
         {
             switch ($this->config['show_birthday']) {
                 case 1:     // show Birthday and Age
-                    $birthdayStr = JHtml::date($this->person->birthday . ' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
+                    $birthdayStr = HTMLHelper::date($this->person->birthday . ' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
                             JoomleagueHelper::getTimezone($this->project, $this->overallconfig)) .
                         '&nbsp;(' . JoomleagueHelper::getAge($this->person->birthday, $this->person->deathday) . ')';
                     break;
 
                 case 2:     // show Only Birthday
-                    $birthdayStr = JHtml::date($this->person->birthday . ' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
+                    $birthdayStr = HTMLHelper::date($this->person->birthday . ' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
                         JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
                     break;
 
@@ -164,7 +165,7 @@ abstract class JoomleagueViewPerson extends JLGView
                     break;
 
                 case 4:     // show Only Year of birth
-                    $birthdayStr = JHtml::date($this->person->birthday . ' UTC', JText::_('%Y'),
+                    $birthdayStr = HTMLHelper::date($this->person->birthday . ' UTC', JText::_('%Y'),
                         JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
                     break;
 
@@ -178,7 +179,7 @@ abstract class JoomleagueViewPerson extends JLGView
 
     function formattedDeathDay()
     {
-        return '&dagger; ' . JHtml::date($this->person->deathday .' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_DEATHDATE'),
+        return '&dagger; ' . HTMLHelper::date($this->person->deathday .' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_DEATHDATE'),
             JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
     }
 
@@ -197,14 +198,14 @@ abstract class JoomleagueViewPerson extends JLGView
         }
         else
         {
-            $email = JHtml::_('email.cloak', $this->person->email);
+            $email = HTMLHelper::_('email.cloak', $this->person->email);
         }
         return $email;
     }
 
     function formattedAbsenceDate($date, $from)
     {
-        $absenceDate = JHtml::date($date .' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
+        $absenceDate = HTMLHelper::date($date .' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
             JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
         if (isset($from))
         {
@@ -233,7 +234,7 @@ abstract class JoomleagueViewPerson extends JLGView
         {
             $options = array(' title' => JText::_($text));
         }
-        return JHtml::image('images/com_joomleague/database/events/' . $this->project->fs_sport_type_name . '/' . $iconName,
+        return HTMLHelper::image('images/com_joomleague/database/events/' . $this->project->fs_sport_type_name . '/' . $iconName,
             JText::_($text), $options);
     }
 

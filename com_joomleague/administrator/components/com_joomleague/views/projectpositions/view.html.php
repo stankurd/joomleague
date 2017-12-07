@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -95,9 +96,9 @@ class JoomleagueViewProjectpositions extends JLGView
 		  // project
 			foreach($ress as $res)
 			{
-				$project_positionslist[] = JHtml::_('select.option',$res->value,JText::_($res->text));
+				$project_positionslist[] = HTMLHelper::_('select.option',$res->value,JText::_($res->text));
 			}
-			$lists['project_positions'] = JHtml::_('select.genericlist',$project_positionslist,'project_positionslist[]',
+			$lists['project_positions'] = HTMLHelper::_('select.genericlist',$project_positionslist,'project_positionslist[]',
 					' style="width:250px; height:250px;" class="inputbox" multiple="true" size="' . max(15,count($ress)) . '"','value','text',false,
 					'multiselect_to');
 		}
@@ -136,7 +137,7 @@ class JoomleagueViewProjectpositions extends JLGView
 		// build the html select list for positions
 		if(count($notusedpositions) > 0)
 		{
-			$lists['positions'] = JHtml::_('select.genericlist',$notusedpositions,'positionslist[]',
+			$lists['positions'] = HTMLHelper::_('select.genericlist',$notusedpositions,'positionslist[]',
 					' style="width:250px; height:250px;" class="inputbox" multiple="true" size="' . min(15,count($notusedpositions)) . '"','value',
 					'text',false,'multiselect');
 		}

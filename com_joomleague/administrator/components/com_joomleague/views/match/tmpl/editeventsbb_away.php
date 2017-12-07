@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined ( '_JEXEC' ) or die ();
 jimport ( 'joomla.filesystem.file' );
@@ -34,7 +35,7 @@ if (isset ( $this->preFillSuccess ) && $this->preFillSuccess) {
 					if (JFile::exists ( JPATH_SITE . '/' . $ev->icon )) {
 						$imageTitle = JText::sprintf ( '%1$s', JText::_ ( $ev->text ) );
 						$iconFileName = $ev->icon;
-						echo JHtml::image ( $iconFileName, $imageTitle, 'title= "' . $imageTitle . '"' );
+						echo HTMLHelper::image ( $iconFileName, $imageTitle, 'title= "' . $imageTitle . '"' );
 					} else {
 						echo JText::_ ( $ev->text );
 					}

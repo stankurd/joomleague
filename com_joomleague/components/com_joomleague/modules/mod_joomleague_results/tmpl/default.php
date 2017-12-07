@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Joomleague
  * @subpackage	Module-Results
@@ -109,7 +111,7 @@ else {
 								if(isset($teams[$match->projectteam1_id])) {	
 									if($params->get('teamlink') != '0')
 									{
-										echo JHtml::link(modJLGResultsHelper::getTeamLink($teams[$match->projectteam1_id], $params, $list['project']), $teams[$match->projectteam1_id]->$nametype);
+										echo HTMLHelper::link(modJLGResultsHelper::getTeamLink($teams[$match->projectteam1_id], $params, $list['project']), $teams[$match->projectteam1_id]->$nametype);
 									}
 									else
 									{
@@ -169,7 +171,7 @@ else {
 								echo '&nbsp;';
 								if($params->get('teamlink') != '0')
 								{
-									echo JHtml::link(modJLGResultsHelper::getTeamLink($teams[$match->projectteam2_id], $params, $list['project']), $teams[$match->projectteam2_id]->$nametype);
+									echo HTMLHelper::link(modJLGResultsHelper::getTeamLink($teams[$match->projectteam2_id], $params, $list['project']), $teams[$match->projectteam2_id]->$nametype);
 								}
 								else
 								{
@@ -227,7 +229,7 @@ else {
 
 
 	<?php if ($params->get('show_full_link', 1)):?>
-		<div class="mod_jl_results_fulltablelink<?php echo $params->get( 'moduleclass_sfx' ) ?>"><?php echo JHtml::link(JoomleagueHelperRoute::getResultsRoute($list['project']->id, $list['round']->id, $list['divisionid']), JText::_('MOD_JOOMLEAGUE_RESULTS_VIEW_FULL')); ?></div>
+		<div class="mod_jl_results_fulltablelink<?php echo $params->get( 'moduleclass_sfx' ) ?>"><?php echo HTMLHelper::link(JoomleagueHelperRoute::getResultsRoute($list['project']->id, $list['round']->id, $list['divisionid']), JText::_('MOD_JOOMLEAGUE_RESULTS_VIEW_FULL')); ?></div>
 	<?php endif; ?>
 	
 	

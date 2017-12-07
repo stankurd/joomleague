@@ -7,12 +7,15 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Session\Session;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
-JHtml::_('behavior.tooltip');
-JHtml::_('behavior.multiselect');
+HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('behavior.multiselect');
 
 $app = Factory::getApplication();
 $user = Factory::getUser();
@@ -24,9 +27,9 @@ $trashed = $this->state->get('filter.published') == - 2 ? true : false;
 $saveOrder = $listOrder == 'a.ordering';
 if($saveOrder)
 {
-	$saveOrderingUrl = 'index.php?option=com_joomleague&task=projects.saveOrderAjax&tmpl=component';
-	//JHtml::_('sortablelist.sortable','projectList','adminForm',strtolower($listDirn),$saveOrderingUrl);
-	JHtml::_('draggablelist.draggable');
+    $saveOrderingUrl = 'index.php?option=com_joomleague&task=projects.saveOrderAjax&tmpl=component'. Session::getFormToken() . '=1';
+	//HTMLHelper::_('sortablelist.sortable','projectList','adminForm',strtolower($listDirn),$saveOrderingUrl);
+	HTMLHelper::_('draggablelist.draggable');
 }
 //$colSpan = $clientId === 1 ? 9 : 10;
 Factory::getDocument()->addScriptDeclaration('
@@ -42,7 +45,7 @@ Factory::getDocument()->addScriptDeclaration('
 	};
 ');
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_joomleague&view=projects'); ?>" method="post" id="adminForm" name="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_joomleague&view=projects'); ?>" method="post" id="adminForm" name="adminForm">
 	<div id="j-main-container" class="j-main-container">
 		<?php
 		// Search tools bar
@@ -59,26 +62,26 @@ Factory::getDocument()->addScriptDeclaration('
 		<thead>
 			<tr>
 				<th width="1%">
-					<?php echo JHtml::_('searchtools.sort', '', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
+					<?php echo HTMLHelper::_('searchtools.sort', '', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
 				</th>
 				<th width="1%" class="center">
-					<?php echo JHtml::_('grid.checkall'); ?>
+					<?php echo HTMLHelper::_('grid.checkall'); ?>
 				</th>
 				<th width="20">&nbsp;</th>
 				<th class="title">
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_NAME_OF_PROJECT','a.name',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_NAME_OF_PROJECT','a.name',$listDirn, $listOrder);?>
 				</th>
 				<th class="title">
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_LEAGUE','l.name',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_LEAGUE','l.name',$listDirn, $listOrder);?>
 				</th>
 				<th class="title">
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_SEASON','s.name',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_SEASON','s.name',$listDirn, $listOrder);?>
 				</th>
 				<th class="title">
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_SPORTSTYPE','st.name',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_SPORTSTYPE','st.name',$listDirn, $listOrder);?>
 				</th>
 				<th class="title">
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_PROJECTTYPE','a.project_type',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_PROJECTTYPE','a.project_type',$listDirn, $listOrder);?>
 				</th>
 				<th width="2%" class="center">
 					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_GAMES');?>
@@ -90,7 +93,7 @@ Factory::getDocument()->addScriptDeclaration('
 					<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');?>
 				</th>
 				<th width="1%">
-					<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder);?>
+					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder);?>
 				</th>
 			</tr>
 		</thead>
@@ -98,10 +101,10 @@ Factory::getDocument()->addScriptDeclaration('
 		<?php
 		$n = count($this->items);
 		foreach($this->items as $i=>$row):
-			$link = JRoute::_('index.php?option=com_joomleague&task=project.edit&id='.$row->id.'&return=projects');
-			$link2panel = JRoute::_('index.php?option=com_joomleague&task=joomleague.panel&layout=panel&pid[]='.$row->id.'&stid[]='.$row->sports_type_id.'&seasonid[]='.$row->seasonid);
+			$link = Route::_('index.php?option=com_joomleague&task=project.edit&id='.$row->id.'&return=projects');
+			$link2panel = Route::_('index.php?option=com_joomleague&task=joomleague.panel&layout=panel&pid[]='.$row->id.'&stid[]='.$row->sports_type_id.'&seasonid[]='.$row->seasonid);
 
-			$checked = JHtml::_('grid.checkedout',$row,$i);
+			$checked = HTMLHelper::_('grid.checkedout',$row,$i);
 			$canEdit = $user->authorise('core.edit','com_joomleague.project.'.$row->id);
 			$canCheckin = $user->authorise('core.manage','com_checkin') || $row->checked_out == $userId || $row->checked_out == 0;
 			//$canEditOwn = $user->authorise('core.edit.own','com_joomleague.project.'.$row->id) && $row->created_by == $userId;
@@ -111,13 +114,13 @@ Factory::getDocument()->addScriptDeclaration('
 			{
 				$img = 'administrator/components/com_joomleague/assets/images/';
 				$alt = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECT_ALREADY_CONVERTED');
-				$is_utc_converted = JHtml::_('image', $img. 'tick.png',$alt,array('title' => $alt));
+				$is_utc_converted = HTMLHelper::_('image', $img. 'tick.png',$alt,array('title' => $alt));
 			}
 			else
 			{
 				$img = 'administrator/components/com_joomleague/assets/images/';
 				$alt = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECT_NOT_CONVERTED');
-				$is_utc_converted = JHtml::_('image', $img. 'delete.png',$alt,array('title' => $alt));
+				$is_utc_converted = HTMLHelper::_('image', $img. 'delete.png',$alt,array('title' => $alt));
 			}
 		?>
 			<tr class="row<?php echo $i % 2; ?>">
@@ -127,7 +130,7 @@ Factory::getDocument()->addScriptDeclaration('
 				if (!$canChange) {
 					$iconClass = ' inactive';
 				} elseif (!$saveOrder) {
-					$iconClass = ' inactive tip-top hasTooltip" title="' . JHtml::tooltipText ('JORDERINGDISABLED');
+					$iconClass = ' inactive tip-top hasTooltip" title="' . HTMLHelper::tooltipText ('JORDERINGDISABLED');
 				}
 				?>
 					<span class="sortable-handler<?php echo $iconClass ?>"><span class="icon-menu"></span></span>
@@ -152,7 +155,7 @@ Factory::getDocument()->addScriptDeclaration('
 					<a href="<?php echo $link; ?>">
 					<?php
 						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_EDIT_DETAILS');
-						echo JHtml::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "' . $imageTitle . '"');
+						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "' . $imageTitle . '"');
 					?>
 					</a>
 				</td>
@@ -181,14 +184,14 @@ Factory::getDocument()->addScriptDeclaration('
 				<?php if ($row->current_round): ?>
 				<?php
 					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_GAMES_DETAILS');
-					$image = JHtml::_('image','administrator/components/com_joomleague/assets/images/icon-16-Matchdays.png',$imageTitle,'title= "'.$imageTitle.'"');
-					echo JHtml::link('index.php?option=com_joomleague&view=matches&pid[]='.$row->id.'&rid[]='.$row->current_round,$image);
+					$image = HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/icon-16-Matchdays.png',$imageTitle,'title= "'.$imageTitle.'"');
+					echo HTMLHelper::link('index.php?option=com_joomleague&view=matches&pid[]='.$row->id.'&rid[]='.$row->current_round,$image);
 				?>
 				<?php endif; ?>
 				</td>
 				<td class="center"><?php echo $is_utc_converted; ?></td>
 				<td class="center">
-					<?php echo JHtml::_('jgrid.published',$row->published,$i,'projects.');?>
+					<?php echo HTMLHelper::_('jgrid.published',$row->published,$i,'projects.');?>
 				</td>
 				<td class="center"><?php echo $row->id; ?></td>
 			</tr>
@@ -208,6 +211,6 @@ Factory::getDocument()->addScriptDeclaration('
 	?>
 	<input type="hidden" name="task" value="" />
 	<input type="hidden" name="boxchecked" value="0" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 	</div>
 </form>

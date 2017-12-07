@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\Http\Response;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -46,8 +47,8 @@ class JoomleagueViewPerson extends JLGView
 		$this->item = $this->get('Item');
 		$this->state = $this->get('State');
 
-		//$extended = $this->getExtended($this->item->extended,'person');
-		//$this->extended = $extended;
+		$extended = $this->getExtended($this->item->extended,'person');
+		$this->extended = $extended;
 
 		$this->addToolbar();
 
@@ -78,7 +79,7 @@ class JoomleagueViewPerson extends JLGView
 		$proj_id = (int) $prjid[0];
 		
 		// build the html select list for projects
-		$projects[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_PROJECT'),'id','name');
+		$projects[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_PROJECT'),'id','name');
 
 		if($res = JoomleagueHelper::getProjects())
 		{

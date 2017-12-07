@@ -8,14 +8,20 @@
  *
  * A piece of com_finder was taken for the quickadd
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Uri\Uri;
+
 defined('_JEXEC') or die;
 
 jimport('joomla.filesystem.file');
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 
 
-$app = JFactory::getApplication();
-$user = JFactory::getUser();
+$app = Factory::getApplication();
+$user = Factory::getUser();
 $userId = $user->get('id');
 $listOrder = $this->escape($this->state->get('list.ordering'));
 $listDirn = $this->escape($this->state->get('list.direction'));
@@ -25,7 +31,7 @@ $saveOrder = $listOrder == 'a.ordering';
 if($saveOrder)
 {
 	$saveOrderingUrl = 'index.php?option=com_joomleague&task=projectteams.saveOrderAjax&tmpl=component';
-	JHtml::_('sortablelist.sortable','projectteamList','adminForm',strtolower($listDirn),$saveOrderingUrl);
+	HTMLHelper::_('sortablelist.sortable','projectteamList','adminForm',strtolower($listDirn),$saveOrderingUrl);
 }
 // load navigation menu
 // $this->addTemplatePath(JPATH_COMPONENT . '/views/joomleague');
@@ -72,11 +78,11 @@ jQuery(document).ready(function() {
  * At the moment only passing a name is showing results
  * This segment of code sets up the autocompleter.
  */
-JHtml::_('script','media/jui/js/jquery.autocomplete.min.js',false,false,false,false,true);
+HTMLHelper::_('script','media/jui/js/jquery.autocomplete.min.js',false,false,false,false,true);
 
 $script .= "
 	var suggest = jQuery('#quickadd').autocomplete({
-		serviceUrl: '".JRoute::_('index.php?option=com_joomleague&task=quickadd.searchteam&project_id='.$this->project->id,false)."',
+		serviceUrl: '".Route::_('index.php?option=com_joomleague&task=quickadd.searchteam&project_id='.$this->project->id,false)."',
 		paramName: 'q',
 		minChars: 1,
 		maxHeight: 400,
@@ -87,7 +93,7 @@ $script .= "
 
 $script .= "});";
 
-JFactory::getDocument()->addScriptDeclaration($script);
+Factory::getDocument()->addScriptDeclaration($script);
 ?>
 <script>
 jQuery(document).ready(function() {
@@ -253,24 +259,24 @@ jQuery(document).ready(function() {
 </style>
 <fieldset class="form-horizontal">
 	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_QUICKADD_TEAM');?></legend>
-	<form id="quickaddForm" action="<?php echo JRoute::_(JUri::root().'administrator/index.php?option=com_joomleague&task=quickadd.addteam'); ?>" method="post">
+	<form id="quickaddForm" action="<?php echo Route::_(Uri::root().'administrator/index.php?option=com_joomleague&task=quickadd.addteam'); ?>" method="post">
 		<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_QUICKADD_DESCR'); ?>
 		<div id="j-main-container" class="j-main-container">
 		<div class="btn-wrapper input-append pull-left">
-			<input type="text" name="p" id="quickadd" size="50" value="<?php htmlspecialchars(JFactory::getApplication()->input->getString('q',false)); ?>" />
+			<input type="text" name="p" id="quickadd" size="50" value="<?php htmlspecialchars(Factory::getApplication()->input->getString('q',false)); ?>" />
 			<input class="btn" type="submit" name="submit" id="submit" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_ADD');?>" />
 		</div>
 		<input type="hidden" name="project_id" id="project_id" value="<?php echo $this->project->id; ?>" />
-		<?php echo JHtml::_('form.token'); ?>
+		<?php echo HTMLHelper::_('form.token'); ?>
 	</form>
 </fieldset>
 <br/>
-<form action="<?php echo JRoute::_('index.php?option=com_joomleague&view=projectteams'); ?>" method="post" id="adminForm" name="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_joomleague&view=projectteams'); ?>" method="post" id="adminForm" name="adminForm">
 	<fieldset class="form-horizontal">
 		<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_LEGEND','<i>'.$this->project->name.'</i>'); ?></legend>
 			<?php
 			// Search tools bar
-			echo JLayoutHelper::render('searchtools.default',array('view' => $this),JUri::root().'administrator/components/com_joomleague/layouts');
+			echo LayoutHelper::render('searchtools.default',array('view' => $this),Uri::root().'administrator/components/com_joomleague/layouts');
 			?>
 			<?php $cell_count=22; ?>
 			<div id="j-main-container" class="j-main-container">
@@ -278,11 +284,11 @@ jQuery(document).ready(function() {
 			<thead>
 				<tr>
 					<th width="1%" class="center">
-						<?php echo JHtml::_('grid.checkall'); ?>
+						<?php echo HTMLHelper::_('grid.checkall'); ?>
 					</th>
 					<th width="20">&nbsp;</th>
 					<th>
-						<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_TEAMNAME','t.name',$listDirn, $listOrder); ?>
+						<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_TEAMNAME','t.name',$listDirn, $listOrder); ?>
 					</th>
 					<th colspan="2" class="center">
 						<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_MANAGE_PERSONNEL'); ?>
@@ -314,10 +320,10 @@ jQuery(document).ready(function() {
 					<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_GG'); ?></th>
 					<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_DG'); ?></th>
 					<th width="1%">
-						<?php echo JHtml::_('searchtools.sort','TID','team_id',$listDirn, $listOrder); ?>
+						<?php echo HTMLHelper::_('searchtools.sort','TID','team_id',$listDirn, $listOrder); ?>
 					</th>
 					<th width="1%">
-						<?php echo JHtml::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder); ?>
+						<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder); ?>
 					</th>
 				</tr>
 			</thead>
@@ -330,10 +336,10 @@ jQuery(document).ready(function() {
 			<?php
 			$n = count($this->items);
 			foreach($this->items as $i=>$row) :
-				$link1 = JRoute::_('index.php?option=com_joomleague&task=projectteam.edit&id='.$row->id);
-				$link2 = JRoute::_('index.php?option=com_joomleague&task=teamplayers.select&project_team_id='.$row->id."&team_id=".$row->team_id.'&pid='.$this->project->id);
-				$link3 = JRoute::_('index.php?option=com_joomleague&task=teamstaffs.select&project_team_id='.$row->id."&team_id=".$row->team_id.'&pid='.$this->project->id);
-				$checked = JHtml::_('grid.checkedout',$row,$i);
+				$link1 = Route::_('index.php?option=com_joomleague&task=projectteam.edit&id='.$row->id);
+				$link2 = Route::_('index.php?option=com_joomleague&task=teamplayers.select&project_team_id='.$row->id."&team_id=".$row->team_id.'&pid='.$this->project->id);
+				$link3 = Route::_('index.php?option=com_joomleague&task=teamstaffs.select&project_team_id='.$row->id."&team_id=".$row->team_id.'&pid='.$this->project->id);
+				$checked = HTMLHelper::_('grid.checkedout',$row,$i);
 			?>
 				<tr class="row<?php echo $i % 2; ?>">
 					<td class="center"><?php echo $checked;?></td>
@@ -354,9 +360,9 @@ jQuery(document).ready(function() {
 						$imageFile = 'administrator/components/com_joomleague/assets/images/edit.png';
 						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_EDIT_DETAILS');
 						$imageParams = 'title= "' . $imageTitle . '"';
-						$image = JHtml::image($imageFile,$imageTitle,$imageParams);
+						$image = HTMLHelper::image($imageFile,$imageTitle,$imageParams);
 						$linkParams = '';
-						echo JHtml::link($link1,$image);
+						echo HTMLHelper::link($link1,$image);
 					?>
 					</td>
 					<?php
@@ -376,9 +382,9 @@ jQuery(document).ready(function() {
 					$imageFile = 'administrator/components/com_joomleague/assets/images/' . $image;
 					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_MANAGE_PLAYERS');
 					$imageParams = 'title= "' . $imageTitle . '"';
-					$image = JHtml::image($imageFile,$imageTitle,$imageParams) . ' <sub>' . $row->playercount . '</sub>';
+					$image = HTMLHelper::image($imageFile,$imageTitle,$imageParams) . ' <sub>' . $row->playercount . '</sub>';
 					$linkParams = '';
-					echo JHtml::link($link2,$image);
+					echo HTMLHelper::link($link2,$image);
 					?>
 					</td>
 					<td class="center">
@@ -394,9 +400,9 @@ jQuery(document).ready(function() {
 					$imageFile = 'administrator/components/com_joomleague/assets/images/' . $image;
 					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_MANAGE_STAFF');
 					$imageParams = 'title= "' . $imageTitle . '"';
-					$image = JHtml::image($imageFile,$imageTitle,$imageParams) . ' <sub>' . $row->staffcount . '</sub>';
+					$image = HTMLHelper::image($imageFile,$imageTitle,$imageParams) . ' <sub>' . $row->staffcount . '</sub>';
 					$linkParams = '';
-					echo JHtml::link($link3,$image);
+					echo HTMLHelper::link($link3,$image);
 					?>
 					</td>
 					<?php
@@ -410,7 +416,7 @@ jQuery(document).ready(function() {
 					{
 						$append = ' style="background-color:#bbffff"';
 					}
-					echo JHtml::_('select.genericlist',$this->divisions,'division_id'.$row->id,
+					echo HTMLHelper::_('select.genericlist',$this->divisions,'division_id'.$row->id,
 						$inputappend.'class="input-medium" size="1" onchange="document.getElementById(\'cb'.$i.'\').checked=true"' .
 						$append,'value','text',$row->division_id);
 					?>
@@ -423,19 +429,19 @@ jQuery(document).ready(function() {
 					if(empty($row->picture) || ! JFile::exists(JPATH_SITE . '/' . $row->picture))
 					{
 						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_NO_IMAGE') . $row->picture;
-						echo JHtml::image('administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "'.$imageTitle.'"');
+						echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "'.$imageTitle.'"');
 					}
 					elseif($row->picture == JoomleagueHelper::getDefaultPlaceholder("team"))
 					{
 						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_DEFAULT_IMAGE');
-						echo JHtml::image('administrator/components/com_joomleague/assets/images/information.png',$imageTitle,'title= "'.$imageTitle.'"');
+						echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/information.png',$imageTitle,'title= "'.$imageTitle.'"');
 					}
 					else
 					{
 						if(JFile::exists(JPATH_SITE.'/'.$row->picture))
 						{
 							$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_TEAMS_CUSTOM_IMAGE');
-							echo JHtml::_('image','administrator/components/com_joomleague/assets/images/ok.png',$imageTitle,'title= "'.$imageTitle.'"');
+							echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/ok.png',$imageTitle,'title= "'.$imageTitle.'"');
 						}
 						/*
 						 * $imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_CUSTOM_IMAGE');
@@ -444,7 +450,7 @@ jQuery(document).ready(function() {
 						 * $imageParams['height']=30;
 						 * //$imageParams['width'] =40;
 						 * echo
-						 * JHtml::image($row->picture,$imageTitle,$imageParams);
+						 * HTMLHelper::image($row->picture,$imageTitle,$imageParams);
 						 */
 					}
 					?>
@@ -501,7 +507,7 @@ jQuery(document).ready(function() {
 					</td>
 					<td class="center" width="1%">
 					<?php
-						$team_edit_link = JRoute::_('index.php?option=com_joomleague&task=team.edit&id='.$row->team_id.'&return=projectteams');
+						$team_edit_link = Route::_('index.php?option=com_joomleague&task=team.edit&id='.$row->team_id.'&return=projectteams');
 					?>
 						<a href="<?php echo $team_edit_link ?>">
 							<?php echo $row->team_id; ?>
@@ -516,5 +522,5 @@ jQuery(document).ready(function() {
 	</div>
 	<input type="hidden" name="task" value="" />
 	<input type="hidden" name="boxchecked" value="0" />
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>

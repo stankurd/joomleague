@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -57,11 +58,11 @@ class JoomleagueViewProjectteam extends JLGView
 			$dwOptions = array();
 			foreach($daysOfWeek as $key=>$value)
 			{
-				$dwOptions[] = JHtml::_('select.option',$key,$value);
+				$dwOptions[] = HTMLHelper::_('select.option',$key,$value);
 			}
 			foreach($trainingData as $td)
 			{
-				$lists['dayOfWeek'][$td->id] = JHtml::_('select.genericlist',$dwOptions,'dw_' . $td->id,'class="input-medium"','value','text',
+				$lists['dayOfWeek'][$td->id] = HTMLHelper::_('select.genericlist',$dwOptions,'dw_' . $td->id,'class="input-medium"','value','text',
 						$td->dayofweek);
 			}
 			unset($daysOfWeek);
@@ -71,7 +72,7 @@ class JoomleagueViewProjectteam extends JLGView
 		if($project->project_type == 'DIVISIONS_LEAGUE') // No divisions
 		{
 			// build the html options for divisions
-			$division[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
+			$division[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
 			$mdlDivisions = BaseDatabaseModel::getInstance('divisions','JoomLeagueModel');
 			if($res = $mdlDivisions->getDivisions($project_id))
 			{

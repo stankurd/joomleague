@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 ?>
 <div>
@@ -36,7 +38,7 @@ defined('_JEXEC') or die;
 				}
 				if ($this->config['link_teams'] == 1) {
 					$header = '<th class="teamsheader">';
-					$header .= JHtml :: link($link, $desc);
+					$header .= HTMLHelper :: link($link, $desc);
 					$header .= '</th>';
 					$matrix .= $header;
 				} else {
@@ -70,7 +72,7 @@ defined('_JEXEC') or die;
 				}
 				if ($this->config['link_teams'] == 1) {
 					$tValue = '<th class="teamsleft">';
-					$tValue .= JHtml :: link($link, $desc);
+					$tValue .= HTMLHelper :: link($link, $desc);
 					$tValue .= '</th>';
 					$matrix .= $tValue;
 				} else {
@@ -161,7 +163,7 @@ defined('_JEXEC') or die;
 									"style" => $colorStr . $bgColorStr
 								);
 							}
-							$match_result = JHtml :: link($link, $resultStr, $arrayString);
+							$match_result = HTMLHelper :: link($link, $resultStr, $arrayString);
 						} else {
 							switch ($this->config['which_link']) {
 								case 1 : // Link to Next Match page
@@ -186,19 +188,19 @@ defined('_JEXEC') or die;
 								$picture = 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/away.gif';
 								$title = $result->cancel_reason;
 								$desc = JoomleagueHelper::getPictureThumb($picture, $title, 16,16, 99);
-								$match_result = JHtml::link($link, $desc);
+								$match_result = HTMLHelper::link($link, $desc);
 								$new_match = "";
 								if($result->new_match_id > 0) {
 									$link = JoomleagueHelperRoute::getNextMatchRoute($this->project->id, $result->new_match_id);
 									$picture = 'media/com_joomleague/jl_images/bullet_black.png';
 									$desc = JoomleagueHelper::getPictureThumb($picture, $title, 16,16, 99);
-									$new_match = JHtml::link($link, $desc);
+									$new_match = HTMLHelper::link($link, $desc);
 								}
 								$match_result .= $new_match;
 							} else {
 								$picture = 'media/com_joomleague/jl_images/bullet_black.png';
 								$desc = JoomleagueHelper::getPictureThumb($picture, $title, 16,16, 99);
-								$match_result = JHtml :: link($link, $desc);
+								$match_result = HTMLHelper :: link($link, $desc);
 							}
 						}
 					}
@@ -234,7 +236,7 @@ defined('_JEXEC') or die;
 							$resultStr .= "</span>";
 							$resultStr .= "</span>";
 						}
-						$match_result = $spanStartStr . JHtml :: link($link, $desc) . $spanEndStr;
+						$match_result = $spanStartStr . HTMLHelper :: link($link, $desc) . $spanEndStr;
 					}
 					//Don’t break, allow for multiple results
 					if ($Allresults == '') {

@@ -9,6 +9,7 @@
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -36,14 +37,14 @@ class JFormFieldClub extends FormField
 		$clubs = $db->loadObjectList();
 		$mitems = array();
 		if($required == 'false') {
-			$mitems[] = JHtml::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT'));
+			$mitems[] = HTMLHelper::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT'));
 		}
 	
 		foreach ( $clubs as $club ) {
-			$mitems[] = JHtml::_('select.option',  $club->id, '&nbsp;'.$club->name. ' ('.$club->id.')' );
+			$mitems[] = HTMLHelper::_('select.option',  $club->id, '&nbsp;'.$club->name. ' ('.$club->id.')' );
 		}
 		
-		$output= JHtml::_('select.genericlist',  $mitems, $this->name, 'class="inputbox" size="1"', 'value', 'text', $this->value, $this->id );
+		$output= HTMLHelper::_('select.genericlist',  $mitems, $this->name, 'class="inputbox" size="1"', 'value', 'text', $this->value, $this->id );
 		return $output;
 	}
 }

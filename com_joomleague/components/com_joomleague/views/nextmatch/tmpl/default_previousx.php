@@ -1,4 +1,9 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
+?>
 
 <?php if ($this->previousx[$this->currentteam]) :	?>
 <!-- Start of last 5 matches -->
@@ -22,7 +27,7 @@
 				?>
 			<tr class="<?php echo $class; ?>">
 				<td><?php
-				echo JHtml::link( $result_link, $game->roundcode );
+				echo HTMLHelper::link( $result_link, $game->roundcode );
 				?></td>
 				<td nowrap="nowrap"><?php
 				echo JoomleagueHelper::getMatchDate($game, JText::_( 'COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE' ));
@@ -47,10 +52,10 @@
 				<td nowrap="nowrap"><?php
 				if ($game->show_report==1)
 				{
-					$desc = JHtml::image( "media/com_joomleague/jl_images/zoom.png",
+					$desc = HTMLHelper::image( "media/com_joomleague/jl_images/zoom.png",
 					JText::_( 'Match Report' ),
 					array( "title" => JText::_( 'Match Report' ) ) );
-					echo JHtml::link( $report_link, $desc);
+					echo HTMLHelper::link( $report_link, $desc);
 				}
 				$k = 1 - $k;
 				?></td>

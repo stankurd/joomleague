@@ -1,4 +1,8 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
+?>
 <!-- Player stats History START -->
 <?php if (count($this->games)): ?>
 <h2><?php echo JText::_('COM_JOOMLEAGUE_PERSON_GAMES_HISTORY'); ?></h2>
@@ -20,7 +24,7 @@
 					?>
 					<tr class="<?php echo ($k==0)? $this->config['style_class1'] : $this->config['style_class2']; ?>">
 						<td>
-							<?php echo JHtml::link($report_link, JoomleagueHelper::getMatchDate($game, $this->config['games_date_format'])); ?>
+							<?php echo HTMLHelper::link($report_link, JoomleagueHelper::getMatchDate($game, $this->config['games_date_format'])); ?>
 						</td>
 						<td class='td_r'><?php echo $this->teams[$game->projectteam1_id]->name; ?></td>
 						<td class='td_r'><?php echo $game->team1_result; ?></td>

@@ -1,4 +1,8 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
+?>
 
 <?php
 $description = isset($this->projectteam->projectteam_notes) ? $this->projectteam->projectteam_notes : '';
@@ -16,7 +20,7 @@ if(trim($description  != ''))
 		<tr>
 			<td>
 				<?php
-				$description = JHtml::_('content.prepare', $description);
+				$description = HTMLHelper::_('content.prepare', $description);
 				echo stripslashes($description);
 				?>
 			</td>

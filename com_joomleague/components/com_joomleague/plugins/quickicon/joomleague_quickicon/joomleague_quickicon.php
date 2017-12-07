@@ -24,6 +24,14 @@ jimport('joomla.plugin.plugin');
  */
 class plgQuickiconJoomLeague_Quickicon extends CMSPlugin
 {
+    /**
+     * Load the language file on instantiation.
+     *
+     * @var    boolean
+     * @since  3.1
+     */
+    protected $autoloadLanguage = true;
+    
 	public function __construct(& $subject, $config)
 	{
 		parent::__construct($subject, $config);
@@ -37,7 +45,7 @@ class plgQuickiconJoomLeague_Quickicon extends CMSPlugin
 
 		return array(array(
 			'link' => 'index.php?option=com_joomleague',
-			'image' => '../../../components/com_joomleague/assets/images/joomleague-48.png',
+			'image' => '../../../components/com_joomleague/assets/images/jl_icon.png',
 			'text' => $text,
 			'id' => 'plg_quickicon_joomleague'
 		));

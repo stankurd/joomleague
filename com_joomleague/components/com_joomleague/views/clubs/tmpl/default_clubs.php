@@ -1,4 +1,6 @@
 <?php 
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
 //$this->config['show_small_logo']	= 1;
 //$this->config['show_medium_logo']	= 0;
@@ -44,24 +46,24 @@ defined('_JEXEC') or die;
 		{
 			$picture = JoomleagueHelper::getDefaultPlaceholder('clublogosmall');
 		}
-		$image = JHtml::image($picture, $title, array('height'=>21, 'title' => $title, ' border' => 0));
-		$smallClubLogoLink = JHtml::link($clubinfo_link, $image);
+		$image = HTMLHelper::image($picture, $title, array('height'=>21, 'title' => $title, ' border' => 0));
+		$smallClubLogoLink = HTMLHelper::link($clubinfo_link, $image);
 
 		$picture = $club->logo_middle;
 		if (is_null($picture) || !file_exists($picture))
 		{
 			$picture = JoomleagueHelper::getDefaultPlaceholder('clublogomedium');
 		}
-		$image = JHtml::image($picture, $title, array('height'=>50, 'title' => $title, ' border' => 0));
-		$mediumClubLogoLink = JHtml::link($clubinfo_link, $image);
+		$image = HTMLHelper::image($picture, $title, array('height'=>50, 'title' => $title, ' border' => 0));
+		$mediumClubLogoLink = HTMLHelper::link($clubinfo_link, $image);
 
 		$picture = $club->logo_big;
 		if (is_null($picture) || !file_exists($picture))
 		{
 			$picture = JoomleagueHelper::getDefaultPlaceholder('clublogobig');
 		}
-		$image = JHtml::image($picture, $title, array('height'=>150, 'title' => $title, ' border' => 0));
-		$bigClubLogoLink = JHtml::link($clubinfo_link, $image);
+		$image = HTMLHelper::image($picture, $title, array('height'=>150, 'title' => $title, ' border' => 0));
+		$bigClubLogoLink = HTMLHelper::link($clubinfo_link, $image);
 		?>
 		<tr class="<?php echo ($k==0)? $this->config['style_class1'] : $this->config['style_class2']; ?>">
 			<?php if ($this->config['show_small_logo']): ?>
@@ -80,7 +82,7 @@ defined('_JEXEC') or die;
 				<?php
 					if (!empty($club->website))
 					{
-						echo JHtml::link($club->website, $club->name, array('target' => '_blank'));
+						echo HTMLHelper::link($club->website, $club->name, array('target' => '_blank'));
 					}
 					else
 					{
@@ -99,7 +101,7 @@ defined('_JEXEC') or die;
 					echo JoomleagueHelper::getPictureThumb($team->$pic, $team->name,
 						$this->config['team_picture_width'], $this->config['team_picture_height'], 1);
 					$teaminfo_link = JoomleagueHelperRoute::getTeamInfoRoute($this->project->slug, $team->team_slug);
-					echo JHtml::link($teaminfo_link, $team->name);
+					echo HTMLHelper::link($teaminfo_link, $team->name);
 					echo '<br />';
 				}
 				?>

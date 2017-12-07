@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -65,7 +66,7 @@ class JFormFieldExtensionlist extends JFormFieldList
 					}
 				}
 
-				$options[] = JHtml::_('select.option', $folder, $folder);
+				$options[] = HTMLHelper::_('select.option', $folder, $folder);
 			}
 		}
 

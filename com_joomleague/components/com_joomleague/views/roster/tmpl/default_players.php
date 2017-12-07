@@ -1,4 +1,6 @@
-<?php use Joomla\CMS\Uri\Uri;
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
 
@@ -115,7 +117,7 @@ if (!empty($this->rows))
 			{ ?>
 		<th class="td_c"><?php
 				$imageTitle=JText::_('COM_JOOMLEAGUE_ROSTER_PLAYED');
-				echo JHtml::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/played.png',
+				echo HTMLHelper::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/played.png',
 				$imageTitle,array('title'=> $imageTitle,'height'=> 20));
 		?></th>
 			<?php
@@ -124,22 +126,22 @@ if (!empty($this->rows))
 			{ ?>
 		<th class="td_c"><?php
 				$imageTitle=JText::_('COM_JOOMLEAGUE_ROSTER_STARTING_LINEUP');
-				echo JHtml::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/startroster.png',
+				echo HTMLHelper::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/startroster.png',
 				$imageTitle,array('title'=> $imageTitle,'height'=> 20));
 		?></th>
 		<th class="td_c"><?php
 				$imageTitle=JText::_('COM_JOOMLEAGUE_ROSTER_IN');
-				echo JHtml::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/in.png',
+				echo HTMLHelper::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/in.png',
 				$imageTitle,array('title'=> $imageTitle,'height'=> 20));
 		?></th>
 		<th class="td_c"><?php
 				$imageTitle=JText::_('COM_JOOMLEAGUE_ROSTER_OUT');
-				echo JHtml::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png',
+				echo HTMLHelper::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png',
 				$imageTitle,array('title'=> $imageTitle,'height'=> 20));
 		?></th>
 		<th class="td_c"><?php
 				$imageTitle=JText::_('COM_JOOMLEAGUE_ROSTER_TOTAL_TIME_PLAYED');
-				echo JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/playtime.gif',
+				echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/playtime.gif',
 				$imageTitle,array('title'=> $imageTitle,'height'=> 20));
 		?></th>
 			<?php
@@ -165,7 +167,7 @@ if (!empty($this->rows))
 							{
 								$iconPath='images/com_joomleague/database/events/'.$iconPath;
 							}
-							$eventtype_header = JHtml::image($iconPath, JText::_($eventtype->name),
+							$eventtype_header = HTMLHelper::image($iconPath, JText::_($eventtype->name),
 																array(	'title'=> JText::_($eventtype->name),
 																		'align'=> 'top',
 																		'hspace'=> '2'));
@@ -210,7 +212,7 @@ if (!empty($this->rows))
 		{
 			if ($this->config['player_numbers_pictures'])
 			{
-				$value = JHtml::image(Uri::root().'components/com_joomleague/helpers/shirt.php?text='.$pnr.'&picpath='.urlencode($this->config['player_numbers_picture']), $pnr, array('title'=>$pnr));
+				$value = HTMLHelper::image(Uri::root().'components/com_joomleague/helpers/shirt.php?text='.$pnr.'&picpath='.urlencode($this->config['player_numbers_picture']), $pnr, array('title'=>$pnr));
 			}
 			else
 			{
@@ -240,7 +242,7 @@ if (!empty($this->rows))
 
 		if ($this->config['link_player']==1)
 		{
-			echo JHtml::link($link,$playerPicture);
+			echo HTMLHelper::link($link,$playerPicture);
 		}
 		else
 		{
@@ -272,7 +274,7 @@ if (!empty($this->rows))
 		<td class="td_l"><?php
 		if ($this->config['link_player']==1)
 		{
-			echo JHtml::link($link,'<span class="playername">'.$playerName.'</span>');
+			echo HTMLHelper::link($link,'<span class="playername">'.$playerName.'</span>');
 		}
 		else
 		{
@@ -283,7 +285,7 @@ if (!empty($this->rows))
 		$model = $this->getModel();
 		$this->playertool=$model->getTeamPlayer($this->project->current_round,$row->playerid);
 
-		$today = JHtml::date('now' .' UTC',
+		$today = HTMLHelper::date('now' .' UTC',
 					JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 					JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 
@@ -294,13 +296,13 @@ if (!empty($this->rows))
 			$injury_end  = "";
 			$injury_text = "";
 
-			$injury_date = JHtml::date($this->playertool[0]->injury_date .' UTC',
+			$injury_date = HTMLHelper::date($this->playertool[0]->injury_date .' UTC',
 										JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 										JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 			if(isset($this->playertool[0]->rinjury_from))
 			$injury_date .= " (".$this->playertool[0]->rinjury_from.")";
 
-			$injury_end = JHtml::date($this->playertool[0]->injury_end .' UTC',
+			$injury_end = HTMLHelper::date($this->playertool[0]->injury_end .' UTC',
 										JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 										JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 			if(isset($this->playertool[0]->rinjury_to))
@@ -332,7 +334,7 @@ if (!empty($this->rows))
 				$injury_detail = htmlspecialchars( $this->playertool[0]->injury_detail );
 				$injury_text .= "&#013;".JTEXT::_('COM_JOOMLEAGUE_PERSON_INJURY_TYPE')." ".$injury_detail;
 			}
-			echo JHtml::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/injured.gif',
+			echo HTMLHelper::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/injured.gif',
 								$imageTitle,array('title'=> $injury_text,'height'=> 20));
 
 		}
@@ -343,13 +345,13 @@ if (!empty($this->rows))
 			$suspension_end  = "";
 			$suspension_text = "";
 
-			$suspension_date = JHtml::date($this->playertool[0]->suspension_date .' UTC',
+			$suspension_date = HTMLHelper::date($this->playertool[0]->suspension_date .' UTC',
 											JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 											JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 			if(isset($this->playertool[0]->rsusp_from))
 			$suspension_date .= " (".$this->playertool[0]->rsusp_from.")";
 
-			$suspension_end = JHtml::date($this->playertool[0]->suspension_end .' UTC',
+			$suspension_end = HTMLHelper::date($this->playertool[0]->suspension_end .' UTC',
 											JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 											JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 			if(isset($this->playertool[0]->rsusp_to))
@@ -381,7 +383,7 @@ if (!empty($this->rows))
 				$suspension_detail = htmlspecialchars( $this->playertool[0]->suspension_detail );
 				$suspension_text .= "&#013;".JTEXT::_('COM_JOOMLEAGUE_PERSON_SUSPENSION_REASON')." ".$suspension_detail;
 			}
-			echo JHtml::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/suspension.gif',
+			echo HTMLHelper::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/suspension.gif',
 								$imageTitle,array('title'=> $suspension_text,'height'=> 20));
 
 		}
@@ -392,13 +394,13 @@ if (!empty($this->rows))
 			$away_end  = "";
 			$away_text = "";
 
-			$away_date = JHtml::date($this->playertool[0]->away_date .' UTC',
+			$away_date = HTMLHelper::date($this->playertool[0]->away_date .' UTC',
 											JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 											JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 			if(isset($this->playertool[0]->rsusp_from))
 			$away_date .= " (".$this->playertool[0]->rsusp_from.")";
 
-			$away_end = JHtml::date($this->playertool[0]->away_end .' UTC',
+			$away_end = HTMLHelper::date($this->playertool[0]->away_end .' UTC',
 											JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 											JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 			if(isset($this->playertool[0]->rsusp_to))
@@ -430,7 +432,7 @@ if (!empty($this->rows))
 				$away_detail = htmlspecialchars( $this->playertool[0]->away_detail );
 				$away_text .= "&#013;".JTEXT::_('COM_JOOMLEAGUE_PERSON_AWAY_REASON')." ".$away_detail;
 			}
-			echo JHtml::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/away.gif',
+			echo HTMLHelper::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/away.gif',
 								$imageTitle,array('title'=> $away_text,'height'=> 20));
 
 		}
@@ -446,17 +448,17 @@ if (!empty($this->rows))
 				switch ($this->config['show_birthday'])
 				{
 					case 1:	 // show Birthday and Age
-						$birthdateStr = JHtml::date($row->birthday, JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']);
+						$birthdateStr = HTMLHelper::date($row->birthday, JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']);
 						$birthdateStr.="&nbsp;(".JoomleagueHelper::getAge($row->birthday,$row->deathday).")";
 						break;
 					case 2:	 // show Only Birthday
-						$birthdateStr = JHtml::date($row->birthday, JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']);
+						$birthdateStr = HTMLHelper::date($row->birthday, JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']);
 						break;
 					case 3:	 // show Only Age
 						$birthdateStr = "(".JoomleagueHelper::getAge($row->birthday,$row->deathday).")";
 						break;
 					case 4:	 // show Only Year of birth
-						$birthdateStr = JHtml::date($row->birthday, 'Y', $this->overallconfig['time_zone']);
+						$birthdateStr = HTMLHelper::date($row->birthday, 'Y', $this->overallconfig['time_zone']);
 						break;
 					default:
 						$birthdateStr = "";
@@ -470,7 +472,7 @@ if (!empty($this->rows))
 			// deathday
 			if ( $row->deathday !="0000-00-00" )
 			{
-				$birthdateStr .= ' [&dagger; '.JHtml::date($row->deathday, JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']).']';
+				$birthdateStr .= ' [&dagger; '.HTMLHelper::date($row->deathday, JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']).']';
 			}
 
 			echo $birthdateStr;

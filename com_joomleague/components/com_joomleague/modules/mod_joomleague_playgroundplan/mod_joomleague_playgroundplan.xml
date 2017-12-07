@@ -26,9 +26,9 @@
 			<fieldset name="basic"
 				addfieldpath="/administrator/components/com_joomleague/models/fields">
 
-				<field name="projects" type="projects" default="" required="true"
+				<field name="projects" type="project" default="" required="true"
 					label="MOD_JOOMLEAGUE_PLAYGROUNDPLAN_PROJECT_ID_LABEL" description="MOD_JOOMLEAGUE_PLAYGROUNDPLANPROJECT_ID_LABEL_DESC" />
-				<field name="playground" type="playgrounds" default=""
+				<field name="playgrounds" type="playground" default=""
 					label="MOD_JOOMLEAGUE_PLAYGROUNDPLAN_PLAYGROUND_ID_LABEL"
 					description="MOD_JOOMLEAGUE_PLAYGROUNDPLAN_PLAYGROUND_ID_LABEL_DESC"
 					multiple="true" autocomplete="true"

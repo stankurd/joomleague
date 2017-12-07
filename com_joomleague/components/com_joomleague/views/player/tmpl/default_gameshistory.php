@@ -7,6 +7,8 @@
  * @link		http://www.joomleague.at
  */
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die; 
 ?>
 <!-- Player stats History START -->
@@ -28,22 +30,22 @@ if (count($this->games))
 						?>
 					<th class="td_c"><?php
 					$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_STARTROSTER');
-					echo JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/startroster.png',
+					echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/startroster.png',
 					$imageTitle,array(' title' => $imageTitle));
 					?></th>
 					<th class="td_c"><?php
 					$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_IN');
-					echo JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/in.png',
+					echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/in.png',
 					$imageTitle,array(' title' => $imageTitle));
 					?></th>
 					<th class="td_c"><?php
 					$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_OUT');
-					echo JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png',
+					echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png',
 					$imageTitle,array(' title' => $imageTitle));
 					?></th>
 					<th class="td_c"><?php
 					$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_TOTAL_TIME_PLAYED');
-					echo JHtml::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/playtime.gif',
+					echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/playtime.gif',
 					$imageTitle,array('title'=> $imageTitle));
 					?></th>
 					<?php
@@ -61,7 +63,7 @@ if (count($this->games))
 					{
 						$iconPath="images/com_joomleague/database/events/".$iconPath;
 					}
-					echo JHtml::image(	$iconPath,JText::_($eventtype->name),
+					echo HTMLHelper::image(	$iconPath,JText::_($eventtype->name),
 					array(	"title" => JText::_($eventtype->name),
 																		"align" => "top",
 																		"hspace" => "2"));
@@ -112,12 +114,12 @@ if (count($this->games))
 				<tr class="<?php echo ($k==0)? $this->config['style_class1'] : $this->config['style_class2']; ?>">
 					<td class="td_l">
 					<?php
-					echo JHTML::link($report_link, JoomleagueHelper::getMatchDate($game, $this->config['games_date_format']));
+					echo HTMLHelper::link($report_link, JoomleagueHelper::getMatchDate($game, $this->config['games_date_format']));
 					?></td>
 					<td class="td_r<?php if ($game->projectteam_id == $game->projectteam1_id) echo " playerteam"; ?>">
 						<?php
 						if ($this->config['show_gameshistory_teamlink'] == 1) {
-							echo JHtml::link($teaminfo_home_link, $this->teams[$game->projectteam1_id]->name);
+							echo HTMLHelper::link($teaminfo_home_link, $this->teams[$game->projectteam1_id]->name);
 						} else {
 							echo $this->teams[$game->projectteam1_id]->name;
 						}
@@ -129,7 +131,7 @@ if (count($this->games))
 					<td class="td_l<?php if ($game->projectteam_id == $game->projectteam2_id) echo " playerteam"; ?>">
 						<?php
 						if ($this->config['show_gameshistory_teamlink'] == 1) {
-							echo JHtml::link($teaminfo_away_link, $this->teams[$game->projectteam2_id]->name);
+							echo HTMLHelper::link($teaminfo_away_link, $this->teams[$game->projectteam2_id]->name);
 						} else {
 							echo $this->teams[$game->projectteam2_id]->name;
 						}

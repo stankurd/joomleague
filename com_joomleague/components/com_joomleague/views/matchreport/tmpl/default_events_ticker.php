@@ -1,4 +1,6 @@
-<?php defined('_JEXEC') or die; ?>
+<?php use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die; ?>
 <!-- START of match events -->
 
 <h2><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_EVENTS'); ?></h2>		
@@ -65,7 +67,7 @@
                         {
                             $imgTitle = $eventname;
                             $imgTitle2 = array(' title' => $imgTitle, ' alt' => $imgTitle, ' style' => 'max-height:40px;');
-                            $txt_tab = JHtml::image($pic_tab,$imgTitle,$imgTitle2);
+                            $txt_tab = HTMLHelper::image($pic_tab,$imgTitle,$imgTitle2);
                         }
                         echo  '<td class="ecenter">' . $txt_tab . '</td>';
                         
@@ -120,7 +122,7 @@
 									if ( ($this->config['show_player_profile_link'] == 1) || (($this->config['show_player_profile_link'] == 2) && ($isFavTeam)) )
 									{
                             $player_link = JoomleagueHelperRoute::getPlayerRoute($this->project->slug,$me->team_id,$me->playerid);
-                            $match_player = JHtml::link($player_link,$match_player);
+                            $match_player = HTMLHelper::link($player_link,$match_player);
 									}
                         }                         
                         
@@ -132,7 +134,7 @@
                         $imgTitle = JText::_('COM_JOOMLEAGUE_MATCHREPORT_EVENT_LIVE_COMMENTARY');
                         $imgTitle2 = array('title' => $imgTitle, 'alt' => $imgTitle, 'style' => 'max-height:40px;');
                         $pic_tab = 'media/com_joomleague/jl_images/discuss.gif';
-                        $txt_tab = JHtml::image($pic_tab,$imgTitle,$imgTitle2);
+                        $txt_tab = HTMLHelper::image($pic_tab,$imgTitle,$imgTitle2);
 
                         echo '<td style="text-align: center">' . $txt_tab . '</td>';
                         echo '<td style="text-align: center">...</td>';
@@ -185,8 +187,8 @@
 		    $imgTitle_in2   = array(' title' => $imgTitle_in);
 		    $imgTitle_out   = JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN');
 		    $imgTitle_out2  = array(' title' => $imgTitle_out);
-		    $txt_tab_out = JHtml::image($pic_out, $imgTitle_out, $imgTitle_in2).'&nbsp;';
-		    $txt_tab_in  = JHtml::image($pic_in, $imgTitle_in, $imgTitle_out2).'&nbsp;';
+		    $txt_tab_out = HTMLHelper::image($pic_out, $imgTitle_out, $imgTitle_in2).'&nbsp;';
+		    $txt_tab_in  = HTMLHelper::image($pic_in, $imgTitle_in, $imgTitle_out2).'&nbsp;';
                         
 		    echo  '<td class="ecenter">' . $txt_tab_out . '</td>';
                         
@@ -218,7 +220,7 @@
 			  if ($this->config['event_link_player'] == 1) {
 				if ( ($this->config['show_player_profile_link'] == 1) || (($this->config['show_player_profile_link'] == 2) && ($isFavTeam)) )
 				{
-				    $outName = JHtml::link(JoomleagueHelperRoute::getPlayerRoute($this->project->slug,$me->ptid,$me->out_person_id),$outName);
+				    $outName = HTMLHelper::link(JoomleagueHelperRoute::getPlayerRoute($this->project->slug,$me->ptid,$me->out_person_id),$outName);
 				} 
 
 				if($me->out_position!='') {
@@ -245,7 +247,7 @@
 			  if ($this->config['event_link_player'] == 1) {
 				if ( ($this->config['show_player_profile_link'] == 1) || (($this->config['show_player_profile_link'] == 2) && ($isFavTeam)) )
 				{
-				    $inName = JHtml::link(JoomleagueHelperRoute::getPlayerRoute($this->project->slug,$me->ptid,$me->person_id),$inName);
+				    $inName = HTMLHelper::link(JoomleagueHelperRoute::getPlayerRoute($this->project->slug,$me->ptid,$me->person_id),$inName);
 				} 
 
 				if($me->in_position!='') {
