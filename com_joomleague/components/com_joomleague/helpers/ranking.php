@@ -12,7 +12,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
-use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+JLoader::register('JoomleagueModelProject', JPATH_COMPONENT . '/components/com_joomleague/models/project.php');
 
 defined('_JEXEC') or die;
 
@@ -140,12 +140,10 @@ class JLGRanking
 	 * inits project object and parameters
 	 * @param int $id
 	 */
-	function setProjectId($id)
+	public function setProjectId($id)
 	{
-        JLoader::register('JoomleagueModelProject', JPATH_COMPONENT . '/components/com_joomleague/models/project.php');
 		$this->_projectid = (int) $id;
-		//$this->_project = new JoomleagueModelProject();
-		$this->_project = BaseDatabaseModel::getInstance('project','JoomleagueModel');
+		$this->_project = new JoomleagueModelProject();
 		
 		$this->_project->setProjectID($id);
 		$this->_params = $this->_project->getTemplateConfig('ranking');
@@ -159,7 +157,7 @@ class JLGRanking
 	 * if not null, the return ranking will be for this division
 	 * @param $id
 	 */
-	function setDivisionId($id=0)
+	public function setDivisionId($id=0)
 	{
 		$this->_division  = $id;
 		$this->_divisions = null;
@@ -172,7 +170,7 @@ class JLGRanking
 	 * @param int roundid to
 	 * @param int division id
 	 */
-	function getRanking($from = null, $to = null, $division = 0)
+	public function getRanking($from = null, $to = null, $division = 0)
 	{
 		$this->_from = $from;
 		$this->_to   = $to;
@@ -194,7 +192,7 @@ class JLGRanking
 	 * @param int roundid to
 	 * @param int division id
 	 */
-	function getRankingHome($from = null, $to = null, $division = 0)
+	public function getRankingHome($from = null, $to = null, $division = 0)
 	{
 		$this->_from = $from;
 		$this->_to   = $to;
@@ -215,7 +213,7 @@ class JLGRanking
 	 * @param int roundid to
 	 * @param int division id
 	 */
-	function getRankingAway($from = null, $to = null, $division = 0)
+	public function getRankingAway($from = null, $to = null, $division = 0)
 	{
 		$this->_from = $from;
 		$this->_to   = $to;
@@ -622,7 +620,7 @@ class JLGRanking
 	 *
 	 * @return array of JLGRankingTeam objects
 	 */
-	function _initTeams($pid, $division=0)
+	public function _initTeams($pid, $division=0)
 	{
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
@@ -716,7 +714,7 @@ class JLGRanking
 	 *
 	 * @return array
 	 */
-	function _getMatches($pid, $division=0)
+	public function _getMatches($pid, $division=0)
 	{
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
@@ -773,7 +771,7 @@ class JLGRanking
 	 *
 	 * @return array
 	 */
-	function _getSubDivisions()
+	public function _getSubDivisions()
 	{
 		if (!$this->_division)
 		{

@@ -392,12 +392,12 @@ class com_joomleagueInstallerScript
 
 		echo 'Updating Database';
 		echo ' - <span style="color:green">'.JText::_('Success').'</span>';
-		echo JHtml::_('bootstrap.startAccordion','details',array(
-						'allowAllClose' => true,
-						'startTransition' => true,
-						true));
-		echo JHtml::_('bootstrap.addSlide', 'Details', 'panel-details');
-
+		$selector = "dbupdate";
+		$text =  JText::_('COM_JOOMLEAGUE_DB_UPDATE');
+		
+		echo JHtml::_('bootstrap.startAccordion', $selector);
+		echo JHtml::_('bootstrap.addSlide',$selector, $text, 'db-details');
+		
 		echo '<div style="width:100%; height: 200px; overflow: auto">';
 		JoomleagueModelDatabaseTools::ImportTables();
 		echo '</div>';

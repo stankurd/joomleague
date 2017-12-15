@@ -18,10 +18,10 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport( 'joomla.application.component.model' );
 
-require_once( JLG_PATH_SITE . '/helpers/ranking.php' );
-require_once( JLG_PATH_SITE . '/models/project.php' );
-//JLoader::register('JLGRanking', JLG_PATH_SITE.'/helpers/ranking.php');
-//JLoader::register('JoomleagueModelProject', JLG_PATH_SITE.'/models/project.php');
+//require_once( JLG_PATH_SITE . '/helpers/ranking.php' );
+//require_once( JLG_PATH_SITE . '/models/project.php' );
+JLoader::register('JLGRanking', JLG_PATH_SITE.'/helpers/ranking.php');
+JLoader::register('JoomleagueModelProject', JLG_PATH_SITE.'/models/project.php');
 
 class JoomleagueModelRanking extends JoomleagueModelProject
 {
@@ -63,7 +63,7 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 	 * 
 	 * @return array games array indexed by project team ids
 	 */
-	function getPreviousGames()
+	public function getPreviousGames()
 	{
 		if (!$this->round) {
 			return false;
@@ -139,7 +139,7 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 	 * computes the ranking
 	 *
 	 */
-	function computeRanking()
+	public function computeRanking()
 	{
 		$app		= Factory::getApplication();
 		$project	= $this->getProject();
@@ -310,7 +310,7 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 	 * @param int $round_id
 	 * @return int
 	 */
-	function _getPreviousRoundId($round_id)
+	public function _getPreviousRoundId($round_id)
 	{
 	    $this->_db = Factory::getDbo();
 	    $query = $this->_db->getQuery(true);
@@ -337,7 +337,7 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 	 * Compare functions for ordering     *
 	 **************************************/
 
-	function _sortRanking(&$ranking)
+	public function _sortRanking(&$ranking)
 	{
 		$order     = Factory::getApplication()->input->get( 'order', '' );
 		$order_dir = Factory::getApplication()->input->get( 'dir', 'ASC' );
@@ -426,115 +426,115 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 		return true;
 	}
 
-	function playedCmp( &$a, &$b){
+	public function playedCmp( &$a, &$b){
 	  $res = $a->cnt_matches - $b->cnt_matches;
 	  return $res;
 	}	
 	
-	function teamNameCmp( &$a, &$b){
+	public function teamNameCmp( &$a, &$b){
 	  return strcasecmp ($a->_name, $b->_name);
 	}
 
-	function wonCmp( &$a, &$b){
+	public function wonCmp( &$a, &$b){
 	  $res = $a->cnt_won - $b->cnt_won;
 	  return $res;
 	}
 
-	function drawCmp( &$a, &$b){
+	public function drawCmp( &$a, &$b){
 	  $res = ($a->cnt_draw - $b->cnt_draw);
 	  return $res;
 	}
 
-	function lossCmp( &$a, &$b){
+	public function lossCmp( &$a, &$b){
 	  $res = ($a->cnt_lost - $b->cnt_lost);
 	  return $res;
 	}
 
-	function wotCmp( &$a, &$b){
+	public function wotCmp( &$a, &$b){
 	  $res = $a->cnt_wot - $b->cnt_wot;
 	  return $res;
 	}
 
-	function wsoCmp( &$a, &$b){
+	public function wsoCmp( &$a, &$b){
 	  $res = $a->cnt_wso - $b->cnt_wso;
 	  return $res;
 	}		
 	
-	function lotCmp( &$a, &$b){
+	public function lotCmp( &$a, &$b){
 	  $res = $a->cnt_lot - $b->cnt_lot;
 	  return $res;
 	}
 	
-	function lsoCmp( &$a, &$b){
+	public function lsoCmp( &$a, &$b){
 	  $res = $a->cnt_lso - $b->cnt_lso;
 	  return $res;
 	}	
 	
-	function winpctCmp( &$a, &$b){
+	public function winpctCmp( &$a, &$b){
 	  $pct_a = $a->cnt_won/($a->cnt_won+$a->cnt_lost+$a->cnt_draw);
 	  $pct_b = $b->cnt_won/($b->cnt_won+$b->cnt_lost+$b->cnt_draw);
 	  $res =($pct_a < $pct_b);
 	  return $res;
 	}
 
-	function quotCmp( &$a, &$b){
+	public function quotCmp( &$a, &$b){
 	  $pct_a = $a->cnt_won/($a->cnt_won+$a->cnt_lost+$a->cnt_draw);
 	  $pct_b = $b->cnt_won/($b->cnt_won+$b->cnt_lost+$b->cnt_draw);
 	  $res =($pct_a < $pct_b);
 	  return $res;
 	}
 
-	function goalspCmp( &$a, &$b){
+	public function goalspCmp( &$a, &$b){
 	  $res = ($a->sum_team1_result - $b->sum_team1_result);
 	  return $res;
 	}
 
-	function goalsforCmp( &$a, &$b){
+	public function goalsforCmp( &$a, &$b){
 	  $res = ($a->sum_team1_result - $b->sum_team1_result);
 	  return $res;
 	}
 
-	function goalsagainstCmp( &$a, &$b){
+	public function goalsagainstCmp( &$a, &$b){
 	  $res = ($a->sum_team2_result - $b->sum_team2_result);
 	  return $res;
 	}	
 	
-	function legsdiffCmp( &$a, &$b){
+	public function legsdiffCmp( &$a, &$b){
 	  $res = ($a->diff_team_legs - $b->diff_team_legs);
 	  return $res;
 	}
 
-	function legsratioCmp( &$a, &$b){
+	public function legsratioCmp( &$a, &$b){
 	  $res = ($a->legsRatio - $b->legsRatio);
 	  return $res;
 	}
 	
-	function diffCmp( &$a, &$b){
+	public function diffCmp( &$a, &$b){
 	  $res = ($a->diff_team_results - $b->diff_team_results);
 	  return $res;
 	}
 
-	function pointsCmp( &$a, &$b){
+	public function pointsCmp( &$a, &$b){
 	  $res = ($a->getPoints() - $b->getPoints());
 	  return $res;
 	}
 		
-	function startCmp( &$a, &$b){
+	public function startCmp( &$a, &$b){
 	  $res = ($a->team->start_points * $b->team->start_points);
 	  return $res;
 	}
 	
-	function bonusCmp( &$a, &$b){
+	public function bonusCmp( &$a, &$b){
 	  $res = ($a->bonus_points - $b->bonus_points);
 	  return $res;
 	}
 
-	function negpointsCmp( &$a, &$b){
+	public function negpointsCmp( &$a, &$b){
 	  $res = ($a->neg_points - $b->neg_points);
 	  return $res;
 	}	
 
-	function pointsratioCmp( &$a, &$b){
+	public function pointsratioCmp( &$a, &$b){
 	  $res = ($a->pointsRatio - $b->pointsRatio);
 	  return $res;
 	}	

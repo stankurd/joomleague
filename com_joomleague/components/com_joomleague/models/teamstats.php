@@ -273,6 +273,7 @@ class JoomleagueModelTeamStats extends JoomleagueModelProject
     	if (is_null($this->totalsaway))
     	{
 			$db = Factory::getDbo();
+			$query = $db->getQuery(true);
 			$query = $this->getGenericQueryForSeason($db, 'team2_result', 'team1_result', 'projectteam2_id');
 
     		$this->_db->setQuery($query, 0, 1);

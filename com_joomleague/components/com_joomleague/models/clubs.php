@@ -29,10 +29,10 @@ class JoomleagueModelClubs extends JoomleagueModelProject
 		parent::__construct();
 		
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 
-		$this->projectid = $jinput->getInt('p',0);
-		$this->divisionid = $jinput->getInt('division',0);
+		$this->projectid = $input->getInt('p',0);
+		$this->divisionid = $input->getInt('division',0);
 	}
 
 	/**
@@ -83,7 +83,9 @@ class JoomleagueModelClubs extends JoomleagueModelProject
 		}
 		else
 		{
-			echo $db->getErrorMsg();
+		    //throw new Exception($e->getMessage());
+		    
+		  echo $db->getErrorMsg();
 		}
 		return $clubs;
 	}
@@ -108,7 +110,7 @@ class JoomleagueModelClubs extends JoomleagueModelProject
 				$query->where($db->quoteName('pt.division_id') . ' = ' . (int)$this->divisionid);
 			}
 			$db->setQuery($query);
-			$teams = $this->_db->loadObjectList();
+			$teams = $db->loadObjectList();
 			if (empty($teams))
 			{
 				echo $db->getErrorMsg();

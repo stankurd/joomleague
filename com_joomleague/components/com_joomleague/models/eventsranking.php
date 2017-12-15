@@ -128,14 +128,17 @@ class JoomleagueModelEventsRanking extends JoomleagueModelProject
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query=	 ' SELECT	et.id as etid,me.event_type_id as id,et.* '
-				.' FROM #__joomleague_eventtype as et '
-				.' INNER JOIN #__joomleague_match_event as me ON et.id=me.event_type_id '
-				.' INNER JOIN #__joomleague_match as m ON m.id=me.match_id '
-				.' INNER JOIN #__joomleague_round as r ON m.round_id=r.id ';
+	    $query
+	           ->select('et.id as etid,me.event_type_id as id,et.*')
+	           ->from('#__joomleague_eventtype as et')
+	           ->join('INNER', '#__joomleague_match_event as me ON  et.id=me.event_type_id')
+	           ->join('INNER', '#__joomleague_match as m ON m.id=me.match_id ')
+	           ->join('INNER', '#__joomleague_round as r ON m.round_id=r.id ');
+	       
 		if ($this->projectid > 0)
 		{
-			$query .= " WHERE r.project_id=".$this->projectid;
+			$query
+			->where(' r.project_id='.$this->projectid);
 		}
 		if ($this->eventid != 0)
 		{
@@ -149,7 +152,8 @@ class JoomleagueModelEventsRanking extends JoomleagueModelProject
 			}
 			$query .= " me.event_type_id IN (".implode(",", $this->eventid).")";
 		}
-		$query .= " ORDER BY et.ordering";
+		$query
+		  ->order('et.ordering');
 		$db->setQuery($query);
 		$result=$db->loadObjectList('etid');
 		return $result;
@@ -199,7 +203,7 @@ class JoomleagueModelEventsRanking extends JoomleagueModelProject
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query=	 ' SELECT	SUM(me.event_sum) as p,'
+		$query=	 ' SELECT SUM(me.event_sum) as p,'
 				.' pl.firstname AS fname,'
 				.' pl.nickname AS nname,'
 				.' pl.lastname AS lname,'
@@ -233,7 +237,8 @@ class JoomleagueModelEventsRanking extends JoomleagueModelProject
 		{
 			$query .= " AND me.match_id=".$this->matchid;
 		}
-		$query .= " GROUP BY me.teamplayer_id ORDER BY p $order, me.match_id";
+		$query .= " GROUP BY me.teamplayer_id, me.match_id ORDER BY p $order, me.match_id";
+		
 		$db->setQuery($query, $this->getlimitStart(), $this->getlimit());
 		$rows=$db->loadObjectList();
 

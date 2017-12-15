@@ -171,11 +171,13 @@ class JoomleagueModelProject extends BaseDatabaseModel
 			switch ($project->current_round_auto)
 			{
 				case 0 :	 // manual mode
+				    $query = $db->getQuery(true);
 					$query="SELECT r.id, r.roundcode FROM #__joomleague_round AS r
 							 WHERE r.id =".$project->current_round;
 					break;
 
 				case 1 :	 // get current round from round_date_first
+				    $query = $db->getQuery(true);
 					$query="SELECT r.id, r.roundcode FROM #__joomleague_round AS r
 							 WHERE r.project_id=".$project->id."
 								AND (r.round_date_first - INTERVAL ".($project->auto_time)." MINUTE < '".$current_date."')
@@ -183,6 +185,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 					break;
 
 				case 2 : // get current round from round_date_last
+				    $query = $db->getQuery(true);
 					$query="SELECT r.id, r.roundcode FROM #__joomleague_round AS r
 							  WHERE r.project_id=".$project->id."
 								AND (r.round_date_last + INTERVAL ".($project->auto_time)." MINUTE > '".$current_date."')
@@ -190,6 +193,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 					break;
 
 				case 3 : // get current round from first game of the round
+				    $query = $db->getQuery(true);
 					$query="SELECT r.id, r.roundcode FROM #__joomleague_round AS r,#__joomleague_match AS m
 							WHERE r.project_id=".$project->id."
 								AND m.round_id=r.id
@@ -198,6 +202,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 					break;
 
 				case 4 : // get current round from last game of the round
+				    $query = $db->getQuery(true);
 					$query="SELECT r.id, r.roundcode FROM #__joomleague_round AS r, #__joomleague_match AS m
 							WHERE r.project_id=".$project->id."
 								AND m.round_id=r.id
@@ -212,6 +217,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 			// Either way, do not change current value
 			if (!$result)
 			{
+			    $query = $db->getQuery(true);
 				$query = ' SELECT r.id, r.roundcode FROM #__joomleague_round AS r '
 				       . ' WHERE r.project_id = '. $project->current_round
 				       ;
@@ -222,6 +228,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 				{
 					if ($project->current_round_auto == 2) {
 					    // the current value is invalid... saison is over, just take the last round
+					    $query = $db->getQuery(true);
 					    $query = ' SELECT r.id, r.roundcode FROM #__joomleague_round AS r '
 						    . ' WHERE r.project_id = '. $project->id
 						    . ' ORDER BY . r.roundcode DESC '
@@ -230,6 +237,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 					    $result = $db->loadObject();
 					} else {
 					    // the current value is invalid... just take the first round
+					    $query = $db->getQuery(true);
 					    $query = ' SELECT r.id, r.roundcode FROM #__joomleague_round AS r '
 						    . ' WHERE r.project_id = '. $project->id
 						    . ' ORDER BY . r.roundcode ASC '
@@ -244,6 +252,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 			// Update the database if determined current round is different from that in the database
 			if ($result && ($project->current_round <> $result->id))
 			{
+			    $query = $db->getQuery(true);
 				$query = ' UPDATE #__joomleague_project SET current_round = '.$result->id
 				       . ' WHERE id = ' . $db->Quote($project->id);
 				$db->setQuery($query);
@@ -455,7 +464,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		return $db->loadObject();
 	}
 
-	function _getTeams()
+	public function _getTeams()
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
@@ -533,7 +542,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	 * @param int $division
 	 * @return array
 	 */
-	function getTeams($division=0)
+	public function getTeams($division=0)
 	{
 		$teams=array();
 		if ($division != 0)
@@ -560,7 +569,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	 *
 	 * @return array	 *
 	 */
-	function getTeamIds($division=0)
+	public function getTeamIds($division=0)
 	{
 		$teams=array();
 		foreach ((array)$this->_getTeams() as $t)
@@ -572,7 +581,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		return $teams;
 	}
 
-	function getTeamsIndexedById($division=0)
+	public function getTeamsIndexedById($division=0)
 	{
 		$result=$this->getTeams($division);
 		$teams=array();
@@ -587,7 +596,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		return $teams;
 	}
 
-	function getTeamsIndexedByPtid($division=0)
+	public function getTeamsIndexedByPtid($division=0)
 	{
 		$result=$this->getTeams($division);
 		$teams=array();
@@ -602,7 +611,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		return $teams;
 	}
 
-	function getFavTeams()
+	public function getFavTeams()
 	{
 		$project = $this->getProject();
 		if(!is_null($project))
@@ -611,7 +620,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		return array();
 	}
 
-	function getEventTypes($evid=0)
+	public function getEventTypes($evid=0)
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
@@ -637,7 +646,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		return $db->loadObjectList('etid');
 	}
 
-	function getProjectTeamId($teamid)
+	public function getProjectTeamId($teamid)
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
@@ -658,7 +667,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	 * @access  public
 	 * @return  array
 	 */
-	function getPlaygrounds()
+	public function getPlaygrounds()
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
@@ -667,16 +676,14 @@ class JoomleagueModelProject extends BaseDatabaseModel
 					FROM #__joomleague_playground
 					ORDER BY text ASC ';
 		$db->setQuery($query);
-		if (!$result=$db->loadObjectList())
-		{
-			$this->setError($db->getErrorMsg());
-			return false;
-		}
-		else
-		{
+		try {
+		    $result = $db->loadObjectList();
+		} catch (RuntimeException $e) {
+		    Factory::getApplication()->enqueueMessage(JText::_($e->getMessage()), 'error');
+		    return false;
+		}			
 			return $result;
 		}
-	}
 
 	function getReferees()
 	{
@@ -712,7 +719,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		return $refs;
 	}
 
-	function getTemplateConfig($template)
+	public function getTemplateConfig($template)
 	{
 		$app 	= Factory::getApplication();
 		//first load the default settings from the default <template>.xml file
@@ -792,7 +799,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		return $settings;
 	}
 
-	function getOverallConfig()
+	public function getOverallConfig()
 	{
 		return $this->getTemplateConfig('overall');
 	}
@@ -807,7 +814,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
    	* 
    	* @return country from project-league
    	*/
-   	function getProjectCountry()
+   	public function getProjectCountry()
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
@@ -826,7 +833,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	 * @param int position_id if specified,returns only events assigned to this position
 	 * @return array
 	 */
-	function getProjectEvents($position_id=0)
+	public function getProjectEvents($position_id=0)
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
@@ -853,7 +860,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	 * @param int positionid 0 for all positions
 	 * @return array objects
 	 */
-	function getProjectStats($statid=0,$positionid=0)
+	public function getProjectStats($statid=0,$positionid=0)
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
@@ -919,7 +926,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		}
 	}
 
-	function getProjectPositions()
+	public function getProjectPositions()
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
@@ -971,7 +978,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	 * @access	public
 	 * @return	boolean	True on success
 	 */
-	function store($data,$table='')
+	public function store($data,$table='')
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);

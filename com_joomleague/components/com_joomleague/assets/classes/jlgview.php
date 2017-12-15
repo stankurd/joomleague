@@ -19,6 +19,7 @@ use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\Registry\Registry;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 class JLGView extends BaseHtmlView
 {
@@ -30,7 +31,7 @@ class JLGView extends BaseHtmlView
 		parent::__construct($config);
 
 		$app  	= Factory::getApplication();
-		$input = $app->input;
+		$jinput = $app->input;
 
 		$this->input = Factory::getApplication()->input;
 
@@ -57,9 +58,9 @@ class JLGView extends BaseHtmlView
 	{
 		$option     = ApplicationHelper::getComponentName();
 		$app		= Factory::getApplication();
-		$input		= $app->input;
+		$jinput		= $app->input;
 
-		$extensions	= JoomleagueHelper::getExtensions($input->getInt('p'));
+		$extensions	= JoomleagueHelper::getExtensions($jinput->getInt('p'));
 		if (!count($extensions))
 		{
 			return parent::_setPath($type, $path);
@@ -82,7 +83,7 @@ class JLGView extends BaseHtmlView
 				if (isset($app))
 				{
 				    if ($app->isClient('administrator')) {
-						$this->_addPath('template', $JLGPATH_EXTENSION.'/admin/views/'.$this->getName().'/tmpl');
+				        $this->_addPath('template', $JLGPATH_EXTENSION.'/admin/views/'.$this->getName().'/tmpl');
 					}
 					else {
 						$this->_addPath('template', $JLGPATH_EXTENSION.'/views/'.$this->getName().'/tmpl');
@@ -100,16 +101,19 @@ class JLGView extends BaseHtmlView
 	public function display($tpl = null )
 	{
 		$app		= Factory::getApplication();
-		$input		= $app->input;
-		$option 	= $input->get('option');
+		$jinput		= $app->input;
+		$option 	= $jinput->get('option');
 		$document	= Factory::getDocument();
 		$version 	= urlencode(JoomleagueHelper::getVersion());
-		
+
 		// support for global client side lang res
 		//JHtml::_('behavior.formvalidator');
 		// Load the modal behavior script.
 		//JHtml::_('behavior.modal', 'a.modal');
-
+		
+		HTMLHelper::_('jquery.framework');
+		HTMLHelper::_('behavior.core');
+		
 		$lang 		= Factory::getLanguage();
 		$jllang 	= new JLLanguage();
 		$jllang->setLanguage($lang);
@@ -117,8 +121,8 @@ class JLGView extends BaseHtmlView
 		$props 		= $jllang->getProperties();
 		$strings 	= $props['strings'];
 		foreach ($strings as $key => $value) {
-		    if($app->isClient('administrator')) {
-				if(strpos($key, 'COM_JOOMLEAGUE_ADMIN_'.strtoupper($this->getName()).'_CSJS') !== false) {
+		    if ($app->isClient('administrator')) {
+		        if(strpos($key, 'COM_JOOMLEAGUE_ADMIN_'.strtoupper($this->getName()).'_CSJS') !== false) {
 					JText::script($key, true);
 				}
 			} else {
@@ -129,7 +133,7 @@ class JLGView extends BaseHtmlView
 		}
 
 		if ($app->isClient('administrator')) {
-			// include backend.css
+		    // include backend.css
 			$file = JPATH_COMPONENT.'/assets/css/backend.css';
 			if(file_exists(JPath::clean($file))) {
 				$document->addStyleSheet($this->baseurl.'/components/'.$option.'/assets/css/backend.css?v='.$version);
@@ -161,7 +165,7 @@ class JLGView extends BaseHtmlView
 		}
 
 		// extension management
-		$extensions = JoomleagueHelper::getExtensions($input->getInt('p'));
+		$extensions = JoomleagueHelper::getExtensions($jinput->getInt('p'));
 		foreach ($extensions as $e => $extension) {
 			$JLGPATH_EXTENSION =  JPATH_COMPONENT_SITE.'/extensions/'.$extension;
 
@@ -190,7 +194,7 @@ class JLGView extends BaseHtmlView
 			}
 
 			// Only for admin side
-			if($app->isClient('administrator')) {
+			if($app->isAdmin()) {
 				$JLGPATH_EXTENSION = JPATH_COMPONENT_SITE.'/extensions/'.$extension.'/admin';
 
 				// General extension CSS include
@@ -231,12 +235,12 @@ class JLGView extends BaseHtmlView
 	function getExtended($data = '', $file, $projectId = null)
 	{
 		$app 	= Factory::getApplication();
-		$input = $app->input;
+		$jinput = $app->input;
 
 		$xmlfile = JLG_PATH_ADMIN.'/assets/extended/'.$file.'.xml';
 
 		// extension management
-		$extensions = JoomleagueHelper::getExtensions($projectId ?: $input->getInt('p'));
+		$extensions = JoomleagueHelper::getExtensions($projectId ?: $jinput->getInt('p'));
 
 		foreach ($extensions as $e => $extension) {
 			$JLGPATH_EXTENSION = JPATH_COMPONENT_SITE.'/extensions/'.$extension.'/admin';
@@ -249,12 +253,12 @@ class JLGView extends BaseHtmlView
 		}
 
 		if (is_array($data)) {
-		    $data = json_encode($data);
+			$data = json_encode($data);
 		}
 
 		// Convert the extended field to an array.
 		$registry = new Registry;
-		//$registry->loadString($data); //FIXME Error decoding JSON data: Syntax error 
+		//$registry->loadstring($data);
 
 		/*
 		 * extended data

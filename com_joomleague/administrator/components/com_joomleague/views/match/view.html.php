@@ -18,12 +18,10 @@ use Joomla\CMS\Uri\Uri;
 defined('_JEXEC') or die;
 
 jimport('joomla.filesystem.file');
-//HTMLHelper::_('behavior.framework');
-//HTMLHelperJquery::framework();
-//HTMLHelperBehavior::framework();
-//HTMLHelper::_('jquery.framework');
-HTMLHelper::_('behavior.formvalidator');
 
+HTMLHelper::_('jquery.framework');
+HTMLHelper::_('behavior.formvalidator');
+HTMLHelper::_('behavior.core');
 /**
  * HTML View class
  */
@@ -173,8 +171,8 @@ class JoomleagueViewMatch extends JLGView
 		// add the js script
 		$baseurl = Uri::root();
 		//$version = urlencode(JoomleagueHelper::getVersion());
-		//$document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/editreferees.js');
-		//JoomleagueHelpersStyle::load();
+		$document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/editreferees.js');
+		JoomleagueHelpersStyle::load();
 		
 		$model = $this->getModel();
 		

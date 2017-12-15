@@ -9,12 +9,15 @@
 use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
-
-HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('jquery.framework');
+HTMLHelper::_('behavior.core');
+//HTMLHelper::_('behavior.tooltip');
 ?>
 <script>
 jQuery(document).ready(function($) {
-	$('#multiselect').multiselect();
+	jQuery('#multiselect').multiselect({
+		sort: false
+	});
 });
 </script>
 <form action="index.php" method="post" id="adminForm" name="adminForm">

@@ -73,8 +73,11 @@ class JoomleagueModelMatrix extends JoomleagueModelProject
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
+	    $query_WHERE = $db->getQuery(true);
 		$query_WHERE = "";
+		$query_END	 = $db->getQuery(true);
 		$query_END	 = " ORDER BY r.ordering, r.roundcode";
+		$query_SELECT = $db->getQuery(true);
 		$query_SELECT = "SELECT DISTINCT(m.id), r.name AS roundname,
 												r.id AS roundid,
 												r.roundcode,
@@ -92,6 +95,7 @@ class JoomleagueModelMatrix extends JoomleagueModelProject
 												m.team2_result_decision AS v2,
 												m.new_match_id, m.old_match_id,
 												tt1.division_id AS division_id";
+		$query_FROM	= $db->getQuery(true);
 		$query_FROM	= " FROM #__joomleague_match AS m
 						INNER JOIN #__joomleague_round AS r ON r.id=m.round_id
 						LEFT JOIN #__joomleague_project_team AS tt1 ON m.projectteam1_id = tt1.team_id
@@ -117,10 +121,11 @@ class JoomleagueModelMatrix extends JoomleagueModelProject
 		}
 		$query = $query_SELECT . $query_FROM . $query_WHERE . $query_END ;
 		$db->setQuery( $query );
-		if ( !$result = $db->loadObjectList() )
-		{
-			//echo $db->getErrorMsg();
-		}
+		try {
+		    $result = $db->loadObjectList();
+		} catch (RuntimeException $e) {
+		    Factory::getApplication()->enqueueMessage(JText::_($e->getMessage()), 'error');	    
+		}	
 		return $result;
 	}
 }

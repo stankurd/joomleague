@@ -16,6 +16,9 @@ use Joomla\CMS\Session\Session;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
+
+HTMLHelper::_('jquery.framework');
+HTMLHelper::_('behavior.core');
 ?>
 <script type="text/javascript">
 <!--

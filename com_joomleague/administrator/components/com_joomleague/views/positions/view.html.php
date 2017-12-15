@@ -30,11 +30,15 @@ class JoomleagueViewPositions extends JLGView
 		$option = $input->getCmd('option');
 		$uri = Uri::getInstance();
 		$model = $this->getModel();
-
+		$baseurl = Uri::root();
+		
 		$this->items = $this->get('Items');
 		$this->pagination = $this->get('Pagination');
 		$this->state = $this->get('State');
 
+		$document = Factory::getDocument();
+		$document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/multiselect.js');
+		
 		// state filter
 		$lists['state'] = JoomleagueHelper::stateOptions($this->state->get('filter.state'));
 
@@ -65,7 +69,7 @@ class JoomleagueViewPositions extends JLGView
 		$this->user = Factory::getUser();
 		$this->config = Factory::getConfig();
 		$this->lists = $lists;
-		// $this->request_url = $uri->toString();
+		$this->request_url = $uri->toString();
 
 		$this->filterForm = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');

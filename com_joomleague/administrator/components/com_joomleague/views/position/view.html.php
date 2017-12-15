@@ -11,7 +11,8 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
-
+HTMLHelper::_('jquery.framework');
+HTMLHelper::_('behavior.core');
 /**
  * HTML View class
  */
@@ -36,8 +37,8 @@ class JoomleagueViewPosition extends JLGView
 		{
 			$pk = 0;
 		}
-		
-		$baseurl = Uri::root(true);
+		$uri = Uri::getInstance();
+		$baseurl = Uri::root();
 		$model = $this->getModel();
 		$lists = array();
 		

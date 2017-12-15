@@ -1,5 +1,4 @@
 <?php
-use Joomla\CMS\HTML\HTMLHelper;
 
 /**
  * Joomleague
@@ -8,8 +7,18 @@ use Joomla\CMS\HTML\HTMLHelper;
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;
+
+HTMLHelper::_('jquery.framework');
+HTMLHelper::_('behavior.core');
+$app = Factory::getApplication();
+$input = $app->input;
+
 ?>
+
 <div id="lineup">
 	<form id="adminForm" name="adminForm" method="post">
 		<div class="clear"></div>

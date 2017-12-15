@@ -12,7 +12,8 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
-
+HTMLHelper::_('jquery.framework');
+HTMLHelper::_('behavior.core');
 
 /**
  * HTML View class

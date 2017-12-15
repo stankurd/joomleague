@@ -359,6 +359,7 @@ class JoomleagueModelTeamPlan extends JoomleagueModelProject
 	function _getRefereesByMatch($matches, $joomleague)
 	{
 		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		for ($index=0; $index < count($matches); $index++) {
 			$query = $db->getQuery(true);
 			if ($joomleague->teams_as_referees)
@@ -394,10 +395,11 @@ class JoomleagueModelTeamPlan extends JoomleagueModelProject
 			}
 
 			$db->setQuery($query);
-			if (!$referees = $db->loadObjectList())
-			{
-				$this->setError($db->getErrorMsg());
-				return false;
+			try {
+			    $referees = $db->loadObjectList();
+			} catch (Exception $e) {
+			    Factory::getApplication()->enqueueMessage(JText::_($e->getMessage()), 'error');
+			    return false;
 			}
 			$matches[$index]->referees = $referees;
 		}

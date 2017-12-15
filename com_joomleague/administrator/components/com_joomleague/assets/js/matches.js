@@ -9,6 +9,7 @@
  * 				to all other fields with the same name
  *
  */
+
 window.addEvent('domready', function() {
 	$$('tr.row-result').each(function(row) {
 		var matchid = row.id.substr(7);

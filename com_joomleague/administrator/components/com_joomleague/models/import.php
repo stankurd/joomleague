@@ -9,13 +9,14 @@
 
 // no direct access
 use Joomla\CMS\Table\Table;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
 
 /**
  * Import Model
  */
-class JoomleagueModelImport extends JModelBase 
+class JoomleagueModelImport extends BaseDatabaseModel
 {
 	/**
 	 * Constructor

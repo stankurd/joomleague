@@ -41,7 +41,7 @@ JLoader::registerPrefix('Joomleague', JPATH_COMPONENT_ADMINISTRATOR);
 PluginHelper::importPlugin('Joomleague');
 
 //Load styles and javascripts
-JoomleagueHelpersStyle::load();
+//JoomleagueHelpersStyle::load();
 
 //application
 $app = Factory::getApplication();

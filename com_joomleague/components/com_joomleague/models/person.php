@@ -44,7 +44,6 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		$this->projectid	= $app->input->getInt( 'p', 0 );
 		$this->personid		= $app->input->getInt( 'pid', 0 );
 		$this->teamplayerid	= $app->input->getInt( 'pt', 0 );
-		//$this->teamplayerid	= $app->input->getInt( 'pt', 0 );
 		$this->divisionid   = $app->input->getInt( 'division', 0 );
 	}
 
