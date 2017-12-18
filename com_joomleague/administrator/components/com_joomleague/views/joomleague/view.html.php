@@ -8,7 +8,6 @@
  * @author		Marco Vaninetti <martizva@tiscali.it>
  * @author		other JL Team members
  */
-defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
@@ -16,8 +15,11 @@ use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
-jimport('joomla.html.pane');
+defined('_JEXEC') or die;
 
+jimport('joomla.html.pane');
+HTMLHelper::_('jquery.framework');
+HTMLHelper::_('behavior.core');
 require_once JPATH_COMPONENT . '/models/sportstypes.php';
 require_once JPATH_COMPONENT . '/models/leagues.php';
 
@@ -70,8 +72,8 @@ class JoomleagueViewJoomleague extends JLGView
 		// $project = $this->get('data');
 		$app = Factory::getApplication();
 		$input = $app->input;
-
-		$mdlJoomleague  = BaseDatabaseModel::getInstance('joomleague','JoomleagueModel');
+		
+		$mdlJoomleague  = BaseDatabaseModel::getInstance('Joomleague','JoomleagueModel');
 		$project_id = $app->getUserState('com_joomleagueproject');
 
 		/*
@@ -134,7 +136,7 @@ class JoomleagueViewJoomleague extends JLGView
 		$version = urlencode(JoomleagueHelper::getVersion());
 
 		$document->addScript(Uri::root() . '/administrator/components/com_joomleague/assets/js/quickmenu.js');
-
+		
 		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$mdlJoomleague = BaseDatabaseModel::getInstance('Joomleague','JoomleagueModel');
 		$params = ComponentHelper::getParams($option);

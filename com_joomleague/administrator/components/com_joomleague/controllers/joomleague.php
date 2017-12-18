@@ -10,6 +10,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Router\Route;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 /**
  * Joomleague Controller
@@ -189,8 +190,8 @@ class JoomleagueControllerJoomleague extends JLGControllerAdmin
 			$sid = $sid[0];
 			$app->setUserState($option . 'seasonnav',$sid);
 		}
-		$model = new JoomleagueModelJoomleague();
-		//$model = JModelLegacy::getInstance('joomleague','JoomleagueModel');
+		
+		$model = BaseDatabaseModel::getInstance('joomleague','JoomleagueModel');
 		$model->setCurrentProjectData($pid,$rid,$sid,$stid,$tid);
 	
 	

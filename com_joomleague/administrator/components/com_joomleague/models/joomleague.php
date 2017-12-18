@@ -10,7 +10,6 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\Utilities\ArrayHelper;
 require_once JPATH_COMPONENT . '/models/item.php';
-
 /**
  * Joomleague Model
  */
