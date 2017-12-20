@@ -12,7 +12,6 @@ use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
-
 HTMLHelper::_('behavior.formvalidator');
 Factory::getDocument()->addScriptDeclaration('
 	Joomla.submitbutton = function(task)

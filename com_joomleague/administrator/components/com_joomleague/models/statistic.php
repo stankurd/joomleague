@@ -9,17 +9,16 @@
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
-use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\CMS\Table\Table;
 use Joomla\Registry\Registry;
 use Joomla\Utilities\ArrayHelper;
+
 
 /**
  * Statistic Model
  */
 class JoomleagueModelStatistic extends JLGModelItem
 {
-
 	public $typeAlias = 'com_joomleague.statistic';
 
 	/**
@@ -179,11 +178,11 @@ class JoomleagueModelStatistic extends JLGModelItem
 		if ($item) {
 			// Convert the params field to an array.
 			$registry = new Registry;
-			$registry->loadString($item->baseparams);
+			//$registry->loadString($item->baseparams );
 			$item->baseparams = $registry->toArray();
 
 			$registry = new Registry;
-			$registry->loadString($item->params);
+			//$registry->loadString($item->params);
 			$item->params = $registry->toArray();
 		}
 		return $item;
@@ -320,7 +319,7 @@ class JoomleagueModelStatistic extends JLGModelItem
 			// Set ordering to the last item if not set
 			if (empty($table->ordering))
 			{
-				$db = $this->getDbo();
+				$db = Factory::getDbo();
 				$query = $db->getQuery(true)
 				->select('MAX(ordering)')
 				->from('#__joomleague_statistic');
@@ -381,6 +380,8 @@ class JoomleagueModelStatistic extends JLGModelItem
 	 */
 	function getOrderingAndStatisticQuery()
 	{
+	    $db = Factory::getDbo();
+	    $query = $db->getQuery(true);
 		return 'SELECT ordering AS value,name AS text FROM #__joomleague_statistic ORDER BY ordering';
 	}
 }

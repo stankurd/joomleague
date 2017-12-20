@@ -6,7 +6,7 @@
 		<fieldset name="typefields_base" 
 		          label="COM_JOOMLEAGUE_STAT_SUMSTAT_BASE_LABEL" 
 		          description="COM_JOOMLEAGUE_STAT_SUMSTAT_DESC">
-			<field name="stat_ids" type="BasicStatslist" multiple="multiple"
+			<field name="stat_ids" type="text" multiple="multiple"
 					size="20" 
 					label="COM_JOOMLEAGUE_STAT_SUMSTAT_STAT_IDS" 
 					description="COM_JOOMLEAGUE_STAT_SUMSTAT_STAT_IDS_DESC">

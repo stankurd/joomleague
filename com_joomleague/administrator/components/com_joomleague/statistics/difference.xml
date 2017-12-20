@@ -7,12 +7,12 @@
 		          label="COM_JOOMLEAGUE_STAT_PARAMS_GROUP_SETTINGS" 
 		          description="COM_JOOMLEAGUE_STAT_DIFFERENCE_DESC">
 		          
-			<field  name="add_ids" type="BasicStatslist" 
+			<field  name="add_ids" type="text" 
 					multiple="multiple" size="20" 
 					label="COM_JOOMLEAGUE_STAT_DIFFERENCE_ADD_IDS" 
 					description="COM_JOOMLEAGUE_STAT_DIFFERENCE_ADD_IDS_DESC">
 			</field>		
-			<field 	name="sub_ids" type="BasicStatslist" 
+			<field 	name="sub_ids" type="text" 
 					multiple="multiple" size="20" 
 					label="COM_JOOMLEAGUE_STAT_DIFFERENCE_SUB_IDS" 
 					description="COM_JOOMLEAGUE_STAT_DIFFERENCE_SUB_IDS_DESC">

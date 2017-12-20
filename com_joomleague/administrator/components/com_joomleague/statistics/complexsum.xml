@@ -7,7 +7,7 @@
 		          label="COM_JOOMLEAGUE_STAT_PARAMS_GROUP_SETTINGS" 
 		          description="COM_JOOMLEAGUE_STAT_COMPLEXSUM_DESC">
 
-			<field 	name="stat_ids" type="BasicStatslist" 
+			<field 	name="stat_ids" type="text" 
 					multiple="multiple" size="20" 
 					label="COM_JOOMLEAGUE_STAT_COMPLEXSUM_STAT_IDS" 
 					description="COM_JOOMLEAGUE_STAT_COMPLEXSUM_STAT_IDS_DESC">

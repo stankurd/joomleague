@@ -7,7 +7,7 @@
 		          label="COM_JOOMLEAGUE_STAT_PARAMS_GROUP_SETTINGS" 
 		          description="COM_JOOMLEAGUE_STAT_PERGAME_DESC">
 
-			<field name="numerator_ids" type="BasicStatslist" 
+			<field name="numerator_ids" type="text" 
 					multiple="multiple" size="20" 
 					label="COM_JOOMLEAGUE_STAT_PERGAME_NUMERATOR_IDS" 
 					description="COM_JOOMLEAGUE_STAT_PERGAME_NUMERATOR_IDS_DESC">

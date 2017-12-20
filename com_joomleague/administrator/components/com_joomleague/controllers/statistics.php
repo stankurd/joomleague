@@ -74,8 +74,8 @@ class JoomleagueControllerStatistics extends JLGControllerAdmin
 		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$cid = $jinput->get('cid',array(),'array');
+		$input = $app->input;
+		$cid = $input->get('cid',array(),'array');
 		if(!is_array($cid) || count($cid) < 1)
 		{
 			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));
@@ -100,12 +100,13 @@ class JoomleagueControllerStatistics extends JLGControllerAdmin
 
 		$user 	= Factory::getUser();
 		$app 	= Factory::getApplication();
-		$jinput = $app->input;
-		$cid    = $jinput->get('cid', array(), 'array');
+		$input = $app->input;
+		$cid    = $input->get('cid', array(), 'array');
 		ArrayHelper::toInteger($cid);
 
 		if(!is_array($cid) || count($cid) < 1) {
-			JError::raiseError(500, JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			$msg = JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE');
+			$app->enqueueMessage($msg, 'notice');
 		} else {
 			// Access checks.
 			foreach($cid as $i=>$id)
@@ -114,7 +115,8 @@ class JoomleagueControllerStatistics extends JLGControllerAdmin
 				{
 					// Prune items that you can't delete.
 					unset($cid[$i]);
-					JError::raiseNotice(403,JText::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
+					$msg = JText::_('JERROR_CORE_DELETE_NOT_PERMITTED');
+					$app->enqueueMessage($msg, 'notice');
 				}
 			}
 			$model = $this->getModel('statistics');

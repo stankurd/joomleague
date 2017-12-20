@@ -11,7 +11,6 @@ use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
 
-
 /**
  * Statistic Controller
  */

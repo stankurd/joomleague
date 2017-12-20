@@ -9,6 +9,7 @@
 defined('_JEXEC') or die;
 ?>
 <?php foreach ($this->form->getFieldsets('params') as $fieldset): ?>
+
 <fieldset class="adminform">
 	<legend><?php echo JText::_($fieldset->label);?></legend>
 	<?php if ($fieldset->description): ?>
