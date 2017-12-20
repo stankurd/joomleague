@@ -61,18 +61,10 @@ $option = 'com_joomleague';
 			$title = '';
 			$image = '';
 			$text = '';
-
-			/**echo HTMLHelper::_('sliders.start','sliders',
-					array(
-							'allowAllClose' => true,
-							'startOffset' => $this->active,
-							'startTransition' => true,
-							true
-					));*/
+			
 			foreach($tabs as $tab)
 			{
 				$title = $tab->title;
-				//echo HTMLHelper::_('sliders.panel',$title,'jfcpanel-panel-' . $tab->name);
 				?>
 					<div>
 						<table class="table table-hover"><?php
@@ -101,13 +93,17 @@ $option = 'com_joomleague';
 					{
 						echo '<tr><td><span title="' . JText::_('JGLOBAL_AUTH_ACCESS_DENIED') . '">' . $image . ' ' . $text . '</span></td></tr>';
 					}
+					
 				}
-				?></table>
+				?>
+				
+				</table>
 					</div>
+					
 					<?php
 				$n ++;
 			}
-			//echo HTMLHelper::_('sliders.end');
+			
 			// Extension
 			$extensions = JoomleagueHelper::getExtensions(1);
 			foreach($extensions as $e=>$extension)
@@ -121,6 +117,7 @@ $option = 'com_joomleague';
 				else
 				{
 				}
+				
 			}
 			?>
 
@@ -143,5 +140,7 @@ $option = 'com_joomleague';
 			</div>
 		</div>
 </div>
+
+
 	<div class="col-md-10">
 	<div id="j-main-container" class="j-main-container">

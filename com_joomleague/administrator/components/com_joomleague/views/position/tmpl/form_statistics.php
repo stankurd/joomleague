@@ -22,12 +22,12 @@ jQuery(document).ready(function($) {
 </script>
 <fieldset class="form-horizontal">
 	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_STATISTICS_LEGEND'); ?></legend>
-	<div class="row-fluid">
-		<div class="span3">
+	<div class="row">
+		<div class="col-md-3">
 			<b><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_EXISTING_STATISTICS'); ?></b>
 			<br /><?php echo $this->lists['statistic']; ?>
 		</div>
-		<div class="span2">
+		<div class="col-md-2">
 			<button type="button" id="multiselect2_rightAll"
 				class="btn btn-block">
 				<i class="icon-forward"></i>
@@ -44,7 +44,7 @@ jQuery(document).ready(function($) {
 				<i class="icon-backward"></i>
 			</button>
 		</div>
-		<div class="span3">
+		<div class="col-md-3">
 			<b><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_ASSIGNED_STATS_TO_POS'); ?></b>
 			<br /><?php echo $this->lists['position_statistic']; ?>
 		</div>

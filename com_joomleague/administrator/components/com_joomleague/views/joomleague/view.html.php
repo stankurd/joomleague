@@ -15,13 +15,13 @@ use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
-defined('_JEXEC') or die;
 
 jimport('joomla.html.pane');
 HTMLHelper::_('jquery.framework');
 HTMLHelper::_('behavior.core');
 require_once JPATH_COMPONENT . '/models/sportstypes.php';
 require_once JPATH_COMPONENT . '/models/leagues.php';
+defined('_JEXEC') or die;
 
 /**
  * HTML View class

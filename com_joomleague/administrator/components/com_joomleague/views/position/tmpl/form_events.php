@@ -26,7 +26,7 @@ jQuery(document).ready(function($) {
 	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_EVENTTYPES_LEGEND'); ?></legend>
 	
 	<div class="row">
-		<div class="span3">
+		<div class="col-md-3">
 			<b><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_EXISTING_EVENTTYPES'); ?></b>
 			<br /><?php echo $this->lists['events']; ?>
 		</div>
