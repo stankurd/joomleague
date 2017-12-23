@@ -9,16 +9,16 @@ use Joomla\CMS\HTML\HTMLHelper;
  * @link		http://www.joomleague.at
  */
 defined('_JEXEC') or die;
-
+HTMLHelper::_('jquery.framework');
 HTMLHelper::_('behavior.tooltip');
 ?>
 <script>
-	function submitbutton(pressbutton)
+	function Joomla.submitbutton(pressbutton)
 	{
 		var form = $('adminForm');
 		if (pressbutton == 'cancel')
 		{
-			submitform( pressbutton );
+			Joomla.submitform( pressbutton );
 			return;
 		}
 		var mylist = document.getElementById('project_teamslist');
@@ -26,7 +26,7 @@ HTMLHelper::_('behavior.tooltip');
 		{
 			  mylist[i].selected = true;
 		}
-		submitform( pressbutton );
+		Joomla.submitform( pressbutton );
 	}
 </script>
 <script>
@@ -41,8 +41,8 @@ jQuery(document).ready(function($) {
 				echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN_TITLE','<i>' . $this->project->name . '</i>');
 				?>
 			</legend>
-		<div class="row-fluid">
-			<div class="span3">
+		<div class="row">
+			<div class="col-md-3">
 				<b>
 							<?php
 							echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN_AVAIL_TEAMS');
@@ -52,7 +52,7 @@ jQuery(document).ready(function($) {
 						echo $this->lists['teams'];
 						?>
 				</div>
-			<div class="span2">
+			<div class="col-md-2">
 				<button type="button" id="multiselect_rightAll"
 					class="btn btn-block">
 					<i class="icon-forward"></i>
@@ -69,7 +69,7 @@ jQuery(document).ready(function($) {
 					<i class="icon-backward"></i>
 				</button>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<b>
 							<?php
 							echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN_PROJ_TEAMS');
@@ -85,4 +85,5 @@ jQuery(document).ready(function($) {
 	<input type="hidden" name="option" value="com_joomleague" />
 	<input type="hidden" name="cid[]" value="<?php echo $this->project->id; ?>" />
 	<input type="hidden" name="task" value="projectteam.save_matcheslist" />
+		<?php echo HTMLHelper::_('form.token'); ?>
 </form>

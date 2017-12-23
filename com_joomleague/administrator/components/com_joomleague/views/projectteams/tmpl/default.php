@@ -17,7 +17,8 @@ use Joomla\CMS\Uri\Uri;
 defined('_JEXEC') or die;
 
 jimport('joomla.filesystem.file');
-HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
+HTMLHelper::_('jquery.framework');
 
 
 $app = Factory::getApplication();
@@ -78,7 +79,7 @@ jQuery(document).ready(function() {
  * At the moment only passing a name is showing results
  * This segment of code sets up the autocompleter.
  */
-HTMLHelper::_('script','media/jui/js/jquery.autocomplete.min.js',false,false,false,false,true);
+HTMLHelper::_('script','media/com_joomleague/autocomplete/jquery.autocomplete.min.js',false,false,false,false,true);
 
 $script .= "
 	var suggest = jQuery('#quickadd').autocomplete({

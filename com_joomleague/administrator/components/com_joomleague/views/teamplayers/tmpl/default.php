@@ -26,7 +26,8 @@ $archived = $this->state->get('filter.published') == 2 ? true : false;
 $trashed = $this->state->get('filter.published') == - 2 ? true : false;
 $saveOrder = $listOrder == 'a.ordering';
 
-HTMLHelper::_('behavior.framework');
+HTMLHelper::_('bootstrap.tooltip');
+HTMLHelper::_('jquery.framework');
 ?>
 <?php
 $script = "
@@ -64,7 +65,7 @@ jQuery(document).ready(function() {
 			e.stopPropagation();
 		});";
 
-HTMLHelper::_('script','media/jui/js/jquery.autocomplete.min.js',false,false,false,false,true);
+HTMLHelper::_('script','media/com_joomleague/autocomplete/jquery.autocomplete.min.js',false,false,false,false,true);
 
 $script .= "
 	var suggest = jQuery('#quickadd').autocomplete({

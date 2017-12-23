@@ -13,8 +13,8 @@ use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
-//HTMLHelper::_('behavior.framework');
-
+HTMLHelper::_('bootstrap.tooltip');
+HTMLHelper::_('jquery.framework');
 $app = Factory::getApplication();
 $user = Factory::getUser();
 $userId = $user->get('id');
@@ -57,7 +57,7 @@ jQuery(document).ready(function() {
 			e.stopPropagation();
 		});";
 
-HTMLHelper::_('script','media/jui/js/jquery.autocomplete.min.js',false,false,false,false,true);
+HTMLHelper::_('script','media/com_joomleague/autocomplete/jquery.autocomplete.min.js',false,false,false,false,true);
 
 $script .= "
 	var suggest = jQuery('#quickadd').autocomplete({

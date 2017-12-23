@@ -7,6 +7,8 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+HTMLHelper::_('jquery.framework');
 
 defined('_JEXEC') or die;
 

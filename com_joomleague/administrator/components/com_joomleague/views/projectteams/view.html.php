@@ -11,7 +11,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
-
+HTMLHelper::_('jquery.framework');
 defined('_JEXEC') or die;
 
 
@@ -63,7 +63,7 @@ class JoomleagueViewProjectteams extends JLGView
 		$input = $app->input;
 		$option = $input->getCmd('option');
 		$project_id = $app->getUserState($option.'project');
-
+		$projectteams = $this->get('Data');
 		$this->items = $this->get('Items');
 		$this->pagination = $this->get('Pagination');
 		$this->state = $this->get('State');
@@ -82,7 +82,7 @@ class JoomleagueViewProjectteams extends JLGView
 		unset($all_teams);
 
 		$this->lists = $lists;
-
+		$this->projectteams = $projectteams;
 		// Toolbar for ChangeTeams
 		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_CHANGEASSIGN_TEAMS'),'');
 		JLToolBarHelper::custom('projectteam.storechangeteams','move.png','move_f2.png','COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_BUTTON_STORE_CHANGE_TEAMS',false);
@@ -100,13 +100,16 @@ class JoomleagueViewProjectteams extends JLGView
 		$app = Factory::getApplication();
 		$input = $app->input;
 		$option = $input->getCmd('option');
+		$projectteam = $this->get('Data');
 		$project_id = $app->getUserState($option.'project');
-
+		$projectws = $this->get('Data','project');
+		
 		$db = Factory::getDbo();
 		$uri = Uri::getInstance();
 		$baseurl = Uri::root();
 
 		$document = Factory::getDocument();
+		//$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/projectteams.js');
 		$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/multiselect.js');
 
 		$this->items = $this->get('Items');
@@ -130,14 +133,14 @@ class JoomleagueViewProjectteams extends JLGView
 			{
 				if(empty($res1->info))
 				{
-					$project_teamslist[] = JHtmlSelect::option($res->value,$res->text);
+				    $project_teamslist[] = HTMLHelper::_('select.option',$res->value,$res->text);
 				}
 				else
 				{
-					$project_teamslist[] = JHtmlSelect::option($res->value,$res->text.' ('.$res->info.')');
+				    $project_teamslist[] = HTMLHelper::_('select.option',$res->value,$res->text.' ('.$res->info.')');
 				}
 			}
-			$lists['project_teams'] = JHtmlSelect::genericlist($project_teamslist,'project_teamslist[]',
+			$lists['project_teams'] = HTMLHelper::_('select.genericlist',$project_teamslist,'project_teamslist[]',
 					' style="width:250px; height:300px;" class="inputbox" multiple="true" size="'.min(30,count($ress)).'"','value','text',false,
 					'multiselect_to');
 		}
@@ -163,11 +166,11 @@ class JoomleagueViewProjectteams extends JLGView
 
 					if($used == 0 && ! empty($res1->info))
 					{
-						$notusedteams[] = JHtmlSelect::option($res1->value,$res1->text.' ('.$res1->info.')');
+					    $notusedteams[] = HTMLHelper::_('select.option',$res1->value,$res1->text.' ('.$res1->info.')');
 					}
 					elseif($used == 0 && empty($res1->info))
 					{
-						$notusedteams[] = JHtmlSelect::option($res1->value,$res1->text);
+					    $notusedteams[] = HTMLHelper::_('select.option',$res1->value,$res1->text);
 					}
 				}
 			}
@@ -177,24 +180,25 @@ class JoomleagueViewProjectteams extends JLGView
 				{
 					if(empty($res1->info))
 					{
-						$notusedteams[] = JHtmlSelect::option($res1->value,$res1->text);
+					    $notusedteams[] = HTMLHelper::_('select.option',$res1->value,$res1->text);
 					}
 					else
 					{
-						$notusedteams[] = JHtmlSelect::option($res1->value,$res1->text.' ('.$res1->info.')');
+					    $notusedteams[] = HTMLHelper::_('select.option',$res1->value,$res1->text.' ('.$res1->info.')');
 					}
 				}
 			}
 		}
 		else
 		{
-			JError::raiseWarning('ERROR_CODE','<br />'.JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ADD_TEAM').'<br /><br />');
+		  $msg = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ADD_TEAM');
+		  $app->enqueueMessage($msg, 'warning'); 
 		}
 
 		// build the html select list for teams
 		if(count($notusedteams) > 0)
 		{
-			$lists['teams'] = JHtmlSelect::genericlist($notusedteams,'teamslist[]',
+		    $lists['teams'] = HTMLHelper::_('select.genericlist',$notusedteams,'teamslist[]',
 					' style="width:250px; height:300px;" class="inputbox" multiple="true" size="'.min(30,count($notusedteams)).'"','value','text',
 					false,'multiselect');
 		}
@@ -210,6 +214,7 @@ class JoomleagueViewProjectteams extends JLGView
 		$this->user = Factory::getUser();
 		$this->lists = $lists;
 		$this->project = $project;
+		$this->projectws = $projectws;
 		$this->request_url = $uri->toString();
 
 		$this->addToolbar_Editlist();
