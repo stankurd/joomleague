@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Uri\Uri;
 
@@ -59,7 +60,7 @@ class JoomleagueViewTreeto extends JLGView
 		/*
 		 * if ($model->isCheckedOut($user->get('id')))
 		 * {
-		 * $msg = JText::sprintf('DESCBEINGEDITTED', JText::_('The treeto'),
+		 * $msg = Text::sprintf('DESCBEINGEDITTED', Text::_('The treeto'),
 		 * $treeto->id);
 		 * $app->redirect('index.php?option=' . $option, $msg);
 		 * }
@@ -99,14 +100,14 @@ class JoomleagueViewTreeto extends JLGView
 
 	protected function addToolBar_Gennode()
 	{
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETO_TITLE_GENERATE'));
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_TITLE_GENERATE'));
 		JLToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetos');
 		JLToolBarHelper::help('screen.joomleague',true);
 	}
 
 	protected function addToolbar()
 	{
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETO_TITLE'));
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_TITLE'));
 		JLToolBarHelper::save('treeto.save');
 		JLToolBarHelper::apply('treeto.apply');
 		JLToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetos');

@@ -8,10 +8,11 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
-HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 
 HTMLHelper::_('behavior.formvalidator');
 
@@ -34,7 +35,7 @@ Factory::getDocument()->addScriptDeclaration(
 	echo HTMLHelper::_('bootstrap.startTabSet','tabs',array(
 			'active' => 'panel1'
 	));
-	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_DETAILS',true));
+	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,Text::_('COM_JOOMLEAGUE_TABS_DETAILS',true));
 	echo $this->loadTemplate('details');
 	echo HTMLHelper::_('bootstrap.endTab');
 	echo HTMLHelper::_('bootstrap.endTabSet');

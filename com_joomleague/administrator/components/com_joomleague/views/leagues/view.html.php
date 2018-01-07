@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -42,7 +43,7 @@ class JoomleagueViewLeagues extends JLGView
 	 */
 	protected function addToolbar()
 	{
-	    JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_LEAGUES_TITLE'),'jl-leagues');
+	    JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_LEAGUES_TITLE'),'jl-leagues');
 		JLToolBarHelper::addNew('league.add');
 		JLToolBarHelper::custom('leagues.import','upload','upload','COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT',false);
 		JLToolBarHelper::archiveList('leagues.export','COM_JOOMLEAGUE_GLOBAL_XML_EXPORT');

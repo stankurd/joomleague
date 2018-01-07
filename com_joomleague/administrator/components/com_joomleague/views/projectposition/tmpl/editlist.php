@@ -7,11 +7,12 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 HTMLHelper::_('jquery.framework');
 HTMLHelper::_('behavior.core');
-//HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 ?>
 <script>
 jQuery(document).ready(function($) {
@@ -23,14 +24,14 @@ jQuery(document).ready(function($) {
 <form action="index.php" method="post" id="adminForm" name="adminForm">
 	<div id="j-main-container" class="j-main-container">
 	<fieldset class="adminform">
-		<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_P_POSITION_EDIT_LEGEND','<i>'.$this->project->name.'</i>');?></legend>
+		<legend><?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_P_POSITION_EDIT_LEGEND','<i>'.$this->project->name.'</i>');?></legend>
 		<div class="row">
 		<div class="col-md-9">
 		<div class="row">
 			<div class="col-md-3">
 				<b>
 							<?php
-							echo JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_EDIT_AVAILABLE');
+							echo Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_EDIT_AVAILABLE');
 							?>
 						</b><br />
 						<?php
@@ -54,7 +55,7 @@ jQuery(document).ready(function($) {
 			<div class="col-md-3 ">
 				<b>
 							<?php
-							echo JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_EDIT_ASSIGNED');
+							echo Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_EDIT_ASSIGNED');
 							?>
 						</b><br />
 						<?php

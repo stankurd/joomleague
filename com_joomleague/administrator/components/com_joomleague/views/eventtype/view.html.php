@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -45,8 +46,8 @@ class JoomleagueViewEventtype extends JLGView
 		$checkedOut = ! ($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 		
 		// Set toolbar items for the page
-		$text = $isNew ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
-		JLToolBarHelper::title((JText::_('COM_JOOMLEAGUE_ADMIN_EVENTTYPE_EVENT') . ': <span class="toolbarTitleType">[ ' . $text . ' ]</span>'),
+		$text = $isNew ? Text::_('COM_JOOMLEAGUE_GLOBAL_NEW') : Text::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
+		JLToolBarHelper::title((Text::_('COM_JOOMLEAGUE_ADMIN_EVENTTYPE_EVENT') . ': <span class="toolbarTitleType">[ ' . $text . ' ]</span>'),
 				'jl-eventtypes');
 		if($isNew)
 		{

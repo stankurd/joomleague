@@ -13,6 +13,7 @@ jimport('joomla.form.form');
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\Language\Text;
 use Joomla\Registry\Registry;
 
 /**
@@ -42,7 +43,7 @@ class JoomleagueViewSettings extends JLGView
 	protected function addToolbar()
 	{
 		//create the toolbar
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_SETTINGS_TITLE'),'jl-ProjectSettings');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_SETTINGS_TITLE'),'jl-ProjectSettings');
 		JLToolBarHelper::apply('settings.apply');
 		JLToolBarHelper::save('settings.save');
 		JLToolBarHelper::cancel('settings.cancel');

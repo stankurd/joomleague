@@ -37,7 +37,7 @@ class TableClub extends JLTable
 	 * @access public
 	 * @return boolean True on success
 	 */
-	public function check()
+    public function check()
 	{	
 		$db = Factory::getDbo();
 		$isNew = ($this->id == 0);

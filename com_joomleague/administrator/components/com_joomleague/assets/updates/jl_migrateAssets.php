@@ -13,6 +13,7 @@
 // no direct access
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 defined('_JEXEC') or die;
@@ -31,11 +32,11 @@ function PrintStepResult($result)
 {
 	if ($result)
 	{
-		$output=' - <span style="color:green">'.JText::_('SUCCESS').'</span>';
+		$output=' - <span style="color:green">'.Text::_('SUCCESS').'</span>';
 	}
 	else
 	{
-		$output=' - <span style="color:red">'.JText::_('FAILED').'</span>';
+		$output=' - <span style="color:red">'.Text::_('FAILED').'</span>';
 	}
 
 	return $output;

@@ -8,6 +8,7 @@
  */
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -26,8 +27,8 @@ class JoomleagueViewImport extends JLGView
 		$user 		= Factory::getUser();
 
 		//build toolbar
-		#JLToolBarHelper::title(JText::_('IMPORT'), 'home');
-		JLToolBarHelper::title(JText::_('JoomLeague CSV-Import - Step 1 of 2'), 'generic.png');
+		#JLToolBarHelper::title(Text::_('IMPORT'), 'home');
+		JLToolBarHelper::title(Text::_('JoomLeague CSV-Import - Step 1 of 2'), 'generic.png');
 		JLToolBarHelper::back();
 		JLToolBarHelper::help('joomleague.import',true);
 

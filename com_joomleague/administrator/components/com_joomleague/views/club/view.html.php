@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -59,11 +60,11 @@ class JoomleagueViewClub extends JLGView
 		
 		if($isNew)
 		{
-			JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_CLUB_ADD_NEW'),'jl-clubs');
+			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_CLUB_ADD_NEW'),'jl-clubs');
 		}
 		else
 		{
-			JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_CLUB_EDIT').': '.$this->form->getValue('name'),'jl-clubs');
+			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_CLUB_EDIT').': '.$this->form->getValue('name'),'jl-clubs');
 		}
 		
 		JLToolBarHelper::apply('club.apply');

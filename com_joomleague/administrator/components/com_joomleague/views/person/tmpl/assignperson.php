@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 /**
  * Joomleague
@@ -16,7 +17,7 @@ defined('_JEXEC') or die;
 			<fieldset class="adminform">
 				<legend>
 					<?php
-					echo JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_ASSIGN_DESCR2');
+					echo Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_ASSIGN_DESCR2');
 					?>
 				</legend>
 				<table class="adminform">
@@ -41,7 +42,7 @@ defined('_JEXEC') or die;
 					<tr>
 						<td>
 							<div class="button" style="text-align: left">
-								<input type="button" class="inputbox" onclick="projectSelected()" value="<?php echo JText::_( 'COM_JOOMLEAGUE_ADMIN_PERSON_ASSIGN' ); ?>" />
+								<input type="button" class="inputbox" onclick="projectSelected()" value="<?php echo Text::_( 'COM_JOOMLEAGUE_ADMIN_PERSON_ASSIGN' ); ?>" />
 							</div>
 						</td>
 					</tr>

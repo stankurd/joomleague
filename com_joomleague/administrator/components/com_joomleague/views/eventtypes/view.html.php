@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -40,7 +41,7 @@ class JoomleagueViewEventtypes extends JLGView
 
 		// build the html select list for sportstypes
 		$sportstypes = array();
-		$sportstypes[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_EVENTTYPES_SPORTSTYPE_FILTER'),'id','name');
+		$sportstypes[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_ADMIN_EVENTTYPES_SPORTSTYPE_FILTER'),'id','name');
 
 		$modelST = BaseDatabaseModel::getInstance('sportstypes','JoomleagueModel');
 		$allSportstypes = $modelST->getSportsTypes();
@@ -67,7 +68,7 @@ class JoomleagueViewEventtypes extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_EVENTTYPES_TITLE'),'jl-eventtypes');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_EVENTTYPES_TITLE'),'jl-eventtypes');
 		JLToolBarHelper::addNew('eventtype.add');
 		JLToolBarHelper::publishList('eventtypes.publish');
 		JLToolBarHelper::unpublishList('eventtypes.unpublish');

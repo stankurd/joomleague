@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -32,20 +33,20 @@ defined('_JEXEC') or die;
 			{
 				case 2:
 					{
-						echo JText::sprintf('Assign Person(s) as Referee to project [%1$s]','<i>' . $this->prj_name . '</i>');
+						echo Text::sprintf('Assign Person(s) as Referee to project [%1$s]','<i>' . $this->prj_name . '</i>');
 					}
 					break;
 				
 				case 1:
 					{
-						echo JText::sprintf('Assign Person(s) as Staff to [%1$s] in project [%2$s]','<i>' . $this->team_name . '</i>',
+						echo Text::sprintf('Assign Person(s) as Staff to [%1$s] in project [%2$s]','<i>' . $this->team_name . '</i>',
 								'<i>' . $this->prj_name . '</i>');
 					}
 					break;
 				default:
 				case 0:
 					{
-						echo JText::sprintf('Assign Person(s) as Player to [%1$s] in project [%2$s]','<i>' . $this->team_name . '</i>',
+						echo Text::sprintf('Assign Person(s) as Player to [%1$s] in project [%2$s]','<i>' . $this->team_name . '</i>',
 								'<i>' . $this->prj_name . '</i>');
 					}
 					break;
@@ -56,7 +57,7 @@ defined('_JEXEC') or die;
 
 		<div class="clearfix">
 			<div class="btn-wrapper input-append pull-left">
-		<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_FILTER' ); ?>:
+		<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_FILTER' ); ?>:
 		<input type="text" name="search" id="search"
 					value="<?php echo $this->lists['search'];?>" class="text_area"
 					onchange="document.adminForm.submit();" />
@@ -81,7 +82,7 @@ defined('_JEXEC') or die;
 			<table class="adminlist table table-striped">
 				<thead>
 					<tr>
-						<th width="5" style="vertical-align: top;"><?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_NUM'); ?></th>
+						<th width="5" style="vertical-align: top;"><?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_NUM'); ?></th>
 						<th width="1%" class="center">
 							<?php echo HTMLHelper::_('grid.checkall'); ?>
 					</th>
@@ -97,7 +98,7 @@ defined('_JEXEC') or die;
 						<th class="title" class="nowrap">
 							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_INFO','pl.info',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
-						<th class="title" class="nowrap"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_IMAGE'); ?></th>
+						<th class="title" class="nowrap"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PERSONS_IMAGE'); ?></th>
 						<th class="title" class="nowrap">
 							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_BIRTHDAY','pl.birthday',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
@@ -141,13 +142,13 @@ defined('_JEXEC') or die;
 									<?php
 							if($row->picture == '')
 							{
-								$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_NO_IMAGE');
+								$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PERSONS_NO_IMAGE');
 								echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,
 										'title= "' . $imageTitle . '"');
 							}
 							elseif($row->picture == JoomleagueHelper::getDefaultPlaceholder("player"))
 							{
-								$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_DEFAULT_IMAGE');
+								$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PERSONS_DEFAULT_IMAGE');
 								echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/information.png',$imageTitle,
 										'title= "' . $imageTitle . '"');
 							}

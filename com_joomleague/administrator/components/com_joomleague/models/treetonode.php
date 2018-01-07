@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 defined('_JEXEC') or die;
@@ -106,7 +107,7 @@ class JoomleagueModelTreetonode extends JoomleagueModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 			return $result;
@@ -129,7 +130,7 @@ class JoomleagueModelTreetonode extends JoomleagueModelItem
 		$query .= ' WHERE ttn.id = ' . $id;
 		$query .= ';';
 		$db->setQuery($query);
-		$db->query($query);
+        $db->execute($query);
 		
 		return true;
 	}

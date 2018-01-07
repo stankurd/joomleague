@@ -8,6 +8,7 @@
  */
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
@@ -31,12 +32,12 @@ defined('_JEXEC') or die;
 				{
 					$query="option=com_joomleague&view=matches&rid[]=".$lv;
 					$link=Route::_('index.php?'.$query);
-					$prevlink=HTMLHelper::link($link,JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PREV_ROUND'));
+					$prevlink=HTMLHelper::link($link,Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PREV_ROUND'));
 					echo $prevlink;
 				}
 				else
 				{
-					echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PREV_ROUND');
+					echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PREV_ROUND');
 				}
 				echo '</div>';
 				echo '<div style="float: left; text-align: center; margin-right: 10px; margin-left: 10px;">';
@@ -47,12 +48,12 @@ defined('_JEXEC') or die;
 				{
 					$query="option=com_joomleague&view=matches&rid[]=".$nv;
 					$link=Route::_('index.php?'.$query);
-					$nextlink=HTMLHelper::link($link,JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_NEXT_ROUND'));
+					$nextlink=HTMLHelper::link($link,Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_NEXT_ROUND'));
 					echo $nextlink;
 				}
 				else
 				{
-					echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_NEXT_ROUND');
+					echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_NEXT_ROUND');
 				}
 				echo '</div>';
 				?>

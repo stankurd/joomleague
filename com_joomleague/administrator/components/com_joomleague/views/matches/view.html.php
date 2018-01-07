@@ -14,10 +14,12 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\String\StringHelper;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
-
+HTMLHelper::_('jquery.framework');
+HTMLHelper::_('behavior.core');
 
 /**
  * HTML View class
@@ -76,7 +78,7 @@ class JoomleagueViewMatches extends JLGView
 		//build the html options for teams
 		foreach ($matches as $row)
 		{
-			$teams[]=HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
+			$teams[]=HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
 			$divhomeid = 0;
 			//apply the filter only if both teams are from the same division
 			//teams are not from the same division in tournament mode with divisions
@@ -118,19 +120,19 @@ class JoomleagueViewMatches extends JLGView
 				(isset($overall_config['use_jl_events']) && $overall_config['use_jl_events']))
 		{
 			$match_list=array();
-			$mdd[]=HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_MATCH'));
+			$mdd[]=HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_MATCH'));
 
 			foreach ($matches as $row)
 			{
 				$mdd[]=HTMLHelper::_('select.option','index3.php?option=com_joomleague&task=match.editEvents&cid[0]='.$row->id,$row->team1.'-'.$row->team2);
 			}
-			$RosterEventMessage=(isset($overall_config['use_jl_substitution']) && $overall_config['use_jl_substitution']) ? JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_LINEUP') : '';
+			$RosterEventMessage=(isset($overall_config['use_jl_substitution']) && $overall_config['use_jl_substitution']) ? Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_LINEUP') : '';
 			if (isset($overall_config['use_jl_events']) && $overall_config['use_jl_events'])
 			{
 				if (isset($overall_config['use_jl_events']) && $overall_config['use_jl_substitution']){
 					$RosterEventMessage .= ' / ';
 				}
-				$RosterEventMessage .= JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EVENTS');
+				$RosterEventMessage .= Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EVENTS');
 			}
 			$RosterEventMessage .= ($RosterEventMessage != '') ? ':' : '';
 			$lists['RosterEventMessage']=$RosterEventMessage;
@@ -141,16 +143,16 @@ class JoomleagueViewMatches extends JLGView
 		}
 
 		//build the html options for extratime
-		$match_result_type[]=JHtmlSelect::option('0',JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_RT'));
-		$match_result_type[]=JHtmlSelect::option('1',JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_OT'));
-		$match_result_type[]=JHtmlSelect::option('2',JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_SO'));
+		$match_result_type[]=JHtmlSelect::option('0',Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_RT'));
+		$match_result_type[]=JHtmlSelect::option('1',Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_OT'));
+		$match_result_type[]=JHtmlSelect::option('2',Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_SO'));
 		$lists['match_result_type']=$match_result_type;
 		unset($match_result_type);
 
 		//build the html options for massadd create type
-		$createTypes=array(	0 => JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD'),
-				1 => JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_1'),
-				2 => JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_2')
+		$createTypes=array(	0 => Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD'),
+				1 => Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_1'),
+				2 => Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_2')
 		);
 		$ctOptions=array();
 		foreach($createTypes AS $key => $value){
@@ -160,7 +162,7 @@ class JoomleagueViewMatches extends JLGView
 		unset($createTypes);
 
 		// build the html radio for adding into one round / all rounds
-		$createYesNo=array(0 => JText::_('COM_JOOMLEAGUE_GLOBAL_NO'),1 => JText::_('COM_JOOMLEAGUE_GLOBAL_YES'));
+		$createYesNo=array(0 => Text::_('COM_JOOMLEAGUE_GLOBAL_NO'),1 => Text::_('COM_JOOMLEAGUE_GLOBAL_YES'));
 		$ynOptions=array();
 		foreach($createYesNo AS $key => $value){
 			$ynOptions[]=JHtmlSelect::option($key,$value);
@@ -170,7 +172,7 @@ class JoomleagueViewMatches extends JLGView
 		// build the html radio for auto publish new matches
 		$lists['autoPublish']=JHtmlSelect::radiolist($ynOptions,'autoPublish','class="inputbox"','value','text',0);
 		//build the html options for divisions
-		$divisions[]=JHtmlSelect::option('0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
+		$divisions[]=JHtmlSelect::option('0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
 		$mdlDivisions = BaseDatabaseModel::getInstance("divisions", "JoomLeagueModel");
 		if ($res = $mdlDivisions->getDivisions($project_id)){
 			$divisions=array_merge($divisions,$res);
@@ -204,7 +206,7 @@ class JoomleagueViewMatches extends JLGView
 		$massadd = $input->getInt('massadd',0);
 
 		// Set toolbar items for the page
-		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_TITLE'),'jl-Matchdays');
+		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_TITLE'),'jl-Matchdays');
 
 		if (!$massadd)
 		{
@@ -217,7 +219,7 @@ class JoomleagueViewMatches extends JLGView
 
 			JLToolBarHelper::custom('matches.massadd','new.png','new_f2.png','COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_MATCHES',false);
 			JLToolBarHelper::addNewX('match.addmatch','COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_ADD_MATCH');
-			JLToolBarHelper::deleteList(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_WARNING'), 'matches.remove');
+			JLToolBarHelper::deleteList(Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_WARNING'), 'matches.remove');
 			JLToolbarHelper::divider();
 
 			JLToolbarHelper::back('Back','index.php?option=com_joomleague&view=rounds');
@@ -234,7 +236,7 @@ class JoomleagueViewMatches extends JLGView
 		$first = new DateTime($round->round_date_first);
 		$last = new DateTime($round->round_date_last);
 		return $round->name.' ('.
-				$first->format(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT')).' - '.
-				$last->format(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT')).')';
+				$first->format(Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT')).' - '.
+				$last->format(Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT')).')';
 	}
 }

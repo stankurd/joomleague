@@ -10,6 +10,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -62,7 +63,7 @@ class JoomleagueControllerEventtypes extends JLGControllerAdmin
 	public function remove()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$user = Factory::getUser();
 		$app = Factory::getApplication();
@@ -71,7 +72,7 @@ class JoomleagueControllerEventtypes extends JLGControllerAdmin
 		
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'error');
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'error');
 		}
 		else
 		{
@@ -81,11 +82,11 @@ class JoomleagueControllerEventtypes extends JLGControllerAdmin
 			$result = $model->delete($cid);
 			if($result['removed'])
 			{
-				$app->enqueueMessage(JText::plural($this->text_prefix.'_N_ITEMS_DELETED',$result['removedCount']));
+				$app->enqueueMessage(Text::plural($this->text_prefix.'_N_ITEMS_DELETED',$result['removedCount']));
 			}
 			if($result['error'])
 			{
-				$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_EVENTTYPES_UNABLETODELETE'),'warning');
+				$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_EVENTTYPES_UNABLETODELETE'),'warning');
 				
 				foreach ($result['error'] AS $error) 
 				{	
@@ -109,14 +110,14 @@ class JoomleagueControllerEventtypes extends JLGControllerAdmin
 	public function export()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
 		$cid = $input->get('cid',array(),'array');
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'),'error');
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'),'error');
 			$this->setRedirect('index.php?option=com_joomleague&view=eventtypes');
 			return;
 		}

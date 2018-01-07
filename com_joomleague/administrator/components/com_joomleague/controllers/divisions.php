@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -62,7 +63,7 @@ class JoomleagueControllerDivisions extends JLGControllerAdmin
 	public function save()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -77,11 +78,11 @@ class JoomleagueControllerDivisions extends JLGControllerAdmin
 
 		if($model->store($post))
 		{
-			$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_DIVISION_CTRL_SAVED'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_DIVISION_CTRL_SAVED'));
 		}
 		else
 		{
-			$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_DIVISION_CTRL_ERROR_SAVE') . $model->getError(),'error');
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_DIVISION_CTRL_ERROR_SAVE') . $model->getError(),'error');
 		}
 
 		// Check the table in so it can be edited.... we are done with it anyway
@@ -108,7 +109,7 @@ class JoomleagueControllerDivisions extends JLGControllerAdmin
 	public function remove()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -117,7 +118,7 @@ class JoomleagueControllerDivisions extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
 		} else {
 			$model = $this->getModel('division');
 

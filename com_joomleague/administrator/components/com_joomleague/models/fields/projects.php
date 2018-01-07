@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -28,7 +29,7 @@ class JFormFieldProjects extends FormField
 		||	$lang->load($extension, JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
 		||	$lang->load($extension, $source, $lang->getDefault(), false, false);
 		
-		$query->select('p.id, concat(p.name, \' ('.JText::_('COM_JOOMLEAGUE_GLOBAL_LEAGUE').': \', l.name, \')\', \' ('.JText::_('COM_JOOMLEAGUE_GLOBAL_SEASON').': \', s.name, \' )\' ) as name')
+		$query->select('p.id, concat(p.name, \' ('.Text::_('COM_JOOMLEAGUE_GLOBAL_LEAGUE').': \', l.name, \')\', \' ('.Text::_('COM_JOOMLEAGUE_GLOBAL_SEASON').': \', s.name, \' )\' ) as name')
 		->from('#__joomleague_project AS p')
 		->join('LEFT',' #__joomleague_season AS s ON s.id = p.season_id')
 		->join('LEFT','#__joomleague_league AS l ON l.id = p.league_id')
@@ -37,7 +38,7 @@ class JFormFieldProjects extends FormField
 		$db->setQuery( $query );
 		$projects = $db->loadObjectList();
 		if($required == 'false') {
-			// $mitems = array(HTMLHelper::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
+			// $mitems = array(HTMLHelper::_('select.option', '', Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
 		}
 		foreach ( $projects as $project ) {
 			$mitems[] = HTMLHelper::_('select.option',  $project->id, '&nbsp;&nbsp;&nbsp;'.$project->name );

@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\Archive\Archive;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 
@@ -82,7 +83,7 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 		// Check for request forgeries
 		Session::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
 		$msg='';
-		JLToolBarHelper::back(JText::_('COM_JOOMLEAGUE_GLOBAL_BACK'),Route::_('index.php?option=com_joomleague&task=jlxmlimport.display'));
+		JLToolBarHelper::back(Text::_('COM_JOOMLEAGUE_GLOBAL_BACK'),Route::_('index.php?option=com_joomleague&task=jlxmlimport.display'));
 		$input = $app->input;
 		$post=$input->post->getArray();
 
@@ -109,7 +110,7 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 					}
 					if (!JFile::upload($tempFilePath,$dest))
 					{
-						JError::raiseWarning(500,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_CANT_UPLOAD'));
+						JError::raiseWarning(500,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_CANT_UPLOAD'));
 						return;
 					}
 					else
@@ -119,7 +120,7 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 							$result=Archive::extract($dest,$extractdir);
 							if ($result === false)
 							{
-								JError::raiseWarning(500,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_EXTRACT_ERROR'));
+								JError::raiseWarning(500,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_EXTRACT_ERROR'));
 								return false;
 							}
 							JFile::delete($dest);
@@ -134,13 +135,13 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 							{
 								if (!@ rename($src[0],$importFile))
 								{
-									JError::raiseWarning(21,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_ERROR_RENAME'));
+									JError::raiseWarning(21,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_ERROR_RENAME'));
 									return false;
 								}
 							}
 							else
 							{
-								JError::raiseWarning(500,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_TMP_DELETED'));
+								JError::raiseWarning(500,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_TMP_DELETED'));
 								return;
 							}
 						}
@@ -150,13 +151,13 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 							{
 								if (!@ rename($dest,$importFile))
 								{
-									JError::raiseWarning(21,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_RENAME_FAILED'));
+									JError::raiseWarning(21,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_RENAME_FAILED'));
 									return false;
 								}
 							}
 							else
 							{
-								JError::raiseWarning(21,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_WRONG_EXTENSION'));
+								JError::raiseWarning(21,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_WRONG_EXTENSION'));
 								return false;
 							}
 						}
@@ -170,7 +171,7 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 	public function insert()
 	{
 		$app = Factory::getApplication();
-		JLToolBarHelper::back(JText::_('COM_JOOMLEAGUE_GLOBAL_BACK'),Route::_('index.php?option=com_joomleague'));
+		JLToolBarHelper::back(Text::_('COM_JOOMLEAGUE_GLOBAL_BACK'),Route::_('index.php?option=com_joomleague'));
 		$input = $app->input;
 		$post=$input->post->getArray();
 

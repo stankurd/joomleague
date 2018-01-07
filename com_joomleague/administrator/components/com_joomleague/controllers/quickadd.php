@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 defined('_JEXEC') or die;
@@ -201,7 +202,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		
 		if(empty($searchText))
 		{
-			$app->enqueueMessage(Jtext::_('Fill in a valid person'),'warning');
+			$app->enqueueMessage(Text::_('Fill in a valid person'),'warning');
 			$this->setRedirect("index.php?option=com_joomleague&view=teamplayers&project_team_id=" . $projectteam_id);
 			return;
 		}
@@ -225,14 +226,14 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 				
 			if(count($result) > 1)
 			{
-				$app->enqueueMessage(Jtext::_('Multiple persons were found<br>no person was added'),'warning');
+				$app->enqueueMessage(Text::_('Multiple persons were found<br>no person was added'),'warning');
 				$this->setRedirect("index.php?option=com_joomleague&view=teamplayers&project_team_id=" . $projectteam_id);
 				return;
 			}
 				
 			if(empty($result))
 			{
-				$app->enqueueMessage(Jtext::_('Person with that name was not found'),'warning');
+				$app->enqueueMessage(Text::_('Person with that name was not found'),'warning');
 				$this->setRedirect("index.php?option=com_joomleague&view=teamplayers&project_team_id=" . $projectteam_id);
 				return;
 			}
@@ -249,7 +250,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		
 		if(empty($personId))
 		{
-			$app->enqueueMessage(Jtext::_('No person was found'),'warning');
+			$app->enqueueMessage(Text::_('No person was found'),'warning');
 			$this->setRedirect("index.php?option=com_joomleague&view=teamplayers&project_team_id=" . $projectteam_id);
 			return;
 		}
@@ -267,7 +268,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		
 		if($result)
 		{
-			$app->enqueueMessage(Jtext::_('Person already attached as player'),'warning');
+			$app->enqueueMessage(Text::_('Person already attached as player'),'warning');
 			$this->setRedirect("index.php?option=com_joomleague&view=teamplayers&project_team_id=" . $projectteam_id);
 			return;
 		}
@@ -318,7 +319,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 				$this->setError($tblTeamplayer->getError());
 			}
 		}
-		$app->enqueueMessage(Jtext::_('COM_JOOMLEAGUE_ADMIN_QUICKADD_CTRL_PERSON_ASSIGNED'));
+		$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_QUICKADD_CTRL_PERSON_ASSIGNED'));
 		$this->setRedirect("index.php?option=com_joomleague&view=teamplayers&project_team_id=" . $projectteam_id);
 	}
 
@@ -336,7 +337,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		
 		if(empty($searchText))
 		{
-			$app->enqueueMessage(Jtext::_('Fill in a valid person'),'warning');
+			$app->enqueueMessage(Text::_('Fill in a valid person'),'warning');
 			$this->setRedirect("index.php?option=com_joomleague&view=teamstaffs&project_team_id=" . $projectteam_id);
 			return;
 		}
@@ -360,14 +361,14 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 			
 			if(count($result) > 1)
 			{
-				$app->enqueueMessage(Jtext::_('Multiple persons were found<br>no person was added'),'warning');
+				$app->enqueueMessage(Text::_('Multiple persons were found<br>no person was added'),'warning');
 				$this->setRedirect("index.php?option=com_joomleague&view=teamstaffs&project_team_id=" . $projectteam_id);
 				return;
 			}
 			
 			if(empty($result))
 			{
-				$app->enqueueMessage(Jtext::_('Person with that name was not found'),'warning');
+				$app->enqueueMessage(Text::_('Person with that name was not found'),'warning');
 				$this->setRedirect("index.php?option=com_joomleague&view=teamstaffs&project_team_id=" . $projectteam_id);
 				return;
 			}
@@ -384,7 +385,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		
 		if(empty($personId))
 		{
-			$app->enqueueMessage(Jtext::_('No person was found'),'warning');
+			$app->enqueueMessage(Text::_('No person was found'),'warning');
 			$this->setRedirect("index.php?option=com_joomleague&view=teamstaffs&project_team_id=" . $projectteam_id);
 			return;
 		}
@@ -401,7 +402,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		
 		if($result)
 		{
-			$app->enqueueMessage(Jtext::_('Person already attached as staff-member'),'warning');
+			$app->enqueueMessage(Text::_('Person already attached as staff-member'),'warning');
 			$this->setRedirect("index.php?option=com_joomleague&view=teamstaffs&project_team_id=" . $projectteam_id);
 
 			return;
@@ -453,7 +454,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 				$this->setError($tblTeamstaff->getError());
 			}
 		}
-		$app->enqueueMessage(Jtext::_('COM_JOOMLEAGUE_ADMIN_QUICKADD_CTRL_PERSON_ASSIGNED'));
+		$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_QUICKADD_CTRL_PERSON_ASSIGNED'));
 		$this->setRedirect("index.php?option=com_joomleague&view=teamstaffs&project_team_id=" . $projectteam_id);
 	}
 
@@ -471,7 +472,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		
 		if(empty($searchText))
 		{
-			$app->enqueueMessage(Jtext::_('Fill in a valid Referee'),'warning');
+			$app->enqueueMessage(Text::_('Fill in a valid Referee'),'warning');
 			$this->setRedirect("index.php?option=com_joomleague&view=projectreferees&projectid=" . $project_id);
 			return;
 		}
@@ -499,14 +500,14 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 			
 			if(count($result) > 1)
 			{
-				$app->enqueueMessage(Jtext::_('Multiple persons were found<br>no person was added'),'warning');
+				$app->enqueueMessage(Text::_('Multiple persons were found<br>no person was added'),'warning');
 				$this->setRedirect("index.php?option=com_joomleague&view=projectreferees&projectid=" . $project_id);
 				return;
 			}
 			
 			if(empty($result))
 			{
-				$app->enqueueMessage(Jtext::_('Person with that name was not found'),'warning');
+				$app->enqueueMessage(Text::_('Person with that name was not found'),'warning');
 				$this->setRedirect("index.php?option=com_joomleague&view=projectreferees&projectid=" . $project_id);
 				return;
 			}
@@ -523,7 +524,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		
 		if(empty($personId))
 		{
-			$app->enqueueMessage(Jtext::_('No person was found'),'warning');
+			$app->enqueueMessage(Text::_('No person was found'),'warning');
 			$this->setRedirect("index.php?option=com_joomleague&view=projectreferees&projectid=" . $project_id);
 			return;
 		}
@@ -540,7 +541,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		
 		if($result)
 		{
-			$app->enqueueMessage(Jtext::_('Referee already attached'),'warning');
+			$app->enqueueMessage(Text::_('Referee already attached'),'warning');
 			$this->setRedirect("index.php?option=com_joomleague&view=projectreferees&projectid=" . $project_id);
 			return;
 		}
@@ -570,7 +571,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 			
 			if(empty($person))
 			{
-				$app->enqueueMessage(Jtext::_('Fill in a valid Referee'),'warning');
+				$app->enqueueMessage(Text::_('Fill in a valid Referee'),'warning');
 				$this->setRedirect("index.php?option=com_joomleague&view=projectreferees&projectid=" . $project_id);
 				return;
 			}
@@ -607,7 +608,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 				$this->setError($tblProjectReferee->getError());
 			}
 		}
-		$msg = Jtext::_('COM_JOOMLEAGUE_ADMIN_QUICKADD_CTRL_PERSON_ASSIGNED');
+		$msg = Text::_('COM_JOOMLEAGUE_ADMIN_QUICKADD_CTRL_PERSON_ASSIGNED');
 		$this->setRedirect("index.php?option=com_joomleague&view=projectreferees&projectid=" . $project_id,$msg);
 	}
 
@@ -624,7 +625,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		
 		if(empty($searchText))
 		{
-			$app->enqueueMessage(Jtext::_('Fill in a teamname'),'warning');
+			$app->enqueueMessage(Text::_('Fill in a teamname'),'warning');
 			$this->setRedirect("index.php?option=com_joomleague&view=projectteams&projectid=" . $project_id);
 			return;
 		}
@@ -652,14 +653,14 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 			
 			if(count($result) > 1)
 			{
-				$app->enqueueMessage(Jtext::_('Multiple teams with that name were found<br>no team is added'),'warning');
+				$app->enqueueMessage(Text::_('Multiple teams with that name were found<br>no team is added'),'warning');
 				$this->setRedirect("index.php?option=com_joomleague&view=projectteams&projectid=" . $project_id);
 				return;
 			}
 			
 			if(empty($result))
 			{
-				$app->enqueueMessage(Jtext::_('Team with that name was not found'),'warning');
+				$app->enqueueMessage(Text::_('Team with that name was not found'),'warning');
 				$this->setRedirect("index.php?option=com_joomleague&view=projectteams&projectid=" . $project_id);
 				return;
 			}
@@ -676,7 +677,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		
 		if(empty($teamId) || $teamId == null)
 		{
-			$app->enqueueMessage(Jtext::_('Team does not exist.<br>No team was added'),'warning');
+			$app->enqueueMessage(Text::_('Team does not exist.<br>No team was added'),'warning');
 			$this->setRedirect("index.php?option=com_joomleague&view=projectteams&projectid=" . $project_id);
 			return;
 		}
@@ -695,7 +696,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		if($result)
 		{
 			// the team was already added so don't add it twice
-			$app->enqueueMessage(Jtext::_('Team already exists<br>No team was added'),'warning');
+			$app->enqueueMessage(Text::_('Team already exists<br>No team was added'),'warning');
 			$this->setRedirect("index.php?option=com_joomleague&view=projectteams&projectid=" . $project_id);
 			return;
 		}
@@ -745,7 +746,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 			 $app->enqueueMessage($errors,'error'); 
 		}
 		
-		$msg = Jtext::_('COM_JOOMLEAGUE_ADMIN_QUICKADD_CTRL_TEAM_ASSIGNED');
+		$msg = Text::_('COM_JOOMLEAGUE_ADMIN_QUICKADD_CTRL_TEAM_ASSIGNED');
 		$this->setRedirect("index.php?option=com_joomleague&view=projectteams&projectid=" . $project_id,$msg);
 	}
 }

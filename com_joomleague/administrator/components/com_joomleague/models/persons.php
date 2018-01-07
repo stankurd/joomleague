@@ -8,6 +8,7 @@
  * @author		Kurt Norgaz
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -211,7 +212,7 @@ class JoomleagueModelPersons extends JLGModelList
 		}
 		catch (Exception $e)
 		{
-		    $app->enqueueMessage(JText::_($e->getMessage()), 'error');
+		    $app->enqueueMessage(Text::_($e->getMessage()), 'error');
 		    return false;
 		}
 		

@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -189,7 +190,7 @@ class JoomleagueModelMatches extends JoomleagueModelList
 					}
 				catch (Exception $e)
 					{
-						$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 					}
 			return $result;
@@ -225,7 +226,7 @@ class JoomleagueModelMatches extends JoomleagueModelList
 					}
 				catch (Exception $e)
 					{
-						$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						return false;
 					}
 			return $result;
@@ -246,7 +247,7 @@ class JoomleagueModelMatches extends JoomleagueModelList
 					}
 				catch (Exception $e)
 					{
-						$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						return false;
 					}
 		return $result;

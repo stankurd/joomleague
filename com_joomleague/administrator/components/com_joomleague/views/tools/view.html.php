@@ -7,6 +7,7 @@
 * @link			http://www.joomleague.at
 */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -35,7 +36,7 @@ class JoomleagueViewTools extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JLToolBarHelper::title(JText::_('Tools'),'wrench');
+		JLToolBarHelper::title(Text::_('Tools'),'wrench');
 		JLToolbarHelper::custom('tools.back','back','back','Back',false);
 		JLToolbarHelper::custom('tools.truncate','trash','Truncate','Truncate',false);
 	}

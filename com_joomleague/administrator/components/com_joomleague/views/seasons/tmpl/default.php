@@ -9,6 +9,7 @@
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
@@ -49,7 +50,7 @@ if($saveOrder)
 	</div>
 	<?php if (empty($this->items)) : ?>
 	<div class="alert alert-no-items">
-		<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+		<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 
 	<?php else : ?>
 			<div class="j-main-container">
@@ -68,7 +69,7 @@ if($saveOrder)
 					</th>
 					<th width="5%" class="title">
 						<?php
-						echo JText::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');
+						echo Text::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');
 						?>
 					</th>
 					<th width="1%">
@@ -119,7 +120,7 @@ if($saveOrder)
 							<td class="center">
 								<a href="<?php echo $link; ?>">
 									<?php
-									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_SEASONS_EDIT_DETAILS');
+									$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_SEASONS_EDIT_DETAILS');
 									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/edit.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');
 									?>

@@ -6,12 +6,14 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 ?>
 <fieldset class="form-vertical">
 	<legend>
 		<?php
-		echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_P_REF_DESCR',
+		echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_P_REF_DESCR',
 				JoomleagueHelper::formatName(null,$this->item->firstname,$this->item->nickname,$this->item->lastname,0),$this->project->name);
 		?>
 	</legend>

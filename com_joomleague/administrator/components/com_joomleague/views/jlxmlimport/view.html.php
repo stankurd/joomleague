@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -24,7 +25,7 @@ class JoomleagueViewJLXMLImport extends JLGView
 	function display( $tpl = null )
 	{
 		// Set toolbar items for the page
-		JLToolBarHelper::title(JText::_('JoomLeague XML Import'), 'generic.png');
+		JLToolBarHelper::title(Text::_('JoomLeague XML Import'), 'generic.png');
 		JLToolBarHelper::back();
 		#JLToolBarHelper::save( 'save', 'Import' );
 		JLToolBarHelper::help('screen.joomleague', true );

@@ -8,7 +8,7 @@
  */
 
 // Check to ensure this file is included in Joomla!
-use Joomla\CMS\Helper\TagsHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Toolbar\ToolbarHelper;
 
@@ -33,7 +33,7 @@ class JoomleagueControllerUpdate extends JoomleagueController
 
 	public function update()
 	{
-		ToolbarHelper::back(JText::_('COM_JOOMLEAGUE_BACK_UPDATELIST'),Route::_('index.php?option=com_joomleague&view=updates'));
+		ToolbarHelper::back(Text::_('COM_JOOMLEAGUE_BACK_UPDATELIST'),Route::_('index.php?option=com_joomleague&view=updates'));
 		$input = $this->input;
 		$post = $input->post->getArray();
 		$file_name=$input->getString('file_name');
@@ -48,14 +48,14 @@ class JoomleagueControllerUpdate extends JoomleagueController
 			$filepath=JPATH_COMPONENT_ADMINISTRATOR.'/assets/updates/'.$path[0];
 		}
 		$model=$this->getModel('updates');
-		echo JText::sprintf('Updating from file [ %s ]','<b>'.JPath::clean($filepath).'</b>');
+		echo Text::sprintf('Updating from file [ %s ]','<b>'.JPath::clean($filepath).'</b>');
 		if (JFile::exists($filepath))
 		{
 			$model->loadUpdateFile($filepath,$file_name);
 		}
 		else
 		{
-			echo JText::_('Update file not found!');
+			echo Text::_('Update file not found!');
 		}
 	}
 }

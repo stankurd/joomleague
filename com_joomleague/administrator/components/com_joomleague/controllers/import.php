@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 defined('_JEXEC') or die;
@@ -99,7 +100,7 @@ class JoomleagueControllerImport extends JoomleagueController
 				break;
 			
 			default :
-				$msg = JText::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_NOT_EXIST' );
+				$msg = Text::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_NOT_EXIST' );
 				$this->setRedirect ( 'index.php?option='.$this->option.'&view=projects', $msg, 'error' );
 				return;
 		}
@@ -127,7 +128,7 @@ class JoomleagueControllerImport extends JoomleagueController
 			$handle = fopen ( $filename, 'r' );
 			
 			if (! $handle) {
-				$msg = JText::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_CANNOT_OPEN' );
+				$msg = Text::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_CANNOT_OPEN' );
 				$this->setRedirect ( 'index.php?option='.$this->option.'&view=' . $view, $msg, 'error' );
 				return;
 			}
@@ -148,7 +149,7 @@ class JoomleagueControllerImport extends JoomleagueController
 			
 			// If there is no validated fields, there is a problem...
 			if (! count ( $fields )) {
-				$msg = JText::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_ERROR_PARSING' );
+				$msg = Text::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_ERROR_PARSING' );
 				$this->setRedirect ( 'index.php?option='.$this->option.'&view=' . $view, $msg, 'error' );
 				return;
 			} else {
@@ -162,7 +163,7 @@ class JoomleagueControllerImport extends JoomleagueController
 			while ( ($data = fgetcsv ( $handle, 10000, $delimiter, '"' )) !== FALSE ) {
 				$num = count ( $data );
 				if ($numfields != $num) {
-					$msg [] = JText::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_WRONG_NUMBER_OF_FIELDS' );
+					$msg [] = Text::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_WRONG_NUMBER_OF_FIELDS' );
 				} else {
 					$r = array ();
 					// only extract columns with validated header, from previous step.
@@ -175,16 +176,16 @@ class JoomleagueControllerImport extends JoomleagueController
 			}
 			fclose ( $handle );
 			
-			$msg [] = JText::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_TOTAL_RECORDS_FOUND' ) . count ( $records );
+			$msg [] = Text::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_TOTAL_RECORDS_FOUND' ) . count ( $records );
 			
 			// database update
 			if (count ( $records )) {
 				$model = $this->getModel ( 'import' );
 				$result = $model->import ( $fields, $records, $replace, $table );
 				$msg [] = $result ['errormsg'];
-				$msg [] = JText::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_TOTAL_ADDED_RECORDS' ) . ' ' . $result ['added'];
-				$msg [] = JText::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_TOTAL_UPDATED_RECORDS' ) . ' ' . $result ['updated'];
-				$msg [] = JText::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_TOTAL_EXISTS_RECORDS' ) . ' ' . $result ['exists'];
+				$msg [] = Text::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_TOTAL_ADDED_RECORDS' ) . ' ' . $result ['added'];
+				$msg [] = Text::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_TOTAL_UPDATED_RECORDS' ) . ' ' . $result ['updated'];
+				$msg [] = Text::_ ( 'COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_TOTAL_EXISTS_RECORDS' ) . ' ' . $result ['exists'];
 			}
 			$this->setRedirect ( 'index.php?option='.$this->option.'&view=' . $view, implode ( '<p>', $msg ) );
 		}

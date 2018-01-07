@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -55,7 +56,7 @@ class JoomleagueControllerProjectReferee extends JLGControllerForm
 		$post = $jinput->post->getArray();
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('Select person to assign as referee'));
+			$app->enqueueMessage(Text::_('Select person to assign as referee'),'error');
 		}
 		else
 		{
@@ -64,11 +65,11 @@ class JoomleagueControllerProjectReferee extends JLGControllerForm
 
 			if($model->storeassigned($cid,$project_id))
 			{
-				$msg = JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_PERSON_ASSIGNED_AS_REFEREE');
+				$msg = Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_PERSON_ASSIGNED_AS_REFEREE');
 			}
 			else
 			{
-				$msg = JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_ERROR_PERSON_ASSIGNED_AS_REFEREE') . $model->getError();
+				$msg = Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_ERROR_PERSON_ASSIGNED_AS_REFEREE') . $model->getError();
 			}
 		}
 

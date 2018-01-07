@@ -10,6 +10,7 @@ use Joomla\CMS\Factory;
 use Joomla\Http\Response;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -70,7 +71,7 @@ class JoomleagueViewPerson extends JLGView
 		$input->set('hidemainmenu',true);
 		$input->set('hidesidemenu',true);
 	
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_ASSIGN_DESCR'));
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_ASSIGN_DESCR'));
 		Response::allowCache(false);
 
 		$document = Factory::getDocument();
@@ -79,7 +80,7 @@ class JoomleagueViewPerson extends JLGView
 		$proj_id = (int) $prjid[0];
 		
 		// build the html select list for projects
-		$projects[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_PROJECT'),'id','name');
+		$projects[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_PROJECT'),'id','name');
 
 		if($res = JoomleagueHelper::getProjects())
 		{
@@ -89,7 +90,7 @@ class JoomleagueViewPerson extends JLGView
 				'name',$proj_id);
 		unset($projects);
 
-		$projectteams[] = JHtmlSelect::option('0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'),'value','text');
+		$projectteams[] = JHtmlSelect::option('0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'),'value','text');
 
 		// if a project is active we show the teams select list
 		if($proj_id > 0)
@@ -121,11 +122,11 @@ class JoomleagueViewPerson extends JLGView
 		$checkedOut = ! ($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 
 		// Set toolbar items for the page
-		$text = $isNew ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
+		$text = $isNew ? Text::_('COM_JOOMLEAGUE_GLOBAL_NEW') : Text::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
 
 		if($isNew)
 		{
-			JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_TITLE'));
+			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_TITLE'));
 			JLToolBarHelper::apply('person.apply');
 			JLToolBarHelper::save('person.save');
 			JLToolBarHelper::divider();
@@ -135,11 +136,11 @@ class JoomleagueViewPerson extends JLGView
 		{
 			$name = JoomleagueHelper::formatName(null,$this->form->getValue('firstname'),$this->form->getValue('nickname'),
 					$this->form->getValue('lastname'),JoomleagueHelper::defaultNameFormat());
-			JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_TITLE2') . ': ' . $name);
+			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_TITLE2') . ': ' . $name);
 			JLToolBarHelper::apply('person.apply');
 			JLToolBarHelper::save('person.save');
 			JLToolBarHelper::divider();
-			JLToolBarHelper::cancel('person.cancel',JText::_('COM_JOOMLEAGUE_GLOBAL_CLOSE'));
+			JLToolBarHelper::cancel('person.cancel',Text::_('COM_JOOMLEAGUE_GLOBAL_CLOSE'));
 		}
 		JLToolBarHelper::divider();
 		JLToolBarHelper::help('screen.joomleague',true);

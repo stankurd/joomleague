@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -41,7 +42,7 @@ class JLGStatisticPercentage extends JLGStatistic {
 			$numerator_ids = $params->get('numerator_ids');
 		}
 		if (!count($numerator_ids)) {
-			JError::raiseWarning(0, JText::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
+			JError::raiseWarning(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
 		}
 		if(!is_array($params->get('denominator_ids'))) {
@@ -50,7 +51,7 @@ class JLGStatisticPercentage extends JLGStatistic {
 			$denominator_ids = $params->get('denominator_ids');
 		}
 		if (!count($denominator_ids)) {
-			JError::raiseWarning(0, JText::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
+			JError::raiseWarning(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
 		}
 				
@@ -74,7 +75,7 @@ class JLGStatisticPercentage extends JLGStatistic {
 			$numerator_ids = $params->get('numerator_ids');
 		}
 		if (!count($numerator_ids)) {
-			JError::raiseWarning(0, JText::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
+			JError::raiseWarning(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
 		}
 		if(!is_array($params->get('denominator_ids'))) {
@@ -83,7 +84,7 @@ class JLGStatisticPercentage extends JLGStatistic {
 			$denominator_ids = $params->get('denominator_ids');
 		}
 		if (!count($denominator_ids)) {
-			JError::raiseWarning(0, JText::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
+			JError::raiseWarning(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
 		}
 				

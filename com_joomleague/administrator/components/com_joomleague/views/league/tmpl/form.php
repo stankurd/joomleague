@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
@@ -27,11 +28,11 @@ Factory::getDocument()->addScriptDeclaration('
 	<?php
 	$p = 1;
 	echo HTMLHelper::_('bootstrap.startTabSet','tabs',array('active' => 'panel1'));
-	echo HTMLHelper::_('bootstrap.addTab','tabs','panel'.$p++,JText::_('COM_JOOMLEAGUE_TABS_DETAILS',true));
+	echo HTMLHelper::_('bootstrap.addTab','tabs','panel'.$p++,Text::_('COM_JOOMLEAGUE_TABS_DETAILS',true));
 	echo $this->loadTemplate('details');
 	echo HTMLHelper::_('bootstrap.endTab');
 
-	echo HTMLHelper::_('bootstrap.addTab','tabs','panel'.$p++,JText::_('COM_JOOMLEAGUE_TABS_EXTENDED',true));
+	echo HTMLHelper::_('bootstrap.addTab','tabs','panel'.$p++,Text::_('COM_JOOMLEAGUE_TABS_EXTENDED',true));
 	echo $this->loadTemplate('extended');
 	echo HTMLHelper::_('bootstrap.endTab');
 	?>

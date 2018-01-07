@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
@@ -51,7 +52,7 @@ if($saveOrder)
 	</div>
 	<?php if (empty($this->items)) : ?>
 	<div class="alert alert-no-items">
-		<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+		<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 	</div>
 	<?php else : ?>
 	<div id="j-main-container" class="j-main-container">
@@ -78,7 +79,7 @@ if($saveOrder)
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PLAYGROUNDS_CAPACITY','a.max_visitors',$listDirn, $listOrder);?>
 				</th>
 				<th>
-					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUNDS_IMAGE');?>
+					<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUNDS_IMAGE');?>
 				</th>
 				<th width="1%">
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder); ?>
@@ -127,7 +128,7 @@ if($saveOrder)
 				<td class="center">
 					<a href="<?php echo $link; ?>">
 				<?php
-					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUNDS_EDIT_DETAILS');
+					$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUNDS_EDIT_DETAILS');
 					echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "'.$imageTitle.'"');
 				?>
 					</a>
@@ -143,17 +144,17 @@ if($saveOrder)
 				<?php	
 				if($row->picture == '')
 				{
-					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUNDS_NO_IMAGE');
+					$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUNDS_NO_IMAGE');
 					echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "'.$imageTitle.'"');
 				}
 				elseif($row->picture === JoomleagueHelper::getDefaultPlaceholder("playground"))
 				{	
-					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUNDS_DEFAULT_IMAGE');
+					$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUNDS_DEFAULT_IMAGE');
 					echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/information.png',$imageTitle,'title= "'.$imageTitle.'"');
 				}
 				elseif($row->picture !== '')
 				{
-					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUNDS_CUSTOM_IMAGE');
+					$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUNDS_CUSTOM_IMAGE');
 					echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/ok.png',$imageTitle,'title= "'.$imageTitle.'"');
 				}
 				?>

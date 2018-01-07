@@ -6,6 +6,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 ?>
 <fieldset class="adminform">
@@ -13,13 +15,13 @@ defined('_JEXEC') or die;
 	<?php
 	$name = JoomleagueHelper::formatName(null,$this->item->firstname,$this->item->nickname,$this->item->lastname,
 	JoomleagueHelper::defaultNameFormat());
-	echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_DETAILS_TITLE',$name,'<i>'.$this->projectteam->name.'</i>',
+	echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_DETAILS_TITLE',$name,'<i>'.$this->projectteam->name.'</i>',
 	'<i>'.$this->project->name.'</i>');
 	?>
 	</legend>
 	<fieldset class="form-horizontal">
 		<div class="control-group">
-			<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_POS'); ?></div>
+			<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_POS'); ?></div>
 			<div class="controls"><?php echo $this->lists['projectpositions']; ?></div>
 		</div>
 		<?php 

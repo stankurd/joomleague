@@ -10,6 +10,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Router\Route;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 /**
@@ -204,7 +205,7 @@ class JoomleagueControllerJoomleague extends JLGControllerAdmin
 				{
 					// $app->setUserState ( $option . 'project_team_id', '0' );
 					$this->setRedirect('index.php?option=com_joomleague&task=joomleague.panel&layout=panel&pid[]=' . $pid,
-							JText::_('COM_JOOMLEAGUE_ADMIN_CTRL_PROJECT_SELECTED'));
+							Text::_('COM_JOOMLEAGUE_ADMIN_CTRL_PROJECT_SELECTED'));
 				}
 				else
 				{
@@ -215,7 +216,7 @@ class JoomleagueControllerJoomleague extends JLGControllerAdmin
 			case 'teams':
 				if($tid)
 				{
-					$this->setRedirect('index.php?option=com_joomleague&view=teamplayers',JText::_('COM_JOOMLEAGUE_ADMIN_CTRL_TEAM_SELECTED'));
+					$this->setRedirect('index.php?option=com_joomleague&view=teamplayers',Text::_('COM_JOOMLEAGUE_ADMIN_CTRL_TEAM_SELECTED'));
 				}
 				else
 				{
@@ -227,20 +228,20 @@ class JoomleagueControllerJoomleague extends JLGControllerAdmin
 				if($rid)
 				{
 					$this->setRedirect('index.php?option=com_joomleague&view=matches&rid[]=' . $rid,
-							JText::_('COM_JOOMLEAGUE_ADMIN_CTRL_ROUND_SELECTED'));
+							Text::_('COM_JOOMLEAGUE_ADMIN_CTRL_ROUND_SELECTED'));
 				}
 				break;
 	
 			case 'seasons':
 				$this->setRedirect('index.php?option=com_joomleague&view=projects&sid[]=' . $sid,
-				JText::_('COM_JOOMLEAGUE_ADMIN_CTRL_SEASON_SELECTED'));
+				Text::_('COM_JOOMLEAGUE_ADMIN_CTRL_SEASON_SELECTED'));
 				break;
 	
 			default:
 				if($stid)
 				{
 					$this->setRedirect('index.php?option=com_joomleague&view=projects&stid[]=' . $stid,
-							JText::_('COM_JOOMLEAGUE_ADMIN_CTRL_SPORTSTYPE_SELECTED'));
+							Text::_('COM_JOOMLEAGUE_ADMIN_CTRL_SPORTSTYPE_SELECTED'));
 				}
 				else
 				{

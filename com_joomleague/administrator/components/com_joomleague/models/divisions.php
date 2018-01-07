@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -143,7 +144,7 @@ class JoomleagueModelDivisions extends JLGModelList
 		}
 		catch (RuntimeException $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return array();
 		}
 		{

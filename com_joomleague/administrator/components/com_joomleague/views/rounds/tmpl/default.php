@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 
@@ -35,7 +36,7 @@ jQuery(document).ready(function() {
              	}
 			},
 			highlight: '#DEDEDE',
-		    emptytext: '<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_EMPTY'); ?>',
+		    emptytext: '<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_EMPTY'); ?>',
 		    params: function(params) {
 		        // originally params contain pk, name and value
 		        params.token = '<?php echo Session::getFormToken();?>';
@@ -58,7 +59,7 @@ jQuery(document).ready(function() {
              	}
 			},
 			highlight: '#DEDEDE',
-		    emptytext: '<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_EMPTY'); ?>',
+		    emptytext: '<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_EMPTY'); ?>',
 		    params: function(params) {
 		        // originally params contain pk, name and value
 		        params.token = '<?php echo Session::getFormToken();?>';
@@ -80,19 +81,19 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 	?>
 <div id='populate_enter_division' style='display:<?php echo ($this->populate == 0) ? 'none' : 'block'; ?>'>
 	<fieldset class='adminform'>
-		<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_LEGEND','<i>'.$this->project->name.'</i>'); ?></legend>
+		<legend><?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_LEGEND','<i>'.$this->project->name.'</i>'); ?></legend>
 		<form action="<?php echo $this->request_url; ?>" method="post" style="display: inline" id="enterdivision">
 			<table class='admintable'>
 				<tbody>
 					<tr>
-						<td class='key' nowrap='nowrap'><?php echo JText::_('COM_JOOMLEAGUE_P_MENU_DIVISIONS'); ?></td>
+						<td class='key' nowrap='nowrap'><?php echo Text::_('COM_JOOMLEAGUE_P_MENU_DIVISIONS'); ?></td>
 						<td>
 				<?php
 		echo HTMLHelper::_('select.genericlist',$this->lists['divisions'],'division_id','class="inputbox" size="1"','value','text',0);
 	?>
 
 						<td>
-							<input type='submit' class='button' value='<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_BUTTON'); ?>' onclick='this.form.submit();' />
+							<input type='submit' class='button' value='<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_BUTTON'); ?>' onclick='this.form.submit();' />
 						</td>
 					</tr>
 				</tbody>
@@ -109,14 +110,14 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 <div id='alt_massadd_enter' style='display:<?php echo ($this->massadd) ? 'block' : 'none'; ?>'>
 	<form id='copyform' method='post' style='display: inline'>
 		<fieldset class='form-horizontal'>
-			<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_DESC'); ?>
+			<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_DESC'); ?>
 			<br>
 			<legend>
-				<?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_LEGEND','<i>'.$this->project->name.'</i>'); ?>
+				<?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_LEGEND','<i>'.$this->project->name.'</i>'); ?>
 			</legend>
 			<div class='control-group'>
 				<div class='control-label'>
-					<label for='mass_add_method'><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_SCHEDULE'); ?></label>
+					<label for='mass_add_method'><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_SCHEDULE'); ?></label>
 				</div>
 				<div class='controls'>
 					<?php echo $this->lists['roundscheduling']; ?>
@@ -125,7 +126,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 			<div id='interval_method' style='display: block;'>
 				<div class='control-group'>
 					<div class='control-label'>
-						<label for='add_round_count'><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_COUNT'); ?></label>
+						<label for='add_round_count'><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_COUNT'); ?></label>
 					</div>
 					<div class='controls'>
 						<input type='number' id='add_round_count' name='add_round_count'
@@ -134,7 +135,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 				</div>
 				<div class='control-group'>
 					<div class='control-label'>
-						<label for='start_date'><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_START_DATE'); ?></label>
+						<label for='start_date'><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_START_DATE'); ?></label>
 					</div>
 					<div class='controls'>
 						<?php
@@ -146,7 +147,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 				</div>
 				<div class='control-group'>
 					<div class='control-label'>
-						<label for='interval'><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_INTERVAL'); ?></label>
+						<label for='interval'><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_INTERVAL'); ?></label>
 					</div>
 					<div class='controls'>
 						<input type='number' id='interval' name='interval' value='7'
@@ -154,7 +155,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 					</div>
 				</div>
 			</div>
-			<input type='submit' class='button' value='<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_SUBMIT_BUTTON'); ?>' onclick='this.form.submit();' />
+			<input type='submit' class='button' value='<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_SUBMIT_BUTTON'); ?>' onclick='this.form.submit();' />
 			<input type='hidden' name='project_id' value='<?php echo $this->project->id; ?>' />
 			<input type='hidden' name='task' value='rounds.startmassadd' />
 		</fieldset>
@@ -163,7 +164,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 </div>
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm" name="adminForm">
 	<fieldset class="adminform">
-		<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_LEGEND','<i>'.$this->project->name.'</i>'); ?></legend>
+		<legend><?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_LEGEND','<i>'.$this->project->name.'</i>'); ?></legend>
 			<table class="table table-striped" id="roundslist">
 				<thead>
 					<tr>
@@ -172,20 +173,20 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 						</th>
 						<th width="20">&nbsp;</th>
 						<th width="1%">
-							<?php echo JText::_('#'); ?></th>
+							<?php echo Text::_('#'); ?></th>
 						<th>
-							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_ROUND_TITLE'); ?></th>
+							<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_ROUND_TITLE'); ?></th>
 						<th width="10%">
-							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_STARTDATE'); ?></th>
+							<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_STARTDATE'); ?></th>
 						<th width="1%">&nbsp;</th>
 						<th width="10%">
-							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_ENDDATE'); ?></th>
+							<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_ENDDATE'); ?></th>
 						<th width="10%">
-							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_EDIT_MATCHES'); ?></th>
+							<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_EDIT_MATCHES'); ?></th>
 						<th width="20">
-							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_PUBLISHED_CHECK'); ?></th>
+							<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_PUBLISHED_CHECK'); ?></th>
 						<th width="20">
-							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_RESULT_CHECK'); ?></th>
+							<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_RESULT_CHECK'); ?></th>
 						<th width="1%">
 							<?php echo HTMLHelper::_('grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ID', 'a.id',$this->lists['order_Dir'],$this->lists['order']); ?></th>
 					</tr>
@@ -206,7 +207,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 						<tr class="row<?php echo $i % 2; ?>">
 						<td class="center"><?php echo $checked; ?></td>
 						<td class="center"><?php
-						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_EDIT_DETAILS');
+						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_EDIT_DETAILS');
 						$imageFile = 'administrator/components/com_joomleague/assets/images/edit.png';
 						$imageParams = "title='$imageTitle'";
 						echo HTMLHelper::link($link1,HTMLHelper::image($imageFile,$imageTitle,$imageParams));
@@ -273,19 +274,19 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 						<td><?php
 						if($this->countProjectTeams > 0)
 						{
-							$link2Title = JText::plural('COM_JOOMLEAGUE_ADMIN_ROUNDS_EDIT_MATCHES_LINK',$row->countMatches);
+							$link2Title = Text::plural('COM_JOOMLEAGUE_ADMIN_ROUNDS_EDIT_MATCHES_LINK',$row->countMatches);
 							echo HTMLHelper::link($link2,$link2Title);
 						}
 						else
 						{
-							echo '<a href="index.php?option=com_joomleague&view=projectteams">' . JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_NO_TEAMS') .
+							echo '<a href="index.php?option=com_joomleague&view=projectteams">' . Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_NO_TEAMS') .
 									 '</a>';
 						}
 						?></td>
 						<td class="center"><?php
 						if(($row->countUnPublished == 0) && ($row->countMatches > 0))
 						{
-							$imageTitle = JText::plural('COM_JOOMLEAGUE_ADMIN_ROUNDS_ALL_PUBLISHED',$row->countMatches);
+							$imageTitle = Text::plural('COM_JOOMLEAGUE_ADMIN_ROUNDS_ALL_PUBLISHED',$row->countMatches);
 							$imageFile = 'administrator/components/com_joomleague/assets/images/ok.png';
 							$imageParams = "title='$imageTitle'";
 							echo HTMLHelper::image($imageFile,$imageTitle,$imageParams);
@@ -294,11 +295,11 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 						{
 							if($row->countMatches == 0)
 							{
-								$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_ANY_MATCHES');
+								$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_ANY_MATCHES');
 							}
 							else
 							{
-								$imageTitle = JText::plural('COM_JOOMLEAGUE_ADMIN_ROUNDS_PUBLISHED_NR',$row->countUnPublished);
+								$imageTitle = Text::plural('COM_JOOMLEAGUE_ADMIN_ROUNDS_PUBLISHED_NR',$row->countUnPublished);
 							}
 							$imageFile = 'administrator/components/com_joomleague/assets/images/error.png';
 							$imageParams = "title='$imageTitle'";
@@ -308,7 +309,7 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 						<td class="center nowrap"><?php
 						if(($row->countNoResults == 0) && ($row->countMatches > 0))
 						{
-							$imageTitle = JText::plural('COM_JOOMLEAGUE_ADMIN_ROUNDS_ALL_RESULTS',$row->countMatches);
+							$imageTitle = Text::plural('COM_JOOMLEAGUE_ADMIN_ROUNDS_ALL_RESULTS',$row->countMatches);
 							$imageFile = 'administrator/components/com_joomleague/assets/images/ok.png';
 							$imageParams = "title='$imageTitle'";
 							echo HTMLHelper::image($imageFile,$imageTitle,$imageParams);
@@ -317,11 +318,11 @@ if($this->project->project_type == 'DIVISIONS_LEAGUE')
 						{
 							if($row->countMatches == 0)
 							{
-								$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_ANY_MATCHES');
+								$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_ANY_MATCHES');
 							}
 							else
 							{
-								$imageTitle = JText::plural('COM_JOOMLEAGUE_ADMIN_ROUNDS_RESULTS_MISSING',$row->countNoResults);
+								$imageTitle = Text::plural('COM_JOOMLEAGUE_ADMIN_ROUNDS_RESULTS_MISSING',$row->countNoResults);
 							}
 							$imageFile = 'administrator/components/com_joomleague/assets/images/error.png';
 							$imageParams = "title='$imageTitle'";

@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Uri\Uri;
 
@@ -44,12 +45,12 @@ class JoomleagueViewPositions extends JLGView
 
 		// build the html options for parent position
 		$parent_id = array();
-		$parent_id[] = HTMLHelper::_('select.option','',JText::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_IS_P_POSITION'));
+		$parent_id[] = HTMLHelper::_('select.option','',Text::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_IS_P_POSITION'));
 		if($res = $model->getParentsPositions())
 		{
 			foreach($res as $re)
 			{
-				$re->text = JText::_($re->text);
+				$re->text = Text::_($re->text);
 			}
 			$parent_id = array_merge($parent_id,$res);
 		}
@@ -57,7 +58,7 @@ class JoomleagueViewPositions extends JLGView
 		unset($parent_id);
 
 		// build the html select list for sportstypes
-		$sportstypes[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_SPORTSTYPE_FILTER'),'id','name');
+		$sportstypes[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_SPORTSTYPE_FILTER'),'id','name');
 		$modelST = BaseDatabaseModel::getInstance('SportsTypes','JoomleagueModel');
 		$allSportstypes = $modelST->getSportsTypes();
 		$sportstypes = array_merge($sportstypes,$allSportstypes);
@@ -84,14 +85,14 @@ class JoomleagueViewPositions extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_TITLE'),'jl-Positions');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_TITLE'),'jl-Positions');
 		JLToolBarHelper::addNew('position.add');
 		JLToolBarHelper::publishList('positions.publish');
 		JLToolBarHelper::unpublishList('positions.unpublish');
 		JLToolBarHelper::divider();
 		JLToolBarHelper::apply('positions.saveshort');
-		JLToolBarHelper::custom('positions.import','upload','upload',JText::_('COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT'),false);
-		JLToolBarHelper::archiveList('positions.export',JText::_('COM_JOOMLEAGUE_GLOBAL_XML_EXPORT'));
+		JLToolBarHelper::custom('positions.import','upload','upload',Text::_('COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT'),false);
+		JLToolBarHelper::archiveList('positions.export',Text::_('COM_JOOMLEAGUE_GLOBAL_XML_EXPORT'));
 		JLToolBarHelper::deleteList('COM_JOOMLEAGUE_GLOBAL_CONFIRM_DELETE','positions.remove');
 		JLToolBarHelper::divider();
 		JLToolBarHelper::help('screen.joomleague',true);

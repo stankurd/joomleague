@@ -269,7 +269,7 @@ class JoomleagueModelTreetonodes extends JLGModelList
 				}
 				catch (Exception $e)
 				{
-					$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+					$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 					return false;
 				}
 		
@@ -302,7 +302,7 @@ class JoomleagueModelTreetonodes extends JLGModelList
 			}
 			catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 		}

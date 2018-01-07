@@ -8,6 +8,7 @@
  */
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 HTMLHelper::_('jquery.framework');
@@ -23,11 +24,11 @@ jQuery(document).ready(function($) {
 </script>
 	
 <fieldset class="form-horizontal">
-	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_EVENTTYPES_LEGEND'); ?></legend>
+	<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_EVENTTYPES_LEGEND'); ?></legend>
 	
 	<div class="row">
 		<div class="col-md-3">
-			<b><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_EXISTING_EVENTTYPES'); ?></b>
+			<b><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_EXISTING_EVENTTYPES'); ?></b>
 			<br /><?php echo $this->lists['events']; ?>
 		</div>
 		<div class="col-md-2">
@@ -47,7 +48,7 @@ jQuery(document).ready(function($) {
 			</button>
 		</div>
 		<div class="col-md-3">
-			<b><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_ASSIGNED_EVENTTYPES_TO_POS'); ?></b>
+			<b><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_ASSIGNED_EVENTTYPES_TO_POS'); ?></b>
 			<br /><?php echo $this->lists['position_events']; ?>
 		</div>
 		<div class="col-md-2">
@@ -67,6 +68,6 @@ jQuery(document).ready(function($) {
 	
 	<fieldset class="form-horizontal">
 		<br>
-		<p><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_EVENTTYPES_HINT'); ?></p>
+		<p><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_EVENTTYPES_HINT'); ?></p>
 	</fieldset>
 </fieldset>

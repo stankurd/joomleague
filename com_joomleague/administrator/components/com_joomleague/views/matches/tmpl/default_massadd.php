@@ -9,12 +9,13 @@
 
 use Joomla\CMS\Date\Date;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
 	<div id="editcell">
 		<fieldset class="adminform">
-			<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_TITLE','<i>'.$this->project->name.'</i>'); ?></legend>
+			<legend><?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_TITLE','<i>'.$this->project->name.'</i>'); ?></legend>
 			<form name='copyform' method='post' style='display:inline' id='copyform'>
 				<input type='hidden' name='match_date' value='<?php echo $this->round->round_date_first.' '.$this->project->start_time; ?>' />
 				<input type='hidden' name='round_id' value='<?php echo $this->round->id; ?>' />
@@ -37,8 +38,8 @@ defined('_JEXEC') or die;
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th class="nowrap"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_MULTI'); ?></th>
-							<th class="nowrap"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_COPY'); ?></th>
+							<th class="nowrap"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_MULTI'); ?></th>
+							<th class="nowrap"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_COPY'); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -46,7 +47,7 @@ defined('_JEXEC') or die;
 							<td valign='top' width='50%'>
 								<table class="admintable">
 									<tr>
-										<td class="key"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_TYPE'); ?></td>
+										<td class="key"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_TYPE'); ?></td>
 										<td><?php echo $this->lists['createTypes']; ?></td>
 									</tr>
 									<tr>
@@ -54,30 +55,30 @@ defined('_JEXEC') or die;
 											<div id='massadd_standard' style='display:block;'>
 												<table>
 													<tr>
-														<td width="100" align="right" class="key"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_NR'); ?></td>
+														<td width="100" align="right" class="key"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_NR'); ?></td>
 														<td>
 															<input type='text' name='tempaddmatchescount' id='tempaddmatchescount' value='0' size='3' class='inputbox' />
 														</td>
 													</tr>
 													<tr>
-														<td width="100" align="right" class="key"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_START_HERE'); ?></td>
+														<td width="100" align="right" class="key"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_START_HERE'); ?></td>
 														<td><?php echo $this->lists['addToRound']; ?></td>
 													</tr>
 													<tr>
-														<td width="100" align="right" class="key"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_AUTO_PUBL'); ?></td>
+														<td width="100" align="right" class="key"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_AUTO_PUBL'); ?></td>
 														<td><?php echo $this->lists['autoPublish']; ?></td>
 													</tr>
 													<tr>
-														<td width="100" align="right" class="key"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_FIRST_MATCHNR'); ?></td>
+														<td width="100" align="right" class="key"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_FIRST_MATCHNR'); ?></td>
 														<td><input type='text' name='firstMatchNumber' size='4' value='' /></td>
 													</tr>
 													<tr>
-														<td width="100" align="right" class="key"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_STARTTIME'); ?></td>
+														<td width="100" align="right" class="key"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_STARTTIME'); ?></td>
 														<td>
 															<?php
-															echo HTMLHelper::calendar(	$date->format(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT'), true),
+															echo HTMLHelper::calendar(	$date->format(Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT'), true),
 																					'match_date','match_date',
-																					JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT_CAL'), 'size="10" ');
+																					Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT_CAL'), 'size="10" ');
                                                            ?>
                                                             &nbsp;
 															<input type='text' name='startTime' value='<?php echo $this->project->start_time; ?>' size='4' maxlength='5' class='inputbox' />
@@ -85,7 +86,7 @@ defined('_JEXEC') or die;
 													</tr>
 													<tr>
 														<td width="100" colspan='2'>
-															<input type='submit' value='<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_NEW_MATCHES'); ?>' onclick='return addmatches();' />
+															<input type='submit' value='<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_NEW_MATCHES'); ?>' onclick='return addmatches();' />
 														</td>
 													</tr>
 												</table>
@@ -99,45 +100,45 @@ defined('_JEXEC') or die;
 							<td valign='top'>
 								<table class="admintable">
 									<tr>
-										<td width="100" align="right" class="key"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_COPY2'); ?></td>
+										<td width="100" align="right" class="key"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_COPY2'); ?></td>
 										<td><?php echo $this->lists['project_rounds2']; ?></td>
 									</tr>
 									<tr>
-										<td width="100" align="right" class="key"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_DEFAULT_DATE'); ?></td>
+										<td width="100" align="right" class="key"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_DEFAULT_DATE'); ?></td>
 										<td>
 											<?php
-											echo HTMLHelper::calendar(	$date->format(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT'), true),
+											echo HTMLHelper::calendar(	$date->format(Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT'), true),
 																	'date','date',
-																	JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT_CAL'),'size="10" ');
+																	Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT_CAL'),'size="10" ');
 											?>
 											&nbsp;
 											<input type='text' name='time' value='<?php echo $this->project->start_time; ?>' size='4' maxlength='5' class='inputbox' />
 										</td>
 									</tr>
 									<tr>
-										<td width="100" align="right" class="key"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_FIRST_MATCHNR'); ?></td>
+										<td width="100" align="right" class="key"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_FIRST_MATCHNR'); ?></td>
 										<td><input type="text" name="start_match_number" size="4" value="" /></td>
 									</tr>
 									<tr>
 										<td width="100" align="right" class="key">										
-												<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_CREATE_NEW'); ?>
+												<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_CREATE_NEW'); ?>
 										</td>
 										<td><input type="checkbox" name="create_new" value="1" class="inputbox" checked="checked" /></td>
 									</tr>
 									<tr>
 										<td width="100" align="right" class="key">
-												<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_COPY_MIRROR'); ?>
+												<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_COPY_MIRROR'); ?>
 										</td>
 										<td>
 											<select name="mirror" class="inputbox">
-												<option value="0" selected="selected"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_COPY_MATCHES'); ?></option>
-												<option value="1"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_MIRROR_HA'); ?></option>
+												<option value="0" selected="selected"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_COPY_MATCHES'); ?></option>
+												<option value="1"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_MIRROR_HA'); ?></option>
 											</select>
 										</td>
 									</tr>
 									<tr>
 										<td width="100" colspan='2'>																	
-											<input type='submit' value='<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_COPY_MATCHES'); ?>' onclick='copymatches();' />
+											<input type='submit' value='<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_COPY_MATCHES'); ?>' onclick='copymatches();' />
 										</td>
 									</tr>
 								</table>

@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
@@ -55,7 +56,7 @@ Factory::getDocument()->addScriptDeclaration('
 	</div>
 	<?php if (empty($this->items)) : ?>
 	<div class="alert alert-no-items">
-		<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+		<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 	</div>
 	<?php else : ?>
 	<div id="j-main-container" class="j-main-container">
@@ -76,19 +77,19 @@ Factory::getDocument()->addScriptDeclaration('
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_STATISTICS_ABBREV','a.short',$listDirn, $listOrder);?>
 				</th>
 				<th width="10%" class="center">
-					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_ICON');?>
+					<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_ICON');?>
 				</th>
 				<th width="10%">
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_STATISTICS_SPORTSTYPE','a.sports_type_id',$listDirn, $listOrder);?>
 				</th>
 				<th>
-					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_NOTE'); ?>
+					<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_NOTE'); ?>
 				</th>
 				<th>
-					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_TYPE'); ?>
+					<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_TYPE'); ?>
 				</th>
 				<th width="1%">
-					<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');?>
+					<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');?>
 				</th>
 				<th width="1%">
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder); ?>
@@ -137,7 +138,7 @@ Factory::getDocument()->addScriptDeclaration('
 				<td class="center">
 					<a href="<?php echo $link; ?>">
 					<?php
-					$imgTitle = JText::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_EDIT_DETAILS');
+					$imgTitle = Text::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_EDIT_DETAILS');
 					echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/edit.png',$imgTitle,array('border' => 0,'title' => $imgTitle));
 					?>
 					</a>
@@ -150,13 +151,13 @@ Factory::getDocument()->addScriptDeclaration('
 				<td class="center">
 				<?php
 					$picture = JPATH_SITE.'/'.$row->icon;
-					$desc = JText::_($row->name);
+					$desc = Text::_($row->name);
 					echo JoomleagueHelper::getPictureThumb($picture,$desc,0,21,4);
 				?>
 				</td>
 				<td><?php echo JoomleagueHelper::getSportsTypeName($row->sports_type_id);?></td>
 				<td><?php echo $row->note; ?></td>
-				<td><?php echo JText::_($row->class); ?></td>
+				<td><?php echo Text::_($row->class); ?></td>
 				<td class="center"><?php echo $published; ?></td>
 				<td class="center"><?php echo $row->id; ?></td>
 			</tr>

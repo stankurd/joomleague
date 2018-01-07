@@ -11,6 +11,7 @@
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 use Joomla\Registry\Registry;
 require_once (JPATH_COMPONENT.'/models/list.php');
@@ -202,7 +203,7 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 							}
 							catch (Exception $e)
 							{
-								$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+								$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 								return false;
 							}
 					
@@ -212,7 +213,7 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 							}
 							catch (Exception $e)
 								{
-									$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+									$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 									return false;
 								}
 							array_push($records,$template);
@@ -288,7 +289,7 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 		
 		$query->order('t.title');
 		
-		// Build in JText of template title here and sort it afterwards
+		// Build in Text of template title here and sort it afterwards
 		$db->setQuery($query);
 		
 		$current = $db->loadObjectList();

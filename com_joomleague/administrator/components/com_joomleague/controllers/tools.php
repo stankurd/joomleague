@@ -9,6 +9,7 @@
  * @author	Kurt Norgaz
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Session\Session;
 
 defined('_JEXEC') or die;
@@ -55,7 +56,7 @@ class JoomleagueControllerTools extends JoomleagueController
 	public function exportTableCsv() 
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 		
 		$app 	= Factory::getApplication();
 		$jinput = $app->input;
@@ -71,7 +72,7 @@ class JoomleagueControllerTools extends JoomleagueController
 	public function exportTableSql() 
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 		
 		$app 	= Factory::getApplication();
 		$jinput = $app->input;
@@ -88,7 +89,7 @@ class JoomleagueControllerTools extends JoomleagueController
 	public function truncate() 
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 		
 		$app 	= Factory::getApplication();
 		$jinput = $app->input;
@@ -100,17 +101,17 @@ class JoomleagueControllerTools extends JoomleagueController
 		if ($total == 1) {
 			$table	= $tables[0];	
 			if ($model->truncateTable($table)) {
-				$app->enqueueMessage(JText::_('Table '.$table.' has been truncated'));
+				$app->enqueueMessage(Text::_('Table '.$table.' has been truncated'));
 			} else {
-				$app->enqueueMessage(JText::_('Table '.$table.' was not truncated'),'warning');
+				$app->enqueueMessage(Text::_('Table '.$table.' was not truncated'),'warning');
 			}
 		} else {
 			// we did select multiple tables
 			$result = $model->truncateTables($tables);
 			if ($result) {
-				$app->enqueueMessage(JText::_('Tables have been truncated'));
+				$app->enqueueMessage(Text::_('Tables have been truncated'));
 			} else {
-				$app->enqueueMessage(JText::_('Tables were not truncated'),'warning');
+				$app->enqueueMessage(Text::_('Tables were not truncated'),'warning');
 			}
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=tools');
@@ -139,11 +140,11 @@ class JoomleagueControllerTools extends JoomleagueController
 		$model = $this->getModel('tools');
 		if ($model->optimize())
 		{
-			$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_OPTIMIZE'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_OPTIMIZE'));
 		}
 		else
 		{
-			$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_ERROR_OPTIMIZE').$model->getError(),'error');
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_ERROR_OPTIMIZE').$model->getError(),'error');
 		}
 		$link='index.php?option=com_joomleague&view=tools';
 		$this->setRedirect($link);
@@ -155,11 +156,11 @@ class JoomleagueControllerTools extends JoomleagueController
 		$model = $this->getModel('tools');
 		if ($model->repair())
 		{
-			$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_REPAIR'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_REPAIR'));
 		}
 		else
 		{
-			$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_ERROR_REPAIR').$model->getError(),'error');
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_ERROR_REPAIR').$model->getError(),'error');
 		}
 		$link='index.php?option=com_joomleague&view=tools';
 		$this->setRedirect($link);
@@ -174,7 +175,7 @@ class JoomleagueControllerTools extends JoomleagueController
 		$model = $this->getModel('tools');
 		$model->cleanCache();
 		
-		$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_CTRL_TOOLS_CLEANCACHE'));
+		$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_CTRL_TOOLS_CLEANCACHE'));
 		
 		$link='index.php?option=com_joomleague&view=tools';
 		$this->setRedirect($link);
@@ -188,7 +189,7 @@ class JoomleagueControllerTools extends JoomleagueController
 		$model = $this->getModel('tools');
 		$model->clearUserState();
 	
-		$app->enqueueMessage(JText::_('Userstate variables of Joomleague have been cleared'));
+		$app->enqueueMessage(Text::_('Userstate variables of Joomleague have been cleared'));
 	
 		$link='index.php?option=com_joomleague&view=tools';
 		$this->setRedirect($link);
@@ -202,7 +203,7 @@ class JoomleagueControllerTools extends JoomleagueController
 		$model = $this->getModel('tools');
 		$model->removeLanguageFiles();
 		
-		$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_CTRL_TOOLS_LANGUAGEFILES_REMOVED'));
+		$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_CTRL_TOOLS_LANGUAGEFILES_REMOVED'));
 		
 		$link='index.php?option=com_joomleague&view=tools';
 		$this->setRedirect($link);

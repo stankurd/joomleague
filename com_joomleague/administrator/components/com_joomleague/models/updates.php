@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Table\Table;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -54,7 +55,7 @@ class JoomleagueModelUpdates extends BaseDatabaseModel
 		catch (Exception $e)
 		{
 		
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				
 		}
 		
@@ -74,7 +75,7 @@ class JoomleagueModelUpdates extends BaseDatabaseModel
 		catch (Exception $e)
 		{
 		
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 		
 		}
 		
@@ -90,8 +91,8 @@ class JoomleagueModelUpdates extends BaseDatabaseModel
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
-			$this->setError(JText::_('Binding failed'));
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
+			$this->setError(Text::_('Binding failed'));
 			return false;
 		}
 		// Store the item to the database
@@ -100,7 +101,7 @@ class JoomleagueModelUpdates extends BaseDatabaseModel
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return '';
@@ -120,7 +121,7 @@ class JoomleagueModelUpdates extends BaseDatabaseModel
 		catch (Exception $e)
 		{
 		
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -269,7 +270,7 @@ class JoomleagueModelUpdates extends BaseDatabaseModel
 				}
 				catch (Exception $e)
 				{
-					$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+					$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				}
 				
 					$updateFiles[$i]['date']=$result->date;

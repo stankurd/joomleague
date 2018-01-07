@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -35,7 +36,7 @@ class JFormFieldMultiList extends FormField
 		{
 			$val	= $option->attributes('value');
 			$text	= $option->data();
-			$options[] = HTMLHelper::_('select.option', $val, JText::_($text));
+			$options[] = HTMLHelper::_('select.option', $val, Text::_($text));
 		}
  
 		// Construct the various argument calls that are supported.

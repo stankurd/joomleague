@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -41,7 +42,7 @@ class JoomleagueViewStatistics extends JLGView
 		$lists['state'] = JoomleagueHelper::stateOptions($this->state->get('filter.state'));
 
 		// build the html select list for sportstypes
-		$sportstypes[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_EVENTS_SPORTSTYPE_FILTER'),'id','name');
+		$sportstypes[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_ADMIN_EVENTS_SPORTSTYPE_FILTER'),'id','name');
 
 		$modelST = BaseDatabaseModel::getInstance('sportsTypes','JoomleagueModel');
 		$allSportstypes = $modelST->getSportsTypes();
@@ -67,14 +68,14 @@ class JoomleagueViewStatistics extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_TITLE'),'jl-statistics');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_TITLE'),'jl-statistics');
 		JLToolBarHelper::addNew('statistic.add');
 		JLToolBarHelper::publishList('statistics.publish');
 		JLToolBarHelper::unpublishList('statistics.unpublish');
 		JLToolBarHelper::divider();
 		JLToolBarHelper::custom('statistics.import','upload','upload','COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT',false);
 		JLToolBarHelper::archiveList('statistics.export','COM_JOOMLEAGUE_GLOBAL_XML_EXPORT');
-		JLToolBarHelper::deleteList(JText::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_DELETE_WARNING'),'statistics.fulldelete','COM_JOOMLEAGUE_ADMIN_STATISTICS_FULL_DELETE');
+		JLToolBarHelper::deleteList(Text::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_DELETE_WARNING'),'statistics.fulldelete','COM_JOOMLEAGUE_ADMIN_STATISTICS_FULL_DELETE');
 		JLToolBarHelper::divider();
 
 		JLToolBarHelper::help('screen.joomleague',true);

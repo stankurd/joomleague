@@ -6,10 +6,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 ?>
 <fieldset class="form-horizontal">
-	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_ASSIGN_DESCR');?></legend>
+	<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_ASSIGN_DESCR');?></legend>
 	<table class="admintable">
 		<tr>
 			<td colspan="2">
@@ -20,7 +22,7 @@ defined('_JEXEC') or die;
 						// a project and team to assign a new person to
 						$button = '<a class="modal-button modal btn" title="Select" ';
 						$button .= 'href="index.php?option=com_joomleague&view=person&task=persons.personassign" ';
-						$button .= 'rel="{handler: \'iframe\', size: {x: 600, y: 400}}">' . JText::_('Select') . '</a>';
+						$button .= 'rel="{handler: \'iframe\', size: {x: 600, y: 400}}">' . Text::_('Select') . '</a>';
 						echo $button;
 						?>
 					</div>
@@ -29,7 +31,7 @@ defined('_JEXEC') or die;
 		</tr>
 		<tr>
 			<td class="key"><label for="project_id"> <?php
-			echo JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_ASSIGN_PID');
+			echo Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_ASSIGN_PID');
 			?>
 			</label></td>
 			<td><input onblur="$('project_name').value=''" type="text"
@@ -40,7 +42,7 @@ defined('_JEXEC') or die;
 		
 		<tr>
 			<td class="key"><label for="team"> <?php
-			echo JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_ASSIGN_TID');
+			echo Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_ASSIGN_TID');
 			?>
 			</label></td>
 			<td><input onblur="$('team_name').value=''" type="text"

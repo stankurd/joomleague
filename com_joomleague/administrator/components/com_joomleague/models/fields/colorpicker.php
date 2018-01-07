@@ -10,6 +10,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -34,7 +35,7 @@ class JFormFieldColorpicker extends FormField
 		// output
 		$html	= array();
 		$html[] = "<input type=\"text\" style=\"background: ".$this->value."\" name=\"".$this->name."\" id=\"".$this->id."\" value=\"".$this->value."\">"; 
-		$html[] = "<input type=\"button\" value=\"".JText::_('JSELECT')."\" onclick=\"showColorPicker(this, document.getElementsByName('".$this->name."')[0])\">";
+		$html[] = "<input type=\"button\" value=\"".Text::_('JSELECT')."\" onclick=\"showColorPicker(this, document.getElementsByName('".$this->name."')[0])\">";
 		
 		return implode("\n", $html);
 	}

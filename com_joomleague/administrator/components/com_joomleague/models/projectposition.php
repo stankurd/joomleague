@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\Utilities\ArrayHelper;
 require_once JPATH_COMPONENT.'/models/list.php';
 
@@ -110,7 +111,7 @@ class JoomleagueModelProjectposition extends JoomleagueModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		
@@ -124,7 +125,7 @@ class JoomleagueModelProjectposition extends JoomleagueModelList
 			}
 			catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 			
@@ -157,7 +158,7 @@ class JoomleagueModelProjectposition extends JoomleagueModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		//echo '<br /><pre>2~'.print_r($result,true).'~</pre><br />';
@@ -191,7 +192,7 @@ class JoomleagueModelProjectposition extends JoomleagueModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -227,7 +228,7 @@ class JoomleagueModelProjectposition extends JoomleagueModelList
 				}
 				catch (Exception $e)
 				{
-					$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+					$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 					return false;
 				}
 				$newid = $p_position->id;
@@ -241,7 +242,7 @@ class JoomleagueModelProjectposition extends JoomleagueModelList
 				}
 				catch (Exception $e)
 				{
-					$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+					$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 					return false;
 				}
 			}

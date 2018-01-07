@@ -10,6 +10,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -63,7 +64,7 @@ class JoomleagueViewRounds extends JLGView
 		$massadd 		= $jinput->get('massadd');
 
 		// build the html options for divisions
-		$divisions[] = JHtmlSelect::option('0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
+		$divisions[] = JHtmlSelect::option('0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
 		$mdlDivisions = BaseDatabaseModel::getInstance('divisions','JoomLeagueModel');
 		if($res = $mdlDivisions->getDivisions($project->id))
 		{
@@ -74,7 +75,7 @@ class JoomleagueViewRounds extends JLGView
 		// Mass Round Add options
 		$massAddType = 0;
 		$options = array();
-		$options[] = HTMLHelper::_('select.option',$massAddType ++,JText::_("Number of rounds with start date and interval"));
+		$options[] = HTMLHelper::_('select.option',$massAddType ++,Text::_("Number of rounds with start date and interval"));
 
 		// Add additional options to select
 		$path = JPath::clean(JPATH_ROOT.'/media/com_joomleague/database/round_templates');
@@ -84,7 +85,7 @@ class JoomleagueViewRounds extends JLGView
 			foreach($files as $file)
 			{
 				$filename = str_replace('_',' ',JFile::stripExt($file));
-				$options[] = HTMLHelper::_('select.option',$file,JText::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_TYPE',$filename));
+				$options[] = HTMLHelper::_('select.option',$file,Text::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_TYPE',$filename));
 			}
 		}
 		$lists['roundscheduling'] = HTMLHelper::_('select.genericlist',$options,'mass_add_method',
@@ -135,14 +136,14 @@ class JoomleagueViewRounds extends JLGView
 		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$project = $mdlProject->getItem($project_id);
 
-		$document->setTitle(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TITLE'));
+		$document->setTitle(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TITLE'));
 
 		$lists = array();
 		// Populate options
 		$iScheduleType = 0;
 		$options = array();
-		$options[] = HTMLHelper::_('select.option',$iScheduleType ++,JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_SINGLE_ROUND_ROBIN'));
-		$options[] = HTMLHelper::_('select.option',$iScheduleType ++,JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_DOUBLE_ROUND_ROBIN'));
+		$options[] = HTMLHelper::_('select.option',$iScheduleType ++,Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_SINGLE_ROUND_ROBIN'));
+		$options[] = HTMLHelper::_('select.option',$iScheduleType ++,Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_DOUBLE_ROUND_ROBIN'));
 		$path = JPath::clean(JPATH_ROOT . '/media/com_joomleague/database/round_populate_templates');
 		if(JFolder::exists($path))
 		{
@@ -150,7 +151,7 @@ class JoomleagueViewRounds extends JLGView
 			foreach($files as $file)
 			{
 				$filename = strtoupper(JFile::stripExt($file));
-				$options[] = HTMLHelper::_('select.option',$file,JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_' . $filename));
+				$options[] = HTMLHelper::_('select.option',$file,Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_' . $filename));
 			}
 		}
 		$lists['scheduling'] = HTMLHelper::_('select.genericlist',$options,'scheduling','','value','text');
@@ -178,7 +179,7 @@ class JoomleagueViewRounds extends JLGView
 	protected function addToolbar()
 	{
 		// Set toolbar items for the page
-		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_TITLE'),'jl-Matchdays');
+		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_TITLE'),'jl-Matchdays');
 
 		if(!$this->massadd)
 		{
@@ -192,9 +193,9 @@ class JoomleagueViewRounds extends JLGView
 				JLToolBarHelper::addNew('rounds.populate','COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_BUTTON',false);
 			}
 			JLToolbarHelper::divider();
-			JLToolBarHelper::deleteList(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_DELETE_WARNING'),'rounds.deletematches',
+			JLToolBarHelper::deleteList(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_DELETE_WARNING'),'rounds.deletematches',
 					'COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSDEL_BUTTON');
-			JLToolBarHelper::deleteList(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_DELETE_WARNING'),'rounds.remove');
+			JLToolBarHelper::deleteList(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_DELETE_WARNING'),'rounds.remove');
 			JLToolbarHelper::divider();
 		}
 		else
@@ -210,7 +211,7 @@ class JoomleagueViewRounds extends JLGView
 	 */
 	protected function addToolbar_Populate()
 	{
-		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TITLE'));
+		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TITLE'));
 		JLToolBarHelper::apply('rounds.startpopulate');
 		JLToolbarHelper::back();
 	}

@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 defined('_JEXEC') or die;
@@ -136,7 +137,7 @@ class JoomleagueModelTeams extends JLGModelList
 			$db->setQuery($query);
 			if($object = $db->loadObject())
 			{
-				$newTeamName = JText::sprintf('!Copy of %1$s',$object->name);
+				$newTeamName = Text::sprintf('!Copy of %1$s',$object->name);
 				$query = $db->getQuery(true);
 				$query->select('id');
 				$query->from('#__joomleague_team');

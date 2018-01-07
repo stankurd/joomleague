@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -45,7 +46,7 @@ class JFormFieldBasicStatslist extends FormField
 		$query = $db->getQuery(true);
 			
 		$query->select('id AS value');
-		$query->select('CASE LENGTH(name) when 0 then CONCAT('.$db->Quote(JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')). ', " ", id)	else name END as text ');
+		$query->select('CASE LENGTH(name) when 0 then CONCAT('.$db->Quote(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT')). ', " ", id)	else name END as text ');
 		$query->from('#__joomleague_statistic ');
 		$query->where('class="basic"');
 		$query->order('id');

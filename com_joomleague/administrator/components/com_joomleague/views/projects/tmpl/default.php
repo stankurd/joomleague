@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
@@ -84,13 +85,13 @@ Factory::getDocument()->addScriptDeclaration('
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_PROJECTTYPE','a.project_type',$listDirn, $listOrder);?>
 				</th>
 				<th width="2%" class="center">
-					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_GAMES');?>
+					<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_GAMES');?>
 				</th>
 				<th width="1%" class="center">
-					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_IS_UTC_CONVERTED');?>
+					<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_IS_UTC_CONVERTED');?>
 				</th>
 				<th width="1%" class="center">
-					<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');?>
+					<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');?>
 				</th>
 				<th width="1%">
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder);?>
@@ -113,13 +114,13 @@ Factory::getDocument()->addScriptDeclaration('
 			if($row->is_utc_converted)
 			{
 				$img = 'administrator/components/com_joomleague/assets/images/';
-				$alt = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECT_ALREADY_CONVERTED');
+				$alt = Text::_('COM_JOOMLEAGUE_ADMIN_PROJECT_ALREADY_CONVERTED');
 				$is_utc_converted = HTMLHelper::_('image', $img. 'tick.png',$alt,array('title' => $alt));
 			}
 			else
 			{
 				$img = 'administrator/components/com_joomleague/assets/images/';
-				$alt = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECT_NOT_CONVERTED');
+				$alt = Text::_('COM_JOOMLEAGUE_ADMIN_PROJECT_NOT_CONVERTED');
 				$is_utc_converted = HTMLHelper::_('image', $img. 'delete.png',$alt,array('title' => $alt));
 			}
 		?>
@@ -154,7 +155,7 @@ Factory::getDocument()->addScriptDeclaration('
 				<td class="center">
 					<a href="<?php echo $link; ?>">
 					<?php
-						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_EDIT_DETAILS');
+						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_EDIT_DETAILS');
 						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "' . $imageTitle . '"');
 					?>
 					</a>
@@ -178,12 +179,12 @@ Factory::getDocument()->addScriptDeclaration('
 				</td>
 				<td><?php echo $row->league; ?></td>
 				<td><?php echo $row->season; ?></td>
-				<td><?php echo JText::_($row->sportstype); ?></td>
-				<td><?php echo JText::_('COM_JOOMLEAGUE_'.$row->project_type); ?></td>
+				<td><?php echo Text::_($row->sportstype); ?></td>
+				<td><?php echo Text::_('COM_JOOMLEAGUE_'.$row->project_type); ?></td>
 				<td class="center">
 				<?php if ($row->current_round): ?>
 				<?php
-					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_GAMES_DETAILS');
+					$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_GAMES_DETAILS');
 					$image = HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/icon-16-Matchdays.png',$imageTitle,'title= "'.$imageTitle.'"');
 					echo HTMLHelper::link('index.php?option=com_joomleague&view=matches&pid[]='.$row->id.'&rid[]='.$row->current_round,$image);
 				?>

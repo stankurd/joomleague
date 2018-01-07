@@ -112,7 +112,7 @@ class JLGView extends BaseHtmlView
 		//JHtml::_('behavior.modal', 'a.modal');
 		
 		HTMLHelper::_('jquery.framework');
-		HTMLHelper::_('behavior.core');
+		//HTMLHelper::_('behavior.core');
 		
 		$lang 		= Factory::getLanguage();
 		$jllang 	= new JLLanguage();

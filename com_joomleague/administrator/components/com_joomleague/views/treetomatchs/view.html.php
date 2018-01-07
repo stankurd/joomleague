@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -37,9 +38,9 @@ class JoomleagueViewTreetomatchs extends JLGView
 
 	function _displayEditlist($tpl)
 	{
-		$app 		= Factory::getApplication();
-		$input 	= $app->input;
-		$baseurl	= Uri::root();
+		$app = Factory::getApplication();
+		$input = $app->input;
+		$baseurl = Uri::root();
 		
 		
 		$document = Factory::getDocument();
@@ -133,7 +134,7 @@ class JoomleagueViewTreetomatchs extends JLGView
 		}
 		else
 		{
-			JError::raiseWarning('ERROR_CODE','<br />'.JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ADD_MATCH').'<br /><br />');
+			$app->enqueueMessage('ERROR_CODE','<br />'.Text::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ADD_MATCH'),'warning');
 		}
 		
 		//build the html select list for matches

@@ -8,6 +8,7 @@
  */
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\Utilities\ArrayHelper;
 require_once JPATH_COMPONENT . '/models/item.php';
 /**
@@ -96,7 +97,7 @@ class JoomleagueModelJoomleague extends JoomleagueModelItem
 	}
 		catch (Exception $e)
 	{
-		$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+		$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 	}
 		return $result;
 	}
@@ -133,7 +134,7 @@ class JoomleagueModelJoomleague extends JoomleagueModelItem
 	}
 		catch (Exception $e)
 	{
-		$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+		$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 	}
 		return $result;
 	}
@@ -164,7 +165,7 @@ class JoomleagueModelJoomleague extends JoomleagueModelItem
 			}
 		catch (Exception $e)
 			{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			}
 		return $result;
 	}
@@ -192,7 +193,7 @@ class JoomleagueModelJoomleague extends JoomleagueModelItem
 			}
 		catch (Exception $e)
 			{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			}
 		return $result;
 	}
@@ -226,7 +227,7 @@ class JoomleagueModelJoomleague extends JoomleagueModelItem
 			}
 		catch (Exception $e)
 			{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			}
 		return $result;
 	}
@@ -250,7 +251,7 @@ class JoomleagueModelJoomleague extends JoomleagueModelItem
 			}
 		catch (Exception $e)
 			{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			}
 		return $result;
 	}

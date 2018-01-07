@@ -10,6 +10,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -70,11 +71,11 @@ class JoomleagueControllerProjectReferees extends JLGControllerAdmin
 
 		if($model->saveshort($cid,$post))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_UPDATED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_UPDATED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_ERROR_UPDATED') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_ERROR_UPDATED') . $model->getError();
 		}
 
 		$link = 'index.php?option=com_joomleague&view=projectreferees';
@@ -88,7 +89,7 @@ class JoomleagueControllerProjectReferees extends JLGControllerAdmin
 	public function remove()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -100,7 +101,7 @@ class JoomleagueControllerProjectReferees extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
 		}
 		// Access checks.
 		foreach($cid as $i=>$id)
@@ -110,7 +111,7 @@ class JoomleagueControllerProjectReferees extends JLGControllerAdmin
 			{
 				// Prune items that you can't delete.
 				unset($cid[$i]);
-				JError::raiseNotice(403,JText::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
+				JError::raiseNotice(403,Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
 			}
 		}
 		$model = $this->getModel('team');
@@ -157,7 +158,7 @@ class JoomleagueControllerProjectReferees extends JLGControllerAdmin
 	public function assign()
 	{
 		// redirect to ProjectReferees page, with a message
-		$this->setMessage(JText::_('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_ASSIGN'));
+		$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_ASSIGN'));
 		$this->setRedirect('index.php?option=com_joomleague&view=projectreferees&layout=assignplayers');
 	}
 
@@ -176,11 +177,11 @@ class JoomleagueControllerProjectReferees extends JLGControllerAdmin
 		$nDeleted = $model->unassign($cid);
 		if(! $nDeleted)
 		{
-			$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_UNASSIGN'),'warning');
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_UNASSIGN'),'warning');
 		}
 		else
 		{
-			$app->enqueueMessage(JText::sprintf('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_UNASSIGNED',$nDeleted));
+			$app->enqueueMessage(Text::sprintf('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_UNASSIGNED',$nDeleted));
 		}
 		// redirect to projectreferee page, with a message
 		$this->setRedirect('index.php?option=com_joomleague&view=projectreferees');

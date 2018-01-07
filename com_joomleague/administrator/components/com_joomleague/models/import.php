@@ -9,6 +9,7 @@
 
 // no direct access
 use Joomla\CMS\Table\Table;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -102,7 +103,7 @@ class JoomleagueModelImport extends BaseDatabaseModel
 			// Make sure the data is valid
 			if (! $object->check ()) {
 				$this->setError ( $object->getError () );
-				$rec ['errormsg'] = JText::_ ( 'COM_JOOMLEAGUE_GLOBAL_ERROR_CHECK' ) . $object->getError ();
+				$rec ['errormsg'] = Text::_ ( 'COM_JOOMLEAGUE_GLOBAL_ERROR_CHECK' ) . $object->getError ();
 				continue;
 			}
 			
@@ -112,7 +113,7 @@ class JoomleagueModelImport extends BaseDatabaseModel
 				// it means the record already exists, we can use store().
 				if (! $object->insertIgnore ()) {
 					if (! $object->store ()) {
-						// echo JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR_STORE').$this->_db->getErrorMsg()."\n";
+						// echo Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR_STORE').$this->_db->getErrorMsg()."\n";
 						$rec ['exists'] ++;
 						continue;
 					} else {
@@ -124,7 +125,7 @@ class JoomleagueModelImport extends BaseDatabaseModel
 			} else {
 				if (! $object->store ()) {
 					// show last error message
-					// $rec['errormsg'] = JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR_STORE').$this->_db->getErrorMsg()."<br \>\n";
+					// $rec['errormsg'] = Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR_STORE').$this->_db->getErrorMsg()."<br \>\n";
 					$rec ['exists'] ++;
 					continue;
 				} else {

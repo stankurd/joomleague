@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -46,14 +47,14 @@ class JoomleagueViewProjectteam extends JLGView
 		if($trainingData = $model->getTrainingData($this->item->id))
 		{
 			$daysOfWeek = array(
-					0 => JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT'),
-					1 => JText::_('COM_JOOMLEAGUE_GLOBAL_MONDAY'),
-					2 => JText::_('COM_JOOMLEAGUE_GLOBAL_TUESDAY'),
-					3 => JText::_('COM_JOOMLEAGUE_GLOBAL_WEDNESDAY'),
-					4 => JText::_('COM_JOOMLEAGUE_GLOBAL_THURSDAY'),
-					5 => JText::_('COM_JOOMLEAGUE_GLOBAL_FRIDAY'),
-					6 => JText::_('COM_JOOMLEAGUE_GLOBAL_SATURDAY'),
-					7 => JText::_('COM_JOOMLEAGUE_GLOBAL_SUNDAY')
+					0 => Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT'),
+					1 => Text::_('COM_JOOMLEAGUE_GLOBAL_MONDAY'),
+					2 => Text::_('COM_JOOMLEAGUE_GLOBAL_TUESDAY'),
+					3 => Text::_('COM_JOOMLEAGUE_GLOBAL_WEDNESDAY'),
+					4 => Text::_('COM_JOOMLEAGUE_GLOBAL_THURSDAY'),
+					5 => Text::_('COM_JOOMLEAGUE_GLOBAL_FRIDAY'),
+					6 => Text::_('COM_JOOMLEAGUE_GLOBAL_SATURDAY'),
+					7 => Text::_('COM_JOOMLEAGUE_GLOBAL_SUNDAY')
 			);
 			$dwOptions = array();
 			foreach($daysOfWeek as $key=>$value)
@@ -72,7 +73,7 @@ class JoomleagueViewProjectteam extends JLGView
 		if($project->project_type == 'DIVISIONS_LEAGUE') // No divisions
 		{
 			// build the html options for divisions
-			$division[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
+			$division[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
 			$mdlDivisions = BaseDatabaseModel::getInstance('divisions','JoomLeagueModel');
 			if($res = $mdlDivisions->getDivisions($project_id))
 			{
@@ -102,7 +103,7 @@ class JoomleagueViewProjectteam extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_TITLE').': '.$this->item->name);
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_TITLE').': '.$this->item->name);
 		JLToolBarHelper::apply('projectteam.apply');
 		JLToolBarHelper::save('projectteam.save');
 		JLToolBarHelper::cancel('projectteam.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');

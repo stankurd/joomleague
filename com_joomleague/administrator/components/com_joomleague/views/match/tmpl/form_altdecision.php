@@ -6,6 +6,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined ( '_JEXEC' ) or die ();
 ?>
 
@@ -35,14 +37,14 @@ function toggle_altdecision() {
 </script>
 <!-- Alt decision table START -->
 <fieldset class="form-horizontal">
-	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_AD');?></legend>			
+	<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_AD');?></legend>			
 	<?php
 	echo $this->form->renderField ( 'count_result' );
 	echo $this->form->renderField ( 'alt_decision' );
 	?>
 	<div id="alt_decision_enter" style="display:<?php echo ($this->item->alt_decision == 0) ? 'none' : 'block'; ?>">
 		<div class="control-group">
-			<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_AD_NEW_SCORE' ).' ' .$this->item->hometeam; ?></div>
+			<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_AD_NEW_SCORE' ).' ' .$this->item->hometeam; ?></div>
 			<div class="controls">
 				<input type="text" class="inputbox" id="team1_result_decision"
 					name="team1_result_decision" size="3"
@@ -51,7 +53,7 @@ function toggle_altdecision() {
 			</div>
 		</div>
 		<div class="control-group">
-			<div class="control-label"><?php echo JText::_( 'COM_JOOMLEAGUE_ADMIN_MATCH_F_AD_NEW_SCORE' ).' ' .$this->item->awayteam;?></div>
+			<div class="control-label"><?php echo Text::_( 'COM_JOOMLEAGUE_ADMIN_MATCH_F_AD_NEW_SCORE' ).' ' .$this->item->awayteam;?></div>
 			<div class="controls">
 				<input type="text" class="inputbox" id="team2_result_decision"
 					name="team2_result_decision" size="3"
@@ -70,7 +72,7 @@ function toggle_altdecision() {
 		</div>
 		<div class="control-group">
 			<div class="control-label">
-				<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_AD_REASON_NEW_SCORE');?>
+				<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_AD_REASON_NEW_SCORE');?>
 				<?php
 				if (is_null ( $this->item->team1_result ) || ($this->item->alt_decision == 0)) {
 					$disinfo = 'DISABLED ';
@@ -89,7 +91,7 @@ function toggle_altdecision() {
 			</div>
 		</div>
 		<div class="control-group">
-			<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_AD_TEAM_WON');?></div>
+			<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_AD_TEAM_WON');?></div>
 			<div class="controls"><?php echo $this->lists['team_won']; ?></div>
 		</div>
 	</div>

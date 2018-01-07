@@ -7,11 +7,12 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
 
-HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 ?>
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm3" name="adminForm3">
 	<fieldset class="form-horizontal">
@@ -24,12 +25,12 @@ HTMLHelper::_('behavior.tooltip');
 				<tr>
 					<th class="title" class="nowrap">
 						<?php
-						echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_TOOL' );
+						echo Text::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_TOOL' );
 						?>
 					</th>
 					<th class="title" class="nowrap">
 						<?php
-						echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_DESCR' );
+						echo Text::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_DESCR' );
 						?>
 					</th>
 				</tr>
@@ -49,15 +50,15 @@ HTMLHelper::_('behavior.tooltip');
 						<?php
 						$link = Route::_( 'index.php?option=com_joomleague&task=tools.cleancache' );
 						?>
-						<a href="<?php echo $link; ?>" title="<?php echo JText::_( 'COM_JOOMLEAGUE_MDL_TOOLS_CLEANCACHE' ); ?>">
+						<a href="<?php echo $link; ?>" title="<?php echo Text::_( 'COM_JOOMLEAGUE_MDL_TOOLS_CLEANCACHE' ); ?>">
 							<?php
-							echo JText::_('COM_JOOMLEAGUE_MDL_TOOLS_CLEANCACHE');
+							echo Text::_('COM_JOOMLEAGUE_MDL_TOOLS_CLEANCACHE');
 							?>
 						</a>
 					</td>
 					<td>
 						<?php
-						echo JText::_("COM_JOOMLEAGUE_MDL_TOOLS_CLEANCACHE_DESC");
+						echo Text::_("COM_JOOMLEAGUE_MDL_TOOLS_CLEANCACHE_DESC");
 						?>
 					</td>
 				</tr>		
@@ -66,15 +67,15 @@ HTMLHelper::_('behavior.tooltip');
 						<?php
 						$link = Route::_('index.php?option=com_joomleague&task=tools.removelanguagefiles');
 						?>
-						<a href="<?php echo $link; ?>" title="<?php echo JText::_( 'COM_JOOMLEAGUE_MDL_TOOLS_LANGUAGEFILES_REMOVE' ); ?>">
+						<a href="<?php echo $link; ?>" title="<?php echo Text::_( 'COM_JOOMLEAGUE_MDL_TOOLS_LANGUAGEFILES_REMOVE' ); ?>">
 							<?php
-							echo JText::_('COM_JOOMLEAGUE_MDL_TOOLS_LANGUAGEFILES_REMOVE');
+							echo Text::_('COM_JOOMLEAGUE_MDL_TOOLS_LANGUAGEFILES_REMOVE');
 							?>
 						</a>
 					</td>
 					<td>
 						<?php
-						echo JText::_("COM_JOOMLEAGUE_MDL_TOOLS_LANGUAGEFILES_REMOVE_DESC");
+						echo Text::_("COM_JOOMLEAGUE_MDL_TOOLS_LANGUAGEFILES_REMOVE_DESC");
 						?>
 					</td>
 				</tr>
@@ -83,15 +84,15 @@ HTMLHelper::_('behavior.tooltip');
 						<?php
 						$link = Route::_('index.php?option=com_joomleague&task=tools.clearuserstate');
 						?>
-						<a href="<?php echo $link; ?>" title="<?php echo JText::_('Clear Userstate'); ?>">
+						<a href="<?php echo $link; ?>" title="<?php echo Text::_('Clear Userstate'); ?>">
 							<?php
-							echo JText::_('Clear userstate');
+							echo Text::_('Clear userstate');
 							?>
 						</a>
 					</td>
 					<td>
 						<?php
-						echo JText::_("Clear userstate variables of Joomleague");
+						echo Text::_("Clear userstate variables of Joomleague");
 						?>
 					</td>
 				</tr>

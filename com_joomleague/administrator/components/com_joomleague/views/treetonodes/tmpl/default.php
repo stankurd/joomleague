@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
@@ -18,7 +19,7 @@ $isleafed = $this->treeto->leafed;
 ?>
 <div id="editcell">
 	<fieldset class="adminform">
-		<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_TREETONODES_LEGEND_','<i>'.$this->project->name.'</i>'); ?></legend>
+		<legend><?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_TREETONODES_LEGEND_','<i>'.$this->project->name.'</i>'); ?></legend>
 		<form action="<?php echo $this->request_url; ?>" method="post" id="adminForm" name="adminForm">
 		<table>
 <?php

@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
@@ -15,17 +16,17 @@ defined('_JEXEC') or die;
 	<fieldset class="adminform" style="float: left;">
 		<legend>
 		<?php
-		echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN_PROJ_TEAMS');
+		echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN_PROJ_TEAMS');
 		?>
 		</legend>
 		<table class="adminlist table table-striped">
 			<thead>
 				<tr>
-					<th class="title"><?PHP echo JText::_( 'COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_CHANGE' ); ?>
+					<th class="title"><?PHP echo Text::_( 'COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_CHANGE' ); ?>
 					</th>
-					<th class="title"><?PHP echo JText::_( 'COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_SELECT_OLD_TEAM' ); ?>
+					<th class="title"><?PHP echo Text::_( 'COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_SELECT_OLD_TEAM' ); ?>
 					</th>
-					<th class="title"><?PHP echo JText::_( 'COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_SELECT_NEW_TEAM' ); ?>
+					<th class="title"><?PHP echo Text::_( 'COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_SELECT_NEW_TEAM' ); ?>
 					</th>
 				</tr>
 			</thead>

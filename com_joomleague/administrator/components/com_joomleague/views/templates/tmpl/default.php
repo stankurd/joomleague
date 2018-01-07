@@ -8,6 +8,7 @@
  */
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
@@ -25,7 +26,7 @@ defined('_JEXEC') or die;
 	}
 </script>
 	<fieldset class="adminform">
-		<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATES_LEGEND','<i>'.$this->project->name.'</i>'); ?></legend>
+		<legend><?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATES_LEGEND','<i>'.$this->project->name.'</i>'); ?></legend>
 		<?php if ($this->project->master_template){echo $this->loadTemplate('import');} ?>
 		<form action="index.php?option=com_joomleague&view=templates" method="post" id="adminForm" name="adminForm">
 			<table class="table table-striped">
@@ -42,7 +43,7 @@ defined('_JEXEC') or die;
 							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_TEMPLATES_DESCR','tmpl.template',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th>
-							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_TYPE'); ?>
+							<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_TYPE'); ?>
 						</th>
 						<th width="1%">
 							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','tmpl.id',$this->lists['order_Dir'],$this->lists['order']); ?>
@@ -61,17 +62,17 @@ defined('_JEXEC') or die;
 							<td class="center"><?php echo $checked; ?></td>
 							<td><?php
 								$imageFile='administrator/components/com_joomleague/assets/images/edit.png';
-								$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_EDIT_DETAILS');
+								$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_EDIT_DETAILS');
 								$imageParams='title= "'.$imageTitle.'"';
 								$image=HTMLHelper::image($imageFile,$imageTitle,$imageParams);
 								$linkParams='';
 								echo HTMLHelper::link($link1,$image);
 								?></td>
 							<td><?php echo $row->template; ?></td>
-							<td><?php echo JText::_($row->title); ?></td>
+							<td><?php echo Text::_($row->title); ?></td>
 							<td><?php
 								echo '<span style="font-weigth:bold; color:';
-								echo ($row->isMaster) ? 'red; ">'.JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_MASTER') : 'green;">&nbsp;'.JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_INDEPENDENT');
+								echo ($row->isMaster) ? 'red; ">'.Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_MASTER') : 'green;">&nbsp;'.Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_INDEPENDENT');
 								echo '</span>';
 								?></td>
 							<td class="center"><?php

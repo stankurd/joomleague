@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -157,7 +158,7 @@ class JoomleagueModelStatistics extends JLGModelList
 				try {
 					$result[] .= $db->execute();
 				} catch (RuntimeException $e) {
-					$result[] .= JText::_('COM_JOOMLEAGUE_ADMIN_STATISTIC_MODEL_ERROR_DELETE_STATS_MATCHES');
+					$result[] .= Text::_('COM_JOOMLEAGUE_ADMIN_STATISTIC_MODEL_ERROR_DELETE_STATS_MATCHES');
 				}
 
 				$query = $db->getQuery(true);
@@ -167,7 +168,7 @@ class JoomleagueModelStatistics extends JLGModelList
 				try {
 					$result[] .= $db->execute();
 				} catch (RuntimeException $e) {
-					$result[] .= JText::_('COM_JOOMLEAGUE_ADMIN_STATISTIC_MODEL_ERROR_DELETE_STATS_POS');
+					$result[] .= Text::_('COM_JOOMLEAGUE_ADMIN_STATISTIC_MODEL_ERROR_DELETE_STATS_POS');
 				}
 
 				$query = $db->getQuery(true);

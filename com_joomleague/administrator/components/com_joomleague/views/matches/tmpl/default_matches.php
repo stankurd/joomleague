@@ -9,6 +9,7 @@
 
 use Joomla\CMS\Date\Date;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
@@ -27,8 +28,8 @@ fieldset button {
 }
 </style>
 	<fieldset class="form-horizontal">
-		<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_MATCHES_TITLE2','<i>'.$this->round->name.'</i>','<i>'.$this->project->name.'</i>'); ?></legend>
-		<p class="note"><?php echo Jtext::sprintf('COM_JOOMLEAGUE_ADMIN_MATCHES_ALL_TIMES_IN_S_TZ', $this->project->timezone); ?></p>
+		<legend><?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_MATCHES_TITLE2','<i>'.$this->round->name.'</i>','<i>'.$this->project->name.'</i>'); ?></legend>
+		<p class="note"><?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_MATCHES_ALL_TIMES_IN_S_TZ', $this->project->timezone); ?></p>
 		<?php echo $this->loadTemplate('roundselect'); ?>
 		<!-- Start games list -->
 		<form action="<?php echo $this->request_url; ?>" method="post" id="adminForm" name="adminForm">
@@ -49,8 +50,8 @@ fieldset button {
 						<th class="title" >
 							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_ADMIN_MATCHES_DATE','mc.match_date',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
-						<th class="title" ><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_TIME'); ?></th>
-						<th class="title" ><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_MD_ATT' ); ?></th>
+						<th class="title" ><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_TIME'); ?></th>
+						<th class="title" ><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_MD_ATT' ); ?></th>
 						<?php
 							if($this->project->project_type=='DIVISIONS_LEAGUE') {
 								$colspan++;
@@ -69,21 +70,21 @@ fieldset button {
 						<?php
 							}
 						?>
-						<th class="title" ><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_HOME_TEAM'); ?></th>
-						<th class="title" ><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_AWAY_TEAM'); ?></th>
-						<th style="  "><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_RESULT'); ?></th>
+						<th class="title" ><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_HOME_TEAM'); ?></th>
+						<th class="title" ><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_AWAY_TEAM'); ?></th>
+						<th style="  "><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_RESULT'); ?></th>
 						<?php
 						if ($this->project->allow_add_time)
 						{
 							?>
-							<th style="text-align:center;  "><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_RESULT_TYPE'); ?></th>
+							<th style="text-align:center;  "><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_RESULT_TYPE'); ?></th>
 							<?php
 						}
 						?>
-						<th class="title" ><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EVENTS'); ?></th>
-						<th class="title" ><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_STATISTICS'); ?></th>
-						<th class="title" width="40px" ><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_REFEREE'); ?></th>
-						<th width="1%" ><?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED'); ?></th>
+						<th class="title" ><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EVENTS'); ?></th>
+						<th class="title" ><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_STATISTICS'); ?></th>
+						<th class="title" width="40px" ><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_REFEREE'); ?></th>
+						<th width="1%" ><?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED'); ?></th>
 						<th width="1%" class="title" >
 							<?php echo HTMLHelper::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','mc.id',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
@@ -121,7 +122,7 @@ fieldset button {
 							<td class="center">
 								<a href="<?php echo $link; ?>">
 								<?php
-									$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_LEAGUES_EDIT_DETAILS');
+									$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_LEAGUES_EDIT_DETAILS');
 									echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "' . $imageTitle . '"');
 								?>
 								</a>
@@ -132,9 +133,9 @@ fieldset button {
 							</td>
 							<td class="center">
 								<?php
-								$date = JoomleagueHelper::getMatchDate($row, JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT'));
+								$date = JoomleagueHelper::getMatchDate($row, Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT'));
 								echo HTMLHelper::calendar(	$date, 'match_date'.$row->id, 'match_date'.$row->id,
-														JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT_CAL'),
+														Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT_CAL'),
 														'size="9"  tabindex="2" ondblclick="copyValue(\'match_date\')"
 														 onchange="document.getElementById(\'cb'.$i.'\').checked=true"');
 								?>
@@ -149,15 +150,15 @@ fieldset button {
 								<a	href="javascript:void(0)"
 									onclick="switchMenu('present<?php echo $row->id; ?>')">&nbsp;
 									<?php echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/arrow_open.png',
-															JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PRESENT'),
-															'title= "'.JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PRESENT').'"');
+															Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PRESENT'),
+															'title= "'.Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PRESENT').'"');
 									?>
 								</a><br />
 								<span id="present<?php echo $row->id; ?>" style="display: none">
 									<br />
 										<input ondblclick="copyValue('time_present')" onchange="document.getElementById('cb<?php echo $i; ?>').checked=true" type="text" name="time_present<?php echo $row->id; ?>"
-												value="<?php echo $row->time_present; ?>" size="4" maxlength="5" tabindex="3" class="inputbox" title="<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PRESENT'); ?>" />
-										<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PRESENT_SHORT'); ?>
+												value="<?php echo $row->time_present; ?>" size="4" maxlength="5" tabindex="3" class="inputbox" title="<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PRESENT'); ?>" />
+										<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PRESENT_SHORT'); ?>
 								</span>
 							</td>
 							<td class="center">
@@ -181,23 +182,23 @@ fieldset button {
 								}
 							?>
 							<td class="right" >
-								<a	onclick="handleRosterIconClick(<?php echo $prefill; ?>, this, '<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_LAST_ROSTER_ALERT'); ?>', '<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_PROJECTTEAM_PLAYERS_ALERT')?>')"
+								<a	onclick="handleRosterIconClick(<?php echo $prefill; ?>, this, '<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_LAST_ROSTER_ALERT'); ?>', '<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_PROJECTTEAM_PLAYERS_ALERT')?>')"
 									href="<?php echo Route::_('index.php?option=com_joomleague&view=match&layout=editlineup&match_id='.$row->id.'&team_id='.$row->projectteam1_id.'&prefill='); ?>"
-									 title="<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_LINEUP_HOME'); ?>">
+									 title="<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_LINEUP_HOME'); ?>">
 									 <?php
 									 if($row->homeplayers_count==0 || $row->homestaff_count==0 ) {
 									 	$image = 'players_add.png';
 									 } else {
 									 	$image = 'players_edit.png';
 									 }
-									 $title=  ' '.JText::_('COM_JOOMLEAGUE_F_PLAYERS').': ' .$row->homeplayers_count. ', ' .
-													 ' '.JText::_('COM_JOOMLEAGUE_F_TEAM_STAFF').': ' .$row->homestaff_count . ' ';
+									 $title=  ' '.Text::_('COM_JOOMLEAGUE_F_PLAYERS').': ' .$row->homeplayers_count. ', ' .
+													 ' '.Text::_('COM_JOOMLEAGUE_F_TEAM_STAFF').': ' .$row->homestaff_count . ' ';
 
 									echo '<sub>'.$row->homeplayers_count.'</sub> ';
 
 
 									 echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/'.$image,
-													 JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_LINEUP_HOME'),
+													 Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_LINEUP_HOME'),
 													 'title= "' .$title. '"');
 
 									 echo '<sub>'.$row->homestaff_count.'</sub> ';
@@ -233,9 +234,9 @@ fieldset button {
 								}
 
 								?>
-								<a	onclick="handleRosterIconClick(<?php echo $prefill; ?>, this, '<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_LAST_ROSTER_ALERT'); ?>', '<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_PROJECTTEAM_PLAYERS_ALERT')?>')"
+								<a	onclick="handleRosterIconClick(<?php echo $prefill; ?>, this, '<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_LAST_ROSTER_ALERT'); ?>', '<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_PROJECTTEAM_PLAYERS_ALERT')?>')"
 									href="<?php echo Route::_('index.php?option=com_joomleague&view=match&layout=editlineup&match_id='.$row->id.'&team_id='.$row->projectteam2_id.'&prefill=');?>"
-									title="<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_LINEUP_AWAY'); ?>">
+									title="<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_LINEUP_AWAY'); ?>">
 									
 									 <?php
 									 if($row->awayplayers_count==0 || $row->awaystaff_count==0 ) {
@@ -243,12 +244,12 @@ fieldset button {
 									 } else {
 									 	$image = 'players_edit.png';
 									 }
-									 $title=' '.JText::_('COM_JOOMLEAGUE_F_PLAYERS').': ' .$row->awayplayers_count. ', ' .
-													 ' '.JText::_('COM_JOOMLEAGUE_F_TEAM_STAFF').': ' .$row->awaystaff_count;
+									 $title=' '.Text::_('COM_JOOMLEAGUE_F_PLAYERS').': ' .$row->awayplayers_count. ', ' .
+													 ' '.Text::_('COM_JOOMLEAGUE_F_TEAM_STAFF').': ' .$row->awaystaff_count;
 
 									 echo '<sub>'.$row->awayplayers_count.'</sub> ';
 									 echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/'.$image,
-													 JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_LINEUP_AWAY'),
+													 Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_LINEUP_AWAY'),
 													 'title= "' .$title. '"');
 									 echo '<sub>'.$row->awaystaff_count.'</sub> ';
 
@@ -256,15 +257,15 @@ fieldset button {
 								</a>
 							</td>
 							<td class="center">
-								<input onchange="document.getElementById('cb<?php echo $i; ?>').checked=true" <?php if($row->alt_decision==1) echo "class=\"subsequentdecision\" title=\"".JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_SUB_DECISION')."\"" ?> type="text" name="team1_result<?php echo $row->id; ?>"
+								<input onchange="document.getElementById('cb<?php echo $i; ?>').checked=true" <?php if($row->alt_decision==1) echo "class=\"subsequentdecision\" title=\"".Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_SUB_DECISION')."\"" ?> type="text" name="team1_result<?php echo $row->id; ?>"
 										value="<?php echo $row->team1_result; ?>" size="2" tabindex="5" class="inputbox" /> :
-								<input onchange="document.getElementById('cb<?php echo $i; ?>').checked=true" <?php if($row->alt_decision==1) echo "class=\"subsequentdecision\" title=\"".JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_SUB_DECISION')."\"" ?> type="text" name="team2_result<?php echo $row->id; ?>"
+								<input onchange="document.getElementById('cb<?php echo $i; ?>').checked=true" <?php if($row->alt_decision==1) echo "class=\"subsequentdecision\" title=\"".Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_SUB_DECISION')."\"" ?> type="text" name="team2_result<?php echo $row->id; ?>"
 										value="<?php echo $row->team2_result; ?>" size="2" tabindex="5" class="inputbox" />
 								<a	href="javascript:void(0)"
 									onclick="switchMenu('part<?php echo $row->id; ?>')">&nbsp;
 									<?php echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/arrow_open.png',
-															JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PERIOD_SCORES'),
-															'title= "'.JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PERIOD_SCORES').'"');
+															Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PERIOD_SCORES'),
+															'title= "'.Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_PERIOD_SCORES').'"');
 									?>
 								</a><br />
 								<span id="part<?php echo $row->id; ?>" style="display: none">
@@ -335,12 +336,12 @@ fieldset button {
 							}
 							?>
 							<td class="center">
-								<a	onclick="handleRosterIconClick(<?php echo $prefill; ?>, this, '<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_LAST_ROSTER_ALERT'); ?>', '<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_PROJECTTEAM_PLAYERS_ALERT')?>')"
+								<a	onclick="handleRosterIconClick(<?php echo $prefill; ?>, this, '<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_LAST_ROSTER_ALERT'); ?>', '<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_PROJECTTEAM_PLAYERS_ALERT')?>')"
 									href="index.php?option=com_joomleague&view=match&layout=editevents&match_id=<?php echo $row->id; ?>&prefill="
-									title="<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_EVENTS'); ?>">
+									title="<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_EVENTS'); ?>">
 									 <?php
 									 echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/events.png',
-													 JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_EVENTS'),'title= "'.JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_EVENTS').'"');
+													 Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_EVENTS'),'title= "'.Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_EVENTS').'"');
 									 ?>
 								</a>
 							</td>
@@ -348,12 +349,12 @@ fieldset button {
 								<?php
 								//start statistics:
 								?>
-								<a	onclick="handleRosterIconClick(<?php echo $prefill; ?>, this, '<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_LAST_ROSTER_ALERT'); ?>', '<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_PROJECTTEAM_PLAYERS_ALERT')?>')"
+								<a	onclick="handleRosterIconClick(<?php echo $prefill; ?>, this, '<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_LAST_ROSTER_ALERT'); ?>', '<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_PROJECTTEAM_PLAYERS_ALERT')?>')"
 									href="index.php?option=com_joomleague&&view=match&layout=editstats&match_id=<?php echo $row->id; ?>&prefill=0"
-									title="<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_STATS'); ?>">
+									title="<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_STATS'); ?>">
 									 <?php
 									 echo HTMLHelper::_(	'image','administrator/components/com_joomleague/assets/images/calc16.png',
-													 JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_STATS'),'title= "'.JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_STATS').'"');
+													 Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_STATS'),'title= "'.Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_STATS').'"');
 								?>
 								</a>
 							</td>
@@ -361,7 +362,7 @@ fieldset button {
 							
 								<a
 									href="<?php echo Route::_('index.php?option=com_joomleague&view=match&layout=editreferees&match_id='.$row->id.'&team_id='.$row->projectteam1_id); ?>"
-									 title="<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_REFEREES'); ?>">
+									 title="<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_REFEREES'); ?>">
 									 <?php
 									 if($row->referees_count==0) {
 									 	$image = 'icon-16-Referees.png';
@@ -370,7 +371,7 @@ fieldset button {
 									 }
 									 $title= '';
 									 echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/'.$image,
-													 JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_REFEREES'),
+													 Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_REFEREES'),
 													 'title= "'. $title. '"') ;
 									 echo ' <sub>'.$row->referees_count.'</sub> ';
 									 ?>
@@ -393,7 +394,7 @@ fieldset button {
 
 			<?php
 			$round_date_first = new Date($this->round->round_date_first);
-			$dValue = $round_date_first->format(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT')).' '.$this->project->start_time;
+			$dValue = $round_date_first->format(Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT')).' '.$this->project->start_time;
 			?>
 
 			<input type="hidden" name="match_date" value="<?php echo $dValue; ?>" />

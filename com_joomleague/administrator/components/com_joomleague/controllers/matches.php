@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Router\Route;
 use Joomla\Utilities\ArrayHelper;
@@ -87,7 +88,7 @@ class JoomleagueControllerMatches extends JLGControllerAdmin
 		$cid = $input->get('cid',array(),'array');
 		
 		if(!is_array($cid) || count($cid) < 1) {
-			$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'error');
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'error');
 			$this->setRedirect('index.php?option=com_joomleague&view=matches');
 			return;
 		}
@@ -103,7 +104,7 @@ class JoomleagueControllerMatches extends JLGControllerAdmin
 			{
 				// Prune items that you can't delete.
 				unset($cid[$i]);
-				$app->enqueueMessage( JText::_('JERROR_CORE_DELETE_NOT_PERMITTED'),'notice');
+				$app->enqueueMessage( Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'),'notice');
 			}
 		}
 		$model = $this->getModel('match');
@@ -149,7 +150,7 @@ class JoomleagueControllerMatches extends JLGControllerAdmin
 			}
 		}
 	
-		$msg	= JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_MATCH');
+		$msg	= Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_MATCH');
 		$link	= 'index.php?option=com_joomleague&view=matches';
 		$this->setRedirect($link,$msg);
 	}
@@ -157,7 +158,7 @@ class JoomleagueControllerMatches extends JLGControllerAdmin
 	
 	private function convertUiDateTimeToMatchDate($uiDate, $uiTime, $timezone)
 	{
-		$format = JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT');
+		$format = Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT');
 	
 		if (((!strpos($uiDate,'-')!==false) && (!strpos($uiDate,'.')!==false)) && (strlen($uiDate) <= 8 ))
 		{

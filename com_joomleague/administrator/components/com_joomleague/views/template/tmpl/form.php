@@ -9,6 +9,7 @@
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
@@ -31,18 +32,18 @@ defined('_JEXEC') or die;
 		</div>
 	<?php
 	if ($this->project->id != $this->template->project_id) {
-	    Factory::getApplication()->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_MASTER_WARNING'), 'notice');
+	    Factory::getApplication()->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_MASTER_WARNING'), 'notice');
 		?><input type="hidden" name="master_id" value="<?php echo $this->template->project_id; ?>"/><?php
 	}
 	?>
 		<fieldset class="form-horizontal">
 			<legend>
-				<?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATE_LEGEND', 
-						'<i>' . JText::_('COM_JOOMLEAGUE_FES_' . strtoupper($this->form->getName()) . '_NAME') . '</i>',
+				<?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATE_LEGEND', 
+						'<i>' . Text::_('COM_JOOMLEAGUE_FES_' . strtoupper($this->form->getName()) . '_NAME') . '</i>',
 						'<i>' . $this->project->name . '</i>'); ?>
 			</legend>
 			<fieldset class="form-horizontal">
-				<?php echo JText::_('COM_JOOMLEAGUE_FES_' . strtoupper($this->form->getName()) . '_DESCR'); ?>
+				<?php echo Text::_('COM_JOOMLEAGUE_FES_' . strtoupper($this->form->getName()) . '_DESCR'); ?>
 			</fieldset>
 	
 		<?php
@@ -52,13 +53,13 @@ defined('_JEXEC') or die;
         $fieldSets = $this->form->getFieldsets();
         foreach ($fieldSets as $name => $fieldSet) :
             $label = $fieldSet->name;
-			echo HTMLHelper::_('bootstrap.addTab', $selector, "tab".$i, JText::_($label));
+			echo HTMLHelper::_('bootstrap.addTab', $selector, "tab".$i, Text::_($label));
         	$i++
 			?>
 			<fieldset class="form-vertical">
 				<?php
 				if (isset($fieldSet->description) && !empty($fieldSet->description)) :
-					echo '<fieldset class="form-horizontal">'.JText::_($fieldSet->description).'</fieldset>';
+					echo '<fieldset class="form-horizontal">'.Text::_($fieldSet->description).'</fieldset>';
 					echo '<br />';
 				endif;
 				?>

@@ -10,6 +10,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -62,7 +63,7 @@ class JoomleagueControllerPlaygrounds extends JLGControllerAdmin
 	public function remove()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -70,7 +71,7 @@ class JoomleagueControllerPlaygrounds extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
 		}
 		else
 		{
@@ -80,11 +81,11 @@ class JoomleagueControllerPlaygrounds extends JLGControllerAdmin
 			$result = $model->delete($cid);
 			if($result['removed'])
 			{
-				$app->enqueueMessage(JText::plural($this->text_prefix.'_N_ITEMS_DELETED',$result['removedCount']));
+				$app->enqueueMessage(Text::plural($this->text_prefix.'_N_ITEMS_DELETED',$result['removedCount']));
 			}
 			if($result['error'])
 			{
-				$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_PLAYGROUNDS_UNABLETODELETE'),'warning');
+				$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_PLAYGROUNDS_UNABLETODELETE'),'warning');
 			
 				foreach ($result['error'] AS $error)
 				{
@@ -105,7 +106,7 @@ class JoomleagueControllerPlaygrounds extends JLGControllerAdmin
 	public function saveorder()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app 	= Factory::getApplication();
 		$input = $app->input;
@@ -116,7 +117,7 @@ class JoomleagueControllerPlaygrounds extends JLGControllerAdmin
 
 		$model = $this->getModel('playground');
 		$model->saveorder($cid,$order);
-		$this->setMessage(JText::_('COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED'));
+		$this->setMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED'));
 		$this->setRedirect('index.php?option=com_joomleague&view=playgrounds');
 	}
 
@@ -136,7 +137,7 @@ class JoomleagueControllerPlaygrounds extends JLGControllerAdmin
 	public function export()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -144,7 +145,7 @@ class JoomleagueControllerPlaygrounds extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));
+			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));
 			$this->setRedirect('index.php?option=com_joomleague&view=playgrounds');
 			return;
 		}

@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 defined('_JEXEC') or die;
@@ -200,7 +201,7 @@ class JoomleagueModelTeamStaffs extends JLGModelList
 			}
 			catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 		}
@@ -231,7 +232,7 @@ class JoomleagueModelTeamStaffs extends JLGModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -264,7 +265,7 @@ class JoomleagueModelTeamStaffs extends JLGModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -303,13 +304,13 @@ class JoomleagueModelTeamStaffs extends JLGModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		
 		foreach($result as $position)
 		{
-			$position->text = JText::_($position->text);
+			$position->text = Text::_($position->text);
 		}
 		return $result;
 	}
@@ -438,7 +439,7 @@ class JoomleagueModelTeamStaffs extends JLGModelList
 			}
 			else
 			{
-				$this->setError(JText::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMSTAFFS_MODEL_ERROR_REMOVE_STAFF',$object->getError()));
+				$this->setError(Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMSTAFFS_MODEL_ERROR_REMOVE_STAFF',$object->getError()));
 			}
 		}
 		return $count;

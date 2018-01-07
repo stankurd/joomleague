@@ -8,6 +8,7 @@
  * @author 		Kurt Norgaz <kurtnorgaz@web.de>
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 defined('_JEXEC') or die;
@@ -175,12 +176,12 @@ class JoomleagueModelTeamStaff extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		foreach($result as $position)
 		{
-			$position->text = JText::_($position->text);
+			$position->text = Text::_($position->text);
 		}
 		return $result;
 	}
@@ -212,7 +213,7 @@ class JoomleagueModelTeamStaff extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -254,7 +255,7 @@ class JoomleagueModelTeamStaff extends JLGModelItem
 		}
 			catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 			return true;
@@ -282,7 +283,7 @@ class JoomleagueModelTeamStaff extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;

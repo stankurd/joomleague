@@ -12,6 +12,7 @@
 // no direct access
 use Joomla\CMS\Factory;
 use Joomla\CMS\Filter\InputFilter;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Plugin\PluginHelper;
 
 defined('_JEXEC') or die;
@@ -19,7 +20,7 @@ defined('_JEXEC') or die;
 
 // Access check.
 if (!Factory::getUser()->authorise('core.manage', 'com_joomleague')) {
-		throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
+		throw new Exception(Text::_('JERROR_ALERTNOAUTHOR'), 403);
 }
 
 if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);

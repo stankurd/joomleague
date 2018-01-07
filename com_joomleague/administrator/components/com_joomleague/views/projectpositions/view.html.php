@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -97,7 +98,7 @@ class JoomleagueViewProjectpositions extends JLGView
 		  // project
 			foreach($ress as $res)
 			{
-				$project_positionslist[] = HTMLHelper::_('select.option',$res->value,JText::_($res->text));
+				$project_positionslist[] = HTMLHelper::_('select.option',$res->value,Text::_($res->text));
 			}
 			$lists['project_positions'] = HTMLHelper::_('select.genericlist',$project_positionslist,'project_positionslist[]',
 					' style="width:250px; height:250px;" class="inputbox" multiple="true" size="' . max(15,count($ress)) . '"','value','text',false,
@@ -116,7 +117,7 @@ class JoomleagueViewProjectpositions extends JLGView
 				{
 					if(! in_array($res1,$ress))
 					{
-						$res1->text = JText::_($res1->text);
+						$res1->text = Text::_($res1->text);
 						$notusedpositions[] = $res1;
 					}
 				}
@@ -125,14 +126,14 @@ class JoomleagueViewProjectpositions extends JLGView
 			{
 				foreach($ress1 as $res1)
 				{
-					$res1->text = JText::_($res1->text);
+					$res1->text = Text::_($res1->text);
 					$notusedpositions[] = $res1;
 				}
 			}
 		}
 		else
 		{
-			$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_ASSIGN_POSITIONS_FIRST'),'notice');
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_ASSIGN_POSITIONS_FIRST'),'notice');
 		}
 
 		// build the html select list for positions
@@ -165,7 +166,7 @@ class JoomleagueViewProjectpositions extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_TITLE'),'jl-Positions');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_TITLE'),'jl-Positions');
 		JLToolBarHelper::custom('projectpositions.assign','upload.png','upload_f2.png','COM_JOOMLEAGUE_ADMIN_P_POSITION_BUTTON_UN_ASSIGN',false);
 		JLToolBarHelper::divider();
 		JLToolBarHelper::help('screen.joomleague',true);
@@ -177,7 +178,7 @@ class JoomleagueViewProjectpositions extends JLGView
 	 */
 	protected function addToolbar_Editlist()
 	{
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_EDIT_TITLE'),'jl-Positions');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_EDIT_TITLE'),'jl-Positions');
 		JLToolBarHelper::save('projectpositions.save_positionslist');
 		JLToolBarHelper::cancel('projectpositions.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		JLToolBarHelper::help('screen.joomleague',true);

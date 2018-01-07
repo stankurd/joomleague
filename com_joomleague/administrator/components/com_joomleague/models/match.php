@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Table\Table;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Object\CMSObject;
 
 /**
@@ -80,7 +81,7 @@ class JoomleagueModelMatch extends JLGModelItem
 			}
 			catch (RuntimeException $e)
 			{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			}
 			
 			// match_staff_statistic
@@ -93,7 +94,7 @@ class JoomleagueModelMatch extends JLGModelItem
 			}
 			catch (RuntimeException $e)
 			{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			}
 			
 			// match_staff
@@ -106,7 +107,7 @@ class JoomleagueModelMatch extends JLGModelItem
 			}
 			catch (RuntimeException $e)
 			{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			}
 			
 			// match_event
@@ -119,7 +120,7 @@ class JoomleagueModelMatch extends JLGModelItem
 			}
 			catch (RuntimeException $e)
 			{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			}
 	
 			// match_referee
@@ -132,7 +133,7 @@ class JoomleagueModelMatch extends JLGModelItem
 			}
 			catch (RuntimeException $e)
 			{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			}
 	
 			// match_player
@@ -145,7 +146,7 @@ class JoomleagueModelMatch extends JLGModelItem
 			}
 			catch (RuntimeException $e)
 			{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			}
 			
 			return parent::delete($pks);
@@ -284,7 +285,7 @@ class JoomleagueModelMatch extends JLGModelItem
 			$table = $this->getTable();
 			if (!$table->load($data['new_match_id']))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_OLD_GAME_NOT_FOUND'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_OLD_GAME_NOT_FOUND'));
 				return false;
 			}
 			$newdata=array();
@@ -292,17 +293,17 @@ class JoomleagueModelMatch extends JLGModelItem
 			// Bind the form fields to the table row
 			if (!$table->bind($newdata))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_BINDING_FAILED'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_BINDING_FAILED'));
 				return false;
 			}
 			if (!$table->check())
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
 				return false;
 			}
 			if (!$table->store(true))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_STORE_FAILED'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_STORE_FAILED'));
 				return false;
 			}
 		}
@@ -310,7 +311,7 @@ class JoomleagueModelMatch extends JLGModelItem
 			$table = $this->getTable();
 			if (!$table->load($data['old_match_id']))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_OLD_GAME_NOT_FOUND'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_OLD_GAME_NOT_FOUND'));
 				return false;
 			}
 			$newdata=array();
@@ -318,17 +319,17 @@ class JoomleagueModelMatch extends JLGModelItem
 			// Bind the form fields to the table row
 			if (!$table->bind($newdata))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_BINDING_FAILED'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_BINDING_FAILED'));
 				return false;
 			}
 			if (!$table->check())
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
 				return false;
 			}
 			if (!$table->store(true))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_STORE_FAILED'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_STORE_FAILED'));
 				return false;
 			}
 		}
@@ -492,7 +493,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 			}
 		catch (Exception $e)
 			{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 			}
 		return $result;
@@ -539,7 +540,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		}
 		catch (Exception $e)
 		{
-		$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+		$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}	
 		return	$result;
@@ -601,7 +602,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		}
 		catch (Exception $e)
 		{
-		$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+		$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}	
 		return $result;
@@ -658,7 +659,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		}
 		catch (Exception $e)
 		{
-		$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+		$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -715,7 +716,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		}
 		catch (Exception $e)
 		{
-		$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+		$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 		}
 
 		return $result;
@@ -754,7 +755,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		}
 		catch (Exception $e)
 		{
-		$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+		$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 		}
 
 		return $result;
@@ -804,7 +805,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		}
 		catch (Exception $e)
 		{
-		$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+		$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 		}
 		return $result;
 	}
@@ -887,12 +888,12 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 	 */
 	function getGhostPlayer()
 	{
-		$ghost=new CMSObject();
+		$ghost = new CMSObject();
 		$ghost->set('value',0);
 		$ghost->set('tpid',0);
 		$ghost->set('firstname','');
 		$ghost->set('nickname','');
-		$ghost->set('lastname',JText::_('COM_JOOMLEAGUE_GLOBAL_UNKNOWN'));
+		$ghost->set('lastname',Text::_('COM_JOOMLEAGUE_GLOBAL_UNKNOWN'));
 		$ghost->set('info','');
 		$ghost->set('positionname','');
 		$ghost->set('project_position_id',0);
@@ -901,12 +902,12 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 
 	function getGhostPlayerbb($projectteam_id)
 	{
-		$ghost=new CMSObject();
+		$ghost = new CMSObject();
 		$ghost->set('value',0);
 		$ghost->set('tpid',0);
 		$ghost->set('firstname','');
 		$ghost->set('nickname','');
-		$ghost->set('lastname',JText::_('COM_JOOMLEAGUE_GLOBAL_UNKNOWN'));
+		$ghost->set('lastname',Text::_('COM_JOOMLEAGUE_GLOBAL_UNKNOWN'));
 		$ghost->set('projectteam_id',$projectteam_id);
 		$ghost->set('info','');
 		$ghost->set('positionname','');
@@ -1022,7 +1023,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		}
 		catch (Exception $e)
 		{
-		$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+		$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 		return false;		
 		}
 		return $result;
@@ -1064,7 +1065,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		}
 		catch (Exception $e)
 		{
-		$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+		$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 		return false;
 		}
 		return $result;
@@ -1101,7 +1102,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		}
 		catch (Exception $e)
 		{
-		$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+		$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 		return array();
 		}
 		return $result;
@@ -1141,7 +1142,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 		return array();
 		}
 		return $result;
@@ -1180,7 +1181,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			$result = false;
 		}
 				
@@ -1245,7 +1246,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			$result = false;
 		}
 		
@@ -1321,7 +1322,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 			}
 			catch (Exception $e)
 			{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			$result = false;
 			}
 		foreach ($positions AS $key=>$pos)
@@ -1369,7 +1370,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 							}
 						catch (Exception $e)
 							{
-							$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+							$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 							$result = false;
 							}
 				}
@@ -1456,14 +1457,14 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 	{
 		if (!$data['id'])
 		{
-			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_MATCH_ID_IS_NULL'));
+			$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_MATCH_ID_IS_NULL'));
 			return false;
 		}
 		if($data["new_match_id"] >0) {
 			$table = $this->getTable();
 			if (!$table->load($data['new_match_id']))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_OLD_GAME_NOT_FOUND'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_OLD_GAME_NOT_FOUND'));
 				return false;
 			}
 			$newdata=array();
@@ -1471,17 +1472,17 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 			// Bind the form fields to the table row
 			if (!$table->bind($newdata))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_BINDING_FAILED'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_BINDING_FAILED'));
 				return false;
 			}
 			if (!$table->check())
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
 				return false;
 			}
 			if (!$table->store(true))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_STORE_FAILED'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_STORE_FAILED'));
 				return false;
 			}
 		}
@@ -1489,7 +1490,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 			$table = $this->getTable();
 			if (!$table->load($data['old_match_id']))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_OLD_GAME_NOT_FOUND'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_OLD_GAME_NOT_FOUND'));
 				return false;
 			}
 			$newdata=array();
@@ -1497,17 +1498,17 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 			// Bind the form fields to the table row
 			if (!$table->bind($newdata))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_BINDING_FAILED'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_BINDING_FAILED'));
 				return false;
 			}
 			if (!$table->check())
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
 				return false;
 			}
 			if (!$table->store(true))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_STORE_FAILED'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_STORE_FAILED'));
 				return false;
 			}
 		}
@@ -1570,7 +1571,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 				}
 			catch (Exception $e)
 				{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				$result = false;			
 				}
 			$newId = $in_player_record->id;
@@ -1592,7 +1593,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 				}
 			catch (Exception $e)
 				{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				$result = false;			
 				}
 			$newId = $out_player_record->id;
@@ -1623,7 +1624,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		}
 			catch (Exception $e)
 		{
-		$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+		$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 		$result = false;
 		}
 		return true;
@@ -1643,7 +1644,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		$object->bind($data);
 		if (!$object->check())
 		{
-			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
+			$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
 			return false;
 		}
 		
@@ -1653,7 +1654,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 				}
 			catch (Exception $e)
 				{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				$result = false;			
 				}
 		return $object->id;
@@ -1672,7 +1673,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		$object->bind($data);
 		if (!$object->check())
 		{
-			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
+			$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
 			return false;
 		}	
 			try
@@ -1681,7 +1682,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 				}
 			catch (Exception $e)
 				{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				$result = false;			
 				}
 		return $object->id;
@@ -1720,7 +1721,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 						}
 					catch (Exception $e)
 						{
-						$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						$result = false;			
 						}
 				}
@@ -1753,7 +1754,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 						}
 					catch (Exception $e)
 						{
-						$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						$result = false;			
 						}
 				}
@@ -2070,7 +2071,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		$db->setQuery($query);
 		$result=$db->loadObjectList();
 		if(!$result) return null;
-		foreach ($result as $event){$event->text=JText::_($event->text);}
+		foreach ($result as $event){$event->text=Text::_($event->text);}
 		return $result;
 	}
 	
@@ -2245,7 +2246,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 					}
 				catch (Exception $e)
 					{
-						$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						$result = false;			
 					}
 		}
@@ -2255,7 +2256,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		{
 			$team_players = $this->getTeamPlayers($projectteam_id);
 			if(count($team_players == 0)) {
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_NO_PLAYERS_MATCH'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_NO_PLAYERS_MATCH'));
 			}
 			foreach ($team_players AS $player)
 			{
@@ -2313,7 +2314,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 					}
 				catch (Exception $e)
 					{
-						$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						$result = false;			
 					}
 		}
@@ -2322,7 +2323,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		{
 			$team_players = $this->getTeamPlayers($projectteam_id);
 			if(count($team_players == 0)) {
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_NO_PLAYERS_MATCH'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_NO_PLAYERS_MATCH'));
 			}
 			$matchid = 0;
 			$query='	SELECT	distinct(mp.match_id) AS match_id
@@ -2374,7 +2375,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 			} else {
 				$teams = $this->getMatchTeams($projectteam_id,$match_id);
 				$teamname = ($projectteam_id == $teams->projectteam1_id) ? $teams->team1 : $teams->team2;
-				$this->setError(JText::sprintf('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_NO_LAST_MATCH_ROSTER',$teamname));
+				$this->setError(Text::sprintf('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_NO_LAST_MATCH_ROSTER',$teamname));
 				$result = false;
 			}
 		} else {

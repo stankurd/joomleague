@@ -9,6 +9,7 @@
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 use Joomla\Registry\Registry;
 
@@ -241,13 +242,13 @@ class JoomleagueModelProject extends JLGModelItem
 			{
 				$mdlLeague = $this->getModel('league');
 				$data['league_id'] = $mdlLeague->addLeague($data['leagueNew']);
-				$msg .= JText::_('COM_JOOMLEAGUE_LEAGUE_CREATED') . ',';
+				$msg .= Text::_('COM_JOOMLEAGUE_LEAGUE_CREATED') . ',';
 			}
 			if(isset($post['seasonNew']))
 			{
 				$mdlSeason = $this->getModel('season');
 				$post['season_id'] = $mdlSeason->addSeason($data['seasonNew']);
-				$msg .= JText::_('COM_JOOMLEAGUE_SEASON_CREATED') . ',';
+				$msg .= Text::_('COM_JOOMLEAGUE_SEASON_CREATED') . ',';
 			}
 
 			return true;
@@ -278,7 +279,7 @@ class JoomleagueModelProject extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return array();
 		}
 		return $result;
@@ -306,7 +307,7 @@ class JoomleagueModelProject extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -334,7 +335,7 @@ class JoomleagueModelProject extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		
@@ -368,7 +369,7 @@ class JoomleagueModelProject extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -403,7 +404,7 @@ class JoomleagueModelProject extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -439,7 +440,7 @@ class JoomleagueModelProject extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -472,7 +473,7 @@ class JoomleagueModelProject extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -521,13 +522,13 @@ class JoomleagueModelProject extends JLGModelItem
 				$db->setQuery($query);
 				if(! $result = $db->loadResult())
 				{
-				    $app->enqueueMessage(sprintf(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECT_MODEL_MISSING_MASTER_TEMPLATE'),$template),'warning');
+				    $app->enqueueMessage(sprintf(Text::_('COM_JOOMLEAGUE_ADMIN_PROJECT_MODEL_MISSING_MASTER_TEMPLATE'),$template),'warning');
 					return array();
 				}
 			}
 			else
 			{
-			    //$app->enqueueMessage(sprintf(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECT_MODEL_MISSING_TEMPLATE'),$template),'warning');
+			    //$app->enqueueMessage(sprintf(Text::_('COM_JOOMLEAGUE_ADMIN_PROJECT_MODEL_MISSING_TEMPLATE'),$template),'warning');
 				return array();
 			}
 		}
@@ -612,7 +613,7 @@ class JoomleagueModelProject extends JLGModelItem
 		{
 			if(is_numeric($match->timezone))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_WRONG_TIMEZONE_FORMAT'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_WRONG_TIMEZONE_FORMAT'));
 				return false;
 			}
 			$utc_date = Factory::getDate($match->match_date,$match->timezone)->setTimezone(new DateTimeZone('UTC'))->toSql();
@@ -629,7 +630,7 @@ class JoomleagueModelProject extends JLGModelItem
 			}
 			catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 			

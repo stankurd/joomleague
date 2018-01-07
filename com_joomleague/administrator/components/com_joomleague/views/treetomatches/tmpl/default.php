@@ -10,7 +10,7 @@ use Joomla\CMS\HTML\HTMLHelper;
  */
 defined('_JEXEC') or die;
 
-HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 jimport('joomla.html.pane');
 
 JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_TITLE'));

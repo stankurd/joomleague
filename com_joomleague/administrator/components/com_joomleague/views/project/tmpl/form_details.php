@@ -9,6 +9,8 @@
  * @todo:
  * fix adding newLeague/newSeason
  */
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 
 ?>
@@ -40,7 +42,7 @@ jQuery(document).ready(function() {
 <div class="row-fluid">
 	<div class="span5">
 		<fieldset class="form-horizontal">
-			<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECT_LEGEND_DETAILS','<i>'.$this->form->getValue('name').'</i>'); ?></legend>
+			<legend><?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECT_LEGEND_DETAILS','<i>'.$this->form->getValue('name').'</i>'); ?></legend>
 			<?php
 			echo $this->form->renderField('name');
 			echo $this->form->renderField('alias');
@@ -91,7 +93,7 @@ jQuery(document).ready(function() {
 	<div class="span2"></div>
 	<div class="span5">
 		<fieldset class="form-vertical">
-			<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECT_DATE_PARAMS'); ?></legend>
+			<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECT_DATE_PARAMS'); ?></legend>
 		<?php
 		echo $this->form->renderField('start_date');
 		echo $this->form->renderField('start_time');

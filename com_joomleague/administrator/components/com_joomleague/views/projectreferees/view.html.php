@@ -13,6 +13,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -150,7 +151,7 @@ class JoomleagueViewProjectReferees extends JLGView
 
 		// build the html options for position
 		$position_id = array();
-		$position_id[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_REF_FUNCTION'));
+		$position_id[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_REF_FUNCTION'));
 		if($res = $model->getRefereePositions())
 		{
 			$position_id = array_merge($position_id,$res);
@@ -212,7 +213,7 @@ class JoomleagueViewProjectReferees extends JLGView
 
 		JLToolBarHelper::apply('projectreferee.saveassigned','COM_JOOMLEAGUE_ADMIN_PERSONS_SAVE_SELECTED');
 		JLToolBarHelper::back('COM_JOOMLEAGUE_ADMIN_PERSONS_BACK','index.php?option=com_joomleague&view=projectreferees');
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_ASSIGN_REFEREES'),'jl-Referees');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PERSONS_ASSIGN_REFEREES'),'jl-Referees');
 		JLToolBarHelper::help('screen.joomleague',true);
 
 		parent::display($tpl);
@@ -224,7 +225,7 @@ class JoomleagueViewProjectReferees extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PREF_TITLE'),'jl-Referees');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PREF_TITLE'),'jl-Referees');
 		JLToolBarHelper::apply('projectreferees.saveshort','COM_JOOMLEAGUE_ADMIN_PREF_APPLY');
 		JLToolBarHelper::custom('projectreferees.assign','upload.png','upload_f2.png','COM_JOOMLEAGUE_ADMIN_PREF_ASSIGN',false);
 		JLToolBarHelper::custom('projectreferees.unassign','cancel.png','cancel_f2.png','COM_JOOMLEAGUE_ADMIN_PREF_UNASSIGN',false);

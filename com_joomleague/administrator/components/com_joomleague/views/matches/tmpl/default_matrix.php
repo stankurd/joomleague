@@ -17,15 +17,16 @@
 
 use Joomla\CMS\Date\Date;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
 <div class="clr"></div>
 <form method="post" name="matrixForm" id="matrixForm">
 
-<fieldset class="adminform"><legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MATRIX_TITLE'); ?></legend>
+<fieldset class="adminform"><legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MATRIX_TITLE'); ?></legend>
 <fieldset class="adminform">
-	<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MATRIX_HINT'); ?>
+	<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MATRIX_HINT'); ?>
 </fieldset>
 <br>
 <style>
@@ -125,7 +126,7 @@ echo $matrix;
 ?></fieldset>
 <?php 
 $round_date_first = new Date($this->round->round_date_first);
-$dValue = $round_date_first->format(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT')).' '.$this->project->start_time; 
+$dValue = $round_date_first->format(Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT')).' '.$this->project->start_time; 
 ?>
 <input type='hidden' name='match_date' value='<?php echo $dValue; ?>' />
 <input type='hidden' name='projectteam1_id' value='' />

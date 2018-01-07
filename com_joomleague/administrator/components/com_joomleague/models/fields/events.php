@@ -10,6 +10,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -35,10 +36,10 @@ class JFormFieldEvents extends FormField
 		->order('name');
 		$db->setQuery( $query );
 		$events = $db->loadObjectList();
-		$mitems = array(HTMLHelper::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
+		$mitems = array(HTMLHelper::_('select.option', '', Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
 
 		foreach ( $events as $event ) {
-			$mitems[] = HTMLHelper::_('select.option',  $event->id, '&nbsp;'.JText::_($event->name). ' ('.$event->id.')' );
+			$mitems[] = HTMLHelper::_('select.option',  $event->id, '&nbsp;'.Text::_($event->name). ' ('.$event->id.')' );
 		}
 		
 		$output= HTMLHelper::_('select.genericlist',  $mitems, $this->name, 'class="inputbox" multiple="multiple" size="10"', 'value', 'text', $this->value, $this->id );

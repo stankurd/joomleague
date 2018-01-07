@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -47,7 +48,7 @@ class JoomleagueViewRound extends JLGView
 		/*
 		 * if ($model->isCheckedOut($user->get('id')))
 		 * {
-		 * $msg = JText::sprintf('DESCBEINGEDITTED', JText::_('The matchday'),
+		 * $msg = Text::sprintf('DESCBEINGEDITTED', Text::_('The matchday'),
 		 * $round->name);
 		 * $app->redirect('index.php?option=' . $option, $msg);
 		 * }
@@ -85,8 +86,8 @@ class JoomleagueViewRound extends JLGView
 		$isNew = ($this->item->id == 0);
 		$checkedOut = ! ($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 
-		$text = $isNew ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_ROUND_TITLE') . ': ' . $this->item->name,'jl-Matchdays');
+		$text = $isNew ? Text::_('COM_JOOMLEAGUE_GLOBAL_NEW') : Text::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_ROUND_TITLE') . ': ' . $this->item->name,'jl-Matchdays');
 
 		JLToolBarHelper::apply('round.apply');
 		JLToolBarHelper::save('round.save');

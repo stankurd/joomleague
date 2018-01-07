@@ -11,6 +11,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -99,7 +100,7 @@ class JoomleagueViewTeamStaffs extends JLGView
 		$model = $this->getModel();
 
 		// build the html options for position
-		$position_id[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_FUNCTION'));
+		$position_id[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_FUNCTION'));
 		if($res = $model->getPositions())
 		{
 			$position_id = array_merge($position_id,$res);
@@ -159,7 +160,7 @@ class JoomleagueViewTeamStaffs extends JLGView
 
 		JLToolBarHelper::apply('teamstaffs.saveassigned','COM_JOOMLEAGUE_ADMIN_PERSONS_SAVE_SELECTED');
 		JLToolbarHelper::back('COM_JOOMLEAGUE_ADMIN_PERSONS_BACK','index.php?option=com_joomleague&view=teamstaffs');
-		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_ASSIGN_STAFF'),'generic.png');
+		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PERSONS_ASSIGN_STAFF'),'generic.png');
 		JLToolbarHelper::help('screen.joomleague',true);
 
 		parent::display($tpl);
@@ -171,7 +172,7 @@ class JoomleagueViewTeamStaffs extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_TITLE'));
+		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_TITLE'));
 		JLToolBarHelper::publishList('teamstaffs.publish');
 		JLToolBarHelper::unpublishList('teamstaffs.unpublish');
 		JLToolBarHelper::apply('teamstaffs.saveshort','COM_JOOMLEAGUE_ADMIN_TSTAFFS_APPLY');

@@ -13,7 +13,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.framework');
+HTMLHelper::_('behavior.framework');
 
 /**
  * Renders a Dynamic SQL element

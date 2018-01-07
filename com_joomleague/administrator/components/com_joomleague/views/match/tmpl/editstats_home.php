@@ -6,6 +6,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined ( '_JEXEC' ) or die ();
 
 // row index
@@ -14,14 +16,14 @@ $j = 0;
 ?>
 
 <fieldset class="adminform">
-	<legend><?php echo JText::_( $this->teams->team1 );?></legend>
+	<legend><?php echo Text::_( $this->teams->team1 );?></legend>
 	<?php foreach ($this->positions as $position): ?>
-	<h3><?php echo JText::_($position->text); ?></h3>
+	<h3><?php echo Text::_($position->text); ?></h3>
 	<table class='adminlist'>
 		<thead>
 			<tr>
 				<th style="text-align: left; width: 10px;"></th>
-				<th style="text-align: left;"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ES_NAME' ); ?></th>
+				<th style="text-align: left;"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_ES_NAME' ); ?></th>
 				<?php
 		foreach ( $this->stats as $stat ) {
 			if (! $stat->getCalculated () && $stat->position_id == $position->value) {
@@ -74,12 +76,12 @@ $j = 0;
 	<?php if (count($this->homeStaff)):?>
 	<hr />
 	<?php foreach ($this->staffpositions as $position): ?>
-	<h3><?php echo JText::_($position->text); ?></h3>
+	<h3><?php echo Text::_($position->text); ?></h3>
 	<table>
 		<thead>
 			<tr>
 				<th style="text-align: left;"></th>
-				<th style="text-align: left; width: 200px;"><?php echo JText::_( 'COM_JOOMLEAGUE_ADMIN_MATCH_ES_NAME' ); ?></th>
+				<th style="text-align: left; width: 200px;"><?php echo Text::_( 'COM_JOOMLEAGUE_ADMIN_MATCH_ES_NAME' ); ?></th>
 				<?php
 			foreach ( $this->stats as $stat ) {
 				if (! $stat->getCalculated () && $stat->position_id == $position->value) {

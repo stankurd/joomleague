@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -22,7 +23,7 @@ class JoomleagueViewJLXMLExport extends JLGView
 	public function display($tpl = null)
 	{
 		// Set toolbar items for the page
-		JLToolBarHelper::title(JText::_('JoomLeague XML Export'),'generic.png');
+		JLToolBarHelper::title(Text::_('JoomLeague XML Export'),'generic.png');
 
 		$db = Factory::getDbo();
 

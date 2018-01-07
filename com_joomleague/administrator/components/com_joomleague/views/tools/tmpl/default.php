@@ -7,13 +7,14 @@
 * @link		http://www.joomleague.at
 */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
 <?php
 	$p=1;
 	echo HTMLHelper::_('bootstrap.startTabSet', 'tabs', array('active' => 'panel1'));
-	echo HTMLHelper::_('bootstrap.addTab', 'tabs', 'panel'.$p++,'<span class="icon-database"></span>'.JText::_('COM_JOOMLEAGUE_TABS_TOOLS_TABLES', true));
+	echo HTMLHelper::_('bootstrap.addTab', 'tabs', 'panel'.$p++,'<span class="icon-database"></span>'.Text::_('COM_JOOMLEAGUE_TABS_TOOLS_TABLES', true));
 ?>
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm" name="adminForm">
 <fieldset class="form-horizontal">
@@ -60,10 +61,10 @@ defined('_JEXEC') or die;
 <?php  
 	echo HTMLHelper::_('bootstrap.endTab'); 
 	
-	echo HTMLHelper::_('bootstrap.addTab', 'tabs', 'panel'.$p++,'<span class="icon-database"></span>'.JText::_('COM_JOOMLEAGUE_TABS_TOOLS_DB', true));
+	echo HTMLHelper::_('bootstrap.addTab', 'tabs', 'panel'.$p++,'<span class="icon-database"></span>'.Text::_('COM_JOOMLEAGUE_TABS_TOOLS_DB', true));
 	echo $this->loadTemplate('db');
 	echo HTMLHelper::_('bootstrap.endTab');
-	echo HTMLHelper::_('bootstrap.addTab', 'tabs', 'panel'.$p++,'<span class="icon-database"></span>'.JText::_('COM_JOOMLEAGUE_TABS_TOOLS_OTHER', true));
+	echo HTMLHelper::_('bootstrap.addTab', 'tabs', 'panel'.$p++,'<span class="icon-database"></span>'.Text::_('COM_JOOMLEAGUE_TABS_TOOLS_OTHER', true));
 	echo $this->loadTemplate('other');
 	echo HTMLHelper::_('bootstrap.endTab');
 

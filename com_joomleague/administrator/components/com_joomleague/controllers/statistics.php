@@ -10,6 +10,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -71,14 +72,14 @@ class JoomleagueControllerStatistics extends JLGControllerAdmin
 	public function export()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
 		$cid = $input->get('cid',array(),'array');
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));
+			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));
 			$this->setRedirect('index.php?option=com_joomleague&view=statistics');
 			return;
 		}
@@ -96,7 +97,7 @@ class JoomleagueControllerStatistics extends JLGControllerAdmin
 	public function fulldelete()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$user 	= Factory::getUser();
 		$app 	= Factory::getApplication();
@@ -105,7 +106,7 @@ class JoomleagueControllerStatistics extends JLGControllerAdmin
 		ArrayHelper::toInteger($cid);
 
 		if(!is_array($cid) || count($cid) < 1) {
-			$msg = JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE');
+			$msg = Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE');
 			$app->enqueueMessage($msg, 'notice');
 		} else {
 			// Access checks.
@@ -115,7 +116,7 @@ class JoomleagueControllerStatistics extends JLGControllerAdmin
 				{
 					// Prune items that you can't delete.
 					unset($cid[$i]);
-					$msg = JText::_('JERROR_CORE_DELETE_NOT_PERMITTED');
+					$msg = Text::_('JERROR_CORE_DELETE_NOT_PERMITTED');
 					$app->enqueueMessage($msg, 'notice');
 				}
 			}
@@ -130,7 +131,7 @@ class JoomleagueControllerStatistics extends JLGControllerAdmin
 				// output notices
 			}
 
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_STAT_CTRL_DELETED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_STAT_CTRL_DELETED');
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=statistics');
 	}

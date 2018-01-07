@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 /**
  * Joomleague
@@ -13,19 +14,19 @@ defined('_JEXEC') or die;
 <fieldset class="adminform">
 	<legend>
 			<?php
-			echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_TREETONODE_TITLE_DESCRIPTION','<i>' . $this->item->node . '</i>',
+			echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_TREETONODE_TITLE_DESCRIPTION','<i>' . $this->item->node . '</i>',
 					'<i>' . $this->project->name . '</i>');
 			?>
 		</legend>
 	<div class="control-group">
-		<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_TITLE_NODE'); ?></div>
+		<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_TITLE_NODE'); ?></div>
 		<div class="controls">
 			<input class="text_area" type="text" name="title" id="title"
 				size="60" maxlength="250" value="<?php echo $this->item->title; ?>" />
 		</div>
 	</div>
 	<div class="control-group">
-		<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CONTENT_NODE'); ?></div>
+		<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CONTENT_NODE'); ?></div>
 		<div class="controls">
 			<input class="text_area" type="text" name="content" id="content"
 				size="60" maxlength="250"
@@ -33,7 +34,7 @@ defined('_JEXEC') or die;
 		</div>
 	</div>
 	<div class="control-group">
-		<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_TEAM'); ?></div>
+		<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_TEAM'); ?></div>
 		<div class="controls">
 				<?php
 				$append = '';

@@ -10,6 +10,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
@@ -34,36 +35,36 @@ defined('_JEXEC') or die;
 			'active' => $activeTab 
 	) );
 	
-	echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'matchpreview', JText::_ ( 'COM_JOOMLEAGUE_TABS_MATCHPREVIEW' ) );
+	echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'matchpreview', Text::_ ( 'COM_JOOMLEAGUE_TABS_MATCHPREVIEW' ) );
 	echo $this->loadTemplate ( 'matchpreview' );
 	echo HTMLHelper::_ ( 'bootstrap.endTab' );
 	
-	echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'matchdetailsTab', JText::_ ( 'COM_JOOMLEAGUE_TABS_MATCHDETAILS' ) );
+	echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'matchdetailsTab', Text::_ ( 'COM_JOOMLEAGUE_TABS_MATCHDETAILS' ) );
 	echo $this->loadTemplate ( 'matchdetails' );
 	echo HTMLHelper::_ ( 'bootstrap.endTab' );
 	
-	echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'scoredetails', JText::_ ( 'COM_JOOMLEAGUE_TABS_SCOREDETAILS' ) );
+	echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'scoredetails', Text::_ ( 'COM_JOOMLEAGUE_TABS_SCOREDETAILS' ) );
 	echo $this->loadTemplate ( 'scoredetails' );
 	echo HTMLHelper::_ ( 'bootstrap.endTab' );
 	
-	echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'altdecision', JText::_ ( 'COM_JOOMLEAGUE_TABS_ALTDECISION' ) );
+	echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'altdecision', Text::_ ( 'COM_JOOMLEAGUE_TABS_ALTDECISION' ) );
 	echo $this->loadTemplate ( 'altdecision' );
 	echo HTMLHelper::_ ( 'bootstrap.endTab' );
 	
-	echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'matchreport', JText::_ ( 'COM_JOOMLEAGUE_TABS_MATCHREPORT' ) );
+	echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'matchreport', Text::_ ( 'COM_JOOMLEAGUE_TABS_MATCHREPORT' ) );
 	echo $this->loadTemplate ( 'matchreport' );
 	echo HTMLHelper::_ ( 'bootstrap.endTab' );
 	
-	echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'matchrelation', JText::_ ( 'COM_JOOMLEAGUE_TABS_MATCHRELATION' ) );
+	echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'matchrelation', Text::_ ( 'COM_JOOMLEAGUE_TABS_MATCHRELATION' ) );
 	echo $this->loadTemplate ( 'matchrelation' );
 	echo HTMLHelper::_ ( 'bootstrap.endTab' );
 	
-	echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'matchextended', JText::_ ( 'COM_JOOMLEAGUE_TABS_EXTENDED' ) );
+	echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'matchextended', Text::_ ( 'COM_JOOMLEAGUE_TABS_EXTENDED' ) );
 	echo $this->loadTemplate ( 'matchextended' );
 	echo HTMLHelper::_ ( 'bootstrap.endTab' );
 	
 	if (Factory::getUser ()->authorise ( 'core.admin', 'com_joomleague' ) || Factory::getUser ()->authorise ( 'core.admin', 'com_joomleague.project.' . ( int ) $this->project->id ) || Factory::getUser ()->authorise ( 'core.admin', 'com_joomleague.match' . ( int ) $this->item->id )) {
-		echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'permissions', JText::_ ( 'JCONFIG_PERMISSIONS_LABEL' ) );
+		echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'permissions', Text::_ ( 'JCONFIG_PERMISSIONS_LABEL' ) );
 		echo $this->loadTemplate ( 'permissions' );
 		echo HTMLHelper::_ ( 'bootstrap.endTab' );
 	}

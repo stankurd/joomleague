@@ -9,6 +9,7 @@
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
@@ -40,7 +41,7 @@ if($saveOrder)
 	</div>
 	<?php if (empty($this->items)) : ?>
 	<div class="alert alert-no-items">
-		<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+		<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 	</div>
 	<?php else : ?>
 	<div id="j-main-container" class="j-main-container">
@@ -58,10 +59,10 @@ if($saveOrder)
 				<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_SPORTSTYPES_NAME','a.name',$listDirn, $listOrder);?>
 			</th>
 			<th class="title">
-				<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_SPORTSTYPES_TRANSLATION'); ?>
+				<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_SPORTSTYPES_TRANSLATION'); ?>
 			</th>
 			<th width="10%" class="center">
-				<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_SPORTSTYPES_ICON'); ?>
+				<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_SPORTSTYPES_ICON'); ?>
 			</th>
 			<th width="1%">
 				<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder); ?>
@@ -114,7 +115,7 @@ if($saveOrder)
 					<td class="center">
 						<a href="<?php echo $link; ?>">
 							<?php
-							$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_SPORTSTYPES_EDIT_DETAILS');
+							$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_SPORTSTYPES_EDIT_DETAILS');
 							echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "'.$imageTitle.'"');
 							?>
 						</a>
@@ -125,10 +126,10 @@ if($saveOrder)
 				<td><?php echo $row->name; ?></td>
 				<td>
 				<?php 	
-				if ($row->name != JText::_($row->name)){
-					echo '<span style="color:green">'.JText::_($row->name).'</span>';
+				if ($row->name != Text::_($row->name)){
+					echo '<span style="color:green">'.Text::_($row->name).'</span>';
 				} else {
-					echo '<span style="color:red">'.JText::_('no translation available').'</span>';
+					echo '<span style="color:red">'.Text::_('no translation available').'</span>';
 				}
 				?>
 				</td>

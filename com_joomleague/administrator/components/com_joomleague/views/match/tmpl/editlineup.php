@@ -7,7 +7,9 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
-
+use Joomla\CMS\Language\Text;
+HTMLHelper::_('jquery.framework');
+HTMLHelper::_('behavior.core');
 defined ( '_JEXEC' ) or die ();
 ?>
 <form id="adminForm" name="adminForm" method="post">
@@ -17,19 +19,21 @@ defined ( '_JEXEC' ) or die ();
 		<?php
 		// focus on players tab
 		$selector = 'eventtype';
-		echo HTMLHelper::_('bootstrap.startTabSet', $selector, array('active' => 'substitutions'));
+		echo HTMLHelper::_('bootstrap.startTabSet', $selector, array('active' => 'players'));
 		
-		echo HTMLHelper::_('bootstrap.addTab',$selector,'substitutions',JText::_('COM_JOOMLEAGUE_TABS_SUBST'));
-		echo $this->loadTemplate('substitutions');
-		echo HTMLHelper::_('bootstrap.endTab');
-		
-		echo HTMLHelper::_('bootstrap.addTab',$selector,'players',JText::_('COM_JOOMLEAGUE_TABS_PLAYERS'));
+		echo HTMLHelper::_('bootstrap.addTab',$selector,'players',Text::_('COM_JOOMLEAGUE_TABS_PLAYERS'));
 		echo $this->loadTemplate('players');
 		echo HTMLHelper::_('bootstrap.endTab');
 		
-		echo HTMLHelper::_('bootstrap.addTab',$selector,'stafftab',JText::_('COM_JOOMLEAGUE_TABS_STAFF'));
+		echo HTMLHelper::_('bootstrap.addTab',$selector,'stafftab',Text::_('COM_JOOMLEAGUE_TABS_STAFF'));
 		echo $this->loadTemplate('staff');
 		echo HTMLHelper::_('bootstrap.endTab');
+		
+		echo HTMLHelper::_('bootstrap.addTab',$selector,'substitutions',Text::_('COM_JOOMLEAGUE_TABS_SUBST'));
+		echo $this->loadTemplate('substitutions');
+		echo HTMLHelper::_('bootstrap.endTab');
+		
+		
 		
 		echo HTMLHelper::_('bootstrap.endTabSet');
 		?>

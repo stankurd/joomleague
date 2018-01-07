@@ -10,6 +10,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -83,7 +84,7 @@ class JFormFieldMultiDependSQL extends FormField
 		}
 		else
 		{
-			$options = array(HTMLHelper::_('select.option', '', JText::_('Select'), $key, $val));
+			$options = array(HTMLHelper::_('select.option', '', Text::_('Select'), $key, $val));
 		}
 
 		if ($query!='')

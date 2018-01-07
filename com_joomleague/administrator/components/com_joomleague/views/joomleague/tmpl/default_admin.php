@@ -11,6 +11,7 @@ use Joomla\Input\Input;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -91,7 +92,7 @@ $option = 'com_joomleague';
 					}
 					else
 					{
-						echo '<tr><td><span title="' . JText::_('JGLOBAL_AUTH_ACCESS_DENIED') . '">' . $image . ' ' . $text . '</span></td></tr>';
+						echo '<tr><td><span title="' . Text::_('JGLOBAL_AUTH_ACCESS_DENIED') . '">' . $image . ' ' . $text . '</span></td></tr>';
 					}
 					
 				}
@@ -124,9 +125,9 @@ $option = 'com_joomleague';
 			<div class="center">
 						<br />
 				<?php
-				$image = HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/jl.png',JText::_('JoomLeague'),
+				$image = HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/jl.png',Text::_('JoomLeague'),
 						array(
-								"title" => JText::_('JoomLeague')
+								"title" => Text::_('JoomLeague')
 						));
 				$url = 'index.php?option=com_joomleague&view=about';
 

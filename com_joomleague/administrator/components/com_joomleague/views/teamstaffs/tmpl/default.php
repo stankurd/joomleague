@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
@@ -32,7 +33,7 @@ jQuery(document).ready(function() {
 		// Set the input value if not already set.
 		if (!searchword.val())
 		{
-			searchword.val('" . JText::_('Search',true) . "');
+			searchword.val('" . Text::_('Search',true) . "');
 		}
 
 		// Get the current value.
@@ -41,7 +42,7 @@ jQuery(document).ready(function() {
 		// If the current value equals the default value, clear it.
 		searchword.on('focus', function()
 		{	var el = jQuery(this);
-			if (el.val() === '" . JText::_('Search',true) . "')
+			if (el.val() === '" . Text::_('Search',true) . "')
 			{
 				el.val('');
 			}
@@ -78,13 +79,13 @@ $script .= "});";
 Factory::getDocument()->addScriptDeclaration($script);
 ?>
 <fieldset class="form-horizontal">
-	<legend><?php echo JText::_("COM_JOOMLEAGUE_ADMIN_TEAMSTAFFS_QUICKADD_STAFF");?></legend>
+	<legend><?php echo Text::_("COM_JOOMLEAGUE_ADMIN_TEAMSTAFFS_QUICKADD_STAFF");?></legend>
 	<form id="quickaddForm" action="<?php echo Uri::root(); ?>administrator/index.php?option=com_joomleague&task=quickadd.addstaff" method="post">
-		<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFFS_QUICKADD_DESCR'); ?>
+		<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFFS_QUICKADD_DESCR'); ?>
 		<div class="clearfix"></div>
 		<div class="btn-wrapper input-append pull-left">
 			<input type="text" name="p" id="quickadd" size="50" value="<?php htmlspecialchars(Factory::getApplication()->input->getString('q',false)); ?>" />
-			<input class="btn" type="submit" name="submit" id="submit" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_ADD');?>" />
+			<input class="btn" type="submit" name="submit" id="submit" value="<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_ADD');?>" />
 		</div>
 		<input type="hidden" name="projectteam_id" id="projectteam_id" value="<?php echo $this->projectteam->id; ?>" />
 		<?php echo HTMLHelper::_('form.token'); ?>
@@ -95,7 +96,7 @@ Factory::getDocument()->addScriptDeclaration($script);
 	<fieldset class="form-horizontal">
 		<legend>
 			<?php
-			echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_TSTAFFS_TITLE2','<i>'.$this->projectteam->name.'</i>','<i>'.$this->project->name.'</i>');
+			echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_TSTAFFS_TITLE2','<i>'.$this->projectteam->name.'</i>','<i>'.$this->project->name.'</i>');
 			?>
 		</legend>
 		<div class="clearfix">
@@ -113,7 +114,7 @@ Factory::getDocument()->addScriptDeclaration($script);
 		</div></div>
 	<?php if (empty($this->items)) : ?>
 	<div class="alert alert-no-items">
-		<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+		<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 	</div>
 	<?php else : ?>
 		<table class="table table-striped" id="teamstaffList">
@@ -127,19 +128,19 @@ Factory::getDocument()->addScriptDeclaration($script);
 						<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TSTAFFS_NAME','a.lastname',$listDirn, $listOrder);?>
 					</th>
 					<th class="center">
-						<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_IMAGE'); ?>
+						<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_IMAGE'); ?>
 					</th>
 					<th>
 						<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_TSTAFFS_POS','a.project_position_id',$listDirn, $listOrder);?>
 					</th>
 					<th>
-						<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_STATUS');?>
+						<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_STATUS');?>
 					</th>
 					<th class="center">
-						<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');?>
+						<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');?>
 					</th>
 					<th width="20">
-						<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_PID');?>
+						<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_PID');?>
 					</th>
 					<th width="1%">
 						<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder);?>
@@ -174,7 +175,7 @@ Factory::getDocument()->addScriptDeclaration($script);
 					<td class="center">
 						<a href="<?php echo $link; ?>">
 						<?php
-							$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_EDIT_DETAILS');
+							$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_EDIT_DETAILS');
 							echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "'.$imageTitle.'"');
 						?>
 						</a>
@@ -189,11 +190,11 @@ Factory::getDocument()->addScriptDeclaration($script);
 					<?php
 					if($row->picture == '')
 					{
-						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_NO_IMAGE');
+						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_NO_IMAGE');
 						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "'.$imageTitle.'"');
 					}
 					elseif($row->picture == JoomleagueHelper::getDefaultPlaceholder("player")){
-						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_DEFAULT_IMAGE');
+						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_DEFAULT_IMAGE');
 						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/information.png',$imageTitle,'title= "'.$imageTitle.'"');
 					}
 					elseif($row->picture == ! '')
@@ -240,17 +241,17 @@ Factory::getDocument()->addScriptDeclaration($script);
 					// $row->away = 1;
 					if($row->injury > 0)
 					{
-						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_INJURED');
+						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_INJURED');
 						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/injured.gif',$imageTitle,'title= "'.$imageTitle.'"');
 					}
 					if($row->suspension > 0)
 					{
-						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_SUSPENDED');
+						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_SUSPENDED');
 						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/suspension.gif',$imageTitle,'title= "'.$imageTitle.'"');
 					}
 					if($row->away > 0)
 					{
-						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_AWAY');
+						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_AWAY');
 						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/away.gif',$imageTitle,'title= "'.$imageTitle.'"');
 					}
 					?>

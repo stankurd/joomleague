@@ -15,6 +15,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -77,8 +78,8 @@ function setUpdatePart($val=1)
 	$mtime=$mtime[1] + $mtime[0];
 	$starttime=$mtime;
 
-	JLToolBarHelper::title(JText::_('JoomLeague - Database update process'));
-	echo '<h2>'.JText::sprintf(	'JoomLeague v%1$s - %2$s - Filedate: %3$s / %4$s',
+	JLToolBarHelper::title(Text::_('JoomLeague - Database update process'));
+	echo '<h2>'.Text::sprintf(	'JoomLeague v%1$s - %2$s - Filedate: %3$s / %4$s',
 								$version,$updateDescription,$updateFileDate,$updateFileTime).'</h2>';
 	$totalUpdateParts = 2;
 	setUpdatePart();
@@ -86,11 +87,11 @@ function setUpdatePart($val=1)
 	if (getUpdatePart() < $totalUpdateParts)
 	{
 		echo '<p><b>';
-		echo JText::sprintf('Please remember that this update routine has totally %1$s update steps!',$totalUpdateParts).'</b><br />';
-		echo JText::_('So please go to the bottom of this page to check if there are errors and more update steps to do!');
+		echo Text::sprintf('Please remember that this update routine has totally %1$s update steps!',$totalUpdateParts).'</b><br />';
+		echo Text::_('So please go to the bottom of this page to check if there are errors and more update steps to do!');
 		echo '</p>';
 		echo '<p style="color:red; font-weight:bold; ">';
-		echo JText::_('We recommend a database backup before the update!!!').'<br />';
+		echo Text::_('We recommend a database backup before the update!!!').'<br />';
 		echo '</p>';
 		echo '<hr>';
 	}
@@ -101,22 +102,22 @@ function setUpdatePart($val=1)
 		require_once JPATH_ADMINISTRATOR.'/components/com_joomleague/models/databasetools.php';
 		echo JoomleagueModelDatabaseTools::ImportTables();
 		echo '<br /><center><hr />';
-			echo JText::sprintf('Memory Limit is %1$s',ini_get('memory_limit')).'<br />';
-			echo JText::sprintf('Memory Peak Usage was %1$s Bytes',number_format(memory_get_peak_usage(true),0,'','.')).'<br />';
-			echo JText::sprintf('Time Limit is %1$s seconds',ini_get('max_execution_time')).'<br />';
+			echo Text::sprintf('Memory Limit is %1$s',ini_get('memory_limit')).'<br />';
+			echo Text::sprintf('Memory Peak Usage was %1$s Bytes',number_format(memory_get_peak_usage(true),0,'','.')).'<br />';
+			echo Text::sprintf('Time Limit is %1$s seconds',ini_get('max_execution_time')).'<br />';
 			$mtime=microtime();
 			$mtime=explode(" ",$mtime);
 			$mtime=$mtime[1] + $mtime[0];
 			$endtime=$mtime;
 			$totaltime=($endtime - $starttime);
-			echo JText::sprintf('This page was created in %1$s seconds',$totaltime);
+			echo Text::sprintf('This page was created in %1$s seconds',$totaltime);
 		echo '<hr /></center>';
 		setUpdatePart(0);
 	}
 	else
 	{
 		echo '<input type="button" onclick="document.body.innerHTML=\'please wait...\';location.reload(true)" value="';
-		echo JText::sprintf('Click here to do step %1$s of %2$s steps to finish the update.',getUpdatePart()+1,$totalUpdateParts);
+		echo Text::sprintf('Click here to do step %1$s of %2$s steps to finish the update.',getUpdatePart()+1,$totalUpdateParts);
 		echo '" />';
 	}
 ?>

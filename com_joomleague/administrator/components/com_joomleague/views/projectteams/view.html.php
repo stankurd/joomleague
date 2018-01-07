@@ -10,6 +10,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 HTMLHelper::_('jquery.framework');
 defined('_JEXEC') or die;
@@ -72,7 +73,7 @@ class JoomleagueViewProjectteams extends JLGView
 
 		// build the html select list for all teams
 		$all_Teams = array();
-		$all_teams[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
+		$all_teams[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
 
 		if($allTeams = $model->getAllTeams($project_id))
 		{
@@ -84,7 +85,7 @@ class JoomleagueViewProjectteams extends JLGView
 		$this->lists = $lists;
 		$this->projectteams = $projectteams;
 		// Toolbar for ChangeTeams
-		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_CHANGEASSIGN_TEAMS'),'');
+		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_CHANGEASSIGN_TEAMS'),'');
 		JLToolBarHelper::custom('projectteam.storechangeteams','move.png','move_f2.png','COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_BUTTON_STORE_CHANGE_TEAMS',false);
 		JLToolbarHelper::back();
 
@@ -191,7 +192,7 @@ class JoomleagueViewProjectteams extends JLGView
 		}
 		else
 		{
-		  $msg = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ADD_TEAM');
+		  $msg = Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ADD_TEAM');
 		  $app->enqueueMessage($msg, 'warning'); 
 		}
 
@@ -244,7 +245,7 @@ class JoomleagueViewProjectteams extends JLGView
 
 		// build the html options for divisions
 		$divisions = array();
-		$divisions[] = JHtmlSelect::option('0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'),'value','text');
+		$divisions[] = JHtmlSelect::option('0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'),'value','text');
 		$mdlDivisions = BaseDataBaseModel::getInstance('divisions','JoomleagueModel');
 		if($res = $mdlDivisions->getDivisions($project_id))
 		{
@@ -312,7 +313,7 @@ class JoomleagueViewProjectteams extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_TITLE'));
+		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_TITLE'));
 		JLToolBarHelper::apply('projectteams.saveshort');
 		JLToolBarHelper::custom('projectteams.changeteams','move.png','move_f2.png','COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_BUTTON_CHANGE_TEAMS',false);
 		JLToolBarHelper::custom('projectteams.editlist','upload.png','upload_f2.png','COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_BUTTON_ASSIGN',false);
@@ -331,7 +332,7 @@ class JoomleagueViewProjectteams extends JLGView
 	 */
 	protected function addToolbar_Editlist()
 	{
-		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN'));
+		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN'));
 		JLToolBarHelper::save('projectteams.save_teamslist');
 		JLToolBarHelper::cancel('projectteams.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		JLToolbarHelper::help('screen.joomleague',true);
@@ -343,7 +344,7 @@ class JoomleagueViewProjectteams extends JLGView
 	 */
 	protected function addToolbar_Copy()
 	{
-		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_COPY_DEST'),'Teams');
+		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_COPY_DEST'),'Teams');
 		JLToolBarHelper::apply('projectteam.copy');
 		JLToolbarHelper::back();
 	}

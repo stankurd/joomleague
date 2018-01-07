@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 defined('_JEXEC') or die;
@@ -72,7 +73,7 @@ class JoomleagueModelLeague extends JLGModelItem
 				$db->setQuery($query);
 				if($db->loadResult())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_LEAGUE_MODEL_ERROR_PROJECT_EXISTS');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_LEAGUE_MODEL_ERROR_PROJECT_EXISTS');
 				}
 
 				if($result)

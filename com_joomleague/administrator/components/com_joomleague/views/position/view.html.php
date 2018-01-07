@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -127,7 +128,7 @@ class JoomleagueViewPosition extends JLGView
 			$lists['statistic'] = '<select name="statistic[]" id="multiselect2" style="width:250px; height:300px;" class="inputbox" multiple="true" size="10"></select>';
 		}
 		// build the html select list for parent positions
-		$parents[] = HTMLHelper::_('select.option','',JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_IS_P_POSITION'));
+		$parents[] = HTMLHelper::_('select.option','',Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_IS_P_POSITION'));
 		if($res = $model->getParentsPositions($pk))
 		{
 			$parents = array_merge($parents,$res);
@@ -152,11 +153,11 @@ class JoomleagueViewPosition extends JLGView
 		$checkedOut = ! ($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 		
 		// Set toolbar items for the page
-		$text = $isNew ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
+		$text = $isNew ? Text::_('COM_JOOMLEAGUE_GLOBAL_NEW') : Text::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
 		
 		if($isNew)
 		{
-			JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_ADD_NEW'),'jl-Positions');
+			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_ADD_NEW'),'jl-Positions');
 			JLToolBarHelper::apply('position.apply');
 			JLToolBarHelper::save('position.save');
 			JLToolBarHelper::divider();
@@ -164,7 +165,7 @@ class JoomleagueViewPosition extends JLGView
 		}
 		else
 		{
-			JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_EDIT'),'jl-Positions');
+			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_EDIT'),'jl-Positions');
 			JLToolBarHelper::apply('position.apply');
 			JLToolBarHelper::save('position.save');
 			JLToolBarHelper::divider();

@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Table\Table;
 
@@ -197,7 +198,7 @@ class JoomleagueControllerSettings extends JoomleagueController
 		$table = Table::getInstance('Extension');
 		if (!$table->load(array("element" => "com_joomleague", "type" => "component")))
 		{
-			$app->enqueueMessage(JText::_( 'Not a valid component'), 'warning');
+			$app->enqueueMessage(Text::_( 'Not a valid component'), 'warning');
 			return false;
 		}
 		$table->bind($data);
@@ -205,18 +206,18 @@ class JoomleagueControllerSettings extends JoomleagueController
 		// pre-save checks
 		if (!$table->check())
 		{
-			$app->enqueueMessage(JText::_($table->getError()),'warning');
+			$app->enqueueMessage(Text::_($table->getError()),'warning');
 			return false;
 		}
 		
 		// save the changes
 		if ($table->store())
 		{
-			$msg	= JText::_( 'COM_JOOMLEAGUE_ADMIN_SETTINGS_CTRL_STAT_SAVED');
+			$msg	= Text::_( 'COM_JOOMLEAGUE_ADMIN_SETTINGS_CTRL_STAT_SAVED');
 		}
 		else
 		{
-			$msg	= JText::_( 'COM_JOOMLEAGUE_ADMIN_SETTINGS_CTRL_ERROR_SAVE');
+			$msg	= Text::_( 'COM_JOOMLEAGUE_ADMIN_SETTINGS_CTRL_ERROR_SAVE');
 		}
 
 		switch ($task)

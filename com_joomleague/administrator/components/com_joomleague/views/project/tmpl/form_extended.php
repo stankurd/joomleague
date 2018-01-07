@@ -6,6 +6,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 
 $extendedFieldsets = $this->form->getFieldsets('extended');
@@ -14,13 +16,13 @@ foreach($extendedFieldsets as $fieldset)
 {
 	?>
 <fieldset class="form-horizontal">
-	<legend><?php echo JText::_($fieldset->name); ?></legend>
+	<legend><?php echo Text::_($fieldset->name); ?></legend>
 	<?php
 	$fields = $this->form->getFieldset($fieldset->name);
 
 	if(! count($fields))
 	{
-		echo JText::_('COM_JOOMLEAGUE_GLOBAL_NO_PARAMS');
+		echo Text::_('COM_JOOMLEAGUE_GLOBAL_NO_PARAMS');
 	}
 
 	foreach($fields as $field)

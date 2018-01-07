@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -48,7 +49,7 @@ class JoomleagueViewClubs extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_TITLE'),'jl-clubs');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_TITLE'),'jl-clubs');
 		JLToolBarHelper::addNew('club.add');
 		JLToolBarHelper::custom('clubs.import','upload','upload','COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT',false);
 		JLToolBarHelper::archiveList('clubs.export','COM_JOOMLEAGUE_GLOBAL_XML_EXPORT');

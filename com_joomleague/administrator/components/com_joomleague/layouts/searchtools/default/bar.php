@@ -13,6 +13,7 @@ defined('JPATH_BASE') or die;
 
 use Joomla\Registry\Registry;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 $data = $displayData;
 
@@ -31,12 +32,12 @@ $filters = $data['view']->filterForm->getGroup('filter');
 ?>
 <?php if (!empty($filters['filter_search'])) : ?>
 		<label for="filter_search" class="element-invisible">
-			<?php echo JText::_('JSEARCH_FILTER'); ?>
+			<?php echo Text::_('JSEARCH_FILTER'); ?>
 		</label>
 		<div class="btn-wrapper input-append pull-left">
 			<?php echo $filters['filter_search']->input; ?>
 			<?php if ($filters['filter_search']->description) : ?>
-				<?php JHtmlBootstrap::tooltip('#filter_search', array('title' => JText::_($filters['filter_search']->description))); ?>
+				<?php JHtmlBootstrap::tooltip('#filter_search', array('title' => Text::_($filters['filter_search']->description))); ?>
 			<?php endif; ?>
 			<button type="submit" class="btn hasTooltip" title="<?php echo HTMLHelper::tooltipText('JSEARCH_FILTER_SUBMIT'); ?>">
 				<span class="icon-search"></span>

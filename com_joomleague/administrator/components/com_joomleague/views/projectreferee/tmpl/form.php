@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -16,26 +17,26 @@ defined('_JEXEC') or die;
 	<?php
 	$p = 1;
 	echo HTMLHelper::_('bootstrap.startTabSet','tabs',array('active' => 'panel1'));
-	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_DETAILS'));
+	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,Text::_('COM_JOOMLEAGUE_TABS_DETAILS'));
 	echo $this->loadTemplate('details');
 	echo HTMLHelper::_('bootstrap.endTab');
 
-	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_PICTURE'));
+	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,Text::_('COM_JOOMLEAGUE_TABS_PICTURE'));
 	echo $this->loadTemplate('picture');
 	echo HTMLHelper::_('bootstrap.endTab');
 
-	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_DESCRIPTION'));
+	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,Text::_('COM_JOOMLEAGUE_TABS_DESCRIPTION'));
 	echo $this->loadTemplate('description');
 	echo HTMLHelper::_('bootstrap.endTab');
 
-	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_EXTENDED'));
+	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,Text::_('COM_JOOMLEAGUE_TABS_EXTENDED'));
 	echo $this->loadTemplate('extended');
 	echo HTMLHelper::_('bootstrap.endTab');
 
 	if(Factory::getUser()->authorise('core.admin','com_joomleague') ||
 			 Factory::getUser()->authorise('core.admin','com_joomleague.project.'.$this->project->id))
 	{
-		echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('JCONFIG_PERMISSIONS_LABEL'));
+		echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,Text::_('JCONFIG_PERMISSIONS_LABEL'));
 		echo $this->loadTemplate('permissions');
 		echo HTMLHelper::_('bootstrap.endTab');
 	}

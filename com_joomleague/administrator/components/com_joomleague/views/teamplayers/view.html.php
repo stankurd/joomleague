@@ -10,6 +10,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -100,7 +101,7 @@ class JoomleagueViewTeamplayers extends JLGView
 		$projectteam = $mdlProjectteam->getItem($project_team_id);
 
 		// build the html options for position
-		$position_id[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_POSITION'));
+		$position_id[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_POSITION'));
 		if($res = $this->get('positions'))
 		{
 			$position_id = array_merge($position_id,$res);
@@ -119,10 +120,12 @@ class JoomleagueViewTeamplayers extends JLGView
 		HTMLHelper::_('bootstrap.framework');
 
 		$baseurl = Uri::root();
+		$document->addScript($baseurl.'media/com_joomleague/bootstrap-editable/js/bootstrap-tooltip-extended.js');
 		$document->addStyleSheet($baseurl.'administrator/components/com_joomleague/assets/css/Autocompleter.css');
 		$document->addScript($baseurl.'media/com_joomleague/bootstrap-editable/js/bootstrap-editable.js');
 		$document->addStyleSheet($baseurl.'media/com_joomleague/bootstrap-editable/css/bootstrap-editable.css');
-
+		$document->addStyleSheet($baseurl.'media/com_joomleague/bootstrap-editable/css/bootstrap-extended.css');
+		
 		$this->filterForm = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');
 
@@ -171,7 +174,7 @@ class JoomleagueViewTeamplayers extends JLGView
 		// save icon should be replaced by the apply
 		JLToolBarHelper::apply('teamplayers.saveassigned','COM_JOOMLEAGUE_ADMIN_PERSONS_SAVE_SELECTED');
 		JLToolbarHelper::back('COM_JOOMLEAGUE_ADMIN_PERSONS_BACK','index.php?option=com_joomleague&view=teamplayers');
-		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_ASSIGN_PLAYERS'),'generic.png');
+		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PERSONS_ASSIGN_PLAYERS'),'generic.png');
 		JLToolbarHelper::help('screen.joomleague',true);
 
 		parent::display($tpl);
@@ -183,7 +186,7 @@ class JoomleagueViewTeamplayers extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TPLAYERS_TITLE'));
+		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TPLAYERS_TITLE'));
 		JLToolBarHelper::publishList('teamplayers.publish');
 		JLToolBarHelper::unpublishList('teamplayers.unpublish');
 		JLToolBarHelper::apply('teamplayers.saveshort','COM_JOOMLEAGUE_ADMIN_TPLAYERS_APPLY');

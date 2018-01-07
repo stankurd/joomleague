@@ -6,10 +6,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined ( '_JEXEC' ) or die ();
 ?>
 <fieldset class="adminform">
-	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_MREL_DETAILS');?></legend>
+	<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_MREL_DETAILS');?></legend>
 	<br />
 
 
@@ -18,7 +20,7 @@ defined ( '_JEXEC' ) or die ();
 		<tr>
 			<td align="right" class="key"><label>
 							<?php
-							echo JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_F_MREL_OLD_ID' );
+							echo Text::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_F_MREL_OLD_ID' );
 							?>
 						</label></td>
 			<td align="left">
@@ -33,7 +35,7 @@ defined ( '_JEXEC' ) or die ();
 		<tr>
 			<td align="right" class="key"><label>
 							<?php
-							echo JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_F_MREL_NEW_ID' );
+							echo Text::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_F_MREL_NEW_ID' );
 							?>
 						</label></td>
 			<td align="left">

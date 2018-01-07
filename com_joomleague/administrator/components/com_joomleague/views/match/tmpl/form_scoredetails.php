@@ -6,10 +6,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined ( '_JEXEC' ) or die ();
 ?>
 <fieldset class="adminform">
-	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_SD');?></legend>
+	<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_SD');?></legend>
 	<br />
 	<table class="admintable table">
 		<tr>
@@ -30,7 +32,7 @@ defined ( '_JEXEC' ) or die ();
 			<td>
 			<?php
 			if ($this->table_config ['alternative_legs'] == '') {
-				echo JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_F_SD_SETS' );
+				echo Text::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_F_SD_SETS' );
 			} else {
 				echo $this->table_config ['alternative_legs'];
 			}
@@ -50,7 +52,7 @@ defined ( '_JEXEC' ) or die ();
 		<!-- END match legs -->
 		<!-- Bonus points -->
 		<tr>
-			<td class="key"><label><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_SD_BONUS');?></label>
+			<td class="key"><label><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_SD_BONUS');?></label>
 			</td>
 			<td><input type="text" name="team1_bonus"
 				value="<?php echo $this->item->team1_bonus;?>" size="3"
@@ -68,7 +70,7 @@ defined ( '_JEXEC' ) or die ();
 		<tr>
 			<td class="key"><label for="match_result_detail">
 				<?php
-				echo JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_F_SD_SCORE_NOTICE' );
+				echo Text::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_F_SD_SCORE_NOTICE' );
 				?>
 				</label></td>
 			<td colspan='3'><input type="text" name="match_result_detail"

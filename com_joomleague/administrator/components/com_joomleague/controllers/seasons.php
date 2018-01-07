@@ -12,6 +12,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 /**
@@ -61,7 +62,7 @@ class JoomleagueControllerSeasons extends JLGControllerAdmin
 	public function remove()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$user = Factory::getUser();
 		$app = Factory::getApplication();
@@ -70,7 +71,7 @@ class JoomleagueControllerSeasons extends JLGControllerAdmin
 		
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
 		}
 		else
 		{
@@ -79,11 +80,11 @@ class JoomleagueControllerSeasons extends JLGControllerAdmin
 			$result = $model->delete($cid);
 			if($result['removed'])
 			{
-				$app->enqueueMessage(JText::plural($this->text_prefix.'_N_ITEMS_DELETED',$result['removedCount']));
+				$app->enqueueMessage(Text::plural($this->text_prefix.'_N_ITEMS_DELETED',$result['removedCount']));
 			}
 			if($result['error'])
 			{
-				$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_SEASONS_UNABLETODELETE'),'warning');
+				$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_SEASONS_UNABLETODELETE'),'warning');
 				
 				foreach ($result['error'] AS $error) 
 				{	
@@ -116,7 +117,7 @@ class JoomleagueControllerSeasons extends JLGControllerAdmin
 	public function export()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -124,7 +125,7 @@ class JoomleagueControllerSeasons extends JLGControllerAdmin
 		$cid = $input->get('cid',array(),'array');
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'),'error');
 			$this->setRedirect('index.php?option=com_joomleague&view=seasons');
 			return;
 		}

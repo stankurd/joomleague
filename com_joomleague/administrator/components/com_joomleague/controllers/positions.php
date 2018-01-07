@@ -10,6 +10,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -65,7 +66,7 @@ class JoomleagueControllerPositions extends JLGControllerAdmin
 	public function remove()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$user = Factory::getUser();
 		$app = Factory::getApplication();
@@ -74,7 +75,7 @@ class JoomleagueControllerPositions extends JLGControllerAdmin
 		
 		if(!is_array($cid) || count($cid) < 1)
 		{
-		    $app->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_CTRL_SELECT_TO_DELETE'),'error');
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_CTRL_SELECT_TO_DELETE'),'error');
 		}
 		else
 		{
@@ -84,11 +85,11 @@ class JoomleagueControllerPositions extends JLGControllerAdmin
 			$result = $model->delete($cid);
 			if($result['removed'])
 			{
-				$app->enqueueMessage(JText::plural($this->text_prefix . '_N_ITEMS_DELETED',$result['removedCount']));
+				$app->enqueueMessage(Text::plural($this->text_prefix . '_N_ITEMS_DELETED',$result['removedCount']));
 			}
 			if($result['error'])
 			{
-				$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_POSITIONS_UNABLETODELETE'),'warning');
+				$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_POSITIONS_UNABLETODELETE'),'warning');
 				
 				foreach ($result['error'] AS $error) 
 				{	
@@ -112,7 +113,7 @@ class JoomleagueControllerPositions extends JLGControllerAdmin
 	public function saveshort()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -121,7 +122,7 @@ class JoomleagueControllerPositions extends JLGControllerAdmin
 		
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			$app->enqueueMessage(JText::_('Select an item to save'),'warning');
+			$app->enqueueMessage(Text::_('Select an item to save'),'warning');
 		}
 		else
 		{
@@ -129,11 +130,11 @@ class JoomleagueControllerPositions extends JLGControllerAdmin
 			ArrayHelper::toInteger($cid);
 			if($model->storeshort($cid,$post))
 			{
-				$msg = JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_CTRL_POSITIONS_UPDATED');
+				$msg = Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_CTRL_POSITIONS_UPDATED');
 			}
 			else
 			{
-				$msg = JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_CTRL_ERROR_UPDATING_POS').$model->getError();
+				$msg = Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_CTRL_ERROR_UPDATING_POS').$model->getError();
 			}
 		}
 		$link = 'index.php?option=com_joomleague&view=positions';
@@ -156,7 +157,7 @@ class JoomleagueControllerPositions extends JLGControllerAdmin
 	public function export()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -165,7 +166,7 @@ class JoomleagueControllerPositions extends JLGControllerAdmin
 		ArrayHelper::toInteger($cid);
 		if(!is_array($cid) || count($cid) < 1)
 		{
-		    $app->enqueueMessage(JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'),'error');
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'),'error');
 			$this->setRedirect('index.php?option=com_joomleague&view=positions');
 			return;
 		}

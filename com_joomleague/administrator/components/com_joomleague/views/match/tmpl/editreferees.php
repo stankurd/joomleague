@@ -9,29 +9,28 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
-HTMLHelper::_('jquery.framework');
-HTMLHelper::_('behavior.core');
+
 $app = Factory::getApplication();
 $input = $app->input;
 
 ?>
-
 <div id="lineup">
 	<form id="adminForm" name="adminForm" method="post">
 		<div class="clear"></div>
 		<fieldset class="adminform">
-			<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ER_DESCR'); ?></legend>
+			<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_ER_DESCR'); ?></legend>
 			<table class='adminlist'>
 				<thead>
 					<tr>
 						<th>
-					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ER_REFS'); ?>
+					<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_ER_REFS'); ?>
 					</th>
 						<th>
-					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ER_ASSIGNED'); ?>
+					<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_ER_ASSIGNED'); ?>
 					</th>
 					</tr>
 				</thead>
@@ -47,7 +46,7 @@ $input = $app->input;
 							<?php
 							foreach ( $this->positions as $key => $pos ) {
 								?>
-								<tr>
+									<tr>
 								<td style='text-align: center; vertical-align: middle;'>
 									<!-- left / right buttons --> <br /> 
 									<input type="button" id="moveright-<?php echo $key;?>" class="inputbox rmove-right" value="&gt;&gt;" />
@@ -55,13 +54,13 @@ $input = $app->input;
 									<input type="button" id="moveleft-<?php echo $key;?>" class="inputbox rmove-left" value="&lt;&lt;" /> &nbsp;&nbsp;
 								</td>
 								<td>
-									<!-- player affected to this position --> <b><?php echo JText::_($pos->text); ?></b><br />
+									<!-- player affected to this position --> <b><?php echo Text::_($pos->text); ?></b><br />
 										<?php echo $this->lists['team_referees'.$key];?>
 									</td>
 								<td style='text-align: center; vertical-align: middle;'>
 									<!-- up/down buttons --> <br /> 
-									<input type="button" id="moveup-<?php echo $key;?>" class="inputbox rmove-up" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_UP'); ?>" /><br />
-									<input type="button" id="movedown-<?php echo $key;?>" class="inputbox rmove-down" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DOWN'); ?>" />
+									<input type="button" id="moveup-<?php echo $key;?>" class="inputbox rmove-up" value="<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_UP'); ?>" /><br />
+									<input type="button" id="movedown-<?php echo $key;?>" class="inputbox rmove-down" value="<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_DOWN'); ?>" />
 								</td>
 							</tr>
 								<?php

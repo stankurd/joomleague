@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -91,7 +92,7 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 	public function save()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -104,11 +105,11 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 		$model = $this->getModel('TeamPlayer');
 		if($model->store($post,'TeamPlayer'))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYER_SAVED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYER_SAVED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_ERROR_PLAYER_SAVE') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_ERROR_PLAYER_SAVE') . $model->getError();
 		}
 		// Check the table in so it can be edited.... we are done with it anyway
 		$model->checkin();
@@ -141,11 +142,11 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 		$model = $this->getModel('teamplayers');
 		if($model->storeshort($cid,$post))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYERS_UPDATED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYERS_UPDATED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_ERROR_PLAYERS_UPDATED').$model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_ERROR_PLAYERS_UPDATED').$model->getError();
 		}
 		$link = 'index.php?option=com_joomleague&view=teamplayers';
 		$this->setRedirect($link,$msg);
@@ -201,7 +202,7 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
 		}
 		else
 		{
@@ -213,7 +214,7 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 				{
 					// Prune items that you can't delete.
 					unset($cid[$i]);
-					JError::raiseNotice(403,JText::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
+					JError::raiseNotice(403,Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
 				}
 			}
 			$model = $this->getModel('teamplayer');
@@ -241,7 +242,7 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 
 		$model = $this->getModel('teamplayer');
 		$model->saveorder($cid,$order);
-		$$this->setMessage(JText::_('COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED'));
+		$$this->setMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED'));
 		$this->setRedirect('index.php?option=com_joomleague&view=teamplayers');
 	}
 
@@ -275,7 +276,7 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 		$input->set('project_team_id',$input->getInt('project_team_id'));
 
 		// redirect to players page,with a message
-		$this->setMessage(JText::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYERS_ASSIGN'));
+		$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYERS_ASSIGN'));
 		$this->setRedirect('index.php?option=com_joomleague&view=teamplayers&layout=assignplayers');
 	}
 
@@ -294,13 +295,13 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 		$nDeleted = $model->remove($cid);
 		if($nDeleted != count($cid))
 		{
-			$msg = JText::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYERS_UNASSIGN',$nDeleted);
+			$msg = Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYERS_UNASSIGN',$nDeleted);
 			$msg .= '<br/>' . $model->getError();
 			$this->setRedirect('index.php?option=com_joomleague&view=teamplayers',$msg,'error');
 		}
 		else
 		{
-			$msg = JText::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYERS_UNASSIGN',$nDeleted);
+			$msg = Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYERS_UNASSIGN',$nDeleted);
 			$this->setRedirect('index.php?option=com_joomleague&view=teamplayers',$msg);
 		}
 	}
@@ -325,11 +326,11 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 
 		if($model->storeassigned($cid,$project_team_id))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_PERSON_ASSIGNED_AS_PLAYER');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_PERSON_ASSIGNED_AS_PLAYER');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_ERROR_PERSON_ASSIGNED_AS_PLAYER') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_ERROR_PERSON_ASSIGNED_AS_PLAYER') . $model->getError();
 		}
 
 		$link = 'index.php?option=com_joomleague&view=teamplayers';

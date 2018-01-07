@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Table\Table;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -75,7 +76,7 @@ class JoomleagueModelEventtype extends JLGModelItem
 				$db->setQuery($query);
 				if($db->loadObjectList())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_EVENT_MODEL_ERROR_MATCHES_EXISTS');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_EVENT_MODEL_ERROR_MATCHES_EXISTS');
 				}
 				// then check that they are not assigned to any positions
 				$query = $db->getQuery(true);
@@ -85,7 +86,7 @@ class JoomleagueModelEventtype extends JLGModelItem
 				$db->setQuery($query);
 				if($db->loadObjectList())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_EVENT_MODEL_ERROR_POSITION_EXISTS');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_EVENT_MODEL_ERROR_POSITION_EXISTS');
 				}
 
 				if($result)

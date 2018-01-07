@@ -10,6 +10,7 @@
 // No direct access
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Toolbar\ToolbarHelper;
 
 class JLToolBarHelper extends ToolBarHelper {
@@ -19,8 +20,8 @@ class JLToolBarHelper extends ToolBarHelper {
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {
 			//display the task which is not handled by the access.xml
-		    //Factory::getApplication()->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task, 'warning');
-			//return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
+		    //Factory::getApplication()->enqueueMessage(Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task, 'warning');
+			//return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
 			$allowed = false;
 		}
 		if($allowed) {
@@ -38,7 +39,7 @@ class JLToolBarHelper extends ToolBarHelper {
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {
 			//display the task which is not handled by the access.xml
-			//return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
+			//return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
 			$allowed = false;
 		}
 		if($allowed) {
@@ -51,7 +52,7 @@ class JLToolBarHelper extends ToolBarHelper {
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {
 			//display the task which is not handled by the access.xml
-			//return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
+			//return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
 			$allowed = false;
 		}
 		if($allowed) {
@@ -64,7 +65,7 @@ class JLToolBarHelper extends ToolBarHelper {
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {
 			//display the task which is not handled by the access.xml
-			//return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
+			//return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
 			$allowed = false;
 		}
 		if($allowed) {
@@ -77,7 +78,7 @@ class JLToolBarHelper extends ToolBarHelper {
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {
 			//display the task which is not handled by the access.xml
-			//return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
+			//return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
 			$allowed = false;
 		}
 		if($allowed) {
@@ -90,7 +91,7 @@ class JLToolBarHelper extends ToolBarHelper {
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {
 			//display the task which is not handled by the access.xml
-			//return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
+			//return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
 			$allowed = false;
 		}
 		if($allowed) {
@@ -108,7 +109,7 @@ class JLToolBarHelper extends ToolBarHelper {
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {
 			//display the task which is not handled by the access.xml
-			//return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
+			//return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
 			$allowed = false;
 		}
 		if($allowed) {
@@ -126,7 +127,7 @@ class JLToolBarHelper extends ToolBarHelper {
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {
 			//display the task which is not handled by the access.xml
-			//return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
+			//return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
 			$allowed = false;
 		}
 		if($allowed) {
@@ -144,7 +145,7 @@ class JLToolBarHelper extends ToolBarHelper {
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {
 			//display the task which is not handled by the access.xml
-			//return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
+			//return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
 			$allowed = false;
 		}
 		if($allowed) {
@@ -157,7 +158,7 @@ class JLToolBarHelper extends ToolBarHelper {
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {
 			//display the task which is not handled by the access.xml
-			//return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
+			//return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
 			$allowed = false;
 		}
 		if($allowed) {
@@ -170,7 +171,7 @@ class JLToolBarHelper extends ToolBarHelper {
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {
 			//display the task which is not handled by the access.xml
-			//return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
+			//return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
 			$allowed = false;
 		}
 		if($allowed) {
@@ -183,7 +184,7 @@ class JLToolBarHelper extends ToolBarHelper {
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {
 			//display the task which is not handled by the access.xml
-			//return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
+			//return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
 			$allowed = false;
 		}
 		if($allowed) {

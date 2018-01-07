@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -51,7 +52,7 @@ class JoomleagueViewSeasons extends JLGView
 	*/
 	protected function addToolbar()
 	{ 
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_SEASONS_TITLE'),'jl-seasons');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_SEASONS_TITLE'),'jl-seasons');
 		JLToolBarHelper::addNew('season.add');
 		JLToolBarHelper::divider();
 		JLToolBarHelper::publishList('seasons.publish');

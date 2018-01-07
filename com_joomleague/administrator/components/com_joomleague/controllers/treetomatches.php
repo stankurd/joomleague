@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\Utilities\ArrayHelper;
 
@@ -127,11 +128,11 @@ class JoomleagueControllerTreetomatches extends JLGControllerAdmin
 		$model = $this->getModel('treetomatchs');
 		if($model->store($post))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_CTRL_SAVED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_CTRL_SAVED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_CTRL_ERROR_SAVE') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_CTRL_ERROR_SAVE') . $model->getError();
 		}
 
 		$link = 'index.php?option=com_joomleague&view=treetonodes';

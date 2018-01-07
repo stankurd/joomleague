@@ -10,6 +10,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
@@ -46,7 +47,7 @@ jQuery(document).ready(function() {
 		// Set the input value if not already set.
 		if (!searchword.val())
 		{
-			searchword.val('" . JText::_('Search',true) . "');
+			searchword.val('" . Text::_('Search',true) . "');
 		}
 
 		// Get the current value.
@@ -55,7 +56,7 @@ jQuery(document).ready(function() {
 		// If the current value equals the default value, clear it.
 		searchword.on('focus', function()
 		{	var el = jQuery(this);
-			if (el.val() === '" . JText::_('Search',true) . "')
+			if (el.val() === '" . Text::_('Search',true) . "')
 			{
 				el.val('');
 			}
@@ -259,13 +260,13 @@ jQuery(document).ready(function() {
 }
 </style>
 <fieldset class="form-horizontal">
-	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_QUICKADD_TEAM');?></legend>
+	<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_QUICKADD_TEAM');?></legend>
 	<form id="quickaddForm" action="<?php echo Route::_(Uri::root().'administrator/index.php?option=com_joomleague&task=quickadd.addteam'); ?>" method="post">
-		<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_QUICKADD_DESCR'); ?>
+		<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_QUICKADD_DESCR'); ?>
 		<div id="j-main-container" class="j-main-container">
 		<div class="btn-wrapper input-append pull-left">
 			<input type="text" name="p" id="quickadd" size="50" value="<?php htmlspecialchars(Factory::getApplication()->input->getString('q',false)); ?>" />
-			<input class="btn" type="submit" name="submit" id="submit" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_ADD');?>" />
+			<input class="btn" type="submit" name="submit" id="submit" value="<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_ADD');?>" />
 		</div>
 		<input type="hidden" name="project_id" id="project_id" value="<?php echo $this->project->id; ?>" />
 		<?php echo HTMLHelper::_('form.token'); ?>
@@ -274,7 +275,7 @@ jQuery(document).ready(function() {
 <br/>
 <form action="<?php echo Route::_('index.php?option=com_joomleague&view=projectteams'); ?>" method="post" id="adminForm" name="adminForm">
 	<fieldset class="form-horizontal">
-		<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_LEGEND','<i>'.$this->project->name.'</i>'); ?></legend>
+		<legend><?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_LEGEND','<i>'.$this->project->name.'</i>'); ?></legend>
 			<?php
 			// Search tools bar
 			echo LayoutHelper::render('searchtools.default',array('view' => $this),Uri::root().'administrator/components/com_joomleague/layouts');
@@ -292,7 +293,7 @@ jQuery(document).ready(function() {
 						<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_TEAMNAME','t.name',$listDirn, $listOrder); ?>
 					</th>
 					<th colspan="2" class="center">
-						<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_MANAGE_PERSONNEL'); ?>
+						<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_MANAGE_PERSONNEL'); ?>
 					</th>
 					<?php
 					if($this->project->project_type == 'DIVISIONS_LEAGUE')
@@ -308,18 +309,18 @@ jQuery(document).ready(function() {
 					}
 					?>
 					<th class="center">
-						<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_PICTURE'); ?>
+						<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_PICTURE'); ?>
 					</th>
-					<th class="center"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_INITIAL_POINTS'); ?></th>
-					<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_MA'); ?></th>
-					<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_PLUS_P'); ?></th>
-					<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_MINUS_P'); ?></th>
-					<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_W'); ?></th>
-					<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_D'); ?></th>
-					<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_L'); ?></th>
-					<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_HG'); ?></th>
-					<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_GG'); ?></th>
-					<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_DG'); ?></th>
+					<th class="center"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_INITIAL_POINTS'); ?></th>
+					<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_MA'); ?></th>
+					<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_PLUS_P'); ?></th>
+					<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_MINUS_P'); ?></th>
+					<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_W'); ?></th>
+					<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_D'); ?></th>
+					<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_L'); ?></th>
+					<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_HG'); ?></th>
+					<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_GG'); ?></th>
+					<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_DG'); ?></th>
 					<th width="1%">
 						<?php echo HTMLHelper::_('searchtools.sort','TID','team_id',$listDirn, $listOrder); ?>
 					</th>
@@ -359,7 +360,7 @@ jQuery(document).ready(function() {
 					<td class="center">
 					<?php
 						$imageFile = 'administrator/components/com_joomleague/assets/images/edit.png';
-						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_EDIT_DETAILS');
+						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_EDIT_DETAILS');
 						$imageParams = 'title= "' . $imageTitle . '"';
 						$image = HTMLHelper::image($imageFile,$imageTitle,$imageParams);
 						$linkParams = '';
@@ -381,7 +382,7 @@ jQuery(document).ready(function() {
 						$image = "players_edit.png";
 					}
 					$imageFile = 'administrator/components/com_joomleague/assets/images/' . $image;
-					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_MANAGE_PLAYERS');
+					$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_MANAGE_PLAYERS');
 					$imageParams = 'title= "' . $imageTitle . '"';
 					$image = HTMLHelper::image($imageFile,$imageTitle,$imageParams) . ' <sub>' . $row->playercount . '</sub>';
 					$linkParams = '';
@@ -399,7 +400,7 @@ jQuery(document).ready(function() {
 						$image = "players_edit.png";
 					}
 					$imageFile = 'administrator/components/com_joomleague/assets/images/' . $image;
-					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_MANAGE_STAFF');
+					$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_MANAGE_STAFF');
 					$imageParams = 'title= "' . $imageTitle . '"';
 					$image = HTMLHelper::image($imageFile,$imageTitle,$imageParams) . ' <sub>' . $row->staffcount . '</sub>';
 					$linkParams = '';
@@ -429,23 +430,23 @@ jQuery(document).ready(function() {
 					<?php
 					if(empty($row->picture) || ! JFile::exists(JPATH_SITE . '/' . $row->picture))
 					{
-						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_NO_IMAGE') . $row->picture;
+						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_NO_IMAGE') . $row->picture;
 						echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "'.$imageTitle.'"');
 					}
 					elseif($row->picture == JoomleagueHelper::getDefaultPlaceholder("team"))
 					{
-						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_DEFAULT_IMAGE');
+						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_DEFAULT_IMAGE');
 						echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/information.png',$imageTitle,'title= "'.$imageTitle.'"');
 					}
 					else
 					{
 						if(JFile::exists(JPATH_SITE.'/'.$row->picture))
 						{
-							$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_TEAMS_CUSTOM_IMAGE');
+							$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_TEAMS_CUSTOM_IMAGE');
 							echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/ok.png',$imageTitle,'title= "'.$imageTitle.'"');
 						}
 						/*
-						 * $imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_CUSTOM_IMAGE');
+						 * $imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_CUSTOM_IMAGE');
 						 * $imageParams=array();
 						 * $imageParams['title']=$imageTitle ;
 						 * $imageParams['height']=30;

@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
@@ -39,7 +40,7 @@ function searchPerson(val)
 	<fieldset class="adminform">
 		<legend>
 			<?php
-			echo JText::sprintf('Assign Person(s) as Referee to project [%1$s]','<i>'.$this->prj_name.'</i>');
+			echo Text::sprintf('Assign Person(s) as Referee to project [%1$s]','<i>'.$this->prj_name.'</i>');
 			?>
 		</legend>
 		<div class="clearfix">
@@ -58,7 +59,7 @@ function searchPerson(val)
 		</div>
 		<?php if (empty($this->items)) : ?>
 	<div class="alert alert-no-items">
-		<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+		<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 	</div>
 	<?php else : ?>
 			<table class="table table-striped" id="ProjectrefeeList">
@@ -77,9 +78,9 @@ function searchPerson(val)
 							<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_N_NAME','a.nickname',$listDirn, $listOrder); ?>
 						</th>
 						<th>
-							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_INFO'); ?>
+							<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PERSONS_INFO'); ?>
 						</th>
-						<th class="center"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_IMAGE'); ?></th>
+						<th class="center"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PERSONS_IMAGE'); ?></th>
 						<th class="center">
 							<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_BIRTHDAY','a.birthday',$listDirn, $listOrder); ?>
 						</th>
@@ -111,13 +112,13 @@ function searchPerson(val)
 									<?php
 							if($row->picture == '')
 							{
-								$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_NO_IMAGE');
+								$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PERSONS_NO_IMAGE');
 								echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,
 										'title= "' . $imageTitle . '"');
 							}
 							elseif($row->picture == JoomleagueHelper::getDefaultPlaceholder("player"))
 							{
-								$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_DEFAULT_IMAGE');
+								$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PERSONS_DEFAULT_IMAGE');
 								echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/information.png',$imageTitle,
 										'title= "' . $imageTitle . '"');
 							}

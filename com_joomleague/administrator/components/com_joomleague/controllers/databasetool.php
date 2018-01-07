@@ -8,6 +8,8 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 
 /**
@@ -36,11 +38,11 @@ class JoomleagueControllerDatabaseTool extends JLGControllerAdmin
 		$model=$this->getModel('databasetools');
 		if ($model->optimize())
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_OPTIMIZE');
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_OPTIMIZE');
 		}
 		else
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_ERROR_OPTIMIZE').$model->getError();
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_ERROR_OPTIMIZE').$model->getError();
 		}
 		$link='index.php?option=com_joomleague&view=databasetools';
 		$this->setRedirect($link,$msg);
@@ -51,11 +53,11 @@ class JoomleagueControllerDatabaseTool extends JLGControllerAdmin
 		$model=$this->getModel('databasetools');
 		if ($model->repair())
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_REPAIR');
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_REPAIR');
 		}
 		else
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_ERROR_REPAIR').$model->getError();
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_ERROR_REPAIR').$model->getError();
 		}
 		$link='index.php?option=com_joomleague&view=databasetools';
 		$this->setRedirect($link,$msg);

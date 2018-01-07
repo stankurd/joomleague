@@ -7,15 +7,16 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
-HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 ?>
 <form action="<?php echo Route::_('index.php?option=com_joomleague&view=treetos'); ?>" method="post" id="adminForm" name="adminForm">
 		<div id="j-main-container" class="j-main-container">
 		<fieldset class="adminform">
-			<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_TREETOS_TITLE','<i>','<i>'.$this->project->name.'</i>'); ?></legend>
+			<legend><?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_TREETOS_TITLE','<i>','<i>'.$this->project->name.'</i>'); ?></legend>
 			<?php
 			$colspan = 11;
 			?>
@@ -25,7 +26,7 @@ HTMLHelper::_('behavior.tooltip');
 				$colspan ++;
 			?>
 			<?php
-				echo JText::_('COM_JOOMLEAGUE_ADMIN_TREETO_DIVISION');
+				echo Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_DIVISION');
 				echo '<br>' . HTMLHelper::_('select.genericlist',$this->lists['divisions'],'division',
 				'class="inputbox" size="1" onchange="window.location.href=window.location.href.split(\'&division=\')[0]+\'&division=\'+this.value"',
 				'value','text',$this->division);
@@ -45,14 +46,14 @@ HTMLHelper::_('behavior.tooltip');
 						<th width="20" style="vertical-align: top;">&nbsp;</th>
 						<th width="20" style="vertical-align: top;">&nbsp;</th>
 						<th class="title" nowrap="nowrap" style="vertical-align: top;">
-							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TREETOS_NAME'); ?>
+							<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_TREETOS_NAME'); ?>
 						</th>
 						<th>
 						</th>
-						<th width="1%"><?php echo JTEXT::_('COM_JOOMLEAGUE_ADMIN_TREETOS_DEPTH'); ?></th>
-						<th class="center"><?php echo JTEXT::_('COM_JOOMLEAGUE_ADMIN_TREETOS_HIDE'); ?></th>
-						<th width="1%"><?php echo JTEXT::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED'); ?></th>
-						<th width="1%"><?php echo JTEXT::_('COM_JOOMLEAGUE_GLOBAL_ID'); ?></th>
+						<th width="1%"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_TREETOS_DEPTH'); ?></th>
+						<th class="center"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_TREETOS_HIDE'); ?></th>
+						<th width="1%"><?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED'); ?></th>
+						<th width="1%"><?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_ID'); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -69,7 +70,7 @@ HTMLHelper::_('behavior.tooltip');
 							<a href="index.php?option=com_joomleague&task=treeto.edit&id=<?php echo $row->id; ?>">
 							<?php
 							echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/edit.png',
-							JText::_('COM_JOOMLEAGUE_ADMIN_TREETOS_EDIT_DETAILS'), 'title= "'.JText::_('COM_JOOMLEAGUE_ADMIN_TREETOS_EDIT_DETAILS').'"');
+							Text::_('COM_JOOMLEAGUE_ADMIN_TREETOS_EDIT_DETAILS'), 'title= "'.Text::_('COM_JOOMLEAGUE_ADMIN_TREETOS_EDIT_DETAILS').'"');
 							?>
 							</a>
 						</td>
@@ -81,7 +82,7 @@ HTMLHelper::_('behavior.tooltip');
 							<a href="index.php?option=com_joomleague&task=treetos.genNode&cid[]=<?php echo $row->id; ?>">
 							<?php
 							echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/update.png',
-							JText::_('COM_JOOMLEAGUE_ADMIN_TREETOS_GENERATE'),'title= "'.JText::_('COM_JOOMLEAGUE_ADMIN_TREETOS_GENERATE').'"');
+							Text::_('COM_JOOMLEAGUE_ADMIN_TREETOS_GENERATE'),'title= "'.Text::_('COM_JOOMLEAGUE_ADMIN_TREETOS_GENERATE').'"');
 							?>
 							</a>
 						<?php
@@ -92,7 +93,7 @@ HTMLHelper::_('behavior.tooltip');
 							<a href="index.php?option=com_joomleague&view=treetonodes&tid[]=<?php echo $row->id; ?>">
 							<?php
 							echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/icon-16-Tree.png',
-							JText::_('COM_JOOMLEAGUE_ADMIN_TREETOS_EDIT_TREE'),'title= "'.JText::_('COM_JOOMLEAGUE_ADMIN_TREETOS_EDIT_TREE').'"');
+							Text::_('COM_JOOMLEAGUE_ADMIN_TREETOS_EDIT_TREE'),'title= "'.Text::_('COM_JOOMLEAGUE_ADMIN_TREETOS_EDIT_TREE').'"');
 							?>
 							</a>
 						<?php

@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\FormController;
 use Joomla\CMS\Filter\InputFilter;
 
@@ -169,7 +170,7 @@ class JLGControllerForm extends FormController
 					$class = $className.ucfirst($extension);
 					break;
 				} else {
-					throw new InvalidArgumentException(JText::_('COM_JOOMLEAGUE_WRONG_CLASSNAME_IN_CONTROLLER_FILE'));
+					throw new InvalidArgumentException(Text::_('COM_JOOMLEAGUE_WRONG_CLASSNAME_IN_CONTROLLER_FILE'));
 				}
 			}
 

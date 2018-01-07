@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -57,8 +58,8 @@ class JoomleagueViewDivision extends JLGView
 		/*
 		 * if ($model->isCheckedOut($user->get('id')))
 		 * {
-		 * $msg = JText::sprintf('DESCBEINGEDITTED',
-		 * JText::_('COM_JOOMLEAGUE_ADMIN_DIVISION_THE_DIVISION'),
+		 * $msg = Text::sprintf('DESCBEINGEDITTED',
+		 * Text::_('COM_JOOMLEAGUE_ADMIN_DIVISION_THE_DIVISION'),
 		 * $division->name);
 		 * $app->redirect('index.php?option=' . $option, $msg);
 		 * }
@@ -79,7 +80,7 @@ class JoomleagueViewDivision extends JLGView
 		$project = $mdlProject->getItem($project_id);
 
 		// build the html select list for parent divisions
-		$parents[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
+		$parents[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
 		if($res = $model->getParentsDivisions())
 		{
 			$parents = array_merge($parents,$res);
@@ -106,7 +107,7 @@ class JoomleagueViewDivision extends JLGView
 		$isNew = ($this->item->id == 0);
 		$checkedOut = ! ($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 
-		$text = $isNew ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_GLOBAL_EDIT') . ': ' . JText::_($this->project->name) . ' / ' .
+		$text = $isNew ? Text::_('COM_JOOMLEAGUE_GLOBAL_NEW') : Text::_('COM_JOOMLEAGUE_GLOBAL_EDIT') . ': ' . Text::_($this->project->name) . ' / ' .
 				 $this->item->name;
 
 		// Set toolbar items for the page

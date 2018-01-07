@@ -8,6 +8,7 @@
  * @author 		Marco Vaninetti <martizva@libero.it>
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 defined('_JEXEC') or die;
@@ -175,13 +176,13 @@ class JoomleagueModelTeamPlayer extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		
 		foreach($result as $position)
 		{
-			$position->text = JText::_($position->text);
+			$position->text = Text::_($position->text);
 		}
 		return $result;
 	}
@@ -215,7 +216,7 @@ class JoomleagueModelTeamPlayer extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -255,7 +256,7 @@ class JoomleagueModelTeamPlayer extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return true;
@@ -282,7 +283,7 @@ class JoomleagueModelTeamPlayer extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -305,7 +306,7 @@ class JoomleagueModelTeamPlayer extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		

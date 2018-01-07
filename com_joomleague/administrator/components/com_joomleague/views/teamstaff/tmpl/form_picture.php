@@ -6,11 +6,13 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 
 ?>
 <fieldset class="adminform">
-	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_PIC' );?></legend>
+	<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_PIC' );?></legend>
 	<?php foreach ($this->form->getFieldset('picture') as $field): ?>
 	<div class="control-group">
 		<div class="control-label"><?php echo $field->label; ?></div>

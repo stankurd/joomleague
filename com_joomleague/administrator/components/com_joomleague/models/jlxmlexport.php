@@ -10,7 +10,6 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die;
 use Joomla\CMS\FACTORY;
-use Joomla\CMS\Filter\OutputFilter;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 
@@ -382,7 +381,7 @@ class JoomleagueModelJLXMLExport extends BaseDatabaseModel
 		}
 		/**/
 		header('Content-type: "text/xml"; charset="utf-8"');
-		header("Content-Disposition: attachment; filename=\"" . OutputFilter::stringURLSafe($filename[0])."-".date("ymd-His"). ".jlg\"");
+		header("Content-Disposition: attachment; filename=\"" . JFilterOutput::stringURLSafe($filename[0])."-".date("ymd-His"). ".jlg\"");
 		header("Expires: " . gmdate("D, d M Y H:i:s", mktime(date("H") + 2, date("i"), date("s"), date("m"), date("d"), date("Y"))) . " GMT");
 		header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 		header("Cache-Control: no-cache, must-revalidate");

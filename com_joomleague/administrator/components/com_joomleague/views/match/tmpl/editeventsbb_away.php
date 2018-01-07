@@ -8,12 +8,13 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined ( '_JEXEC' ) or die ();
 jimport ( 'joomla.filesystem.file' );
 
 if (isset ( $this->preFillSuccess ) && $this->preFillSuccess) {
-	Factory::getApplication ()->enqueueMessage ( $this->teams->team2 . ": " . JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_DONE' ), 'message' );
+	Factory::getApplication ()->enqueueMessage ( $this->teams->team2 . ": " . Text::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_DONE' ), 'message' );
 }
 ?>
 <fieldset class="adminform">
@@ -26,18 +27,18 @@ if (isset ( $this->preFillSuccess ) && $this->preFillSuccess) {
 		<thead>
 			<tr>
 				<th style="text-align: left; width: 10px;"></th>
-				<th style="text-align: left;"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EEBB_PERSON' ); ?></th>
+				<th style="text-align: left;"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EEBB_PERSON' ); ?></th>
 				<?php
 				foreach ( $this->events as $ev ) {
 					?>
 					<th style="text-align: center;">
 					<?php
 					if (JFile::exists ( JPATH_SITE . '/' . $ev->icon )) {
-						$imageTitle = JText::sprintf ( '%1$s', JText::_ ( $ev->text ) );
+						$imageTitle = Text::sprintf ( '%1$s', Text::_ ( $ev->text ) );
 						$iconFileName = $ev->icon;
 						echo HTMLHelper::image ( $iconFileName, $imageTitle, 'title= "' . $imageTitle . '"' );
 					} else {
-						echo JText::_ ( $ev->text );
+						echo Text::_ ( $ev->text );
 					}
 					?>
 					</th>
@@ -77,7 +78,7 @@ if (isset ( $this->preFillSuccess ) && $this->preFillSuccess) {
 						break;
 					
 					case 'position' :
-						echo '(' . JText::_ ( $row->positionname ) . ') - ' . JoomleagueHelper::formatName ( null, $row->firstname, $row->nickname, $row->lastname, $this->default_name_format );
+						echo '(' . Text::_ ( $row->positionname ) . ') - ' . JoomleagueHelper::formatName ( null, $row->firstname, $row->nickname, $row->lastname, $this->default_name_format );
 						break;
 				}
 				?>
@@ -97,17 +98,17 @@ if (isset ( $this->preFillSuccess ) && $this->preFillSuccess) {
 					size="1" class="inputbox"
 					name="event_sum_a_<?php echo $i.'_'.$teap; ?>"
 					value="<?php echo (($this->evbb[0]->event_sum > 0) ? $this->evbb[0]->event_sum : '' ); ?>"
-					title="<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_VALUE_SUM' )?>"
+					title="<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_VALUE_SUM' )?>"
 					onchange="document.getElementById('cb_a<?php echo $i;?>').checked=true" />
 					<input type="text" size="2" class="inputbox"
 					name="event_time_a_<?php echo $i.'_'.$teap; ?>"
 					value="<?php echo (($this->evbb[0]->event_time > 0) ? $this->evbb[0]->event_time : '' ); ?>"
-					title="<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TIME' )?>"
+					title="<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TIME' )?>"
 					onchange="document.getElementById('cb_a<?php echo $i;?>').checked=true" />
 					<input type="text" size="3" class="inputbox"
 					name="notice_a_<?php echo $i.'_'.$teap; ?>"
 					value="<?php echo ((strlen($this->evbb[0]->notice) > 0) ? $this->evbb[0]->notice : '' ); ?>"
-					title="<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_MATCH_NOTICE' )?>"
+					title="<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_MATCH_NOTICE' )?>"
 					onchange="document.getElementById('cb_a<?php echo $i;?>').checked=true" />
 					&nbsp;&nbsp;</td>
 

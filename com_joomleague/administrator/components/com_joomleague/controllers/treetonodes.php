@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
 
@@ -114,11 +115,11 @@ class JoomleagueControllerTreetonodes extends JLGControllerAdmin
 		$model = $this->getModel('treetonodes');
 		if($model->setRemoveNode($post))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_REMOVENODE');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_REMOVENODE');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_REMOVENODE');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_REMOVENODE');
 		}
 		$link = 'index.php?option=com_joomleague&view=treetos';
 		$this->setRedirect($link,$msg);
@@ -135,11 +136,11 @@ class JoomleagueControllerTreetonodes extends JLGControllerAdmin
 		$model = $this->getModel('treetonode');
 		if($model->setUnpublishNode())
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_UNPUBLISHNODE');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_UNPUBLISHNODE');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_UNPUBLISHNODE');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_UNPUBLISHNODE');
 		}
 		$link = 'index.php?option=com_joomleague&view=treetonodes';
 		$this->setRedirect($link,$msg);
@@ -151,7 +152,7 @@ class JoomleagueControllerTreetonodes extends JLGControllerAdmin
 	public function saveshortleaf()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -164,11 +165,11 @@ class JoomleagueControllerTreetonodes extends JLGControllerAdmin
 
 		if($model->storeshortleaf($cid,$post))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_SAVED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_SAVED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_SAVED') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_SAVED') . $model->getError();
 		}
 		$link = 'index.php?option=com_joomleague&view=treetonodes';
 		$this->setRedirect($link,$msg);
@@ -180,7 +181,7 @@ class JoomleagueControllerTreetonodes extends JLGControllerAdmin
 	public function savefinishleaf()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -191,11 +192,11 @@ class JoomleagueControllerTreetonodes extends JLGControllerAdmin
 		$model = $this->getModel('treetonodes');
 		if($model->storefinishleaf($post))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_LEAFS_SAVED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_LEAFS_SAVED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_LEAFS_ERROR_SAVED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_LEAFS_ERROR_SAVED');
 		}
 		$link = 'index.php?option=com_joomleague&view=treetonodes';
 		$this->setRedirect($link,$msg);
@@ -207,7 +208,7 @@ class JoomleagueControllerTreetonodes extends JLGControllerAdmin
 	public function saveshort()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -219,11 +220,11 @@ class JoomleagueControllerTreetonodes extends JLGControllerAdmin
 		$model = $this->getModel('treetonodes');
 		if($model->storeshort($cid,$post))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_SAVED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_SAVED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_SAVED') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_SAVED') . $model->getError();
 		}
 		$link = 'index.php?option=com_joomleague&view=treetonodes';
 		$this->setRedirect($link,$msg);
@@ -235,7 +236,7 @@ class JoomleagueControllerTreetonodes extends JLGControllerAdmin
 	public function save()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -245,11 +246,11 @@ class JoomleagueControllerTreetonodes extends JLGControllerAdmin
 		$model = $this->getModel('treetonode');
 		if($model->store($post))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_SAVED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_SAVED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_SAVED') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_SAVED') . $model->getError();
 		}
 		// Check the table in so it can be edited.... we are done with it anyway
 		$model->checkin();
@@ -282,11 +283,11 @@ class JoomleagueControllerTreetonodes extends JLGControllerAdmin
 		$model = $this->getModel('treetonode');
 		if($model->store($post))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ADD_MATCH');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ADD_MATCH');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_ADD_MATCH') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_ADD_MATCH') . $model->getError();
 		}
 		$link = 'index.php?option=com_joomleague&view=matches';
 		$this->setRedirect($link,$msg);

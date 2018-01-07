@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -54,7 +55,7 @@ class JoomleagueViewTeams extends JLGView
 	protected function addToolbar()
 	{ 
 		// Set toolbar items for the page
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TEAMS_TITLE'),'jl-Teams');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TEAMS_TITLE'),'jl-Teams');
 		JLToolBarHelper::addNew('team.add');
 		JLToolBarHelper::custom('teams.copysave','copy.png','copy_f2.png','COM_JOOMLEAGUE_GLOBAL_COPY',true);
 		JLToolBarHelper::custom('teams.import','upload','upload','COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT',false);

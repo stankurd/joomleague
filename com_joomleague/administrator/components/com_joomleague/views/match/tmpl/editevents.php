@@ -12,6 +12,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Uri\Uri;
 
@@ -40,7 +41,7 @@ foreach ( $this->rosters ['home'] as $player ) {
 			break;
 		
 		case 'position' :
-			$obj->text = '(' . JText::_ ( $player->positionname ) . ') - ' . JoomleagueHelper::formatName ( null, $player->firstname, $player->nickname, $player->lastname, $this->default_name_format );
+			$obj->text = '(' . Text::_ ( $player->positionname ) . ') - ' . JoomleagueHelper::formatName ( null, $player->firstname, $player->nickname, $player->lastname, $this->default_name_format );
 			break;
 	}
 	echo 'homeroster[' . ($i ++) . ']=' . json_encode ( $obj ) . ";\n";
@@ -62,20 +63,20 @@ foreach ( $this->rosters ['away'] as $player ) {
 			break;
 		
 		case 'position' :
-			$obj->text = '(' . JText::_ ( $player->positionname ) . ') - ' . JoomleagueHelper::formatName ( null, $player->firstname, $player->nickname, $player->lastname, $this->default_name_format );
+			$obj->text = '(' . Text::_ ( $player->positionname ) . ') - ' . JoomleagueHelper::formatName ( null, $player->firstname, $player->nickname, $player->lastname, $this->default_name_format );
 			break;
 	}
 	echo 'awayroster[' . ($i ++) . ']=' . json_encode ( $obj ) . ";\n";
 }
 ?>
 var rosters = Array(homeroster, awayroster);
-var str_delete = "<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DELETE'); ?>";
+var str_delete = "<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_DELETE'); ?>";
 //-->
 </script>
 
 <?php
 if (isset ( $this->preFillSuccess ) && $this->preFillSuccess) {
-	Factory::getApplication ()->enqueueMessage ( JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_DONE' ), 'message' );
+	Factory::getApplication ()->enqueueMessage ( Text::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_DONE' ), 'message' );
 }
 ?>
 <form method="post" id="adminForm" name="adminForm">
@@ -84,23 +85,23 @@ $p = 1;
 echo HTMLHelper::_ ( 'bootstrap.startTabSet', 'tabs', array (
 		'active' => 'panel1' 
 ) );
-echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, JText::_ ( 'Events', true ) );
+echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, Text::_ ( 'Events', true ) );
 ?>	
 	<!-- events -->
 	<fieldset class="form-horizontal">
-		<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_DESCR'); ?></legend>
+		<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_DESCR'); ?></legend>
 		<div class="row-fluid">
 			<div class="span9">
 				<table class="adminlist table">
 					<thead>
 						<tr>
-							<th><?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_ID'); ?></th>
-							<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TEAM'); ?></th>
-							<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_PLAYER'); ?></th>
-							<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_EVENT'); ?></th>
-							<th class="center"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_VALUE_SUM'); ?></th>
-							<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TIME');?></th>
-							<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_MATCH_NOTICE'); ?></th>
+							<th><?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_ID'); ?></th>
+							<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TEAM'); ?></th>
+							<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_PLAYER'); ?></th>
+							<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_EVENT'); ?></th>
+							<th class="center"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_VALUE_SUM'); ?></th>
+							<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TIME');?></th>
+							<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_MATCH_NOTICE'); ?></th>
 							<th></th>
 						</tr>
 					</thead>
@@ -122,7 +123,7 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, JText::_ ( 'Ev
 								echo preg_replace ( '/\'\' /', "", $event->player1 );
 								?>
 								</td>
-							<td><?php echo JText::_($event->event); ?></td>
+							<td><?php echo Text::_($event->event); ?></td>
 							<td class="center"><?php echo $event->event_sum; ?></td>
 							<td><?php echo $event->event_time; ?></td>
 							<td title="" class="hasTip">
@@ -149,33 +150,33 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, JText::_ ( 'Ev
 				<div id="addNewEvent">
 					<fieldset class="form-vertical">
 						<div class="control-group">
-							<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TEAM'); ?></div>
+							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TEAM'); ?></div>
 							<div class="controls"><?php echo $this->lists['teams']; ?></div>
 						</div>
 						<div class="control-group">
-							<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_PLAYER'); ?></div>
+							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_PLAYER'); ?></div>
 							<div class="controls" id="cell-player"></div>
 						</div>
 						<div class="control-group">
-							<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_EVENT'); ?></div>
+							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_EVENT'); ?></div>
 							<div class="controls"><?php echo $this->lists['events']; ?></div>
 						</div>
 						<div class="control-group">
-							<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_VALUE_SUM'); ?></div>
+							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_VALUE_SUM'); ?></div>
 							<div class="controls">
 								<input type="text" size="3" value="" id="event_sum"
 									name="event_sum" class="span4" />
 							</div>
 						</div>
 						<div class="control-group">
-							<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TIME'); ?></div>
+							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TIME'); ?></div>
 							<div class="controls">
 								<input type="text" size="3" value="" id="event_time"
 									name="event_time" class="span4" />
 							</div>
 						</div>
 						<div class="control-group">
-							<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_MATCH_NOTICE'); ?></div>
+							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_MATCH_NOTICE'); ?></div>
 							<div class="controls">
 								<textarea rows="2" cols="70" id="event_notice"
 									name="event_notice" class="span12"></textarea>
@@ -184,7 +185,7 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, JText::_ ( 'Ev
 						<div>
 							<input id="save-new-event" type="button"
 								class="inputbox button-save-e btn btn-small btn-success"
-								value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_SAVE'); ?>" />
+								value="<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_SAVE'); ?>" />
 							<br>
 							<br>
 							<div id="ajaxresponseevent"></div>
@@ -197,22 +198,22 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, JText::_ ( 'Ev
 		
 		<?php
 		echo HTMLHelper::_('bootstrap.endTab');
-		echo HTMLHelper::_('bootstrap.addTab','tabs','panel'.$p ++,JText::_('Comments',true));
+		echo HTMLHelper::_('bootstrap.addTab','tabs','panel'.$p ++,Text::_('Comments',true));
 		?>
 
 		
 	<!-- comments -->
 	<fieldset class="form-horizontal">
-		<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_LIVE_COMMENTARY_DESCR'); ?></legend>
+		<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_LIVE_COMMENTARY_DESCR'); ?></legend>
 		<div class="row-fluid">
 			<div class="span9">
 				<table class='adminlist table'>
 					<thead>
 						<tr>
-							<th><?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_ID'); ?></th>
-							<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_TYPE' ); ?></th>
-							<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TIME' );?></th>
-							<th style="width: 500px;"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_NOTES' ); ?></th>
+							<th><?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_ID'); ?></th>
+							<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_TYPE' ); ?></th>
+							<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TIME' );?></th>
+							<th style="width: 500px;"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_NOTES' ); ?></th>
 							<th></th>
 						</tr>
 					</thead>
@@ -231,10 +232,10 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, JText::_ ( 'Ev
 								<?php
 							switch ($event->event_sum) {
 								case 2 :
-									echo JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_TYPE_2' );
+									echo Text::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_TYPE_2' );
 									break;
 								case 1 :
-									echo JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_TYPE_1' );
+									echo Text::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_TYPE_1' );
 									break;
 							}
 							?>
@@ -263,24 +264,24 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, JText::_ ( 'Ev
 				<div id="addNewComment">
 					<fieldset class="form-vertical">
 						<div class="control-group">
-							<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_TYPE' ); ?></div>
+							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_TYPE' ); ?></div>
 							<div class="controls">
 								<select name="ctype" id="ctype"
 									class="span12 select-commenttype">
-									<option value="1"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_TYPE_1' ); ?></option>
-									<option value="2"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_TYPE_2' ); ?></option>
+									<option value="1"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_TYPE_1' ); ?></option>
+									<option value="2"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_TYPE_2' ); ?></option>
 								</select>
 							</div>
 						</div>
 						<div class="control-group">
-							<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TIME' ); ?></div>
+							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TIME' ); ?></div>
 							<div class="controls">
 								<input type="text" size="3" value="" id="comment_event_time"
 									name="comment_event_time" class="span4" />
 							</div>
 						</div>
 						<div class="control-group">
-							<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_NOTES' ); ?></div>
+							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_NOTES' ); ?></div>
 							<div class="controls">
 								<textarea rows="2" cols="70" id="comment_note"
 									name="comment_note" class="span12"></textarea>
@@ -289,7 +290,7 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, JText::_ ( 'Ev
 						<div>
 							<input id="save-new-comment" type="button"
 								class="inputbox button-save-c btn btn-small btn-success"
-								value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_SAVE'); ?>" />
+								value="<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_SAVE'); ?>" />
 							<br>
 							<br>
 							<div id="ajaxresponsecomment"></div>

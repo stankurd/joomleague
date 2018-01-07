@@ -9,10 +9,12 @@
  * @todo
  * - create form field for Parent_id
  */
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 ?>
 <fieldset class="form-horizontal">
-	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_DETAILS_LEGEND'); ?></legend>
+	<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_DETAILS_LEGEND'); ?></legend>
 	<?php
 	echo $this->form->renderField('name');
 	echo $this->form->renderField('alias');
@@ -23,7 +25,7 @@ defined('_JEXEC') or die;
 	echo $this->form->renderField('id');
 	?>
 	<div class="control-group">
-		<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_P_POSITION'); ?></div>
+		<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_P_POSITION'); ?></div>
 		<div class="controls"><?php echo $this->lists['parents']; ?></div>
 	</div>
 </fieldset>

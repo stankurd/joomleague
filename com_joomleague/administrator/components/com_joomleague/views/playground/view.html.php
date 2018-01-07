@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -49,11 +50,11 @@ class JoomleagueViewPlayground extends JLGView
 		$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 
 		// Set toolbar items for the page
-		$text = $isNew ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
+		$text = $isNew ? Text::_('COM_JOOMLEAGUE_GLOBAL_NEW') : Text::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
 
 		if($isNew)
 		{
-			JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUND_ADD_NEW'),'jl-playground');
+			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUND_ADD_NEW'),'jl-playground');
 			JLToolBarHelper::apply('playground.apply');
 			JLToolBarHelper::save('playground.save');
 			JLToolBarHelper::divider();
@@ -61,7 +62,7 @@ class JoomleagueViewPlayground extends JLGView
 		}
 		else
 		{
-			JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUND_EDIT'),'jl-playground');
+			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUND_EDIT'),'jl-playground');
 			JLToolBarHelper::apply('playground.apply');
 			JLToolBarHelper::save('playground.save');
 			JLToolBarHelper::divider();

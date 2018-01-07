@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
@@ -177,7 +178,7 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		$task = $this->getTask();		
 		$positions=$model->getProjectRefereePositions();
 		$post		= $input->post->getArray();
-		$cid		= $input->get('cid',array(0),'array');
+		$cid		= $input->post->get('cid',array(0),'array');
 		ArrayHelper::toInteger($cid);
 		$post['mid']=$cid[0];
 		$post['positions']=$positions;
@@ -185,11 +186,11 @@ class JoomleagueControllerMatch extends JLGControllerForm
 
 		if ($model->updateReferees($post))
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_MR');
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_MR');
 		}
 		else
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVE_MR').'<br />'.$model->getError();
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVE_MR').'<br />'.$model->getError();
 		}
 
 		// Checkout the match
@@ -265,12 +266,12 @@ class JoomleagueControllerMatch extends JLGControllerForm
 
 								if ($model->save($post))
 								{
-									$msg=JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ADD_MATCH');
+									$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ADD_MATCH');
 									$matchNumber++;
 								}
 								else
 								{
-									$msg=JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_ADD_MATCH').$model->getError();
+									$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_ADD_MATCH').$model->getError();
 									break;
 								}
 							}
@@ -324,17 +325,17 @@ class JoomleagueControllerMatch extends JLGControllerForm
 
 					if ($model->save($dmatch))
 					{
-						$msg=JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_COPY_MATCH');
+						$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_COPY_MATCH');
 					}
 					else
 					{
-						$msg=JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_COPY_MATCH').$model->getError();
+						$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_COPY_MATCH').$model->getError();
 					}
 				}
 			}
 			else
 			{
-				$msg=JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_COPY_MATCH2').$model->getError();
+				$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_COPY_MATCH2').$model->getError();
 			}
 		}
 		
@@ -379,11 +380,11 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		
 		if ($model->save($post))
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ADD_MATCH');
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ADD_MATCH');
 		}
 		else
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_ADD_MATCH').$model->getError();
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_ADD_MATCH').$model->getError();
 		}
 		$link='index.php?option=com_joomleague&view=matches';
 		$this->setRedirect($link,$msg);
@@ -397,7 +398,7 @@ class JoomleagueControllerMatch extends JLGControllerForm
 	public function saveevent()
 	{
 		// Check for request forgeries
-		Session::checkToken('GET') or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken('GET') or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -420,15 +421,15 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		
 		if (!$result) {
 			$return->success = false;
-			$return->message = JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVED_EVENT').': '.$model->getError();
+			$return->message = Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVED_EVENT').': '.$model->getError();
 		} else {
 			$rowid = $result;
 			$return->success = true;
-			$return->message = JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_EVENT');
+			$return->message = Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_EVENT');
 			$return->id = $rowid;
 		}
 		echo json_encode($return);
-		Factory::getApplication()->close();
+		$app->close();
 	}
 	
 	
@@ -439,7 +440,7 @@ class JoomleagueControllerMatch extends JLGControllerForm
 	public function savecomment()
 	{
 		// Check for request forgeries
-		Session::checkToken('GET') or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken('GET') or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 	
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -464,26 +465,26 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		if (!$result) {
 			$return->success = false;
 			if ($model->getError()) {
-				$return->message = JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVED_COMMENT').': '.$model->getError();
+				$return->message = Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVED_COMMENT').': '.$model->getError();
 			} else {
-				$return->message = JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVED_COMMENT');
+				$return->message = Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVED_COMMENT');
 			}
 		} else {
 			$rowid = $result;
 			$return->success = true;
-			$return->message = JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_COMMENT');
+			$return->message = Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_COMMENT');
 			$return->id = $rowid;			
 		}
 		
 		echo json_encode($return);		
-		Factory::getApplication()->close();
+		$app->close();
 	}
 	
 
 	public function savesubst()
 	{
 		// Check for request forgeries
-		Session::checkToken('GET') or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken('GET') or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 		
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -500,15 +501,15 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		$result = new stdClass();
 		if (!$newId){
 			$result->success = false;
-			$result->message = JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVED_SUBST').': '.$model->getError();
+			$result->message = Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVED_SUBST').': '.$model->getError();
 			$result->id = 0;
 		} else {
 			$result->success = true;
-			$result->message = JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_SUBST');
+			$result->message = Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_SUBST');
 			$result->id = $newId;
 		}
 		echo json_encode($result);
-		Factory::getApplication()->close();
+		$app->close();
 	}
 
 	/**
@@ -516,7 +517,7 @@ class JoomleagueControllerMatch extends JLGControllerForm
 	 */
 	public function removeSubst()
 	{
-		Session::checkToken('GET') or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken('GET') or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 		
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -527,22 +528,22 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		if (!$model->deleteSubstitution($substid))
 		{
 			$result->success = false;
-			$result->message = JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_REMOVE_SUBST').': '.$model->getError();
+			$result->message = Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_REMOVE_SUBST').': '.$model->getError();
 		}
 		else
 		{
 			$result->success = true;
-			$result->message = JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_REMOVE_SUBST');
+			$result->message = Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_REMOVE_SUBST');
 		}
 		echo json_encode($result);
-		Factory::getApplication()->close();
+		$app->close();
 	}
 
 	// save the checked rows inside matcheventsbb list
 	public function saveeventbb()
 	{
 		// Check for request forgeries
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 		
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -555,11 +556,11 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		$project_id = $app->getUserState($option.'project',0);
 		if ($model->saveeventbb($post,$project_id,$match_id))
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_UPDATE_EVENTS');
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_UPDATE_EVENTS');
 		}
 		else
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_UPDATE_EVENTS').$model->getError();
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_UPDATE_EVENTS').$model->getError();
 		}
 		
 		$link = 'index.php?option=com_joomleague&view=match&layout=editeventsbb&match_id='.$match_id;
@@ -574,7 +575,7 @@ class JoomleagueControllerMatch extends JLGControllerForm
 	public function savestats()
 	{
 		// Check for request forgeries
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 		
 		$app 	= Factory::getApplication();
 		$input = $app->input;
@@ -584,11 +585,11 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		$model	= $this->getModel('match');
 		if ($model->savestats($post))
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_UPDATE_STATS');
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_UPDATE_STATS');
 		}
 		else
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_UPDATE_STATS').$model->getError();
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_UPDATE_STATS').$model->getError();
 		}
 		
 		$link = 'index.php?option=com_joomleague&view=match&layout=editstats&match_id='.$match_id;
@@ -603,7 +604,7 @@ class JoomleagueControllerMatch extends JLGControllerForm
 	public function removeComment()
 	{
 		// Check for request forgeries
-		Session::checkToken('GET') or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken('GET') or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 				
 		$app 	= Factory::getApplication();
 		$input = $app->input;
@@ -617,17 +618,17 @@ class JoomleagueControllerMatch extends JLGControllerForm
 			$return->success = false;
 			$return->id = $comment_id;
 			if ($model->getError()) {
-				$return->message = JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_DELETE_COMMENT').': '.$model->getError();
+				$return->message = Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_DELETE_COMMENT').': '.$model->getError();
 			} else {
-				$return->message = JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_DELETE_COMMENT');
+				$return->message = Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_DELETE_COMMENT');
 			}
 		} else {	
 			$return->success = true;
-			$return->message = JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_DELETE_COMMENT');
+			$return->message = Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_DELETE_COMMENT');
 			$return->id = $comment_id;
 		}
 		echo json_encode($return);
-		Factory::getApplication()->close();
+		$app->close();
 	}
 	
 	
@@ -639,7 +640,7 @@ class JoomleagueControllerMatch extends JLGControllerForm
 	public function removeEvent()
 	{
 		// Check for request forgeries
-		Session::checkToken('GET') or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken('GET') or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 		
 		$app 	= Factory::getApplication();
 		$input = $app->input;
@@ -652,23 +653,23 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		if (!$result)
 		{
 			$return->success = false;
-			$return->message = JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_DELETE_EVENTS').': '.$model->getError();
+			$return->message = Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_DELETE_EVENTS').': '.$model->getError();
 			$return->id 	 = $event_id;
 		}
 		else
 		{
 			$return->success = true;
-			$return->message = JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_DELETE_EVENTS');
+			$return->message = Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_DELETE_EVENTS');
 			$return->id 	 = $event_id;
 		}
 		echo json_encode($return);
-		Factory::getApplication()->close();
+		$app->close();
 	}
 	
 
 	private function convertUiDateTimeToMatchDate($uiDate, $uiTime, $timezone)
 	{
-		$format = JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT');
+		$format = Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_DATE_FORMAT');
 
 		if (((!strpos($uiDate,'-')!==false) && (!strpos($uiDate,'.')!==false)) && (strlen($uiDate) <= 8 ))
 		{

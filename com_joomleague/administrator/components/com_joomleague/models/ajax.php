@@ -11,6 +11,7 @@
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\HTML\HTMLHelper;
 
@@ -21,7 +22,7 @@ class JoomleagueModelAjax extends JLGModel
 {
 	public function addGlobalSelectElement($elements, $required=false) {
 		if(!$required)  {
-			$mitems = array(HTMLHelper::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
+			$mitems = array(HTMLHelper::_('select.option', '', Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
 			return array_merge($mitems, $elements);
 		}
 		return $elements;
@@ -33,7 +34,7 @@ class JoomleagueModelAjax extends JLGModel
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		$db->setQuery( "SELECT CASE WHEN CHAR_LENGTH(p.alias) THEN CONCAT_WS(':', p.id, p.alias) ELSE p.id END AS value,
-									concat(p.name, ' (".JText::_('COM_JOOMLEAGUE_GLOBAL_LEAGUE').": ', l.name, ')', ' (".JText::_('COM_JOOMLEAGUE_GLOBAL_SEASON').": ', s.name, ' )' ) as text
+									concat(p.name, ' (".Text::_('COM_JOOMLEAGUE_GLOBAL_LEAGUE').": ', l.name, ')', ' (".Text::_('COM_JOOMLEAGUE_GLOBAL_SEASON').": ', s.name, ' )' ) as text
 									FROM #__joomleague_project AS p 
 									JOIN #__joomleague_sports_type AS st ON st.id = p.sports_type_id
 									JOIN #__joomleague_season AS s ON s.id = p.season_id
@@ -305,7 +306,7 @@ class JoomleagueModelAjax extends JLGModel
 		foreach ($matches as $match)
 		{
  			JoomleagueHelper::convertMatchDateToTimezone($match);
- 			$match->text = JoomleagueHelper::getMatchDate($match, JText::_('COM_JOOMLEAGUE_MATCHDAYDATE') . ' H:i').' - '.$match->text;
+ 			$match->text = JoomleagueHelper::getMatchDate($match, Text::_('COM_JOOMLEAGUE_MATCHDAYDATE') . ' H:i').' - '.$match->text;
 		}
 		return self::addGlobalSelectElement($matches, $required);
 		$app->close();

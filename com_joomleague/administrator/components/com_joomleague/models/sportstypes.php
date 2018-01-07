@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -126,7 +127,7 @@ class JoomleagueModelSportsTypes extends JLGModelList
 		try {
 		    $sportTypes = $db->loadObjectList();
 		} catch (Exception $e) {
-		    $app->enqueueMessage(JText::_($e->getMessage()), 'error');
+		    $app->enqueueMessage(Text::_($e->getMessage()), 'error');
 		    return array();
 		}		
 		//return $sportTypes;
@@ -138,7 +139,7 @@ class JoomleagueModelSportsTypes extends JLGModelList
 
 		foreach($sportTypes as $sportstype)
 		{
-			$sportstype->name = JText::_($sportstype->name);
+			$sportstype->name = Text::_($sportstype->name);
 		}
 		return $sportTypes;
 	

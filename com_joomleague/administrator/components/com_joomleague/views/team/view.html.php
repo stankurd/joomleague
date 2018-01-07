@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -55,8 +56,8 @@ class JoomleagueViewTeam extends JLGView
 		$checkedOut = ! ($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 		
 		// Set toolbar items for the page
-		$text = $isNew ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_GLOBAL_EDIT') . ': ' . $this->form->getValue('name');
-		JLToolBarHelper::title((JText::_('COM_JOOMLEAGUE_ADMIN_TEAM') . ': <span class="toolbarTitleType">[ ' . $text . ' ]</span>'),'jl-Teams');
+		$text = $isNew ? Text::_('COM_JOOMLEAGUE_GLOBAL_NEW') : Text::_('COM_JOOMLEAGUE_GLOBAL_EDIT') . ': ' . $this->form->getValue('name');
+		JLToolBarHelper::title((Text::_('COM_JOOMLEAGUE_ADMIN_TEAM') . ': <span class="toolbarTitleType">[ ' . $text . ' ]</span>'),'jl-Teams');
 		
 		if($isNew)
 		{

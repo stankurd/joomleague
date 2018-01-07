@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Table\Table;
 use Joomla\Utilities\ArrayHelper;
@@ -36,7 +37,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 	public function quickAdd()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -74,17 +75,17 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 		}
 		if (!isset($post['name']))
 		{
-			$post['name'] = JText::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_NAME',$max);
+			$post['name'] = Text::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_NAME',$max);
 		}
 	
 		$table = Table::getInstance('Round','Table');
 		if($table->save($post))
 		{
-			$this->setMessage(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_ADDED'));
+			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_ADDED'));
 		}
 		else
 		{
-			$this->setMessage(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ERROR_ADD') . $model->getError(),'error');
+			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ERROR_ADD') . $model->getError(),'error');
 		}
 
 		// Check the table in so it can be edited.... we are done with it anyway
@@ -98,7 +99,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 	public function save()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -133,15 +134,15 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 		}
 		if(! isset($post['name']) || empty($post['name']))
 		{
-			$post['name'] = JText::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_NAME',$max);
+			$post['name'] = Text::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_NAME',$max);
 		}
 		if($model->store($post))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_SAVED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_SAVED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ERROR_SAVE') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ERROR_SAVE') . $model->getError();
 		}
 		// Check the table in so it can be edited.... we are done with it anyway
 		$model->checkin();
@@ -166,7 +167,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 	public function saveshort()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -190,11 +191,11 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 		}
 		if($model->storeshort($cid,$post))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_SAVED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_SAVED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ERROR_SAVE') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ERROR_SAVE') . $model->getError();
 		}
 		$link = 'index.php?option=com_joomleague&view=rounds';
 		$this->setRedirect($link,$msg);
@@ -241,7 +242,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 	public function remove()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -249,7 +250,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 		ArrayHelper::toInteger($cid);
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
 		} else {
 			$mdlMatches = $this->getModel('matches');
 			$mdlMatch = $this->getModel('match');
@@ -258,7 +259,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 			{
 				echo "<script> alert('" . $model->getError(true) . "'); window.history.go(-1); </script>\n";
 			}
-			$this->setMessage(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_DELETED'));
+			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_DELETED'));
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=rounds');
 	}
@@ -267,7 +268,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 	public function deletematches()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -275,7 +276,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 		ArrayHelper::toInteger($cid);
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_SELECT_TO_DELETE_MATCHES'));
+			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_SELECT_TO_DELETE_MATCHES'));
 		} else {
 			$mdlMatches = $this->getModel('matches');
 			$mdlMatch = $this->getModel('match');
@@ -284,7 +285,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 			{
 				echo "<script> alert('" . $model->getError(true) . "'); window.history.go(-1); </script>\n";
 			}
-			$this->setMessage(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_MATCHES_DELETED'));
+			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_MATCHES_DELETED'));
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=rounds');
 	}
@@ -315,7 +316,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 	public function startmassadd()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -354,11 +355,11 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 		$bSuccess = $model->populate($project_id,$scheduling,$time,$interval,$start,$roundname,$teamsorder,$matchnumber);
 		if($bSuccess)
 		{
-			$this->setMessage(Jtext::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_SUCCESSFULL'));
+			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_SUCCESSFULL'));
 		}
 		else
 		{
-			$this->setMessage(Jtext::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR').': '.$model->getError(),'error');
+			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR').': '.$model->getError(),'error');
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=rounds');
 	}

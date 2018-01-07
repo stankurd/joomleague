@@ -8,7 +8,9 @@
  */
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Factory;
 
 defined('_JEXEC') or die;
 
@@ -24,13 +26,13 @@ class JoomleagueViewTreetos extends JLGView
 
 	public function display($tpl = null)
 	{
-		$app = HTMLHelper::getApplication();
+		$app = Factory::getApplication();
 		$input = $app->input;
 		$uri = Uri::getInstance();
 		$option = $input->getCmd('option');
 
 		$project_id = $app->getUserState($option . 'project');
-		$user = HTMLHelper::getUser();
+		$user = Factory::getUser();
 
 		$this->items = $this->get('Items');
 		$this->pagination = $this->get('Pagination');
@@ -44,7 +46,7 @@ class JoomleagueViewTreetos extends JLGView
 		$division = $app->getUserStateFromRequest($this->context.'.division','division','','string');
 
 		// build the html options for divisions
-		$divisions[] = JHtmlSelect::option('0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
+		$divisions[] = JHtmlSelect::option('0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
 		$mdlDivisions = BaseDatabaseModel::getInstance('divisions','JoomLeagueModel');
 		if($res = $mdlDivisions->getDivisions($project_id))
 		{
@@ -66,13 +68,13 @@ class JoomleagueViewTreetos extends JLGView
 
 	protected function addToolbar()
 	{
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETOS_TITLE'),'jl-Tree');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TREETOS_TITLE'),'jl-Tree');
 		JLToolBarHelper::apply('treetos.saveshort');
 		JLToolBarHelper::publishList('treetos.publish');
 		JLToolBarHelper::unpublishList('treetos.unpublish');
 		JLToolBarHelper::divider();
 		JLToolBarHelper::addNew('treetos.save');
-		JLToolBarHelper::deleteList(JText::_('COM_JOOMLEAGUE_ADMIN_TREETOS_WARNING'),'treetos.remove');
+		JLToolBarHelper::deleteList(Text::_('COM_JOOMLEAGUE_ADMIN_TREETOS_WARNING'),'treetos.remove');
 		JLToolBarHelper::divider();
 		JLToolBarHelper::help('screen.joomleague',true);
 	}

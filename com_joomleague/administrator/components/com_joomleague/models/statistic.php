@@ -9,6 +9,7 @@
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 use Joomla\Registry\Registry;
 use Joomla\Utilities\ArrayHelper;
@@ -75,7 +76,7 @@ class JoomleagueModelStatistic extends JLGModelItem
 				$db->execute();
 				if($db->loadObjectList())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_STATISTIC_MODEL_CANT_DELETE_STATS_MATCHES');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_STATISTIC_MODEL_CANT_DELETE_STATS_MATCHES');
 				}
 
 				
@@ -88,7 +89,7 @@ class JoomleagueModelStatistic extends JLGModelItem
 				$db->execute();
 				if($db->loadObjectList())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_STATISTIC_MODEL_CANT_DELETE_STATS_MATCHES');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_STATISTIC_MODEL_CANT_DELETE_STATS_MATCHES');
 				}
 				
 				if($result)

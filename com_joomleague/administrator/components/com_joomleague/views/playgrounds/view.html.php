@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -51,7 +52,7 @@ class JoomleagueViewPlaygrounds extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUNDS_TITLE'),'jl-playground');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUNDS_TITLE'),'jl-playground');
 		JLToolBarHelper::addNew('playground.add');
 		JLToolBarHelper::custom('playgrounds.import','upload','upload','COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT',false);
 		JLToolBarHelper::archiveList('playgrounds.export','COM_JOOMLEAGUE_GLOBAL_XML_EXPORT');

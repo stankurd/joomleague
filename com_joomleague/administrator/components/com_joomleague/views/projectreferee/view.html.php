@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -47,7 +48,7 @@ class JoomleagueViewProjectReferee extends JLGView
 		// @todo: fix
 		/*
 		 * if ($model->isCheckedOut ( $user->get ( 'id' ) )) {
-		 * $msg = JText::sprintf ( 'DESCBEINGEDITTED', JText::_ (
+		 * $msg = Text::sprintf ( 'DESCBEINGEDITTED', Text::_ (
 		 * 'COM_JOOMLEAGUE_ADMIN_P_REF_THE_PREF' ), $this->item->name );
 		 * $app->redirect ( 'index.php?option=com_joomleague', $msg );
 		 * }
@@ -61,7 +62,7 @@ class JoomleagueViewProjectReferee extends JLGView
 		
 		// build the html select list for positions
 		$refereepositions = array();
-		$refereepositions[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_REF_POS'));
+		$refereepositions[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_REF_POS'));
 		if($res = $model->getRefereePositions())
 		{
 			$refereepositions = array_merge($refereepositions,$res);
@@ -95,10 +96,10 @@ class JoomleagueViewProjectReferee extends JLGView
 		$isNew = ($this->item->id == 0);
 		$checkedOut = ! ($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 		
-		JLToolBarHelper::title(JText::_('Edit referee data'),'jl-Referees');
+		JLToolBarHelper::title(Text::_('Edit referee data'),'jl-Referees');
 		
 		// Set toolbar items for the page
-		$text = $isNew ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
+		$text = $isNew ? Text::_('COM_JOOMLEAGUE_GLOBAL_NEW') : Text::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
 		
 		if($isNew)
 		{

@@ -6,10 +6,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined ( '_JEXEC' ) or die ();
 ?>
 <fieldset class="form-horizontal">
-	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_MD'); ?></legend>
+	<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_F_MD'); ?></legend>
 	<?php
 	echo $this->form->renderField ( 'cancel' );
 	echo $this->form->renderField ( 'cancel_reason' );

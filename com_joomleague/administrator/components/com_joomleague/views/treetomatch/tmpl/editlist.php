@@ -7,12 +7,13 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
-HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 
-JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ASSIGN'));
+JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ASSIGN'));
 JLToolBarHelper::save('treetomatch.save_matcheslist');
 JLToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetonodes');
 JLToolBarHelper::help('screen.joomleague',true);
@@ -42,12 +43,12 @@ jQuery(document).ready(function($) {
 
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm" name="adminForm">
 	<fieldset class="adminform">
-		<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ASSIGN_TITLE', '<i>' . $this->project->name . '</i>');?></legend>
+		<legend><?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ASSIGN_TITLE', '<i>' . $this->project->name . '</i>');?></legend>
 		<div class="row-fluid">
 			<div class="span3">
 				<b>
 				<?php
-				echo JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ASSIGN_AVAIL_MATCHES');
+				echo Text::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ASSIGN_AVAIL_MATCHES');
 				?>
 				</b><br />
 						<?php
@@ -71,7 +72,7 @@ jQuery(document).ready(function($) {
 			<div class="span3">
 				<b>
 							<?php
-							echo JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ASSIGN_NODE_MATCHES');
+							echo Text::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ASSIGN_NODE_MATCHES');
 							?>
 						</b><br />
 						<?php

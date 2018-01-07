@@ -8,6 +8,7 @@
  */
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 use Joomla\Utilities\ArrayHelper;
 
@@ -65,7 +66,7 @@ class JoomleagueModelProjectteams extends JLGModelList
 		$project_id = $app->getUserState($option.'project');
 
 		// Query
-		$db = $this->getDbo();
+		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 
 		$query->select($this->getState('list.select','a.*','a.id AS projectteamid'));
@@ -131,8 +132,11 @@ class JoomleagueModelProjectteams extends JLGModelList
 		{
 			$db = Factory::getDbo();
 			$query = $db->getQuery(true);
-			$query->delete('#__joomleague_project_team');
-			$query->where('project_id = ' . $data['id']);
+			$query = "	DELETE
+						FROM #__joomleague_project_team
+						WHERE project_id = '" . $data['id'] . "'";
+			//$query->delete('#__joomleague_project_team');
+			//$query->where('project_id = ' . $data['id']);
 			try
 			{
 				$db->setQuery($query);
@@ -140,7 +144,7 @@ class JoomleagueModelProjectteams extends JLGModelList
 			}
 			catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}			
 		}
@@ -151,9 +155,12 @@ class JoomleagueModelProjectteams extends JLGModelList
 
 			$db = Factory::getDbo();
 			$query = $db->getQuery(true);
-			$query->delete('#__joomleague_project_team');
-			$query->where('project_id = ' . $data['id']);
-			$query->where('team_id NOT IN  (' . $peids . ')');
+			$query = "	DELETE
+						FROM #__joomleague_project_team
+						WHERE project_id = '" . $data['id'] . "' AND team_id NOT IN  (" . $peids . ")";
+			//$query->delete('#__joomleague_project_team');
+			//$query->where('project_id = ' . $data['id']);
+			//$query->where('team_id NOT IN  (' . $peids . ')');
 			try
 			{
 				$db->setQuery($query);
@@ -161,7 +168,7 @@ class JoomleagueModelProjectteams extends JLGModelList
 			}
 			catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 
@@ -177,7 +184,7 @@ class JoomleagueModelProjectteams extends JLGModelList
 			}
 			catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 			
@@ -193,7 +200,7 @@ class JoomleagueModelProjectteams extends JLGModelList
 			}
 			catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 		}
@@ -212,7 +219,7 @@ class JoomleagueModelProjectteams extends JLGModelList
 			}
 			catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 		}
@@ -314,7 +321,7 @@ class JoomleagueModelProjectteams extends JLGModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 			return $result;
@@ -342,7 +349,7 @@ class JoomleagueModelProjectteams extends JLGModelList
 			$tblNewTeam->load($team_id_new);
 			$new_team_name = $tblNewTeam->name;
 
-			$app->enqueueMessage(JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ASSIGNED_OLD_TEAMNAME',$old_team_name,$new_team_name),
+			$app->enqueueMessage(Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ASSIGNED_OLD_TEAMNAME',$old_team_name,$new_team_name),
 					'Notice');
 
 			$tblProjectTeam->id = $project_team_id;
@@ -404,7 +411,7 @@ class JoomleagueModelProjectteams extends JLGModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		foreach($result as $teams)
@@ -442,7 +449,7 @@ class JoomleagueModelProjectteams extends JLGModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		
@@ -465,13 +472,13 @@ class JoomleagueModelProjectteams extends JLGModelList
 		$query = $db->getQuery(true);
 		if(! $dest)
 		{
-			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_Destination_project_required'));
+			$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_Destination_project_required'));
 			return false;
 		}
 
 		if(!is_array($ptids) || ! count($ptids))
 		{
-			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_no_teams_to_copy'));
+			$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_no_teams_to_copy'));
 			return false;
 		}
 
@@ -486,7 +493,7 @@ class JoomleagueModelProjectteams extends JLGModelList
 				 }
 				 catch (Exception $e)
 				 {
-				 	$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				 	$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				 	return false;
 				 }
 
@@ -512,7 +519,7 @@ class JoomleagueModelProjectteams extends JLGModelList
 				 }
 				 catch (Exception $e)
 				 {
-				 	$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				 	$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				 	return false;
 				 }
 

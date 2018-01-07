@@ -7,11 +7,13 @@
  * @link		http://www.joomleague.at
  */
 
- defined('_JEXEC') or die;
+ use Joomla\CMS\Language\Text;
+
+defined('_JEXEC') or die;
  ?>
  
 <fieldset class="form-horizontal">
-	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECT_MD_PARAMS'); ?></legend>
+	<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECT_MD_PARAMS'); ?></legend>
 	<?php foreach($this->form->getFieldset('project') as $field): ?>
 		<div class="control-group">	
 			<div class="control-label"><?php echo $field->label; ?></div>

@@ -9,8 +9,8 @@
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
-use Joomla\CMS\Filter\OutputFilter;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -57,13 +57,13 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			}
 			else
 			{
-			    Factory::getApplication()->enqueueMessage(JText::_('<a href="http://php.net/manual/en/book.simplexml.php" target="_blank">SimpleXML</a> does not exist on your system!'), 'warning');
+			    Factory::getApplication()->enqueueMessage(Text::_('<a href="http://php.net/manual/en/book.simplexml.php" target="_blank">SimpleXML</a> does not exist on your system!'), 'warning');
 			}
 		}
 		else
 		{
-		    Factory::getApplication()->enqueueMessage(JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR', 'Missing import file') , 'warning');
-			echo "<script> alert('".JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR', 'Missing import file')."'); window.history.go(-1); </script>\n";
+		    Factory::getApplication()->enqueueMessage(Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR', 'Missing import file') , 'warning');
+			echo "<script> alert('".Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR', 'Missing import file')."'); window.history.go(-1); </script>\n";
 		}
 	}
 
@@ -73,13 +73,13 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		if (!$xmlData=$this->_getXml())
 		{
 			$errorFound=false;
-			echo JText::_('Load of the importfile failed:').'<br />';
+			echo Text::_('Load of the importfile failed:').'<br />';
 			foreach(libxml_get_errors() as $error)
 			{
 				echo "<br>",$error->message;
 				$errorFound=true;
 			}
-			if (!$errorFound){echo ' '.JText::_('Unknown error :-(');}
+			if (!$errorFound){echo ' '.Text::_('Unknown error :-(');}
 		}
 		$i=0;
 		$j=0;
@@ -128,7 +128,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				{
 					$this->_datas['project']=$xmlData->record[$i];
 					$this->import_version='OLD';
-					Factory::getApplication()->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_RENDERING_093'), 'notice');
+					Factory::getApplication()->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_RENDERING_093'), 'notice');
 				}
 
 				// collect the project data of a .jlg file of JoomLeague 1.5x
@@ -136,7 +136,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				{
 					$this->_datas['project']=$xmlData->record[$i];
 					$this->import_version='NEW';
-					Factory::getApplication()->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_RENDERING_15'), 'notice');
+					Factory::getApplication()->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_RENDERING_15'), 'notice');
 				}
 
 				// collect the project data of a .jlg file of JoomLeague 1.5x
@@ -144,7 +144,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				{
 					$this->_datas['project']=$xmlData->record[$i];
 					$this->import_version='NEW';
-					Factory::getApplication()->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_RENDERING_20'), 'notice');
+					Factory::getApplication()->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_RENDERING_20'), 'notice');
 				}
 
 				// collect the division data
@@ -397,7 +397,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		}
 		else
 		{
-		    Factory::getApplication()->enqueueMessage(JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR', 'Something is wrong inside the import file'), 'warning');
+		    Factory::getApplication()->enqueueMessage(Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR', 'Something is wrong inside the import file'), 'warning');
 			return false;
 		}
 	}
@@ -418,7 +418,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		$query='SELECT id,name,name AS text FROM #__joomleague_sports_type ORDER BY name ASC';
 		$db->setQuery($query);
 		$result=$db->loadObjectList();
-		foreach ($result as $sportstype){$sportstype->name=JText::_($sportstype->name);}
+		foreach ($result as $sportstype){$sportstype->name=Text::_($sportstype->name);}
 		return $result;
 	}
 
@@ -652,7 +652,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		$query='SELECT id AS value,name AS text FROM #__joomleague_eventtype ORDER BY name';
 		$db->setQuery($query);
 		$result=$db->loadObjectList();
-		foreach ($result as $event){$event->text=JText::_($event->text);}
+		foreach ($result as $event){$event->text=Text::_($event->text);}
 		return $result;
 	}
 
@@ -672,7 +672,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		$query='SELECT id AS value,name AS text FROM #__joomleague_position ORDER BY name';
 		$db->setQuery($query);
 		$result=$db->loadObjectList();
-		foreach ($result as $position){$position->text=JText::_($position->text);}
+		foreach ($result as $position){$position->text=Text::_($position->text);}
 		return $result;
 	}
 
@@ -692,7 +692,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		$query='SELECT id AS value,name AS text FROM #__joomleague_position WHERE parent_id=0 ORDER BY name';
 		$db->setQuery($query);
 		$result=$db->loadObjectList();
-		foreach ($result as $position){$position->text=JText::_($position->text);}
+		foreach ($result as $position){$position->text=Text::_($position->text);}
 		return $result;
 	}
 
@@ -1206,7 +1206,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			if ($result=$db->loadResult()) {
 				return $result;
 			}
-			return JText::sprintf('Item with ID [%1$s] not found inside [#__joomleague_%2$s]',$id,$tableName);
+			return Text::sprintf('Item with ID [%1$s] not found inside [#__joomleague_%2$s]',$id,$tableName);
 		}
 	}
 
@@ -1223,7 +1223,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			{
 				$this->_sportstype_id=$sportstypeObject->id;
 				$my_text .= '<span style="color:orange">';
-				$my_text .= JText::sprintf('Using existing sportstype data: %1$s',"</span><strong>$this->_sportstype_new</strong>");
+				$my_text .= Text::sprintf('Using existing sportstype data: %1$s',"</span><strong>$this->_sportstype_new</strong>");
 				$my_text .= '<br />';
 			}
 			else
@@ -1234,9 +1234,9 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				if ($p_sportstype->store()===false)
 				{
 					$my_text .= '<span style="color:'.$this->storeFailedColor.'"><strong>';
-					$my_text .= JText::_('Error in function _importSportsType').'</strong></span><br />';
-					$my_text .= JText::sprintf('Sportstypename: %1$s',JText::_($this->_sportstype_new)).'<br />';
-					$my_text .= JText::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
+					$my_text .= Text::_('Error in function _importSportsType').'</strong></span><br />';
+					$my_text .= Text::sprintf('Sportstypename: %1$s',Text::_($this->_sportstype_new)).'<br />';
+					$my_text .= Text::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
 					$my_text .= '<pre>'.print_r($p_sportstype,true).'</pre>';
 					$this->_success_text['Importing sportstype data:']=$my_text;
 					return false;
@@ -1246,7 +1246,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					$insertID=$p_sportstype->id; 
 					$this->_sportstype_id=$insertID;
 					$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-					$my_text .= JText::sprintf('Created new sportstype data: %1$s',"</span><strong>$this->_sportstype_new</strong>");
+					$my_text .= Text::sprintf('Created new sportstype data: %1$s',"</span><strong>$this->_sportstype_new</strong>");
 					$my_text .= '<br />';
 				}
 			}
@@ -1254,8 +1254,8 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		else
 		{
 			$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-			$my_text .= JText::sprintf(	'Using existing sportstype data: %1$s',
-										'</span><strong>'.JText::_($this->_getObjectName('sports_type',$this->_sportstype_id)).'</strong>');
+			$my_text .= Text::sprintf(	'Using existing sportstype data: %1$s',
+										'</span><strong>'.Text::_($this->_getObjectName('sports_type',$this->_sportstype_id)).'</strong>');
 			$my_text .= '<br />';
 		}
 		$this->_success_text['Importing sportstype data:']=$my_text;
@@ -1276,22 +1276,22 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			{
 				$this->_league_id=$leagueObject->id;
 				$my_text .= '<span style="color:orange">';
-				$my_text .= JText::sprintf('Using existing league data: %1$s',"</span><strong>$this->_league_new</strong>");
+				$my_text .= Text::sprintf('Using existing league data: %1$s',"</span><strong>$this->_league_new</strong>");
 				$my_text .= '<br />';
 			}
 			else
 			{
 				$p_league = $this->getTable('League');
 				$p_league->set('name',trim($this->_league_new));
-				$p_league->set('alias',OutputFilter::stringURLSafe($this->_league_new));
+				$p_league->set('alias',JFilterOutput::stringURLSafe($this->_league_new));
 				//$p_league->set('country',$this->_league_new_country);
 
 				if ($p_league->store()===false)
 				{
 					$my_text .= '<span style="color:'.$this->storeFailedColor.'"><strong>';
-					$my_text .= JText::_('Error in function _importLeague').'</strong></span><br />';
-					$my_text .= JText::sprintf('Leaguenname: %1$s',$this->_league_new).'<br />';
-					$my_text .= JText::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
+					$my_text .= Text::_('Error in function _importLeague').'</strong></span><br />';
+					$my_text .= Text::sprintf('Leaguenname: %1$s',$this->_league_new).'<br />';
+					$my_text .= Text::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
 					$my_text .= '<pre>'.print_r($p_league,true).'</pre>';
 					$this->_success_text['Importing league data:']=$my_text;
 					return false;
@@ -1301,7 +1301,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					$insertID=$p_league->id; 
 					$this->_league_id=$insertID;
 					$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-					$my_text .= JText::sprintf('Created new league data: %1$s',"</span><strong>$this->_league_new</strong>");
+					$my_text .= Text::sprintf('Created new league data: %1$s',"</span><strong>$this->_league_new</strong>");
 					$my_text .= '<br />';
 				}
 			}
@@ -1309,7 +1309,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		else
 		{
 			$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-			$my_text .= JText::sprintf(	'Using existing league data: %1$s',
+			$my_text .= Text::sprintf(	'Using existing league data: %1$s',
 										'</span><strong>'.$this->_getObjectName('league',$this->_league_id).'</strong>');
 			$my_text .= '<br />';
 		}
@@ -1331,21 +1331,21 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			{
 				$this->_season_id=$seasonObject->id;
 				$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-				$my_text .= JText::sprintf('Using existing season data: %1$s',"</span><strong>$this->_season_new</strong>");
+				$my_text .= Text::sprintf('Using existing season data: %1$s',"</span><strong>$this->_season_new</strong>");
 				$my_text .= '<br />';
 			}
 			else
 			{
 				$p_season = $this->getTable('Season');
 				$p_season->set('name',trim($this->_season_new));
-				$p_season->set('alias',OutputFilter::stringURLSafe($this->_season_new));
+				$p_season->set('alias',JFilterOutput::stringURLSafe($this->_season_new));
 
 				if ($p_season->store()===false)
 				{
 					$my_text .= '<span style="color:'.$this->storeFailedColor.'"><strong>';
-					$my_text .= JText::_('Error in function _importSeason').'</strong></span><br />';
-					$my_text .= JText::sprintf('Seasonname: %1$s',$this->_season_new).'<br />';
-					$my_text .= JText::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
+					$my_text .= Text::_('Error in function _importSeason').'</strong></span><br />';
+					$my_text .= Text::sprintf('Seasonname: %1$s',$this->_season_new).'<br />';
+					$my_text .= Text::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
 					$my_text .= '<pre>'.print_r($p_season,true).'</pre>';
 					$this->_success_text['Importing season data:']=$my_text;
 					return false;
@@ -1355,7 +1355,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					$insertID=$p_season->id; 
 					$this->_season_id=$insertID;
 					$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-					$my_text .= JText::sprintf('Created new season data: %1$s',"</span><strong>$this->_season_new</strong>");
+					$my_text .= Text::sprintf('Created new season data: %1$s',"</span><strong>$this->_season_new</strong>");
 					$my_text .= '<br />';
 				}
 			}
@@ -1363,7 +1363,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		else
 		{
 			$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-			$my_text .= JText::sprintf(	'Using existing season data: %1$s',
+			$my_text .= Text::sprintf(	'Using existing season data: %1$s',
 										'</span><strong>'.$this->_getObjectName('season',$this->_season_id).'</strong>');
 			$my_text .= '<br />';
 		}
@@ -1387,8 +1387,8 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				$oldID=$this->_getDataFromObject($this->_datas['event'][$key],'id');
 				$this->_convertEventID[$oldID]=$id;
 				$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-				$my_text .= JText::sprintf(	'Using existing event data: %1$s',
-											'</span><strong>'.JText::_($this->_getObjectName('eventtype',$id)).'</strong>');
+				$my_text .= Text::sprintf(	'Using existing event data: %1$s',
+											'</span><strong>'.Text::_($this->_getObjectName('eventtype',$id)).'</strong>');
 				$my_text .= '<br />';
 			}
 		}
@@ -1415,7 +1415,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				}
 				else
 				{
-				    $p_eventtype->set('alias',OutputFilter::stringURLSafe($this->_getDataFromObject($p_eventtype,'name')));
+				    $p_eventtype->set('alias',JFilterOutput::stringURLSafe($this->_getDataFromObject($p_eventtype,'name')));
 				}
 				$query="SELECT id,name FROM #__joomleague_eventtype WHERE name='".addslashes(stripslashes($p_eventtype->name))."'";
 				$db->setQuery($query);
@@ -1424,7 +1424,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				{
 					$this->_convertEventID[$oldID]=$object->id;
 					$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-					$my_text .= JText::sprintf('Using existing eventtype data: %1$s','</span><strong>'.JText::_($object->name).'</strong>');
+					$my_text .= Text::sprintf('Using existing eventtype data: %1$s','</span><strong>'.Text::_($object->name).'</strong>');
 					$my_text .= '<br />';
 				}
 				else
@@ -1442,7 +1442,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 						$insertID=$p_eventtype->id; 
 						$this->_convertEventID[$oldID]=$insertID;
 						$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-						$my_text .= JText::sprintf('Created new eventtype data: %1$s','</span><strong>'.JText::_($p_eventtype->name).'</strong>');
+						$my_text .= Text::sprintf('Created new eventtype data: %1$s','</span><strong>'.Text::_($p_eventtype->name).'</strong>');
 						$my_text .= '<br />';
 					}
 				}
@@ -1468,8 +1468,8 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				$oldID=$this->_getDataFromObject($this->_datas['statistic'][$key],'id');
 				$this->_convertStatisticID[$oldID]=$id;
 				$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-				$my_text .= JText::sprintf(	'Using existing statistic data: %1$s',
-											'</span><strong>'.JText::_($this->_getObjectName('statistic',$id)).'</strong>');
+				$my_text .= Text::sprintf(	'Using existing statistic data: %1$s',
+											'</span><strong>'.Text::_($this->_getObjectName('statistic',$id)).'</strong>');
 				$my_text .= '<br />';
 			}
 		}
@@ -1497,7 +1497,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				}
 				else
 				{
-				    $p_statistic->set('alias',OutputFilter::stringURLSafe($this->_getDataFromObject($p_statistic,'name')));
+				    $p_statistic->set('alias',JFilterOutput::stringURLSafe($this->_getDataFromObject($p_statistic,'name')));
 				}
 				$query="SELECT * FROM #__joomleague_statistic WHERE name='".addslashes(stripslashes($p_statistic->name))."' AND class='".addslashes(stripslashes($p_statistic->class))."'";
 				$db->setQuery($query);
@@ -1506,7 +1506,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				{
 					$this->_convertStatisticID[$oldID]=$object->id;
 					$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-					$my_text .= JText::sprintf('Using existing statistic data: %1$s','</span><strong>'.JText::_($object->name).'</strong>');
+					$my_text .= Text::sprintf('Using existing statistic data: %1$s','</span><strong>'.Text::_($object->name).'</strong>');
 					$my_text .= '<br />';
 				}
 				else
@@ -1524,7 +1524,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 						$insertID=$p_statistic->id; 
 						$this->_convertStatisticID[$oldID]=$insertID;
 						$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-						$my_text .= JText::sprintf('Created new statistic data: %1$s','</span><strong>'.JText::_($p_statistic->name).'</strong>');
+						$my_text .= Text::sprintf('Created new statistic data: %1$s','</span><strong>'.Text::_($p_statistic->name).'</strong>');
 						$my_text .= '<br />';
 					}
 				}
@@ -1550,8 +1550,8 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				$oldID=$this->_getDataFromObject($this->_datas['parentposition'][$key],'id');
 				$this->_convertParentPositionID[$oldID]=$id;
 				$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-				$my_text .= JText::sprintf(	'Using existing parentposition data: %1$s',
-											'</span><strong>'.JText::_($this->_getObjectName('position',$id)).'</strong>');
+				$my_text .= Text::sprintf(	'Using existing parentposition data: %1$s',
+											'</span><strong>'.Text::_($this->_getObjectName('position',$id)).'</strong>');
 				$my_text .= '<br />';
 			}
 		}
@@ -1576,7 +1576,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				}
 				else
 				{
-					$p_position->set('alias',OutputFilter::stringURLSafe($this->_getDataFromObject($p_position,'name')));
+					$p_position->set('alias',JFilterOutput::stringURLSafe($this->_getDataFromObject($p_position,'name')));
 				}
 				$query="SELECT id,name FROM #__joomleague_position WHERE name='".addslashes(stripslashes($p_position->name))."' AND parent_id=0";
 				$db->setQuery($query);
@@ -1586,7 +1586,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					$p_position->load($db->loadResult());
 					$this->_convertParentPositionID[$oldID]=$p_position->id;
 					$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-					$my_text .= JText::sprintf('Using existing parent-position data: %1$s','</span><strong>'.JText::_($p_position->name).'</strong>');
+					$my_text .= Text::sprintf('Using existing parent-position data: %1$s','</span><strong>'.Text::_($p_position->name).'</strong>');
 					$my_text .= '<br />';
 				}
 				else
@@ -1604,7 +1604,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 						$insertID=$p_position->id; 
 						$this->_convertParentPositionID[$oldID]=$insertID;
 						$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-						$my_text .= JText::sprintf('Created new parent-position data: %1$s','</span><strong>'.JText::_($p_position->name).'</strong>');
+						$my_text .= Text::sprintf('Created new parent-position data: %1$s','</span><strong>'.Text::_($p_position->name).'</strong>');
 						$my_text .= '<br />';
 					}
 				}
@@ -1631,8 +1631,8 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				$oldID=$this->_getDataFromObject($this->_datas['position'][$key],'id');
 				$this->_convertPositionID[$oldID]=$id;
 				$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-				$my_text .= JText::sprintf(	'Using existing position data: %1$s',
-											'</span><strong>'.JText::_($this->_getObjectName('position',$id)).'</strong>');
+				$my_text .= Text::sprintf(	'Using existing position data: %1$s',
+											'</span><strong>'.Text::_($this->_getObjectName('position',$id)).'</strong>');
 				$my_text .= '<br />';
 			}
 		}
@@ -1664,7 +1664,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				}
 				else
 				{
-					$p_position->set('alias',OutputFilter::stringURLSafe($this->_getDataFromObject($p_position,'name')));
+					$p_position->set('alias',JFilterOutput::stringURLSafe($this->_getDataFromObject($p_position,'name')));
 				}
 				$query="SELECT id,name FROM #__joomleague_position WHERE name='".addslashes(stripslashes($p_position->name))."' AND parent_id=$p_position->parent_id";
 				$db->setQuery($query);
@@ -1677,7 +1677,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					{
 						$this->_convertPositionID[$oldID]=$p_position->id;
 						$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-						$my_text .= JText::sprintf('Using existing position data: %1$s','</span><strong>'.JText::_($p_position->name).'</strong>');
+						$my_text .= Text::sprintf('Using existing position data: %1$s','</span><strong>'.Text::_($p_position->name).'</strong>');
 						$my_text .= '<br />';
 					}
 				}
@@ -1696,7 +1696,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 						$insertID=$p_position->id; 
 						$this->_convertPositionID[$oldID]=$insertID;
 						$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-						$my_text .= JText::sprintf('Created new position data: %1$s','</span><strong>'.JText::_($p_position->name).'</strong>');
+						$my_text .= Text::sprintf('Created new position data: %1$s','</span><strong>'.Text::_($p_position->name).'</strong>');
 						$my_text .= '<br />';
 					}
 				}
@@ -1731,7 +1731,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				!isset($this->_convertPositionID[$oldPositionID]))
 			{
 				$my_text .= '<span style="color:red">';
-				$my_text .= JText::sprintf(	'Skipping import of PositionEventtype-ID %1$s. Old-EventID: %2$s - Old-PositionID: %3$s',
+				$my_text .= Text::sprintf(	'Skipping import of PositionEventtype-ID %1$s. Old-EventID: %2$s - Old-PositionID: %3$s',
 								"</span><strong>$oldID</strong><span style='color:red'>",
 								"</span><strong>$oldEventID</strong><span style='color:red'>",
 								"</span><strong>$oldPositionID</strong>").'<br />';
@@ -1748,9 +1748,9 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			if ($object=$db->loadObject())
 			{
 				$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-				$my_text .= JText::sprintf(	'Using existing positioneventtype data - Position: %1$s - Event: %2$s',
-								'</span><strong>'.JText::_($this->_getObjectName('position',$p_positioneventtype->position_id)).'</strong><span style="color:'.$this->existingInDbColor.'">',
-								'</span><strong>'.JText::_($this->_getObjectName('eventtype',$p_positioneventtype->eventtype_id)).'</strong>');
+				$my_text .= Text::sprintf(	'Using existing positioneventtype data - Position: %1$s - Event: %2$s',
+								'</span><strong>'.Text::_($this->_getObjectName('position',$p_positioneventtype->position_id)).'</strong><span style="color:'.$this->existingInDbColor.'">',
+								'</span><strong>'.Text::_($this->_getObjectName('eventtype',$p_positioneventtype->eventtype_id)).'</strong>');
 				$my_text .= '<br />';
 			}
 			else
@@ -1766,9 +1766,9 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				else
 				{
 					$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-					$my_text .= JText::sprintf(	'Created new positioneventtype data. Position: %1$s - Event: %2$s',
-									'</span><strong>'.JText::_($this->_getObjectName('position',$p_positioneventtype->position_id)).'</strong><span style="color:'.$this->storeSuccessColor.'">',
-									'</span><strong>'.JText::_($this->_getObjectName('eventtype',$p_positioneventtype->eventtype_id)).'</strong>');
+					$my_text .= Text::sprintf(	'Created new positioneventtype data. Position: %1$s - Event: %2$s',
+									'</span><strong>'.Text::_($this->_getObjectName('position',$p_positioneventtype->position_id)).'</strong><span style="color:'.$this->storeSuccessColor.'">',
+									'</span><strong>'.Text::_($this->_getObjectName('eventtype',$p_positioneventtype->eventtype_id)).'</strong>');
 					$my_text .= '<br />';
 				}
 			}
@@ -1794,7 +1794,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				$oldID=$this->_getDataFromObject($this->_datas['playground'][$key],'id');
 				$this->_convertPlaygroundID[$oldID]=$id;
 				$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-				$my_text .= JText::sprintf(	'Using existing playground data: %1$s',
+				$my_text .= Text::sprintf(	'Using existing playground data: %1$s',
 											'</span><strong>'.$this->_getObjectName('playground',$id).'</strong>');
 				$my_text .= '<br />';
 			}
@@ -1824,7 +1824,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				}
 				else
 				{
-					$p_playground->set('alias',OutputFilter::stringURLSafe($this->_getDataFromObject($p_playground,'name')));
+					$p_playground->set('alias',JFilterOutput::stringURLSafe($this->_getDataFromObject($p_playground,'name')));
 				}
 				if (array_key_exists((int)$this->_getDataFromObject($import_playground,'country'),$this->_convertCountryID))
 				{
@@ -1848,7 +1848,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				{
 					$this->_convertPlaygroundID[$oldID]=$object->id;
 					$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-					$my_text .= JText::sprintf('Using existing playground data: %1$s',"</span><strong>$object->name</strong>");
+					$my_text .= Text::sprintf('Using existing playground data: %1$s',"</span><strong>$object->name</strong>");
 					$my_text .= '<br />';
 				}
 				else
@@ -1856,9 +1856,9 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					if ($p_playground->store()===false)
 					{
 						$my_text .= '<span style="color:'.$this->storeFailedColor.'"><strong>';
-						$my_text .= JText::_('Error in function _importPlayground').'</strong></span><br />';
-						$my_text .= JText::sprintf('Playgroundname: %1$s',$p_playground->name).'<br />';
-						$my_text .= JText::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
+						$my_text .= Text::_('Error in function _importPlayground').'</strong></span><br />';
+						$my_text .= Text::sprintf('Playgroundname: %1$s',$p_playground->name).'<br />';
+						$my_text .= Text::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
 						$my_text .= '<pre>'.print_r($p_playground,true).'</pre>';
 						$this->_success_text['Importing general playground data:']=$my_text;
 						return false;
@@ -1868,7 +1868,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 						$insertID=$p_playground->id; 
 						$this->_convertPlaygroundID[$oldID]=$insertID;
 						$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-						$my_text .= JText::sprintf('Created new playground data: %1$s',"</span><strong>$p_playground->name</strong>");
+						$my_text .= Text::sprintf('Created new playground data: %1$s',"</span><strong>$p_playground->name</strong>");
 						$my_text .= '<br />';
 					}
 				}
@@ -1908,7 +1908,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					$oldID=$this->_getDataFromObject($this->_datas['club'][$key],'id');
 					$this->_convertClubID[$oldID]=$id;
 					$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-					$my_text .= JText::sprintf(	'Using existing club data: %1$s - %2$s',
+					$my_text .= Text::sprintf(	'Using existing club data: %1$s - %2$s',
 												'</span><strong>'.$dbClubs[$id]->name.'</strong>',
 												''.$dbClubs[$id]->id.''
 												);
@@ -1937,9 +1937,9 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					if ($p_club->store()===false)
 					{
 						$my_text .= '<span style="color:'.$this->storeFailedColor.'"><strong>';
-						$my_text .= JText::_('1.a) Error in function updateClubs').'</strong></span><br />';
-						$my_text .= JText::sprintf('Clubname: %1$s',$dbClubs[$id]->name).'<br />';
-						$my_text .= JText::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
+						$my_text .= Text::_('1.a) Error in function updateClubs').'</strong></span><br />';
+						$my_text .= Text::sprintf('Clubname: %1$s',$dbClubs[$id]->name).'<br />';
+						$my_text .= Text::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
 						$my_text .= '<pre>'.print_r($p_club,true).'</pre>';
 						$this->_success_text['Importing general club data:']=$my_text;
 						return false;
@@ -1949,7 +1949,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 						$insertID=$p_club->id; 
 						$this->_convertClubID[$oldID]=$insertID;
 						$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-						$my_text .= JText::sprintf(	'Updated club data: %1$s - %2$s',
+						$my_text .= Text::sprintf(	'Updated club data: %1$s - %2$s',
 													"</span><strong>$p_club->name</strong>",
 													"".$p_club->id.""
 													);
@@ -2001,7 +2001,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				}
 				else
 				{
-					$p_club->set('alias',OutputFilter::stringURLSafe($this->_getDataFromObject($p_club,'name')));
+					$p_club->set('alias',JFilterOutput::stringURLSafe($this->_getDataFromObject($p_club,'name')));
 				}
 				if ($this->_importType!='clubs')	// force playground_id to be set to default if only clubs are imported
 				{
@@ -2029,7 +2029,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				{
 					$this->_convertClubID[$oldID]=$object->id;
 					$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-					$my_text .= JText::sprintf('Using existing club data: %1$s',"</span><strong>$object->name</strong>");
+					$my_text .= Text::sprintf('Using existing club data: %1$s',"</span><strong>$object->name</strong>");
 					$my_text .= '<br />';
 				}
 				else
@@ -2037,9 +2037,9 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					if ($p_club->store()===false)
 					{
 						$my_text .= '<span style="color:'.$this->storeFailedColor.'"><strong>';
-						$my_text .= JText::_('Error in function importClubs').'</strong></span><br />';
-						$my_text .= JText::sprintf('Clubname: %1$s',$p_club->name).'<br />';
-						$my_text .= JText::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
+						$my_text .= Text::_('Error in function importClubs').'</strong></span><br />';
+						$my_text .= Text::sprintf('Clubname: %1$s',$p_club->name).'<br />';
+						$my_text .= Text::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
 						$my_text .= '<pre>'.print_r($p_club,true).'</pre>';
 						$this->_success_text['Importing general club data:']=$my_text;
 						return false;
@@ -2049,7 +2049,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 						$insertID=$p_club->id; 
 						$this->_convertClubID[$oldID]=$insertID;
 						$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-						$my_text .= JText::sprintf(	'Created new club data: %1$s - %2$s',
+						$my_text .= Text::sprintf(	'Created new club data: %1$s - %2$s',
 													"</span><strong>$p_club->name</strong>",
 													"".$p_club->country.""
 													);
@@ -2083,7 +2083,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 						{
 							$converted=true;
 							$my_text .= '<span style="color:green">';
-							$my_text .= JText::sprintf(	'Converted club-info %1$s in imported playground %2$s',
+							$my_text .= Text::sprintf(	'Converted club-info %1$s in imported playground %2$s',
 														'</span><strong>'.$this->_getClubName($new_club_id).'</strong><span style="color:green">',
 														"</span><strong>$p_playground->name</strong>");
 							$my_text .= '<br />';
@@ -2092,7 +2092,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					}
 				}
 			}
-			if (!$converted){$my_text .= '<span style="color:green">'.JText::_('Nothing needed to be converted').'<br />';}
+			if (!$converted){$my_text .= '<span style="color:green">'.Text::_('Nothing needed to be converted').'<br />';}
 			$this->_success_text['Converting new playground club-IDs of new playground data:']=$my_text;
 		}
 		return true;
@@ -2120,7 +2120,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					$oldID=$this->_getDataFromObject($this->_datas['team'][$key],'id');
 					$this->_convertTeamID[$oldID]=$id;
 					$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-					$my_text .= JText::sprintf(	'Using existing team data: %1$s - %2$s - %3$s - %4$s',
+					$my_text .= Text::sprintf(	'Using existing team data: %1$s - %2$s - %3$s - %4$s',
 												'</span><strong>'.$dbTeams[$id]->name.'</strong>',
 												'<strong>'.$dbTeams[$id]->short_name.'</strong>',
 												'<strong>'.$dbTeams[$id]->middle_name.'</strong>',
@@ -2162,7 +2162,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				}
 				else
 				{
-					$p_team->set('alias',OutputFilter::stringURLSafe($this->_getDataFromObject($p_team,'name')));
+					$p_team->set('alias',JFilterOutput::stringURLSafe($this->_getDataFromObject($p_team,'name')));
 				}
 				if (($this->import_version=='NEW') && ($import_team->extended!=''))
 				{
@@ -2182,7 +2182,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				{
 					$this->_convertTeamID[$oldID]=$object->id;
 					$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-					$my_text .= JText::sprintf('Using existing team data: %1$s',"</span><strong>$object->name</strong>");
+					$my_text .= Text::sprintf('Using existing team data: %1$s',"</span><strong>$object->name</strong>");
 					$my_text .= '<br />';
 				}
 				else
@@ -2190,9 +2190,9 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					if ($p_team->store()===false)
 					{
 						$my_text .= '<span style="color:'.$this->storeFailedColor.'"><strong>';
-						$my_text .= JText::_('Error in function _importTeams').'</strong></span><br />';
-						$my_text .= JText::sprintf('Teamname: %1$s',$p_team->name).'<br />';
-						$my_text .= JText::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
+						$my_text .= Text::_('Error in function _importTeams').'</strong></span><br />';
+						$my_text .= Text::sprintf('Teamname: %1$s',$p_team->name).'<br />';
+						$my_text .= Text::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
 						$my_text .= '<pre>'.print_r($p_team,true).'</pre>';
 						$this->_success_text['Importing general team data:']=$my_text;
 						return false;
@@ -2202,7 +2202,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 						$insertID=$p_team->id; 
 						$this->_convertTeamID[$oldID]=$insertID;
 						$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-						$my_text .= JText::sprintf(	'Created new team data: %1$s - %2$s - %3$s - %4$s - %5$s',
+						$my_text .= Text::sprintf(	'Created new team data: %1$s - %2$s - %3$s - %4$s - %5$s',
 													"</span><strong>$p_team->name</strong>",
 													"<strong>$p_team->short_name</strong>",
 													"<strong>$p_team->middle_name</strong>",
@@ -2235,7 +2235,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				$oldID=$this->_getDataFromObject($this->_datas['person'][$key],'id');
 				$this->_convertPersonID[$oldID]=$id;
 				$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-				$my_text .= JText::sprintf(	'Using existing person data: %1$s',
+				$my_text .= Text::sprintf(	'Using existing person data: %1$s',
 											'</span><strong>'.$this->_getObjectName('person',$id,"CONCAT(id,' -> ',lastname,',',firstname,' - ',nickname,' - ',birthday) AS name").'</strong>');
 				$my_text .= '<br />';
 
@@ -2321,10 +2321,10 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				}
 				$alias=$this->_getDataFromObject($import_person,'alias');
 				$aliasparts=array(trim($p_person->firstname),trim($p_person->lastname));
-				$p_alias=OutputFilter::stringURLSafe(implode(' ',$aliasparts));
+				$p_alias=JFilterOutput::stringURLSafe(implode(' ',$aliasparts));
 				if ((isset($alias)) && (trim($alias)!=''))
 				{
-					$p_person->set('alias',OutputFilter::stringURLSafe($alias));
+					$p_person->set('alias',JFilterOutput::stringURLSafe($alias));
 				}
 				else
 				{
@@ -2341,7 +2341,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					$this->_convertPersonID[$oldID]=$object->id;
 					$nameStr=!empty($object->nickname) ? '['.$object->nickname.']' : '';
 					$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-					$my_text .= JText::sprintf(	'Using existing person data: %1$s %2$s [%3$s] - %4$s',
+					$my_text .= Text::sprintf(	'Using existing person data: %1$s %2$s [%3$s] - %4$s',
 												"</span><strong>$object->lastname</strong>",
 												"<strong>$object->firstname</strong>",
 												"<strong>$nameStr</strong>",
@@ -2367,15 +2367,15 @@ class JoomleagueModelJLXMLImport extends JLGModel
 						$this->_convertPersonID[$oldID]=$insertID;
 						$dNameStr=((!empty($p_person->lastname)) ?
 									$p_person->lastname :
-									'<span style="color:orange">'.JText::_('Has no lastname').'</span>');
+									'<span style="color:orange">'.Text::_('Has no lastname').'</span>');
 						$dNameStr .= ','.((!empty($p_person->firstname)) ?
 									$p_person->firstname.' - ' :
-									'<span style="color:orange">'.JText::_('Has no firstname').' - </span>');
+									'<span style="color:orange">'.Text::_('Has no firstname').' - </span>');
 						$dNameStr .= ((!empty($p_person->nickname)) ? "'".$p_person->nickname."' - " : '');
 						$dNameStr .= $p_person->birthday;
 						$dNameStr .= ', oldid: ' . $oldID ;
 						$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-						$my_text .= JText::sprintf('Created new person data: %1$s',"</span><strong>$dNameStr</strong>");
+						$my_text .= Text::sprintf('Created new person data: %1$s',"</span><strong>$dNameStr</strong>");
 						$my_text .= '<br />';
 					}
 				}
@@ -2392,7 +2392,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		$my_text='';
 		$p_project = $this->getTable('Project');
 		$p_project->set('name',trim($this->_name));
-		$p_project->set('alias',OutputFilter::stringURLSafe(trim($this->_name)));
+		$p_project->set('alias',JFilterOutput::stringURLSafe(trim($this->_name)));
 		$p_project->set('league_id',$this->_league_id);
 		$p_project->set('season_id',$this->_season_id);
 		$p_project->set('master_template',$this->_template_id);
@@ -2426,9 +2426,9 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		if ($p_project->store()===false)
 		{
 			$my_text .= '<span style="color:'.$this->storeFailedColor.'"><strong>';
-			$my_text .= JText::_('Error in function _importProject').'</strong></span><br />';
-			$my_text .= JText::sprintf('Projectname: %1$s',$p_project->name).'<br />';
-			$my_text .= JText::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
+			$my_text .= Text::_('Error in function _importProject').'</strong></span><br />';
+			$my_text .= Text::sprintf('Projectname: %1$s',$p_project->name).'<br />';
+			$my_text .= Text::sprintf('Error-Text #%1$s#',$db->getErrorMsg()).'<br />';
 			$my_text .= '<pre>'.print_r($p_project,true).'</pre>';
 			$this->_success_text['Importing general project data:']=$my_text;
 			return false;
@@ -2437,7 +2437,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		{
 			$this->_project_id = $p_project->id;
 			$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-			$my_text .= JText::sprintf('Created new project data: %1$s',"</span><strong>$this->_name</strong>");
+			$my_text .= Text::sprintf('Created new project data: %1$s',"</span><strong>$this->_name</strong>");
 			$my_text .= '<br />';
 			$this->_success_text['Importing general project data:']=$my_text;
 			return true;
@@ -2532,7 +2532,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 							}
 						catch (Exception $e)
 							{
-								$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+								$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 								return false;
 							}
 							array_push($records,$template);
@@ -2580,7 +2580,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				else
 				{
 					$my_text .= $p_template->template;
-					$my_text .= ' <font color="'.$this->storeSuccessColor.'">'.JText::_('...created new data').'</font><br />';
+					$my_text .= ' <font color="'.$this->storeSuccessColor.'">'.Text::_('...created new data').'</font><br />';
 					$my_text .= '<br />';
 				}
 			}
@@ -2618,9 +2618,9 @@ class JoomleagueModelJLXMLImport extends JLGModel
 						}
 						else
 						{
-							$dTitle=(!empty($p_template->title)) ? JText::_($p_template->title) : $p_template->template;
+							$dTitle=(!empty($p_template->title)) ? Text::_($p_template->title) : $p_template->template;
 							$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-							$my_text .= JText::sprintf('Created new template data: %1$s',"</span><strong>$dTitle</strong>");
+							$my_text .= Text::sprintf('Created new template data: %1$s',"</span><strong>$dTitle</strong>");
 							$my_text .= '<br />';
 						}
 					}
@@ -2638,7 +2638,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			// check and create missing templates if needed
 			$this->_checklist();
 			$my_text='<span style="color:green">';
-			$my_text .= JText::_('Checked and created missing template data if needed');
+			$my_text .= Text::_('Checked and created missing template data if needed');
 			$my_text .= '</span><br />';
 			$this->_success_text['Importing template data:'] .= $my_text;
 		}
@@ -2671,7 +2671,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					}
 					else
 					{
-						$p_division->set('alias',OutputFilter::stringURLSafe($name));
+						$p_division->set('alias',JFilterOutput::stringURLSafe($name));
 					}
 				}
 				if ($p_division->store()===false)
@@ -2685,7 +2685,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				else
 				{
 					$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-					$my_text .= JText::sprintf('Created new division data: %1$s',"</span><strong>$name</strong>");
+					$my_text .= Text::sprintf('Created new division data: %1$s',"</span><strong>$name</strong>");
 					$my_text .= '<br />';
 				}
 				$insertID=$p_division->id; 
@@ -2770,7 +2770,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			else
 			{
 				$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-				$my_text .= JText::sprintf(	'Created new projectteam data: %1$s',
+				$my_text .= Text::sprintf(	'Created new projectteam data: %1$s',
 											'</span><strong>'.$this->_getTeamName2($p_projectteam->team_id).'</strong>');
 				$my_text .= '<br />';
 			}
@@ -2823,7 +2823,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			{
 				$dPerson=$this->_getPersonName($p_projectreferee->person_id);
 				$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-				$my_text .= JText::sprintf(	'Created new projectreferee data: %1$s,%2$s',"</span><strong>$dPerson->lastname","$dPerson->firstname</strong>");
+				$my_text .= Text::sprintf(	'Created new projectreferee data: %1$s,%2$s',"</span><strong>$dPerson->lastname","$dPerson->firstname</strong>");
 				$my_text .= '<br />';
 			}
 			$insertID=$p_projectreferee->id;
@@ -2854,7 +2854,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			if (!isset($this->_convertPositionID[$oldPositionID]))
 			{
 				$my_text .= '<span style="color:red">';
-				$my_text .= JText::sprintf(	'Skipping import of ProjectPosition-ID %1$s. Old-PositionID: %2$s',
+				$my_text .= Text::sprintf(	'Skipping import of ProjectPosition-ID %1$s. Old-PositionID: %2$s',
 								"</span><strong>$oldID</strong><span style='color:red'>",
 								"</span><strong>$oldPositionID</strong>").'<br />';
 				continue;
@@ -2871,8 +2871,8 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			else
 			{
 				$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-				$my_text .= JText::sprintf(	'Created new projectposition data: %1$s - %2$s',
-								"</span><strong>".JText::_($this->_getObjectName('position',$p_projectposition->position_id)).'</strong><span style="color:'.$this->storeSuccessColor.'">',
+				$my_text .= Text::sprintf(	'Created new projectposition data: %1$s - %2$s',
+								"</span><strong>".Text::_($this->_getObjectName('position',$p_projectposition->position_id)).'</strong><span style="color:'.$this->storeSuccessColor.'">',
 								"</span><strong>".$p_projectposition->position_id.'</strong>');
 				$my_text .= '<br />';
 			}
@@ -2905,7 +2905,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				!isset($this->_convertPersonID[$oldPersonID]))
 			{
 				$my_text .= '<span style="color:red">';
-				$my_text .= JText::sprintf(	'Skipping import of TeamPlayer-ID %1$s. Old-ProjectTeamID: %2$s - Old-PersonID: %3$s',
+				$my_text .= Text::sprintf(	'Skipping import of TeamPlayer-ID %1$s. Old-ProjectTeamID: %2$s - Old-PersonID: %3$s',
 								"</span><strong>$oldID</strong><span style='color:red'>",
 								"</span><strong>$oldTeamID</strong><span style='color:red'>",
 								"</span><strong>$oldPersonID</strong>").'<br />';
@@ -2963,17 +2963,17 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					$db->execute();
 					$object=$db->loadObject();
 					$position_id = $object->position_id;
-					$dPosName=JText::_($this->_getObjectName('position',$position_id));
+					$dPosName=Text::_($this->_getObjectName('position',$position_id));
 					$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-					$my_text .= JText::sprintf(	'Created new teamplayer data. Team: %1$s - Person: %2$s,%3$s - Position: %4$s',
+					$my_text .= Text::sprintf(	'Created new teamplayer data. Team: %1$s - Person: %2$s,%3$s - Position: %4$s',
 									'</span><strong>'.$this->_getTeamName($p_teamplayer->projectteam_id).'</strong><span style="color:'.$this->storeSuccessColor.'">',
 									'</span><strong>'.$dPerson->lastname,$dPerson->firstname.'</strong><span style="color:'.$this->storeSuccessColor.'">',
 									"</span><strong>$dPosName</strong>");
 					$my_text .= '<br />';
 				} else {
-					$dPosName='<span style="color:orange">'.JText::_('Has no position').'</span>';
+					$dPosName='<span style="color:orange">'.Text::_('Has no position').'</span>';
 					$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-					$my_text .= JText::sprintf(	'Created new teamplayer data. Team: %1$s - Person: %2$s,%3$s - Position: %4$s',
+					$my_text .= Text::sprintf(	'Created new teamplayer data. Team: %1$s - Person: %2$s,%3$s - Position: %4$s',
 									'</span><strong>'.$this->_getTeamName($p_teamplayer->projectteam_id).'</strong><span style="color:'.$this->storeSuccessColor.'">',
 									'</span><strong>'.$dPerson->lastname,$dPerson->firstname.'</strong><span style="color:'.$this->storeSuccessColor.'">',
 									"</span><strong>$dPosName</strong>");
@@ -3011,7 +3011,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				!isset($this->_convertPersonID[$oldPersonID]))
 			{
 				$my_text .= '<span style="color:red">';
-				$my_text .= JText::sprintf(	'Skipping import of TeamStaff-ID %1$s. Old-ProjectTeamID: %2$s - Old-PersonID: %3$s',
+				$my_text .= Text::sprintf(	'Skipping import of TeamStaff-ID %1$s. Old-ProjectTeamID: %2$s - Old-PersonID: %3$s',
 								"</span><strong>$oldID</strong><span style='color:red'>",
 								"</span><strong>$oldProjectTeamID</strong><span style='color:red'>",
 								"</span><strong>$oldPersonID</strong>").'<br />';
@@ -3066,18 +3066,18 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					$db->execute();
 					$object=$db->loadObject();
 					$position_id = $object->position_id;
-					$dPosName=JText::_($this->_getObjectName('position',$position_id));
+					$dPosName=Text::_($this->_getObjectName('position',$position_id));
 					$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-					$my_text .= JText::sprintf(	'Created new teamstaff data. Team: %1$s - Person: %2$s,%3$s - Position: %4$s',
+					$my_text .= Text::sprintf(	'Created new teamstaff data. Team: %1$s - Person: %2$s,%3$s - Position: %4$s',
 									'</span><strong>'.$this->_getTeamName($p_teamstaff->projectteam_id).'</strong><span style="color:'.$this->storeSuccessColor.'">',
 									'</span><strong>'.$dPerson->lastname,
 									$dPerson->firstname.'</strong><span style="color:'.$this->storeSuccessColor.'">',
 									"</span><strong>$dPosName</strong>");
 					$my_text .= '<br />';
 				} else {
-					$dPosName='<span style="color:orange">'.JText::_('Has no position').'</span>';
+					$dPosName='<span style="color:orange">'.Text::_('Has no position').'</span>';
 					$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-					$my_text .= JText::sprintf(	'Created new teamstaff data. Team: %1$s - Person: %2$s,%3$s - Position: %4$s',
+					$my_text .= Text::sprintf(	'Created new teamstaff data. Team: %1$s - Person: %2$s,%3$s - Position: %4$s',
 									'</span><strong>'.$this->_getTeamName($p_teamstaff->projectteam_id).'</strong><span style="color:'.$this->storeSuccessColor.'">',
 									'</span><strong>'.$dPerson->lastname,$dPerson->firstname.'</strong><span style="color:'.$this->storeSuccessColor.'">',
 									"</span><strong>$dPosName</strong>");
@@ -3126,7 +3126,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			else
 			{
 				$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-				$my_text .= JText::sprintf(	'Created new teamtraining data. Team: [%1$s]',
+				$my_text .= Text::sprintf(	'Created new teamtraining data. Team: [%1$s]',
 								'</span><strong>'.$this-> _getTeamName($p_teamtraining->project_team_id).'</strong>');
 				$my_text .= '<br />';
 			}
@@ -3162,7 +3162,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			}
 			else
 			{
-				$p_round->set('alias',OutputFilter::stringURLSafe($name));
+				$p_round->set('alias',JFilterOutput::stringURLSafe($name));
 			}
 			$p_round->set('round_date_first',$this->_getDataFromObject($round,'round_date_first'));
 			$round_date_last=trim($this->_getDataFromObject($round,'round_date_last'));
@@ -3183,7 +3183,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			else
 			{
 				$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-				$my_text .= JText::sprintf('Created new round: %1$s',"</span><strong>$name</strong>");
+				$my_text .= Text::sprintf('Created new round: %1$s',"</span><strong>$name</strong>");
 				$my_text .= '<br />';
 			}
 			$insertID=$p_round->id; 
@@ -3408,7 +3408,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					}
 					else
 					{
-						$teamname1='<span style="color:orange">'.JText::_('Home-Team not asigned').'</span>';
+						$teamname1='<span style="color:orange">'.Text::_('Home-Team not asigned').'</span>';
 					}
 					if ($match->projectteam2_id > 0)
 					{
@@ -3416,11 +3416,11 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					}
 					else
 					{
-						$teamname2='<span style="color:orange">'.JText::_('Guest-Team not asigned').'</span>';
+						$teamname2='<span style="color:orange">'.Text::_('Guest-Team not asigned').'</span>';
 					}
 
 					$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-					$my_text .= JText::sprintf(	'Added to round: %1$s / Match: %2$s - %3$s',
+					$my_text .= Text::sprintf(	'Added to round: %1$s / Match: %2$s - %3$s',
 									'</span><strong>'.$this->_getRoundName($this->_convertRoundID[$this->_getDataFromObject($match,'round_id')]).'</strong><span style="color:'.$this->storeSuccessColor.'">',
 									"</span><strong>$teamname1</strong>",
 									"<strong>$teamname2</strong>");
@@ -3435,7 +3435,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					}
 					else
 					{
-						$teamname1='<span style="color:orange">'.JText::_('Home-Team not asigned').'</span>';
+						$teamname1='<span style="color:orange">'.Text::_('Home-Team not asigned').'</span>';
 					}
 					if ($match->matchpart2 > 0)
 					{
@@ -3443,11 +3443,11 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					}
 					else
 					{
-						$teamname2='<span style="color:orange">'.JText::_('Guest-Team not asigned').'</span>';
+						$teamname2='<span style="color:orange">'.Text::_('Guest-Team not asigned').'</span>';
 					}
 
 					$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-					$my_text .= JText::sprintf(	'Added to round: %1$s / Match: %2$s - %3$s',
+					$my_text .= Text::sprintf(	'Added to round: %1$s / Match: %2$s - %3$s',
 									'</span><strong>'.$this->_getRoundName($this->_convertRoundID[$this->_getDataFromObject($match,'round_id')]).'</strong><span style="color:'.$this->storeSuccessColor.'">',
 									"</span><strong>$teamname1</strong>",
 									"<strong>$teamname2</strong>");
@@ -3484,7 +3484,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				!isset($this->_convertTeamPlayerID[$oldTeamPlayerID]))
 			{
 				$my_text .= '<span style="color:red">';
-				$my_text .= JText::sprintf(	'Skipping import of MatchPlayer-ID [%1$s]. Old-MatchID: [%2$s] - Old-TeamPlayerID: [%3$s]',
+				$my_text .= Text::sprintf(	'Skipping import of MatchPlayer-ID [%1$s]. Old-MatchID: [%2$s] - Old-TeamPlayerID: [%3$s]',
 								"</span><strong>$oldID</strong><span style='color:red'>",
 								"</span><strong>$oldMatchID</strong><span style='color:red'>",
 								"</span><strong>$oldTeamPlayerID</strong>").'<br />';
@@ -3522,10 +3522,10 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			{
 				$dPerson=$this->_getPersonFromTeamPlayer($p_matchplayer->teamplayer_id);
 				$dPosName=(($p_matchplayer->project_position_id==0) ?
-							'<span style="color:orange">'.JText::_('Has no position').'</span>' :
+							'<span style="color:orange">'.Text::_('Has no position').'</span>' :
 							$this->_getProjectPositionName($p_matchplayer->project_position_id));
 				$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-				$my_text .= JText::sprintf(	'Created new matchplayer data. MatchID: %1$s - Player: %2$s,%3$s - Position: %4$s',
+				$my_text .= Text::sprintf(	'Created new matchplayer data. MatchID: %1$s - Player: %2$s,%3$s - Position: %4$s',
 								'</span><strong>'.$p_matchplayer->match_id.'</strong><span style="color:'.$this->storeSuccessColor.'">',
 								'</span><strong>'.$dPerson->lastname,
 								$dPerson->firstname.'</strong><span style="color:'.$this->storeSuccessColor.'">',
@@ -3559,7 +3559,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				!isset($this->_convertTeamStaffID[$oldTeamStaffID]))
 			{
 				$my_text .= '<span style="color:red">';
-				$my_text .= JText::sprintf(	'Skipping import of MatchStaff-ID [%1$s]. Old-MatchID: [%2$s] - Old-StaffID: [%3$s]',
+				$my_text .= Text::sprintf(	'Skipping import of MatchStaff-ID [%1$s]. Old-MatchID: [%2$s] - Old-StaffID: [%3$s]',
 								"</span><strong>$oldID</strong><span style='color:red'>",
 								"</span><strong>$oldMatchID</strong><span style='color:red'>",
 								"</span><strong>$oldTeamStaffID</strong>").'<br />';
@@ -3585,10 +3585,10 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			{
 				$dPerson=$this->_getPersonFromTeamStaff($p_matchstaff->team_staff_id);
 				$dPosName=(($p_matchstaff->project_position_id==0) ?
-							'<span style="color:orange">'.JText::_('Has no position').'</span>' :
+							'<span style="color:orange">'.Text::_('Has no position').'</span>' :
 							$this->_getProjectPositionName($p_matchstaff->project_position_id));
 				$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-				$my_text .= JText::sprintf(	'Created new matchstaff data. MatchID: %1$s - Staff: %2$s,%3$s - Position: %4$s',
+				$my_text .= Text::sprintf(	'Created new matchstaff data. MatchID: %1$s - Staff: %2$s,%3$s - Position: %4$s',
 								'</span><strong>'.$p_matchstaff->match_id.'</strong><span style="color:'.$this->storeSuccessColor.'">',
 								'</span><strong>'.$dPerson->lastname,
 								$dPerson->firstname.'</strong><span style="color:'.$this->storeSuccessColor.'">',
@@ -3622,7 +3622,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				!isset($this->_convertProjectRefereeID[$oldProjectRefereeID]))
 			{
 				$my_text .= '<span style="color:red">';
-				$my_text .= JText::sprintf(	'Skipping import of MatchReferee-ID [%1$s]. Old-MatchID: [%2$s] - Old-RefereeID: [%3$s]',
+				$my_text .= Text::sprintf(	'Skipping import of MatchReferee-ID [%1$s]. Old-MatchID: [%2$s] - Old-RefereeID: [%3$s]',
 								"</span><strong>$oldID</strong><span style='color:red'>",
 								"</span><strong>$oldMatchID</strong><span style='color:red'>",
 								"</span><strong>$oldProjectRefereeID</strong>").'<br />';
@@ -3648,10 +3648,10 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			{
 				$dPerson=$this->_getPersonFromProjectReferee($p_matchreferee->project_referee_id);
 				$dPosName=(($p_matchreferee->project_position_id==0) ?
-							'<span style="color:orange">'.JText::_('Has no position').'</span>' :
+							'<span style="color:orange">'.Text::_('Has no position').'</span>' :
 							$this->_getProjectPositionName($p_matchreferee->project_position_id));
 				$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-				$my_text .= JText::sprintf(	'Created new matchreferee data. MatchID: %1$s - Referee: %2$s,%3$s - Position: %4$s',
+				$my_text .= Text::sprintf(	'Created new matchreferee data. MatchID: %1$s - Referee: %2$s,%3$s - Position: %4$s',
 								'</span><strong>'.$p_matchreferee->match_id.'</strong><span style="color:'.$this->storeSuccessColor.'">',
 								'</span><strong>'.$dPerson->lastname,
 								$dPerson->firstname.'</strong><span style="color:'.$this->storeSuccessColor.'">',
@@ -3725,10 +3725,10 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			{
 				$dPerson=$this->_getPersonFromTeamPlayer($p_matchevent->teamplayer_id);
 				$dEventName=(($p_matchevent->event_type_id==0) ?
-							'<span style="color:orange">'.JText::_('Has no event').'</span>' :
-							JText::_($this->_getObjectName('eventtype',$p_matchevent->event_type_id)));
+							'<span style="color:orange">'.Text::_('Has no event').'</span>' :
+							Text::_($this->_getObjectName('eventtype',$p_matchevent->event_type_id)));
 				$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-				$my_text .= JText::sprintf(	'Created new matchevent data. MatchID: %1$s - Player: %2$s,%3$s - Eventtime: %4$s - Event: %5$s',
+				$my_text .= Text::sprintf(	'Created new matchevent data. MatchID: %1$s - Player: %2$s,%3$s - Eventtime: %4$s - Event: %5$s',
 								'</span><strong>'.$p_matchevent->match_id.'</strong><span style="color:'.$this->storeSuccessColor.'">',
 								'</span><strong>'.$dPerson->lastname,
 								$dPerson->firstname.'</strong><span style="color:'.$this->storeSuccessColor.'">',
@@ -3756,7 +3756,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		if (!isset($this->_datas['statistic']) || count($this->_datas['statistic'])==0)
 		{
 			$my_text .= '<span style="color:red">';
-			$my_text .= JText::sprintf('Warning: Skipped %1$s records for position statistic data because there is no statistic data included!',count($this->_datas['positionstatistic']));
+			$my_text .= Text::sprintf('Warning: Skipped %1$s records for position statistic data because there is no statistic data included!',count($this->_datas['positionstatistic']));
 			$my_text .= '</span>';
 			$this->_success_text['Importing position statistic data:']=$my_text;
 			return true;
@@ -3765,7 +3765,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		if (!isset($this->_datas['position']) || count($this->_datas['position'])==0)
 		{
 			$my_text .= '<span style="color:red">';
-			$my_text .= JText::sprintf('Warning: Skipped %1$s records for position statistic data because there is no position data included!',count($this->_datas['positionstatistic']));
+			$my_text .= Text::sprintf('Warning: Skipped %1$s records for position statistic data because there is no position data included!',count($this->_datas['positionstatistic']));
 			$my_text .= '</span>';
 			$this->_success_text['Importing position statistic data:']=$my_text;
 			return true;
@@ -3791,7 +3791,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			if ($object=$db->loadObject())
 			{
 				$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-				$my_text .= JText::sprintf(	'Using existing positionstatistic data. Position: %1$s - Statistic: %2$s',
+				$my_text .= Text::sprintf(	'Using existing positionstatistic data. Position: %1$s - Statistic: %2$s',
 								'</span><strong>'.$this->_getObjectName('position',$p_positionstatistic->position_id).'</strong><span style="color:'.$this->existingInDbColor.'">',
 								'</span><strong>'.$this->_getObjectName('statistic',$p_positionstatistic->statistic_id).'</strong>');
 				$my_text .= '<br />';
@@ -3809,7 +3809,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				else
 				{
 					$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-					$my_text .= JText::sprintf(	'Created new position statistic data. Position: %1$s - Statistic: %2$s',
+					$my_text .= Text::sprintf(	'Created new position statistic data. Position: %1$s - Statistic: %2$s',
 									'</span><strong>'.$this->_getObjectName('position',$p_positionstatistic->position_id).'</strong><span style="color:'.$this->storeSuccessColor.'">',
 									'</span><strong>'.$this->_getObjectName('statistic',$p_positionstatistic->statistic_id).'</strong>');
 					$my_text .= '<br />';
@@ -3833,7 +3833,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		if (!isset($this->_datas['statistic']) || count($this->_datas['statistic'])==0)
 		{
 			$my_text .= '<span style="color:red">';
-			$my_text .= JText::sprintf('Warning: Skipped %1$s records for match staff statistic data because there is no statistic data included!',count($this->_datas['matchstaffstatistic']));
+			$my_text .= Text::sprintf('Warning: Skipped %1$s records for match staff statistic data because there is no statistic data included!',count($this->_datas['matchstaffstatistic']));
 			$my_text .= '</span>';
 			$this->_success_text['Importing match staff statistic data:']=$my_text;
 			return true;
@@ -3841,7 +3841,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		if (!isset($this->_datas['match']) || count($this->_datas['match'])==0)
 		{
 			$my_text .= '<span style="color:red">';
-			$my_text .= JText::sprintf('Warning: Skipped %1$s records for match statistic data because there is no match data included!',count($this->_datas['matchstaffstatistic']));
+			$my_text .= Text::sprintf('Warning: Skipped %1$s records for match statistic data because there is no match data included!',count($this->_datas['matchstaffstatistic']));
 			$my_text .= '</span>';
 			$this->_success_text['Importing match staff statistic data:']=$my_text;
 			return true;
@@ -3849,7 +3849,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		if (!isset($this->_datas['projectteam']) || count($this->_datas['projectteam'])==0)
 		{
 			$my_text .= '<span style="color:red">';
-			$my_text .= JText::sprintf('Warning: Skipped %1$s records for match statistic data because there is no projectteam data included!',count($this->_datas['matchstaffstatistic']));
+			$my_text .= Text::sprintf('Warning: Skipped %1$s records for match statistic data because there is no projectteam data included!',count($this->_datas['matchstaffstatistic']));
 			$my_text .= '</span>';
 			$this->_success_text['Importing match staff statistic data:']=$my_text;
 			return true;
@@ -3857,7 +3857,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		if (!isset($this->_datas['teamstaff']) || count($this->_datas['teamstaff'])==0)
 		{
 			$my_text .= '<span style="color:red">';
-			$my_text .= JText::sprintf('Warning: Skipped %1$s records for match statistic data because there is no teamstaff data included!',count($this->_datas['matchstaffstatistic']));
+			$my_text .= Text::sprintf('Warning: Skipped %1$s records for match statistic data because there is no teamstaff data included!',count($this->_datas['matchstaffstatistic']));
 			$my_text .= '</span>';
 			$this->_success_text['Importing match staff statistic data:']=$my_text;
 			return true;
@@ -3887,7 +3887,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			{
 				$dPerson=$this->_getPersonFromTeamStaff($p_matchstaffstatistic->team_staff_id);
 				$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-				$my_text .= JText::sprintf(	'Created new match staff statistic data. StatisticID: %1$s - MatchID: %2$s - Player: %3$s,%4$s - Team: %5$s - Value: %6$s',
+				$my_text .= Text::sprintf(	'Created new match staff statistic data. StatisticID: %1$s - MatchID: %2$s - Player: %3$s,%4$s - Team: %5$s - Value: %6$s',
 								'</span><strong>'.$p_matchstaffstatistic->statistic_id.'</strong><span style="color:'.$this->storeSuccessColor.'">',
 								'</span><strong>'.$p_matchstaffstatistic->match_id.'</strong><span style="color:'.$this->storeSuccessColor.'">',
 								'</span><strong>'.$dPerson->lastname,
@@ -3914,7 +3914,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		if (!isset($this->_datas['statistic']) || count($this->_datas['statistic'])==0)
 		{
 			$my_text .= '<span style="color:red">';
-			$my_text .= JText::sprintf('Warning: Skipped %1$s records for match statistic data because there is no statistic data included!',count($this->_datas['matchstatistic']));
+			$my_text .= Text::sprintf('Warning: Skipped %1$s records for match statistic data because there is no statistic data included!',count($this->_datas['matchstatistic']));
 			$my_text .= '</span>';
 			$this->_success_text['Importing match statistic data:']=$my_text;
 			return true;
@@ -3922,7 +3922,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		if (!isset($this->_datas['match']) || count($this->_datas['match'])==0)
 		{
 			$my_text .= '<span style="color:red">';
-			$my_text .= JText::sprintf('Warning: Skipped %1$s records for match statistic data because there is no match data included!',count($this->_datas['matchstatistic']));
+			$my_text .= Text::sprintf('Warning: Skipped %1$s records for match statistic data because there is no match data included!',count($this->_datas['matchstatistic']));
 			$my_text .= '</span>';
 			$this->_success_text['Importing match statistic data:']=$my_text;
 			return true;
@@ -3930,7 +3930,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		if (!isset($this->_datas['projectteam']) || count($this->_datas['projectteam'])==0)
 		{
 			$my_text .= '<span style="color:red">';
-			$my_text .= JText::sprintf('Warning: Skipped %1$s records for match statistic data because there is no projectteam data included!',count($this->_datas['matchstatistic']));
+			$my_text .= Text::sprintf('Warning: Skipped %1$s records for match statistic data because there is no projectteam data included!',count($this->_datas['matchstatistic']));
 			$my_text .= '</span>';
 			$this->_success_text['Importing match statistic data:']=$my_text;
 			return true;
@@ -3938,7 +3938,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		if (!isset($this->_datas['teamplayer']) || count($this->_datas['teamplayer'])==0)
 		{
 			$my_text .= '<span style="color:red">';
-			$my_text .= JText::sprintf('Warning: Skipped %1$s records for match statistic data because there is no teamplayer data included!',count($this->_datas['matchstatistic']));
+			$my_text .= Text::sprintf('Warning: Skipped %1$s records for match statistic data because there is no teamplayer data included!',count($this->_datas['matchstatistic']));
 			$my_text .= '</span>';
 			$this->_success_text['Importing match statistic data:']=$my_text;
 			return true;
@@ -3968,7 +3968,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			{
 				$dPerson=$this->_getPersonFromTeamPlayer($p_matchstatistic->teamplayer_id);
 				$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-				$my_text .= JText::sprintf(	'Created new match statistic data. StatisticID: %1$s - MatchID: %2$s - Player: %3$s,%4$s - Team: %5$s - Value: %6$s',
+				$my_text .= Text::sprintf(	'Created new match statistic data. StatisticID: %1$s - MatchID: %2$s - Player: %3$s,%4$s - Team: %5$s - Value: %6$s',
 								'</span><strong>'.$p_matchstatistic->statistic_id.'</strong><span style="color:'.$this->storeSuccessColor.'">',
 								'</span><strong>'.$p_matchstatistic->match_id.'</strong><span style="color:'.$this->storeSuccessColor.'">',
 								'</span><strong>'.$dPerson->lastname,
@@ -4030,7 +4030,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				else
 				{
 					$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-					$my_text .= JText::sprintf('Created new treeto data: %1$s','</span><strong>'.$p_treeto->name.'</strong>');
+					$my_text .= Text::sprintf('Created new treeto data: %1$s','</span><strong>'.$p_treeto->name.'</strong>');
 					$my_text .= '<br />';
 				}
 				$insertID=$p_treeto->id; 
@@ -4080,7 +4080,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				else
 				{
 					$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-					$my_text .= JText::sprintf('Created new treetonode data: %1$s','</span><strong>'.$p_treetonode->id.'</strong>');
+					$my_text .= Text::sprintf('Created new treetonode data: %1$s','</span><strong>'.$p_treetonode->id.'</strong>');
 					$my_text .= '<br />';
 				}
 				$insertID=$p_treetonode->id; 
@@ -4119,7 +4119,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				else
 				{
 					$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-					$my_text .= JText::sprintf('Created new treetomatch data: %1$s','</span><strong>'.$p_treetomatch->id.'</strong>');
+					$my_text .= Text::sprintf('Created new treetomatch data: %1$s','</span><strong>'.$p_treetomatch->id.'</strong>');
 					$my_text .= '<br />';
 				}
 				$insertID=$p_treetomatch->id; 
@@ -4409,21 +4409,21 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				}
 				else
 				{
-					JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing projectname'));
-					echo "<script> alert('".JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing projectname')."'); window.history.go(-1); </script>\n";
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing projectname'));
+					echo "<script> alert('".Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing projectname')."'); window.history.go(-1); </script>\n";
 				}
 
 				if (empty($this->_datas['project']))
 				{
-					JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Project object is missing inside import file!!!'));
-					echo "<script> alert('".JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Project object is missing inside import file!!!')."'); window.history.go(-1); </script>\n";
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Project object is missing inside import file!!!'));
+					echo "<script> alert('".Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Project object is missing inside import file!!!')."'); window.history.go(-1); </script>\n";
 					return false;
 				}
 
 				if ($this->_checkProject()===false)
 				{
-					JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Projectname already exists'));
-					echo "<script> alert('".JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Projectname already exists')."'); window.history.go(-1); </script>\n";
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Projectname already exists'));
+					echo "<script> alert('".Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Projectname already exists')."'); window.history.go(-1); </script>\n";
 					return false;
 				}
 			}
@@ -4441,8 +4441,8 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					}
 					else
 					{
-						JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing sportstype'));
-						echo "<script> alert('".JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing sportstype')."'); window.history.go(-1); </script>\n";
+						JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing sportstype'));
+						echo "<script> alert('".Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing sportstype')."'); window.history.go(-1); </script>\n";
 						return false;
 					}
 			}
@@ -4460,8 +4460,8 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				}
 				else
 				{
-					JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing league'));
-					echo "<script> alert('".JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing league')."'); window.history.go(-1); </script>\n";
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing league'));
+					echo "<script> alert('".Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing league')."'); window.history.go(-1); </script>\n";
 					return false;
 				}
 
@@ -4475,8 +4475,8 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				}
 				else
 				{
-					JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing season'));
-					echo "<script> alert('".JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing season')."'); window.history.go(-1); </script>\n";
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing season'));
+					echo "<script> alert('".Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing season')."'); window.history.go(-1); </script>\n";
 					return false;
 				}
 
@@ -4513,7 +4513,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				// import sportstype
 				if ($this->_importSportsType()===false)
 				{
-					JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','sports-type'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','sports-type'));
 					return $this->_success_text;
 				}
 			}
@@ -4523,14 +4523,14 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				// import league
 				if ($this->_importLeague()===false)
 				{
-					JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','league'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','league'));
 					return $this->_success_text;
 				}
 
 				// import season
 				if ($this->_importSeason()===false)
 				{
-					JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','season'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','season'));
 					return $this->_success_text;
 				}
 			}
@@ -4538,49 +4538,49 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			// import events / should also work with exported events-XML without problems
 			if ($this->_importEvents()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','event'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','event'));
 				return $this->_success_text;
 			}
 
 			// import Statistic
 			if ($this->_importStatistics()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','statistic'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','statistic'));
 				return $this->_success_text;
 			}
 
 			// import parent positions
 			if ($this->_importParentPositions()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','parent-position'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','parent-position'));
 				return $this->_success_text;
 			}
 
 			// import positions
 			if ($this->_importPositions()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','position'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','position'));
 				return $this->_success_text;
 			}
 
 			// import PositionEventType
 			if ($this->_importPositionEventType()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','position-eventtype'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','position-eventtype'));
 				return $this->_success_text;
 			}
 
 			// import playgrounds
 			if ($this->_importPlayground()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','playground'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','playground'));
 				return $this->_success_text;
 			}
 
 			// import clubs
 			if ($this->_importClubs()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','club'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','club'));
 				return $this->_success_text;
 			}
 
@@ -4589,7 +4589,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				// convert playground Club-IDs
 				if ($this->_convertNewPlaygroundIDs()===false)
 				{
-					JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','conversion of playground club-id'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','conversion of playground club-id'));
 					return $this->_success_text;
 				}
 			}
@@ -4597,14 +4597,14 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			// import teams
 			if ($this->_importTeams()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','team'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','team'));
 				return $this->_success_text;
 			}
 
 			// import persons
 			if ($this->_importPersons()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','person'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','person'));
 				return $this->_success_text;
 			}
 
@@ -4613,14 +4613,14 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				// import project
 				if ($this->_importProject()===false)
 				{
-					JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','project'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','project'));
 					return $this->_success_text;
 				}
 
 				// import template
 				if ($this->_importTemplate()===false)
 				{
-					JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','template'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','template'));
 					return $this->_success_text;
 				}
 			}
@@ -4628,21 +4628,21 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			// import divisions
 			if ($this->_importDivisions()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','division'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','division'));
 				return $this->_success_text;
 			}
 
 			// import project positions
 			if ($this->_importProjectPositions()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','projectpositions'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','projectpositions'));
 				return $this->_success_text;
 			}
 
 			// import project referees
 			if ($this->_importProjectReferees()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','projectreferees'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','projectreferees'));
 				return $this->_success_text;
 			}
 
@@ -4650,35 +4650,35 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			// import projectteam
 			if ($this->_importProjectTeam()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','projectteam'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','projectteam'));
 				return $this->_success_text;
 			}
 
 			// import teamplayers
 			if ($this->_importTeamPlayer()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','teamplayer'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','teamplayer'));
 				return $this->_success_text;
 			}
 
 			// import teamstaffs
 			if ($this->_importTeamStaff()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','teamstaff'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','teamstaff'));
 				return $this->_success_text;
 			}
 
 			// import teamtrainingdata
 			if ($this->_importTeamTraining()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','teamtraining'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','teamtraining'));
 				return $this->_success_text;
 			}
 
 			// import rounds
 			if ($this->_importRounds()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','round'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','round'));
 				return $this->_success_text;
 			}
 
@@ -4689,76 +4689,76 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			// imported matches
 			if ($this->_importMatches()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','match'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','match'));
 				return $this->_success_text;
 			}
 
 			// import MatchPlayer
 			if ($this->_importMatchPlayer()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchplayer'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchplayer'));
 				return $this->_success_text;
 			}
 
 			// import MatchStaff
 			if ($this->_importMatchStaff()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchstaff'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchstaff'));
 				return $this->_success_text;
 			}
 
 			// import MatchReferee
 			if ($this->_importMatchReferee()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchreferee'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchreferee'));
 				return $this->_success_text;
 			}
 
 			// import MatchEvent
 			if ($this->_importMatchEvent()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchevent'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchevent'));
 				return $this->_success_text;
 			}
 
 			// import PositionStatistic
 			if ($this->_importPositionStatistic()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','positionstatistic'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','positionstatistic'));
 				return $this->_success_text;
 			}
 
 			// import MatchStaffStatistic
 			if ($this->_importMatchStaffStatistic()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchstaffstatistic'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchstaffstatistic'));
 				return $this->_success_text;
 			}
 
 			// import MatchStatistic
 			if ($this->_importMatchStatistic()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchstatistic'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchstatistic'));
 				return $this->_success_text;
 			}
 			// import Treeto
 			if ($this->_importTreetos()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','treeto'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','treeto'));
 				return $this->_success_text;
 			}
 
 			// import Treetonode
 			if ($this->_importTreetonode()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','treetonode'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','treetonode'));
 				return $this->_success_text;
 			}
 
 			// import Treetomatch
 			if ($this->_importTreetomatch()===false)
 			{
-				JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','treetomatch'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','treetomatch'));
 				return $this->_success_text;
 			}
 
@@ -4774,7 +4774,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		else
 		{
 			$this->_deleteImportFile();
-			JError::raiseWarning(500,JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing import data'));
+			JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing import data'));
 			return false;
 		}
 	}

@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined ( '_JEXEC' ) or die ();
 HTMLHelper::_ ( 'behavior.tooltip' );
@@ -21,11 +22,11 @@ HTMLHelper::_ ( 'behavior.tooltip' );
 				'active' => 'home' 
 		) );
 		
-		echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'home', JText::_ ( $this->teams->team1 ) );
+		echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'home', Text::_ ( $this->teams->team1 ) );
 		echo $this->loadTemplate ( 'home' );
 		echo HTMLHelper::_ ( 'bootstrap.endTab' );
 		
-		echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'away', JText::_ ( $this->teams->team2 ) );
+		echo HTMLHelper::_ ( 'bootstrap.addTab', $selector, 'away', Text::_ ( $this->teams->team2 ) );
 		echo $this->loadTemplate ( 'away' );
 		echo HTMLHelper::_ ( 'bootstrap.endTab' );
 		

@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 defined('_JEXEC') or die;
@@ -197,7 +198,7 @@ class JoomleagueModelQuickAdd extends JoomleagueModelList
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		if ( !$personid && empty($name) ) {
-			$this->setError(Jtext::_('COM_JOOMLEAGUE_ADMIN_QUICKADD_CTRL_ADD_PLAYER_REQUIRES_ID_OR_NAME'));
+			$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_QUICKADD_CTRL_ADD_PLAYER_REQUIRES_ID_OR_NAME'));
 			return false;
 		}
 		
@@ -232,7 +233,7 @@ class JoomleagueModelQuickAdd extends JoomleagueModelList
 		}
 	
 		if (!$personid) {
-			$this->setError(Jtext::_('COM_JOOMLEAGUE_ADMIN_QUICKADD_CTRL_FAILED_ADDING_PERSON'));
+			$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_QUICKADD_CTRL_FAILED_ADDING_PERSON'));
 			return false;
 		}
 		

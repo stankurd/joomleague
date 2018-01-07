@@ -11,6 +11,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Table\Table;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 /**
@@ -154,11 +155,11 @@ class JoomleagueModelProjectteam extends JLGModelItem
 			{
 				if($model->addNewTrainingData($pk,$item->project_id))
 				{
-					$msg = JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_TRAINING');
+					$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_TRAINING');
 				}
 				else
 				{
-					$msg = JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_ERROR_TRAINING') . $model->getError();
+					$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_ERROR_TRAINING') . $model->getError();
 				}
 			}
 
@@ -167,20 +168,20 @@ class JoomleagueModelProjectteam extends JLGModelItem
 			{
 				if($model->saveTrainingData($post))
 				{
-					$msg = JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_TRAINING_SAVED');
+					$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_TRAINING_SAVED');
 				}
 				else
 				{
-					$msg = JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_TRAINING_ERROR_SAVE') . $model->getError();
+					$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_TRAINING_ERROR_SAVE') . $model->getError();
 				}
 
 				if($model->checkAndDeleteTrainingData($post))
 				{
-					$msg .= ' - ' . JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_TRAINING_DELETED');
+					$msg .= ' - ' . Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_TRAINING_DELETED');
 				}
 				else
 				{
-					$msg = ' - ' . JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_TRAINING_ERROR_DELETED') . $model->getError();
+					$msg = ' - ' . Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_TRAINING_ERROR_DELETED') . $model->getError();
 				}
 				$msg .= ' - ';
 			}
@@ -217,7 +218,7 @@ class JoomleagueModelProjectteam extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -251,7 +252,7 @@ class JoomleagueModelProjectteam extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -291,7 +292,7 @@ class JoomleagueModelProjectteam extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -312,7 +313,7 @@ class JoomleagueModelProjectteam extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -351,7 +352,7 @@ class JoomleagueModelProjectteam extends JLGModelItem
 			}
 			catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 		}
@@ -383,7 +384,7 @@ class JoomleagueModelProjectteam extends JLGModelItem
 				}
 				catch (Exception $e)
 				{
-					$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+					$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 					return false;
 				}
 			}
@@ -450,7 +451,7 @@ class JoomleagueModelProjectteam extends JLGModelItem
 				}
 				catch(Exception $e)
 				{
-					$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+					$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 					return false;
 				}
 	
@@ -459,21 +460,21 @@ class JoomleagueModelProjectteam extends JLGModelItem
 				//copy project team-players
 				if ($mdlTeamPlayer->cpCopyPlayers($from_projectteam_id,$to_projectteam_id))
 				{
-					echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_TP_COPIED',$from_projectteam_id).'<br />';
+					echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_TP_COPIED',$from_projectteam_id).'<br />';
 				}
 				else
 				{
-					echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TP_COPIED',$from_projectteam_id).'<br />'.$model->getError().'<br />';
+					echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TP_COPIED',$from_projectteam_id).'<br />'.$model->getError().'<br />';
 				}
 	
 				//copy project team-staff
 				if ($mdlTeamStaff->cpCopyTeamStaffs($from_projectteam_id,$to_projectteam_id))
 				{
-					echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_TS_COPIED',$from_projectteam_id).'<br />';
+					echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_TS_COPIED',$from_projectteam_id).'<br />';
 				}
 				else
 				{
-					echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TS_COPIED',$from_projectteam_id).'<br />'.$model->getError().'<br />';
+					echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TS_COPIED',$from_projectteam_id).'<br />'.$model->getError().'<br />';
 				}
 	
 				// copy project team trainingdata
@@ -489,11 +490,11 @@ class JoomleagueModelProjectteam extends JLGModelItem
 						$tData->set('project_team_id',$to_projectteam_id);
 						if (!$tData->store())
 						{
-							echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TP_COPIED',$from_projectteam_id).'<br />'.$model->getError().'<br />';
+							echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TP_COPIED',$from_projectteam_id).'<br />'.$model->getError().'<br />';
 						}
 						else
 						{
-							echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TRAINING_COPIED',$from_projectteam_id).'<br />';
+							echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TRAINING_COPIED',$from_projectteam_id).'<br />';
 						}
 					}
 				}

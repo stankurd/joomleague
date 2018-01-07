@@ -10,6 +10,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Table\Table;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 /**
@@ -75,7 +76,7 @@ class JoomleagueModelPosition extends JLGModelItem
 				$db->setQuery($query);
 				if($db->loadResult())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_MODEL_ERROR_P_POSITION_EXISTS');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_MODEL_ERROR_P_POSITION_EXISTS');
 				}
 				
 				// Project-Referee table
@@ -87,7 +88,7 @@ class JoomleagueModelPosition extends JLGModelItem
 				$db->setQuery($query);
 				if ($db->loadResult()) 
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_MODEL_ERROR_P_REFEREE_EXISTS');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_MODEL_ERROR_P_REFEREE_EXISTS');
 				}
 
 				// Team-Player table
@@ -100,7 +101,7 @@ class JoomleagueModelPosition extends JLGModelItem
 				$db->setQuery($query);
 				if ($db->loadResult())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_MODEL_ERROR_PLAYER_EXISTS');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_MODEL_ERROR_PLAYER_EXISTS');
 				}
 				
 				// Team-Staff table
@@ -113,7 +114,7 @@ class JoomleagueModelPosition extends JLGModelItem
 				$db->setQuery($query);
 				if ($db->loadResult())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_MODEL_ERROR_STAFF_EXISTS');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_MODEL_ERROR_STAFF_EXISTS');
 				}
 				
 				// Person table
@@ -124,7 +125,7 @@ class JoomleagueModelPosition extends JLGModelItem
 				$db->setQuery($query);
 				if ($db->loadResult())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_MODEL_ERROR_PERSON_EXISTS');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_MODEL_ERROR_PERSON_EXISTS');
 				}
 				
 				if($result)
@@ -159,7 +160,7 @@ class JoomleagueModelPosition extends JLGModelItem
 				}
 				catch (Exception $e)
 					{
-						$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						return false;
 					}
 				
@@ -174,7 +175,7 @@ class JoomleagueModelPosition extends JLGModelItem
 				}
 				catch (Exception $e)
 					{
-						$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						return false;
 					}
 			}
@@ -376,7 +377,7 @@ class JoomleagueModelPosition extends JLGModelItem
 				}
 				catch (Exception $e)
 					{
-						$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						return false;
 					}
 			}
@@ -411,7 +412,7 @@ class JoomleagueModelPosition extends JLGModelItem
 					}
 					catch (Exception $e)
 					{
-						$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						return false;
 					}
 				}
@@ -437,7 +438,7 @@ class JoomleagueModelPosition extends JLGModelItem
 				}
 				catch (Exception $e)
 					{
-						$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						return false;
 					}
 			}
@@ -476,7 +477,7 @@ class JoomleagueModelPosition extends JLGModelItem
 					}
 					catch (Exception $e)
 					{
-						$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						return false;
 					}
 				}
@@ -534,12 +535,12 @@ class JoomleagueModelPosition extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		foreach($result as $position)
 		{
-			$position->text = JText::_($position->eventtype)." (".JText::_($position->sportstype).")";
+			$position->text = Text::_($position->eventtype)." (".Text::_($position->sportstype).")";
 		}
 
 		return $result;
@@ -577,12 +578,12 @@ class JoomleagueModelPosition extends JLGModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		foreach($result as $event)
 		{
-			$event->text = JText::_($event->eventtype) . " (" . JText::_($event->sportstype) . ")";
+			$event->text = Text::_($event->eventtype) . " (" . Text::_($event->sportstype) . ")";
 		}
 
 		return $result;
@@ -618,12 +619,12 @@ class JoomleagueModelPosition extends JLGModelItem
 			}
 		catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 		foreach($result as $stat)
 		{
-			$stat->text = JText::_($stat->statsname) . " (" . JText::_($stat->sportstype) . ")";
+			$stat->text = Text::_($stat->statsname) . " (" . Text::_($stat->sportstype) . ")";
 		}
 
 		return $result;
@@ -665,13 +666,13 @@ class JoomleagueModelPosition extends JLGModelItem
 			}
 		catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 		
 		foreach($result as $stat)
 		{
-			$stat->text = JText::_($stat->statsname) . " (" . JText::_($stat->sportstype) . ")";
+			$stat->text = Text::_($stat->statsname) . " (" . Text::_($stat->sportstype) . ")";
 		}
 
 		return $result;
@@ -710,12 +711,12 @@ class JoomleagueModelPosition extends JLGModelItem
 			}
 		catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 		foreach($result as $position)
 		{
-			$position->text = JText::_($position->text);
+			$position->text = Text::_($position->text);
 		}
 		return $result;
 	}

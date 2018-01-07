@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
@@ -64,7 +65,7 @@ class JoomleagueControllerProjectteam extends JLGControllerForm
 		{
 			if(! $model->changeTeamId($oldteamids,$newteamids))
 			{
-				$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_ERROR_SAVE') . $model->getError(),'warning');
+				$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_ERROR_SAVE') . $model->getError(),'warning');
 			}
 		}
 		$link = 'index.php?option=com_joomleague&view=projectteams';
@@ -97,7 +98,7 @@ class JoomleagueControllerProjectteam extends JLGControllerForm
 	public function remove()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -109,7 +110,7 @@ class JoomleagueControllerProjectteam extends JLGControllerForm
 
 		if(count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
 		}
 		// Access checks.
 		foreach($cid as $i=>$id)
@@ -119,7 +120,7 @@ class JoomleagueControllerProjectteam extends JLGControllerForm
 			{
 				// Prune items that you can't delete.
 				unset($cid[$i]);
-				JError::raiseNotice(403,JText::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
+				JError::raiseNotice(403,Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
 			}
 		}
 		$model = $this->getModel('team');
@@ -165,7 +166,7 @@ class JoomleagueControllerProjectteam extends JLGControllerForm
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_COPY_SUCCESS');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_COPY_SUCCESS');
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=projectteams',$msg,$type);
 		$this->redirect();

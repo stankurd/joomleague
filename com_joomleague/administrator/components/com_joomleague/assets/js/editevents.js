@@ -9,7 +9,7 @@
  * JSON.stringify(response) can be used to convert object to string
  */
 
-window.addEvent('domready', function() {
+(function() {
 	updatePlayerSelect();
 	if(jQuery('#team_id')) {
 		jQuery('#team_id').change(updatePlayerSelect);
@@ -128,7 +128,7 @@ window.addEvent('domready', function() {
 			}
 		});
 	}
-});
+})();
 
 									
 //-------- EVENT--------//
@@ -368,7 +368,8 @@ function commentadderror(xhr, status, error) {
 
 /**
  * updatePlayerSelect
- */
+ */   
+ 
 function updatePlayerSelect() {
 	if(jQuery('#cell-player'))
 		jQuery('#cell-player').empty().append(

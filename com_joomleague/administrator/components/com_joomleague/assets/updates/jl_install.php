@@ -9,12 +9,13 @@
 
 // no direct access
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 defined('_JEXEC') or die;
 
-$version			= '3.0.22.57ae969-b';
-$updateFileDate		= '2012-09-13';
+$version			= '4.0.0.0';
+$updateFileDate		= '2018-01-04';
 $updateFileTime		= '00:05';
 $updateDescription	='<span style="color:green">Installationscript called during installation.</span>';
 $excludeFile		='true';
@@ -27,13 +28,13 @@ function PrintStepResult($status)
 	switch ($status)
 	{
 		case 0:
-			$output=' - <span style="color:red">'.JText::_('Failed').'</span><br />';
+			$output=' - <span style="color:red">'.Text::_('Failed').'</span><br />';
 			break;
 		case 1:
-			$output=' - <span style="color:green">'.JText::_('Success').'</span><br />';
+			$output=' - <span style="color:green">'.Text::_('Success').'</span><br />';
 			break;
 		case 2:
-			$output=' - <span style="color:orange">'.JText::_('Skipped').'</span><br />';
+			$output=' - <span style="color:orange">'.Text::_('Skipped').'</span><br />';
 			break;
 	}
 	return $output;
@@ -44,7 +45,7 @@ function getVersion()
 	$db = Factory::getDbo();
 
 	$version=new stdClass();
-	$version->major=3;
+	$version->major=4;
 	$version->minor=0;
 	$version->build=0;
 	$version->revision='b';
@@ -81,14 +82,14 @@ function _checkVersionTable()
 				ADD `file` VARCHAR(255) NOT NULL';
 		$db->setQuery($query);
 		if (!$db->execute()) {
-			echo JText::_('Failed updating version table');
+			echo Text::_('Failed updating version table');
 		}
 	}
 }
 
 function updateVersion($versionData)
 {
-	echo JText::_('Updating database version');
+	echo Text::_('Updating database version');
 
 	$status=0;
 	$updateVersionFile=JPATH_ADMINISTRATOR.'/components/com_joomleague/assets/updates/update_version.sql';
@@ -99,7 +100,7 @@ function updateVersion($versionData)
 	}
 	else
 	{
-		$fileContent="update #__joomleague_version set major='3', minor='0', build='14', revision='57ae969', version='b', file='joomleague'";
+		$fileContent="update #__joomleague_version set major='4', minor='0', build='1', revision='57ae969', version='b', file='joomleague'";
 	}
 
 	$dummy=explode("'",$fileContent);
@@ -140,7 +141,7 @@ function updateVersion($versionData)
 
 function addGhostPlayer()
 {
-	echo JText::_('Inserting Ghost-Player data');
+	echo Text::_('Inserting Ghost-Player data');
 	$status=0;
 	$db = Factory::getDbo();
 
@@ -165,7 +166,7 @@ function addGhostPlayer()
 
 function addSportsType()
 {
-	echo JText::_('Inserting default Sport-Types');
+	echo Text::_('Inserting default Sport-Types');
 
 	$status=0;
 	$db= Factory::getDbo();

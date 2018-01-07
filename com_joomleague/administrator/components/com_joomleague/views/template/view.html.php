@@ -11,6 +11,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\FileLayout;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Toolbar\Toolbar;
@@ -43,7 +44,7 @@ class JoomleagueViewTemplate extends JLGView
 		// fail if checked out not by 'me'
 		if ($model->isCheckedOut($user->get('id')))
 		{
-			$msg=JText::sprintf('DESCBEINGEDITTED',JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_THETEMPLATE'),$template->name);
+			$msg=Text::sprintf('DESCBEINGEDITTED',Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_THETEMPLATE'),$template->name);
 			$app->redirect('index.php?option='.$option,$msg);
 		}
 
@@ -72,7 +73,7 @@ class JoomleagueViewTemplate extends JLGView
 		
 		$master_id=($project->master_template) ? $project->master_template : '-1';
 		$templates=array();
-		$templates[]=HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_OTHER_TEMPLATE' ),'value','text');
+		$templates[]=HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_OTHER_TEMPLATE' ),'value','text');
 		if ($res=$model->getAllTemplatesList($project->id,$master_id)){
 			$templates=array_merge($templates,$res);
 		}
@@ -117,13 +118,13 @@ class JoomleagueViewTemplate extends JLGView
 
 		if (!$edit)
 		{
-			ToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_ADD_NEW'),'jl-FrontendSettings');
+			ToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_ADD_NEW'),'jl-FrontendSettings');
 			ToolbarHelper::divider();
 			ToolbarHelper::cancel('template.cancel');
 		}
 		else
 		{
-			ToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_EDIT').': '. $this->form->getName(),'jl-FrontendSettings');
+			ToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_EDIT').': '. $this->form->getName(),'jl-FrontendSettings');
 			//ToolbarHelper::custom('template.reset','restore','restore','COM_JOOMLEAGUE_GLOBAL_RESET');
 			ToolbarHelper::divider();
 			

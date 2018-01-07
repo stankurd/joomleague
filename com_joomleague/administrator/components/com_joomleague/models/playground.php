@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 defined('_JEXEC') or die;
@@ -74,7 +75,7 @@ class JoomleagueModelPlayground extends JLGModelItem
 				$db->setQuery($query);
 				if($db->loadResult())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_VENUE_MODEL_ERROR_P_TEAM_EXISTS');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_VENUE_MODEL_ERROR_P_TEAM_EXISTS');
 				}
 				
 				// check entry Match-Table
@@ -85,7 +86,7 @@ class JoomleagueModelPlayground extends JLGModelItem
 				$db->setQuery($query);
 				if($db->loadResult())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_VENUE_MODEL_ERROR_MATCH_EXISTS');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_VENUE_MODEL_ERROR_MATCH_EXISTS');
 				}
 
 				if($result)

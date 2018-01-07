@@ -11,6 +11,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -83,11 +84,11 @@ class JoomleagueControllerProjectposition extends JoomleagueController
 		$model=$this->getModel();
 		if ($model->store($post))
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_POSITION_LIST_SAVED');
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_POSITION_LIST_SAVED');
 		}
 		else
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_ERROR_SAVING_POS').$model->getError();
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_ERROR_SAVING_POS').$model->getError();
 		}
 		$link='index.php?option='.$this->option.'&view='.$this->view_list.'&task=projectposition.display';
 		$this->setRedirect($link,$msg);
@@ -107,11 +108,11 @@ class JoomleagueControllerProjectposition extends JoomleagueController
 		//if ($model->store($post))
 		if (1==2)
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_TEAM_SAVED');
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_TEAM_SAVED');
 		}
 		else
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_ERROR_SAVING_TEAM').$model->getError();
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_ERROR_SAVING_TEAM').$model->getError();
 		}
 		// Check the table in so it can be edited.... we are done with it anyway
 		$model->checkin();
@@ -138,11 +139,11 @@ class JoomleagueControllerProjectposition extends JoomleagueController
 		$model=$this->getModel();
 		if ($model->storeshort($cid,$post))
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_POSITIONS_UPDATED');
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_POSITIONS_UPDATED');
 		}
 		else
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_ERROR_UPDATING_POS').$model->getError();
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_ERROR_UPDATING_POS').$model->getError();
 		}
 		$link='index.php?option='.$this->option.'&view='.$this->view_list.'&task=projectposition.display';
 		$this->setRedirect($link,$msg);
@@ -156,7 +157,7 @@ class JoomleagueControllerProjectposition extends JoomleagueController
 		ArrayHelper::toInteger($cid);
 		if (count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_SELECT_TO_DELETE'));
+			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_SELECT_TO_DELETE'));
 		}
 		// TODO: why do we delete something from the team model?
 		$model=$this->getModel('team');
@@ -218,7 +219,7 @@ class JoomleagueControllerProjectposition extends JoomleagueController
 
 	public function assign()
 	{
-		$msg=JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_SELECT_POS_SAVE');
+		$msg=Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_SELECT_POS_SAVE');
 		$link='index.php?option='.$this->option.'&view='.$this->view_list.'&layout=editlist&task=projectposition.display';
 		$this->setRedirect($link,$msg);
 	}

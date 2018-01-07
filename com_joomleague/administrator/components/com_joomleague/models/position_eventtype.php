@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 use Joomla\Utilities\ArrayHelper;
 
@@ -75,7 +76,7 @@ class JoomleagueModelPosition_eventtype extends JoomleagueModelItem
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		
@@ -89,7 +90,7 @@ class JoomleagueModelPosition_eventtype extends JoomleagueModelItem
 			}
 			catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 	
@@ -104,7 +105,7 @@ class JoomleagueModelPosition_eventtype extends JoomleagueModelItem
 			}
 			catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 			

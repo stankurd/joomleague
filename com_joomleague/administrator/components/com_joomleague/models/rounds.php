@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Table\Table;
 
@@ -181,7 +182,7 @@ class JoomleagueModelRounds extends JLGModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return array();
 		}
 		return $result;
@@ -208,7 +209,7 @@ class JoomleagueModelRounds extends JLGModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		
@@ -235,7 +236,7 @@ class JoomleagueModelRounds extends JLGModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result[0];
@@ -261,7 +262,7 @@ class JoomleagueModelRounds extends JLGModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		for($i = 0,$n = count($result);$i < $n;$i ++)
@@ -304,7 +305,7 @@ class JoomleagueModelRounds extends JLGModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		return $result;
@@ -332,7 +333,7 @@ class JoomleagueModelRounds extends JLGModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 		for($i = 0,$n = count($result);$i < $n;$i ++)
@@ -362,7 +363,7 @@ class JoomleagueModelRounds extends JLGModelList
 		$query = "SELECT
 					id as value,
 				    CASE LENGTH(name)
-				    	when 0 then CONCAT('" . JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAY_NAME') . "',' ', id)
+				    	when 0 then CONCAT('" . Text::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAY_NAME') . "',' ', id)
 				    	else name
 				    END as text, id, name, round_date_first, round_date_last, roundcode
 				  FROM #__joomleague_round
@@ -420,12 +421,12 @@ class JoomleagueModelRounds extends JLGModelList
 			}
 
 			$this->storeRounds($rounds);
-			$feedback['msg'] = JText::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_SUCCESS',count($rounds));
+			$feedback['msg'] = Text::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_SUCCESS',count($rounds));
 		}
 		catch(Exception $e)
 		{
 			$feedback['msgType'] = 'error';
-			$feedback['msg'] = Jtext::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_FAILURE',$e->getMessage());
+			$feedback['msg'] = Text::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_FAILURE',$e->getMessage());
 		}
 		return $feedback;
 	}
@@ -449,14 +450,14 @@ class JoomleagueModelRounds extends JLGModelList
 			$roundDate = DateTime::createFromFormat("d-m-Y",$startDate,new DateTimeZone('UTC'));
 			if($roundDate == false)
 			{
-				throw new Exception(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_ERROR_START_DATE'));
+				throw new Exception(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_ERROR_START_DATE'));
 			}
 			for($x = 0;$x < $addRoundCount;$x ++)
 			{
 				$round = array(
 						'project_id' => $projectId,
 						'roundcode' => $roundCode,
-						'name' => JText::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_NAME',$roundCode),
+						'name' => Text::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_NAME',$roundCode),
 						'round_date_first' => $roundDate->format('Y-m-d'),
 						'round_date_last' => $roundDate->format('Y-m-d')
 				);
@@ -488,7 +489,7 @@ class JoomleagueModelRounds extends JLGModelList
 			if(! $handle)
 			{
 				$app = Factory::getApplication();
-				$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_CANNOT_OPEN'),'error');
+				$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_CANNOT_OPEN'),'error');
 				$app->redirect('index.php?option=com_joomleague&view=rounds');
 				return false;
 			}
@@ -499,7 +500,7 @@ class JoomleagueModelRounds extends JLGModelList
 			{
 				if(count($data) != 4)
 				{
-					throw new Exception(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_ERROR_INVALID_TEMPLATE'));
+					throw new Exception(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_ERROR_INVALID_TEMPLATE'));
 				}
 
 				$round = array(
@@ -510,13 +511,13 @@ class JoomleagueModelRounds extends JLGModelList
 				$dateFirst = DateTime::createFromFormat("d-m-Y",$data[2],new DateTimeZone('UTC'));
 				if($dateFirst == false)
 				{
-					throw new Exception(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_ERROR_INVALID_FIRST_DATE'));
+					throw new Exception(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_ERROR_INVALID_FIRST_DATE'));
 				}
 				$round['round_date_first'] = $dateFirst->format('Y-m-d');
 				$dateLast = DateTime::createFromFormat("d-m-Y",$data[3],new DateTimeZone('UTC'));
 				if($dateLast == false)
 				{
-					throw new Exception(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_ERROR_INVALID_LAST_DATE'));
+					throw new Exception(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_ERROR_INVALID_LAST_DATE'));
 				}
 				$round['round_date_last'] = $dateLast->format('Y-m-d');
 				$schedule[] = $round;
@@ -563,7 +564,7 @@ class JoomleagueModelRounds extends JLGModelList
 				$tblRound->name = $round['name'];
 				if(! ($tblRound->check() && $tblRound->store()))
 				{
-					throw new Exception(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_ERROR_STORING_ROUND') . ': ' . $tblRound->getError());
+					throw new Exception(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_ERROR_STORING_ROUND') . ': ' . $tblRound->getError());
 				}
 			}
 		}
@@ -589,7 +590,7 @@ class JoomleagueModelRounds extends JLGModelList
 		if(!$teams)
 		{
 			// we need teams to create a round
-			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_NO_TEAM'));
+			$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_NO_TEAM'));
 			return false;
 		}
 		if($scheduling == "0" || $scheduling == "1")
@@ -598,7 +599,7 @@ class JoomleagueModelRounds extends JLGModelList
 			// scheduling 2 = Double Round robin 
 			$schedule = $this->getRoundRobinSchedule($teams,$scheduling);
 			if (count($teams) < 3) {
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_NEEDMORETEAMS'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_NEEDMORETEAMS'));
 				return false;
 			}
 		}
@@ -645,7 +646,7 @@ class JoomleagueModelRounds extends JLGModelList
 				$teams = $ordered;
 			}
 		} else {
-			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_NO_TEAM'));
+			$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_NO_TEAM'));
 			return false;
 		}
 		
@@ -653,7 +654,7 @@ class JoomleagueModelRounds extends JLGModelList
 		 $teams = $this->getProjectTeams();
 		 if(! $teams || ! count($teams))
 		 {
-		 $this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_NO_TEAM'));
+		 $this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_NO_TEAM'));
 		 return false;
 		 }
 		
@@ -702,7 +703,7 @@ class JoomleagueModelRounds extends JLGModelList
 		if(! $handle)
 		{
 			$app = Factory::getApplication();
-			$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_CANNOT_OPEN'),'error');
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_IMPORT_CTRL_CANNOT_OPEN'),'error');
 			$app->redirect('index.php?option=com_joomleague&view=rounds');
 			return false;
 		}
@@ -713,7 +714,7 @@ class JoomleagueModelRounds extends JLGModelList
 		{
 			$num = count($data);
 			// if($num-1 < count($teams)/2) {
-			// $this->setError(JText::_ (
+			// $this->setError(Text::_ (
 			// 'COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_TOTAL_TEAMS_WRONG'
 			// ));
 			// return false;
@@ -729,7 +730,7 @@ class JoomleagueModelRounds extends JLGModelList
 				}
 				else
 				{
-					$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_CANNOT_FIND_ORDER_NUMBER') . ': ' . $order[0]);
+					$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_CANNOT_FIND_ORDER_NUMBER') . ': ' . $order[0]);
 					return false;
 				}
 				if(isset($teams[($order[1] - 1)]))
@@ -738,12 +739,12 @@ class JoomleagueModelRounds extends JLGModelList
 				}
 				else
 				{
-					$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_CANNOT_FIND_ORDER_NUMBER') . ': ' . $order[1]);
+					$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_CANNOT_FIND_ORDER_NUMBER') . ': ' . $order[1]);
 					return false;
 				}
 				if($away_team == $home_team)
 				{
-					$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_TEAMS_ORDERING_WRONG'));
+					$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_TEAMS_ORDERING_WRONG'));
 					return false;
 				}
 				// match pair
@@ -814,7 +815,7 @@ class JoomleagueModelRounds extends JLGModelList
 				$tblRound->name = sprintf($roundname,$tblRound->roundcode);
 				if(! ($tblRound->check() && $tblRound->store()))
 				{
-					$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_CREATING_ROUND') . ': ' . $tblRound->getError());
+					$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_CREATING_ROUND') . ': ' . $tblRound->getError());
 					return false;
 				}
 				$current_date = $tblRound->round_date_first;
@@ -851,7 +852,7 @@ class JoomleagueModelRounds extends JLGModelList
 				}
 				if(! ($tblMatch->check() && $tblMatch->store()))
 				{
-					$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_CREATING_GAME') . ': ' . $tblMatch->getError());
+					$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_CREATING_GAME') . ': ' . $tblMatch->getError());
 					return false;
 				}
 			}

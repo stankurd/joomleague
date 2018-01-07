@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
@@ -68,7 +69,7 @@ Factory::getDocument()->addScriptDeclaration('
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_POSITIONS_STANDARD_NAME_OF_POSITION','a.name',$listDirn, $listOrder);?>
 				</th>
 				<th>
-					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_TRANSLATION'); ?>
+					<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_TRANSLATION'); ?>
 				</th>
 				<th>
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_POSITIONS_PARENTNAME','a.parent_id',$listDirn, $listOrder);?>
@@ -80,13 +81,13 @@ Factory::getDocument()->addScriptDeclaration('
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_POSITIONS_PERSON_TYPE','a.persontype',$listDirn, $listOrder);?>
 				</th>
 				<th width="5%">
-					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_HAS_EVENTS'); ?>
+					<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_HAS_EVENTS'); ?>
 				</th>
 				<th width="5%">
-					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_HAS_STATS'); ?>
+					<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_HAS_STATS'); ?>
 				</th>
 				<th width="5%">
-					<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');?>
+					<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');?>
 				</th>
 				<th width="1%">
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder); ?>
@@ -137,7 +138,7 @@ Factory::getDocument()->addScriptDeclaration('
 					<td class="center">
 						<a href="<?php echo $link; ?>">
 					<?php
-						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_EDIT_DETAILS');
+						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_EDIT_DETAILS');
 						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "' . $imageTitle . '"');
 					?>
 						</a>
@@ -148,13 +149,13 @@ Factory::getDocument()->addScriptDeclaration('
 					<td><?php echo $row->name; ?></td>
 					<td>
 					<?php
-					if($row->name == JText::_($row->name))
+					if($row->name == Text::_($row->name))
 					{
 						echo '&nbsp;';
 					}
 					else
 					{
-						echo JText::_($row->name);
+						echo Text::_($row->name);
 					}
 					?>
 					</td>
@@ -171,12 +172,12 @@ Factory::getDocument()->addScriptDeclaration('
 					<?php
 					if($row->countEvents == 0)
 					{
-						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_NO_EVENTS');
+						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_NO_EVENTS');
 						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/error.png',$imageTitle,'title= "' . $imageTitle . '"');
 					}
 					else
 					{
-						$imageTitle = JText::sprintf('COM_JOOMLEAGUE_ADMIN_POSITIONS_NR_EVENTS',$row->countEvents);
+						$imageTitle = Text::sprintf('COM_JOOMLEAGUE_ADMIN_POSITIONS_NR_EVENTS',$row->countEvents);
 						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/ok.png',$imageTitle,'title= "' . $imageTitle . '"');
 					}
 					?>
@@ -185,12 +186,12 @@ Factory::getDocument()->addScriptDeclaration('
 					<?php
 					if($row->countStats == 0)
 					{
-						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_NO_STATISTICS');
+						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_POSITIONS_NO_STATISTICS');
 						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/error.png',$imageTitle,'title= "' . $imageTitle . '"');
 					}
 					else
 					{
-						$imageTitle = JText::sprintf('COM_JOOMLEAGUE_ADMIN_POSITIONS_NR_STATISTICS',$row->countStats);
+						$imageTitle = Text::sprintf('COM_JOOMLEAGUE_ADMIN_POSITIONS_NR_STATISTICS',$row->countStats);
 						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/ok.png',$imageTitle,'title= "' . $imageTitle . '"');
 					}
 					?>

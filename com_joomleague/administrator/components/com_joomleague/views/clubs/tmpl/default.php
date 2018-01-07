@@ -9,6 +9,7 @@
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
@@ -51,7 +52,7 @@ if($saveOrder)
 	</div>
 	<?php if (empty($this->items)) : ?>
 	<div class="alert alert-no-items">
-		<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+		<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 	</div>
 	<?php else : ?>
 				<div id="j-main-container" class="j-main-container">
@@ -73,13 +74,13 @@ if($saveOrder)
 						<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_CLUBS_WEBSITE','a.website',$listDirn, $listOrder); ?>
 					</th>
 					<th width="20">
-						<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_L_LOGO'); ?>
+						<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_L_LOGO'); ?>
 					</th>
 					<th width="20">
-						<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_M_LOGO'); ?>
+						<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_M_LOGO'); ?>
 					</th>
 					<th width="20">
-						<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_S_LOGO'); ?>
+						<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_S_LOGO'); ?>
 					</th>
 					<th width="20">
 						<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_CLUBS_COUNTRY','a.country',$listDirn, $listOrder); ?>
@@ -136,14 +137,14 @@ if($saveOrder)
 							<td style="width:70px;">
 								<a href="<?php echo $link; ?>">
 									<?php
-									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_EDIT_DETAILS');
+									$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_EDIT_DETAILS');
 									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/edit.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');
 									?>
 								</a>
                                 <a href="<?php echo $link2; ?>">
 									<?php
-									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_SHOW_TEAMS');
+									$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_SHOW_TEAMS');
 									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/icon-16-Teams.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');
 									?>
@@ -169,22 +170,22 @@ if($saveOrder)
 							<?php
 							if ($row->logo_big == '')
 							{
-								$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_NO_IMAGE');
+								$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_NO_IMAGE');
 								echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/information.png',
 												  $imageTitle,'title= "'.$imageTitle.'"');
 							}
 							elseif ($row->logo_big === JoomleagueHelper::getDefaultPlaceholder("clublogobig"))
 							{
-								$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_DEFAULT_IMAGE');
+								$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_DEFAULT_IMAGE');
 								echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/information.png',
 												  $imageTitle,'title= "'.$imageTitle.'"');
 							} else {
 								if (JFile::exists(JPATH_SITE.'/'.$row->logo_big)) {
-									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_CUSTOM_IMAGE');
+									$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_CUSTOM_IMAGE');
 									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/ok.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');
 								} else {
-									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_NO_IMAGE');
+									$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_NO_IMAGE');
 									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/delete.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');
 								}
@@ -195,22 +196,22 @@ if($saveOrder)
 							<?php
 							if ($row->logo_middle == '')
 							{
-								$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_NO_IMAGE');
+								$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_NO_IMAGE');
 								echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/information.png',
 												  $imageTitle,'title= "'.$imageTitle.'"');
 							}
 							elseif ($row->logo_middle === JoomleagueHelper::getDefaultPlaceholder("clublogomedium"))
 							{
-								$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_DEFAULT_IMAGE');
+								$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_DEFAULT_IMAGE');
 								echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/information.png',
 												  $imageTitle,'title= "'.$imageTitle.'"');
 							} else {
 								if (JFile::exists(JPATH_SITE.'/'.$row->logo_middle)) {
-									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_CUSTOM_IMAGE');
+									$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_CUSTOM_IMAGE');
 									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/ok.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');
 								} else {
-									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_NO_IMAGE');
+									$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_NO_IMAGE');
 									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/delete.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');
 								}
@@ -221,22 +222,22 @@ if($saveOrder)
 							<?php
 							if ($row->logo_small == '')
 							{
-								$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_NO_IMAGE');
+								$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_NO_IMAGE');
 								echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/information.png',
 												  $imageTitle,'title= "'.$imageTitle.'"');
 							}
 							elseif ($row->logo_small === JoomleagueHelper::getDefaultPlaceholder("clublogosmall"))
 							{
-								$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_DEFAULT_IMAGE');
+								$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_DEFAULT_IMAGE');
 								echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/information.png',
 				  								  $imageTitle,'title= "'.$imageTitle.'"');
 							} else {
 								if (JFile::exists(JPATH_SITE.'/'.$row->logo_small)) {
-									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_CUSTOM_IMAGE');
+									$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_CUSTOM_IMAGE');
 									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/ok.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');
 								} else {
-									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_CLUBS_NO_IMAGE');
+									$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_NO_IMAGE');
 									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/delete.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');
 								}

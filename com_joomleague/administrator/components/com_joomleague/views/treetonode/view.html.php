@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\HTML\HTMLHelper;
 
@@ -61,7 +62,7 @@ class JoomleagueViewTreetonode extends JLGView
 		// $model = $this->getModel('project');
 		
 		$mdlTreetonodes = BaseDatabaseModel::getInstance("Treetonodes","JoomleagueModel");
-		$team_id[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
+		$team_id[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
 		if($projectteams = $mdlTreetonodes->getProjectTeamsOptions($model->_id))
 		{
 			$team_id = array_merge($team_id,$projectteams);

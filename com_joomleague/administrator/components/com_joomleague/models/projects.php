@@ -10,6 +10,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Table\Table;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 /**
  * Projects Model
@@ -254,7 +255,7 @@ class JoomleagueModelProjects extends JLGModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}		
 		return true;
@@ -282,7 +283,7 @@ class JoomleagueModelProjects extends JLGModelList
 		}
 		catch (Exception $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
 		}
 
@@ -338,7 +339,7 @@ class JoomleagueModelProjects extends JLGModelList
 			}		
 		catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return $o_source_to_copy_division;
 			}
 
@@ -404,7 +405,7 @@ class JoomleagueModelProjects extends JLGModelList
 				}
 				catch(Exception $e)
 				{
-					$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+					$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 					return false;
 				}
 			}
@@ -473,7 +474,7 @@ class JoomleagueModelProjects extends JLGModelList
 					}
 				catch(Exception $e)
 					{
-						$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						return false;
 					}
 
@@ -488,22 +489,22 @@ class JoomleagueModelProjects extends JLGModelList
 				// copy project team-players
 				if($mdlTeamPlayer->cpCopyPlayers($from_projectteam_id,$to_projectteam_id))
 				{
-					echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_TP_COPIED',$from_projectteam_id).'<br />';
+					echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_TP_COPIED',$from_projectteam_id).'<br />';
 				}
 				else
 				{
-					echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TP_COPIED',$from_projectteam_id).'<br />'.$model->getError().
+					echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TP_COPIED',$from_projectteam_id).'<br />'.$model->getError().
 					'<br />';
 				}
 
 				// copy project team-staff
 				if($mdlTeamStaff->cpCopyTeamStaffs($from_projectteam_id,$to_projectteam_id))
 				{
-					echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_TS_COPIED',$from_projectteam_id).'<br />';
+					echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_TS_COPIED',$from_projectteam_id).'<br />';
 				}
 				else
 				{
-					echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TS_COPIED',$from_projectteam_id).'<br />'.$model->getError() .
+					echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TS_COPIED',$from_projectteam_id).'<br />'.$model->getError() .
 					'<br />';
 				}
 
@@ -523,12 +524,12 @@ class JoomleagueModelProjects extends JLGModelList
 						$tData->set('project_team_id',$to_projectteam_id);
 						if(!$tData->store())
 						{
-							echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TP_COPIED',$from_projectteam_id).'<br />'.
+							echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TP_COPIED',$from_projectteam_id).'<br />'.
 							$model->getError().'<br />';
 						}
 						else
 						{
-							echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TRAINING_COPIED',$from_projectteam_id).'<br />';
+							echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_ERROR_TRAINING_COPIED',$from_projectteam_id).'<br />';
 						}
 					}
 				}
@@ -570,7 +571,7 @@ class JoomleagueModelProjects extends JLGModelList
 				}
 				catch(Exception $e)
 				{
-					$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+					$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 					return false;
 				}
 				$newid = $p_position->id;
@@ -586,7 +587,7 @@ class JoomleagueModelProjects extends JLGModelList
 				}
 				catch (Exception $e)
 				{
-					$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+					$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 					return false;
 				}
 			}
@@ -634,7 +635,7 @@ class JoomleagueModelProjects extends JLGModelList
 				}
 				catch(Exception $e)
 				{
-					$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+					$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 					return false;
 				}
 			}
@@ -652,12 +653,12 @@ class JoomleagueModelProjects extends JLGModelList
 		 	$mdlProject = new JoomleagueModelProject();
 		 	//$mdlProjects = JModelLegacy::getInstance('projects','joomleagueModel');
 		 	$mdlProjects = new JoomleagueModelProjects();
-		 	echo '<h3>'.JText::sprintf('COM_JOOMLEAGUE_PROJECT_COPYING','<i>'.$mdlProject->getProjectName($project_id).'</i>').'</h3>';
+		 	echo '<h3>'.Text::sprintf('COM_JOOMLEAGUE_PROJECT_COPYING','<i>'.$mdlProject->getProjectName($project_id).'</i>').'</h3>';
 		 	$post = ArrayHelper::fromObject($mdlProject->getItem($project_id));
 		 	$post['old_id'] = $project_id;
 		 	$post['id'] = 0; // will save it as new project
-		 	$post['name'] = JText::_('COM_JOOMLEAGUE_PROJECT_COPY_COPY_OF').' '.$mdlProject->getProjectName($project_id);
-		 	echo '<br />'.JText::_('COM_JOOMLEAGUE_PROJECT_COPY_SETTINGS');
+		 	$post['name'] = Text::_('COM_JOOMLEAGUE_PROJECT_COPY_COPY_OF').' '.$mdlProject->getProjectName($project_id);
+		 	echo '<br />'.Text::_('COM_JOOMLEAGUE_PROJECT_COPY_SETTINGS');
 
 		 	$tblProject = Table::getInstance('project','Table');
 		 	$newProject = $tblProject->save($post);
@@ -686,14 +687,14 @@ class JoomleagueModelProjects extends JLGModelList
 		 		$tblProject->checkin();
 
 		 		// DIVISIONS //
-				echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_COPY_DIVISIONS');
+				echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_PROJECT_COPY_DIVISIONS');
 		 		$source_to_copy_division = Array('0' => 0);
 		 		if($source_to_copy_division = $mdlProjects->cpCopyDivisions($post)) // copy projectdivisions
 		 		{
 		 			$this->_success();
 
 		 			// PROJECT-TEAM //
-		 			echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_COPY_TEAMS');
+		 			echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_PROJECT_COPY_TEAMS');
 		 			if($mdlProjects->cpCopyTeams($post,$source_to_copy_division)) // copy project teams
 		 			{
 		 				$this->_success();
@@ -704,13 +705,13 @@ class JoomleagueModelProjects extends JLGModelList
 		 			}
 
 		 			// PROJECT-POSITION //
-		 			echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_COPY_POSITIONS');
+		 			echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_PROJECT_COPY_POSITIONS');
 		 			if($mdlProjects->cpCopyPositions($post)) // copy project team-positions
 		 			{
 		 				$this->_success();
 
 		 				// Rounds
-		 				echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_COPY_ROUNDS');
+		 				echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_PROJECT_COPY_ROUNDS');
 		 				if($mdlProjects->cpCopyRounds($post)) // copy project rounds
 		 				{
 		 					$this->_success();
@@ -731,14 +732,14 @@ class JoomleagueModelProjects extends JLGModelList
 		 		}
 
 		 		// REFEREES //
-		 		echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_COPY_REFEREES');
+		 		echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_PROJECT_COPY_REFEREES');
 		 		if($mdlProjects->cpCopyProjectReferees($post))
 		 		{
 		 			$this->_success();
 		 		}
 		 		else
 		 		{
-		 			echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'<br />'.$mdlProjects->getError().'<br />';
+		 			echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'<br />'.$mdlProjects->getError().'<br />';
 		 		}
 		 		// END //
 		 		echo '<br><br><span class="label label-info">Finished copying</span>';
@@ -762,17 +763,17 @@ class JoomleagueModelProjects extends JLGModelList
 			$project_id = (int) $pid;
 			if(!$mdlProject->exists($project_id))
 			{
-				echo JText::sprintf('COM_JOOMLEAGUE_PROJECT_NOT_EXISTS',"<b>$project_id</b>").'<br />';
+				echo Text::sprintf('COM_JOOMLEAGUE_PROJECT_NOT_EXISTS',"<b>$project_id</b>").'<br />';
 				break;
 			}
 
-			echo '<h3>' . JText::sprintf('COM_JOOMLEAGUE_PROJECT_DELETING','<i>'.$mdlProject->getProjectName($project_id).'</i>').'</h3>';
+			echo '<h3>' . Text::sprintf('COM_JOOMLEAGUE_PROJECT_DELETING','<i>'.$mdlProject->getProjectName($project_id).'</i>').'</h3>';
 
 			// project-match
-			echo JText::_('COM_JOOMLEAGUE_PROJECT_DELETING_MATCHES').'&nbsp;&nbsp;';
+			echo Text::_('COM_JOOMLEAGUE_PROJECT_DELETING_MATCHES').'&nbsp;&nbsp;';
 			if(!$mdlProjects->deleteProjectMatch($project_id))
 			{
-				echo '<span style="color:red">'.JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
+				echo '<span style="color:red">'.Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
 				break;
 			}
 			else
@@ -781,10 +782,10 @@ class JoomleagueModelProjects extends JLGModelList
 			}
 			
 			// project-round
-			echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_DELETING_ROUNDS').'&nbsp;&nbsp;';
+			echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_PROJECT_DELETING_ROUNDS').'&nbsp;&nbsp;';
 			if(!$mdlProjects->deleteProjectRound($project_id))
 			{
-				echo '<span style="color:red">'.JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
+				echo '<span style="color:red">'.Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
 				break;
 			}
 			else
@@ -793,10 +794,10 @@ class JoomleagueModelProjects extends JLGModelList
 			}
 			
 			// POSITION //
-			echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_DELETING_POSITIONS').'&nbsp;&nbsp;';
+			echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_PROJECT_DELETING_POSITIONS').'&nbsp;&nbsp;';
 			if(!$mdlProjects->deleteProjectPosition($project_id))
 			{
-				echo '<span style="color:red">'.JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
+				echo '<span style="color:red">'.Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
 				break;
 			}
 			else
@@ -805,10 +806,10 @@ class JoomleagueModelProjects extends JLGModelList
 			}
 			
 			// REFEREE //
-			echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_DELETING_REFEREES').'&nbsp;&nbsp;';
+			echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_PROJECT_DELETING_REFEREES').'&nbsp;&nbsp;';
 			if(!$mdlProjects->deleteProjectReferee($project_id))
 			{
-				echo '<span style="color:red">'.JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
+				echo '<span style="color:red">'.Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
 				break;
 			}
 			else
@@ -817,10 +818,10 @@ class JoomleagueModelProjects extends JLGModelList
 			}
 			
 			// TEAMPLAYER //
-			echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_DELETING_PLAYERS').'&nbsp;&nbsp;';
+			echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_PROJECT_DELETING_PLAYERS').'&nbsp;&nbsp;';
 			if(!$mdlProjects->deleteProjectPlayers($project_id))
 			{
-				echo '<span style="color:red">'.JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
+				echo '<span style="color:red">'.Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
 				break;
 			}
 			else
@@ -829,10 +830,10 @@ class JoomleagueModelProjects extends JLGModelList
 			}
 			
 			// TEAMSTAFF
-			echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_DELETING_STAFFS').'&nbsp;&nbsp;';
+			echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_PROJECT_DELETING_STAFFS').'&nbsp;&nbsp;';
 			if(!$mdlProjects->deleteProjectStaff($project_id))
 			{
-				echo '<span style="color:red">'.JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
+				echo '<span style="color:red">'.Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
 				break;
 			}
 			else
@@ -841,10 +842,10 @@ class JoomleagueModelProjects extends JLGModelList
 			}
 
 			// PROJECT-TEAM //
-			echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_DELETING_TEAMS').'&nbsp;&nbsp;';
+			echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_PROJECT_DELETING_TEAMS').'&nbsp;&nbsp;';
 			if(!$mdlProjects->deleteProjectTeam($project_id))
 			{
-				echo '<span style="color:red">'.JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
+				echo '<span style="color:red">'.Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
 				break;
 			}
 			else
@@ -853,10 +854,10 @@ class JoomleagueModelProjects extends JLGModelList
 			}
 			
 			// TREETO
-			echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_DELETING_TREETOS').'&nbsp;&nbsp;';
+			echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_PROJECT_DELETING_TREETOS').'&nbsp;&nbsp;';
 			if(!$mdlProjects->deleteProjectTreeto($project_id))
 			{
-				echo '<span style="color:red">'.JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
+				echo '<span style="color:red">'.Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
 				break;
 			}
 			else
@@ -865,10 +866,10 @@ class JoomleagueModelProjects extends JLGModelList
 			}
 			
 			// DIVISION //
-			echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_DELETING_DIVISIONS').'&nbsp;&nbsp;';
+			echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_PROJECT_DELETING_DIVISIONS').'&nbsp;&nbsp;';
 			if(!$mdlProjects->deleteProjectDivision($project_id))
 			{
-				echo '<span style="color:red">'.JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
+				echo '<span style="color:red">'.Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
 				break;
 			}
 			else
@@ -877,10 +878,10 @@ class JoomleagueModelProjects extends JLGModelList
 			}
 			
 			// TEMPLATE //
-			echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_DELETING_TEMPLATES').'&nbsp;&nbsp;';
+			echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_PROJECT_DELETING_TEMPLATES').'&nbsp;&nbsp;';
 			if(!$mdlProjects->deleteProjectTemplate($project_id))
 			{
-				echo '<span style="color:red">' . JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
+				echo '<span style="color:red">' . Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProjects->getError();
 				break;
 			}
 			else
@@ -889,10 +890,10 @@ class JoomleagueModelProjects extends JLGModelList
 			}
 
 			// PROJECT
-			echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_DELETING_SETTINGS').'&nbsp;&nbsp;';
+			echo '<br /><br />'.Text::_('COM_JOOMLEAGUE_PROJECT_DELETING_SETTINGS').'&nbsp;&nbsp;';
 			if(!$mdlProject->delete($project_id))
 			{
-				echo '<span style="color:red">'.JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProject->getError();
+				echo '<span style="color:red">'.Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span> - '.$mdlProject->getError();
 				break;
 			}
 			else
@@ -911,7 +912,7 @@ class JoomleagueModelProjects extends JLGModelList
 	 */
 	private function _success()
 	{
-		echo '<span style="color:green">'.JText::_('COM_JOOMLEAGUE_GLOBAL_SUCCESS').'</span>';
+		echo '<span style="color:green">'.Text::_('COM_JOOMLEAGUE_GLOBAL_SUCCESS').'</span>';
 	}
 
 
@@ -920,7 +921,7 @@ class JoomleagueModelProjects extends JLGModelList
 	 */
 	private function _error()
 	{
-		echo '<span style="color:red">'.JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span>';
+		echo '<span style="color:red">'.Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR').'</span>';
 	}
 
 

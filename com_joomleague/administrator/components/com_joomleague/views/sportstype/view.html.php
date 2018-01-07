@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Toolbar\ToolbarHelper;
 
 defined('_JEXEC') or die;
@@ -49,10 +50,10 @@ class JoomleagueViewSportsType extends JLGView
 		$checkedOut = ! ($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 
 		// Set toolbar items for the page
-		$text = $isNew ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
+		$text = $isNew ? Text::_('COM_JOOMLEAGUE_GLOBAL_NEW') : Text::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
 		if($isNew)
 		{
-			ToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_SPORTSTYPE_ADD_NEW'),'jl-sportstypes');
+			ToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_SPORTSTYPE_ADD_NEW'),'jl-sportstypes');
 			JLToolBarHelper::apply('sportstype.apply');
 			JLToolBarHelper::save('sportstype.save');
 			ToolbarHelper::divider();
@@ -60,7 +61,7 @@ class JoomleagueViewSportsType extends JLGView
 		}
 		else
 		{
-			ToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_SPORTSTYPE_EDIT').': '.JText::_($this->form->getValue('name')),'jl-sportstypes');
+			ToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_SPORTSTYPE_EDIT').': '.Text::_($this->form->getValue('name')),'jl-sportstypes');
 			JLToolBarHelper::apply('sportstype.apply');
 			JLToolBarHelper::save('sportstype.save');
 			ToolBarHelper::divider();

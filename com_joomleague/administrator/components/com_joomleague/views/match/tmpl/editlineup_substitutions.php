@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Uri\Uri;
 
@@ -20,7 +21,7 @@ var baseajaxurl='<?php echo Uri::root();?>administrator/index.php?option=com_joo
 var teamid=<?php echo $this->tid; ?>;
 var matchid=<?php echo $this->match->id; ?>;
 // We need to setup some text variables for translation
-var str_delete="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_REMOVE'); ?>";
+var str_delete="<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_REMOVE'); ?>";
 //-->
 </script>
 <!-- SUBSTITUTIONS START -->
@@ -28,24 +29,24 @@ var str_delete="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_REMOVE'); ?>";
 	<!-- Don't remove this "<div id"ajaxresponse"></div> as it is neede for ajax changings -->
 	<div id="ajaxresponse"></div>
 	<fieldset class="adminform">
-		<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_SUBST'); ?></legend>
+		<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_SUBST'); ?></legend>
 		<table class='adminlist table' id="substitutions">
 			<thead>
 				<tr>
 					<th>
 							<?php
-							echo HTMLHelper::image ( 'administrator/components/com_joomleague/assets/images/out.png', JText::_ ( 'Out' ) );
-							echo '&nbsp;' . JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_OUT' );
+							echo HTMLHelper::image ( 'administrator/components/com_joomleague/assets/images/out.png', Text::_ ( 'Out' ) );
+							echo '&nbsp;' . Text::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_OUT' );
 							?>
 						</th>
 					<th>
 							<?php
-							echo JText::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_IN' ) . '&nbsp;';
-							echo HTMLHelper::image ( 'administrator/components/com_joomleague/assets/images/in.png', JText::_ ( 'In' ) );
+							echo Text::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_IN' ) . '&nbsp;';
+							echo HTMLHelper::image ( 'administrator/components/com_joomleague/assets/images/in.png', Text::_ ( 'In' ) );
 							?>
 						</th>
-					<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_POS'); ?></th>
-					<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_TIME'); ?></th>
+					<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_POS'); ?></th>
+					<th><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUSUBST_TIME'); ?></th>
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
@@ -74,7 +75,7 @@ var str_delete="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_REMOVE'); ?>";
 						?>
 							</td>
 					<td>
-								<?php echo JText::_($substitution->in_position); ?>
+								<?php echo Text::_($substitution->in_position); ?>
 							</td>
 					<td>
 								<?php
@@ -84,7 +85,7 @@ var str_delete="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_REMOVE'); ?>";
 							</td>
 					<td><input id="delete-<?php echo $substitution->id; ?>"
 						type="button" class="inputbox button-delete btn"
-						value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_REMOVE'); ?>" />
+						value="<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_REMOVE'); ?>" />
 					</td>
 				</tr>
 						<?php
@@ -99,7 +100,7 @@ var str_delete="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_REMOVE'); ?>";
 						class="inputbox" /></td>
 					<td><input id="save-new" type="button"
 						class="inputbox button-save btn"
-						value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_SAVE'); ?>" /></td>
+						value="<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_SAVE'); ?>" /></td>
 				</tr>
 			</tbody>
 		</table>

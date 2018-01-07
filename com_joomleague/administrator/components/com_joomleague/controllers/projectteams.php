@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Router\Route;
 use Joomla\Utilities\ArrayHelper;
@@ -102,7 +103,7 @@ class JoomleagueControllerProjectteams extends JLGControllerAdmin
 		{
 			if(!$model->changeTeamId($oldteamids,$newteamids))
 			{
-				$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_ERROR_SAVE').$model->getError(),'warning');
+				$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_ERROR_SAVE').$model->getError(),'warning');
 			}
 		}
 		$link = 'index.php?option=com_joomleague&view=projectteams';
@@ -128,11 +129,11 @@ class JoomleagueControllerProjectteams extends JLGControllerAdmin
 			// clear ranking cache
 			$cache = Factory::getCache('joomleague.project' . $post['id']);
 			$cache->clean();
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_SAVED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_SAVED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_ERROR_SAVE') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_ERROR_SAVE') . $model->getError();
 		}
 
 		$link = 'index.php?option=com_joomleague&view=projectteams';
@@ -159,11 +160,11 @@ class JoomleagueControllerProjectteams extends JLGControllerAdmin
 			// clear cache
 			$cache = Factory::getCache('joomleague.project' . $project_id);
 			$cache->clean();
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_UPDATED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_UPDATED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_ERROR_UPDATED') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_ERROR_UPDATED') . $model->getError();
 		}
 
 		$link = 'index.php?option=com_joomleague&view=projectteams';
@@ -234,7 +235,7 @@ class JoomleagueControllerProjectteams extends JLGControllerAdmin
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_COPY_SUCCESS');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_COPY_SUCCESS');
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=projectteams',$msg,$type);
 		$this->redirect();

@@ -6,11 +6,13 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 ?>
 
 <fieldset class="form-horizontal">
-	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_DIVISION');?></legend>
+	<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_DIVISION');?></legend>
 	<?php
 	echo $this->form->renderField('name');
 	echo $this->form->renderField('alias');
@@ -19,7 +21,7 @@ defined('_JEXEC') or die;
 	echo $this->form->renderField('id');
 	?>
 	<div class="control-group">
-		<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_DIVISION_PARENT');?></div>
+		<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_DIVISION_PARENT');?></div>
 		<div class="controls"><?php echo $this->lists['parents'];?></div>
 	</div>
 </fieldset>

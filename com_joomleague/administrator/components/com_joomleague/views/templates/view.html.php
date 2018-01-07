@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\String\StringHelper;
@@ -46,7 +47,7 @@ class JoomleagueViewTemplates extends JLGView
 			$model->set('_getALL',0);
 			$masterTemplates=$this->get('MasterTemplatesList');
 			$importlist=array();
-			$importlist[]=HTMLHelper::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_SELECT_FROM_MASTER'));
+			$importlist[]=HTMLHelper::_('select.option',0,Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_SELECT_FROM_MASTER'));
 			$importlist=array_merge($importlist,$masterTemplates);
 			$lists['mastertemplates']=HTMLHelper::_('select.genericlist',$importlist,'templateid');
 			$master=$this->get('MasterName');
@@ -90,7 +91,7 @@ class JoomleagueViewTemplates extends JLGView
 	protected function addToolbar()
 	{
 		// Set toolbar items for the page
-		JLToolbarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_TITLE'),'jl-FrontendSettings');
+		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_TITLE'),'jl-FrontendSettings');
 		JLToolBarHelper::save('template.save');
 		if ($this->project->master_template)
 		{
@@ -98,7 +99,7 @@ class JoomleagueViewTemplates extends JLGView
 		}
 		else
 		{
-			JLToolBarHelper::custom('template.reset','remove','restore',JText::_('COM_JOOMLEAGUE_GLOBAL_RESET'));
+			JLToolBarHelper::custom('template.reset','remove','restore',Text::_('COM_JOOMLEAGUE_GLOBAL_RESET'));
 		}
 		JLToolBarHelper::divider();
 		JLToolBarHelper::help('screen.joomleague',true);

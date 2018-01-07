@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -62,8 +63,8 @@ class JoomleagueViewStatistic extends JLGView
 		$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 
 		// Set toolbar items for the page
-		$text = $isNew ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_GLOBAL_EDIT').': '.JText::_($this->form->getValue('name'));
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_STAT_TITLE').': <span class="toolbarTitleType">[ '.$text.']</span>','jl-statistics');
+		$text = $isNew ? Text::_('COM_JOOMLEAGUE_GLOBAL_NEW') : Text::_('COM_JOOMLEAGUE_GLOBAL_EDIT').': '.Text::_($this->form->getValue('name'));
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_STAT_TITLE').': <span class="toolbarTitleType">[ '.$text.']</span>','jl-statistics');
 		if($isNew)
 		{
 			JLToolBarHelper::apply('statistic.apply');

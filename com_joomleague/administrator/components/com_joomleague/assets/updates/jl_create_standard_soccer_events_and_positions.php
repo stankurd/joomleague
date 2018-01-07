@@ -14,6 +14,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Filter\OutputFilter;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -28,11 +29,11 @@ function PrintStepResult($result)
 {
 	if ($result)
 	{
-		$output=' - <span style="color:green">'.JText::_('SUCCESS').'</span>';
+		$output=' - <span style="color:green">'.Text::_('SUCCESS').'</span>';
 	}
 	else
 	{
-		$output=' - <span style="color:red">'.JText::_('FAILED').'</span>';
+		$output=' - <span style="color:red">'.Text::_('FAILED').'</span>';
 	}
 
 	return $output;
@@ -44,7 +45,7 @@ function addSportsType()
 	$db	   = Factory::getDbo();
 	$app   = Factory::getApplication();
 
-	echo JText::sprintf	(	'Adding the sports-type [%1$s] to table [%2$s] if it does not exist yet!',
+	echo Text::sprintf	(	'Adding the sports-type [%1$s] to table [%2$s] if it does not exist yet!',
 							'<strong>'.'COM_JOOMLEAGUE_ST_SOCCER'.'</strong>',
 							'<strong>'.'#__joomleague_sports_type'.'</strong>'
 						);
@@ -67,7 +68,7 @@ function addSportsType()
 	}
 
 	echo PrintStepResult($result).'<br />';
-	if (!$result) { echo JText::_ ('DO NOT WORRY... Surely the sports-type soccer was already existing in your database!!!').'<br />'; }
+	if (!$result) { echo Text::_ ('DO NOT WORRY... Surely the sports-type soccer was already existing in your database!!!').'<br />'; }
 
 	return '';
 }
@@ -118,7 +119,7 @@ function addStandardsForSoccer()
 
 	if ('AddEvents' == 'AddEvents')
 	{
-		echo JText::sprintf('Adding standard soccer events to table table [%s]','<b>'.'#__joomleague_eventtype'.'</b>');
+		echo Text::sprintf('Adding standard soccer events to table table [%s]','<b>'.'#__joomleague_eventtype'.'</b>');
 
 		$squery				= 'SELECT * FROM #__joomleague_eventtype WHERE name=`%s`';
 		$isquery			= 'INSERT INTO #__joomleague_eventtype (`name`,`icon`) VALUES (`%1$s`,`%2$s`)';
@@ -432,7 +433,7 @@ function addStandardsForSoccer()
 		}
 		
 		echo PrintStepResult($result).'<br />';
-		if (!$result) { echo JText::_ ('DO NOT WORRY... Surely at least one of the events was already existing in your database!!!').'<br />'; }
+		if (!$result) { echo Text::_ ('DO NOT WORRY... Surely at least one of the events was already existing in your database!!!').'<br />'; }
 		echo '<br />';
 	}
 
@@ -442,7 +443,7 @@ function addStandardsForSoccer()
 
 	if ('AddPositions' == 'AddPositions')
 	{
-		echo JText::sprintf('Adding standard soccer positions to table table [%s]','<b>'.'#__joomleague_position'.'</b>');
+		echo Text::sprintf('Adding standard soccer positions to table table [%s]','<b>'.'#__joomleague_position'.'</b>');
 
 		if ('AddGeneralPlayersPositions' == 'AddGeneralPlayersPositions')
 		{
@@ -932,7 +933,7 @@ function addStandardsForSoccer()
 		}
 
 		echo PrintStepResult($result).'<br />';
-		if (!$result) { echo JText::_ ('DO NOT WORRY... Surely at least one of the positions was already existing in your database!!!').'<br />'; }
+		if (!$result) { echo Text::_ ('DO NOT WORRY... Surely at least one of the positions was already existing in your database!!!').'<br />'; }
 		echo '<br />';
 	}
 
@@ -940,7 +941,7 @@ function addStandardsForSoccer()
 
 	$result		= false;
 
-	echo JText::sprintf('Adding standard position-related-events for soccer to table table [%s]','<b>'.'#__joomleague_position_eventtype'.'</b>');
+	echo Text::sprintf('Adding standard position-related-events for soccer to table table [%s]','<b>'.'#__joomleague_position_eventtype'.'</b>');
 
 	foreach ($PlayersPositions AS $ppkey => $ppid)
 	{
@@ -1011,7 +1012,7 @@ function addStandardsForSoccer()
 	}
 
 	echo PrintStepResult($result).'<br />';
-	if (!$result) { echo JText::_ ('DO NOT WORRY... Surely at least one of the position related events was already existing in your database!!!').'<br />'; }
+	if (!$result) { echo Text::_ ('DO NOT WORRY... Surely at least one of the position related events was already existing in your database!!!').'<br />'; }
 
 	return '';
 }
@@ -1019,7 +1020,7 @@ function addStandardsForSoccer()
 ?>
 <hr>
 <?php
-	$output=JText::sprintf(	'JoomLeague v%1$s - Update filedate/time: %2$s / %3$s %4$s',
+	$output=Text::sprintf(	'JoomLeague v%1$s - Update filedate/time: %2$s / %3$s %4$s',
 								$version,$updateFileDate,$updateFileTime,'<br />'.$updateDescription.'<br />');
 	JLToolBarHelper::title($output);
 

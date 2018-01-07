@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -56,7 +57,7 @@ class JoomleagueViewProjects extends JLGView
 		$lists['state'] = JoomleagueHelper::stateOptions($this->state->get('filter.state'));
 
 		// build the html select list for leagues
-		$leagues[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_LEAGUES_FILTER'),'id','name');
+		$leagues[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_LEAGUES_FILTER'),'id','name');
 		$mdlLeagues = BaseDatabaseModel::getInstance('Leagues','JoomleagueModel');
 		$allLeagues = $mdlLeagues->getLeagues();
 		$leagues = array_merge($leagues,$allLeagues);
@@ -65,7 +66,7 @@ class JoomleagueViewProjects extends JLGView
 		unset($leagues);
 
 		// build the html select list for sportstypes
-		$sportstypes[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_SPORTSTYPE_FILTER'),'id','name');
+		$sportstypes[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_SPORTSTYPE_FILTER'),'id','name');
 		$mdlSportsTypes = BaseDatabaseModel::getInstance('SportsTypes','JoomleagueModel');
 		$allSportstypes = $mdlSportsTypes->getSportsTypes();
 		$sportstypes = array_merge($sportstypes,$allSportstypes);
@@ -74,7 +75,7 @@ class JoomleagueViewProjects extends JLGView
 		unset($sportstypes);
 
 		// build the html select list for seasons
-		$seasons[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_SEASON_FILTER'),'id','name');
+		$seasons[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_SEASON_FILTER'),'id','name');
 		if($res = $this->get('Seasons'))
 		{
 			$seasons = array_merge($seasons,$res);
@@ -99,7 +100,7 @@ class JoomleagueViewProjects extends JLGView
 	protected function addToolbar()
 	{
 		// Set toolbar items for the page
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_TITLE'),'jl-ProjectSettings');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_TITLE'),'jl-ProjectSettings');
 		JLToolBarHelper::addNew('project.add');
 		JLToolBarHelper::custom('projects.copy','copy.png','copy_f2.png','COM_JOOMLEAGUE_GLOBAL_COPY',false);
 		JLToolBarHelper::divider();
@@ -167,26 +168,26 @@ class JoomleagueViewProjects extends JLGView
 		if ($this->getLayout() == 'default')
 		{
 			return array(
-				'ordering'       => JText::_('JGRID_HEADING_ORDERING'),
-				'a.published'    => JText::_('JSTATUS'),
-				//'a.title'        => JText::_('JGLOBAL_TITLE'),
-				//'position'       => JText::_('COM_MODULES_HEADING_POSITION'),
-				//'name'           => JText::_('COM_MODULES_HEADING_MODULE'),
-				//'pages'          => JText::_('COM_MODULES_HEADING_PAGES'),
-				//'a.access'       => JText::_('JGRID_HEADING_ACCESS'),
-				//'language_title' => JText::_('JGRID_HEADING_LANGUAGE'),
-				'a.id'           => JText::_('JGRID_HEADING_ID')
+				'ordering'       => Text::_('JGRID_HEADING_ORDERING'),
+				'a.published'    => Text::_('JSTATUS'),
+				//'a.title'        => Text::_('JGLOBAL_TITLE'),
+				//'position'       => Text::_('COM_MODULES_HEADING_POSITION'),
+				//'name'           => Text::_('COM_MODULES_HEADING_MODULE'),
+				//'pages'          => Text::_('COM_MODULES_HEADING_PAGES'),
+				//'a.access'       => Text::_('JGRID_HEADING_ACCESS'),
+				//'language_title' => Text::_('JGRID_HEADING_LANGUAGE'),
+				'a.id'           => Text::_('JGRID_HEADING_ID')
 			);
 		}
 
 		return array(
-			//'a.title'        => JText::_('JGLOBAL_TITLE'),
-			//'position'       => JText::_('COM_MODULES_HEADING_POSITION'),
-			//'name'           => JText::_('COM_MODULES_HEADING_MODULE'),
-			//'pages'          => JText::_('COM_MODULES_HEADING_PAGES'),
-			//'a.access'       => JText::_('JGRID_HEADING_ACCESS'),
-			//'language_title' => JText::_('JGRID_HEADING_LANGUAGE'),
-			'a.id'           => JText::_('JGRID_HEADING_ID')
+			//'a.title'        => Text::_('JGLOBAL_TITLE'),
+			//'position'       => Text::_('COM_MODULES_HEADING_POSITION'),
+			//'name'           => Text::_('COM_MODULES_HEADING_MODULE'),
+			//'pages'          => Text::_('COM_MODULES_HEADING_PAGES'),
+			//'a.access'       => Text::_('JGRID_HEADING_ACCESS'),
+			//'language_title' => Text::_('JGRID_HEADING_LANGUAGE'),
+			'a.id'           => Text::_('JGRID_HEADING_ID')
 		);
 	}
 

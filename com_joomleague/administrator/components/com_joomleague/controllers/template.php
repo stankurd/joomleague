@@ -12,6 +12,7 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
 
@@ -89,11 +90,11 @@ class JoomleagueControllerTemplate extends JoomleagueController
 		$index=0;
 		if ($model->store($post))
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_SAVED_TEMPLATE');
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_SAVED_TEMPLATE');
 		}
 		else
 		{
-			$msg=JText::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_SAVE_TEMPLATE',$index).' '.$model->getError();
+			$msg=Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_SAVE_TEMPLATE',$index).' '.$model->getError();
 		}
 		// Check the table in so it can be edited.... we are done with it anyway
 		$model->checkin();
@@ -123,11 +124,11 @@ class JoomleagueControllerTemplate extends JoomleagueController
 			$model=$this->getModel('template');
 			if ($model->store($post))
 			{
-				$msg=JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_SAVED_TEMPLATE');
+				$msg=Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_SAVED_TEMPLATE');
 			}
 			else
 			{
-				$msg=JText::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_SAVE_TEMPLATE',$index).' '.$model->getError();
+				$msg=Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_SAVE_TEMPLATE',$index).' '.$model->getError();
 			}
 			// Check the table in so it can be edited.... we are done with it anyway
 			$model->checkin();
@@ -158,11 +159,11 @@ class JoomleagueControllerTemplate extends JoomleagueController
 				}
 				if ($model->store($post))
 				{
-					$msg=JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_REBUILD_TEMPLATES');
+					$msg=Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_REBUILD_TEMPLATES');
 				}
 				else
 				{
-					$msg=JText::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_REBUILD_TEMPLATE',$index).' '.$model->getError();
+					$msg=Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_REBUILD_TEMPLATE',$index).' '.$model->getError();
 					break;
 				}
 				// Check the table in so it can be edited.... we are done with it anyway
@@ -189,13 +190,13 @@ class JoomleagueControllerTemplate extends JoomleagueController
 		$isMaster=$input->post->get('isMaster',array(),'array');
 		ArrayHelper::toInteger($isMaster);
 		if (count($cid) < 1){
-		    throw new Exception(JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'), 500);
+		    throw new Exception(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'), 500);
 		}
 		foreach ($cid AS $id)
 		{
 			if ($isMaster[$id])
 			{
-				echo "<script> alert('" . JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_DELETE_WARNING') . "'); window.history.go(-1); </script>\n";
+				echo "<script> alert('" . Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_DELETE_WARNING') . "'); window.history.go(-1); </script>\n";
 				return;
 			}
 		}
@@ -204,7 +205,7 @@ class JoomleagueControllerTemplate extends JoomleagueController
 		{
 			echo "<script> alert('".$model->getError(true)."'); window.history.go(-1); </script>\n";
 		}
-		$msg = JText::_("COM_JOOMLEAGUE_ADMIN_TEMPLATES_RESET_SUCCESS");
+		$msg = Text::_("COM_JOOMLEAGUE_ADMIN_TEMPLATES_RESET_SUCCESS");
 		$this->setRedirect('index.php?option='.$this->option.'&view='.$this->view_list.'&task=template.display', $msg);
 	}
 
@@ -225,11 +226,11 @@ class JoomleagueControllerTemplate extends JoomleagueController
 		$model=$this->getModel('template');
 		if ($model->import($templateid,$projectid))
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_IMPORTED_TEMPLATE');
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_IMPORTED_TEMPLATE');
 		}
 		else
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_IMPORT_TEMPLATE').$model->getError();
+			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_IMPORT_TEMPLATE').$model->getError();
 		}
 		$this->setRedirect('index.php?option='.$this->option.'&view='.$this->view_list.'&task=template.display',$msg);
 	}

@@ -11,6 +11,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -51,7 +52,7 @@ class JoomleagueViewTeamStaff extends JLGView
 		// build the html select list for positions
 		$selectedvalue = $this->item->project_position_id;
 		$projectpositions = array();
-		$projectpositions[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_FUNCTION'));
+		$projectpositions[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_FUNCTION'));
 		if($res = $model->getProjectPositions())
 		{
 			$projectpositions = array_merge($projectpositions,$res);
@@ -68,8 +69,8 @@ class JoomleagueViewTeamStaff extends JLGView
 		
 		// suspension details
 		$myoptions = array();
-		$myoptions[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_NO'));
-		$myoptions[] = HTMLHelper::_('select.option','1',JText::_('COM_JOOMLEAGUE_GLOBAL_YES'));
+		$myoptions[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_NO'));
+		$myoptions[] = HTMLHelper::_('select.option','1',Text::_('COM_JOOMLEAGUE_GLOBAL_YES'));
 		$lists['suspension'] = HTMLHelper::_('select.radiolist',$myoptions,'suspension','size="1"','value','text',$this->item->suspension);
 		unset($myoptions);
 
@@ -78,8 +79,8 @@ class JoomleagueViewTeamStaff extends JLGView
 
 		// away details
 		$myoptions = array();
-		$myoptions[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_NO'));
-		$myoptions[] = HTMLHelper::_('select.option','1',JText::_('COM_JOOMLEAGUE_GLOBAL_YES'));
+		$myoptions[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_NO'));
+		$myoptions[] = HTMLHelper::_('select.option','1',Text::_('COM_JOOMLEAGUE_GLOBAL_YES'));
 		$lists['away'] = HTMLHelper::_('select.radiolist',$myoptions,'away','size="1"','value','text',$this->item->away);
 		unset($myoptions);
 
@@ -115,7 +116,7 @@ class JoomleagueViewTeamStaff extends JLGView
 		$params = ComponentHelper::getParams('com_joomleague');
 		$name = JoomleagueHelper::formatName(null,$this->item->firstname,$this->item->nickname,$this->item->lastname,
 				JoomleagueHelper::defaultNameFormat());
-		$text = $isNew ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_TITLE') . ': ' . $name;
+		$text = $isNew ? Text::_('COM_JOOMLEAGUE_GLOBAL_NEW') : Text::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_TITLE') . ': ' . $name;
 		JLToolbarHelper::title($text);
 
 		if($isNew)

@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 /**
  * Joomleague
@@ -15,7 +16,7 @@ HTMLHelper::_('behavior.tooltip');
 switch ($this->selectType)
 {
 	case '10':	{		// New Club Selection
-		$tableTitle = JText::_('Select Club to assign');
+		$tableTitle = Text::_('Select Club to assign');
 		echo '<script><!--'."\n";
 		echo 'var clubs=new Array;';
 		foreach ($this->clubs as $club)
@@ -30,7 +31,7 @@ switch ($this->selectType)
 	}
 	break;
 	case '9':	{		// Club & Team Selection
-		$tableTitle = JText::_('Select Club&Team to assign');
+		$tableTitle = Text::_('Select Club&Team to assign');
 		echo '<script><!--'."\n";
 		echo 'var clubsteams=new Array;';
 		foreach ($this->clubsteams as $clubteam)
@@ -48,7 +49,7 @@ switch ($this->selectType)
 	}
 	break;
 	case '8':	{
-		$tableTitle = JText::_('Select statistic to assign');
+		$tableTitle = Text::_('Select statistic to assign');
 		echo '<script><!--'."\n";
 		echo 'var statistics=new Array;';
 		foreach ($this->statistics as $statistic)
@@ -62,7 +63,7 @@ switch ($this->selectType)
 	}
 	break;
 	case '7':	{
-		$tableTitle = JText::_('Select parentposition to assign');
+		$tableTitle = Text::_('Select parentposition to assign');
 		echo '<script><!--'."\n";
 		echo 'var parentpositions=new Array;';
 		foreach ($this->parentpositions as $parentposition)
@@ -76,7 +77,7 @@ switch ($this->selectType)
 	}
 	break;
 	case '6':	{
-		$tableTitle = JText::_('Select position to assign');
+		$tableTitle = Text::_('Select position to assign');
 		echo '<script><!--'."\n";
 		echo 'var positions=new Array;';
 		foreach ($this->positions as $position)
@@ -90,7 +91,7 @@ switch ($this->selectType)
 	}
 	break;
 	case '5':	{
-		$tableTitle = JText::_('Select event to assign');
+		$tableTitle = Text::_('Select event to assign');
 		echo '<script><!--'."\n";
 		echo 'var events=new Array;';
 		foreach ($this->events as $event)
@@ -104,7 +105,7 @@ switch ($this->selectType)
 	}
 	break;
 	case '4':	{
-		$tableTitle = JText::_('Select playground to assign');
+		$tableTitle = Text::_('Select playground to assign');
 		echo '<script><!--'."\n";
 		echo 'var playgrounds=new Array;';
 		foreach ($this->playgrounds as $playground)
@@ -119,7 +120,7 @@ switch ($this->selectType)
 	}
 	break;
 	case '3':	{
-		$tableTitle = JText::_('Select person to assign');
+		$tableTitle = Text::_('Select person to assign');
 		echo '<script><!--'."\n";
 		echo 'var persons=new Array;';
 		foreach ($this->persons as $person)
@@ -136,7 +137,7 @@ switch ($this->selectType)
 	}
 	break;
 	case '2':	{
-		$tableTitle = JText::_('Select club to assign');
+		$tableTitle = Text::_('Select club to assign');
 		echo '<script><!--'."\n";
 		echo 'var clubs=new Array;';
 		foreach ($this->clubs as $club)
@@ -148,7 +149,7 @@ switch ($this->selectType)
 	break;
 	case '1':
 	default:	{
-		$tableTitle = JText::_('Select team to assign');
+		$tableTitle = Text::_('Select team to assign');
 		echo '<script><!--'."\n";
 		echo 'var teams = new Array;';
 		foreach ($this->teams as $team)

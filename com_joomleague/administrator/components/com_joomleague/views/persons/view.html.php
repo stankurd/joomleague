@@ -11,6 +11,7 @@ use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -40,7 +41,7 @@ class JoomleagueViewPersons extends JLGView
 
 		// build the html select list for positions
 		$positionsList = array();
-		$positionsList[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_POSITION'));
+		$positionsList[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_POSITION'));
 		$positions = BaseDatabaseModel::getInstance('person','joomleaguemodel')->getPositions();
 		if($positions)
 		{
@@ -51,7 +52,7 @@ class JoomleagueViewPersons extends JLGView
 
 		// build the html options for nation
 		$nations = array();
-		$nations[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_NATION'));
+		$nations[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_NATION'));
 		if($res = Countries::getCountryOptions())
 		{
 			$nations = array_merge($nations,$res);
@@ -120,7 +121,7 @@ class JoomleagueViewPersons extends JLGView
 	protected function addToolbar()
 	{
 		// Set toolbar items for the page
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_TITLE'),'user');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PERSONS_TITLE'),'user');
 		JLToolBarHelper::addNew('person.add');
 		JLToolBarHelper::publishList('persons.publish');
 		JLToolBarHelper::unpublishList('persons.unpublish');

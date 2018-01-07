@@ -8,6 +8,7 @@
  * @author 		comraden + other JL Team members
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 defined('_JEXEC') or die;
@@ -42,7 +43,7 @@ class JoomleagueModelTreeto extends JLGModelItem
 			}
 			catch (Exception $e)
 			{
-				$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 			return parent::delete($pks);
@@ -259,7 +260,7 @@ class JoomleagueModelTreeto extends JLGModelItem
 			$query .= ' WHERE tt.id = ' . $treeto_id;
 			$query .= ';';
 			$db->setQuery($query);
-			$db->query($query);
+			$db->execute($query);
 			// nodes to treeto_node
 			for($nod = 1;$nod <= ((pow(2,$tree_i + 1)) - 1);$nod ++)
 			{
@@ -297,7 +298,7 @@ class JoomleagueModelTreeto extends JLGModelItem
 				$query .= ' ,bestof = ' . $global_bestof;
 				$query .= ';';
 				$db->setQuery($query);
-				$db->query($query);
+				$db->execute($query);
 			}
 			return true;
 		}

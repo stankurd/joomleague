@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -26,14 +27,14 @@ class JFormFieldPageTitleFormat extends FormField
 		||	$lang->load($extension, $source, $lang->getDefault(), false, false);
 		
 		$mitems = array();
-		$mitems[] = HTMLHelper::_('select.option', 0, JText::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_PROJECT'));
-		$mitems[] = HTMLHelper::_('select.option', 1, JText::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_PROJECT_LEAGUE'));
-		$mitems[] = HTMLHelper::_('select.option', 2, JText::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_PROJECT_LEAGUE_SEASON'));
-		$mitems[] = HTMLHelper::_('select.option', 3, JText::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_PROJECT_SEASON'));
-		$mitems[] = HTMLHelper::_('select.option', 4, JText::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_LEAGUE'));
-		$mitems[] = HTMLHelper::_('select.option', 5, JText::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_LEAGUE_SEASON'));
-		$mitems[] = HTMLHelper::_('select.option', 6, JText::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_SEASON'));
-		$mitems[] = HTMLHelper::_('select.option', 7, JText::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_NONE'));
+		$mitems[] = HTMLHelper::_('select.option', 0, Text::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_PROJECT'));
+		$mitems[] = HTMLHelper::_('select.option', 1, Text::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_PROJECT_LEAGUE'));
+		$mitems[] = HTMLHelper::_('select.option', 2, Text::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_PROJECT_LEAGUE_SEASON'));
+		$mitems[] = HTMLHelper::_('select.option', 3, Text::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_PROJECT_SEASON'));
+		$mitems[] = HTMLHelper::_('select.option', 4, Text::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_LEAGUE'));
+		$mitems[] = HTMLHelper::_('select.option', 5, Text::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_LEAGUE_SEASON'));
+		$mitems[] = HTMLHelper::_('select.option', 6, Text::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_SEASON'));
+		$mitems[] = HTMLHelper::_('select.option', 7, Text::_('COM_JOOMLEAGUE_FES_PARAM_PAGE_TITLE_NONE'));
 		
 		$output= HTMLHelper::_('select.genericlist',  $mitems,
 							$this->name,

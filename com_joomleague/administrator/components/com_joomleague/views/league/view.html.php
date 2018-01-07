@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -58,7 +59,7 @@ class JoomleagueViewLeague extends JLGView
 		// Set toolbar items for the page
 		if($isNew)
 		{
-			JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_LEAGUE_ADD_NEW'),'jl-leagues');
+			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_LEAGUE_ADD_NEW'),'jl-leagues');
 			JLToolBarHelper::apply('league.apply');
 			JLToolBarHelper::save('league.save');
 			JLToolBarHelper::divider();
@@ -66,7 +67,7 @@ class JoomleagueViewLeague extends JLGView
 		}
 		else
 		{
-			JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_LEAGUE_EDIT') . ': ' . $this->form->getValue('name'),'jl-leagues');
+			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_LEAGUE_EDIT') . ': ' . $this->form->getValue('name'),'jl-leagues');
 			JLToolBarHelper::apply('league.apply');
 			JLToolBarHelper::save('league.save');
 			JLToolBarHelper::divider();

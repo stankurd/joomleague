@@ -89,7 +89,7 @@
 	</fieldset>
 	<fieldset name="description">
 		<field name="notes" type="editor" label="COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_DESCR"
-			description="COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_DESCR_DESC" width="450"
+			description="COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_DESCR_DESC" width="600"
 			filter="safehtml" />
 	</fieldset>
 	<fieldset name="Permissions" label="JCONFIG_PERMISSIONS_LABEL"

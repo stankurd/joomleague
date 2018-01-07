@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 /**
  * Joomleague
@@ -10,7 +11,7 @@ use Joomla\CMS\HTML\HTMLHelper;
  */
 defined('_JEXEC') or die;
 HTMLHelper::_('jquery.framework');
-HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 ?>
 <script>
 	function Joomla.submitbutton(pressbutton)
@@ -38,14 +39,14 @@ jQuery(document).ready(function($) {
 	<fieldset class="form-horizontal">
 		<legend>
 				<?php
-				echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN_TITLE','<i>' . $this->project->name . '</i>');
+				echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN_TITLE','<i>' . $this->project->name . '</i>');
 				?>
 			</legend>
 		<div class="row">
 			<div class="col-md-3">
 				<b>
 							<?php
-							echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN_AVAIL_TEAMS');
+							echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN_AVAIL_TEAMS');
 							?>
 						</b><br />
 						<?php
@@ -72,7 +73,7 @@ jQuery(document).ready(function($) {
 			<div class="col-md-3">
 				<b>
 							<?php
-							echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN_PROJ_TEAMS');
+							echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN_PROJ_TEAMS');
 							?>
 						</b><br />
 						<?php

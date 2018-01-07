@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
@@ -28,20 +29,20 @@ $isNew = $this->isNew;
 	<?php
 	$p = 1;
 	echo HTMLHelper::_('bootstrap.startTabSet','tabs',array('active' => 'panel1'));
-	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_DETAILS',true));
+	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,Text::_('COM_JOOMLEAGUE_TABS_DETAILS',true));
 	echo $this->loadTemplate('details');
 	echo HTMLHelper::_('bootstrap.endTab');
 
-	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_PICTURE',true));
+	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,Text::_('COM_JOOMLEAGUE_TABS_PICTURE',true));
 	echo $this->loadTemplate('picture');
 	echo HTMLHelper::_('bootstrap.endTab');
 
 	if (!$isNew) {
-		echo HTMLHelper::_('bootstrap.addTab','tabs','panel3',JText::_('COM_JOOMLEAGUE_TABS_PARAMETERS',true));
+		echo HTMLHelper::_('bootstrap.addTab','tabs','panel3',Text::_('COM_JOOMLEAGUE_TABS_PARAMETERS',true));
 		echo $this->loadTemplate('param');
 		echo HTMLHelper::_('bootstrap.endTab');
 
-		echo HTMLHelper::_('bootstrap.addTab','tabs','panel4',JText::_('COM_JOOMLEAGUE_TABS_GENERAL_PARAMETERS',true));
+		echo HTMLHelper::_('bootstrap.addTab','tabs','panel4',Text::_('COM_JOOMLEAGUE_TABS_GENERAL_PARAMETERS',true));
 		echo $this->loadTemplate('gparam');
 		echo HTMLHelper::_('bootstrap.endTab');
 	}

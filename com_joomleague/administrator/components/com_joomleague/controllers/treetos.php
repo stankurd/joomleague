@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Table\Table;
@@ -129,11 +130,11 @@ class JoomleagueControllerTreetos extends JLGControllerAdmin
 		$model = $this->getModel('treetos');
 		if($model->storeshort($cid,$post))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_SAVED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_SAVED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_ERROR_SAVED') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_ERROR_SAVED') . $model->getError();
 		}
 		
 		$link = 'index.php?option=com_joomleague&view=treetos';
@@ -160,7 +161,7 @@ class JoomleagueControllerTreetos extends JLGControllerAdmin
 	public function save()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 		
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -173,11 +174,11 @@ class JoomleagueControllerTreetos extends JLGControllerAdmin
 		$table = Table::getInstance('Treeto','Table');
 		if($table->save($data))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_SAVED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_SAVED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_ERROR_SAVED') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_ERROR_SAVED') . $model->getError();
 		}
 		// Check the table in so it can be edited.... we are done with it anyway
 		// $model->checkin();
@@ -201,7 +202,7 @@ class JoomleagueControllerTreetos extends JLGControllerAdmin
 	public function remove()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 		
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -210,7 +211,7 @@ class JoomleagueControllerTreetos extends JLGControllerAdmin
 		
 		if(count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'error');
 		}
 		$model = $this->getModel('treeto');
 		

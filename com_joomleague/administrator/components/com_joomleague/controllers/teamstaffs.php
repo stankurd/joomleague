@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
@@ -101,11 +102,11 @@ class JoomleagueControllerTeamStaffs extends JLGControllerAdmin
 		$model->storeshort($cid,$post);
 		if($model->storeshort($cid,$post))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_UPDATED');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_UPDATED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_ERROR_UPDATED') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_ERROR_UPDATED') . $model->getError();
 		}
 		$link = 'index.php?option=com_joomleague&view=teamstaffs';
 		$this->setRedirect($link,$msg);
@@ -118,7 +119,7 @@ class JoomleagueControllerTeamStaffs extends JLGControllerAdmin
 	public function remove()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -130,7 +131,7 @@ class JoomleagueControllerTeamStaffs extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
 		} else {
 			// Access checks.
 			foreach($cid as $i=>$id)
@@ -140,7 +141,7 @@ class JoomleagueControllerTeamStaffs extends JLGControllerAdmin
 				{
 					// Prune items that you can't delete.
 					unset($cid[$i]);
-					JError::raiseNotice(403,JText::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
+					JError::raiseNotice(403,Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
 				}
 			}
 			$model = $this->getModel('team');
@@ -179,7 +180,7 @@ class JoomleagueControllerTeamStaffs extends JLGControllerAdmin
 	 */
 	public function assign()
 	{
-		$this->setMessage(JText::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_ASSIGN'));
+		$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_ASSIGN'));
 		$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs&layout=assignplayers');
 	}
 
@@ -197,13 +198,13 @@ class JoomleagueControllerTeamStaffs extends JLGControllerAdmin
 		$nDeleted = $model->remove($cid);
 		if($nDeleted != count($cid))
 		{
-			$msg = JText::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_UNASSIGN',$nDeleted);
+			$msg = Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_UNASSIGN',$nDeleted);
 			$msg .= '<br/>' . $model->getError();
 			$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs',$msg,'error');
 		}
 		else
 		{
-			$msg = JText::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_UNASSIGN',$nDeleted);
+			$msg = Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_UNASSIGN',$nDeleted);
 			$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs',$msg);
 		}
 	}
@@ -228,11 +229,11 @@ class JoomleagueControllerTeamStaffs extends JLGControllerAdmin
 
 		if($model->storeassigned($cid,$project_team_id))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_PERSON_ASSIGNED_AS_STAFF');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_PERSON_ASSIGNED_AS_STAFF');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_ERROR_PERSON_ASSIGNED_AS_STAFF') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_ERROR_PERSON_ASSIGNED_AS_STAFF') . $model->getError();
 		}
 
 		$link = 'index.php?option=com_joomleague&view=teamstaffs';

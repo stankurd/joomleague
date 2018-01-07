@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 jimport('cms.html.bootstrap');
 defined('_JEXEC') or die;
@@ -32,12 +33,12 @@ $option = Factory::getApplication()->input->get('option');
 		$fieldSets = $this->form->getFieldsets();
         foreach ($fieldSets as $name => $fieldSet) :
             $label = $fieldSet->name;
-			echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$i++, JText::_($label));
+			echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$i++, Text::_($label));
 			?>
 			<fieldset class="form-vertical">
 				<?php
 				if (isset($fieldSet->description) && !empty($fieldSet->description)) :
-					echo '<fieldset class="form-horizontal">'.JText::_($fieldSet->description).'</fieldset>';
+					echo '<fieldset class="form-horizontal">'.Text::_($fieldSet->description).'</fieldset>';
 				endif;
 				?>
 				

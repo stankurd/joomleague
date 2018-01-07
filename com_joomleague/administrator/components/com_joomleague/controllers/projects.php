@@ -11,6 +11,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 /**
@@ -60,9 +61,9 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 	public function copy()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_PROJECT_COPY_TITLE'),'generic.png');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_PROJECT_COPY_TITLE'),'generic.png');
 		JLToolBarHelper::back('COM_JOOMLEAGUE_PROJECT_BACK','index.php?option=com_joomleague&view=projects');
 
 		$app = Factory::getApplication();
@@ -73,7 +74,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_COPY'));
+			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_COPY'));
 			$this->setRedirect('index.php?option=com_joomleague&view=projects');
 			return;
 		} else {
@@ -92,9 +93,9 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 	public function remove()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_PROJECT_DELETE_TITLE'),'generic.png');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_PROJECT_DELETE_TITLE'),'generic.png');
 		JLToolBarHelper::back('COM_JOOMLEAGUE_PROJECT_BACK','index.php?option=com_joomleague&view=projects');
 
 		$app = Factory::getApplication();
@@ -106,7 +107,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
 			$this->setRedirect(Route::_('index.php?option=com_joomleague&view=' . $this->view_list,false));
 			return;
 		}
@@ -120,7 +121,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 				{
 					// Prune items that you can't delete.
 					unset($cid[$i]);
-					JError::raiseNotice(403,JText::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
+					JError::raiseNotice(403,Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
 				}
 			}
 			if ($cid) {
@@ -142,7 +143,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 	public function save()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$jinput = $app->input;
@@ -198,13 +199,13 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 		{
 			$mdlLeague = $this->getModel('league');
 			$post['league_id'] = $mdlLeague->addLeague($post['leagueNew']);
-			$msg .= JText::_('COM_JOOMLEAGUE_LEAGUE_CREATED') . ',';
+			$msg .= Text::_('COM_JOOMLEAGUE_LEAGUE_CREATED') . ',';
 		}
 		if(isset($post['seasonNew']))
 		{
 			$mdlSeason = $this->getModel('season');
 			$post['season_id'] = $mdlSeason->addSeason($post['seasonNew']);
-			$msg .= JText::_('COM_JOOMLEAGUE_SEASON_CREATED') . ',';
+			$msg .= Text::_('COM_JOOMLEAGUE_SEASON_CREATED') . ',';
 		}
 
 		$model = $this->getModel('project');
@@ -255,11 +256,11 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 			$templatesModel = JLGModel::getInstance('Templates','JoomleagueModel');
 			$templatesModel->setProjectId($post['id']);
 			$templatesModel->checklist();
-			$msg .= JText::_('COM_JOOMLEAGUE_PROJECT_SAVED');
+			$msg .= Text::_('COM_JOOMLEAGUE_PROJECT_SAVED');
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ERROR_SAVING_PROJECT') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ERROR_SAVING_PROJECT') . $model->getError();
 		}
 
 		// Check the table in so it can be edited.... we are done with it anyway
@@ -294,7 +295,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 	public function export()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$jinput = $app->input;
@@ -303,7 +304,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 		ArrayHelper::toInteger($cid);
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));
 		}
 		$model = $this->getModel('project');
 		$model->export($cid,'project','Project');
@@ -315,7 +316,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 	 */
 	private function _success()
 	{
-		echo '<span style="color:green">' . JText::_('COM_JOOMLEAGUE_GLOBAL_SUCCESS') . '</span>';
+		echo '<span style="color:green">' . Text::_('COM_JOOMLEAGUE_GLOBAL_SUCCESS') . '</span>';
 	}
 
 
@@ -324,7 +325,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 	 */
 	private function _error()
 	{
-		echo '<span style="color:red">' . JText::_('COM_JOOMLEAGUE_GLOBAL_ERROR') . '</span>';
+		echo '<span style="color:red">' . Text::_('COM_JOOMLEAGUE_GLOBAL_ERROR') . '</span>';
 	}
 
 
@@ -342,7 +343,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			$app->enqueueMessage(JText::_('Please select a project'),'warning');
+			$app->enqueueMessage(Text::_('Please select a project'),'warning');
 			$this->setRedirect('index.php?option=com_joomleague&view=projects');
 			return;
 		}
@@ -360,7 +361,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 			}
 			else
 			{
-				$msg[] = Jtext::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTS_SUCCESSULLY_CONVERTED_PROJECT_D',$project_id);
+				$msg[] = Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTS_SUCCESSULLY_CONVERTED_PROJECT_D',$project_id);
 			}
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=projects',implode($msg,"<br/>"),$type);

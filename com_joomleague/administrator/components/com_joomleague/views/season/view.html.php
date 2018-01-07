@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -48,11 +49,11 @@ class JoomleagueViewSeason extends JLGView
 		$checkedOut = ! ($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 
 		// Set toolbar items for the page
-		$text = $isNew ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
+		$text = $isNew ? Text::_('COM_JOOMLEAGUE_GLOBAL_NEW') : Text::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
 
 		if($isNew)
 		{
-			JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_SEASON_ADD_NEW'),'jl-seasons');
+			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_SEASON_ADD_NEW'),'jl-seasons');
 			//JLToolBarHelper::apply('season.apply');
 			//JLToolBarHelper::save('season.save');
 			JLToolbarHelper::saveGroup(
@@ -67,7 +68,7 @@ class JoomleagueViewSeason extends JLGView
 		}
 		else
 		{
-			JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_SEASON_EDIT').': '.$this->form->getValue('name'),'jl-seasons');
+			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_SEASON_EDIT').': '.$this->form->getValue('name'),'jl-seasons');
 			//JLToolBarHelper::apply('season.apply');
 			//JLToolBarHelper::save('season.save');
 			JLToolbarHelper::saveGroup(

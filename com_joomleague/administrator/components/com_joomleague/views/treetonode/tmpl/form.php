@@ -7,18 +7,19 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
 HTMLHelper::_('behavior.tooltip');
 jimport('joomla.html.pane');
 
-JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_TITLE'));
+JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_TITLE'));
 
 JLToolBarHelper::apply('treetonode.apply');
 JLToolBarHelper::save('treetonode.save');
 JLToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetonodes');
-JLToolBarHelper::custom('treetonode.unpublishnode','delete.png','delete_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_UNPUBLISH'),false);
+JLToolBarHelper::custom('treetonode.unpublishnode','delete.png','delete_f2.png',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_UNPUBLISH'),false);
 
 JLToolBarHelper::help('screen.joomleague',true);
 ?>
@@ -43,7 +44,7 @@ $p = 1;
 echo HTMLHelper::_('bootstrap.startTabSet','tabs',array(
 		'active' => 'panel1'
 ));
-echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_DETAILS',true));
+echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,Text::_('COM_JOOMLEAGUE_TABS_DETAILS',true));
 echo $this->loadTemplate('description');
 echo HTMLHelper::_('bootstrap.endTab');
 echo HTMLHelper::_('bootstrap.endTabSet');

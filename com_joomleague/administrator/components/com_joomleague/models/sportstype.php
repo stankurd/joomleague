@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 defined('_JEXEC') or die;
@@ -76,7 +77,7 @@ class JoomleagueModelSportsType extends JLGModelItem
 				$db->setQuery($query);
 				if ($db->loadResult() == $total)
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_SPORTTYPE_MODEL_ERROR_LAST_SPORTSTYPE');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_SPORTTYPE_MODEL_ERROR_LAST_SPORTSTYPE');
 				}
 				
 				// Check if there are still eventtypes for this sportstype
@@ -87,7 +88,7 @@ class JoomleagueModelSportsType extends JLGModelItem
 				$db->setQuery($query);
 				if ($db->loadResult())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_SPORTTYPE_MODEL_ERROR_EVENT_EXISTS');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_SPORTTYPE_MODEL_ERROR_EVENT_EXISTS');
 				}
 				
 				// Check if there are still positions for this sportstype
@@ -98,7 +99,7 @@ class JoomleagueModelSportsType extends JLGModelItem
 				$db->setQuery($query);
 				if ($db->loadResult())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_SPORTTYPE_MODEL_ERROR_POSITION_EXISTS');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_SPORTTYPE_MODEL_ERROR_POSITION_EXISTS');
 				}
 				
 				// Check if there are still projects for this sportstype
@@ -109,7 +110,7 @@ class JoomleagueModelSportsType extends JLGModelItem
 				$db->setQuery($query);
 				if ($db->loadResult())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_SPORTTYPE_MODEL_ERROR_PROJECT_EXISTS');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_SPORTTYPE_MODEL_ERROR_PROJECT_EXISTS');
 				}
 				
 				if($result)

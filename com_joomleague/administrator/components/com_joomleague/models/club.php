@@ -11,6 +11,7 @@
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 /**
@@ -72,7 +73,7 @@ class JoomleagueModelClub extends JLGModelItem
 				$db->setQuery($query);
 				if($db->loadResult())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_CLUB_MODEL_ERROR_TEAM_EXISTS');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_CLUB_MODEL_ERROR_TEAM_EXISTS');
 				}
 
 				$query = $db->getQuery(true);
@@ -82,7 +83,7 @@ class JoomleagueModelClub extends JLGModelItem
 				$db->setQuery($query);
 				if($db->loadResult())
 				{
-					$result[] = JText::_('COM_JOOMLEAGUE_ADMIN_CLUB_MODEL_ERROR_VENUE_EXISTS');
+					$result[] = Text::_('COM_JOOMLEAGUE_ADMIN_CLUB_MODEL_ERROR_VENUE_EXISTS');
 				}
 
 				if($result)

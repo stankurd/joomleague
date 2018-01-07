@@ -19,6 +19,7 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die;
 use Joomla\CMS\Filter\InputFilter;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Log\Log;
 use Joomla\Registry\Registry;
 
@@ -67,12 +68,12 @@ class JLParameter extends Registry
 
 				if ( $name = $xml->document->name )
 				{
-					$this->name = JText::_( $name[0]->_data );
+					$this->name = Text::_( $name[0]->_data );
 				}
 
 				if ( $description = $xml->document->description )
 				{
-					$this->description = JText::_( $description[0]->_data );
+					$this->description = Text::_( $description[0]->_data );
 				}
 			}
 		}
@@ -263,7 +264,7 @@ class JLParameter extends Registry
 		if ($description = $this->_xml[$group]->attributes('description'))
 		{
 			// Add the params description to the display
-			$desc = JText::_($description);
+			$desc = Text::_($description);
 			$html[] = '<p class="paramrow_desc">' . $desc . '</p>';
 		}
 
@@ -282,7 +283,7 @@ class JLParameter extends Registry
 
 		if (count($params) < 1)
 		{
-			$html[] = "<p class=\"noparams\">" . JText::_('JLIB_HTML_NO_PARAMETERS_FOR_THIS_ITEM') . "</p>";
+			$html[] = "<p class=\"noparams\">" . Text::_('JLIB_HTML_NO_PARAMETERS_FOR_THIS_ITEM') . "</p>";
 		}
 
 		return implode(PHP_EOL, $html);
@@ -414,7 +415,7 @@ class JLParameter extends Registry
 		{
 			$result = array();
 			$result[0] = $node->attributes('name');
-			$result[1] = JText::_('Element not defined for type') . ' = ' . $type;
+			$result[1] = Text::_('Element not defined for type') . ' = ' . $type;
 			$result[5] = $result[0];
 			return $result;
 		}

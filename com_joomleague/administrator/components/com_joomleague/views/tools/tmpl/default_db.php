@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
@@ -24,12 +25,12 @@ HTMLHelper::_('behavior.tooltip');
 				<tr>
 					<th class="title" class="nowrap">
 						<?php
-						echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_TOOL' );
+						echo Text::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_TOOL' );
 						?>
 					</th>
 					<th class="title" class="nowrap">
 						<?php
-						echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_DESCR' );
+						echo Text::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_DESCR' );
 						?>
 					</th>
 				</tr>
@@ -49,15 +50,15 @@ HTMLHelper::_('behavior.tooltip');
 						<?php
 						$link = Route::_( 'index.php?option=com_joomleague&task=tools.optimize' );
 						?>
-						<a href="<?php echo $link; ?>" title="<?php echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_OPTIMIZE2' ); ?>">
+						<a href="<?php echo $link; ?>" title="<?php echo Text::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_OPTIMIZE2' ); ?>">
 							<?php
-							echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_OPTIMIZE' );
+							echo Text::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_OPTIMIZE' );
 							?>
 						</a>
 					</td>
 					<td>
 						<?php
-						echo JText::_( "COM_JOOMLEAGUE_ADMIN_DBTOOLS_OPTIMIZE_DESCR" );
+						echo Text::_( "COM_JOOMLEAGUE_ADMIN_DBTOOLS_OPTIMIZE_DESCR" );
 						?>
 					</td>
 				</tr>
@@ -67,15 +68,15 @@ HTMLHelper::_('behavior.tooltip');
 						<?php
 						$link = Route::_( 'index.php?option=com_joomleague&task=tools.repair' );
 						?>
-						<a href="<?php echo $link; ?>" title="<?php echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_REPAIR2' ); ?>">
+						<a href="<?php echo $link; ?>" title="<?php echo Text::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_REPAIR2' ); ?>">
 							<?php
-							echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_REPAIR' );
+							echo Text::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_REPAIR' );
 							?>
 						</a>
 					</td>
 					<td>
 						<?php
-						echo JText::_( "COM_JOOMLEAGUE_ADMIN_DBTOOLS_REPAIR_DESCR" );
+						echo Text::_( "COM_JOOMLEAGUE_ADMIN_DBTOOLS_REPAIR_DESCR" );
 						?>
 					</td>
 				</tr>

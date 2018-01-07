@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Session\Session;
 
@@ -46,7 +47,7 @@ class JoomleagueControllerTreeto extends JLGControllerForm
 	public function generatenode()
 	{
 		// Check for token
-		Session::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
+		Session::checkToken() or jexit(Text::_('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN'));
 
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -59,12 +60,12 @@ class JoomleagueControllerTreeto extends JLGControllerForm
 		// trigger model function
 		if($model->setGenerateNode($post))
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_GENERATE_NODE');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_GENERATE_NODE');
 			$link = 'index.php?option=com_joomleague&view=treetonodes&tid[]=' . $post['id'];
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_ERROR_GENERATE_NODE') . $model->getError();
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_ERROR_GENERATE_NODE') . $model->getError();
 			$link = 'index.php?option=com_joomleague&view=treetos';
 		}
 		$this->setRedirect($link,$msg);

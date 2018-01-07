@@ -8,7 +8,7 @@
 			type="text"
 			label="COM_JOOMLEAGUE_GLOBAL_NAME"
 			size="68"
-			maxlength="100"
+			maxlength="150"
 			class="text_area"
 			required="true"/>
 		<field
@@ -16,7 +16,7 @@
 			type="text"
 			label="COM_JOOMLEAGUE_GLOBAL_ALIAS"
 			size="68"
-			maxlength="100"
+			maxlength="150"
 			class="text_area"/>
 		<field name="published" type="list" label="JSTATUS"
 			description="JFIELD_PUBLISHED_DESC" class="inputbox"

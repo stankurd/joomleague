@@ -12,6 +12,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -54,7 +55,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 		}
 
 		// Set toolbar items for the page
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_1_3'),'generic.png');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_1_3'),'generic.png');
 		JLToolBarHelper::help('screen.joomleague',true);
 
 		$uri 	= Uri::getInstance();
@@ -85,7 +86,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 		$tzValue  		= isset($data['project']->timezone) ? $data['project']->timezone: null;
 		$zones = DateTimeZone::listIdentifiers();				
 		$options = array();
-		$options[]	= HTMLHelper::_('select.option', '', '- '.JText::_( 'SELECT_TIMEZONE' ).' -');
+		$options[]	= HTMLHelper::_('select.option', '', '- '.Text::_( 'SELECT_TIMEZONE' ).' -');
 		foreach ($zones as $zone) {
 			if (strpos($zone,"/")===false && strpos($zone,"UTC")===false)  continue;
 			if (strpos($zone,"Etc")===0) continue;
@@ -121,9 +122,9 @@ class JoomleagueViewJLXMLImports extends JLGView
 		$this->lists=$lists;
 		
 		// Set toolbar items for the page
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_2_3'),'generic.png');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_2_3'),'generic.png');
 		//                       task    image  mouseover_img           alt_text_for_image              check_that_standard_list_item_is_checked
-		JLToolBarHelper::custom('jlxmlimport.insert','upload','upload',Jtext::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_START_BUTTON'), false); // --> bij clicken op import wordt de insert view geactiveerd
+		JLToolBarHelper::custom('jlxmlimport.insert','upload','upload',Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_START_BUTTON'), false); // --> bij clicken op import wordt de insert view geactiveerd
 		JLToolBarHelper::back();
 		JLToolBarHelper::help('screen.joomleague',true);
 
@@ -141,7 +142,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 		$post		= $app->input->post->getArray();
 		
 		// Set toolbar items for the page
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_3_3'),'generic.png');
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_3_3'),'generic.png');
 		//JLToolBarHelper::back();
 		JLToolBarHelper::help('screen.joomleague',true);
 
@@ -171,7 +172,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 			case '10':   { // Select new Club
 						$this->clubs=$model->getNewClubListSelect();
 						$clublist=array();
-						$clublist[]=HTMLHelper::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_CLUB'));
+						$clublist[]=HTMLHelper::_('select.option',0,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_CLUB'));
 						$clublist=array_merge($clublist,$this->clubs);
 						$lists['clubs']=HTMLHelper::_(	'select.genericlist',$clublist,'clubID','class="inputbox select-club" onchange="javascript:insertNewClub(\''.$this->recordID.'\')" ','value','text', 0);
 						unset($clubteamlist);
@@ -180,7 +181,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 			case '9':   { // Select Club & Team
 						$this->clubsteams=$model->getClubAndTeamListSelect();
 						$clubteamlist=array();
-						$clubteamlist[]=HTMLHelper::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_CLUB_AND_TEAM'));
+						$clubteamlist[]=HTMLHelper::_('select.option',0,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_CLUB_AND_TEAM'));
 						$clubteamlist=array_merge($clubteamlist,$this->clubsteams);
 						$lists['clubsteams']=HTMLHelper::_(	'select.genericlist',$clubteamlist,'teamID','class="inputbox select-team" onchange="javascript:insertClubAndTeam(\''.$this->recordID.'\')" ','value','text', 0);
 						unset($clubteamlist);
@@ -189,7 +190,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 			case '8':	{ // Select Statistics
 						$this->statistics=$model->getStatisticListSelect();
 						$statisticlist=array();
-						$statisticlist[]=HTMLHelper::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_STATISTIC'));
+						$statisticlist[]=HTMLHelper::_('select.option',0,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_STATISTIC'));
 						$statisticlist=array_merge($statisticlist,$this->statistics);
 						$lists['statistics']=HTMLHelper::_('select.genericlist',$statisticlist,'statisticID','class="inputbox select-statistic" onchange="javascript:insertStatistic(\''.$this->recordID.'\')" ');
 						unset($statisticlist);
@@ -199,7 +200,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 			case '7':	{ // Select ParentPosition
 						$this->parentpositions=$model->getParentPositionListSelect();
 						$parentpositionlist=array();
-						$parentpositionlist[]=HTMLHelper::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_PARENT_POSITION'));
+						$parentpositionlist[]=HTMLHelper::_('select.option',0,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_PARENT_POSITION'));
 						$parentpositionlist=array_merge($parentpositionlist,$this->parentpositions);
 						$lists['parentpositions']=HTMLHelper::_('select.genericlist',$parentpositionlist,'parentPositionID','class="inputbox select-parentposition" onchange="javascript:insertParentPosition(\''.$this->recordID.'\')" ');
 						unset($parentpositionlist);
@@ -209,7 +210,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 			case '6':	{ // Select Position
 						$this->positions=$model->getPositionListSelect();
 						$positionlist=array();
-						$positionlist[]=HTMLHelper::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_POSITION'));
+						$positionlist[]=HTMLHelper::_('select.option',0,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_POSITION'));
 						$positionlist=array_merge($positionlist,$this->positions);
 						$lists['positions']=HTMLHelper::_('select.genericlist',$positionlist,'positionID','class="inputbox select-position" onchange="javascript:insertPosition(\''.$this->recordID.'\')" ');
 						unset($positionlist);
@@ -219,7 +220,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 			case '5':	{ // Select Event
 						$this->events=$model->getEventListSelect();
 						$eventlist=array();
-						$eventlist[]=HTMLHelper::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_EVENT'));
+						$eventlist[]=HTMLHelper::_('select.option',0,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_EVENT'));
 						$eventlist=array_merge($eventlist,$this->events);
 						$lists['events']=HTMLHelper::_('select.genericlist',$eventlist,'eventID','class="inputbox select-event" onchange="javascript:insertEvent(\''.$this->recordID.'\')" ');
 						unset($eventlist);
@@ -229,7 +230,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 			case '4':	{ // Select Playground
 						$this->playgrounds=$model->getPlaygroundListSelect();
 						$playgroundlist=array();
-						$playgroundlist[]=HTMLHelper::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_PLAYGROUND'));
+						$playgroundlist[]=HTMLHelper::_('select.option',0,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_PLAYGROUND'));
 						$playgroundlist=array_merge($playgroundlist,$this->playgrounds);
 						$lists['playgrounds']=HTMLHelper::_('select.genericlist',$playgroundlist,'playgroundID','class="inputbox select-playground" onchange="javascript:insertPlayground(\''.$this->recordID.'\')" ');
 						unset($playgroundlist);
@@ -239,7 +240,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 			case '3':	{ // Select Person
 						$this->persons=$model->getPersonListSelect();
 						$personlist=array();
-						$personlist[]=HTMLHelper::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_PERSON'));
+						$personlist[]=HTMLHelper::_('select.option',0,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_PERSON'));
 						$personlist=array_merge($personlist,$this->persons);
 						$lists['persons']=HTMLHelper::_('select.genericlist',$personlist,'personID','class="inputbox select-person" onchange="javascript:insertPerson(\''.$this->recordID.'\')" ');
 						unset($personlist);
@@ -249,7 +250,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 			case '2':	{ // Select Club
 						$this->clubs=$model->getClubListSelect();
 						$clublist=array();
-						$clublist[]=HTMLHelper::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_CLUB'));
+						$clublist[]=HTMLHelper::_('select.option',0,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_CLUB'));
 						$clublist=array_merge($clublist,$this->clubs);
 						$lists['clubs']=HTMLHelper::_('select.genericlist',$clublist,'clubID','class="inputbox select-club" onchange="javascript:insertClub(\''.$this->recordID.'\')" ');
 						unset($clublist);
@@ -261,7 +262,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 						$this->teams=$model->getTeamListSelect();
 						$this->clubs=$model->getClubListSelect();
 						$teamlist=array();
-						$teamlist[]=HTMLHelper::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_TEAM'));
+						$teamlist[]=HTMLHelper::_('select.option',0,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_TEAM'));
 						$teamlist=array_merge($teamlist,$this->teams);
 						$lists['teams']=HTMLHelper::_('select.genericlist',$teamlist,'teamID','class="inputbox select-team" onchange="javascript:insertTeam(\''.$this->recordID.'\')" ','value','text',0);
 						unset($teamlist);
@@ -271,7 +272,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 
 		$this->lists=$lists;
 		// Set page title
-		$pageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ASSIGN_TITLE');
+		$pageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ASSIGN_TITLE');
 		$document->setTitle($pageTitle);
 
 		parent::display($tpl);

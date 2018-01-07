@@ -6,10 +6,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 ?>
 <fieldset class="form-horizontal">
-	<legend><?php echo JText::_( 'COM_JOOMLEAGUE_ADMIN_STAT_STAT' ); ?></legend>
+	<legend><?php echo Text::_( 'COM_JOOMLEAGUE_ADMIN_STAT_STAT' ); ?></legend>
 	<?php
 	echo $this->form->renderField('name');
 	echo $this->form->renderField('sports_type_id');
@@ -21,7 +23,7 @@ defined('_JEXEC') or die;
 	echo $this->form->renderField('id');
 	?>
 	<div class="control-group">
-		<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_STAT_NOTE'); ?></div>
+		<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_STAT_NOTE'); ?></div>
 		<div class="controls"><?php echo $this->form->getInput('note'); ?></div>
 	</div>
 </fieldset>

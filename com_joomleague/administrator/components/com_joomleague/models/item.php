@@ -11,6 +11,7 @@
 defined('_JEXEC') or die;
 use Joomla\CMS\FACTORY;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\CMS\Table\Table;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -121,7 +122,7 @@ if(!class_exists('JoomleagueModelItem')) {
 			// Bind the form fields to the items table
 			if (!$row->bind($data))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_ITEM_MODEL_ERROR_BIND'));
+				$this->setError(Text::_('COM_JOOMLEAGUE_ADMIN_ITEM_MODEL_ERROR_BIND'));
 				return false;
 			}
 

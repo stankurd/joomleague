@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\HTML\HTMLHelper;
 
@@ -58,7 +59,7 @@ class JoomleagueViewTreetonodes extends JLGView
 		$treeto = $mdlTreeto->getItem($treeto_id);
 
 		// build the html options for teams
-		$team_id[] = HTMLHelper::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
+		$team_id[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
 		if($projectteams = $model->getProjectTeamsOptions())
 		{
 			$team_id = array_merge($team_id,$projectteams);
@@ -77,12 +78,12 @@ class JoomleagueViewTreetonodes extends JLGView
 
 		// build the html radio for adding into new round / exist round
 		$createYesNo = array(
-				0 => JText::_('COM_JOOMLEAGUE_GLOBAL_NO'),
-				1 => JText::_('COM_JOOMLEAGUE_GLOBAL_YES')
+				0 => Text::_('COM_JOOMLEAGUE_GLOBAL_NO'),
+				1 => Text::_('COM_JOOMLEAGUE_GLOBAL_YES')
 		);
 		$createLeftRight = array(
-				0 => JText::_('L'),
-				1 => JText::_('R')
+				0 => Text::_('L'),
+				1 => Text::_('R')
 		);
 		$ynOptions = array();
 		$lrOptions = array();
@@ -118,21 +119,21 @@ class JoomleagueViewTreetonodes extends JLGView
 	
 	protected function addToolbar()
 	{
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TITLE'));
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TITLE'));
 		$isleafed = $this->treeto->leafed;
 		if($isleafed == 1)
 		{
-			JLToolBarHelper::apply('treetonodes.saveshort',JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_SAVE_APPLY'),false);
-			JLToolBarHelper::custom('treetonodes.removenode','delete.png','delete_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_DELETE_ALL'),false);
+			JLToolBarHelper::apply('treetonodes.saveshort',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_SAVE_APPLY'),false);
+			JLToolBarHelper::custom('treetonodes.removenode','delete.png','delete_f2.png',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_DELETE_ALL'),false);
 		}
 		elseif($isleafed)
 		{
-			JLToolBarHelper::apply('treetonodes.saveshortleaf',JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TEST_SHOW'),false);
+			JLToolBarHelper::apply('treetonodes.saveshortleaf',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TEST_SHOW'),false);
 			if($isleafed == 3)
 			{
-				JLToolBarHelper::apply('treetonodes.savefinishleaf',JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_SAVE_LEAF'),false);
+				JLToolBarHelper::apply('treetonodes.savefinishleaf',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_SAVE_LEAF'),false);
 			}
-		JLToolBarHelper::custom('treetonodes.removenode','delete.png','delete_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_DELETE'),false);
+		JLToolBarHelper::custom('treetonodes.removenode','delete.png','delete_f2.png',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_DELETE'),false);
 		}
 		JLToolBarHelper::help('screen.joomleague',true);
 	}

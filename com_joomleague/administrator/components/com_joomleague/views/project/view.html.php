@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -67,11 +68,11 @@ class JoomleagueViewProject extends JLGView
 		// Set toolbar items for the page
 		if($this->copy)
 		{
-			$toolbarTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PROJECT_COPY_PROJECT');
+			$toolbarTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PROJECT_COPY_PROJECT');
 		}
 		else
 		{
-			$toolbarTitle = $isNew ? JText::_('COM_JOOMLEAGUE_ADMIN_PROJECT_ADD_NEW') : JText::_('COM_JOOMLEAGUE_ADMIN_PROJECT_EDIT') . ': ' .
+			$toolbarTitle = $isNew ? Text::_('COM_JOOMLEAGUE_ADMIN_PROJECT_ADD_NEW') : Text::_('COM_JOOMLEAGUE_ADMIN_PROJECT_EDIT') . ': ' .
 					 $this->form->getValue('name');
 			JLToolBarHelper::divider();
 		}

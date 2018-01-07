@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
@@ -29,7 +30,7 @@ jQuery(document).ready(function() {
 		// Set the input value if not already set.
 		if (!searchword.val())
 		{
-			searchword.val('" . JText::_('Search',true) . "');
+			searchword.val('" . Text::_('Search',true) . "');
 		}
 
 		// Get the current value.
@@ -38,7 +39,7 @@ jQuery(document).ready(function() {
 		// If the current value equals the default value, clear it.
 		searchword.on('focus', function()
 		{	var el = jQuery(this);
-			if (el.val() === '" . JText::_('Search',true) . "')
+			if (el.val() === '" . Text::_('Search',true) . "')
 			{
 				el.val('');
 			}
@@ -78,14 +79,14 @@ Factory::getDocument()->addScriptDeclaration($script);
 $uri = Uri::root();
 ?>
 <fieldset class="form-horizontal">
-	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTREFEREES_QUICKADD_REFEREE');?></legend>
+	<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTREFEREES_QUICKADD_REFEREE');?></legend>
 
 <form id="quickaddForm" action="<?php echo Uri::root(); ?>administrator/index.php?option=com_joomleague&task=quickadd.addreferee" method="post">
-	<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTREFEREES_QUICKADD_DESCR');?>
+	<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTREFEREES_QUICKADD_DESCR');?>
 	<div class="clearfix"></div>
 		<div class="btn-wrapper input-append pull-left">
 			<input type="text" name="p" id="quickadd" size="50"value="<?php htmlspecialchars(Factory::getApplication()->input->getString('q',false)); ?>" />
-			<input class="btn" type="submit" name="submit" id="submit" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_ADD');?>" />
+			<input class="btn" type="submit" name="submit" id="submit" value="<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_ADD');?>" />
 		</div>
 	<?php echo HTMLHelper::_('form.token'); ?>
 </form>
@@ -94,7 +95,7 @@ $uri = Uri::root();
 <form action="<?php echo Route::_('index.php?option=com_joomleague&view=projectreferees'); ?>" method="post" id="adminForm" name="adminForm">
 	<div id="j-main-container" class="j-main-container">	
 	<fieldset class="form-horizontal">
-		<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PREF_TITLE2','<i>'.$this->project->name.'</i>');?></legend>
+		<legend><?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PREF_TITLE2','<i>'.$this->project->name.'</i>');?></legend>
 		<div class="clearfix">
 		<?php
 			// Search tools bar
@@ -111,7 +112,7 @@ $uri = Uri::root();
 		</div>
 		<?php if (empty($this->items)) : ?>
 	<div class="alert alert-no-items">
-		<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+		<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 	</div>
 	<?php else : ?>
 	<table class="table table-striped" id="projectrefereeList">
@@ -125,16 +126,16 @@ $uri = Uri::root();
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PREF_NAME','a.lastname',$listDirn, $listOrder);?>
 				</th>
 				<th width="5%" class="center">
-					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PREF_IMAGE');?>
+					<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PREF_IMAGE');?>
 				</th>
 				<th class="center">
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_PREF_POS','pref.project_position_id',$listDirn, $listOrder);?>
 				</th>
 				<th width="1%">
-					<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');?>
+					<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED');?>
 				</th>
 				<th width="1%">
-					<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PREF_PID');?>
+					<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_PREF_PID');?>
 				</th>
 				<th width="1%">
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder);?>
@@ -166,7 +167,7 @@ $uri = Uri::root();
 				<td class="center">
 					<a href="<?php echo $link; ?>">
 					<?php
-						$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PREF_EDIT_DETAILS');
+						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PREF_EDIT_DETAILS');
 						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "' . $imageTitle . '"');
 					?>
 					</a>
@@ -183,12 +184,12 @@ $uri = Uri::root();
 				<?php
 				if($row->picture == '')
 				{
-					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PREF_NO_IMAGE');
+					$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PREF_NO_IMAGE');
 					echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "' . $imageTitle . '"');
 				}
 				elseif($row->picture == JoomleagueHelper::getDefaultPlaceholder("player"))
 				{
-					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_PREF_DEFAULT_IMAGE');
+					$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PREF_DEFAULT_IMAGE');
 					echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/information.png',$imageTitle,'title= "' . $imageTitle . '"');
 				}
 				elseif($row->picture == ! '')
