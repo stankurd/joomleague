@@ -13,6 +13,9 @@ use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 HTMLHelper::_('jquery.framework');
+HTMLHelper::_('bootstrap.framework');
+HTMLHelper::_('bootstrap.tooltip');
+
 defined('_JEXEC') or die;
 
 
@@ -110,7 +113,6 @@ class JoomleagueViewProjectteams extends JLGView
 		$baseurl = Uri::root();
 
 		$document = Factory::getDocument();
-		//$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/projectteams.js');
 		$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/multiselect.js');
 
 		$this->items = $this->get('Items');
@@ -262,6 +264,7 @@ class JoomleagueViewProjectteams extends JLGView
 		$this->lists = $lists;
 		$this->project = $project;
 
+		HTMLHelper::_('jquery.framework');
 		HTMLHelper::_('bootstrap.framework');
 		$baseurl = Uri::root();
 		$document->addStyleSheet($baseurl.'administrator/components/com_joomleague/assets/css/Autocompleter.css');

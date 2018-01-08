@@ -18,6 +18,7 @@ use Joomla\CMS\Uri\Uri;
 defined('_JEXEC') or die;
 
 jimport('joomla.filesystem.file');
+HTMLHelper::_('bootstrap.framework');
 HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('jquery.framework');
 
