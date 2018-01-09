@@ -174,7 +174,7 @@ class JoomleagueViewMatch extends JLGView
 		// add the js script
 		$baseurl = Uri::root();
 		$document = Factory::getDocument();
-		$document->addScript($baseurl . '/administrator/components/com_joomleague/assets/js/editreferees.js');
+		$document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/editreferees.js');
 		
 		$model = $this->getModel();
 		
@@ -264,7 +264,7 @@ class JoomleagueViewMatch extends JLGView
 		// add the js script
 		$baseurl = Uri::root();
 		$document = Factory::getDocument();
-		$document->addScript($baseurl . '/administrator/components/com_joomleague/assets/js/editevents.js');
+		$document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/editevents.js');
 
 		$model = $this->getModel(); // match-model
 		$mdlMatch = BaseDatabaseModel::getInstance('match','JoomleagueModel');
@@ -418,7 +418,7 @@ class JoomleagueViewMatch extends JLGView
 
 		// add the js script
 		$version = urlencode(JoomleagueHelper::getVersion());
-		$document->addScript(Uri::root().'/administrator/components/com_joomleague/assets/js/editmatchstats.js?v='.$version);
+		//$document->addScript(Uri::root().'/administrator/components/com_joomleague/assets/js/editmatchstats.js?v='.$version);
 
 		$model = $this->getModel();
 		
@@ -496,7 +496,7 @@ class JoomleagueViewMatch extends JLGView
 
 		// add the js script
 		$version = urlencode(JoomleagueHelper::getVersion());
-		$document->addScript(Uri::root().'/administrator/components/com_joomleague/assets/js/editlineup.js');
+		//$document->addScript(Uri::root().'/administrator/components/com_joomleague/assets/js/editlineup.js');
 
 		$model = $this->getModel();
 		$matchData = $model->getMatchTeams(false,$match_id);

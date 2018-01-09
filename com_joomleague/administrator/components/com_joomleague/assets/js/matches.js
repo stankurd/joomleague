@@ -9,31 +9,32 @@
  * 				to all other fields with the same name
  *
  */
+Joomla = window.Joomla || {};
 (function() {
-	//document.addEventListener('DOMContentLoaded', function(){
+	'use strict';
 
-window.addEventListener('domready', function() {
-	$$('tr.row-result').each(function(row) {
+	document.addEventListener('DOMContentLoaded', function() {
+	$('tr.row-result').each(function(row) {
 		var matchid = row.id.substr(7);
 		var cb = row.getElement('input[id^=cb]');
 		if (cb) {
 			// item is not checked out
-			row.getElements('select').addEventListener('change', function() {
+			row.getElements('select').addEvent('change', function() {
 				cb.checked = true;
 			});
 
-			row.getElements('input').addEventListener('change', function() {
+			row.getElements('input').addEvent('change', function() {
 				if (this.id != cb.id) {
 					cb.checked = true;
 				}
 			});
 
 			// special for calendar
-			// row.getElements('.calendar').addEventListener('click',function()
+			// row.getElements('.calendar').addEvent('click',function()
 			// { cb.checked=true; });
 
 			// special for roster selection
-			row.getElements('select[id^=team]').addEventListener('change', function() {
+			row.getElements('select[id^=team]').addEvent('change', function() {
 				// handles the link ref for starting lineup window
 				var matchid = this.id.substr(10);
 				$$('a.openroster-' + this.id).href = "index.php?option=com_joomleague&tmpl=component&task=match.editlineup&cid[]="
@@ -47,8 +48,8 @@ window.addEventListener('domready', function() {
 		// alert(matchid);
 		// we should replace all the inline 'onchange' with code here.
 	});
-})();
-	});	
+});
+
 function switchMenu(obj) {
 	var el = document.getElementById(obj);
 	if (el.style.display != "none") {
@@ -136,4 +137,5 @@ function askPrefillRosterByLastMatch(alert1) {
 
 function askPrefillRosterByProjectTeamPlayer(alert2) {
 	return confirm(alert2);
-	}
+}
+})();

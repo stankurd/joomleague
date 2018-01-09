@@ -12,7 +12,7 @@ use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
-<div id="j-main-container" class="span10">
+<div id="j-main-container" class="j-main-container">
 <form action="index.php" method="post" id="adminForm" name="adminForm">
 	<?php
 	$p = 1;

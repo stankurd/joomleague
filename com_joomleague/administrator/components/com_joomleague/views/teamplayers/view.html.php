@@ -118,13 +118,14 @@ class JoomleagueViewTeamplayers extends JLGView
 		$this->projectteam = $projectteam;
 
 		HTMLHelper::_('bootstrap.framework');
-
+		HTMLHelper::_('bootstrap.tooltip');
+		
 		$baseurl = Uri::root();
-		$document->addScript($baseurl.'media/com_joomleague/bootstrap-editable/js/bootstrap-tooltip-extended.js');
 		$document->addStyleSheet($baseurl.'administrator/components/com_joomleague/assets/css/Autocompleter.css');
 		$document->addScript($baseurl.'media/com_joomleague/bootstrap-editable/js/bootstrap-editable.js');
 		$document->addStyleSheet($baseurl.'media/com_joomleague/bootstrap-editable/css/bootstrap-editable.css');
-		$document->addStyleSheet($baseurl.'media/com_joomleague/bootstrap-editable/css/bootstrap-extended.css');
+		//$document->addStyleSheet($baseurl.'media/com_joomleague/bootstrap-editable/css/bootstrap-extended.css');
+		//$document->addScript($baseurl.'media/com_joomleague/bootstrap-editable/js/bootstrap-tooltip-extended.js');
 		
 		$this->filterForm = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');

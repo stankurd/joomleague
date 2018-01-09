@@ -8,15 +8,15 @@
  * @note
  * functions move, moveoptionup, moveoptiondown are defined in joomleague.js
  */
+
 (function() {
-	document.addEventListener('DOMContentLoaded', function(){
-//window.addEvent('domready', function() {
 
 	var moverightCount = jQuery("input[class*='move-right'").length;
 
 	if (!moverightCount) {
 		return;
 	}
+		
 	// referees - move - right
 	jQuery("input[class*='rmove-right'").click(function() {
 		jQuery('#changes_check').val(1);
@@ -180,5 +180,4 @@ function substRemoved(response) {
 
 	$('ajaxresponse').removeClass('ajax-loading');
 	$('ajaxresponse').innerHTML = response.message;
-}	
-	});	
+}

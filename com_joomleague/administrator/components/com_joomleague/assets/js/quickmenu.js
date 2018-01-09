@@ -5,6 +5,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+
 jQuery(function() {
 	jQuery('#stid').change(function(){
 		var form = jQuery('#adminForm1');

@@ -6,6 +6,11 @@
  * @link		http://www.joomleague.at
  */
 
+Joomla = window.Joomla || {};
+
+(function() {
+	'use strict';
+
 Joomla.submitbutton = function(task) {
 	var res = true;
 	var validator = document.formvalidator;
@@ -33,3 +38,4 @@ Joomla.submitbutton = function(task) {
 		return false;
 	}
 }
+})();

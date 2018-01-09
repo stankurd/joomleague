@@ -36,7 +36,7 @@ class JoomleagueViewTemplate extends JLGView
 		$baseurl = Uri::root(true);
 		$lists=array();
 		$document = Factory::getDocument();
-		$document->addScript($baseurl .'/administrator/components/com_joomleague/assets/js/template.js');
+		//$document->addScript($baseurl .'/administrator/components/com_joomleague/assets/js/template.js');
 		//get template data
 		$template = $this->get('data');
 		$isNew=($template->id < 1);
@@ -48,7 +48,6 @@ class JoomleagueViewTemplate extends JLGView
 			$app->redirect('index.php?option='.$option,$msg);
 		}
 
-		//$mdlProject = new JoomleagueModelProject();
 		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$project_id = $app->getUserState($option.'project');
 		$project 	= $mdlProject->getItem($project_id);

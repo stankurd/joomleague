@@ -10,9 +10,7 @@
 
 
 // add update of field when fields it depends on change.
-(function() {
-
-	document.addEventListener('DOMContentLoaded', function(){
+window.addEvent('domready', function() {
 
 	$$('.mdepend').addEvent('click', function() {
 		// rebuild hidden field list

@@ -14,6 +14,9 @@ defined('_JEXEC') or die;
 
 HTMLHelper::_('behavior.formvalidator');
 Factory::getDocument()->addScriptDeclaration('
+Joomla = window.Joomla || {};
+
+(function() {
 	Joomla.submitbutton = function(task)
 	{
 		if (task == "projectteam.cancel" || document.formvalidator.isValid(document.getElementById("adminForm")))
@@ -21,6 +24,7 @@ Factory::getDocument()->addScriptDeclaration('
 			Joomla.submitform(task, document.getElementById("adminForm"));
 		}
 	};
+})();
 ');
 ?>
 <form action="<?php echo Route::_('index.php?option=com_joomleague&layout=form&id=' . (int) $this->item->id); ?>" method="post" id="adminForm" name="adminForm" class="form-validate">

@@ -5,7 +5,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+Joomla = window.Joomla || {};
 
+(function(Joomla) {
+	'use strict';
+
+	document.addEventListener('DOMContentLoaded', function() {
 Joomla.submitbutton = function(task)
 {
 	document.adminForm.task.value=task;
@@ -16,3 +21,6 @@ Joomla.submitbutton = function(task)
      	Joomla.submitform(task, document.getElementById("adminForm"));
 	}
 };
+	});
+
+})(Joomla);

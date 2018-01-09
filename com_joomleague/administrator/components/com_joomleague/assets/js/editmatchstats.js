@@ -6,7 +6,7 @@
  * @link		http://www.joomleague.at
  */
 
-function() {
+window.addEvent('domready', function() {
 	// check row box when a value is updated
 	$$('tr.statrow').each(function(row){
 		row.getElements('.stat').each(function(stat){

@@ -5,7 +5,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+Joomla = window.Joomla || {};
 
+(function() {
+	'use strict';
 jQuery(document).ready(function(){
 	document.formvalidator.setHandler('date',
 		function(value) {
@@ -109,3 +112,4 @@ function RoundAutoSwitch() {
 		form['auto_time'].readOnly = false;
 	}
 };
+})();

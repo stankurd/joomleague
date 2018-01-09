@@ -5,7 +5,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+Joomla = window.Joomla || {};
 
+(function() {
+	'use strict';
 Joomla.submitbutton = function(task) {
 	var form = jQuery('adminForm');
 	if (task == 'projectposition.cancel') {
@@ -32,3 +35,4 @@ function handleRightToLeft() {
 	move(jQuery('project_positionslist'), jQuery('positionslist'));
 	selectAll(jQuery('project_positionslist'));
 }
+})();

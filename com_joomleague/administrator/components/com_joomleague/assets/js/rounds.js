@@ -5,8 +5,13 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+ Joomla = window.Joomla || {};
 
-window.addEvent('domready',function(){
+(function() {
+	'use strict';
+
+	document.addEventListener('DOMContentLoaded', function() {
+//window.addEvent('domready',function(){
 	if($('populate_enter_division')) {
 		$('populate_enter_division').hide();
 		$$('table.adminlist tr').each(function(el){
@@ -63,7 +68,7 @@ function updateAddRoundMethod(element) {
 	$('interval_method').style.display = (element.value == 0) ? 'block' : 'none';
 }
 
-
+})();
 /**
  * show/hide the teams sort list
  * 

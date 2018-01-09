@@ -8,8 +8,12 @@
  * @note
  * JSON.stringify(response) can be used to convert object to string
  */
-
+Joomla = window.Joomla || {};
 (function() {
+	'use strict';
+
+	document.addEventListener('DOMContentLoaded', function() {
+//window.addEvent('domready', function() {
 	updatePlayerSelect();
 	if(jQuery('#team_id')) {
 		jQuery('#team_id').change(updatePlayerSelect);
@@ -128,7 +132,7 @@
 			}
 		});
 	}
-})();
+});
 
 									
 //-------- EVENT--------//
@@ -368,8 +372,7 @@ function commentadderror(xhr, status, error) {
 
 /**
  * updatePlayerSelect
- */   
- 
+ */
 function updatePlayerSelect() {
 	if(jQuery('#cell-player'))
 		jQuery('#cell-player').empty().append(
@@ -452,3 +455,4 @@ function checkTime(field)
   return true;
 }
 
+})();

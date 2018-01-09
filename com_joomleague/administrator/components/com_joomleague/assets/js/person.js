@@ -5,7 +5,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+Joomla = window.Joomla || {};
 
+(function() {
+	'use strict';
 Joomla.submitbutton = function(pressbutton) {
 	var res = true;
 	var validator = document.formvalidator;
@@ -40,3 +43,4 @@ function projectSelected() {
 	adminForm.elements.assignperson.value 	= '1';
 	window.parent.SqueezeBox.close();
 }
+})();
