@@ -421,13 +421,18 @@ class com_joomleagueInstallerScript
 			self::_install(false, $parent);
 		}
 	}
+private function _versionCompare () {
+		//define('JOOMLA_MINIMUM_PHP', '7.0');
+		if (version_compare( PHP_VERSION, JOOMLA_MINIMUM_PHP, '<')) {
+			die(
+		str_replace(
+			array('{{PHP_VERSION}}', '{{BASEPATH}}'),
+			array(JOOMLA_MINIMUM_PHP, 'http://' . $_SERVER['SERVER_NAME'] . '/'),
+			file_get_contents(dirname(__FILE__) . '/../templates/system/incompatible.html')
+		)
+	);
+	}
 
-	private function _versionCompare () {
-		if (version_compare(phpversion(), '5.3.0', '<')===true) {
-			echo  '<div style="font:12px/1.35em arial, helvetica, sans-serif;"><div style="margin:0 0 25px 0; border-bottom:1px solid #ccc;"><h3 style="margin:0; font-size:1.7em; font-weight:normal; text-transform:none; text-align:left; color:#2f2f2f;">Whoops, it looks like you have an invalid PHP version.</h3></div><p>JoomLeague requires PHP 5.2.4 or newer.</p><p>PHP4 is no longer supported by its developers and your webhost almost certainly offers PHP5.  Please contact your webhost for advice on how to enable PHP5 on your website.</p></div>';
-			return false;
-		}
-		return true;
 	}
 	 
 	/**
