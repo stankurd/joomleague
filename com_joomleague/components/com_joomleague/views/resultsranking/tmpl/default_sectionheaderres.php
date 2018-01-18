@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -13,10 +14,10 @@ if ( $this->config['show_sectionheader'] == 1 )
 				<?php
 				if ( $this->roundid > 0 )
 				{
-					$title = JText::_( 'COM_JOOMLEAGUE_RESULTS_ROUND_RESULTS' );
+					$title = Text::_( 'COM_JOOMLEAGUE_RESULTS_ROUND_RESULTS' );
 					if ( isset( $this->division ) )
 					{
-						$title = JText::sprintf( 'COM_JOOMLEAGUE_RESULTS_ROUND_RESULTS2', '<i>' . $this->division->name . '</i>' );
+						$title = Text::sprintf( 'COM_JOOMLEAGUE_RESULTS_ROUND_RESULTS2', '<i>' . $this->division->name . '</i>' );
 					}
 
 					JoomleagueHelperHtml::showMatchdaysTitle(	$title, $this->roundid, $this->config );
@@ -24,7 +25,7 @@ if ( $this->config['show_sectionheader'] == 1 )
 					if ( $this->showediticon )
 						{
 							$link = JoomleagueHelperRoute::getResultsRoute( $this->project->id, $this->roundid, isset($this->division) ? $this->division->id : 0, 0, 0, 'match.display');
-							$imgTitle = JText::_( 'COM_JOOMLEAGUE_RESULTS_ENTER_EDIT_RESULTS' );
+							$imgTitle = Text::_( 'COM_JOOMLEAGUE_RESULTS_ENTER_EDIT_RESULTS' );
 							$desc = HTMLHelper::image( 'media/com_joomleague/jl_images/edit.png', $imgTitle, array( ' title' => $imgTitle ) );
 							echo ' ';
 							echo HTMLHelper::link( $link, $desc );
@@ -36,7 +37,7 @@ if ( $this->config['show_sectionheader'] == 1 )
 					//1 request for current round
 					// seems to be this shall show a plan of matches of a team???
 					if(isset($team->name)) {
-						JoomleagueHelperHtml::showMatchdaysTitle( JText::_( 'COM_JOOMLEAGUE_RESULTS_PLAN' ) . " - " . $team->name, 0, $this->config );
+						JoomleagueHelperHtml::showMatchdaysTitle( Text::_( 'COM_JOOMLEAGUE_RESULTS_PLAN' ) . " - " . $team->name, 0, $this->config );
 					}
 				}
 				?>

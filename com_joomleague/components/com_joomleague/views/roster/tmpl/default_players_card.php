@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 foreach ( $this->rows as $position_id => $players ): ?>
 <div style="margin:auto; width:720px;">
 	<!-- position header -->
@@ -8,7 +9,7 @@ foreach ( $this->rows as $position_id => $players ): ?>
 		$position	= $row->position;
 		$k			= 0;
 		$colspan	= ( ( $this->config['show_birthday'] > 0 ) ? '6' : '5' );	?>
-<h2><?php	echo '&nbsp;' . JText::_( $row->position );	?></h2>
+<h2><?php	echo '&nbsp;' . Text::_( $row->position );	?></h2>
 <?php foreach ($players as $row): ?>
 <tr class="<?php echo ($k == 0)? $this->config['style_class1'] : $this->config['style_class2']; ?>">
 <div class="mini-player_links">
@@ -30,7 +31,7 @@ foreach ( $this->rows as $position_id => $players ): ?>
 			    <td style="width: 55px;padding:0px;">
 				<?php
 				$playerName = JoomleagueHelper::formatName(null ,$row->firstname, $row->nickname, $row->lastname, $this->config["name_format"]);
-				$imgTitle = JText::sprintf( $playerName );
+				$imgTitle = Text::sprintf( $playerName );
 				$picture = $row->picture;
 				if ((empty($picture)) || ($picture == JoomleagueHelper::getDefaultPlaceholder("player") ))
 				{
@@ -57,7 +58,7 @@ foreach ( $this->rows as $position_id => $players ): ?>
 				?>
 				</td>
 			    <td style="padding-left: 9px;">
-			      <div class="player-position"><?php	echo JText::_( $row->position );	?></div>
+			      <div class="player-position"><?php	echo Text::_( $row->position );	?></div>
 				  <div class="player-name">
 				  <?php
 				  	if ($this->config['link_player']==1)

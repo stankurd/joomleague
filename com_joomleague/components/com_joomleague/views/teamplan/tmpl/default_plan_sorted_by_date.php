@@ -2,6 +2,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Date\Date;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -57,16 +58,16 @@ if (!empty($this->matches))
 
         <table class='fixtures'>
         <?php if ($this->config['show_date'] &&
-                  $MatchDateLine != JoomleagueHelper::getMatchDate($match, JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDATE'))): ?>
+                  $MatchDateLine != JoomleagueHelper::getMatchDate($match, Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDATE'))): ?>
             <tr class='sectiontableheader'>
                 <th class='td_l' colspan='16'>
                     <?php
                     if (JoomleagueHelper::getMatchDate($match, 'Y-m-d') == '9999-12-31') {
-                        echo JText::_('COM_JOOMLEAGUE_TEAMPLAN_NOT_YET_TERMINATED');
+                        echo Text::_('COM_JOOMLEAGUE_TEAMPLAN_NOT_YET_TERMINATED');
                     }
                     else
                     {
-                        echo JoomleagueHelper::getMatchDate($match, JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDATE'));
+                        echo JoomleagueHelper::getMatchDate($match, Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDATE'));
                     }
                     ?>
                 </th>
@@ -136,7 +137,7 @@ if (!empty($this->matches))
             {
                 $link = 'javascript:void(0);';
                 $img = HTMLHelper::image('media/com_joomleague/jl_images/events.png', 'events.png');
-                $params = array('title'   => JText::_('COM_JOOMLEAGUE_TEAMPLAN_EVENTS'),
+                $params = array('title'   => Text::_('COM_JOOMLEAGUE_TEAMPLAN_EVENTS'),
                                 'onclick' => 'switchMenu(\'info'.$match->id.'\');return false;');
                 echo HTMLHelper::link($link,$img,$params);
             }
@@ -163,7 +164,7 @@ if (!empty($this->matches))
                 <td width='10%'>
                 <?php
                 if (JoomleagueHelper::getMatchDate($match, 'Y-m-d') == '9999-12-31') {
-                    $timeSuffix = JText::_('COM_JOOMLEAGUE_GLOBAL_CLOCK');
+                    $timeSuffix = Text::_('COM_JOOMLEAGUE_GLOBAL_CLOCK');
                     if ($timeSuffix=='COM_JOOMLEAGUE_GLOBAL_CLOCK') {
                         $timeSuffix='%1$s&nbsp;h';
                     }
@@ -311,19 +312,19 @@ if (!empty($this->matches))
             {
                 case 2 :
                     $result .= $this->config['result_style'] == 1 ? '<br />' : ' ';
-                    $result .= '('.JText::_('COM_JOOMLEAGUE_RESULTS_SHOOTOUT') . ')';
+                    $result .= '('.Text::_('COM_JOOMLEAGUE_RESULTS_SHOOTOUT') . ')';
 
                     if (isset($leftResultOT))
                     {
                         $OTresultS = $leftResultOT . '&nbsp;' . $this->config['seperator'] . '&nbsp;' . $rightResultOT;
-                        $SOTresult .= '<br /><span class="hasTip" title="' . JText::_('COM_JOOMLEAGUE_RESULTS_OVERTIME2') .
+                        $SOTresult .= '<br /><span class="hasTip" title="' . Text::_('COM_JOOMLEAGUE_RESULTS_OVERTIME2') .
                             '::' . $OTresultS . '" >' . $OTresultS . '</span>';
                         $SOTtolltip = ' | ' . $OTresultS;
                     }
                     if (isset($leftResultSO))
                     {
                         $SOresultS = $leftResultSO . '&nbsp;' . $this->config['seperator'] . '&nbsp;' . $rightResultSO;
-                        $SOTresult .= '<br /><span class="hasTip" title="' . JText::_('COM_JOOMLEAGUE_RESULTS_SHOOTOUT2') .
+                        $SOTresult .= '<br /><span class="hasTip" title="' . Text::_('COM_JOOMLEAGUE_RESULTS_SHOOTOUT2') .
                             '::' . $SOresultS . '" >' . $SOresultS . '</span>';
                         $SOTtolltip = ' | ' . $SOresultS;
                     }
@@ -331,11 +332,11 @@ if (!empty($this->matches))
 
                 case 1 :
                     $result .= $this->config['result_style'] == 1 ? '<br />' : ' ';
-                    $result .= '('.JText::_('COM_JOOMLEAGUE_RESULTS_OVERTIME') . ')';
+                    $result .= '('.Text::_('COM_JOOMLEAGUE_RESULTS_OVERTIME') . ')';
                     if (isset($leftResultOT))
                     {
                         $OTresultS = $leftResultOT . '&nbsp;' . $this->config['seperator'] . '&nbsp;' . $rightResultOT;
-                        $SOTresult .= '<br /><span class="hasTip" title="' . JText::_('COM_JOOMLEAGUE_RESULTS_OVERTIME2') .
+                        $SOTresult .= '<br /><span class="hasTip" title="' . Text::_('COM_JOOMLEAGUE_RESULTS_OVERTIME2') .
                             '::' . $OTresultS . '" >' . $OTresultS . '</span>';
                         $SOTtolltip = ' | ' . $OTresultS ;
                     }
@@ -373,7 +374,7 @@ if (!empty($this->matches))
                     {
                         $resultS = $part_results_left[$i] . '&nbsp;' . $this->config['seperator'] . '&nbsp;' . $part_results_right[$i];
                         $whichPeriod = $i + 1;
-                        $PartResult .= '<br /><span class="hasTip" title="' . JText::sprintf('COM_JOOMLEAGUE_GLOBAL_NPART',  "$whichPeriod") .
+                        $PartResult .= '<br /><span class="hasTip" title="' . Text::sprintf('COM_JOOMLEAGUE_GLOBAL_NPART',  "$whichPeriod") .
                             '::' . $resultS . '" >' . $resultS . '</span>';
                         $ResultsTooltipTp .= $i != 0 ? ' | ' . $resultS : $resultS;
                     }
@@ -406,7 +407,7 @@ if (!empty($this->matches))
         }
         else
         {
-            $score = '<td>' . JText::_($match->cancel_reason) . '</td>';
+            $score = '<td>' . Text::_($match->cancel_reason) . '</td>';
         }
 
         switch ($this->config['result_style'])
@@ -430,7 +431,7 @@ if (!empty($this->matches))
             if ($this->project->teams_as_referees)
             {
                 $output = '';
-                $toolTipTitle = JText::_('COM_JOOMLEAGUE_TEAMPLAN_REF_TOOLTIP');
+                $toolTipTitle = Text::_('COM_JOOMLEAGUE_TEAMPLAN_REF_TOOLTIP');
                 $toolTipText = '';
 
                 for ($i = 0; $i < count($match->referees); $i++)
@@ -462,14 +463,14 @@ if (!empty($this->matches))
             else
             {
                 $output = '';
-                $toolTipTitle = JText::_('COM_JOOMLEAGUE_TEAMPLAN_REF_TOOLTIP');
+                $toolTipTitle = Text::_('COM_JOOMLEAGUE_TEAMPLAN_REF_TOOLTIP');
                 $toolTipText = '';
 
                 for ($i = 0; $i < count($match->referees); $i++)
                 {
                     if ($match->referees[$i]->referee_lastname != '' && $match->referees[$i]->referee_firstname)
                     {
-                        $output .= '<span class="hasTip" title="' . JText::_('COM_JOOMLEAGUE_TEAMPLAN_REF_FUNCTION') .
+                        $output .= '<span class="hasTip" title="' . Text::_('COM_JOOMLEAGUE_TEAMPLAN_REF_FUNCTION') .
                             '::' . $match->referees[$i]->referee_position_name . '">';
                         $ref = $match->referees[$i]->referee_lastname . ',' . $match->referees[$i]->referee_firstname;
                         $toolTipText .= $ref . ' ('.$match->referees[$i]->referee_position_name . ')' . '&lt;br /&gt;';
@@ -526,15 +527,15 @@ if (!empty($this->matches))
             if (isset($match->team1_result))
             {
                 $href_text = $this->config['show_matchreport_image']
-                    ? HTMLHelper::image($this->config['matchreport_image'], JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHREPORT'))
-                    : JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHREPORT');
+                    ? HTMLHelper::image($this->config['matchreport_image'], Text::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHREPORT'))
+                    : Text::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHREPORT');
                 $link = JoomleagueHelperRoute::getMatchReportRoute($this->project->slug, $match->id);
             }
             else
             {
                 $href_text = $this->config['show_matchreport_image']
-                    ? HTMLHelper::image($this->config['matchpreview_image'], JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHPREVIEW'))
-                    : JText::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHPREVIEW');
+                    ? HTMLHelper::image($this->config['matchpreview_image'], Text::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHPREVIEW'))
+                    : Text::_('COM_JOOMLEAGUE_TEAMPLAN_VIEW_MATCHPREVIEW');
                 $link = JoomleagueHelperRoute::getNextMatchRoute($this->project->slug, $match->id);
             }
             echo HTMLHelper::link($link, $href_text);
@@ -566,7 +567,7 @@ if (!empty($this->matches))
     <?php
     $k = 1 - $k;
     $counter++;
-    $MatchDateLine = JoomleagueHelper::getMatchDate($match, JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDATE'));
+    $MatchDateLine = JoomleagueHelper::getMatchDate($match, Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDATE'));
     $MatchDay = $match->name;
     }
     ?>
@@ -576,7 +577,7 @@ if (!empty($this->matches))
 else
 {
     ?>
-<h3><?php echo JText::_('COM_JOOMLEAGUE_TEAMPLAN_NO_MATCHES'); ?></h3>
+<h3><?php echo Text::_('COM_JOOMLEAGUE_TEAMPLAN_NO_MATCHES'); ?></h3>
     <?php
 }
 ?>

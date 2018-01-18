@@ -1,4 +1,6 @@
-<?php use Joomla\CMS\HTML\HTMLHelper;
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die; ?>
 
@@ -8,7 +10,7 @@ if ( $this->games )
 {
 	?>
 
-<h2><?php echo JText::_('COM_JOOMLEAGUE_NEXTMATCH_HISTORY'); ?></h2>
+<h2><?php echo Text::_('COM_JOOMLEAGUE_NEXTMATCH_HISTORY'); ?></h2>
 <table width="100%">
 	<tr>
 		<td>
@@ -54,7 +56,7 @@ if ( $this->games )
 				echo HTMLHelper::link( $result_link, $game->roundcode );
 				?></td>
 				<td class="nowrap"><?php
-				echo JoomleagueHelper::getMatchDate($game, JText::_( 'COM_JOOMLEAGUE_MATCHDAYDATE' ));
+				echo JoomleagueHelper::getMatchDate($game, Text::_( 'COM_JOOMLEAGUE_MATCHDAYDATE' ));
 				?></td>
 				<td><?php
 				echo JoomleagueHelper::getMatchTime($game);
@@ -77,8 +79,8 @@ if ( $this->games )
 				if ($game->show_report==1)
 				{
 					$desc = HTMLHelper::image( "media/com_joomleague/jl_images/zoom.png",
-					JText::_( 'Match Report' ),
-					array( "title" => JText::_( 'Match Report' ) ) );
+					Text::_( 'Match Report' ),
+					array( "title" => Text::_( 'Match Report' ) ) );
 					echo HTMLHelper::link( $report_link, $desc);
 				}
 				$k = 1 - $k;

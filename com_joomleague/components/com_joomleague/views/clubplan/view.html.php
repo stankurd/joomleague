@@ -2,6 +2,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -49,7 +50,7 @@ class JoomleagueViewClubPlan extends JLGView
 
 	private function setPageTitle()
 	{
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_CLUBPLAN_PAGE_TITLE'));
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_CLUBPLAN_PAGE_TITLE'));
 		if (!empty( $this->club ) )
 		{
 			$titleInfo->clubName = $this->club->name;
@@ -81,7 +82,7 @@ class JoomleagueViewClubPlan extends JLGView
 		}
 
 		$feed = 'index.php?option=com_joomleague&view=clubplan'.$rssVar.'&format=feed';
-		$rss = array('type' => 'application/rss+xml','title' => JText::_('COM_JOOMLEAGUE_CLUBPLAN_RSSFEED'));
+		$rss = array('type' => 'application/rss+xml','title' => Text::_('COM_JOOMLEAGUE_CLUBPLAN_RSSFEED'));
 
 		// add the links
 		$document = Factory::getDocument();
@@ -94,7 +95,7 @@ class JoomleagueViewClubPlan extends JLGView
 		{
 			$tm = count($matches);
 			?>
-			<h3><?php echo $tm . ' ' . JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHES'); ?></h3>
+			<h3><?php echo $tm . ' ' . Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHES'); ?></h3>
 			<?php
 			$this->matches = $matches;
 			echo $this->loadTemplate($template); //or use matches_sbd (sort by date)
@@ -102,7 +103,7 @@ class JoomleagueViewClubPlan extends JLGView
 		else
 		{
 			?>
-			<h3><?php echo JText::_($noMatchesString); ?></h3><br/>
+			<h3><?php echo Text::_($noMatchesString); ?></h3><br/>
 			<?php
 		}
 	}

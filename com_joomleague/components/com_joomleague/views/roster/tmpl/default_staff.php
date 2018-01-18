@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -51,11 +52,11 @@ if (count($this->stafflist) > 0)
 				echo '&nbsp;';
 				if ($this->config['show_team_shortform'] == 1)
 				{
-					echo JText::sprintf('COM_JOOMLEAGUE_ROSTER_STAFF_OF2',$this->team->name, $this->team->short_name);
+					echo Text::sprintf('COM_JOOMLEAGUE_ROSTER_STAFF_OF2',$this->team->name, $this->team->short_name);
 				}
 				else
 				{
-					echo JText::sprintf('COM_JOOMLEAGUE_ROSTER_STAFF_OF',$this->team->name);
+					echo Text::sprintf('COM_JOOMLEAGUE_ROSTER_STAFF_OF',$this->team->name);
 				}
 				?>
 			</td>
@@ -66,7 +67,7 @@ if (count($this->stafflist) > 0)
 		<thead>
 			<tr class="sectiontableheader rosterheader">
 				<th width="60%" colspan="<?php echo $positionHeaderSpan; ?>">
-					<?php echo JText::_("COM_JOOMLEAGUE_ROSTER_STAFF").'&nbsp;'; ?>
+					<?php echo Text::_("COM_JOOMLEAGUE_ROSTER_STAFF").'&nbsp;'; ?>
 				</th>
 				<?php
 				if ($this->config['show_birthday_staff'] > 0)
@@ -91,7 +92,7 @@ if (count($this->stafflist) > 0)
 											$outputStr = 'COM_JOOMLEAGUE_PERSON_YEAR_OF_BIRTH';
 											break;
 					}
-					echo JText::_( $outputStr );
+					echo Text::_( $outputStr );
 				?>
 				</th><?php
 				}
@@ -101,7 +102,7 @@ if (count($this->stafflist) > 0)
 					?>
 				<th class="td_c">&nbsp;</th><?php
 				} ?>
-				<th><?php echo JText::_('COM_JOOMLEAGUE_ROSTER_STAFF_FUNCTION'); ?></th>
+				<th><?php echo Text::_('COM_JOOMLEAGUE_ROSTER_STAFF_FUNCTION'); ?></th>
 			</tr>
 		</thead>
 		<?php
@@ -178,7 +179,7 @@ if (count($this->stafflist) > 0)
 				$this->stafftool=$mdlStaff->getTeamStaffByRound($this->project->current_round, $row->pid);
 
 				$today = HTMLHelper::date('now' .' UTC',
-								JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
+								Text::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 								JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 
 				if (!empty($this->stafftool->injury))
@@ -188,18 +189,18 @@ if (count($this->stafflist) > 0)
 					$injury_text = "";
 
 					$injury_date = HTMLHelper::date($this->stafftool->injury_date .' UTC',
-												JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
+												Text::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 												JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					if(isset($this->stafftool->rinjury_from))
 					$injury_date .= " (".$this->stafftool->rinjury_from.")";
 
 					$injury_end = HTMLHelper::date($this->stafftool->injury_end .' UTC',
-												JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
+												Text::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 												JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					if(isset($this->stafftool->rinjury_to))
 					$injury_end .= " (".$this->stafftool->rinjury_to.")";
 
-					$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_INJURED');
+					$imageTitle=Text::_('COM_JOOMLEAGUE_PERSON_INJURED');
 
 					if ($this->stafftool->injury_date == $this->stafftool->injury_end)
 					{
@@ -212,18 +213,18 @@ if (count($this->stafflist) > 0)
 					{
 						if ($injury_date != $today)
 						{
-							$injury_text = JTEXT::_('COM_JOOMLEAGUE_PERSON_INJURY_DATE')." ".$injury_date;
+							$injury_text = Text::_('COM_JOOMLEAGUE_PERSON_INJURY_DATE')." ".$injury_date;
 						}
 						if ($injury_end != $today)
 						{
-							$injury_text .= "&#013;".JTEXT::_('COM_JOOMLEAGUE_PERSON_INJURY_END')." ".$injury_end;
+							$injury_text .= "&#013;".Text::_('COM_JOOMLEAGUE_PERSON_INJURY_END')." ".$injury_end;
 						}
 					}
 
 					if (!empty($this->stafftool->injury_detail))
 					{
 						$injury_detail = htmlspecialchars( $this->stafftool->injury_detail );
-						$injury_text .= "&#013;".JTEXT::_('COM_JOOMLEAGUE_PERSON_INJURY_TYPE')." ".$injury_detail;
+						$injury_text .= "&#013;".Text::_('COM_JOOMLEAGUE_PERSON_INJURY_TYPE')." ".$injury_detail;
 					}
 					echo HTMLHelper::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/injured.gif',
 										$imageTitle,array('title'=> $injury_text,'height'=> 20));
@@ -237,18 +238,18 @@ if (count($this->stafflist) > 0)
 					$suspension_text = "";
 
 					$suspension_date = HTMLHelper::date($this->stafftool->suspension_date .' UTC',
-													JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
+													Text::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 													JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					if(isset($this->stafftool->rsusp_from))
 					$suspension_date .= " (".$this->stafftool->rsusp_from.")";
 
 					$suspension_end = HTMLHelper::date($this->stafftool->suspension_end .' UTC',
-													JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
+													Text::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 													JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					if(isset($this->stafftool->rsusp_to))
 					$suspension_end .= " (".$this->stafftool->rsusp_to.")";
 
-					$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_SUSPENDED');
+					$imageTitle=Text::_('COM_JOOMLEAGUE_PERSON_SUSPENDED');
 
 					if ($this->stafftool->suspension_date == $this->stafftool->suspension_end)
 					{
@@ -261,18 +262,18 @@ if (count($this->stafflist) > 0)
 					{
 						if ($suspension_date != $today)
 						{
-							$suspension_text = JTEXT::_('COM_JOOMLEAGUE_PERSON_SUSPENSION_DATE')." ".$suspension_date;
+							$suspension_text = Text::_('COM_JOOMLEAGUE_PERSON_SUSPENSION_DATE')." ".$suspension_date;
 						}
 						if ($suspension_end != $today)
 						{
-							$suspension_text .= "&#013;".JTEXT::_('COM_JOOMLEAGUE_PERSON_SUSPENSION_END')." ".$suspension_end;
+							$suspension_text .= "&#013;".Text::_('COM_JOOMLEAGUE_PERSON_SUSPENSION_END')." ".$suspension_end;
 						}
 					}
 
 					if (!empty($this->stafftool->suspension_detail))
 					{
 						$suspension_detail = htmlspecialchars( $this->stafftool->suspension_detail );
-						$suspension_text .= "&#013;".JTEXT::_('COM_JOOMLEAGUE_PERSON_SUSPENSION_REASON')." ".$suspension_detail;
+						$suspension_text .= "&#013;".Text::_('COM_JOOMLEAGUE_PERSON_SUSPENSION_REASON')." ".$suspension_detail;
 					}
 					echo HTMLHelper::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/suspension.gif',
 										$imageTitle,array('title'=> $suspension_text,'height'=> 20));
@@ -286,18 +287,18 @@ if (count($this->stafflist) > 0)
 					$away_text = "";
 
 					$away_date = HTMLHelper::date($this->stafftool->away_date .' UTC',
-													JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
+													Text::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 													JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					if(isset($this->stafftool->rsusp_from))
 					$away_date .= " (".$this->stafftool->rsusp_from.")";
 
 					$away_end = HTMLHelper::date($this->stafftool->away_end .' UTC',
-													JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
+													Text::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 													JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					if(isset($this->stafftool->rsusp_to))
 					$away_end .= " (".$this->stafftool->rsusp_to.")";
 
-					$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_AWAY');
+					$imageTitle=Text::_('COM_JOOMLEAGUE_PERSON_AWAY');
 
 					if ($this->stafftool->away_date == $this->stafftool->away_end)
 					{
@@ -310,18 +311,18 @@ if (count($this->stafflist) > 0)
 					{
 						if ($away_date != $today)
 						{
-							$away_text = JTEXT::_('COM_JOOMLEAGUE_PERSON_AWAY_DATE')." ".$away_date;
+							$away_text = Text::_('COM_JOOMLEAGUE_PERSON_AWAY_DATE')." ".$away_date;
 						}
 						if ($away_end != $today)
 						{
-							$away_text .= "&#013;".JTEXT::_('COM_JOOMLEAGUE_PERSON_AWAY_END')." ".$away_end;
+							$away_text .= "&#013;".Text::_('COM_JOOMLEAGUE_PERSON_AWAY_END')." ".$away_end;
 						}
 					}
 
 					if (!empty($this->stafftool->away_detail))
 					{
 						$away_detail = htmlspecialchars( $this->stafftool->away_detail );
-						$away_text .= "&#013;".JTEXT::_('COM_JOOMLEAGUE_PERSON_AWAY_REASON')." ".$away_detail;
+						$away_text .= "&#013;".Text::_('COM_JOOMLEAGUE_PERSON_AWAY_REASON')." ".$away_detail;
 					}
 					echo HTMLHelper::image('images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/away.gif',
 										$imageTitle,array('title'=> $away_text,'height'=> 20));
@@ -339,11 +340,11 @@ if (count($this->stafflist) > 0)
 						switch ($this->config['show_birthday_staff'])
 						{
 							case 1:	 // show Birthday and Age
-								$birthdateStr = HTMLHelper::date($row->birthday, JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']);
+								$birthdateStr = HTMLHelper::date($row->birthday, Text::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']);
 								$birthdateStr.="&nbsp;(".JoomleagueHelper::getAge($row->birthday, $row->deathday).")";
 								break;
 							case 2:	 // show Only Birthday
-								$birthdateStr = HTMLHelper::date($row->birthday, JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']);
+								$birthdateStr = HTMLHelper::date($row->birthday, Text::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']);
 								break;
 							case 3:	 // show Only Age
 								$birthdateStr = "(".JoomleagueHelper::getAge($row->birthday, $row->deathday).")";
@@ -363,7 +364,7 @@ if (count($this->stafflist) > 0)
 					// deathday
 					if ( $row->deathday !="0000-00-00" )
 					{
-						$birthdateStr .= ' [ &dagger; '.HTMLHelper::date($row->deathday, JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']).']';
+						$birthdateStr .= ' [ &dagger; '.HTMLHelper::date($row->deathday, Text::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'), $this->overallconfig['time_zone']).']';
 					}
 
 					echo $birthdateStr;
@@ -380,25 +381,25 @@ if (count($this->stafflist) > 0)
 				switch ($this->config['staff_position_format'])
 				{
 					case 2:	 // show member with text
-								$staff_position = JText::sprintf('COM_JOOMLEAGUE_ROSTER_MEMBER_OF',JText::_($row->parentname));
+								$staff_position = Text::sprintf('COM_JOOMLEAGUE_ROSTER_MEMBER_OF',Text::_($row->parentname));
 								break;
 
 					case 3:	 // show function with text
-								$staff_position .= JText::sprintf('COM_JOOMLEAGUE_ROSTER_FUNCTION_IS',JText::_($row->position));
+								$staff_position .= Text::sprintf('COM_JOOMLEAGUE_ROSTER_FUNCTION_IS',Text::_($row->position));
 								break;
 
 					case 4:	 // show only function
-								$staff_position = JText::_($row->parentname);
+								$staff_position = Text::_($row->parentname);
 								break;
 
 					case 5:	 // show only position
-								$staff_position = JText::_($row->position);
+								$staff_position = Text::_($row->position);
 								break;
 
 					default: // show member+function with text
-								$staff_position = JText::sprintf('COM_JOOMLEAGUE_ROSTER_MEMBER_OF',JText::_($row->parentname));
+								$staff_position = Text::sprintf('COM_JOOMLEAGUE_ROSTER_MEMBER_OF',Text::_($row->parentname));
 								$staff_position .= '<br />';
-								$staff_position .= JText::sprintf('COM_JOOMLEAGUE_ROSTER_FUNCTION_IS',JText::_($row->position));
+								$staff_position .= Text::sprintf('COM_JOOMLEAGUE_ROSTER_FUNCTION_IS',Text::_($row->position));
 								break;
 				}
 				echo $staff_position;

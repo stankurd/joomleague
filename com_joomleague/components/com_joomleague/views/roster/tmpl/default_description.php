@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -23,7 +24,7 @@ defined('_JEXEC') or die;
 			<tr class="sectiontableheader">
 				<th>
 					<?php
-					echo '&nbsp;' . JText::_( 'COM_JOOMLEAGUE_ROSTER_TEAMINFORMATION' );
+					echo '&nbsp;' . Text::_( 'COM_JOOMLEAGUE_ROSTER_TEAMINFORMATION' );
 					?>
 				</th>
 			</tr>

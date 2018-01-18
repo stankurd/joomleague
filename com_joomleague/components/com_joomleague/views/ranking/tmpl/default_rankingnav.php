@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -33,7 +34,7 @@ defined('_JEXEC') or die;
 
 			<td>
 				<input type='submit' class='button' name='reload View'
-					   value="<?php echo JText::_('COM_JOOMLEAGUE_RANKING_FILTER'); ?>">
+					   value="<?php echo Text::_('COM_JOOMLEAGUE_RANKING_FILTER'); ?>">
 			</td>
 		</tr>
 	</table>

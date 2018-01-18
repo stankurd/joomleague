@@ -1,6 +1,7 @@
 <?php 
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 <table class="contentpaneopen">
@@ -16,15 +17,15 @@ defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 		$link = JoomleagueHelperRoute::getPlayerRoute( $this->project->id, $this->teamPlayer->team_id, $this->person->id, 'person.edit' );
 		echo ' <a rel="{handler: \'iframe\',size: {x:'.$modalwidth.',y:'.$modalheight.'}}" href="'.$link.'" class="modal">';
 		echo HTMLHelper::image("media/com_joomleague/jl_images/edit.png",
-							JText::_( 'COM_JOOMLEAGUE_PERSON_EDIT' ),
-							array( "title" => JText::_( "COM_JOOMLEAGUE_PERSON_EDIT" ) )
+							Text::_( 'COM_JOOMLEAGUE_PERSON_EDIT' ),
+							array( "title" => Text::_( "COM_JOOMLEAGUE_PERSON_EDIT" ) )
 		);
 	    echo '</a>';
 	}
 
 	if ( isset($this->teamPlayer->injury) && $this->teamPlayer->injury )
 	{
-		$imageTitle = JText::_( 'COM_JOOMLEAGUE_PERSON_INJURED' );
+		$imageTitle = Text::_( 'COM_JOOMLEAGUE_PERSON_INJURED' );
 		echo "&nbsp;&nbsp;" . HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/injured.gif',
 							$imageTitle,
 							array( 'title' => $imageTitle ) );
@@ -32,7 +33,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 
 	if ( isset($this->teamPlayer->suspension) && $this->teamPlayer->suspension )
 	{
-		$imageTitle = JText::_( 'COM_JOOMLEAGUE_PERSON_SUSPENDED' );
+		$imageTitle = Text::_( 'COM_JOOMLEAGUE_PERSON_SUSPENDED' );
 		echo "&nbsp;&nbsp;" . HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/suspension.gif',
 							$imageTitle,
 							array( 'title' => $imageTitle ) );
@@ -41,7 +42,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 
 	if ( isset($this->teamPlayer->away) && $this->teamPlayer->away )
 	{
-		$imageTitle = JText::_( 'COM_JOOMLEAGUE_PERSON_AWAY' );
+		$imageTitle = Text::_( 'COM_JOOMLEAGUE_PERSON_AWAY' );
 		echo "&nbsp;&nbsp;" . HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/away.gif',
 							$imageTitle,
 							array( 'title' => $imageTitle ) );

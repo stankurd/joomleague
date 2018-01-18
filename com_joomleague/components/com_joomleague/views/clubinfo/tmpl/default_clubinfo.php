@@ -1,10 +1,12 @@
 <?php use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
 if (!isset ($this->club))
 {
-    Factory::getApplication()->enqueueMessage(JText::_('Error: ClubID was not submitted in URL or Club was not found in database'), 'warning');
+    Factory::getApplication()->enqueueMessage(Text::_('Error: ClubID was not submitted in URL or Club was not found in database'), 'warning');
 }
 else
 {
@@ -15,7 +17,7 @@ else
 		<?php
 		if (($this->config['show_club_logo']) && ($this->club->logo_big != ''))
 		{
-			$club_emblem_title = str_replace("%CLUBNAME%", $this->club->name, JText::_('COM_JOOMLEAGUE_CLUBINFO_EMBLEM_TITLE'));
+			$club_emblem_title = str_replace("%CLUBNAME%", $this->club->name, Text::_('COM_JOOMLEAGUE_CLUBINFO_EMBLEM_TITLE'));
 			$picture = $this->club->logo_big;
 			echo JoomleagueHelper::getPictureThumb($picture,  $club_emblem_title,
 				$this->config['team_picture_width'], $this->config['team_picture_height'], 1);
@@ -26,7 +28,7 @@ else
 		<?php
 		if ($this->config['show_club_shirt'] && $this->club->logo_small != '')
 		{
-			$club_trikot_title = str_replace("%CLUBNAME%", $this->club->name, JText::_("COM_JOOMLEAGUE_CLUBINFO_TRIKOT_TITLE"));
+			$club_trikot_title = str_replace("%CLUBNAME%", $this->club->name, Text::_("COM_JOOMLEAGUE_CLUBINFO_TRIKOT_TITLE"));
 			$picture = $this->club->logo_small;
 			echo JoomleagueHelper::getPictureThumb($picture, $club_emblem_title, 20, 20, 3);
 		}
@@ -45,7 +47,7 @@ else
 			?>
 			<span class="clubinfo_listing_item">
 				<?php
-				echo JText::_('COM_JOOMLEAGUE_CLUBINFO_ADDRESS');
+				echo Text::_('COM_JOOMLEAGUE_CLUBINFO_ADDRESS');
 				$dummyStr = explode('<br />', $addressString);
 				for ($i = 0; $i < count($dummyStr); $i++)
 				{
@@ -60,7 +62,7 @@ else
 		if ($this->club->phone)
 		{
 			?>
-			<span class="clubinfo_listing_item"><?php echo JText::_('COM_JOOMLEAGUE_CLUBINFO_PHONE'); ?></span>
+			<span class="clubinfo_listing_item"><?php echo Text::_('COM_JOOMLEAGUE_CLUBINFO_PHONE'); ?></span>
 			<span class="clubinfo_listing_value"><?php echo $this->club->phone; ?></span>
 			<?php
 		}
@@ -68,7 +70,7 @@ else
 		if ($this->club->fax)
 		{
 			?>
-			<span class="clubinfo_listing_item"><?php echo JText::_('COM_JOOMLEAGUE_CLUBINFO_FAX'); ?></span>
+			<span class="clubinfo_listing_item"><?php echo Text::_('COM_JOOMLEAGUE_CLUBINFO_FAX'); ?></span>
 			<span class="clubinfo_listing_value"><?php echo $this->club->fax; ?></span>
 			<?php
 		}
@@ -76,7 +78,7 @@ else
 		if ($this->club->email)
 		{
 			?>
-			<span class="clubinfo_listing_item"><?php echo JText::_('COM_JOOMLEAGUE_CLUBINFO_EMAIL'); ?></span>
+			<span class="clubinfo_listing_item"><?php echo Text::_('COM_JOOMLEAGUE_CLUBINFO_EMAIL'); ?></span>
 			<span class="clubinfo_listing_value">
 				<?php
 				// to prevent spam, crypt email display if nospam_email is selected
@@ -90,7 +92,7 @@ else
 				}
 				else
 				{
-					echo JHtml::_('email.cloak', $this->club->email);
+					echo HTMLHelper::_('email.cloak', $this->club->email);
 				}
 				?>
 			</span>
@@ -100,9 +102,9 @@ else
 		if ($this->club->website)
 		{
 			?>
-			<span class="clubinfo_listing_item"><?php echo JText::_('COM_JOOMLEAGUE_CLUBINFO_WWW'); ?></span>
+			<span class="clubinfo_listing_item"><?php echo Text::_('COM_JOOMLEAGUE_CLUBINFO_WWW'); ?></span>
 			<span class="clubinfo_listing_value">
-				<?php echo JHtml::_('link', $this->club->website, $this->club->website, array("target" => "_blank")); ?>
+				<?php echo HTMLHelper::_('link', $this->club->website, $this->club->website, array("target" => "_blank")); ?>
 			</span>
 			<?php
 		}
@@ -110,7 +112,7 @@ else
 		if ($this->club->president)
 		{
 			?>
-			<span class="clubinfo_listing_item"><?php echo JText::_('COM_JOOMLEAGUE_CLUBINFO_PRESIDENT'); ?></span>
+			<span class="clubinfo_listing_item"><?php echo Text::_('COM_JOOMLEAGUE_CLUBINFO_PRESIDENT'); ?></span>
 			<span class="clubinfo_listing_value"><?php echo $this->club->president; ?></span>
 			<?php
 		}
@@ -118,7 +120,7 @@ else
 		if ($this->club->manager)
 		{
 			?>
-			<span class="clubinfo_listing_item"><?php echo JText::_('COM_JOOMLEAGUE_CLUBINFO_MANAGER'); ?></span>
+			<span class="clubinfo_listing_item"><?php echo Text::_('COM_JOOMLEAGUE_CLUBINFO_MANAGER'); ?></span>
 			<span class="clubinfo_listing_value"><?php echo $this->club->manager; ?></span>
 			<?php
 		}
@@ -126,7 +128,7 @@ else
 		if ($this->club->founded && $this->club->founded != '0000-00-00')
 		{
 			?>
-			<span class="clubinfo_listing_item"><?php echo JText::_('COM_JOOMLEAGUE_CLUBINFO_FOUNDED'); ?></span>
+			<span class="clubinfo_listing_item"><?php echo Text::_('COM_JOOMLEAGUE_CLUBINFO_FOUNDED'); ?></span>
 			<span class="clubinfo_listing_value"><?php echo $this->club->founded; ?></span>
 			<?php
 		}
@@ -134,7 +136,7 @@ else
 		if ($this->club->dissolved && $this->club->dissolved != '0000-00-00')
 		{
 			?>
-			<span class="clubinfo_listing_item"><?php echo JText::_('COM_JOOMLEAGUE_CLUBINFO_DISSOLVED'); ?></span>
+			<span class="clubinfo_listing_item"><?php echo Text::_('COM_JOOMLEAGUE_CLUBINFO_DISSOLVED'); ?></span>
 			<span class="clubinfo_listing_value"><?php echo $this->club->dissolved; ?></span>
 			<?php
 		}
@@ -145,10 +147,10 @@ else
 			foreach ($this->playgrounds AS $playground)
 			{
 				$link = JoomleagueHelperRoute::getPlaygroundRoute($this->project->slug, $playground->slug);
-				$pl_dummy = JText::_('COM_JOOMLEAGUE_CLUBINFO_PLAYGROUND');
+				$pl_dummy = Text::_('COM_JOOMLEAGUE_CLUBINFO_PLAYGROUND');
 				?>
 				<span class="clubinfo_listing_item"><?php echo str_replace("%NUMBER%", $playground_number, $pl_dummy); ?></span>
-				<span class="clubinfo_listing_value"><?php echo JHtml::link($link, $playground->name); ?></span>
+				<span class="clubinfo_listing_value"><?php echo HTMLHelper::link($link, $playground->name); ?></span>
 				<?php
 				$playground_number++;
 			}

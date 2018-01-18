@@ -1,4 +1,5 @@
 <?php use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 // Show referees as defined
@@ -18,13 +19,13 @@ if (!empty($this->referees)): ?>
 			$k = 0; ?>
 		<tr class='sectiontableheader'>
 			<td width='60%' colspan='<?php echo $colspan; ?>'>
-				<?php echo '&nbsp;' . JText::_($referee->position); ?>
+				<?php echo '&nbsp;' . Text::_($referee->position); ?>
 			</td>
 
 			<?php if ($this->config['show_games_count']): ?>
 			<td style='text-align:center;'>
 				<?php
-				$imageTitle = JText::_('COM_JOOMLEAGUE_REFEREES_GAMES');
+				$imageTitle = Text::_('COM_JOOMLEAGUE_REFEREES_GAMES');
 				echo HTMLHelper::image('media/com_joomleague/event_icons/refereed.png',
 					$imageTitle, array('title' => $imageTitle, 'height' => 20));
 				?>

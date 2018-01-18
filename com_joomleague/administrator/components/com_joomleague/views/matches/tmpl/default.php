@@ -12,14 +12,14 @@ use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
-HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('behavior.modal');
 
 $app 		= Factory::getApplication();
 $input		= $app->input;
 $massadd	= $input->getInt('massadd',0);
 ?>
-<div id="j-main-container" class="span12">
+<div id="j-main-container" class="col-md-12">
 <div id="alt_decision_enter" style="display:<?php echo ($massadd == 0) ? 'none' : 'block'; ?>">
 <?php echo $this->loadTemplate('massadd'); ?>
 </div>

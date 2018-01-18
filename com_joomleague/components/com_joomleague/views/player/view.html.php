@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die();
  
@@ -101,7 +102,7 @@ class JoomleagueViewPlayer extends JLGView
 		$this->playername = $name;
 		
 		// Set page title
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_PLAYER_PAGE_TITLE'));
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_PLAYER_PAGE_TITLE'));
 		$titleInfo->personName = $name;
 		if (!empty($this->project))
 		{

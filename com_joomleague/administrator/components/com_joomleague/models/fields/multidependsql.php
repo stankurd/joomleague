@@ -14,7 +14,7 @@ use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
-//JHtml::_('behavior.framework');
+HTMLHelper::_('behavior.framework');
 
 /**
  * Renders a Dynamic SQL element
@@ -88,7 +88,7 @@ class JFormFieldMultiDependSQL extends FormField
 		}
 
 		if ($query!='')
-		{
+		
 			$db = Factory::getDbo();
 			$query = $db->getQuery(true);
 			$db->setQuery($query);
@@ -98,7 +98,7 @@ class JFormFieldMultiDependSQL extends FormField
 		if ($depends)
 		{
 			$doc = Factory::getDocument();
-			$doc->addScript(Uri::base() . 'components/com_joomleague/assets/js/depend.js' );
+			$doc->addScript(Uri::root() . '/administrator/components/com_joomleague/assets/js/depend.js' );
 		}
 
 		// Render the HTML SELECT list.

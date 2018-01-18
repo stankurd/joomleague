@@ -6,12 +6,14 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 ?>
 <fieldset class="form-vertical">
 	<legend>
 		<?php 
-		echo JText::sprintf('COM_JOOMLEAGUE_LEGEND_P_TEAM_DESCRIPTION','<i>'.$this->item->name.'</i>','<i>'.$this->project->name.'</i>');
+		echo Text::sprintf('COM_JOOMLEAGUE_LEGEND_P_TEAM_DESCRIPTION','<i>'.$this->item->name.'</i>','<i>'.$this->project->name.'</i>');
 		?>
 	</legend>
 	<?php

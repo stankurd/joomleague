@@ -15,6 +15,9 @@ use Joomla\CMS\Uri\Uri;
 defined('_JEXEC') or die;
 HTMLHelper::_('behavior.formvalidator');
 Factory::getDocument()->addScriptDeclaration('
+Joomla = window.Joomla || {};
+
+(function() {
 	Joomla.submitbutton = function(task)
 	{
 		if (task == "statistic.cancel" || document.formvalidator.isValid(document.getElementById("adminForm")))
@@ -22,6 +25,7 @@ Factory::getDocument()->addScriptDeclaration('
 			Joomla.submitform(task, document.getElementById("adminForm"));
 		}
 	};
+})();
 ');
 $isNew = $this->isNew;
 ?>

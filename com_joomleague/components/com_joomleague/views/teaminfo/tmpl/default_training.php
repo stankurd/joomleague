@@ -1,18 +1,20 @@
-<?php defined('_JEXEC') or die; ?>
+<?php use Joomla\CMS\Language\Text;
+
+defined('_JEXEC') or die; ?>
 
 <table width='100%' class='contentpaneopen'>
 	<tr>
-		<td class='contentheading'><?php echo '&nbsp;' . JText::_('COM_JOOMLEAGUE_TEAMINFO_TRAINING'); ?></td>
+		<td class='contentheading'><?php echo '&nbsp;' . Text::_('COM_JOOMLEAGUE_TEAMINFO_TRAINING'); ?></td>
 	</tr>
 </table>
 
 <table class='fixtures'>
 	<tr class='sectiontableheader'>
-		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TRAINING_DAY'); ?></td>
-		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TRAINING_START'); ?></td>
-		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TRAINING_END'); ?></td>
-		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TRAINING_LOCATION'); ?></td>
-		<td><?php //echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TRAINING_NOTE'); ?></td>
+		<td><?php echo Text::_('COM_JOOMLEAGUE_TEAMINFO_TRAINING_DAY'); ?></td>
+		<td><?php echo Text::_('COM_JOOMLEAGUE_TEAMINFO_TRAINING_START'); ?></td>
+		<td><?php echo Text::_('COM_JOOMLEAGUE_TEAMINFO_TRAINING_END'); ?></td>
+		<td><?php echo Text::_('COM_JOOMLEAGUE_TEAMINFO_TRAINING_LOCATION'); ?></td>
+		<td><?php //echo Text::_('COM_JOOMLEAGUE_TEAMINFO_TRAINING_NOTE'); ?></td>
 	</tr>
 	<?php
 	$k = 0;
@@ -62,7 +64,7 @@
 	{
 	?>
 	<tr class="<?php echo ($k==0)? $this->config['style_class1'] : $this->config['style_class2']; ?>">
-		<td align='left' colspan='5' >  <?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TRAINING_NODATA'); ?> </td>
+		<td align='left' colspan='5' >  <?php echo Text::_('COM_JOOMLEAGUE_TEAMINFO_TRAINING_NODATA'); ?> </td>
 	</tr>
 	<?php
 	}

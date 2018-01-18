@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -12,7 +13,7 @@ if(trim($description  != ''))
 	<br />
 	<table width='100%' border='0' cellpadding='0' cellspacing='0'>
 		<tr class='sectiontableheader'>
-			<th><?php echo JText::_('COM_JOOMLEAGUE_TEAMPLAN_TEAMINFORMATION'); ?></th>
+			<th><?php echo Text::_('COM_JOOMLEAGUE_TEAMPLAN_TEAMINFORMATION'); ?></th>
 		</tr>
 	</table>
 

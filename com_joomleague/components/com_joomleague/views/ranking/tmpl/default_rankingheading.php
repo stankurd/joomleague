@@ -1,4 +1,6 @@
-<?php defined('_JEXEC') or die;
+<?php use Joomla\CMS\Language\Text;
+
+defined('_JEXEC') or die;
 
 $columns		= explode(',', $this->config['ordered_columns']);
 $column_names	= explode(',', $this->config['ordered_columns_names']);
@@ -9,7 +11,7 @@ $colspan = $this->config['use_background_row_color'] == 0
 <thead>
 	<tr class='sectiontableheader'>
 		<th class='rankheader' colspan='<?php echo $colspan; ?>'>
-			<?php JoomleagueHelperHtml::printColumnHeadingSort(JText::_('COM_JOOMLEAGUE_RANKING_POSITION'), 'rank',
+			<?php JoomleagueHelperHtml::printColumnHeadingSort(Text::_('COM_JOOMLEAGUE_RANKING_POSITION'), 'rank',
 				$this->config, 'ASC'); ?>
 		</th>
 
@@ -18,7 +20,7 @@ $colspan = $this->config['use_background_row_color'] == 0
 		<?php endif; ?>
 
 		<th class='teamheader'>
-			<?php JoomleagueHelperHtml::printColumnHeadingSort(JText::_('COM_JOOMLEAGUE_RANKING_TEAM'), 'name',
+			<?php JoomleagueHelperHtml::printColumnHeadingSort(Text::_('COM_JOOMLEAGUE_RANKING_TEAM'), 'name',
 				$this->config, 'ASC'); ?>
 		</th>
 
@@ -29,7 +31,7 @@ $colspan = $this->config['use_background_row_color'] == 0
 		}
 		$c = 'COM_JOOMLEAGUE_' . strtoupper(trim($column));
 		$toolTipTitle = $column_names[$k];
-		$toolTipText = JText::_($c);
+		$toolTipText = Text::_($c);
 		?>
 		<th class='headers'>
 			<span class='hasTip' title='<?php echo $toolTipTitle; ?>::<?php echo $toolTipText; ?>'>
@@ -130,7 +132,7 @@ $colspan = $this->config['use_background_row_color'] == 0
 				echo $column_names[$k];
 				break;
 			default:
-				echo JText::_($column);
+				echo Text::_($column);
 				break;
 		}
 		?>

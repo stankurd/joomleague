@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -27,7 +28,7 @@ class JoomleagueViewRivals extends JLGView
 		$this->team=$model->getTeam();
 		
 		// Set page title
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_RIVALS_PAGE_TITLE'));
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_RIVALS_PAGE_TITLE'));
 		if (!empty($this->team))
 		{
 			$titleInfo->team1Name = $this->team->name;

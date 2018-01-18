@@ -8,6 +8,7 @@
  */
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die; 
 ?>
@@ -16,35 +17,35 @@ defined('_JEXEC') or die;
 if (count($this->games))
 {
 	?>
-<h2><?php echo JText::_('COM_JOOMLEAGUE_PERSON_GAMES_HISTORY'); ?></h2>
+<h2><?php echo Text::_('COM_JOOMLEAGUE_PERSON_GAMES_HISTORY'); ?></h2>
 <table style="width:96%;align:center;border:0;cellpadding:0;cellspacing:0">
 	<tr>
 		<td>
 		<table id="gameshistory" class="table">
 			<thead>
 				<tr class="sectiontableheader">
-					<th class="td_l" colspan="6"><?php echo JText::_('COM_JOOMLEAGUE_PERSON_GAMES'); ?></th>
+					<th class="td_l" colspan="6"><?php echo Text::_('COM_JOOMLEAGUE_PERSON_GAMES'); ?></th>
 					<?php
 					if ($this->config['show_substitution_stats'] && $this->overallconfig['use_jl_substitution'] == 1)
 					{
 						?>
 					<th class="td_c"><?php
-					$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_STARTROSTER');
+					$imageTitle=Text::_('COM_JOOMLEAGUE_PERSON_STARTROSTER');
 					echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/startroster.png',
 					$imageTitle,array(' title' => $imageTitle));
 					?></th>
 					<th class="td_c"><?php
-					$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_IN');
+					$imageTitle=Text::_('COM_JOOMLEAGUE_PERSON_IN');
 					echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/in.png',
 					$imageTitle,array(' title' => $imageTitle));
 					?></th>
 					<th class="td_c"><?php
-					$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_OUT');
+					$imageTitle=Text::_('COM_JOOMLEAGUE_PERSON_OUT');
 					echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png',
 					$imageTitle,array(' title' => $imageTitle));
 					?></th>
 					<th class="td_c"><?php
-					$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_TOTAL_TIME_PLAYED');
+					$imageTitle=Text::_('COM_JOOMLEAGUE_PERSON_TOTAL_TIME_PLAYED');
 					echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/playtime.gif',
 					$imageTitle,array('title'=> $imageTitle));
 					?></th>
@@ -63,8 +64,8 @@ if (count($this->games))
 					{
 						$iconPath="images/com_joomleague/database/events/".$iconPath;
 					}
-					echo HTMLHelper::image(	$iconPath,JText::_($eventtype->name),
-					array(	"title" => JText::_($eventtype->name),
+					echo HTMLHelper::image(	$iconPath,Text::_($eventtype->name),
+					array(	"title" => Text::_($eventtype->name),
 																		"align" => "top",
 																		"hspace" => "2"));
 					?></th>
@@ -214,7 +215,7 @@ if (count($this->games))
 			}
 			?>
 				<tr class="career_stats_total">
-					<td class="td_r" colspan="6"><b><?php echo JText::_('COM_JOOMLEAGUE_PERSON_GAMES_TOTAL'); ?></b></td>
+					<td class="td_r" colspan="6"><b><?php echo Text::_('COM_JOOMLEAGUE_PERSON_GAMES_TOTAL'); ?></b></td>
 					<?php
 					if ($this->config['show_substitution_stats'] && $this->overallconfig['use_jl_substitution']==1)
 					{

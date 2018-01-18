@@ -13,12 +13,13 @@ use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\Utilities\ArrayHelper;
 
 defined('_JEXEC') or die;
 
 FormHelper::loadFieldClass('list');
 
-//JHtml::_( 'behavior.framework' );
+HTMLHelper::_( 'behavior.framework' );
 
 /**
  * Renders a Dynamic SQL field
@@ -28,7 +29,7 @@ FormHelper::loadFieldClass('list');
  * - task: the task used to return the query, using defined depends field names as parameters for 
  * query (=> 'index.php?option=com_joomleague&controller=ajax&task=<task>&p=1&tid=34')
  */
-class JFormFieldDependSQL extends FormField
+class JFormFieldDependSQL extends JFormFieldList
 {
 	/**
 	 * field name
@@ -43,8 +44,8 @@ class JFormFieldDependSQL extends FormField
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		// elements
-		//$required   = $this->element['required'] ? ' required aria-required="true"' : '';
-		$required   = $this->required ? ' required aria-required="true"' : '';
+		$required   = $this->element['required'] ? ' required aria-required="true"' : '';
+		//$required   = $this->required ? ' required aria-required="true"' : '';
 		$key 		= ($this->element['key_field'] ? $this->element['key_field'] : 'value');
 		$val 		= ($this->element['value_field'] ? $this->element['value_field'] : $this->name);
 		$task 		= $this->element['task'];
@@ -83,8 +84,8 @@ class JFormFieldDependSQL extends FormField
 			$options = array();
 		}
 		else {
-			$options = array(HTMLHelper::_('select.option', '', Text::_('Loading..'), $key, Text::_($val)));
-			//$options = array();
+			//$options = array(HTMLHelper::_('select.option', '', Text::_('Loading..'), $key, Text::_($val)));
+			$options = array();
 		}
 
 		$query = $this->element['query'];
@@ -99,7 +100,7 @@ class JFormFieldDependSQL extends FormField
 		if ($depends)
 		{
 			$doc = Factory::getDocument();
-			$doc->addScript(Uri::base() . 'components/com_joomleague/assets/js/depend.js' );
+			$doc->addScript(Uri::root() . '/administrator/components/com_joomleague/assets/js/depend.js' );
 		}
 
 		return HTMLHelper::_('select.genericlist',  $options, $this->name, trim($attribs), $key, $val, $this->value, $this->id);

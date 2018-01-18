@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -38,8 +39,8 @@ class JoomleagueViewStaff extends JoomleagueViewPerson
 		$editInfo = new stdClass;
 		$editInfo->link = JoomleagueHelperRoute::getStaffRoute($this->project->id, $this->projectPerson->project_team_id,
 			$this->projectPerson->id, 'teamstaff.edit');
-		$editInfo->image = HTMLHelper::image('media/com_joomleague/jl_images/edit.png', JText::_('COM_JOOMLEAGUE_STAFF_EDIT'),
-			array('title' => JText::_('COM_JOOMLEAGUE_STAFF_EDIT')));
+		$editInfo->image = HTMLHelper::image('media/com_joomleague/jl_images/edit.png', Text::_('COM_JOOMLEAGUE_STAFF_EDIT'),
+			array('title' => Text::_('COM_JOOMLEAGUE_STAFF_EDIT')));
 		return $editInfo;
 	}
 }

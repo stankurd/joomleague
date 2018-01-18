@@ -5,6 +5,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 abstract class HTMLHelperIcon {
 
@@ -26,7 +27,7 @@ public static function edit($project_id,$item,$item_id,$task,$view=false,$params
 	{
 		$checkoutUser = Factory::getUser($item->checked_out);
 		$date         = HTMLHelper::_('date', $item->checked_out_time);
-		$tooltip      = JText::_('JLIB_HTML_CHECKED_OUT') . ' :: ' . JText::_('JLIB_HTML_CHECKED_OUT');
+		$tooltip      = Text::_('JLIB_HTML_CHECKED_OUT') . ' :: ' . Text::_('JLIB_HTML_CHECKED_OUT');
 		
 		$button = HTMLHelper::_('image', 'system/checked_out.png', null, null, true);
 		$text   = '<span class="hasTooltip" title="' . HTMLHelper::tooltipText($tooltip . '', 0) . '">'
@@ -43,7 +44,7 @@ public static function edit($project_id,$item,$item_id,$task,$view=false,$params
 		$url 	= 'index.php?option=com_joomleague&task='.$task.'&a_id=' . $item_id . '&return=' . base64_encode($uri);
 	}
 
-	$text 	= HTMLHelper::_('image', 'com_joomleague/edit.png', JText::_('JGLOBAL_EDIT'), null, true);
+	$text 	= HTMLHelper::_('image', 'com_joomleague/edit.png', Text::_('JGLOBAL_EDIT'), null, true);
 	$output = HTMLHelper::_('link', Route::_($url), $text);
 
 	return $output;

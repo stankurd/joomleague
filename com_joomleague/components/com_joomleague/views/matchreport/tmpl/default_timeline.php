@@ -1,4 +1,8 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+
+use Joomla\CMS\Language\Text;
+
+defined('_JEXEC') or die; ?>
 <!-- START of match timeline -->
 
 <script type="text/javascript">
@@ -10,7 +14,7 @@
         t.scrollIntoView()
     }
 </script>
-<h2><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_TIMELINE'); ?></h2>
+<h2><?php echo Text::_('COM_JOOMLEAGUE_MATCHREPORT_TIMELINE'); ?></h2>
 <table id="timeline">
 	<tr>
 		<?php

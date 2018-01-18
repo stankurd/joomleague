@@ -1,4 +1,7 @@
-<?php defined('_JEXEC') or die;
+<?php
+
+use Joomla\CMS\Language\Text;
+defined('_JEXEC') or die;
 ?>
 <!-- START of Substitutions -->
 <?php
@@ -7,7 +10,7 @@ if ($this->config['show_substitutions']==1)
 	if (!empty($this->substitutes))
 	{
 		?>
-		<h2><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTES'); ?></h2>	
+		<h2><?php echo Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTES'); ?></h2>	
 		<table class="matchreport">
 			<tr>
 				<td class="list">

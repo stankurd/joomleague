@@ -1,4 +1,5 @@
-<?php use Joomla\Utilities\ArrayHelper;
+<?php use Joomla\CMS\Language\Text;
+use Joomla\Utilities\ArrayHelper;
 
 defined('_JEXEC') or die; 
 
@@ -8,12 +9,12 @@ defined('_JEXEC') or die;
 
 <table class="fixtures" width="96%" align="center" border="0" cellpadding="0" cellspacing="0">
 	<tr class="sectiontableheader">
-		<th class="name_row"><?php echo JText::_('COM_JOOMLEAGUE_RIVALS_RIVAL'); ?></th>
-		<th class="match_row"><?php echo JText::_('COM_JOOMLEAGUE_RIVALS_MATCHES'); ?></th>
-		<th class="win_row"><?php echo JText::_('COM_JOOMLEAGUE_RIVALS_WIN'); ?></th>
-		<th class="tie_row"><?php echo JText::_('COM_JOOMLEAGUE_RIVALS_DRAW'); ?></th>
-		<th class="los_row"><?php echo JText::_('COM_JOOMLEAGUE_RIVALS_LOS'); ?></th>
-		<th class="goals_row"><?php echo JText::_('COM_JOOMLEAGUE_RIVALS_TOTAL_GOALS'); ?></th>
+		<th class="name_row"><?php echo Text::_('COM_JOOMLEAGUE_RIVALS_RIVAL'); ?></th>
+		<th class="match_row"><?php echo Text::_('COM_JOOMLEAGUE_RIVALS_MATCHES'); ?></th>
+		<th class="win_row"><?php echo Text::_('COM_JOOMLEAGUE_RIVALS_WIN'); ?></th>
+		<th class="tie_row"><?php echo Text::_('COM_JOOMLEAGUE_RIVALS_DRAW'); ?></th>
+		<th class="los_row"><?php echo Text::_('COM_JOOMLEAGUE_RIVALS_LOS'); ?></th>
+		<th class="goals_row"><?php echo Text::_('COM_JOOMLEAGUE_RIVALS_TOTAL_GOALS'); ?></th>
 	</tr>
 	<?php
 	$k=0;

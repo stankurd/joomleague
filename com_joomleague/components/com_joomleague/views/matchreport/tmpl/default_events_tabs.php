@@ -1,9 +1,11 @@
-<?php use Joomla\CMS\HTML\HTMLHelper;
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die; ?>
 <!-- START of match events -->
 
-<h2><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_EVENTS'); ?></h2>
+<h2><?php echo Text::_('COM_JOOMLEAGUE_MATCHREPORT_EVENTS'); ?></h2>
 
             <?php
 		    $txt_tab='';
@@ -15,11 +17,11 @@ defined('_JEXEC') or die; ?>
 				$pic_tab=$event->icon;
 				if ($pic_tab == '/events/event.gif')
 				{
-					$txt_tab = JText::_($event->name);
+					$txt_tab = Text::_($event->name);
 				}
 				else
 				{
-					$imgTitle=JText::_($event->name);
+					$imgTitle=Text::_($event->name);
 					$imgTitle2=array(' title' => $imgTitle, ' alt' => $imgTitle, ' style' => 'max-height:40px;');
 					$txt_tab=HTMLHelper::image($pic_tab,$imgTitle,$imgTitle2);
 				}

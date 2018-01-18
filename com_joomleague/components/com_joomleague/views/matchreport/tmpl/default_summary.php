@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Dispatcher\Dispatcher;
 use Joomla\Registry\Registry;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 ?>
 <!-- START of match summary -->
 <?php
@@ -30,7 +31,7 @@ if (!empty($this->match->summary))
 	?>
 	<h2>
 	<?php
-		echo '&nbsp;' . JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_MATCH_SUMMARY' );
+		echo '&nbsp;' . Text::_( 'COM_JOOMLEAGUE_MATCHREPORT_MATCH_SUMMARY' );
 	?>
 	</h2>
 	<table class="matchreport">

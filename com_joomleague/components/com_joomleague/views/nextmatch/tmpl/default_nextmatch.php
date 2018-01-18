@@ -1,6 +1,7 @@
 <?php
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -162,11 +163,11 @@ defined('_JEXEC') or die;
 		}
 		else
 		{
-			echo JText::_( "COM_JOOMLEAGUE_NEXTMATCH_UNKNOWNTEAM" );
+			echo Text::_( "COM_JOOMLEAGUE_NEXTMATCH_UNKNOWNTEAM" );
 		}
 		?></td>
 		<td class="vs"><?php
-		echo JText::_( "COM_JOOMLEAGUE_NEXTMATCH_VS" );
+		echo Text::_( "COM_JOOMLEAGUE_NEXTMATCH_VS" );
 		?></td>
 		<td class="team"><?php
 		if ( !is_null ( $this->teams ) )
@@ -175,7 +176,7 @@ defined('_JEXEC') or die;
 		}
 		else
 		{
-			echo JText::_( "COM_JOOMLEAGUE_NEXTMATCH_UNKNOWNTEAM" );
+			echo Text::_( "COM_JOOMLEAGUE_NEXTMATCH_UNKNOWNTEAM" );
 		}
 		?></td>
 	</tr>
@@ -188,7 +189,7 @@ defined('_JEXEC') or die;
             { ?>
 			<div class="notice">
 			<?php 
-                $text = JText::_( "COM_JOOMLEAGUE_NEXTMATCH_ALREADYPLAYED" );
+                $text = Text::_( "COM_JOOMLEAGUE_NEXTMATCH_ALREADYPLAYED" );
                 echo HTMLHelper::link( $report_link, $text );
 			?>
 			</div>

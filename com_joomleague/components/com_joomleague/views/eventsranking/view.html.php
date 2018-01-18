@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -33,11 +34,11 @@ class JoomleagueViewEventsRanking extends JLGView
 		// @todo: check
 		$this->multiple_events = count($this->eventtypes) > 1;
 		
-		$prefix = JText::_('COM_JOOMLEAGUE_EVENTSRANKING_PAGE_TITLE');
+		$prefix = Text::_('COM_JOOMLEAGUE_EVENTSRANKING_PAGE_TITLE');
 		
 		if ( $this->multiple_events )
 		{
-			$prefix .= " - " . JText::_( 'COM_JOOMLEAGUE_EVENTSRANKING_TITLE' );
+			$prefix .= " - " . Text::_( 'COM_JOOMLEAGUE_EVENTSRANKING_TITLE' );
 		}
 		else
 		{
@@ -47,7 +48,7 @@ class JoomleagueViewEventsRanking extends JLGView
 			// Selected one valid eventtype, so show its name
 			// @todo: check
 			if ($evid) {
-				$prefix .= " - " . JText::_($this->eventtypes[$evid[0]]->name);
+				$prefix .= " - " . Text::_($this->eventtypes[$evid[0]]->name);
 			} else {
 				$prefix .= '';
 			}

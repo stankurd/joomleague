@@ -1,10 +1,11 @@
 <?php 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die; ?>
 <!-- START of match events -->
 
-<h2><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_EVENTS'); ?></h2>		
+<h2><?php echo Text::_('COM_JOOMLEAGUE_MATCHREPORT_EVENTS'); ?></h2>		
 
 <table class="matchreport" border="0">
 			<?php
@@ -13,7 +14,7 @@ defined('_JEXEC') or die; ?>
 				?>
 				<tr>
 					<td colspan="2" class="eventid">
-						<?php echo HTMLHelper::image($event->icon, JText::_($event->icon ), NULL ) . JText::_($event->name); ?>
+						<?php echo HTMLHelper::image($event->icon, Text::_($event->icon ), NULL ) . Text::_($event->name); ?>
 					</td>
 				</tr>
 				<tr>

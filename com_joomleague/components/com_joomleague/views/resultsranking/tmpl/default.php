@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -48,16 +49,16 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 			$selector = 'resultsranking';
 			echo HTMLHelper::_('bootstrap.startTabSet', $selector, array('active'=>'panel'.$i)); 
 				
-			echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$i++, JText::_('COM_JOOMLEAGUE_RANKING_FULL_RANKING'));
+			echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$i++, Text::_('COM_JOOMLEAGUE_RANKING_FULL_RANKING'));
 			echo $this->loadTemplate('ranking');
 			echo HTMLHelper::_('bootstrap.endTab');
 			
-			echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$i++, JText::_('COM_JOOMLEAGUE_RANKING_HOME_RANKING'));
+			echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$i++, Text::_('COM_JOOMLEAGUE_RANKING_HOME_RANKING'));
 			$this->currentRanking=$this->homeRanking;
 			echo $this->loadTemplate('ranking');
 			echo HTMLHelper::_('bootstrap.endTab');
 				
-			echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$i++, JText::_('COM_JOOMLEAGUE_RANKING_AWAY_RANKING'));
+			echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$i++, Text::_('COM_JOOMLEAGUE_RANKING_AWAY_RANKING'));
 			$this->currentRanking=$this->awayRanking;
 			echo $this->loadTemplate('ranking');
 			echo HTMLHelper::_('bootstrap.endTab');

@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 /**
  * Joomleague
@@ -28,7 +29,7 @@ defined('_JEXEC') or die; ?>
 	if ( !empty($description) )
 	{
 		?>
-		<h2><?php echo JText::_( 'COM_JOOMLEAGUE_PERSON_INFO' );	?></h2>
+		<h2><?php echo Text::_( 'COM_JOOMLEAGUE_PERSON_INFO' );	?></h2>
 		<div class="personinfo">
 			<?php	
 			$description = HTMLHelper::_('content.prepare', $description);

@@ -30,10 +30,6 @@ jimport('joomla.application.component.helper');
 //load classes
 JLoader::registerPrefix('Joomleague', JPATH_COMPONENT);
 
-
-//Load styles and javascripts
-JoomleagueHelpersStyle::load();
-
 //Load plugins
 PluginHelper::importPlugin('Joomleague');
 

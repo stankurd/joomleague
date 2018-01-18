@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -12,7 +13,7 @@ $description = isset ($this->team->notes) ? $this->team->notes : '';
 	<br />
 	<table width='100%' border='0' cellpadding='0' cellspacing='0'>
 		<tr class='sectiontableheader'>
-			<td><?php echo '&nbsp;' . JText::_('COM_JOOMLEAGUE_TEAMINFO_TEAMINFORMATION'); ?></td>
+			<td><?php echo '&nbsp;' . Text::_('COM_JOOMLEAGUE_TEAMINFO_TEAMINFORMATION'); ?></td>
 		</tr>
 	</table>
 	<table width='100%' border='0' cellpadding='0' cellspacing='0'>

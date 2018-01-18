@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\Registry\Registry;
 
 $nbcols = 6;
@@ -49,25 +50,25 @@ if ($this->config['show_comments_count'] > 0)
             <?php 
             if ($date != '0000-00-00') {
                echo HTMLHelper::date($date, 
-								JText::_('COM_JOOMLEAGUE_RESULTS_GAMES_DATE'),
+								Text::_('COM_JOOMLEAGUE_RESULTS_GAMES_DATE'),
 								JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
                if ($this->config['show_matchday_dateheader']) {
                   echo ' - ';
                }
             }
             if ($this->config['show_matchday_dateheader']) {
-               echo JText::sprintf('COM_JOOMLEAGUE_RESULTS_GAMEDAY_NB',$this->roundcode); 
+               echo Text::sprintf('COM_JOOMLEAGUE_RESULTS_GAMEDAY_NB',$this->roundcode); 
             } 
             ?>
 		</th>
 
 		<?php if ($this->config['show_attendance_column']): ?>
-		<th class="right"><?php echo JText::_('COM_JOOMLEAGUE_RESULTS_ATTENDANCE'); ?></th>
+		<th class="right"><?php echo Text::_('COM_JOOMLEAGUE_RESULTS_ATTENDANCE'); ?></th>
 		<?php
 		endif;
 
 		if ($this->config['show_comments_count'] > 0): ?>
-		<th class="center"><?php echo JText::_('COM_JOOMLEAGUE_RESULTS_COMMENTS'); ?></th>
+		<th class="center"><?php echo Text::_('COM_JOOMLEAGUE_RESULTS_COMMENTS'); ?></th>
 		<?php
 		endif;
 
@@ -76,7 +77,7 @@ if ($this->config['show_comments_count'] > 0)
             <?php
             if ($date != '0000-00-00') {
                echo HTMLHelper::date($date,
-								JText::_('COM_JOOMLEAGUE_RESULTS_GAMES_DATE'),
+								Text::_('COM_JOOMLEAGUE_RESULTS_GAMES_DATE'),
 								JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
                if ($this->config['show_matchday_dateheader']) {
                   echo ' - ';
@@ -84,7 +85,7 @@ if ($this->config['show_comments_count'] > 0)
             }
 
             if ($this->config['show_matchday_dateheader']) {
-               echo JText::sprintf('COM_JOOMLEAGUE_RESULTS_GAMEDAY_NB',$this->roundcode);
+               echo Text::sprintf('COM_JOOMLEAGUE_RESULTS_GAMEDAY_NB',$this->roundcode);
             }
             ?>
 		</th>
@@ -157,7 +158,7 @@ if ($this->config['show_comments_count'] > 0)
 			{
 				$link = "javascript:void(0);";
 				$img = HTMLHelper::image('media/com_joomleague/jl_images/events.png', 'events.png');
-				$params = array("title"   => JText::_('COM_JOOMLEAGUE_TEAMPLAN_EVENTS'),
+				$params = array("title"   => Text::_('COM_JOOMLEAGUE_TEAMPLAN_EVENTS'),
 								"onclick" => 'switchMenu(\'info'.$game->id.'\');return false;');
 				echo HTMLHelper::link($link,$img,$params);
 			}
@@ -312,17 +313,17 @@ if ($this->config['show_comments_count'] > 0)
 			}
 			if ($count == 1)
 			{
-				$imgTitle = $count . ' ' . JText::_('COM_JOOMLEAGUE_RESULTS_COMMENTS_COUNT_SINGULAR');
+				$imgTitle = $count . ' ' . Text::_('COM_JOOMLEAGUE_RESULTS_COMMENTS_COUNT_SINGULAR');
 				$imgFilename = 'discuss_active.gif';
 			}
 			elseif ($count > 1)
 			{
-				$imgTitle = $count . ' ' . JText::_('COM_JOOMLEAGUE_RESULTS_COMMENTS_COUNT_PLURAL');
+				$imgTitle = $count . ' ' . Text::_('COM_JOOMLEAGUE_RESULTS_COMMENTS_COUNT_PLURAL');
 				$imgFilename = 'discuss_active.gif';
 			}
 			else
 			{
-				$imgTitle = JText::_('COM_JOOMLEAGUE_RESULTS_COMMENTS_COUNT_NOCOMMENT');
+				$imgTitle = Text::_('COM_JOOMLEAGUE_RESULTS_COMMENTS_COUNT_NOCOMMENT');
 				$imgFilename = 'discuss.gif';
 			}
 			if ($this->config['show_comments_count'] == 1)

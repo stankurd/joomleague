@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -39,7 +40,7 @@ class JoomleagueViewNextMatch extends JLGView
 			if($match->new_match_id > 0)
 			{
 				$ret = $model->getMatchText($match->new_match_id);
-				$matchDate = JoomleagueHelper::getMatchDate($ret, JText::_('COM_JOOMLEAGUE_NEXTMATCH_NEXT_MATCHDATE'));
+				$matchDate = JoomleagueHelper::getMatchDate($ret, Text::_('COM_JOOMLEAGUE_NEXTMATCH_NEXT_MATCHDATE'));
 				$matchTime = JoomleagueHelperHtml::showMatchTime($ret, $this->config, $this->overallconfig, $this->project);
 				$newmatchtext = $matchDate . " " . $matchTime . ", " . $ret->t1name . " - " . $ret->t2name;
 			}
@@ -48,7 +49,7 @@ class JoomleagueViewNextMatch extends JLGView
 			if($match->old_match_id > 0)
 			{
 				$ret = $model->getMatchText($match->old_match_id);
-				$matchDate = JoomleagueHelper::getMatchDate($ret, JText::_('COM_JOOMLEAGUE_NEXTMATCH_PREVIOUS_MATCHDATE'));
+				$matchDate = JoomleagueHelper::getMatchDate($ret, Text::_('COM_JOOMLEAGUE_NEXTMATCH_PREVIOUS_MATCHDATE'));
 				$matchTime = JoomleagueHelperHtml::showMatchTime($ret, $this->config, $this->overallconfig, $this->project);
 				$prevmatchtext = $matchDate . " " . $matchTime . ", " . $ret->t1name . " - " . $ret->t2name;
 			}
@@ -85,7 +86,7 @@ class JoomleagueViewNextMatch extends JLGView
 		}
 		
 		// Set page title
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_NEXTMATCH_PAGE_TITLE'));
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_NEXTMATCH_PAGE_TITLE'));
 		if (count($this->teams) == 2)
 		{
 			if (!empty($this->teams[0]))

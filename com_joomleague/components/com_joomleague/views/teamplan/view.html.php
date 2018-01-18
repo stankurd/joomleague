@@ -1,6 +1,7 @@
 <?php 
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
@@ -43,8 +44,8 @@ class JoomleagueViewTeamPlan extends JLGView
 
 	private function setPageTitle()
 	{
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_TEAMPLAN_PAGE_TITLE'));
-		$titleInfo->team1Name = !empty($this->ptid) ? $this->teams[$this->ptid]->name : JText::_("COM_JOOMLEAGUE_TEAMPLAN_ALL_TEAMS");
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_TEAMPLAN_PAGE_TITLE'));
+		$titleInfo->team1Name = !empty($this->ptid) ? $this->teams[$this->ptid]->name : Text::_("COM_JOOMLEAGUE_TEAMPLAN_ALL_TEAMS");
 		if (!empty($this->project))
 		{
 			$titleInfo->projectName = $this->project->name;
@@ -106,12 +107,12 @@ class JoomleagueViewTeamPlan extends JLGView
 				if ($this->config['show_events_with_icons'] == 1)
 				{
 					// Event icon as thumbnail on the tab (a placeholder icon is used when the icon does not exist)
-					$imgTitle = JText::_($event->name);
+					$imgTitle = Text::_($event->name);
 					$tab_content = JoomleagueHelper::getPictureThumb($event->icon, $imgTitle, $width, $height, $type);
 				}
 				else
 				{
-					$tab_content = JText::_($event->name);
+					$tab_content = Text::_($event->name);
 				}
 
 				$output .= HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $tab_content);
@@ -147,24 +148,24 @@ class JoomleagueViewTeamPlan extends JLGView
 				if ($this->config['show_events_with_icons'] == 1)
 				{
 					// Event icon as thumbnail on the tab (a placeholder icon is used when the icon does not exist)
-					$imgTitle = JText::_('COM_JOOMLEAGUE_IN_OUT');
+					$imgTitle = Text::_('COM_JOOMLEAGUE_IN_OUT');
 					$pic_tab	= 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/subst.png';
 					$tab_content = JoomleagueHelper::getPictureThumb($pic_tab, $imgTitle, $width, $height, $type);
 				}
 				else
 				{
-					$tab_content = JText::_('COM_JOOMLEAGUE_IN_OUT');
+					$tab_content = Text::_('COM_JOOMLEAGUE_IN_OUT');
 				}
 
 				$pic_time	= 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/playtime.gif';
 				$pic_out	= 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png';
 				$pic_in		= 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/in.png';
-				$imgTime = HTMLHelper::image($pic_time,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE'),
-					array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE')));
-				$imgOut  = HTMLHelper::image($pic_out,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT'),
-					array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT')));
-				$imgIn   = HTMLHelper::image($pic_in,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN'),
-					array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN')));
+				$imgTime = HTMLHelper::image($pic_time,Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE'),
+					array(' title' => Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE')));
+				$imgOut  = HTMLHelper::image($pic_out,Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT'),
+					array(' title' => Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT')));
+				$imgIn   = HTMLHelper::image($pic_in,Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN'),
+					array(' title' => Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN')));
 
 				$output .= HTMLHelper::_('bootstrap.addTab', $selector, 'panel'.$iPanel++, $tab_content);
 				$output .= '<table class="matchreport" border="0">';
@@ -247,7 +248,7 @@ class JoomleagueViewTeamPlan extends JLGView
 			{
 				// Size of the event icons in the tabs
 				$width = 20; $height = 20; $type = 4;
-				$imgTitle = JText::_($event->name);
+				$imgTitle = Text::_($event->name);
 				$icon = JoomleagueHelper::getPictureThumb($event->icon, $imgTitle, $width, $height, $type);
 
 				$output .= $icon;
@@ -261,7 +262,7 @@ class JoomleagueViewTeamPlan extends JLGView
 
 			if ($showEventInfo == 2)
 			{
-				$output .= JText::_($event->name).' ';
+				$output .= Text::_($event->name).' ';
 			}
 
 			if (strlen($matchevent->firstname1.$matchevent->lastname1) > 0)
@@ -271,7 +272,7 @@ class JoomleagueViewTeamPlan extends JLGView
 			}
 			else
 			{
-				$output .= JText :: _('COM_JOOMLEAGUE_GLOBAL_UNKNOWN_PERSON');
+				$output .= Text :: _('COM_JOOMLEAGUE_GLOBAL_UNKNOWN_PERSON');
 			}
 
 			// only show event sum and match notice when set to on in template cofig
@@ -310,19 +311,19 @@ class JoomleagueViewTeamPlan extends JLGView
 		{
 			$output .= '<li class="events">';
 			// $output .= $imgTime;
-			$output .= '&nbsp;'.$subs->in_out_time.'. '.JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE');
+			$output .= '&nbsp;'.$subs->in_out_time.'. '.Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE');
 			$output .= '<br />';
 
 			$output .= $imgOut;
 			$output .= '&nbsp;'.JoomleagueHelper::formatName(null, $subs->out_firstname, $subs->out_nickname,
 					$subs->out_lastname, $this->config["name_format"]);
-			$output .= '&nbsp;('.JText :: _($subs->out_position).')';
+			$output .= '&nbsp;('.Text :: _($subs->out_position).')';
 			$output .= '<br />';
 
 			$output .= $imgIn;
 			$output .= '&nbsp;'.JoomleagueHelper::formatName(null, $subs->firstname, $subs->nickname,
 					$subs->lastname, $this->config["name_format"]);
-			$output .= '&nbsp;('.JText :: _($subs->in_position).')';
+			$output .= '&nbsp;('.Text :: _($subs->in_position).')';
 			$output .= '<br /><br />';
 			$output .= '</li>';
 		}

@@ -1,6 +1,7 @@
 <?php
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -12,7 +13,7 @@ defined('_JEXEC') or die;
 			?>
 				<tr>
 					<td colspan="2" class="positionid">
-						<?php echo JText::_( $pos->name ); ?>
+						<?php echo Text::_( $pos->name ); ?>
 					</td>
 				</tr>
 				<tr>
@@ -21,7 +22,7 @@ defined('_JEXEC') or die;
 						<table class="playerstats">
 							<thead>
 								<tr>
-									<th class="playername"><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_NAME'); ?></th>
+									<th class="playername"><?php echo Text::_('COM_JOOMLEAGUE_MATCHREPORT_NAME'); ?></th>
 									<?php 
 									if(isset($this->stats[$pos->position_id])) :
 										foreach ($this->stats[$pos->position_id] as $stat): ?>
@@ -100,7 +101,7 @@ defined('_JEXEC') or die;
 			?>
 				<tr>
 					<td colspan="2" class="positionid">
-						<?php echo JText::_( $pos->name ); ?>
+						<?php echo Text::_( $pos->name ); ?>
 					</td>
 				</tr>
 				<tr>
@@ -109,7 +110,7 @@ defined('_JEXEC') or die;
 						<table class="playerstats">
 							<thead>
 								<tr>
-									<th class="playername"><?php echo JText::_('Name'); ?></th>
+									<th class="playername"><?php echo Text::_('Name'); ?></th>
 									<?php foreach ($this->stats[$pos->position_id] as $stat): ?>
 										<?php if ($stat->showInSingleMatchReports() && $stat->showInMatchReport()):?>
 											<th><?php echo $stat->getImage(); ?></th>

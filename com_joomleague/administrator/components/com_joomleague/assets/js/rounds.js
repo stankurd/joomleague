@@ -11,13 +11,12 @@
 	'use strict';
 
 	document.addEventListener('DOMContentLoaded', function() {
-//window.addEvent('domready',function(){
 	if($('populate_enter_division')) {
 		$('populate_enter_division').hide();
-		$$('table.adminlist tr').each(function(el){
+		$('table.adminlist tr').each(function(el){
 			var cb;
 			if (cb=el.getElement("input[name^=cid]")) {
-				el.getElement("input[name^=roundcode]").addEvent('change',function(){
+				el.getElement("input[name^=roundcode]").addEventListener('change',function(){
 					if (isNaN(this.value)) {
 						alert(Joomla.JText._('COM_JOOMLEAGUE_ADMIN_ROUNDS_CSJS_MSG_NOTANUMBER'));
 						return false;
@@ -27,10 +26,10 @@
 		});
 	}
 	if($('buttonup')) {
-		$('buttonup').addEvent('click', function(){
+		$('buttonup').addEventListener('click', function(){
 			moveOptionUp('teamsorder');
 		});
-		$('buttondown').addEvent('click', function(){
+		$('buttondown').addEventListener('click', function(){
 			moveOptionDown('teamsorder');
 		});
 	}

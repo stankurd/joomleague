@@ -1,6 +1,7 @@
 <?php
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -8,7 +9,7 @@ defined('_JEXEC') or die;
 <?php
 $description = $this->getDescription();
 if ($description != ''): ?>
-<h2><?php echo JText::_('COM_JOOMLEAGUE_PERSON_INFO'); ?></h2>
+<h2><?php echo Text::_('COM_JOOMLEAGUE_PERSON_INFO'); ?></h2>
 <table class='table'>
 	<tr>
 		<td><?php $description = HTMLHelper::_('content.prepare', $description); echo stripslashes($description); ?></td>

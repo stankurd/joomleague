@@ -1,4 +1,6 @@
-<?php defined('_JEXEC') or die;
+<?php use Joomla\CMS\Language\Text;
+
+defined('_JEXEC') or die;
 
 // Make sure that in case extensions are written for mentioned (common) views,
 // that they are loaded i.s.o. of the template of this view
@@ -56,7 +58,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	}
 	else
 	{
-		echo "<p>" . JText::_('COM_JOOMLEAGUE_NEXTMATCH_NO_MORE_MATCHES') . "</p>";
+		echo "<p>" . Text::_('COM_JOOMLEAGUE_NEXTMATCH_NO_MORE_MATCHES') . "</p>";
 	}
 	?>
 </div>

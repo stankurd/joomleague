@@ -1,6 +1,7 @@
 <?php
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\HTML\HTMLHelper;
 
@@ -90,12 +91,12 @@ class JoomleagueViewResultsmatrix extends JoomleagueViewResults  {
 
 		// Set page title
 		if ($this->params->get('what_to_show_first', 0) == 0) {
-			$prefix = JText::_('COM_JOOMLEAGUE_RESULTS_PAGE_TITLE').' & ' . JText :: _('COM_JOOMLEAGUE_MATRIX_PAGE_TITLE');
+			$prefix = Text::_('COM_JOOMLEAGUE_RESULTS_PAGE_TITLE').' & ' . Text :: _('COM_JOOMLEAGUE_MATRIX_PAGE_TITLE');
 			$pageTitleFormat = $resultsconfig["page_title_format"];
 		}
 		else
 		{
-			$prefix = JText::_('COM_JOOMLEAGUE_MATRIX_PAGE_TITLE').' & ' . JText :: _('COM_JOOMLEAGUE_RESULTS_PAGE_TITLE');
+			$prefix = Text::_('COM_JOOMLEAGUE_MATRIX_PAGE_TITLE').' & ' . Text :: _('COM_JOOMLEAGUE_RESULTS_PAGE_TITLE');
 			$pageTitleFormat = $matrixconfig["page_title_format"];
 		}
 		$titleInfo = JoomleagueHelper::createTitleInfo($prefix);
@@ -115,7 +116,7 @@ class JoomleagueViewResultsmatrix extends JoomleagueViewResults  {
 		/*
 		 //build feed links
 		 $feed = 'index.php?option=com_joomleague&view=results&p='.$this->project->id.'&format=feed';
-		 $rss = array('type' => 'application/rss+xml', 'title' => JText::_('COM_JOOMLEAGUE_RESULTS_RSSFEED'));
+		 $rss = array('type' => 'application/rss+xml', 'title' => Text::_('COM_JOOMLEAGUE_RESULTS_RSSFEED'));
 
 		 // add the links
 		 $document->addHeadLink(JRoute::_($feed.'&type=rss'), 'alternate', 'rel', $rss);

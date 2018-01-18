@@ -1,29 +1,30 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
 
 <table class='table contentpaneopen'>
 	<tr>
-		<td class='contentheading'><?php echo '&nbsp;' . JText::_('COM_JOOMLEAGUE_TEAMINFO_HISTORY'); ?>
+		<td class='contentheading'><?php echo '&nbsp;' . Text::_('COM_JOOMLEAGUE_TEAMINFO_HISTORY'); ?>
 		</td>
 	</tr>
 </table>
 
 <table class='fixtures table'>
 	<tr class='sectiontableheader'>
-		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_SEASON'); ?></td>
-		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_LEAGUE'); ?></td>
+		<td><?php echo Text::_('COM_JOOMLEAGUE_TEAMINFO_SEASON'); ?></td>
+		<td><?php echo Text::_('COM_JOOMLEAGUE_TEAMINFO_LEAGUE'); ?></td>
 		<?php if($this->project->project_type=='DIVISIONS_LEAGUE') { ?> 
-		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_DIVISION'); ?></td>
+		<td><?php echo Text::_('COM_JOOMLEAGUE_TEAMINFO_DIVISION'); ?></td>
 		<?php } ?> 
-		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_RANK'); ?></td>
-		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_GAMES'); ?></td>
-		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_POINTS'); ?></td>
-		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_WDL'); ?></td>
-		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_GOALS'); ?></td>
-		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_PLAYERS'); ?></td>
+		<td><?php echo Text::_('COM_JOOMLEAGUE_TEAMINFO_RANK'); ?></td>
+		<td><?php echo Text::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_GAMES'); ?></td>
+		<td><?php echo Text::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_POINTS'); ?></td>
+		<td><?php echo Text::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_WDL'); ?></td>
+		<td><?php echo Text::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_GOALS'); ?></td>
+		<td><?php echo Text::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_PLAYERS'); ?></td>
 	</tr>
 	<?php
 	$k = 0;

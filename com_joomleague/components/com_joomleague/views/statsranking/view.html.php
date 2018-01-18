@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -42,10 +43,10 @@ class JoomleagueViewStatsRanking extends JLGView
 		$this->limitstart=$model->getLimitStart();
 		$this->multiple_stats = count($this->stats) > 1;
 
-		$prefix = JText::_('COM_JOOMLEAGUE_STATSRANKING_PAGE_TITLE');
+		$prefix = Text::_('COM_JOOMLEAGUE_STATSRANKING_PAGE_TITLE');
 		if ( $this->multiple_stats )
 		{
-			$prefix .= " - " . JText::_( 'COM_JOOMLEAGUE_STATSRANKING_TITLE' );
+			$prefix .= " - " . Text::_( 'COM_JOOMLEAGUE_STATSRANKING_TITLE' );
 		}
 		else
 		{

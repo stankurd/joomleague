@@ -12,7 +12,6 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
-JLoader::register('JoomleagueModelProject', JPATH_COMPONENT . '/components/com_joomleague/models/project.php');
 
 defined('_JEXEC') or die;
 
@@ -142,6 +141,7 @@ class JLGRanking
 	 */
 	public function setProjectId($id)
 	{
+	    JLoader::register('JoomleagueModelProject', JLG_PATH_SITE . '/models/project.php');
 		$this->_projectid = (int) $id;
 		$this->_project = new JoomleagueModelProject();
 		
@@ -253,7 +253,6 @@ class JLGRanking
 		$class = get_class($this);
 		$newClass = new $class();
 		$data = $cache->__call(array($newClass, '_cachedGetData'), $this->_projectid, $this->_division);
-		//$data = $cache->call(array($newClass, '_cachedGetData'), $this->_projectid, $this->_division);
 		
 		return $data;
 	}

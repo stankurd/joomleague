@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -32,12 +33,12 @@ Factory::getDocument()->addScriptDeclaration('
 	<div class="btn-toolbar">
 		<div class="btn-group">
 			<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('clubform.save')">
-				<span class="icon-ok"></span><?php echo JText::_('JSAVE') ?>
+				<span class="icon-ok"></span><?php echo Text::_('JSAVE') ?>
 			</button>
 		</div>
 		<div class="btn-group">
 			<button type="button" class="btn" onclick="Joomla.submitbutton('clubform.cancel')">
-				<span class="icon-cancel"></span><?php echo JText::_('JCANCEL') ?>
+				<span class="icon-cancel"></span><?php echo Text::_('JCANCEL') ?>
 			</button>
 		</div>
 	</div>
@@ -45,15 +46,15 @@ Factory::getDocument()->addScriptDeclaration('
 	<?php
 	$p = 1;
 	echo HTMLHelper::_('bootstrap.startTabSet','tabs',array('active' => 'panel1'));
-	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_DETAILS',true));
+	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,Text::_('COM_JOOMLEAGUE_TABS_DETAILS',true));
 	echo $this->loadTemplate('details');
 	echo HTMLHelper::_('bootstrap.endTab');
 
-	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_DESCRIPTION',true));
+	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,Text::_('COM_JOOMLEAGUE_TABS_DESCRIPTION',true));
 	echo $this->loadTemplate('description');
 	echo HTMLHelper::_('bootstrap.endTab');
 
-	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,JText::_('COM_JOOMLEAGUE_TABS_EXTENDED',true));
+	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,Text::_('COM_JOOMLEAGUE_TABS_EXTENDED',true));
 	echo $this->loadTemplate('extended');
 	echo HTMLHelper::_('bootstrap.endTab');
 

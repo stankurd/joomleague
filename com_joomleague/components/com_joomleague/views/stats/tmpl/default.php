@@ -1,8 +1,12 @@
-<?php defined('_JEXEC') or die; 
+<?php use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+
+defined('_JEXEC') or die; 
 
 if ( !isset( $this->project ) )
 {
-    JError::raiseWarning( 'ERROR_CODE', JText::_( 'Error: ProjectID was not submitted in URL or project was not found in database!' ) );
+    $msg = Text::_( 'Error: ProjectID was not submitted in URL or project was not found in database!' );
+    Factory::getApplication()->enqueueMessage($msg, 'warning');
 }
 else
 {

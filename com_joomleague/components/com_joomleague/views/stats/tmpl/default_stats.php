@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -10,36 +11,36 @@ defined('_JEXEC') or die;
 <table cellspacing="0" border="0" width="100%">
 <thead>
 	<tr class="sectiontableheader">
-		<th colspan="2"><?php	echo JText::_('COM_JOOMLEAGUE_STATS_GENERAL'); ?></th>
+		<th colspan="2"><?php	echo Text::_('COM_JOOMLEAGUE_STATS_GENERAL'); ?></th>
 	</tr>
 </thead>
 <tbody>
 	<tr class="sectiontableentry1">
-		<td class="statlabel"><?php	echo JText::_('COM_JOOMLEAGUE_STATS_MATCHDAYS'); ?>:</td>
+		<td class="statlabel"><?php	echo Text::_('COM_JOOMLEAGUE_STATS_MATCHDAYS'); ?>:</td>
 		<td class="statvalue"><?php	echo $this->totalrounds; ?></td>
 	</tr>
 	<tr class="sectiontableentry2">
-		<td class="statlabel"><?php	echo JText::_('COM_JOOMLEAGUE_STATS_CURRENT_MATCHDAY');	?>:
+		<td class="statlabel"><?php	echo Text::_('COM_JOOMLEAGUE_STATS_CURRENT_MATCHDAY');	?>:
 		</td>
 		<td class="statvalue"><?php	echo $this->actualround; ?></td>
 	</tr>
 	<tr class="sectiontableentry1">
-		<td class="statlabel"><?php echo JText::_('COM_JOOMLEAGUE_STATS_MATCHES_PER_MATCHDAY'); ?>:</td>
+		<td class="statlabel"><?php echo Text::_('COM_JOOMLEAGUE_STATS_MATCHES_PER_MATCHDAY'); ?>:</td>
 		<td class="statvalue"><?php	echo ($this->totalrounds > 0 ? round (($this->totals->totalmatches / $this->totalrounds),2) : 0); ?>
 		</td>
 	</tr>
 	<tr class="sectiontableentry2">
-		<td class="statlabel"><?php echo JText::_('COM_JOOMLEAGUE_STATS_MATCHES_OVERALL');?>:</td>
+		<td class="statlabel"><?php echo Text::_('COM_JOOMLEAGUE_STATS_MATCHES_OVERALL');?>:</td>
 		<td class="statvalue"><?php	echo $this->totals->totalmatches;?></td>
 	</tr>
 	<tr  class="sectiontableentry1">
-		<td class="statlabel"><?php echo JText::_('COM_JOOMLEAGUE_STATS_MATCHES_PLAYED');?>:</td>
+		<td class="statlabel"><?php echo Text::_('COM_JOOMLEAGUE_STATS_MATCHES_PLAYED');?>:</td>
 		<td class="statvalue"><?php	echo $this->totals->playedmatches;?></td>
 	</tr>
 	
 	<?php	if ($this->config['home_away_stats']): ?>
 	<tr  class="sectiontableentry2">
-		<td class="statlabel"><b><?php echo JText::_('COM_JOOMLEAGUE_STATS_MATCHES_HIGHEST_WON_HOME');?>:</b>
+		<td class="statlabel"><b><?php echo Text::_('COM_JOOMLEAGUE_STATS_MATCHES_HIGHEST_WON_HOME');?>:</b>
 		<br />
 		<?php
 		if($this->totals->playedmatches>0 && $this->highest_home) {
@@ -95,7 +96,7 @@ defined('_JEXEC') or die;
 		</td>
 	</tr>
 	<tr  class="sectiontableentry1">
-		<td class="statlabel"><b><?php echo JText::_('COM_JOOMLEAGUE_STATS_MATCHES_HIGHEST_WON_AWAY');?>:</b>
+		<td class="statlabel"><b><?php echo Text::_('COM_JOOMLEAGUE_STATS_MATCHES_HIGHEST_WON_AWAY');?>:</b>
 		<br />
 		<?php
 		if($this->totals->playedmatches>0 && $this->highest_away) {
@@ -162,7 +163,7 @@ defined('_JEXEC') or die;
 		}
 		?>
 	<tr  class="sectiontableentry2">
-		<td class="statlabel"><b><?php echo JText::_('COM_JOOMLEAGUE_STATS_MATCHES_HIGHEST_WIN');?>:</b>
+		<td class="statlabel"><b><?php echo Text::_('COM_JOOMLEAGUE_STATS_MATCHES_HIGHEST_WIN');?>:</b>
 		<br />
 		<?php 
 			echo $this->highest->hometeam." - ".$this->highest->guestteam; 

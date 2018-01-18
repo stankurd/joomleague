@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -34,7 +35,7 @@ class JoomleagueViewClubInfo extends JLGView
 
 	private function setPageTitle()
 	{
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_CLUBINFO_PAGE_TITLE'));
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_CLUBINFO_PAGE_TITLE'));
 		if (!empty($this->club))
 		{
 			$titleInfo->clubName = $this->club->name;

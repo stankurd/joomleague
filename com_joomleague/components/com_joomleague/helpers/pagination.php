@@ -15,6 +15,7 @@ use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -84,17 +85,17 @@ class JoomleaguePagination
 			$params['r'] = $backward;
 			$query = Uri::buildQuery($params);
 			$link = Route::_('index.php?' . $query . '#com_joomleague_top');
-			$prevlink = HTMLHelper::link($link,JText::_('COM_JOOMLEAGUE_GLOBAL_PREV'));
+			$prevlink = HTMLHelper::link($link,Text::_('COM_JOOMLEAGUE_GLOBAL_PREV'));
 
 			$params['r'] = $firstRound['id'];
 			$query = Uri::buildQuery($params);
 			$link = Route::_('index.php?' . $query . '#com_joomleague_top');
-			$firstlink = HTMLHelper::link($link,JText::_('COM_JOOMLEAGUE_GLOBAL_PAGINATION_START')) . $spacer4;
+			$firstlink = HTMLHelper::link($link,Text::_('COM_JOOMLEAGUE_GLOBAL_PAGINATION_START')) . $spacer4;
 		}
 		else
 		{
-			$prevlink = JText::_('COM_JOOMLEAGUE_GLOBAL_PREV');
-			$firstlink = JText::_('COM_JOOMLEAGUE_GLOBAL_PAGINATION_START') . $spacer4;
+			$prevlink = Text::_('COM_JOOMLEAGUE_GLOBAL_PREV');
+			$firstlink = Text::_('COM_JOOMLEAGUE_GLOBAL_PAGINATION_START') . $spacer4;
 		}
 		if ($lastRound['id'] != $roundid)
 		{
@@ -102,17 +103,17 @@ class JoomleaguePagination
 			$query = Uri::buildQuery($params);
 			$link = Route::_('index.php?'.$query.'#com_joomleague_top');
 			$nextlink = $spacer4;
-			$nextlink .= HTMLHelper::link($link,JText::_('COM_JOOMLEAGUE_GLOBAL_NEXT'));
+			$nextlink .= HTMLHelper::link($link,Text::_('COM_JOOMLEAGUE_GLOBAL_NEXT'));
 
 			$params['r'] = $lastRound['id'];
 			$query = Uri::buildQuery($params);
 			$link = Route::_('index.php?' . $query . '#com_joomleague_top');
-			$lastlink = $spacer4 . HTMLHelper::link($link,JText::_('COM_JOOMLEAGUE_GLOBAL_PAGINATION_END'));
+			$lastlink = $spacer4 . HTMLHelper::link($link,Text::_('COM_JOOMLEAGUE_GLOBAL_PAGINATION_END'));
 		}
 		else
 		{
-			$nextlink = $spacer4 . JText::_('COM_JOOMLEAGUE_GLOBAL_NEXT');
-			$lastlink = $spacer4 . JText::_('COM_JOOMLEAGUE_GLOBAL_PAGINATION_END');
+			$nextlink = $spacer4 . Text::_('COM_JOOMLEAGUE_GLOBAL_NEXT');
+			$lastlink = $spacer4 . Text::_('COM_JOOMLEAGUE_GLOBAL_PAGINATION_END');
 		}
 		$limit = count($arrRounds);
 		$low = $currentRoundcode - 3;

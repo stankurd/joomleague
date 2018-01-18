@@ -14,12 +14,12 @@ HTMLHelper::_('jquery.framework');
 HTMLHelper::_('bootstrap.tooltip');
 ?>
 <script>
-	function Joomla.submitbutton(pressbutton)
+	function submitbutton(pressbutton)
 	{
 		var form = $('adminForm');
 		if (pressbutton == 'cancel')
 		{
-			Joomla.submitform( pressbutton );
+			submitform( pressbutton );
 			return;
 		}
 		var mylist = document.getElementById('project_teamslist');
@@ -27,7 +27,7 @@ HTMLHelper::_('bootstrap.tooltip');
 		{
 			  mylist[i].selected = true;
 		}
-		Joomla.submitform( pressbutton );
+		submitform( pressbutton );
 	}
 </script>
 <script>

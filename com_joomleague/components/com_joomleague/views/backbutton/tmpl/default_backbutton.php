@@ -1,4 +1,6 @@
 <?php 
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 
 if ( isset( $this->overallconfig['show_back_button'] ) )
@@ -22,7 +24,7 @@ if ( isset( $this->overallconfig['show_back_button'] ) )
 		<div class="back_button">
 			<a href='javascript:history.go(-1)'>
 				<?php
-				echo JText::_( 'COM_JOOMLEAGUE_BACKBUTTON_BACK' );
+				echo Text::_( 'COM_JOOMLEAGUE_BACKBUTTON_BACK' );
 				?>
 			</a>
 		</div>

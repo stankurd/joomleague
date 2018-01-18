@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -52,7 +53,7 @@ class JoomleagueViewTeamStats extends JLGView
 	private function setTitlePage()
 	{
 		// Set page title
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_TEAMSTATS_PAGE_TITLE'));
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_TEAMSTATS_PAGE_TITLE'));
 		if (!empty($this->team))
 		{
 			$titleInfo->team1Name = $this->team->name;
@@ -127,17 +128,17 @@ class JoomleagueViewTeamStats extends JLGView
 
 		$barfor = new $config['bartype_1']();
 		$barfor->set_values($forSum);
-		$barfor->set_tooltip(JText::_('COM_JOOMLEAGUE_TEAMSTATS_GOALS_FOR'). ': #val#');
+		$barfor->set_tooltip(Text::_('COM_JOOMLEAGUE_TEAMSTATS_GOALS_FOR'). ': #val#');
 		$barfor->set_colour($config['bar1']);
 		$barfor->set_on_show(new bar_on_show($config['animation_1'], $config['cascade_1'], $config['delay_1']));
-		$barfor->set_key(JText::_('COM_JOOMLEAGUE_TEAMSTATS_GOALS_FOR'), 12);
+		$barfor->set_key(Text::_('COM_JOOMLEAGUE_TEAMSTATS_GOALS_FOR'), 12);
 
 		$baragainst = new $config['bartype_2']();
 		$baragainst->set_values($againstSum);
-		$baragainst->set_tooltip(  JText::_('COM_JOOMLEAGUE_TEAMSTATS_GOALS_AGAINST'). ': #val#');
+		$baragainst->set_tooltip(  Text::_('COM_JOOMLEAGUE_TEAMSTATS_GOALS_AGAINST'). ': #val#');
 		$baragainst->set_colour($config['bar2']);
 		$baragainst->set_on_show(new bar_on_show($config['animation_2'], $config['cascade_2'], $config['delay_2']));
-		$baragainst->set_key(JText::_('COM_JOOMLEAGUE_TEAMSTATS_GOALS_AGAINST'), 12);
+		$baragainst->set_key(Text::_('COM_JOOMLEAGUE_TEAMSTATS_GOALS_AGAINST'), 12);
 
 		$chart->add_element($barfor);
 		$chart->add_element($baragainst);
@@ -147,13 +148,13 @@ class JoomleagueViewTeamStats extends JLGView
 		$d->size((int)$config['line3_dot_strength']);
 		$d->halo_size(1);
 		$d->colour($config['line3']);
-		$d->tooltip(JText::_('COM_JOOMLEAGUE_TEAMSTATS_TOTAL2').' #val#');
+		$d->tooltip(Text::_('COM_JOOMLEAGUE_TEAMSTATS_TOTAL2').' #val#');
 
 		$line = new line();
 		$line->set_default_dot_style($d);
 		$line->set_values(array_slice($matchDayGoalsCount,1));
 		$line->set_width((int) $config['line3_strength']);
-		$line->set_key(JText::_('COM_JOOMLEAGUE_TEAMSTATS_TOTAL'), 12);
+		$line->set_key(Text::_('COM_JOOMLEAGUE_TEAMSTATS_TOTAL'), 12);
 		$line->set_colour($config['line3']);
 		$line->on_show(new line_on_show($config['l_animation_3'], $config['l_cascade_3'], $config['l_delay_3']));
 		$chart->add_element($line);
@@ -162,7 +163,7 @@ class JoomleagueViewTeamStats extends JLGView
 		$x->set_colours($config['x_axis_colour'], $config['x_axis_colour_inner']);
 		$x->set_labels_from_array($round_labels);
 		$chart->set_x_axis($x);
-		$x_legend = new x_legend(JText::_('COM_JOOMLEAGUE_TEAMSTATS_ROUNDS'));
+		$x_legend = new x_legend(Text::_('COM_JOOMLEAGUE_TEAMSTATS_ROUNDS'));
 		$x_legend->set_style('{font-size: 15px; color: #778877}');
 		$chart->set_x_legend($x_legend);
 
@@ -170,7 +171,7 @@ class JoomleagueViewTeamStats extends JLGView
 		$y->set_range(0, max($matchDayGoalsCount)+2, $config['y_axis_steps']);
 		$y->set_colours($config['y_axis_colour'], $config['y_axis_colour_inner']);
 		$chart->set_y_axis($y);
-		$y_legend = new y_legend(JText::_('COM_JOOMLEAGUE_TEAMSTATS_GOALS'));
+		$y_legend = new y_legend(Text::_('COM_JOOMLEAGUE_TEAMSTATS_GOALS'));
 		$y_legend->set_style('{font-size: 15px; color: #778877}');
 		$chart->set_y_legend($y_legend);
 

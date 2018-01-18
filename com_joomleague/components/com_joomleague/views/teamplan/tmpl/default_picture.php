@@ -1,4 +1,6 @@
-<?php defined('_JEXEC') or die; ?>
+<?php use Joomla\CMS\Language\Text;
+
+defined('_JEXEC') or die; ?>
 
 <?php
 $picture = $this->projectteam->projectteam_picture;
@@ -11,7 +13,7 @@ if (!empty($picture) && $picture != JoomleagueHelper::getDefaultPlaceholder("tea
 		<tr>
 			<td align="center">
 				<?php
-				$imgTitle = JText::sprintf('COM_JOOMLEAGUE_TEAMPLAN_PICTURE_TEAM', $this->projectteam->name);
+				$imgTitle = Text::sprintf('COM_JOOMLEAGUE_TEAMPLAN_PICTURE_TEAM', $this->projectteam->name);
 				echo JoomleagueHelper::getPictureThumb($picture, $imgTitle,
 					$this->config['page_header_team_picture_width'],
 					$this->config['page_header_team_picture_height']);

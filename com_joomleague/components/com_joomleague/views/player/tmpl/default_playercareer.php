@@ -8,6 +8,7 @@
  */
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -15,19 +16,19 @@ if (count($this->historyPlayer) > 0)
 {
 	?>
 	<!-- Player history START -->
-	<h2><?php echo JText::_('COM_JOOMLEAGUE_PERSON_PLAYING_CAREER'); ?></h2>
+	<h2><?php echo Text::_('COM_JOOMLEAGUE_PERSON_PLAYING_CAREER'); ?></h2>
 	<table style="width:96%;align:center;border:0;cellpadding:0;cellspacing:0">
 		<tr>
 			<td>
 				<table id="playerhistory" class="table">
 					<tr class="sectiontableheader">
-						<th class="td_l"><?php echo JText::_('COM_JOOMLEAGUE_PERSON_COMPETITION');
+						<th class="td_l"><?php echo Text::_('COM_JOOMLEAGUE_PERSON_COMPETITION');
 							?></th>
-						<th class="td_l"><?php echo JText::_('COM_JOOMLEAGUE_PERSON_SEASON');
+						<th class="td_l"><?php echo Text::_('COM_JOOMLEAGUE_PERSON_SEASON');
 							?></th>
-						<th class="td_l"><?php echo JText::_('COM_JOOMLEAGUE_PERSON_TEAM');
+						<th class="td_l"><?php echo Text::_('COM_JOOMLEAGUE_PERSON_TEAM');
 							?></th>
-						<th class="td_l"><?php echo JText::_('COM_JOOMLEAGUE_PERSON_POSITION');
+						<th class="td_l"><?php echo Text::_('COM_JOOMLEAGUE_PERSON_POSITION');
 							?></th>
 					</tr>
 					<?php
@@ -51,7 +52,7 @@ if (count($this->historyPlayer) > 0)
 								echo $station->team_name;
 							}
 							?></td>
-							<td class="td_l"><?php echo JText::_($station->position_name);
+							<td class="td_l"><?php echo Text::_($station->position_name);
 								?></td>
 						</tr>
 						<?php

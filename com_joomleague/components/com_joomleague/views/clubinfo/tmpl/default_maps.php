@@ -1,4 +1,9 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
+?>
 <div style='width: 100%; float: left'>
 	<div class='contentpaneopen'>
 		<div class='contentheading'>
@@ -57,6 +62,6 @@
 		$params  = '{mosmap ';
 		$params .= implode('|', $arrPluginParams);
 		$params .= "}";
-		echo JHtml::_('content.prepare', $params);
+		echo HTMLHelper::_('content.prepare', $params);
 	?>
 </div>

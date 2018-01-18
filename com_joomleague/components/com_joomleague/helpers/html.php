@@ -14,6 +14,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Table\Table;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\HTML\HTMLHelper;
 
@@ -43,7 +44,7 @@ class JoomleagueHelperHtml {
 		if (!isset($overallconfig['time_format'])) {
 			$overallconfig['time_format']='H:i';
 		}
-		$timeSuffix=JText::_('COM_JOOMLEAGUE_GLOBAL_CLOCK');
+		$timeSuffix=Text::_('COM_JOOMLEAGUE_GLOBAL_CLOCK');
 		if ($timeSuffix=='COM_JOOMLEAGUE_GLOBAL_CLOCK') {
 			$timeSuffix='%1$s&nbsp;h';
 		}
@@ -207,7 +208,7 @@ class JoomleagueHelperHtml {
 			}
 			elseif ($thisround->roundcode > 0)
 			{
-				echo ' '.JText::sprintf('COM_JOOMLEAGUE_RESULTS_MATCHDAY', $thisround->roundcode).'&nbsp;';
+				echo ' '.Text::sprintf('COM_JOOMLEAGUE_RESULTS_MATCHDAY', $thisround->roundcode).'&nbsp;';
 			}
 
 			if ($config['show_rounds_dates'] == 1)
@@ -267,7 +268,7 @@ class JoomleagueHelperHtml {
 
 			$boldStart	= '';
 			$boldEnd	= '';
-			$toolTipTitle	= JText::_('COM_JOOMLEAGUE_PLAYGROUND_MATCH');
+			$toolTipTitle	= Text::_('COM_JOOMLEAGUE_PLAYGROUND_MATCH');
 			$toolTipText	= '';
 
 			if ($config['show_playground_alert'] &&
@@ -275,7 +276,7 @@ class JoomleagueHelperHtml {
 			{
 				$boldStart		= '<b style="color:red; ">';
 				$boldEnd		= '</b>';
-				$toolTipTitle	= JText::_('COM_JOOMLEAGUE_PLAYGROUND_NEW');
+				$toolTipTitle	= Text::_('COM_JOOMLEAGUE_PLAYGROUND_NEW');
 			}
 
 			$pginfo = Table::getInstance('Playground','Table');
@@ -313,7 +314,7 @@ class JoomleagueHelperHtml {
 			$overtime=1;
 		}else{$overtime=0;
 		}
-		$temptext=JText::_('COM_JOOMLEAGUE_RESULTS_LIVE_WRONG');
+		$temptext=Text::_('COM_JOOMLEAGUE_RESULTS_LIVE_WRONG');
 		for ($temp_count=1; $temp_count <= $project->game_parts+$overtime; $temp_count++)
 		{
 			$this_part_start=(($temp_count-1) * ($project->halftime + $parts_time));
@@ -352,19 +353,19 @@ class JoomleagueHelperHtml {
 		if ($res == 0)
 		{
 			$img = 'media/com_joomleague/jl_images/draw.png';
-			$alt = JText::_('COM_JOOMLEAGUE_GLOBAL_DRAW');
+			$alt = Text::_('COM_JOOMLEAGUE_GLOBAL_DRAW');
 			$title = $alt;
 		}
 		else if ($res < 0)
 		{
 			$img = 'media/com_joomleague/jl_images/thumbs_down.png';
-			$alt = JText::_('COM_JOOMLEAGUE_GLOBAL_LOST');
+			$alt = Text::_('COM_JOOMLEAGUE_GLOBAL_LOST');
 			$title = $alt;
 		}
 		else
 		{
 			$img = 'media/com_joomleague/jl_images/thumbs_up.png';
-			$alt = JText::_('COM_JOOMLEAGUE_GLOBAL_WON');
+			$alt = Text::_('COM_JOOMLEAGUE_GLOBAL_WON');
 			$title = $alt;
 		}
 
@@ -419,19 +420,19 @@ class JoomleagueHelperHtml {
 			if ( ( $team->rank == $previous[$ptid]->rank ) || ( $previous[$ptid]->rank == "" ) )
 			{
 				$imgsrc .= "same.png";
-				$alt	 = JText::_('COM_JOOMLEAGUE_RANKING_SAME');
+				$alt	 = Text::_('COM_JOOMLEAGUE_RANKING_SAME');
 				$title	 = $alt;
 			}
 			elseif ( $team->rank < $previous[$ptid]->rank )
 			{
 				$imgsrc .= "up.png";
-				$alt	 = JText::_('COM_JOOMLEAGUE_RANKING_UP');
+				$alt	 = Text::_('COM_JOOMLEAGUE_RANKING_UP');
 				$title	 = $alt;
 			}
 			elseif ( $team->rank > $previous[$ptid]->rank )
 			{
 				$imgsrc .= "down.png";
-				$alt	 = JText::_('COM_JOOMLEAGUE_RANKING_DOWN');
+				$alt	 = Text::_('COM_JOOMLEAGUE_RANKING_DOWN');
 				$title	 = $alt;
 			}
 
@@ -478,12 +479,12 @@ class JoomleagueHelperHtml {
 			$query = Uri::buildQuery( $params );
 			echo HTMLHelper::link(
 			Route::_( "index.php?".$query ),
-			JText::_($columnTitle),
+			Text::_($columnTitle),
 			array( "class" => "jl_rankingheader" ) ).$img;
 		}
 		else
 		{
-			echo JText::_($columnTitle);
+			echo Text::_($columnTitle);
 		}
 	}
 

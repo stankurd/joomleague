@@ -1,6 +1,7 @@
 <?php
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -8,7 +9,7 @@ defined('_JEXEC') or die;
 <?php if ($this->previousx[$this->currentteam]) :	?>
 <!-- Start of last 5 matches -->
 
-<h2><?php echo JText::sprintf('COM_JOOMLEAGUE_NEXTMATCH_PREVIOUS', $this->allteams[$this->currentteam]->name); ?></h2>
+<h2><?php echo Text::sprintf('COM_JOOMLEAGUE_NEXTMATCH_PREVIOUS', $this->allteams[$this->currentteam]->name); ?></h2>
 <table width="100%">
 	<tr>
 		<td>
@@ -30,7 +31,7 @@ defined('_JEXEC') or die;
 				echo HTMLHelper::link( $result_link, $game->roundcode );
 				?></td>
 				<td nowrap="nowrap"><?php
-				echo JoomleagueHelper::getMatchDate($game, JText::_( 'COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE' ));
+				echo JoomleagueHelper::getMatchDate($game, Text::_( 'COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE' ));
 				?></td>
 				<td><?php
 				echo JoomleagueHelper::getMatchTime($game);
@@ -53,8 +54,8 @@ defined('_JEXEC') or die;
 				if ($game->show_report==1)
 				{
 					$desc = HTMLHelper::image( "media/com_joomleague/jl_images/zoom.png",
-					JText::_( 'Match Report' ),
-					array( "title" => JText::_( 'Match Report' ) ) );
+					Text::_( 'Match Report' ),
+					array( "title" => Text::_( 'Match Report' ) ) );
 					echo HTMLHelper::link( $report_link, $desc);
 				}
 				$k = 1 - $k;

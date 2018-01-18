@@ -2,6 +2,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -38,7 +39,7 @@ class JoomleagueViewCurve extends JLGView
 		{
 			$teamid1 = $model->teamid1;
 			$teamid2 = $model->teamid2;
-			$options = array(HTMLHelper::_('select.option', '0', JText::_('COM_JOOMLEAGUE_CURVE_CHOOSE_TEAM') ) );
+			$options = array(HTMLHelper::_('select.option', '0', Text::_('COM_JOOMLEAGUE_CURVE_CHOOSE_TEAM') ) );
 			$divisions = $model->getDivisions();
 			if (count($divisions)>0 && $division == 0)
 			{
@@ -109,7 +110,7 @@ class JoomleagueViewCurve extends JLGView
 		}
 
 		// Set page title
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_CURVE_PAGE_TITLE'));
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_CURVE_PAGE_TITLE'));
 		if (!empty($this->team1))
 		{
 			$titleInfo->team1Name = $this->team1->name;
@@ -255,7 +256,7 @@ class JoomleagueViewCurve extends JLGView
 			$x->set_labels($xlabels);
 			$x->set_colours($config['x_axis_colour'], $config['x_axis_colour_inner']);
 			$chart->set_x_axis( $x );
-			$x_legend = new x_legend( JText::_('COM_JOOMLEAGUE_CURVE_ROUNDS') );
+			$x_legend = new x_legend( Text::_('COM_JOOMLEAGUE_CURVE_ROUNDS') );
 			$x_legend->set_style( '{font-size: 15px; color: #778877}' );
 			$chart->set_x_legend( $x_legend );
 
@@ -263,7 +264,7 @@ class JoomleagueViewCurve extends JLGView
 			$y->set_range( count($data), 1, -1);
 			$y->set_colours($config['x_axis_colour'], $config['x_axis_colour_inner']);
 			$chart->set_y_axis( $y );
-			$y_legend = new y_legend( JText::_('COM_JOOMLEAGUE_CURVE_RANK') );
+			$y_legend = new y_legend( Text::_('COM_JOOMLEAGUE_CURVE_RANK') );
 			$y_legend->set_style( '{font-size: 15px; color: #778877}' );
 			$chart->set_y_legend( $y_legend );
 

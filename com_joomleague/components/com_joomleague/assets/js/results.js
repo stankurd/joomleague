@@ -8,7 +8,7 @@
 * See COPYRIGHT.php for copyright notices and details.
 */
 
-window.addEvent('domready', function(){
+(function(){
 	$$('.eventstoggle').addEvent('click', function(){
 		var id = this.getProperty('id').substr(7);
 		if ($('info'+id).getStyle('display') == 'block') {

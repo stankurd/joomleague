@@ -1,8 +1,14 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die;
+?>
 <div class='no-column'>
 	<div class='contentpaneopen'>
 		<div class='contentheading'>
-			<?php echo JText::_('COM_JOOMLEAGUE_CLUBINFO_TEAMS'); ?>
+			<?php echo Text::_('COM_JOOMLEAGUE_CLUBINFO_TEAMS'); ?>
 		</div>
 	</div>
 	<div class='left-column-teamlist'>
@@ -15,7 +21,7 @@
 				?>
 				<span class='clubinfo_team_item'>
 					<?php
-						echo JHtml::link($link, $team->team_name);
+						echo HTMLHelper::link($link, $team->team_name);
 						echo '&nbsp;';
 						if ($team->team_shortcut)
 						{

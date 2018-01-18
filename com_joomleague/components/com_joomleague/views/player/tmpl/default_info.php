@@ -10,12 +10,13 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die; 
 
 ?>
 <!-- person data START -->
-<h2><?php echo JText::_( 'COM_JOOMLEAGUE_PERSON_PERSONAL_DATA' );	?></h2>
+<h2><?php echo Text::_( 'COM_JOOMLEAGUE_PERSON_PERSONAL_DATA' );	?></h2>
 
 <table class="plgeneralinfo">
 	<tr>
@@ -24,8 +25,8 @@ defined('_JEXEC') or die;
 	{
 		?>
 		<td class="picture"><?php
-		$picturetext=JText::_( 'COM_JOOMLEAGUE_PERSON_PICTURE' );
-		$imgTitle = JText::sprintf( $picturetext , JoomleagueHelper::formatName(null, $this->person->firstname, $this->person->nickname, $this->person->lastname, $this->config["name_format"]) );
+		$picturetext=Text::_( 'COM_JOOMLEAGUE_PERSON_PICTURE' );
+		$imgTitle = Text::sprintf( $picturetext , JoomleagueHelper::formatName(null, $this->person->firstname, $this->person->nickname, $this->person->lastname, $this->config["name_format"]) );
 		$picture = $this->teamPlayer ? $this->teamPlayer->picture : null;
 		if ((empty($picture)) || ($picture == JoomleagueHelper::getDefaultPlaceholder("player") ))
 		{
@@ -49,12 +50,12 @@ defined('_JEXEC') or die;
 			{
 			?>
 			<tr>
-				<td class="label"><span><?php echo JText::_( 'COM_JOOMLEAGUE_PERSON_NATIONALITY' ); ?>
+				<td class="label"><span><?php echo Text::_( 'COM_JOOMLEAGUE_PERSON_NATIONALITY' ); ?>
 				</span></td>
 				<td class="data">
 				<?php
 					echo Countries::getCountryFlag( $this->person->country ) . " " .
-					JText::_( Countries::getCountryName($this->person->country));
+					Text::_( Countries::getCountryName($this->person->country));
 					?>
 				</td>
 			</tr>
@@ -63,7 +64,7 @@ defined('_JEXEC') or die;
 			?>
 			<tr>
 				<td class="label">
-					<?php	echo JText::_( 'COM_JOOMLEAGUE_PERSON_NAME' ); ?>
+					<?php	echo Text::_( 'COM_JOOMLEAGUE_PERSON_NAME' ); ?>
 				</td>
 				<td class="data">
 				<?php
@@ -96,7 +97,7 @@ defined('_JEXEC') or die;
 				?>
 			<tr>
 				<td class="label"><?php
-				echo JText::_( 'COM_JOOMLEAGUE_PERSON_NICKNAME' );
+				echo Text::_( 'COM_JOOMLEAGUE_PERSON_NICKNAME' );
 				?></td>
 				<td class="data"><?php
 				echo $this->person->nickname;
@@ -132,7 +133,7 @@ defined('_JEXEC') or die;
 						$outputStr = 'COM_JOOMLEAGUE_PERSON_YEAR_OF_BIRTH';
 						break;
 				}
-				echo JText::_( $outputStr );
+				echo Text::_( $outputStr );
 				?></td>
 				<td class="data"><?php
 				#$this->assignRef( 'playerage', $model->getAge( $this->player->birthday, $this->project->start_date ) );
@@ -141,7 +142,7 @@ defined('_JEXEC') or die;
 					case 1:	 // show Birthday and Age
 						$birthdateStr =	$this->person->birthday != "0000-00-00" ?
 						HTMLHelper::date($this->person->birthday .' UTC', 
-									JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
+									Text::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
 									JoomleagueHelper::getTimezone($this->project, $this->overallconfig)) : "-";
 						$birthdateStr .= "&nbsp;(" . JoomleagueHelper::getAge( $this->person->birthday,$this->person->deathday ) . ")";
 						break;
@@ -149,7 +150,7 @@ defined('_JEXEC') or die;
 					case 2:	 // show Only Birthday
 						$birthdateStr =	$this->person->birthday != "0000-00-00" ?
 						HTMLHelper::date($this->person->birthday .' UTC',
-									JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
+									Text::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
 									JoomleagueHelper::getTimezone($this->project, $this->overallconfig)) : "-";
 						break;
 
@@ -160,7 +161,7 @@ defined('_JEXEC') or die;
 					case 4:	 // show Only Year of birth
 						$birthdateStr =	$this->person->birthday != "0000-00-00" ?
 						HTMLHelper::date($this->person->birthday .' UTC',
-									JText::_('%Y'),
+									Text::_('%Y'),
 									JoomleagueHelper::getTimezone($this->project, $this->overallconfig)) : "-";
 						break;
 
@@ -177,12 +178,12 @@ defined('_JEXEC') or die;
 			?>
 			<tr>
 				<td class="label">
-					<?php echo JText::_( 'COM_JOOMLEAGUE_PERSON_DEATHDAY' ); ?>
+					<?php echo Text::_( 'COM_JOOMLEAGUE_PERSON_DEATHDAY' ); ?>
 				</td>
 				<td class="data">
 					<?php
 					$deathdateStr =	HTMLHelper::date($this->person->deathday .' UTC', 
-												JText::_('COM_JOOMLEAGUE_GLOBAL_DEATHDATE'), 
+												Text::_('COM_JOOMLEAGUE_GLOBAL_DEATHDATE'), 
 												JoomleagueHelper::getTimezone($this->project, $this->overallconfig)) ;
 					echo '&dagger; '.$deathdateStr;
 					?>
@@ -195,7 +196,7 @@ defined('_JEXEC') or die;
 			{
 				?>
 			<tr>
-				<td class="label"><?php echo JText::_( 'COM_JOOMLEAGUE_PERSON_ADDRESS' ); ?></td>
+				<td class="label"><?php echo Text::_( 'COM_JOOMLEAGUE_PERSON_ADDRESS' ); ?></td>
 				<td class="data"><?php
 					echo Countries::convertAddressString(	'',
 															$this->person->address,
@@ -214,7 +215,7 @@ defined('_JEXEC') or die;
 				?>
 			<tr>
 				<td class="label"><?php
-				echo JText::_( 'COM_JOOMLEAGUE_PERSON_PHONE' );
+				echo Text::_( 'COM_JOOMLEAGUE_PERSON_PHONE' );
 				?></td>
 				<td class="data"><?php
 				echo $this->person->phone;
@@ -228,7 +229,7 @@ defined('_JEXEC') or die;
 				?>
 			<tr>
 				<td class="label"><?php
-				echo JText::_( 'COM_JOOMLEAGUE_PERSON_MOBILE' );
+				echo Text::_( 'COM_JOOMLEAGUE_PERSON_MOBILE' );
 				?></td>
 				<td class="data"><?php
 				echo $this->person->mobile;
@@ -242,7 +243,7 @@ defined('_JEXEC') or die;
 					?>
 			<tr>
 				<td class="label"><?php
-				echo JText::_( 'COM_JOOMLEAGUE_PERSON_EMAIL' );
+				echo Text::_( 'COM_JOOMLEAGUE_PERSON_EMAIL' );
 				?></td>
 				<td class="data"><?php
 				$user = Factory::getUser();
@@ -266,7 +267,7 @@ defined('_JEXEC') or die;
 				?>
 			<tr>
 				<td class="label"><?php
-				echo JText::_( 'COM_JOOMLEAGUE_PERSON_WEBSITE' );
+				echo Text::_( 'COM_JOOMLEAGUE_PERSON_WEBSITE' );
 				?></td>
 				<td class="data"><?php
 				echo HTMLHelper::_(	'link',
@@ -283,10 +284,10 @@ defined('_JEXEC') or die;
 				?>
 			<tr>
 				<td class="label"><?php
-				echo JText::_( 'COM_JOOMLEAGUE_PERSON_HEIGHT' );
+				echo Text::_( 'COM_JOOMLEAGUE_PERSON_HEIGHT' );
 				?></td>
 				<td class="data"><?php
-				echo str_replace( "%HEIGHT%", $this->person->height, JText::_( 'COM_JOOMLEAGUE_PERSON_HEIGHT_FORM' ) );
+				echo str_replace( "%HEIGHT%", $this->person->height, Text::_( 'COM_JOOMLEAGUE_PERSON_HEIGHT_FORM' ) );
 				?></td>
 			</tr>
 			<?php
@@ -296,10 +297,10 @@ defined('_JEXEC') or die;
 				?>
 			<tr>
 				<td class="label"><?php
-				echo JText::_( 'COM_JOOMLEAGUE_PERSON_WEIGHT' );
+				echo Text::_( 'COM_JOOMLEAGUE_PERSON_WEIGHT' );
 				?></td>
 				<td class="data"><?php
-				echo str_replace( "%WEIGHT%", $this->person->weight, JText::_( 'COM_JOOMLEAGUE_PERSON_WEIGHT_FORM' ) );
+				echo str_replace( "%WEIGHT%", $this->person->weight, Text::_( 'COM_JOOMLEAGUE_PERSON_WEIGHT_FORM' ) );
 				?></td>
 			</tr>
 			<?php
@@ -311,7 +312,7 @@ defined('_JEXEC') or die;
 				?>
 			<tr>
 				<td class="label"><?php
-				echo JText::_( 'COM_JOOMLEAGUE_PERSON_NUMBER' );
+				echo Text::_( 'COM_JOOMLEAGUE_PERSON_NUMBER' );
 				?></td>
 				<td class="data"><?php
 				if ( $this->config['player_number_picture'] )
@@ -334,10 +335,10 @@ defined('_JEXEC') or die;
 				?>
 			<tr>
 				<td class="label"><?php
-				echo JText::_( 'COM_JOOMLEAGUE_PERSON_ROSTERPOSITION' );
+				echo Text::_( 'COM_JOOMLEAGUE_PERSON_ROSTERPOSITION' );
 				?></td>
 				<td class="data"><?php
-				echo JText::_( $this->teamPlayer->position_name );
+				echo Text::_( $this->teamPlayer->position_name );
 				?></td>
 			</tr>
 			<?php
@@ -346,7 +347,7 @@ defined('_JEXEC') or die;
 			{
 				?>
 			<tr>
-				<td class="label"><?php echo JText::_( 'COM_JOOMLEAGUE_PERSON_REGISTRATIONNR' ); ?>
+				<td class="label"><?php echo Text::_( 'COM_JOOMLEAGUE_PERSON_REGISTRATIONNR' ); ?>
 				</td>
 				<td class="data"><?php echo $this->person->knvbnr; ?></td>
 			</tr>

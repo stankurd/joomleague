@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -24,13 +25,13 @@ class JoomleagueViewTeamInfo extends JLGView
 		{
 			$this->trainingData = $model->getTrainingData($this->project->id);
 			$this->daysOfWeek = array(
-				1 => JText::_('COM_JOOMLEAGUE_GLOBAL_MONDAY'),
-				2 => JText::_('COM_JOOMLEAGUE_GLOBAL_TUESDAY'),
-				3 => JText::_('COM_JOOMLEAGUE_GLOBAL_WEDNESDAY'),
-				4 => JText::_('COM_JOOMLEAGUE_GLOBAL_THURSDAY'),
-				5 => JText::_('COM_JOOMLEAGUE_GLOBAL_FRIDAY'),
-				6 => JText::_('COM_JOOMLEAGUE_GLOBAL_SATURDAY'),
-				7 => JText::_('COM_JOOMLEAGUE_GLOBAL_SUNDAY')
+				1 => Text::_('COM_JOOMLEAGUE_GLOBAL_MONDAY'),
+				2 => Text::_('COM_JOOMLEAGUE_GLOBAL_TUESDAY'),
+				3 => Text::_('COM_JOOMLEAGUE_GLOBAL_WEDNESDAY'),
+				4 => Text::_('COM_JOOMLEAGUE_GLOBAL_THURSDAY'),
+				5 => Text::_('COM_JOOMLEAGUE_GLOBAL_FRIDAY'),
+				6 => Text::_('COM_JOOMLEAGUE_GLOBAL_SATURDAY'),
+				7 => Text::_('COM_JOOMLEAGUE_GLOBAL_SUNDAY')
 			);
 		}
 		
@@ -44,7 +45,7 @@ class JoomleagueViewTeamInfo extends JLGView
 
 	private function setPageTitle()
 	{
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_TEAMINFO_PAGE_TITLE'));
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_TEAMINFO_PAGE_TITLE'));
 		if (!empty($this->team))
 		{
 			$titleInfo->team1Name = $this->team->tname;

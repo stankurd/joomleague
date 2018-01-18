@@ -21,7 +21,7 @@ class JoomleagueViewAbout extends JLGView
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
-			Log::add(implode('<br />', $errors), Log::WARNING, 'jerror');
+			Log::add(implode('<br />', $errors), Log::WARNING, 'error');
 
 			return false;
 		}

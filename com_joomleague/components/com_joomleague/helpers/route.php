@@ -15,6 +15,7 @@ use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Router\Router;
+use Joomla\CMS\Component\Router\RouterBase;
 
 defined('_JEXEC') or die;
 
@@ -24,9 +25,9 @@ jimport('joomla.application.component.helper');
 /**
  * Route helper for joomleague
  *
- * @since 2.5
+  * @since 2.5
  */
-class JoomleagueHelperRoute extends Router
+class JoomleagueHelperRoute
 {
 	public static function getTeamInfoRoute( $projectid, $teamid )
 	{

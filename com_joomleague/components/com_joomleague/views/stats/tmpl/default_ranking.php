@@ -1,9 +1,11 @@
-<?php defined('_JEXEC') or die; ?>
+<?php use Joomla\CMS\Language\Text;
+
+defined('_JEXEC') or die; ?>
 
     <table class="contentpaneopen" width="100%">
     <tbody>
 	<tr>
-	    <td class="contentheading"><?php echo JText::_('COM_JOOMLEAGUE_STATS_ATTENDANCE_RANKING'); ?></td>
+	    <td class="contentheading"><?php echo Text::_('COM_JOOMLEAGUE_STATS_ATTENDANCE_RANKING'); ?></td>
 	</tr>
     </tbody>
     </table>
@@ -16,32 +18,32 @@
                 <th style="width:6px;"></th>
                 <th style="width:25%;">
                 <?php
-        JoomleagueHelperHtml::printColumnHeadingSort(JText::_('COM_JOOMLEAGUE_STATS_ATTENDANCE_RANKING_TEAM'), "name", null, "ASC");
+        JoomleagueHelperHtml::printColumnHeadingSort(Text::_('COM_JOOMLEAGUE_STATS_ATTENDANCE_RANKING_TEAM'), "name", null, "ASC");
         ?>
                 </th>
                 <th style="width:3%;text-align:center;">
                 <?php
-        echo JText::_('COM_JOOMLEAGUE_STATS_ATTENDANCE_RANKING_MATCHES');
+        echo Text::_('COM_JOOMLEAGUE_STATS_ATTENDANCE_RANKING_MATCHES');
         ?>
                 </th>
                 <th style="width:16%;text-align:right;">
                 <?php
-        JoomleagueHelperHtml::printColumnHeadingSort(JText::_('COM_JOOMLEAGUE_STATS_ATTENDANCE_RANKING_TOTAL'), "totalattend", null);
+        JoomleagueHelperHtml::printColumnHeadingSort(Text::_('COM_JOOMLEAGUE_STATS_ATTENDANCE_RANKING_TOTAL'), "totalattend", null);
         ?>
                 </th>
                 <th style="width:16%;text-align:right;">
                 <?php
-        JoomleagueHelperHtml::printColumnHeadingSort(JText::_('COM_JOOMLEAGUE_STATS_ATTENDANCE_RANKING_AVG'), "avgattend", null);
+        JoomleagueHelperHtml::printColumnHeadingSort(Text::_('COM_JOOMLEAGUE_STATS_ATTENDANCE_RANKING_AVG'), "avgattend", null);
         ?>
                 </th>
                 <th style="width:19%;text-align:right;">
                 <?php
-        JoomleagueHelperHtml::printColumnHeadingSort(JText::_('COM_JOOMLEAGUE_STATS_ATTENDANCE_RANKING_CAPACITY'), "capacity", null);
+        JoomleagueHelperHtml::printColumnHeadingSort(Text::_('COM_JOOMLEAGUE_STATS_ATTENDANCE_RANKING_CAPACITY'), "capacity", null);
         ?>
                 </th>
                 <th style="width:20%;text-align:right;">
                 <?php
-        JoomleagueHelperHtml::printColumnHeadingSort(JText::_('COM_JOOMLEAGUE_STATS_ATTENDANCE_RANKING_UTILISATION'), "utilisation", null);
+        JoomleagueHelperHtml::printColumnHeadingSort(Text::_('COM_JOOMLEAGUE_STATS_ATTENDANCE_RANKING_UTILISATION'), "utilisation", null);
         ?>
                 </th>
             </tr>

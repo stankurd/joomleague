@@ -1,6 +1,7 @@
 <?php
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -43,7 +44,7 @@ abstract class JoomleagueViewPerson extends JLGView
 
     protected function setPageTitle($formatString)
     {
-        $titleInfo = JoomleagueHelper::createTitleInfo(JText::sprintf($formatString,
+        $titleInfo = JoomleagueHelper::createTitleInfo(Text::sprintf($formatString,
             $this->person->firstname, $this->person->lastname));
         if (!empty($this->project))
         {
@@ -67,7 +68,7 @@ abstract class JoomleagueViewPerson extends JLGView
 
     function getPicture()
     {
-        $imgTitle = JText::sprintf(JText::_('COM_JOOMLEAGUE_PERSON_PICTURE'), JoomleagueHelper::formatName(null,
+        $imgTitle = Text::sprintf(Text::_('COM_JOOMLEAGUE_PERSON_PICTURE'), JoomleagueHelper::formatName(null,
             $this->person->firstname, $this->person->nickname, $this->person->lastname, $this->config['name_format']));
         $picture = isset($this->projectPerson) ? $this->projectPerson->picture : null;
         if (empty($picture) || $picture == JoomleagueHelper::getDefaultPlaceholder('player'))
@@ -83,7 +84,7 @@ abstract class JoomleagueViewPerson extends JLGView
 
     function getNationality()
     {
-        return Countries::getCountryFlag($this->person->country) . ' ' . JText::_(Countries::getCountryName($this->person->country));
+        return Countries::getCountryFlag($this->person->country) . ' ' . Text::_(Countries::getCountryName($this->person->country));
     }
 
     function formattedName()
@@ -137,7 +138,7 @@ abstract class JoomleagueViewPerson extends JLGView
                 $title = '';
                 break;
         }
-        return JText::_($title);
+        return Text::_($title);
     }
 
     function formattedBirthDay()
@@ -150,13 +151,13 @@ abstract class JoomleagueViewPerson extends JLGView
         {
             switch ($this->config['show_birthday']) {
                 case 1:     // show Birthday and Age
-                    $birthdayStr = HTMLHelper::date($this->person->birthday . ' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
+                    $birthdayStr = HTMLHelper::date($this->person->birthday . ' UTC', Text::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
                             JoomleagueHelper::getTimezone($this->project, $this->overallconfig)) .
                         '&nbsp;(' . JoomleagueHelper::getAge($this->person->birthday, $this->person->deathday) . ')';
                     break;
 
                 case 2:     // show Only Birthday
-                    $birthdayStr = HTMLHelper::date($this->person->birthday . ' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
+                    $birthdayStr = HTMLHelper::date($this->person->birthday . ' UTC', Text::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
                         JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
                     break;
 
@@ -165,7 +166,7 @@ abstract class JoomleagueViewPerson extends JLGView
                     break;
 
                 case 4:     // show Only Year of birth
-                    $birthdayStr = HTMLHelper::date($this->person->birthday . ' UTC', JText::_('%Y'),
+                    $birthdayStr = HTMLHelper::date($this->person->birthday . ' UTC', Text::_('%Y'),
                         JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
                     break;
 
@@ -179,7 +180,7 @@ abstract class JoomleagueViewPerson extends JLGView
 
     function formattedDeathDay()
     {
-        return '&dagger; ' . HTMLHelper::date($this->person->deathday .' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_DEATHDATE'),
+        return '&dagger; ' . HTMLHelper::date($this->person->deathday .' UTC', Text::_('COM_JOOMLEAGUE_GLOBAL_DEATHDATE'),
             JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
     }
 
@@ -205,7 +206,7 @@ abstract class JoomleagueViewPerson extends JLGView
 
     function formattedAbsenceDate($date, $from)
     {
-        $absenceDate = HTMLHelper::date($date .' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
+        $absenceDate = HTMLHelper::date($date .' UTC', Text::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
             JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
         if (isset($from))
         {
@@ -232,10 +233,10 @@ abstract class JoomleagueViewPerson extends JLGView
         }
         if (is_null($options))
         {
-            $options = array(' title' => JText::_($text));
+            $options = array(' title' => Text::_($text));
         }
         return HTMLHelper::image('images/com_joomleague/database/events/' . $this->project->fs_sport_type_name . '/' . $iconName,
-            JText::_($text), $options);
+            Text::_($text), $options);
     }
 
     function valueOrZeroRepresentation($value)

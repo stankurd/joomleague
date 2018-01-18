@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 ?>
 <div class="mini-team">
 	<table style="width: 100%;" class="contentpaneopen">
@@ -9,11 +10,11 @@ use Joomla\CMS\HTML\HTMLHelper;
 				echo '&nbsp;';
 				if ( $this->config['show_team_shortform'] == 1 )
 				{
-					echo JText::sprintf( 'COM_JOOMLEAGUE_ROSTER_STAFF_OF2', $this->team->name, $this->team->short_name );
+					echo Text::sprintf( 'COM_JOOMLEAGUE_ROSTER_STAFF_OF2', $this->team->name, $this->team->short_name );
 				}
 				else
 				{
-					echo JText::sprintf( 'COM_JOOMLEAGUE_ROSTER_STAFF_OF', $this->team->name );
+					echo Text::sprintf( 'COM_JOOMLEAGUE_ROSTER_STAFF_OF', $this->team->name );
 				}
 				?>
 			</td>
@@ -31,7 +32,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 				  <tbody><tr>
 				    <td style="padding: 5px 10px; color: rgb(173, 173, 173); font-weight: bold; width: 200px; text-transform: uppercase;">
 				      <?php
-				echo JText::_($row->position);
+				echo Text::_($row->position);
 				?>
 				    </td>
 				    <td>
@@ -57,14 +58,14 @@ use Joomla\CMS\HTML\HTMLHelper;
 				  <tbody><tr>
 				    <td style="padding: 5px 10px; color: rgb(173, 173, 173); font-weight: bold; width: 200px; text-transform: uppercase;">
 				      <?php
-				echo JText::_($row->position);
+				echo Text::_($row->position);
 				?>
 				    </td>
 				    <td style="width: 55px;">
 
 						  <?php
 
-		$imgTitle = JText::sprintf( $playerName );
+		$imgTitle = Text::sprintf( $playerName );
 		$picture = $row->picture;
 		if ((empty($picture)) || ($picture == JoomleagueHelper::getDefaultPlaceholder("player") ))
 		{
@@ -93,7 +94,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 					</td>
 				    <td style="padding-left: 10px;">
 				      <div class="player-position"><?php
-						echo JText::_( $row->position );
+						echo Text::_( $row->position );
 				?></div>
 					  <div class="player-name">
 					  <?php $projectid = $this->project->id;

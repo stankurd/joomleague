@@ -1,4 +1,6 @@
-<?php use Joomla\CMS\HTML\HTMLHelper;
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -9,7 +11,7 @@ if (!empty($this->matchplayerpositions))
 {
 ?>
 
-<h2><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_STARTING_LINE-UP'); ?></h2>		
+<h2><?php echo Text::_('COM_JOOMLEAGUE_MATCHREPORT_STARTING_LINE-UP'); ?></h2>		
 	<table class="matchreport">
 		<?php
 		foreach ($this->matchplayerpositions as $pos)
@@ -26,7 +28,7 @@ if (!empty($this->matchplayerpositions))
 			if ($personCount > 0)
 			{
 				?>
-				<tr><td colspan="2" class="positionid"><?php echo JText::_($pos->name); ?></td></tr>
+				<tr><td colspan="2" class="positionid"><?php echo Text::_($pos->name); ?></td></tr>
 				<tr>
 					<!-- list of home-team -->
 					<td class="list">
@@ -62,7 +64,7 @@ if (!empty($this->matchplayerpositions))
 
                                             if (($this->config['show_player_picture'] == 1) || ($this->config['show_player_picture'] == 2))
                                             {
-                                                $imgTitle=($this->config['show_player_profile_link'] == 1) ? JText::sprintf('COM_JOOMLEAGUE_MATCHREPORT_PIC', $match_player) : $match_player;
+                                                $imgTitle=($this->config['show_player_profile_link'] == 1) ? Text::sprintf('COM_JOOMLEAGUE_MATCHREPORT_PIC', $match_player) : $match_player;
                                                 $picture=$player->picture;
                                                 if ((empty($picture)) || ($picture == JoomleagueHelper::getDefaultPlaceholder("player") ) || !file_exists( $picture ) )
                                                 {
@@ -113,7 +115,7 @@ if (!empty($this->matchplayerpositions))
 
                                             if (($this->config['show_player_picture'] == 1) || ($this->config['show_player_picture'] == 2))
                                             {
-                                                $imgTitle=($this->config['show_player_profile_link'] == 1) ? JText::sprintf('COM_JOOMLEAGUE_MATCHREPORT_PIC', $match_player) : $match_player;
+                                                $imgTitle=($this->config['show_player_profile_link'] == 1) ? Text::sprintf('COM_JOOMLEAGUE_MATCHREPORT_PIC', $match_player) : $match_player;
                                                 $picture=$player->picture;
                                                 if ((empty($picture)) || ($picture == JoomleagueHelper::getDefaultPlaceholder("player") ) || !file_exists( $picture ) )
                                                 {

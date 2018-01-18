@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Joomleague
  *
@@ -6,9 +8,10 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+
 defined('_JEXEC') or die;
 
-JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
+HTMLHelper::addIncludePath(JPATH_COMPONENT.'/helpers');
 $canEdit = $this->showediticon;
 ?>
 <div class='contentpaneopen'>
@@ -16,7 +19,7 @@ $canEdit = $this->showediticon;
 		<?php
 			echo $this->pagetitle.' ';
 			if ($canEdit) {
-				echo JHtml::_('icon.edit',$this->project->id,$this->club,$this->club->id,'clubform.edit','clubinfo');
+				echo HTMLHelper::_('icon.edit',$this->project->id,$this->club,$this->club->id,'clubform.edit','clubinfo');
 			}
 		?>
 	</div>

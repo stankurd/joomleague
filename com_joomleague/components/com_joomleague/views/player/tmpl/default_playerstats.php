@@ -8,21 +8,22 @@
  */
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die; ?>
 
 <!-- Player stats History START -->
-<h2><?php	echo JText::_('COM_JOOMLEAGUE_PERSON_PERSONAL_STATISTICS');	?></h2>
+<h2><?php	echo Text::_('COM_JOOMLEAGUE_PERSON_PERSONAL_STATISTICS');	?></h2>
 <table style="width:96%;align:center;border:0;cellpadding:0;cellspacing:0">
 	<tr>
 		<td>
 		<table id="playercareer" class="table">
 			<thead>
 			<tr class="sectiontableheader">
-				<th class="td_l" class="nowrap"><?php echo JText::_('COM_JOOMLEAGUE_PERSON_COMPETITION'); ?></th>
-				<th class="td_l" class="nowrap"><?php echo JText::_('COM_JOOMLEAGUE_PERSON_TEAM'); ?></th>
+				<th class="td_l" class="nowrap"><?php echo Text::_('COM_JOOMLEAGUE_PERSON_COMPETITION'); ?></th>
+				<th class="td_l" class="nowrap"><?php echo Text::_('COM_JOOMLEAGUE_PERSON_TEAM'); ?></th>
 				<th class="td_c"><?php
-				$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_PLAYED');
+				$imageTitle=Text::_('COM_JOOMLEAGUE_PERSON_PLAYED');
 				echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/played.png',
 				$imageTitle,array(' title' => $imageTitle,' width' => 20,' height' => 20));
 				?></th>
@@ -33,22 +34,22 @@ defined('_JEXEC') or die; ?>
 					{
 						?>
 				<th class="td_c"><?php
-				$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_STARTROSTER');
+				$imageTitle=Text::_('COM_JOOMLEAGUE_PERSON_STARTROSTER');
 				echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/startroster.png',
 				$imageTitle,array(' title' => $imageTitle));
 				?></th>
 				<th class="td_c"><?php
-				$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_IN');
+				$imageTitle=Text::_('COM_JOOMLEAGUE_PERSON_IN');
 				echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/in.png',
 				$imageTitle,array(' title' => $imageTitle));
 				?></th>
 				<th class="td_c"><?php
-				$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_OUT');
+				$imageTitle=Text::_('COM_JOOMLEAGUE_PERSON_OUT');
 				echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png',
 				$imageTitle,array(' title' => $imageTitle));
 				?></th>
 				<th class="td_c"><?php
-				$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_TOTAL_TIME_PLAYED');
+				$imageTitle=Text::_('COM_JOOMLEAGUE_PERSON_TOTAL_TIME_PLAYED');
 				echo HTMLHelper::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/playtime.gif',
 				$imageTitle,array('title'=> $imageTitle));
 				?></th>
@@ -66,8 +67,8 @@ defined('_JEXEC') or die; ?>
 				$iconPath=$eventtype->icon;
 				if (!strpos(" ".$iconPath,"/")){$iconPath="images/com_joomleague/database/events/".$iconPath;}
 				echo HTMLHelper::image($iconPath,
-					JText::_($eventtype->name),
-					array(	"title" => JText::_($eventtype->name),
+					Text::_($eventtype->name),
+					array(	"title" => Text::_($eventtype->name),
 						"align" => "top",
 						"hspace" => "2"));
 				?>&nbsp;</th>
@@ -188,7 +189,7 @@ defined('_JEXEC') or die; ?>
 						if (!empty($stat)) {
 						    if ($stat->showInPlayer()) {    
 				?>
-				<td class="td_c hasTip" title="<?php echo JText::_($stat->name); ?>">
+				<td class="td_c hasTip" title="<?php echo Text::_($stat->name); ?>">
 				<?php
 							if(isset($this->projectstats[$stat->id][$player_hist->project_id][$player_hist->ptid])) {
 								echo ($this->projectstats[$stat->id][$player_hist->project_id][$player_hist->ptid] > 0 ? $this->projectstats[$stat->id][$player_hist->project_id][$player_hist->ptid] : $this->overallconfig['zero_events_value']);
@@ -210,7 +211,7 @@ defined('_JEXEC') or die; ?>
 			}
 			?>
 			<tr class="career_stats_total">
-				<td class="td_r" colspan="2"><b><?php echo JText::_('COM_JOOMLEAGUE_PERSON_CAREER_TOTAL'); ?></b></td>
+				<td class="td_r" colspan="2"><b><?php echo Text::_('COM_JOOMLEAGUE_PERSON_CAREER_TOTAL'); ?></b></td>
 				<td class="td_c"><?php echo ($career['played'] > 0 ? $career['played'] : $this->overallconfig['zero_events_value']); ?></td>
 				<?php //substitution system
 				if	($this->config['show_substitution_stats'] && isset($this->overallconfig['use_jl_substitution']) &&
@@ -252,7 +253,7 @@ defined('_JEXEC') or die; ?>
 						if(!empty($stat)) {
 						    if ($stat->showInPlayer()) {
 						?>
-							<td class="td_c" title="<?php echo JText::_($stat->name); ?>">
+							<td class="td_c" title="<?php echo Text::_($stat->name); ?>">
 							<?php
 								if (isset($this->projectstats) &&
 								    array_key_exists($stat->id, $this->projectstats))

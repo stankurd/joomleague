@@ -27,7 +27,7 @@ use Joomla\CMS\Installer\InstallerScript;
 	return '<a href="https://opentranslators.transifex.com/projects/p/joomleague/language/'.$lang.'/" target="_blank">'.$lang.'</a>';
 }
 */
-class com_joomleagueInstallerScript extends InstallerScript
+class com_joomleagueInstallerScript
 {
 	private function _install($update=false, $parent) {
 		$maxExecutionTime = $maxInputTime = 900;

@@ -2,6 +2,7 @@
 //HTMLHelper::_('behavior.tooltip');
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 $current  = $this->current;
@@ -340,7 +341,7 @@ foreach ($current as $ptid => $team)
 			case 'START':
 				if ($team->team->start_points!=0 && $config['show_manipulations'] == 1)
 				{
-					$toolTipTitle = JText::_('COM_JOOMLEAGUE_START');
+					$toolTipTitle = Text::_('COM_JOOMLEAGUE_START');
 					$toolTipText = $team->team->reason;
 					$content = '<span class="hasTip" title="' . $toolTipTitle.' :: '. $toolTipText . '">' .
 						sprintf($format, $team->team->start_points) . '</span>';

@@ -1,6 +1,4 @@
 <?php
-use Joomla\CMS\MVC\Model\ListModel;
-
 /**
  * Joomleague
  *
@@ -8,6 +6,8 @@ use Joomla\CMS\MVC\Model\ListModel;
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\MVC\Model\ListModel;
+
 defined('_JEXEC') or die;
 
 

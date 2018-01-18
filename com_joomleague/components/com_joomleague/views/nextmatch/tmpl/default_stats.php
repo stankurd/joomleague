@@ -1,11 +1,12 @@
 <?php
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
 
-<h2><?php echo JText::_('COM_JOOMLEAGUE_NEXTMATCH_H2H'); ?></h2>
+<h2><?php echo Text::_('COM_JOOMLEAGUE_NEXTMATCH_H2H'); ?></h2>
 <table width="96%" align="center" border="0" cellpadding="0" cellspacing="0">
 	<thead>
         <tr class="sectiontableheader" align="center">
@@ -17,14 +18,14 @@ defined('_JEXEC') or die;
             }
             else
             {
-                echo JText::_( "COM_JOOMLEAGUE_NEXTMATCH_UNKNOWNTEAM" );
+                echo Text::_( "COM_JOOMLEAGUE_NEXTMATCH_UNKNOWNTEAM" );
             }
             ?>
         </th>
 			
 			<th  class="h2h" width="33%">
                 <?php
-                echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_STATS' );
+                echo Text::_( 'COM_JOOMLEAGUE_NEXTMATCH_STATS' );
                 ?>
             </th>
         <th class="h2h">
@@ -35,7 +36,7 @@ defined('_JEXEC') or die;
             }
             else
             {
-                echo JText::_( "COM_JOOMLEAGUE_NEXTMATCH_UNKNOWNTEAM" );
+                echo Text::_( "COM_JOOMLEAGUE_NEXTMATCH_UNKNOWNTEAM" );
             }
             ?>
         </th>
@@ -54,7 +55,7 @@ defined('_JEXEC') or die;
             </td>
             <td class="statlabel">
                 <?php
-                echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_CHANCES' );
+                echo Text::_( 'COM_JOOMLEAGUE_NEXTMATCH_CHANCES' );
                 ?>
             </td>
             <td class="valueright">
@@ -77,7 +78,7 @@ defined('_JEXEC') or die;
             </td>
             <td class="statlabel">
                 <?php
-                echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_CURRENT_RANK' );
+                echo Text::_( 'COM_JOOMLEAGUE_NEXTMATCH_CURRENT_RANK' );
                 ?>
             </td>
             <td class="valueright">
@@ -100,7 +101,7 @@ defined('_JEXEC') or die;
             </td>
             <td class="statlabel">
                 <?php
-                echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_COUNT_MATCHES' );
+                echo Text::_( 'COM_JOOMLEAGUE_NEXTMATCH_COUNT_MATCHES' );
                 ?>
             </td>
             <td class="valueright">
@@ -123,7 +124,7 @@ defined('_JEXEC') or die;
             </td>
             <td class="statlabel">
                    <?php
-                echo JText::_('COM_JOOMLEAGUE_NEXTMATCH_TOTAL');
+                echo Text::_('COM_JOOMLEAGUE_NEXTMATCH_TOTAL');
                 ?>
             </td>
             <td class="valueright">
@@ -147,7 +148,7 @@ if ( $this->config['show_match_total_home'] == 1 )
                 $this->homeranked->cnt_lost_home);?>
         </td>
         <td class="statlabel">
-			<?php echo JText::_('COM_JOOMLEAGUE_NEXTMATCH_HOME');?>
+			<?php echo Text::_('COM_JOOMLEAGUE_NEXTMATCH_HOME');?>
 		</td>
         <td class="valueright">
         <?php printf(
@@ -173,7 +174,7 @@ if ( $this->config['show_match_total_away'] == 1 )
                 $this->homeranked->cnt_lost-$this->homeranked->cnt_lost_home);?>
         </td>
         <td class="statlabel">
-			<?php echo JText::_('COM_JOOMLEAGUE_NEXTMATCH_AWAY');?>
+			<?php echo Text::_('COM_JOOMLEAGUE_NEXTMATCH_AWAY');?>
 		</td>
         <td class="valueright">
         <?php printf(
@@ -192,7 +193,7 @@ if ( $this->config['show_match_points'] == 1 )
 ?>
     <tr class="sectiontableentry1">
         <td class="valueleft"><?php //echo $this->homeranked->getPoints();?></td>
-        <td class="statlabel"><?php echo JText::_('COM_JOOMLEAGUE_NEXTMATCH_POINTS');?></td>
+        <td class="statlabel"><?php echo Text::_('COM_JOOMLEAGUE_NEXTMATCH_POINTS');?></td>
         <td class="valueright"><?php //echo $this->awayranked->getPoints();?></td>
     </tr>
 <?php
@@ -209,7 +210,7 @@ if ( $this->config['show_match_goals'] == 1 )
                 $this->homeranked->sum_team1_result,
                 $this->homeranked->sum_team2_result);?>
         </td>
-        <td class="statlabel"><?php echo JText::_('COM_JOOMLEAGUE_NEXTMATCH_GOALS');?></td>
+        <td class="statlabel"><?php echo Text::_('COM_JOOMLEAGUE_NEXTMATCH_GOALS');?></td>
         <td class="valueright">
         <?php printf(
                 "%s : %s",
@@ -228,7 +229,7 @@ if ( $this->config['show_match_diff'] == 1 )
         <td class="valueleft">
         <?php echo $this->homeranked->diff_team_results;?>
         </td>
-        <td class="statlabel"><?php echo JText::_('COM_JOOMLEAGUE_NEXTMATCH_DIFFERENCE');?></td>
+        <td class="statlabel"><?php echo Text::_('COM_JOOMLEAGUE_NEXTMATCH_DIFFERENCE');?></td>
         <td class="valueright">
         <?php echo $this->awayranked->diff_team_results;?>
         </td>
@@ -249,7 +250,7 @@ if ( $this->config['show_match_diff'] == 1 )
 	      	----
 	      <?php endif; ?>
       </td>
-      <td class="statlabel"><?php echo JText::_('COM_JOOMLEAGUE_NEXTMATCH_HIGHEST_WON_HOME');?></td>
+      <td class="statlabel"><?php echo Text::_('COM_JOOMLEAGUE_NEXTMATCH_HIGHEST_WON_HOME');?></td>
       <td class="valueright">
 	    	<?php if ($stat = $this->away_highest_home_win): ?>
 	        	<?php echo HTMLHelper::link( JoomleagueHelperRoute::getMatchReportRoute( $this->away_highest_home_win->pid,$this->away_highest_home_win->mid ), 
@@ -271,7 +272,7 @@ if ( $this->config['show_match_diff'] == 1 )
 	      	----
 	      <?php endif; ?>
       </td>
-      <td class="statlabel"><?php echo JText::_('COM_JOOMLEAGUE_NEXTMATCH_HIGHEST_LOSS_HOME');?></td>
+      <td class="statlabel"><?php echo Text::_('COM_JOOMLEAGUE_NEXTMATCH_HIGHEST_LOSS_HOME');?></td>
       <td class="valueright">
 	    	<?php if ($stat = $this->away_highest_home_def): ?>
 	        	<?php echo HTMLHelper::link( JoomleagueHelperRoute::getMatchReportRoute( $this->away_highest_home_def->pid,$this->away_highest_home_def->mid ), 
@@ -293,7 +294,7 @@ if ( $this->config['show_match_diff'] == 1 )
 	      	----
 	      <?php endif; ?>
       </td>
-      <td class="statlabel"><?php echo JText::_('COM_JOOMLEAGUE_NEXTMATCH_HIGHEST_WON_AWAY');?></td>
+      <td class="statlabel"><?php echo Text::_('COM_JOOMLEAGUE_NEXTMATCH_HIGHEST_WON_AWAY');?></td>
       <td class="valueright">
 	    	<?php if ($stat = $this->away_highest_away_win): ?>
 	        	<?php echo HTMLHelper::link( JoomleagueHelperRoute::getMatchReportRoute( $this->away_highest_away_win->pid,$this->away_highest_away_win->mid ), 
@@ -315,7 +316,7 @@ if ( $this->config['show_match_diff'] == 1 )
 	      	----
 	      <?php endif; ?>
       </td>
-      <td class="statlabel"><?php echo JText::_('COM_JOOMLEAGUE_NEXTMATCH_HIGHEST_LOSS_AWAY');?></td>
+      <td class="statlabel"><?php echo Text::_('COM_JOOMLEAGUE_NEXTMATCH_HIGHEST_LOSS_AWAY');?></td>
       <td class="valueright">
 	    	<?php if ($stat = $this->away_highest_away_def): ?>
 	        	<?php echo HTMLHelper::link( JoomleagueHelperRoute::getMatchReportRoute( $this->away_highest_away_def->pid,$this->away_highest_away_def->mid ), 

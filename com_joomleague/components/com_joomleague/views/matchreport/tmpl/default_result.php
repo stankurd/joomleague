@@ -1,4 +1,6 @@
-<?php defined('_JEXEC') or die; ?>
+<?php use Joomla\CMS\Language\Text;
+
+defined('_JEXEC') or die; ?>
 
 <!-- START: game result -->
 <table class="matchreport" border="0">
@@ -167,7 +169,7 @@
 			?>
 		</td>
 		<td>
-			<?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_VS') ?>
+			<?php echo Text::_('COM_JOOMLEAGUE_MATCHREPORT_VS') ?>
 		</td>
 		<td class="team">
 			<?php
@@ -253,7 +255,7 @@ else
                 ?>
                 <tr>
                     <td class="legs" colspan="2">
-                        <?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_OVERTIME');
+                        <?php echo Text::_('COM_JOOMLEAGUE_MATCHREPORT_OVERTIME');
                         echo " " . $this->showOvertimeresult(); ?>
                     </td>
                 </tr>
@@ -268,7 +270,7 @@ else
                 ?>
                 <tr>
                     <td class="legs" colspan="2">
-                        <?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_SHOOTOUT');
+                        <?php echo Text::_('COM_JOOMLEAGUE_MATCHREPORT_SHOOTOUT');
                         echo " " . $this->showShotoutResult(); ?>
                     </td>
                 </tr>

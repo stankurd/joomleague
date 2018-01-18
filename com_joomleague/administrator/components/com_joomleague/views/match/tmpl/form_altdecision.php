@@ -13,7 +13,7 @@ defined ( '_JEXEC' ) or die ();
 
 <script type="text/javascript">
 <!--
-window.addEvent('domready', function() {
+(function() {
 	// altered decision fields management
 	toggle_altdecision();
 	jQuery('#jform_alt_decision').change(toggle_altdecision);

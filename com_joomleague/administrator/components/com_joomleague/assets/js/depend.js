@@ -7,12 +7,11 @@
  *
  * @description	javascript for dependant element xml parameter
  */
+//Joomla = window.Joomla || {};
+//(function() {
 
-
-// add update of field when fields it depends on change.
-window.addEvent('domready', function() {
-
-	$$('.mdepend').addEvent('click', function() {
+(function() {
+	$$('.mdepend').addEventListener('click', function() {
 		// rebuild hidden field list
 		var sel = new Array();
 		var i = 0;
@@ -23,6 +22,7 @@ window.addEvent('domready', function() {
 		});
 		this.getParent().getElement('input').value = sel.join("|");
 	});
+	
 
 	$$('.depend').each(function(element) {
 		// get value of attribute "depends", can be multiple
@@ -218,3 +218,4 @@ function getElementIdPrefix(el) {
 	var infix = id.replace(/^jform_(\w+)_.*$/, "$1");
 	return infix.match("request") ? "jform_request_" : "jform_params_";
 }
+//})();

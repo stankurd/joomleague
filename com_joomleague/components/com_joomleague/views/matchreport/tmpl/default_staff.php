@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -13,7 +14,7 @@ if (!empty($this->matchstaffpositions))
 		foreach ($this->matchstaffpositions as $pos)
 		{
 			?>
-			<tr><td colspan="2" class="positionid"><?php echo JText::_($pos->name); ?></td></tr>
+			<tr><td colspan="2" class="positionid"><?php echo Text::_($pos->name); ?></td></tr>
 			<tr>
 				<!-- list of home-team -->
 				<td class="list">
@@ -30,7 +31,7 @@ if (!empty($this->matchstaffpositions))
 										$player_link=JoomleagueHelperRoute::getStaffRoute($this->project->slug,$player->team_slug,$player->person_slug);
 										$match_player=JoomleagueHelper::formatName(null,$player->firstname,$player->nickname,$player->lastname, $this->config["name_format"]);
 										echo HTMLHelper::link($player_link,$match_player);
-										$imgTitle=JText::sprintf('Picture of %1$s',$match_player);
+										$imgTitle=Text::sprintf('Picture of %1$s',$match_player);
 										$picture=$player->picture;
 										if (!file_exists($picture)){$picture = JoomleagueHelper::getDefaultPlaceholder("player");}
 										echo '&nbsp;';
@@ -60,7 +61,7 @@ if (!empty($this->matchstaffpositions))
 									<li class="list">
 										<?php
 										$match_player=JoomleagueHelper::formatName(null,$player->firstname,$player->nickname,$player->lastname, $this->config["name_format"]);
-										$imgTitle=JText::sprintf('Picture of %1$s',$match_player);
+										$imgTitle=Text::sprintf('Picture of %1$s',$match_player);
 										$picture=$player->picture;
 										if (!file_exists($picture)){$picture = JoomleagueHelper::getDefaultPlaceholder("player");}
 										echo JoomleagueHelper::getPictureThumb($picture, 

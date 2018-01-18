@@ -9,7 +9,7 @@
 */
 
 //add 1.5 compatibility layer
-window.addEvent('domready', function() {
+(function() {
 	if($('adminForm')) {
 		$('adminForm').setProperty('name', 'adminForm');
 	}

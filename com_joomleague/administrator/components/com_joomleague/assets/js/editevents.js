@@ -8,7 +8,6 @@
  * @note
  * JSON.stringify(response) can be used to convert object to string
  */
-Joomla = window.Joomla || {};
 (function() {
 	'use strict';
 

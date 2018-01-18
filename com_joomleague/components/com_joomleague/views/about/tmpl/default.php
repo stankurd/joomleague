@@ -12,7 +12,7 @@
  *
  * @author Joomleague Team <www.joomleague.at>
 */
-
+use Joomla\CMS\Language\Text;
 defined('_JEXEC') or die;
 ?>
 <table class="about">
@@ -34,39 +34,39 @@ defined('_JEXEC') or die;
 </div>
 <table class="about">
 	<tr>
-		<td><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_TEXT'); ?></td>
+		<td><?php echo Text::_('COM_JOOMLEAGUE_ABOUT_TEXT'); ?></td>
 	</tr>
 </table>
 <br />
 <div class="componentheading">
-	<?php echo JText::_('COM_JOOMLEAGUE_ABOUT_DETAILS'); ?>
+	<?php echo Text::_('COM_JOOMLEAGUE_ABOUT_DETAILS'); ?>
 </div>
 <table class="about">
 	<tr>
-		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_TRANSLATIONS'); ?></b></td>
+		<td><b><?php echo Text::_('COM_JOOMLEAGUE_ABOUT_TRANSLATIONS'); ?></b></td>
 		<td>
 			<a href="<?php echo $this->about->translations; ?>" target="_blank">
 				<?php echo $this->about->translations; ?></a>
 		</td>
 	</tr>
 	<tr>
-		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_REPOSITORY'); ?></b></td>
+		<td><b><?php echo Text::_('COM_JOOMLEAGUE_ABOUT_REPOSITORY'); ?></b></td>
 		<td>
 			<a href="<?php echo $this->about->repository; ?>" target="_blank">
 				<?php echo $this->about->repository; ?></a>
 		</td>
 	</tr>
 	<tr>
-		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_VERSION'); ?></b></td>
+		<td><b><?php echo Text::_('COM_JOOMLEAGUE_ABOUT_VERSION'); ?></b></td>
 		<td><?php echo $this->about->version; ?></td>
 	</tr>
 	<tr>
-		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_AUTHOR'); ?></b></td>
+		<td><b><?php echo Text::_('COM_JOOMLEAGUE_ABOUT_AUTHOR'); ?></b></td>
 		<td><?php echo $this->about->author; ?></td>
 	</tr>
 
 	<tr>
-		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_WEBSITE'); ?></b></td>
+		<td><b><?php echo Text::_('COM_JOOMLEAGUE_ABOUT_WEBSITE'); ?></b></td>
 		<td>
 			<a href="<?php echo $this->about->page; ?>" target="_blank">
 				<?php echo $this->about->page; ?>
@@ -74,69 +74,69 @@ defined('_JEXEC') or die;
 		</td>
 	</tr>
 	<tr>
-		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_SUPPORT_FORUM'); ?></b></td>
+		<td><b><?php echo Text::_('COM_JOOMLEAGUE_ABOUT_SUPPORT_FORUM'); ?></b></td>
 		<td>
 			<a href="<?php echo $this->about->forum; ?>" target="_blank">
 				<?php echo $this->about->forum; ?></a>
 		</td>
 	</tr>
 	<tr>
-		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_BUGS'); ?></b></td>
+		<td><b><?php echo Text::_('COM_JOOMLEAGUE_ABOUT_BUGS'); ?></b></td>
 		<td>
 			<a href="<?php echo $this->about->bugs; ?>" target="_blank">
 				<?php echo $this->about->bugs; ?></a>
 		</td>
 	</tr>
 	<tr>
-		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_WIKI'); ?></b></td>
+		<td><b><?php echo Text::_('COM_JOOMLEAGUE_ABOUT_WIKI'); ?></b></td>
 		<td>
 			<a href="<?php echo $this->about->wiki; ?>" target="_blank">
 				<?php echo $this->about->wiki; ?></a>
 		</td>
 	</tr>	
 	<tr>
-		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_DEVELOPERS'); ?></b></td>
+		<td><b><?php echo Text::_('COM_JOOMLEAGUE_ABOUT_DEVELOPERS'); ?></b></td>
 		<td><?php echo $this->about->developer; ?></td>
 	</tr>
 <!--
 	<tr>
-		<td><b><?php //echo JText::_('COM_JOOMLEAGUE_ABOUT_SUPPORTERS'); ?></b></td>
+		<td><b><?php //echo Text::_('COM_JOOMLEAGUE_ABOUT_SUPPORTERS'); ?></b></td>
 		<td><?php //echo $this->about->supporters; ?></td>
 	</tr>
 	<tr>
-		<td><b><?php //echo JText::_('COM_JOOMLEAGUE_ABOUT_TRANSLATORS'); ?></b></td>
+		<td><b><?php //echo Text::_('COM_JOOMLEAGUE_ABOUT_TRANSLATORS'); ?></b></td>
 		<td><?php //echo $this->about->translator; ?></td>
 	</tr>
 -->
 	<tr>
-		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_DESIGNER'); ?></b></td>
+		<td><b><?php echo Text::_('COM_JOOMLEAGUE_ABOUT_DESIGNER'); ?></b></td>
 		<td><?php echo $this->about->designer; ?></td>
 	</tr>
 	<tr>
-		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_ICONS'); ?></b></td>
+		<td><b><?php echo Text::_('COM_JOOMLEAGUE_ABOUT_ICONS'); ?></b></td>
 		<td><?php echo $this->about->icons; ?></td>
 	</tr>
 	<tr>
-		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_FLASH_STATISTICS'); ?></b></td>
+		<td><b><?php echo Text::_('COM_JOOMLEAGUE_ABOUT_FLASH_STATISTICS'); ?></b></td>
 		<td><?php echo $this->about->flash; ?></td>
 	</tr>
 	<tr>
-		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_PHPTHUMB'); ?></b></td>
+		<td><b><?php echo Text::_('COM_JOOMLEAGUE_ABOUT_PHPTHUMB'); ?></b></td>
 		<td><?php echo $this->about->phpthumb; ?></td>
 	</tr>	
 <!--
 	<tr>
-		<td><b><?php //echo JText::_('COM_JOOMLEAGUE_ABOUT_GRAPHIC_LIBRARY'); ?></b></td>
+		<td><b><?php //echo Text::_('COM_JOOMLEAGUE_ABOUT_GRAPHIC_LIBRARY'); ?></b></td>
 		<td><?php //echo $this->about->graphic_library; ?></td>
 	</tr>
 -->
 </table>
 <br />
 <div class="componentheading">
-	<?php echo JText::_('COM_JOOMLEAGUE_ABOUT_LICENSE'); ?>
+	<?php echo Text::_('COM_JOOMLEAGUE_ABOUT_LICENSE'); ?>
 </div>
 <table class="about">
 	<tr>
-		<td><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_LICENSE_TEXT'); ?></td>
+		<td><?php echo Text::_('COM_JOOMLEAGUE_ABOUT_LICENSE_TEXT'); ?></td>
 	</tr>
 </table>

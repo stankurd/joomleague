@@ -1,6 +1,7 @@
 <?php 
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -38,7 +39,7 @@ class JoomleagueViewReferees extends JLGView
 
 	protected function setPageTitle()
 	{
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_REFEREES_PAGE_TITLE'));
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_REFEREES_PAGE_TITLE'));
 		if (!empty($this->project))
 		{
 			$titleInfo->projectName = $this->project->name;
@@ -64,13 +65,13 @@ class JoomleagueViewReferees extends JLGView
 		{
 			switch ($this->config['show_birthday']) {
 				case 1:     // show Birthday and Age
-					$birthdayStr = HTMLHelper::date($referee->birthday . ' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
+					$birthdayStr = HTMLHelper::date($referee->birthday . ' UTC', Text::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
 							JoomleagueHelper::getTimezone($this->project, $this->overallconfig)) .
 						'&nbsp;(' . JoomleagueHelper::getAge($referee->birthday, $referee->deathday) . ')';
 					break;
 
 				case 2:     // show Only Birthday
-					$birthdayStr = HTMLHelper::date($referee->birthday . ' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
+					$birthdayStr = HTMLHelper::date($referee->birthday . ' UTC', Text::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'),
 						JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					break;
 
@@ -79,7 +80,7 @@ class JoomleagueViewReferees extends JLGView
 					break;
 
 				case 4:     // show Only Year of birth
-					$birthdayStr = HTMLHelper::date($referee->birthday . ' UTC', JText::_('%Y'),
+					$birthdayStr = HTMLHelper::date($referee->birthday . ' UTC', Text::_('%Y'),
 						JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 					break;
 

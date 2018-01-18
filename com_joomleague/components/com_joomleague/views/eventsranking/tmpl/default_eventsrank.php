@@ -1,4 +1,6 @@
-<?php use Joomla\CMS\HTML\HTMLHelper;
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 $colspan	= 4;
@@ -10,24 +12,24 @@ if ($this->config['show_icons'] == 1) $show_icons = 1;
 
 <?php foreach ($this->eventtypes AS $rows): ?>
 <?php if ($this->multiple_events == 1) :?>
-<h2><?php echo JText::_($rows->name); ?></h2>
+<h2><?php echo Text::_($rows->name); ?></h2>
 <?php endif; ?>
 <table class="eventsranking">
 	<thead>
 	<tr class="sectiontableheader">
-		<th class="rank"><?php echo JText::_('COM_JOOMLEAGUE_EVENTSRANKING_RANK'); ?></th>
+		<th class="rank"><?php echo Text::_('COM_JOOMLEAGUE_EVENTSRANKING_RANK'); ?></th>
 
 		<?php if ($this->config['show_picture_thumb'] == 1): ?>
 		<th class="td_c">&nbsp;</th>
 		<?php endif; ?>
 
-		<th class="td_l"><?php echo JText::_('COM_JOOMLEAGUE_EVENTSRANKING_PLAYER_NAME'); ?></th>
+		<th class="td_l"><?php echo Text::_('COM_JOOMLEAGUE_EVENTSRANKING_PLAYER_NAME'); ?></th>
 
 		<?php if($this->config['show_nation'] == 1): ?>
 		<th class="td_c">&nbsp;</th>
 		<?php endif; ?>
 
-		<th class="td_l"><?php echo JText::_('COM_JOOMLEAGUE_EVENTSRANKING_TEAM'); ?></th>
+		<th class="td_l"><?php echo Text::_('COM_JOOMLEAGUE_EVENTSRANKING_TEAM'); ?></th>
 
 
 		<?php if ($show_icons == 1): ?>
@@ -35,11 +37,11 @@ if ($this->config['show_icons'] == 1) $show_icons = 1;
 			<?php
 				$iconPath=$rows->icon;
 				if (!strpos(' '.$iconPath,'/')){$iconPath='media/com_joomleague/events/'.$iconPath;}
-				echo HTMLHelper::image($iconPath,JText::_($rows->name),array('title'=> JText::_($rows->name),'align'=> 'top','hspace'=> '2'));
+				echo HTMLHelper::image($iconPath,Text::_($rows->name),array('title'=> Text::_($rows->name),'align'=> 'top','hspace'=> '2'));
 			?>
 			</th>
 		<?php else: ?>
-		<th class="td_c" nowrap="nowrap"><?php	echo JText::_($rows->name); ?></th>
+		<th class="td_c" nowrap="nowrap"><?php	echo Text::_($rows->name); ?></th>
 		<?php endif; ?>
 	</tr>
 	</thead>
@@ -154,7 +156,7 @@ if ($this->config['show_icons'] == 1) $show_icons = 1;
 </table>
 <?php if ($this->multiple_events == 1):?>
 <div class="fulltablelink">
-<?php echo HTMLHelper::link($link=JoomleagueHelperRoute::getEventsRankingRoute($this->project->id, (isset($this->division->id) ? $this->division->id : 0), $this->teamid, $rows->id, (isset($this->matchid) ? $this->matchid : 0)), JText::_('COM_JOOMLEAGUE_EVENTSRANKING_MORE')); ?>
+<?php echo HTMLHelper::link($link=JoomleagueHelperRoute::getEventsRankingRoute($this->project->id, (isset($this->division->id) ? $this->division->id : 0), $this->teamid, $rows->id, (isset($this->matchid) ? $this->matchid : 0)), Text::_('COM_JOOMLEAGUE_EVENTSRANKING_MORE')); ?>
 </div>
 <?php else: ?>
 <div class="pageslinks">

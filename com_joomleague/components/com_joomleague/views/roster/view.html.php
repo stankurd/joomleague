@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -59,7 +60,7 @@ class JoomleagueViewRoster extends JLGView
 		}
 		
 		// Set page title
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_ROSTER_PAGE_TITLE'));
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_ROSTER_PAGE_TITLE'));
 		if (!empty($this->team))
 		{
 			if ( $this->config['show_team_shortform'] == 1 && !empty($this->team->short_name))

@@ -1,4 +1,5 @@
-<?php use Joomla\CMS\Uri\Uri;
+<?php use Joomla\CMS\Language\Text;
+use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die; ?>
 
@@ -17,7 +18,7 @@ defined('_JEXEC') or die; ?>
 
 <table cellspacing="0" border="0" width="100%">
 	<tr class="sectiontableheader">
-		<th colspan="2"><?php	echo JText::_('COM_JOOMLEAGUE_STATS_GOALS_STATISTIC'); ?></th>
+		<th colspan="2"><?php	echo Text::_('COM_JOOMLEAGUE_STATS_GOALS_STATISTIC'); ?></th>
 	</tr>
 </table>
 

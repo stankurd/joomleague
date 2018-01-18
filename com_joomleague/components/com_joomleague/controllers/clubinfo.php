@@ -12,6 +12,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Mail\Mail;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Table\Table;
@@ -76,8 +77,8 @@ class JoomleagueControllerClubInfo extends JoomleagueController
 		if (!empty($to))
 		{
 			$user = Factory::getUser();
-			$subject = addslashes(sprintf(JText::_('COM_JOOMLEAGUE_ADMIN_EDIT_CLUB_INFO_SUBJECT'), $club->name));
-			$message = addslashes(sprintf(JText::_('COM_JOOMLEAGUE_ADMIN_EDIT_CLUB_INFO_MESSAGE'), $user->name, $club->name));
+			$subject = addslashes(sprintf(Text::_('COM_JOOMLEAGUE_ADMIN_EDIT_CLUB_INFO_SUBJECT'), $club->name));
+			$message = addslashes(sprintf(Text::_('COM_JOOMLEAGUE_ADMIN_EDIT_CLUB_INFO_MESSAGE'), $user->name, $club->name));
 			$message .= $this->_getShowClubInfoLink();
 
 			Mail::sendMail('', '', $to, $subject, $message);

@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die; ?>
 <!-- EXTENDED DATA-->
@@ -31,7 +32,7 @@ if(count($this->extended->getFieldsets()) > 0)
 			if ($hasData)
 			{
 				?>
-				<h2><?php echo '&nbsp;' . JText::_($fieldset->name); ?></h2>
+				<h2><?php echo '&nbsp;' . Text::_($fieldset->name); ?></h2>
 				<table>
 					<tbody>
 				<?php

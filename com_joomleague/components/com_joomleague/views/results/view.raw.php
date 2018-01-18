@@ -1,6 +1,7 @@
 <?php 
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Uri\Uri;
 
@@ -69,7 +70,7 @@ class JoomleagueViewResults extends JLGView
 		}
 		
 		// Set page title
-		$pageTitle = JText::_('COM_JOOMLEAGUE_RESULTS_PAGE_TITLE');
+		$pageTitle = Text::_('COM_JOOMLEAGUE_RESULTS_PAGE_TITLE');
 		if ( isset( $this->project->name ) )
 		{
 			$pageTitle .= ': ' . $this->project->name;
@@ -78,7 +79,7 @@ class JoomleagueViewResults extends JLGView
 
 		//build feed links
 		$feed = 'index.php?option=com_joomleague&view=results&p='.$this->project->id.'&format=feed';
-		$rss = array('type' => 'application/rss+xml', 'title' => JText::_('COM_JOOMLEAGUE_RESULTS_RSSFEED'));
+		$rss = array('type' => 'application/rss+xml', 'title' => Text::_('COM_JOOMLEAGUE_RESULTS_RSSFEED'));
 
 		// add the links
 		//$document->addHeadLink(JRoute::_($feed.'&type=rss'), 'alternate', 'rel', $rss);
@@ -109,7 +110,7 @@ class JoomleagueViewResults extends JLGView
 		$not_playing=count($teams) - count($playing_teams);
 		if ($not_playing > 0)
 		{
-			$output .= '<b>'.JText::sprintf('COM_JOOMLEAGUE_RESULTS_TEAMS_NOT_PLAYING',$not_playing).'</b> ';
+			$output .= '<b>'.Text::sprintf('COM_JOOMLEAGUE_RESULTS_TEAMS_NOT_PLAYING',$not_playing).'</b> ';
 			foreach ($teams AS $id => $team)
 			{
 				if(!isset($team->$config['names'])) continue;
@@ -211,7 +212,7 @@ class JoomleagueViewResults extends JLGView
 	{
 		$link="javascript:void(0)";
 		$params=array("onclick" => "switchMenu('part".$match->id."')");
-		$imgTitle=JText::_('COM_JOOMLEAGUE_ADMIN_EDIT_MATRIX_ROUNDS_PART_RESULT');
+		$imgTitle=Text::_('COM_JOOMLEAGUE_ADMIN_EDIT_MATRIX_ROUNDS_PART_RESULT');
 		$desc=HTMLHelper::image("media/com_joomleague/jl_images/sort01.gif", $imgTitle, array("border" => 0,"title" => $imgTitle));
 		echo HTMLHelper::link($link,$desc,$params);
 
@@ -270,7 +271,7 @@ class JoomleagueViewResults extends JLGView
 		if ($this->project->allow_add_time)
 		{
 			if($match->match_result_type >0){
-				echo JText::_('COM_JOOMLEAGUE_RESULTS_OVERTIME').':';
+				echo Text::_('COM_JOOMLEAGUE_RESULTS_OVERTIME').':';
 				echo '<input type="text" style="font-size:9px;"';
 				echo ' name="team1_result_ot'.$match->id.'"';
 				echo ' value="';
@@ -287,7 +288,7 @@ class JoomleagueViewResults extends JLGView
 			}
 			if($match->match_result_type == 2){
 				echo '<br />';
-				echo JText::_('COM_JOOMLEAGUE_RESULTS_SHOOTOUT').':';
+				echo Text::_('COM_JOOMLEAGUE_RESULTS_SHOOTOUT').':';
 				echo '<input type="text" style="font-size:9px;"';
 				echo ' name="team1_result_so'.$match->id.'"';
 				echo ' value="';
@@ -352,7 +353,7 @@ class JoomleagueViewResults extends JLGView
 				$result .= '<br />';
 			}else{$result .= ' ';
 			}
-			$result .= '('.JText::_('COM_JOOMLEAGUE_RESULTS_SHOOTOUT').' ';
+			$result .= '('.Text::_('COM_JOOMLEAGUE_RESULTS_SHOOTOUT').' ';
 			$result .= $homeResultSO.'&nbsp;'.$config['seperator'].'&nbsp;'.$awayResultSO;
 			$result .= ')';
 		}
@@ -364,7 +365,7 @@ class JoomleagueViewResults extends JLGView
 					$result .= '<br />';
 				}else{$result .= ' ';
 				}
-				$result .= '('.JText::_('COM_JOOMLEAGUE_RESULTS_SHOOTOUT');
+				$result .= '('.Text::_('COM_JOOMLEAGUE_RESULTS_SHOOTOUT');
 				$result .= ')';
 			}
 		}
@@ -374,7 +375,7 @@ class JoomleagueViewResults extends JLGView
 				$result .= '<br />';
 			}else{$result .= ' ';
 			}
-			$result .= '('.JText::_('COM_JOOMLEAGUE_RESULTS_OVERTIME').' ';
+			$result .= '('.Text::_('COM_JOOMLEAGUE_RESULTS_OVERTIME').' ';
 			$result .= $homeResultOT.'&nbsp;'.$config['seperator'].'&nbsp;'.$awayResultOT;
 			$result .= ')';
 		}
@@ -386,7 +387,7 @@ class JoomleagueViewResults extends JLGView
 					$result .= '<br />';
 				}else{$result .= ' ';
 				}
-				$result .= '('.JText::_('COM_JOOMLEAGUE_RESULTS_OVERTIME');
+				$result .= '('.Text::_('COM_JOOMLEAGUE_RESULTS_OVERTIME');
 				$result .= ')';
 			}
 		}
@@ -425,7 +426,7 @@ class JoomleagueViewResults extends JLGView
 	 */
 	function prepareEventsOutput($match_id)
 	{
-		$imgTitle=JText::_('COM_JOOMLEAGUE_RESULTS_SHOW_EVENTS_OF_MATCH');
+		$imgTitle=Text::_('COM_JOOMLEAGUE_RESULTS_SHOW_EVENTS_OF_MATCH');
 		$attribs=array(	"title" => $imgTitle,
 		 		"id" => 'events-'. $match_id,
 		 		"class" => "eventstoggle");
@@ -448,7 +449,7 @@ class JoomleagueViewResults extends JLGView
 
 			if (!empty($referees))
 			{
-				$toolTipTitle	= JText::_('Match Referees');
+				$toolTipTitle	= Text::_('Match Referees');
 				$toolTipText	= '';
 
 				foreach ($referees as $ref)
@@ -490,12 +491,12 @@ class JoomleagueViewResults extends JLGView
 		{
 			if ($game->alt_decision)
 			{
-				$imgTitle=JText::_($game->decision_info);
+				$imgTitle=Text::_($game->decision_info);
 				$img='media/com_joomleague/jl_images/court.gif';
 			}
 			else
 			{
-				$imgTitle=JText::_('Has match summary');
+				$imgTitle=Text::_('Has match summary');
 				$img='media/com_joomleague/jl_images/zoom.png';
 			}
 			$output .= HTMLHelper::_(	'link',
@@ -547,7 +548,7 @@ class JoomleagueViewResults extends JLGView
 				if($cnt==0){continue;}
 				// I think its better to show the event name,the the event image(gives some probs with tabs)
 				$pic_tab	= $event->icon;
-				$imgTitle	= JText::_($event->name); $imgTitle2=array(' title' => $imgTitle);
+				$imgTitle	= Text::_($event->name); $imgTitle2=array(' title' => $imgTitle);
 				$txt_tab	= HTMLHelper::image($pic_tab,$imgTitle,$imgTitle2);
 
 				$backgroundStyle="background: url(".$pic_tab.") no-repeat transparent";
@@ -587,12 +588,12 @@ class JoomleagueViewResults extends JLGView
 				$pic_in		= 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/in.png';
 				$pic_tab	= 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/subst.png';
 
-				$imgTitle	= JText::_('COM_JOOMLEAGUE_IN_OUT'); $imgTitle2=array(' title' => $imgTitle);
+				$imgTitle	= Text::_('COM_JOOMLEAGUE_IN_OUT'); $imgTitle2=array(' title' => $imgTitle);
 				$txt_tab	= HTMLHelper::image($pic_tab,$imgTitle,$imgTitle2);
 
-				$imgTime=HTMLHelper::image($pic_time,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE'),array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE')));
-				$imgOut=HTMLHelper::image($pic_out,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT'),array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT')));
-				$imgIn=HTMLHelper::image($pic_in,JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN'),array(' title' => JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN')));
+				$imgTime=HTMLHelper::image($pic_time,Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE'),array(' title' => Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE')));
+				$imgOut=HTMLHelper::image($pic_out,Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT'),array(' title' => Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT')));
+				$imgIn=HTMLHelper::image($pic_in,Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN'),array(' title' => Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN')));
 
 				$output .= HTMLHelper::_('bootstrap.addTab', $selector, 'substitutions', $txt_tab);
 				$output .= '<table class="matchreport" border="0">';
@@ -642,11 +643,11 @@ class JoomleagueViewResults extends JLGView
 					$output .= '<li class="list">';
 					if (!strlen($me->firstname1.$me->lastname1))
 					{
-						$output .= $me->event_time.'\' '.JText::_($projectevents[$me->event_type_id]->name). ' '.JText::_('Unknown Person');
+						$output .= $me->event_time.'\' '.Text::_($projectevents[$me->event_type_id]->name). ' '.Text::_('Unknown Person');
 					}
 					else
 					{
-						$output .= $me->event_time.'\' '.JText::_($projectevents[$me->event_type_id]->name). ' '.$me->firstname1.' '.$me->lastname1;
+						$output .= $me->event_time.'\' '.Text::_($projectevents[$me->event_type_id]->name). ' '.$me->firstname1.' '.$me->lastname1;
 					}
 					
 					// only show event sum and match notice when set to on in template cofig
@@ -697,11 +698,11 @@ class JoomleagueViewResults extends JLGView
 					$output .= '<li class="list">';
 					if (!strlen($me->firstname1.$me->lastname1))
 					{
-						$output .= $me->event_time.'\' '.JText::_($projectevents[$me->event_type_id]->name). ' '.JText::_('Unknown Person');
+						$output .= $me->event_time.'\' '.Text::_($projectevents[$me->event_type_id]->name). ' '.Text::_('Unknown Person');
 					}
 					else
 					{
-						$output .= $me->event_time.'\' '.JText::_($projectevents[$me->event_type_id]->name). ' '.$me->firstname1.' '.$me->lastname1;
+						$output .= $me->event_time.'\' '.Text::_($projectevents[$me->event_type_id]->name). ' '.$me->firstname1.' '.$me->lastname1;
 					}
 					
 					// only show event sum and match notice when set to on in template cofig
@@ -755,7 +756,7 @@ class JoomleagueViewResults extends JLGView
 		{
 			$output = HTMLHelper::_(	'link', $reportLink,
 					'<span class="score0">'.$this->showMatchState($game,$this->config).'</span>',
-			array("title" => JText::_('COM_JOOMLEAGUE_RESULTS_SHOW_MATCHREPORT')));
+			array("title" => Text::_('COM_JOOMLEAGUE_RESULTS_SHOW_MATCHREPORT')));
 		}
 		else
 		{
@@ -774,7 +775,7 @@ class JoomleagueViewResults extends JLGView
 			$output .= '<li class="events" style="'.$backgroundStyle.'">';
 			if (!strlen($matchevent->firstname1.$matchevent->lastname1))
 			{
-				$output .= $matchevent->event_time.'\' '.JText :: _('Unknown Person');
+				$output .= $matchevent->event_time.'\' '.Text :: _('Unknown Person');
 			}
 			else
 			{
@@ -815,17 +816,17 @@ class JoomleagueViewResults extends JLGView
 		{
 			$output .= '<li class="events">';
 			// $output .= $imgTime;
-			$output .= '&nbsp;'.$subs->in_out_time.'. '.JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE');
+			$output .= '&nbsp;'.$subs->in_out_time.'. '.Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_MINUTE');
 			$output .= '<br />';
 
 			$output .= $imgOut;
 			$output .= '&nbsp;'.$subs->out_firstname.' '.$subs->out_lastname;
-			$output .= '&nbsp;('.JText :: _($subs->out_position).')';
+			$output .= '&nbsp;('.Text :: _($subs->out_position).')';
 			$output .= '<br />';
 
 			$output .= $imgIn;
 			$output .= '&nbsp;'.$subs->firstname.' '.$subs->lastname;
-			$output .= '&nbsp;('.JText :: _($subs->in_position).')';
+			$output .= '&nbsp;('.Text :: _($subs->in_position).')';
 			$output .= '<br /><br />';
 			$output .= '</li>';
 		}

@@ -1,4 +1,6 @@
-<?php defined('_JEXEC') or die;
+<?php use Joomla\CMS\Language\Text;
+
+defined('_JEXEC') or die;
 
 // Make sure that in case extensions are written for mentioned (common) views,
 // that they are loaded i.s.o. of the template of this view
@@ -36,7 +38,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	<div>
 <?php else: ?>
 	<div>
-		<p><?php echo JText::_('At least you need to submit a project-id to get a teamplan of JoomLeague!'); ?></p>
+		<p><?php echo Text::_('At least you need to submit a project-id to get a teamplan of JoomLeague!'); ?></p>
 <?php endif; ?>
 <?php
 	echo $this->loadTemplate('backbutton');

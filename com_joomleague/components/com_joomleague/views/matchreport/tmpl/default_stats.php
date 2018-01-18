@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 jimport('joomla.html.pane');
@@ -35,7 +36,7 @@ if (!empty($this->matchplayerpositions ))
 	if($hasMatchPlayerStats || $hasMatchStaffStats) :
 	?>
 
-	<h2><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_STATISTICS'); ?></h2>
+	<h2><?php echo Text::_('COM_JOOMLEAGUE_MATCHREPORT_STATISTICS'); ?></h2>
 
 		<?php
 		$iPanel = 1;

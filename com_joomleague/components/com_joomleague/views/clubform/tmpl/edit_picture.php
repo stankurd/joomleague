@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\Language\Text;
+
 /**
  * Joomleague
  *
@@ -9,7 +11,7 @@
 defined('_JEXEC') or die;
 ?>
 <fieldset class="form-horizontal">
-	<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_CLUB_LOGO' );?></legend>
+	<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_CLUB_LOGO' );?></legend>
 	<?php foreach ($this->form->getFieldset('picture') as $field): ?>
 	<div class="control-group">
 		<div class="control-label"><?php echo $field->label; ?></div>

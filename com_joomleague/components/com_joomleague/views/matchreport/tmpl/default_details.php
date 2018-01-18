@@ -1,9 +1,10 @@
 <?php use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die; ?>
 
 <!-- Details-->
-<h2><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_DETAILS'); ?></h2>
+<h2><?php echo Text::_('COM_JOOMLEAGUE_MATCHREPORT_DETAILS'); ?></h2>
 <table width="98%" align="center" border="0" cellpadding="0" cellspacing="0">
 	<!-- Prev Match-->
 	<?php
@@ -12,7 +13,7 @@ defined('_JEXEC') or die; ?>
 		?>
 		<tr>
 			<td colspan="3" >
-				<span class="label"><?php echo JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_OLD_MATCH' ); ?></span>
+				<span class="label"><?php echo Text::_( 'COM_JOOMLEAGUE_MATCHREPORT_OLD_MATCH' ); ?></span>
 				<span><?php echo HTMLHelper :: link(JoomleagueHelperRoute::getMatchReportRoute( $this->project->id, 
 																							$this->match->old_match_id ), 
 												$this->oldmatchtext); ?></span>
@@ -28,7 +29,7 @@ defined('_JEXEC') or die; ?>
 		?>
 		<tr>
 			<td colspan="3" >
-				<span class="label"><?php echo JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_NEW_MATCH' ); ?></span>
+				<span class="label"><?php echo Text::_( 'COM_JOOMLEAGUE_MATCHREPORT_NEW_MATCH' ); ?></span>
 				<span><?php echo HTMLHelper :: link(JoomleagueHelperRoute::getNextMatchRoute( $this->project->id, 
 																							$this->match->new_match_id ), 
 												$this->newmatchtext); ?></span>
@@ -46,8 +47,8 @@ defined('_JEXEC') or die; ?>
             ?>
             <tr>
                 <td colspan="3" >
-                    <span class="label"><?php echo JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_DATE' ); ?></span>
-                    <span><?php echo JoomleagueHelper::getMatchDate($this->match, JText::_('COM_JOOMLEAGUE_MATCHREPORT_GAMES_DATE')); ?></span>
+                    <span class="label"><?php echo Text::_( 'COM_JOOMLEAGUE_MATCHREPORT_DATE' ); ?></span>
+                    <span><?php echo JoomleagueHelper::getMatchDate($this->match, Text::_('COM_JOOMLEAGUE_MATCHREPORT_GAMES_DATE')); ?></span>
                 </td>
             </tr>
             <?php
@@ -64,7 +65,7 @@ defined('_JEXEC') or die; ?>
             ?>
             <tr>
                 <td colspan="3" >
-                    <span class="label"><?php echo JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_TIME' ); ?></span>
+                    <span class="label"><?php echo Text::_( 'COM_JOOMLEAGUE_MATCHREPORT_TIME' ); ?></span>
                     <span><?php echo JoomleagueHelperHtml::showMatchTime($this->match, $this->config, $this->overallconfig, $this->project); ?></span>
                 </td>
             </tr>
@@ -76,7 +77,7 @@ defined('_JEXEC') or die; ?>
         <?php if ($this->match->time_present > 0): ?>
         <tr>
             <td colspan="3" >
-                <span class="label"><?php echo JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_PRESENT' ); ?></span>
+                <span class="label"><?php echo Text::_( 'COM_JOOMLEAGUE_MATCHREPORT_PRESENT' ); ?></span>
                 <span><?php echo $this->match->time_present; ?></span>
             </td>
         </tr>
@@ -92,7 +93,7 @@ defined('_JEXEC') or die; ?>
         if ($this->match->match_number > 0): ?>
         <tr>
             <td colspan="3" >
-                <span class="label"><?php echo JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_NUMBER' ); ?></span>
+                <span class="label"><?php echo Text::_( 'COM_JOOMLEAGUE_MATCHREPORT_NUMBER' ); ?></span>
                 <span><?php echo $this->match->match_number; ?></span>
             </td>
         </tr>
@@ -112,7 +113,7 @@ defined('_JEXEC') or die; ?>
         <?php $playground_link = JoomleagueHelperRoute::getPlaygroundRoute( $this->project->id, $this->match->playground_id);?>
         <tr>
             <td colspan="3" >
-                <span class="label"><?php echo JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_PLAYGROUND' ); ?></span>
+                <span class="label"><?php echo Text::_( 'COM_JOOMLEAGUE_MATCHREPORT_PLAYGROUND' ); ?></span>
                 <span><?php echo HTMLHelper::link ($playground_link, $this->playground->name); ?></span>
             </td>
         </tr>
@@ -128,7 +129,7 @@ defined('_JEXEC') or die; ?>
             ?>
             <tr>
                 <td colspan="3" >
-                    <span class="label"><?php echo JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_REFEREE' ); ?></span>
+                    <span class="label"><?php echo Text::_( 'COM_JOOMLEAGUE_MATCHREPORT_REFEREE' ); ?></span>
                     <?php
                     $first = true;
                     foreach ( $this->matchreferees as $referee ) : 
@@ -160,7 +161,7 @@ defined('_JEXEC') or die; ?>
         if ( $this->match->crowd > 0 ): ?>
             <tr>
             <td>
-                <span class="label"><?php echo JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_ATTENDANCES' ); ?></span>
+                <span class="label"><?php echo Text::_( 'COM_JOOMLEAGUE_MATCHREPORT_ATTENDANCES' ); ?></span>
                 <span><?php echo ': ' . number_format( $this->match->crowd, 0, ',' , '.' ); ?></span>
             </td>
             </tr>

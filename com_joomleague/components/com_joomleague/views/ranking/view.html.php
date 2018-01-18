@@ -1,6 +1,7 @@
 <?php
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -42,14 +43,14 @@ class JoomleagueViewRanking extends JLGView {
 		$this->previousgames = $model->getPreviousGames();
 		$this->teams=$model->getTeamsIndexedByPtid();
 
-		$fromMatchDay[] = HTMLHelper::_('select.option', '0', JText::_('COM_JOOMLEAGUE_RANKING_FROM_MATCHDAY'));
+		$fromMatchDay[] = HTMLHelper::_('select.option', '0', Text::_('COM_JOOMLEAGUE_RANKING_FROM_MATCHDAY'));
 		$fromMatchDay = array_merge($fromMatchDay, $rounds);
-		$toMatchDay[] = HTMLHelper::_('select.option', '0', JText::_('COM_JOOMLEAGUE_RANKING_TO_MATCHDAY'));
+		$toMatchDay[] = HTMLHelper::_('select.option', '0', Text::_('COM_JOOMLEAGUE_RANKING_TO_MATCHDAY'));
 		$toMatchDay = array_merge($toMatchDay, $rounds);
 		$opp_arr = array();
-		$opp_arr[] = HTMLHelper::_('select.option', "0", JText::_('COM_JOOMLEAGUE_RANKING_FULL_RANKING'));
-		$opp_arr[] = HTMLHelper::_('select.option', "1", JText::_('COM_JOOMLEAGUE_RANKING_HOME_RANKING'));
-		$opp_arr[] = HTMLHelper::_('select.option', "2", JText::_('COM_JOOMLEAGUE_RANKING_AWAY_RANKING'));
+		$opp_arr[] = HTMLHelper::_('select.option', "0", Text::_('COM_JOOMLEAGUE_RANKING_FULL_RANKING'));
+		$opp_arr[] = HTMLHelper::_('select.option', "1", Text::_('COM_JOOMLEAGUE_RANKING_HOME_RANKING'));
+		$opp_arr[] = HTMLHelper::_('select.option', "2", Text::_('COM_JOOMLEAGUE_RANKING_AWAY_RANKING'));
 
 		$this->lists['frommatchday'] = $fromMatchDay;
 		$this->lists['tomatchday'] = $toMatchDay;
@@ -76,7 +77,7 @@ class JoomleagueViewRanking extends JLGView {
 
 	function setPageTitle()
 	{
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_RANKING_PAGE_TITLE'));
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_RANKING_PAGE_TITLE'));
 		if (!empty($this->project))
 		{
 			$titleInfo->projectName = $this->project->name;

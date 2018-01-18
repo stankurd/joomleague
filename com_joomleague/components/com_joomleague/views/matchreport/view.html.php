@@ -4,6 +4,7 @@ use Joomla\CMS\Form\Form;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Registry\Registry;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -82,7 +83,7 @@ class JoomleagueViewMatchReport extends JLGView
 		$this->extended=$extended;
 
 		// Set page title
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_MATCHREPORT_PAGE_TITLE'));
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_MATCHREPORT_PAGE_TITLE'));
 		if (!empty($this->team1))
 		{
 			$titleInfo->team1Name = $this->team1->name;
@@ -197,14 +198,14 @@ class JoomleagueViewMatchReport extends JLGView
 		$pic_out='images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png';
 		$pic_in='images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/in.png';
 
-		//$imgTitle=JText::_('COM_JOOMLEAGUE_MATCHREPORT_MINUTE');
+		//$imgTitle=Text::_('COM_JOOMLEAGUE_MATCHREPORT_MINUTE');
 		//$imgTitle2=array(' title' => $imgTitle);
 		//$result=HTMLHelper::image($pic_time,$imgTitle,$imgTitle2).'&nbsp;'.$sub->in_out_time;
-		$result='<b>'.$sub->in_out_time.'. '. JText::_('COM_JOOMLEAGUE_MATCHREPORT_MINUTE') .'</b>';
+		$result='<b>'.$sub->in_out_time.'. '. Text::_('COM_JOOMLEAGUE_MATCHREPORT_MINUTE') .'</b>';
 		$result .= '<br />';
 		$outName = JoomleagueHelper::formatName(null, $sub->out_firstname, $sub->out_nickname, $sub->out_lastname, $this->config["name_format"]);
 		if($outName != '') {
-			$imgTitle=JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT');
+			$imgTitle=Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT');
 			$imgTitle2=array(' title' => $imgTitle);
 			$result .= HTMLHelper::image($pic_out,$imgTitle,$imgTitle2).'&nbsp;';
 
@@ -218,13 +219,13 @@ class JoomleagueViewMatchReport extends JLGView
 			}
 
 			if($sub->out_position!='') {
-				$result .= '&nbsp;('.JText::_($sub->out_position).')';
+				$result .= '&nbsp;('.Text::_($sub->out_position).')';
 			}
 			$result .= '<br />';
 		}
 		$inName = JoomleagueHelper::formatName(null, $sub->firstname, $sub->nickname, $sub->lastname, $this->config["name_format"]);
 		if($inName!='') {
-			$imgTitle=JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN');
+			$imgTitle=Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN');
 			$imgTitle2=array(' title' => $imgTitle);
 			$result .= HTMLHelper::image($pic_in,$imgTitle,$imgTitle2).'&nbsp;';
 
@@ -238,7 +239,7 @@ class JoomleagueViewMatchReport extends JLGView
 			}
 
 			if($sub->in_position!='') {
-				$result .= '&nbsp;('.JText::_($sub->in_position).')';
+				$result .= '&nbsp;('.Text::_($sub->in_position).')';
 			}
 			$result .= '<br /><br />';
 		}
@@ -391,7 +392,7 @@ class JoomleagueViewMatchReport extends JLGView
 		$time=$sub->in_out_time;
                 $matchtime=$this->getTimelineMatchTime();
                 $time2=($time / $matchtime) *100;
-		$tiptext=JText::_('COM_JOOMLEAGUE_MATCHREPORT_TIMELINE_SUBSTITUTION_MIN').' ';
+		$tiptext=Text::_('COM_JOOMLEAGUE_MATCHREPORT_TIMELINE_SUBSTITUTION_MIN').' ';
 		$tiptext .= $time;
 		$tiptext .= ' ::';
 		$tiptext .= JoomleagueViewMatchReport::getHtmlImageForTips($pic_in);
@@ -510,7 +511,7 @@ class JoomleagueViewMatchReport extends JLGView
 		if(empty($event->icon)) {
 			$event->icon = Uri::Base() . "media/com_joomleague/jl_images/same.png";
 		}
-		$tiptext=JText::_($event->name).' '.JText::_('COM_JOOMLEAGUE_MATCHREPORT_MINUTE_SHORT').' '.$matchEvent->event_time;
+		$tiptext=Text::_($event->name).' '.Text::_('COM_JOOMLEAGUE_MATCHREPORT_MINUTE_SHORT').' '.$matchEvent->event_time;
 		$tiptext .= ' ::';
 		if (file_exists($picture))
 		{

@@ -30,7 +30,7 @@ class JoomleagueHelperExtensioncontroller
 
 	public function findFile($filename, $extension)
 	{
-		$path = Factory::getApplication()->isAdmin()
+	    $path = Factory::getApplication()->isClient('administrator')
 			? JLG_PATH_SITE . '/extensions/' . $extension . '/admin/controllers/' . $filename
 			: JLG_PATH_SITE . '/extensions/' . $extension . '/controllers/' . $filename;
 
@@ -64,7 +64,7 @@ class JoomleagueHelperExtensioncontroller
 				require_once $mainfile;
 			}
 
-			$lang_path = $app->isAdmin()
+			$lang_path = $app->isClient('administrator')
 				? $extensionpath . '/admin'
 				: $extensionpath;
 			// language file
@@ -78,7 +78,7 @@ class JoomleagueHelperExtensioncontroller
 
 		foreach ($this->getExtensions() as $extension)
 		{
-			$path= $app->isAdmin()
+		    $path= $app->isClient('administrator')
 				? JLG_PATH_SITE . '/extensions/' . $extension . '/admin/models'
 				: JLG_PATH_SITE . '/extensions/' . $extension . '/models';
 

@@ -1,4 +1,5 @@
 <?php
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Pagination\Pagination;
 use Joomla\CMS\HTML\HTMLHelper;
 
@@ -20,13 +21,13 @@ if ($this->config['show_icons'] == 1) $show_icons = 1;
 	cellspacing="0" class="statranking">
 	<thead>
 	<tr class="sectiontableheader">
-		<th class="td_r rank"><?php	echo JText::_( 'COM_JOOMLEAGUE_STATSRANKING_RANK' );	?></th>
+		<th class="td_r rank"><?php	echo Text::_( 'COM_JOOMLEAGUE_STATSRANKING_RANK' );	?></th>
 
 		<?php if ($this->config['show_picture_thumb'] == 1 ):	?>
 		<th class="td_c">&nbsp;</th>
 		<?php endif; ?>
 
-		<th class="td_l"><?php	echo JText::_( 'COM_JOOMLEAGUE_STATSRANKING_PLAYER_NAME' ); ?>
+		<th class="td_l"><?php	echo Text::_( 'COM_JOOMLEAGUE_STATSRANKING_PLAYER_NAME' ); ?>
 		</th>
 
 		<?php	if ( $this->config['show_nation'] == 1 ):	?>
@@ -34,12 +35,12 @@ if ($this->config['show_icons'] == 1) $show_icons = 1;
 		<?php endif; ?>
 		
 		<?php	if ( $this->config['show_team'] == 1 ):	?>
-		<th class="td_l"><?php	echo JText::_( 'COM_JOOMLEAGUE_STATSRANKING_TEAM' );	?></th>
+		<th class="td_l"><?php	echo Text::_( 'COM_JOOMLEAGUE_STATSRANKING_TEAM' );	?></th>
 		<?php endif; ?>
 		<?php	if ( $show_icons == 1 ):	?>
 		<th class="td_r" class="nowrap"><?php	echo $rows->getImage(); ?></th>
 		<?php else: ?>	
-		<th class="td_r" class="nowrap"><?php	echo JText::_($rows->name); ?></th>
+		<th class="td_r" class="nowrap"><?php	echo Text::_($rows->name); ?></th>
 		<?php endif; ?>		
 	</tr>
 	</thead>
@@ -154,7 +155,7 @@ if ($this->multiple_stats == 1)
 {
 ?>
 <div class="fulltablelink">
-<?php echo HTMLHelper::link(JoomleagueHelperRoute::getStatsRankingRoute($this->project->id, ($this->division ? $this->division->id : 0), $this->teamid, $rows->id), JText::_('COM_JOOMLEAGUE_STATSRANKING_VIEW_FULL_TABLE')); ?>
+<?php echo HTMLHelper::link(JoomleagueHelperRoute::getStatsRankingRoute($this->project->id, ($this->division ? $this->division->id : 0), $this->teamid, $rows->id), Text::_('COM_JOOMLEAGUE_STATSRANKING_VIEW_FULL_TABLE')); ?>
 </div>
 <?php
 }

@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die; ?>
@@ -7,7 +8,7 @@ defined('_JEXEC') or die; ?>
 <?php if ($this->games): ?>
 <!-- Playground next games -->
 <div id='jlg_plgndnextgames'>
-	<h2><?php echo JText::_('COM_JOOMLEAGUE_PLAYGROUND_NEXT_GAMES'); ?></h2>
+	<h2><?php echo Text::_('COM_JOOMLEAGUE_PLAYGROUND_NEXT_GAMES'); ?></h2>
 	<?php if($this->config['show_ical_link']): ?>
 	<table width='96%' align='center' border='0' cellpadding='0' cellspacing='0'>
 		<tr>
@@ -15,8 +16,8 @@ defined('_JEXEC') or die; ?>
 			<?php
 				$link = JoomleagueHelperRoute::getIcalRoute(0,null,$this->playground->id);
 				$text = HTMLHelper::image('administrator/components/com_joomleague/assets/images/calendar.png',
-					JText::_('COM_JOOMLEAGUE_PLAYGROUND_ICAL_EXPORT'));
-				$attribs = array('title' => JText::_('COM_JOOMLEAGUE_PLAYGROUND_ICAL_EXPORT'));
+					Text::_('COM_JOOMLEAGUE_PLAYGROUND_ICAL_EXPORT'));
+				$attribs = array('title' => Text::_('COM_JOOMLEAGUE_PLAYGROUND_ICAL_EXPORT'));
 				echo HTMLHelper::_('link',$link,$text,$attribs);
 			?>
 			</td>
@@ -54,13 +55,13 @@ defined('_JEXEC') or die; ?>
 			?>
 			<tr>
 				<?php if ($this->config['show_match_number']): ?>
-				<td class='sectiontableheader'><?php echo JText::_('COM_JOOMLEAGUE_PLAYGROUND_MATCH_NUMBER'); ?></td>
+				<td class='sectiontableheader'><?php echo Text::_('COM_JOOMLEAGUE_PLAYGROUND_MATCH_NUMBER'); ?></td>
 				<?php endif; ?>
 				<td align='left' colspan='<?php echo $colspan; ?>' class='sectiontableheader'>
-					<?php echo JoomleagueHelper::getMatchDate($games[0], JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE')); ?>
+					<?php echo JoomleagueHelper::getMatchDate($games[0], Text::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE')); ?>
 				</td>
 				<?php if ($this->config['show_referee']): ?>
-				<td class='sectiontableheader'><?php echo JText::_('COM_JOOMLEAGUE_PLAYGROUND_REFEREE'); ?></td>
+				<td class='sectiontableheader'><?php echo Text::_('COM_JOOMLEAGUE_PLAYGROUND_REFEREE'); ?></td>
 				<?php endif; ?>
 			</tr>
 			<?php
@@ -104,7 +105,7 @@ defined('_JEXEC') or die; ?>
 					if ($this->project->teams_as_referees)
 					{
 						$output='';
-						$toolTipTitle=JText::_('COM_JOOMLEAGUE_TEAMPLAN_REF_TOOLTIP');
+						$toolTipTitle=Text::_('COM_JOOMLEAGUE_TEAMPLAN_REF_TOOLTIP');
 						$toolTipText='';
 
 						for ($i = 0; $i < count($game->referees); $i++)
@@ -136,14 +137,14 @@ defined('_JEXEC') or die; ?>
 					else
 					{
 						$output='';
-						$toolTipTitle=JText::_('COM_JOOMLEAGUE_TEAMPLAN_REF_TOOLTIP');
+						$toolTipTitle=Text::_('COM_JOOMLEAGUE_TEAMPLAN_REF_TOOLTIP');
 						$toolTipText='';
 
 						for ($i = 0; $i < count($game->referees); $i++)
 						{
 							if ($game->referees[$i]->referee_lastname != '' && $game->referees[$i]->referee_firstname)
 							{
-								$output .= '<span class="hasTip" title="' . JText::_('COM_JOOMLEAGUE_TEAMPLAN_REF_FUNCTION') .
+								$output .= '<span class="hasTip" title="' . Text::_('COM_JOOMLEAGUE_TEAMPLAN_REF_FUNCTION') .
 									'::' . $game->referees[$i]->referee_position_name . '">';
 								$ref = $game->referees[$i]->referee_lastname . ','. $game->referees[$i]->referee_firstname;
 								$toolTipText .= $ref . ' (' . $game->referees[$i]->referee_position_name . ')' . '&lt;br /&gt;';

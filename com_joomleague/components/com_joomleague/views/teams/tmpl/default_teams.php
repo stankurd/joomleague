@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -7,14 +8,14 @@ defined('_JEXEC') or die;
 	<thead>
 	<tr class='sectiontableheader'>
 		<?php if ($this->config['show_team_picture']): ?>
-		<th class='team_logo'><?php echo JText::_('COM_JOOMLEAGUE_TEAMS_LOGO_TEAM'); ?></th>
+		<th class='team_logo'><?php echo Text::_('COM_JOOMLEAGUE_TEAMS_LOGO_TEAM'); ?></th>
 		<?php endif; ?>
-		<th class='team_name'><?php echo JText::_('COM_JOOMLEAGUE_TEAMS_NAME_TEAM'); ?></th>
-		<th class='club_name'><?php echo JText::_('COM_JOOMLEAGUE_TEAMS_NAME_CLUB'); ?></th>
+		<th class='team_name'><?php echo Text::_('COM_JOOMLEAGUE_TEAMS_NAME_TEAM'); ?></th>
+		<th class='club_name'><?php echo Text::_('COM_JOOMLEAGUE_TEAMS_NAME_CLUB'); ?></th>
 		<?php if ($this->config['show_club_picture']): ?>
-		<th class='club_logo'><?php echo JText::_('COM_JOOMLEAGUE_TEAMS_LOGO_CLUB'); ?></th>
+		<th class='club_logo'><?php echo Text::_('COM_JOOMLEAGUE_TEAMS_LOGO_CLUB'); ?></th>
 		<?php endif; ?>
-		<th class='club_address'><?php echo JText::_('COM_JOOMLEAGUE_TEAMS_NAME_CLUBADDRESS'); ?></th>
+		<th class='club_address'><?php echo Text::_('COM_JOOMLEAGUE_TEAMS_NAME_CLUBADDRESS'); ?></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -24,8 +25,8 @@ defined('_JEXEC') or die;
 	{
 		$teaminfo_link	= JoomleagueHelperRoute::getTeamInfoRoute($this->project->slug, $team->team_slug);
 		$clubinfo_link	= JoomleagueHelperRoute::getClubInfoRoute($this->project->slug, $team->club_slug);
-		$teamTitle		= JText::sprintf('COM_JOOMLEAGUE_TEAMS_TEAM_PROJECT_INFO', $team->team_name);
-		$clubTitle		= JText::sprintf('COM_JOOMLEAGUE_TEAMS_CLUB_PROJECT_INFO', $team->club_name);
+		$teamTitle		= Text::sprintf('COM_JOOMLEAGUE_TEAMS_TEAM_PROJECT_INFO', $team->team_name);
+		$clubTitle		= Text::sprintf('COM_JOOMLEAGUE_TEAMS_CLUB_PROJECT_INFO', $team->club_name);
 		?>
 		<tr class="<?php echo ($k==0)? $this->config['style_class1'] : $this->config['style_class2']; ?>">
 

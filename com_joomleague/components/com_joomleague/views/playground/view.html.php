@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -32,7 +33,7 @@ class JoomleagueViewPlayground extends JLGView
 
 	private function setPageTitle()
 	{
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_PLAYGROUND_PAGE_TITLE'));
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_PLAYGROUND_PAGE_TITLE'));
 		if (!empty($this->playground->name))
 		{
 			$titleInfo->playgroundName = $this->playground->name;
@@ -52,7 +53,7 @@ class JoomleagueViewPlayground extends JLGView
 		}
 		$this->pagetitle = JoomleagueHelper::formatTitle($titleInfo, $this->config["page_title_format"]);
 		$document= Factory::getDocument();
-		$document->setTitle(JText::_('COM_JOOMLEAGUE_PLAYGROUND_TITLE'));
+		$document->setTitle(Text::_('COM_JOOMLEAGUE_PLAYGROUND_TITLE'));
 		$document->setTitle($this->pagetitle);
 	}
 }

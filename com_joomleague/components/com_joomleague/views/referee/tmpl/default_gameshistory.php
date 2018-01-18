@@ -1,18 +1,19 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
 <!-- Player stats History START -->
 <?php if (count($this->games)): ?>
-<h2><?php echo JText::_('COM_JOOMLEAGUE_PERSON_GAMES_HISTORY'); ?></h2>
+<h2><?php echo Text::_('COM_JOOMLEAGUE_PERSON_GAMES_HISTORY'); ?></h2>
 <table class='table'>
 	<tr>
 		<td><br />
 			<table class='gameshistory'>
 				<thead>
 					<tr class='sectiontableheader'>
-						<th colspan='6'><?php echo JText::_('COM_JOOMLEAGUE_PERSON_GAMES'); ?></th>
+						<th colspan='6'><?php echo Text::_('COM_JOOMLEAGUE_PERSON_GAMES'); ?></th>
 					</tr>
 				</thead>
 				<tbody>

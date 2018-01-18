@@ -30,7 +30,7 @@ $typel = $params->get('show_logo', 0);
 <![endif]-->
 
 <script type="text/javascript">
-	window.addEvent('domready', function(){
+	(function(){
 	var Tips1 = new Tips($$('.logo'));
 }); 
 </script>

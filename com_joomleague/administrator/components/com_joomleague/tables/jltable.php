@@ -34,7 +34,7 @@ class JLTable extends Table
 		// Bind the rules
 		if (isset($array['rules']) && is_array($array['rules']))
 		{
-			$rules = new Access($array['rules']);
+		    $rules = new JAccessRules($array['rules']);
 			$this->setRules($rules);
 		}
 		

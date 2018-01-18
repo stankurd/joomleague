@@ -1,12 +1,13 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
 <?php if ($this->config['show_teams_seasons'] == "1"): ?>
 	<table class='fixtures'>
 		<tr class='sectiontableheader'>
-			<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_SEASON_TITLE');?></td>
+			<td><?php echo Text::_('COM_JOOMLEAGUE_TEAMINFO_SEASON_TITLE');?></td>
 		</tr>
 	</table>
 
@@ -22,7 +23,7 @@ defined('_JEXEC') or die;
 			 */
 			?> <a href="javascript:void(0)"
 				onclick="switchMenu('tid<?php echo $this->team->id . $season->projectid; ?>');"
-				title="<?php echo JText::_('COM_JOOMLEAGUE_SHOW_OPTIONS'); ?>"><?php echo $season->projectname; ?>
+				title="<?php echo Text::_('COM_JOOMLEAGUE_SHOW_OPTIONS'); ?>"><?php echo $season->projectname; ?>
 			</a> <?php
 			/*
 			 //Maybe this thing with ul and li should be solved by css so everybody may decide for himself about using it or not
@@ -47,24 +48,24 @@ defined('_JEXEC') or die;
 				$picture = JoomleagueHelper::getDefaultPlaceholder('team');
 			}
 
-			$picture_descr = JText::_("COM_JOOMLEAGUE_TEAMINFO_PLAYERS_PICTURE") . ' ' . $this->team->name . ' (' . $season->projectname . ')';
+			$picture_descr = Text::_("COM_JOOMLEAGUE_TEAMINFO_PLAYERS_PICTURE") . ' ' . $this->team->name . ' (' . $season->projectname . ')';
 			echo HTMLHelper::image($picture, $picture_descr, array("title" => $picture_descr));
 		}
 		?>
 		<br />
 		<?php
 		$link = JoomleagueHelperRoute::getPlayersRoute($season->project_slug, $season->team_slug);
-		echo HTMLHelper::link($link, JText::_('COM_JOOMLEAGUE_TEAMINFO_SEASON_PLAYERS'));
+		echo HTMLHelper::link($link, Text::_('COM_JOOMLEAGUE_TEAMINFO_SEASON_PLAYERS'));
 		?>
 		<br />
 		<?php
 		$link = JoomleagueHelperRoute::getResultsRoute($season->project_slug);
-		echo HTMLHelper::link($link, JText::_('COM_JOOMLEAGUE_TEAMINFO_SEASON_RESULTS'));
+		echo HTMLHelper::link($link, Text::_('COM_JOOMLEAGUE_TEAMINFO_SEASON_RESULTS'));
 		?>
 		<br />
 		<?php
 		$link = JoomleagueHelperRoute::getRankingRoute($season->project_slug);
-		echo HTMLHelper::link($link, JText::_('COM_JOOMLEAGUE_TEAMINFO_SEASON_TABLES'));
+		echo HTMLHelper::link($link, Text::_('COM_JOOMLEAGUE_TEAMINFO_SEASON_TABLES'));
 		?>
 		<br />
 	</div>

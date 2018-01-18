@@ -16,6 +16,7 @@ use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 if( !defined('THUMBLIB_BASE_PATH') ) {
@@ -49,7 +50,7 @@ class JoomleagueFrontHelper
 		}
 		catch (RuntimeException $e)
 		{
-		    Factory::getApplication()->enqueueMessage(JText::_( $e->getMessage()),'warning');
+		    Factory::getApplication()->enqueueMessage(Text::_( $e->getMessage()),'warning');
 			return false;
 		}
 
@@ -65,6 +66,7 @@ class JoomleagueFrontHelper
 	 */
 	public static function getProjectteams($project_id)
 	{
+	    $app = Factory::getApplication();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		$query->select(array('t.name AS text','t.notes'));
@@ -84,7 +86,7 @@ class JoomleagueFrontHelper
 		}
 		catch (RuntimeException $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'warning');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'warning');
 			return false;
 		}
 
@@ -100,6 +102,7 @@ class JoomleagueFrontHelper
 	 */
 	public static function getProjectteamsNew($project_id)
 	{
+	    $app = Factory::getApplication();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 
@@ -120,7 +123,7 @@ class JoomleagueFrontHelper
 		}
 		catch (RuntimeException $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'warning');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'warning');
 		    return false;
 		}
 
@@ -133,6 +136,7 @@ class JoomleagueFrontHelper
 	 */
 	public static function getProjectFavTeams($project_id)
 	{
+	    $app = Factory::getApplication();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 
@@ -148,7 +152,7 @@ class JoomleagueFrontHelper
 		}
 		catch (RuntimeException $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'warning');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'warning');
 		    return false;
 		}
 
@@ -164,6 +168,7 @@ class JoomleagueFrontHelper
 	 */
 	public static function getSportsTypeName($sportsType)
 	{
+	    $app = Factory::getApplication();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 
@@ -178,14 +183,14 @@ class JoomleagueFrontHelper
 		}
 		catch (RuntimeException $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'warning');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'warning');
 		    return false;
 		}
 
 		$lang 		= Factory::getLanguage();
 		$lang->load('com_joomleague_sport_types', JPATH_ADMINISTRATOR);
 
-		return JText::_($result);
+		return Text::_($result);
 	}
 
 
@@ -197,6 +202,7 @@ class JoomleagueFrontHelper
 	 */
 	public static function getSportsTypes()
 	{
+	    $app = Factory::getApplication();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 
@@ -211,7 +217,7 @@ class JoomleagueFrontHelper
 		}
 		catch (RuntimeException $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'warning');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'warning');
 		    return false;
 		}
 
@@ -220,7 +226,7 @@ class JoomleagueFrontHelper
 
 		$sportsType = array();
 		foreach ($result as $sportstype){
-			$sportstype->name = JText::_($sportstype->name);
+			$sportstype->name = Text::_($sportstype->name);
 			$sportsType[] = $sportstype;
 		}
 		return $sportsType;
@@ -238,16 +244,16 @@ class JoomleagueFrontHelper
 		switch ($personType)
 		{
 			case 1:
-				$result =	JText::_('COM_JOOMLEAGUE_F_PLAYERS');
+				$result =	Text::_('COM_JOOMLEAGUE_F_PLAYERS');
 				break;
 			case 2:
-				$result =	JText::_('COM_JOOMLEAGUE_F_TEAM_STAFF');
+				$result =	Text::_('COM_JOOMLEAGUE_F_TEAM_STAFF');
 				break;
 			case 3:
-				$result =	JText::_('COM_JOOMLEAGUE_F_REFEREES');
+				$result =	Text::_('COM_JOOMLEAGUE_F_REFEREES');
 				break;
 			case 4:
-				$result =	JText::_('COM_JOOMLEAGUE_F_CLUB_STAFF');
+				$result =	Text::_('COM_JOOMLEAGUE_F_CLUB_STAFF');
 				break;
 		}
 		return $result;
@@ -286,7 +292,7 @@ class JoomleagueFrontHelper
 		}
 		catch (RuntimeException $e)
 		{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'warning');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'warning');
 		    return false;
 		}
 
@@ -320,7 +326,7 @@ class JoomleagueFrontHelper
 			}
 			catch (RuntimeException $e)
 			{
-			    Factory::getApplication()->enqueueMessage(JText::_($e->getMessage()), 'warning');
+			    Factory::getApplication()->enqueueMessage(Text::_($e->getMessage()), 'warning');
 			    return false;
 			}
 
@@ -591,7 +597,7 @@ class JoomleagueFrontHelper
 				}
 				$arrNoHighSlidePicTypes = array(3,4,6,7,99);
 				if($bUseHighslide && !in_array($type, $arrNoHighSlidePicTypes)) {
-					$title .= ' (' . JText::_('COM_JOOMLEAGUE_GLOBAL_CLICK_TO_ENLARGE') . ')';
+					$title .= ' (' . Text::_('COM_JOOMLEAGUE_GLOBAL_CLICK_TO_ENLARGE') . ')';
 					$ret .= '<a onclick="return hs.expand(this)" href="'.$picture.'" class="highslide">';
 				}
 				$ret .= '<img';
@@ -685,7 +691,7 @@ class JoomleagueFrontHelper
 				}
 				$arrNoHighSlidePicTypes = array(3,4,6,7,99);
 				if($bUseHighslide && !in_array($type, $arrNoHighSlidePicTypes)) {
-					$title .= ' (' . JText::_('COM_JOOMLEAGUE_GLOBAL_CLICK_TO_ENLARGE') . ')';
+					$title .= ' (' . Text::_('COM_JOOMLEAGUE_GLOBAL_CLICK_TO_ENLARGE') . ')';
 					$ret .= '<a onclick="return hs.expand(this)" href="'.$picture.'" class="highslide">';
 				}
 				$ret .= '<img ';
@@ -933,7 +939,7 @@ class JoomleagueFrontHelper
 		if ($config['show_team_link'])
 		{
 			$link =JoomleagueHelperRoute::getPlayersRoute($projectSlug,$teamSlug);
-			$title=JText::_('COM_JOOMLEAGUE_TEAMICONS_ROSTER_LINK').'&nbsp;'.$teamname;
+			$title=Text::_('COM_JOOMLEAGUE_TEAMICONS_ROSTER_LINK').'&nbsp;'.$teamname;
 			$picture = 'media/com_joomleague/jl_images/team_icon.png';
 			$desc = self::getPictureThumb($picture, $title, 0, 0, 4);
 			$output .= HTMLHelper::link($link,$desc);
@@ -942,7 +948,7 @@ class JoomleagueFrontHelper
 		if (((!isset($team_plan)) || ($teamid!=$team_plan->id)) && ($config['show_plan_link']))
 		{
 			$link =JoomleagueHelperRoute::getTeamPlanRoute($projectSlug,$teamSlug,$division_slug);
-			$title=JText::_('COM_JOOMLEAGUE_TEAMICONS_TEAMPLAN_LINK').'&nbsp;'.$teamname;
+			$title=Text::_('COM_JOOMLEAGUE_TEAMICONS_TEAMPLAN_LINK').'&nbsp;'.$teamname;
 			$picture = 'media/com_joomleague/jl_images/calendar_icon.gif';
 			$desc = self::getPictureThumb($picture, $title, 0, 0, 4);
 			$output .= HTMLHelper::link($link,$desc);
@@ -951,7 +957,7 @@ class JoomleagueFrontHelper
 		if ($config['show_curve_link'])
 		{
 			$link =JoomleagueHelperRoute::getCurveRoute($projectSlug,$teamSlug,0,$division_slug);
-			$title=JText::_('COM_JOOMLEAGUE_TEAMICONS_CURVE_LINK').'&nbsp;'.$teamname;
+			$title=Text::_('COM_JOOMLEAGUE_TEAMICONS_CURVE_LINK').'&nbsp;'.$teamname;
 			$picture = 'media/com_joomleague/jl_images/curve_icon.gif';
 			$desc = self::getPictureThumb($picture, $title, 0, 0, 4);
 			$output .= HTMLHelper::link($link,$desc);
@@ -960,7 +966,7 @@ class JoomleagueFrontHelper
 		if ($config['show_teaminfo_link'])
 		{
 			$link =JoomleagueHelperRoute::getTeamInfoRoute($projectSlug,$teamid);
-			$title=JText::_('COM_JOOMLEAGUE_TEAMICONS_TEAMINFO_LINK').'&nbsp;'.$teamname;
+			$title=Text::_('COM_JOOMLEAGUE_TEAMICONS_TEAMINFO_LINK').'&nbsp;'.$teamname;
 			$picture = 'media/com_joomleague/jl_images/teaminfo_icon.png';
 			$desc = self::getPictureThumb($picture, $title, 0, 0, 4);
 			$output .= HTMLHelper::link($link,$desc);
@@ -969,7 +975,7 @@ class JoomleagueFrontHelper
 		if ($config['show_club_link'])
 		{
 			$link =JoomleagueHelperRoute::getClubInfoRoute($projectSlug,$clubSlug);
-			$title=JText::_('COM_JOOMLEAGUE_TEAMICONS_CLUBINFO_LINK').'&nbsp;'.$teamname;
+			$title=Text::_('COM_JOOMLEAGUE_TEAMICONS_CLUBINFO_LINK').'&nbsp;'.$teamname;
 			$picture = 'media/com_joomleague/jl_images/mail.gif';
 			$desc = self::getPictureThumb($picture, $title, 0, 0, 4);
 			$output .= HTMLHelper::link($link,$desc);
@@ -978,7 +984,7 @@ class JoomleagueFrontHelper
 		if ($config['show_teamstats_link'])
 		{
 			$link =JoomleagueHelperRoute::getTeamStatsRoute($projectSlug,$teamSlug);
-			$title=JText::_('COM_JOOMLEAGUE_TEAMICONS_TEAMSTATS_LINK').'&nbsp;'.$teamname;
+			$title=Text::_('COM_JOOMLEAGUE_TEAMICONS_TEAMSTATS_LINK').'&nbsp;'.$teamname;
 			$picture = 'media/com_joomleague/jl_images/teamstats_icon.png';
 			$desc = self::getPictureThumb($picture, $title, 0, 0, 4);
 			$output .= HTMLHelper::link($link,$desc);
@@ -987,7 +993,7 @@ class JoomleagueFrontHelper
 		if ($config['show_clubplan_link'])
 		{
 			$link =JoomleagueHelperRoute::getClubPlanRoute($projectSlug,$clubSlug);
-			$title=JText::_('COM_JOOMLEAGUE_TEAMICONS_CLUBPLAN_LINK').'&nbsp;'.$teamname;
+			$title=Text::_('COM_JOOMLEAGUE_TEAMICONS_CLUBPLAN_LINK').'&nbsp;'.$teamname;
 			$picture = 'media/com_joomleague/jl_images/clubplan_icon.png';
 			$desc = self::getPictureThumb($picture, $title, 0, 0, 4);
 			$output .= HTMLHelper::link($link,$desc);
@@ -996,7 +1002,7 @@ class JoomleagueFrontHelper
 		if ($config['show_rivals_link'])
 		{
 			$link =JoomleagueHelperRoute::getRivalsRoute($projectSlug,$teamSlug);
-			$title=JText::_('COM_JOOMLEAGUE_TEAMICONS_RIVALS_LINK').'&nbsp;'.$teamname;
+			$title=Text::_('COM_JOOMLEAGUE_TEAMICONS_RIVALS_LINK').'&nbsp;'.$teamname;
 			$picture = 'media/com_joomleague/jl_images/rivals.png';
 			$desc = self::getPictureThumb($picture, $title, 0, 0, 4);
 			$output .= HTMLHelper::link($link,$desc);
@@ -1152,7 +1158,7 @@ class JoomleagueFrontHelper
 			$favshow = $input->get('view');
 			if (($favshow!='curve') && ($project->fav_team))
 			{
-				$fav=array('color'=>$project->fav_team_color,'description'=> JText::_('COM_JOOMLEAGUE_RANKING_FAVTEAM'));
+				$fav=array('color'=>$project->fav_team_color,'description'=> Text::_('COM_JOOMLEAGUE_RANKING_FAVTEAM'));
 				array_push($colors,$fav);
 			}
 		}
@@ -1224,7 +1230,7 @@ class JoomleagueFrontHelper
 		}
 		catch (RuntimeException $e)
 		{
-		    Factory::getApplication()->enqueueMessage(JText::_($e->getMessage()), 'warning');
+		    Factory::getApplication()->enqueueMessage(Text::_($e->getMessage()), 'warning');
 			return false;
 		}
 
@@ -1568,17 +1574,17 @@ class JoomleagueFrontHelper
 			$status = 'status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=800,height=600,directories=no,location=no';
 			// checks template image directory for image, if non found default are loaded
 			if ($config['show_icons'] == 1) {
-				$image = HTMLHelper::image('media/com_joomleague/jl_images/printButton.png',JText::_('JGLOBAL_PRINT'));
+				$image = HTMLHelper::image('media/com_joomleague/jl_images/printButton.png',Text::_('JGLOBAL_PRINT'));
 			} else {
-				$image = JText::_('JGLOBAL_PRINT');
+				$image = Text::_('JGLOBAL_PRINT');
 			}
 			if ($input->getInt('pop')) {
 				// button in popup
 				$output = '<a href="javascript: void(0)" onclick="window.print();return false;">'.$image.'</a>';
 			} else {
 				// button in view
-				$overlib = JText::_('COM_JOOMLEAGUE_GLOBAL_PRINT_TIP');
-				$text = JText::_('COM_JOOMLEAGUE_GLOBAL_PRINT');
+				$overlib = Text::_('COM_JOOMLEAGUE_GLOBAL_PRINT_TIP');
+				$text = Text::_('COM_JOOMLEAGUE_GLOBAL_PRINT');
 				$print_urlparams = "tmpl=component&print=1";
 
 				if(is_null($print_link)) {
@@ -1605,7 +1611,7 @@ class JoomleagueFrontHelper
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		$query = ' SELECT id as value '
-				. '      , CASE LENGTH(name) when 0 then CONCAT('.$db->Quote(JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAY_NAME')). ', " ", id)	else name END as text '
+				. '      , CASE LENGTH(name) when 0 then CONCAT('.$db->Quote(Text::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAY_NAME')). ', " ", id)	else name END as text '
 				. '      , id, name, round_date_first, round_date_last, roundcode '
 				. ' FROM #__joomleague_round '
 				. ' WHERE project_id= ' .$project_id
@@ -1613,14 +1619,14 @@ class JoomleagueFrontHelper
 
 		$db->setQuery($query);
 		if(!$required) {
-			$mitems = array(HTMLHelper::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
+			$mitems = array(HTMLHelper::_('select.option', '', Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
 			try
 			{
 				$items	= $db->loadObjectList();
 			}
 			catch (RuntimeException $e)
 			{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 			if(!empty($items)) {
@@ -1636,7 +1642,7 @@ class JoomleagueFrontHelper
 			}
 			catch (RuntimeException $e)
 			{
-			$app->enqueueMessage(JText::_($e->getMessage()), 'error');
+			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
 			}
 
@@ -1748,18 +1754,18 @@ class JoomleagueFrontHelper
 	 */
 	public static function stateOptions($filter_state='*', $published='Published', $unpublished='Unpublished', $archived=NULL, $trashed=NULL )
 	{
-		$state[] = HTMLHelper::_('select.option','','- '.JText::_('Select State').' -');
+		$state[] = HTMLHelper::_('select.option','','- '.Text::_('Select State').' -');
 		if ($published) {
-			$state[] = HTMLHelper::_('select.option','P',JText::_('JPUBLISHED'));
+			$state[] = HTMLHelper::_('select.option','P',Text::_('JPUBLISHED'));
 		}
 		if ($unpublished) {
-			$state[] = HTMLHelper::_('select.option','U',JText::_('JUNPUBLISHED'));
+			$state[] = HTMLHelper::_('select.option','U',Text::_('JUNPUBLISHED'));
 		}
 		if ($archived) {
-			$state[] = HTMLHelper::_('select.option','A',JText::_('JARCHIVED'));
+			$state[] = HTMLHelper::_('select.option','A',Text::_('JARCHIVED'));
 		}
 		if ($trashed) {
-			$state[] = HTMLHelper::_('select.option','T',JText::_('JTRASHED'));
+			$state[] = HTMLHelper::_('select.option','T',Text::_('JTRASHED'));
 		}
 
 		return HTMLHelper::_('select.genericlist',   $state, 'filter_state', 'class="input-medium" size="1" onchange="submitform();"', 'value', 'text', $filter_state);

@@ -1,4 +1,6 @@
-<?php defined('_JEXEC') or die;
+<?php use Joomla\CMS\Language\Text;
+
+defined('_JEXEC') or die;
 
 $config   = &$this->tableconfig;
 $columns = explode( ',', $config['ordered_columns'] );
@@ -17,7 +19,7 @@ if (!empty($columns)): ?>
 			$c = 'COM_JOOMLEAGUE_' . strtoupper(trim($column));
 			?>
 		<td class='col<?php echo $d; ?>'>
-			<b><?php echo $column_names[$k]; ?></b> = <?php echo JText::_($c); ?>
+			<b><?php echo $column_names[$k]; ?></b> = <?php echo Text::_($c); ?>
 		</td>
 			<?php
 			$d = 1 - $d;

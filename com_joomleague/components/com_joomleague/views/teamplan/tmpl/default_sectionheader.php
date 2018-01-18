@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -13,8 +14,8 @@ defined('_JEXEC') or die;
 			{
 				$link = JoomleagueHelperRoute::getIcalRoute($this->project->id, $this->teams[$this->ptid]->team_id, null, null);
 				$text = HTMLHelper::image('administrator/components/com_joomleague/assets/images/calendar.png',
-					JText::_('COM_JOOMLEAGUE_TEAMPLAN_ICAL_EXPORT'));
-				$attribs = array('title' => JText::_('COM_JOOMLEAGUE_TEAMPLAN_ICAL_EXPORT'));
+					Text::_('COM_JOOMLEAGUE_TEAMPLAN_ICAL_EXPORT'));
+				$attribs = array('title' => Text::_('COM_JOOMLEAGUE_TEAMPLAN_ICAL_EXPORT'));
 				echo HTMLHelper::_('link', $link, $text, $attribs);
 			}
 		?>

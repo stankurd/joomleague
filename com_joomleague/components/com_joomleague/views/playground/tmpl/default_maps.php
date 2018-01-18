@@ -1,12 +1,13 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
 <div style='width: 100%; float: left'>
 	<div class='contentpaneopen'>
 		<div class='contentheading'>
-			<?php echo JText::_('COM_JOOMLEAGUE_GMAP_DIRECTIONS'); ?>
+			<?php echo Text::_('COM_JOOMLEAGUE_GMAP_DIRECTIONS'); ?>
 		</div>
 	</div>
 	<?php

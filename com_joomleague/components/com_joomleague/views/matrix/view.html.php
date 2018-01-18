@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -39,7 +40,7 @@ class JoomleagueViewMatrix extends JLGView
 		}
 		
 		// Set page title
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_MATRIX_PAGE_TITLE'));
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_MATRIX_PAGE_TITLE'));
 		if (!empty($this->round))
 		{
 			$titleInfo->roundName = $this->round->name;

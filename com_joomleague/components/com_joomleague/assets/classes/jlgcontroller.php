@@ -12,6 +12,7 @@
 // Check to ensure this file is within the rest of the framework
 defined('JPATH_BASE') or die;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\BaseController;
 use Joomla\CMS\Filter\InputFilter;
 
@@ -169,14 +170,14 @@ class JLGController extends BaseController
 				}
 				else
 				{
-					throw new InvalidArgumentException(JText::_('COM_JOOMLEAGUE_WRONG_CLASSNAME_IN_CONTROLLER_FILE') . $className);
+					throw new InvalidArgumentException(Text::_('COM_JOOMLEAGUE_WRONG_CLASSNAME_IN_CONTROLLER_FILE') . $className);
 				}
 			}
 
 			if ($class)
 			{
 				// Reset the task without the controller context.
-				$jinput->set('task', $task);
+				$input->set('task', $task);
 
 				self::$instance = new $class;
 

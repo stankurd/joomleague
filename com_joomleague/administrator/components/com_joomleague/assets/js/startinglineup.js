@@ -9,7 +9,7 @@
  * functions move, moveoptionup, moveoptiondown are defined in joomleague.js
  */
 
-window.addEvent('domready', function() {
+(function() {
 
 	var moverightCount = jQuery("input[class*='move-right'").length;
 

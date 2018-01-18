@@ -1,6 +1,7 @@
 <?php
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -15,10 +16,10 @@ foreach (array('injury', 'suspension', 'away') as $absenceType)
 }
 
 if (count($absenceTypesToShow) > 0): ?>
-<h2><?php echo JText::_('COM_JOOMLEAGUE_PERSON_STATUS'); ?></h2>
+<h2><?php echo Text::_('COM_JOOMLEAGUE_PERSON_STATUS'); ?></h2>
 <table class='status'>
 <?php
-$today = HTMLHelper::date('now' .' UTC', JText::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
+$today = HTMLHelper::date('now' .' UTC', Text::_('COM_JOOMLEAGUE_GLOBAL_MATCHDAYDATE'),
 	JoomleagueHelper::getTimezone($this->project, $this->overallconfig));
 foreach ($absenceTypesToShow as $absenceType):
 	$absenceStatus = $status[$absenceType];
@@ -29,9 +30,9 @@ foreach ($absenceTypesToShow as $absenceType):
 		if ($absenceStatus->date == $absenceStatus->end): ?>
 		<tr>
 			<td class='label'>
-				<?php echo '&nbsp;&nbsp;' . $this->getEventIconHtml($absenceType, $prefix, array('title' => JText::_($prefix),
+				<?php echo '&nbsp;&nbsp;' . $this->getEventIconHtml($absenceType, $prefix, array('title' => Text::_($prefix),
 							'style' => 'padding-right: 10px; vertical-align: middle;')) .
-					JText::_($prefix); ?>
+					Text::_($prefix); ?>
 			</td>
 			<td  class='data'><?php echo $endDate != $today ? $endDate : ''; ?></td>
 		</tr>
@@ -42,12 +43,12 @@ foreach ($absenceTypesToShow as $absenceType):
 			</td>
 		</tr>
 		<tr>
-			<td class='label'><?php echo JText::_($prefix . '_DATE'); ?></td>
+			<td class='label'><?php echo Text::_($prefix . '_DATE'); ?></td>
 			<td class='data'><?php echo $startDate; ?></td>
 		</tr>
 			<?php if ($endDate != $today): ?>
 		<tr>
-			<td class='label'><?php echo JText::_($prefix . '_END'); ?></td>
+			<td class='label'><?php echo Text::_($prefix . '_END'); ?></td>
 			<td class='data'><?php echo $endDate; ?></td>
 		</tr>
 			<?php
@@ -56,7 +57,7 @@ foreach ($absenceTypesToShow as $absenceType):
 
 		if (!empty($absenceStatus->detail)): ?>
 		<tr>
-			<td class='label'><?php echo JText::_($prefix . '_TYPE'); ?></td>
+			<td class='label'><?php echo Text::_($prefix . '_TYPE'); ?></td>
 			<td class='data'><?php printf('%s', htmlspecialchars($absenceStatus->detail)); ?></td>
 		</tr>
 		<?php

@@ -12,6 +12,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Mail\Mail;
 use Joomla\CMS\Session\Session;
 
@@ -63,21 +64,21 @@ class JoomleagueControllerPerson extends JoomleagueController
 				// save player information
 				if (JoomleagueControllerPerson::_saveTeamplayer($tpid, $post))
 				{
-					$msg = JText::_('COM_JOOMLEAGUE_EDIT_PERSON_SAVED');
+				    $msg = Text::_('COM_JOOMLEAGUE_EDIT_PERSON_SAVED');
 				}
 				else
 				{
-					$msg = JText::_('COM_JOOMLEAGUE_EDIT_PERSON_SAVE_ERROR') . $model->getError();
+					$msg = Text::_('COM_JOOMLEAGUE_EDIT_PERSON_SAVE_ERROR') . $model->getError();
 				}
 			}
 			else
 			{
-				$msg = JText::_('COM_JOOMLEAGUE_EDIT_PERSON_SAVE_ERROR') . $model->getError();
+				$msg = Text::_('COM_JOOMLEAGUE_EDIT_PERSON_SAVE_ERROR') . $model->getError();
 			}
 		}
 		else
 		{
-			$msg = JText::_('COM_JOOMLEAGUE_EDIT_PERSON_MISSING_PARAMETER');
+			$msg = Text::_('COM_JOOMLEAGUE_EDIT_PERSON_MISSING_PARAMETER');
 		}
 		$this->setRedirect($this->_getShowPlayerLink(), $msg);
 	}
@@ -100,9 +101,9 @@ class JoomleagueControllerPerson extends JoomleagueController
 			$user = Factory::getUser();
 
 			$nickname = !empty($person->nickname) ? "'" . $person->nickname . "'" : '';
-			$subject = addslashes(sprintf(JText::_('COM_JOOMLEAGUE_EDIT_PERSON_SUBJECT'),
+			$subject = addslashes(sprintf(Text::_('COM_JOOMLEAGUE_EDIT_PERSON_SUBJECT'),
 				$person->firstname, $nickname, $person->lastname));
-			$message = addslashes(sprintf(JText::_('COM_JOOMLEAGUE_EDIT_PERSON_MESSAGE'),
+			$message = addslashes(sprintf(Text::_('COM_JOOMLEAGUE_EDIT_PERSON_MESSAGE'),
 				$user->name, $person->firstname, $nickname, $person->lastname));
 			$message .= $this->_getShowPlayerLink();
 

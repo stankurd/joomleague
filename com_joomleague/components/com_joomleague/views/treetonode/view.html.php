@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -28,7 +29,7 @@ class JoomleagueViewTreetonode extends JLGView
 		
 		// Set page title
 		///TODO: treeto name, no project name
-		$titleInfo = JoomleagueHelper::createTitleInfo(JText::_('COM_JOOMLEAGUE_TREETO_PAGE_TITLE'));
+		$titleInfo = JoomleagueHelper::createTitleInfo(Text::_('COM_JOOMLEAGUE_TREETO_PAGE_TITLE'));
 		if (!empty($this->project))
 		{
 			$titleInfo->projectName = $this->project->name;

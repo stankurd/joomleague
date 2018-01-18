@@ -1,6 +1,7 @@
 <?php
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die('Restricted access');
 
@@ -63,7 +64,7 @@ if (isset($this->person))
 		$selector = 'player';
 		echo HTMLHelper::_('bootstrap.startTabSet', $selector, array('active' => 'panel' . $idxTab));
 		foreach ($output as $templ) {
-		    echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel' .($idxTab++), JText::_('COM_JOOMLEAGUE_PLAYER_TAB_LABEL_'.strtoupper($templ)));
+		    echo HTMLHelper::_('bootstrap.addTab', $selector, 'panel' .($idxTab++), Text::_('COM_JOOMLEAGUE_PLAYER_TAB_LABEL_'.strtoupper($templ)));
 			echo $this->loadTemplate($templ);
 			echo HTMLHelper::_('bootstrap.endTab');
 		}		

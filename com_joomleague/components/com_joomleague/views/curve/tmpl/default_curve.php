@@ -1,5 +1,6 @@
 <?php use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -25,7 +26,7 @@ foreach ($this->divisions as $division)
 	</tr>
 	<tr>
 	<td style="text-align: right">
-		<?php echo JText::_('COM_JOOMLEAGUE_CURVE_TEAMS').' '.$division->name; ?>
+		<?php echo Text::_('COM_JOOMLEAGUE_CURVE_TEAMS').' '.$division->name; ?>
 		<?php echo $this->team1select[$division->id]; ?>
 		<?php echo $this->team2select[$division->id]; ?>
 		
@@ -38,7 +39,7 @@ foreach ($this->divisions as $division)
 			<input type="hidden" name="tid2" value="" />  
 			<input type="hidden" name="division" value="<?php echo $division->id; ?>" /> 
 			<input type="submit" style="font-size: 9px;" class="inputbox"
-				value="<?php echo JText::_('COM_JOOMLEAGUE_CURVE_GO'); ?>" />
+				value="<?php echo Text::_('COM_JOOMLEAGUE_CURVE_GO'); ?>" />
 			<?php echo HTMLHelper::_( 'form.token' ); ?>
 		</form>
 	</td>

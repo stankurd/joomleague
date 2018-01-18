@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 //$this->config['show_small_logo']	= 1;
@@ -11,25 +12,25 @@ defined('_JEXEC') or die;
 	<thead>
 	<tr class='sectiontableheader'>
 		<?php if ($this->config['show_small_logo']): ?>
-		<th class='club_logo'><?php echo JText::_('COM_JOOMLEAGUE_CLUBS_LOGO'); ?></th>
+		<th class='club_logo'><?php echo Text::_('COM_JOOMLEAGUE_CLUBS_LOGO'); ?></th>
 		<?php endif; ?>
 
 		<?php if ($this->config['show_medium_logo']): ?>
-		<th class='club_logo'><?php echo JText::_('COM_JOOMLEAGUE_CLUBS_LOGO'); ?></th>
+		<th class='club_logo'><?php echo Text::_('COM_JOOMLEAGUE_CLUBS_LOGO'); ?></th>
 		<?php endif; ?>
 
 		<?php if ($this->config['show_big_logo']): ?>
-		<th class='club_logo'><?php echo JText::_('COM_JOOMLEAGUE_CLUBS_LOGO'); ?></th>
+		<th class='club_logo'><?php echo Text::_('COM_JOOMLEAGUE_CLUBS_LOGO'); ?></th>
 		<?php endif; ?>
 
-		<th class='club_name'><?php echo JText::_('COM_JOOMLEAGUE_CLUBS_CLUBNAME'); ?></th>
+		<th class='club_name'><?php echo Text::_('COM_JOOMLEAGUE_CLUBS_CLUBNAME'); ?></th>
 
 		<?php if ($this->config['show_club_teams']): ?>
-		<th class='club_teams'><?php echo JText::_('COM_JOOMLEAGUE_CLUBS_TEAMS'); ?></th>
+		<th class='club_teams'><?php echo Text::_('COM_JOOMLEAGUE_CLUBS_TEAMS'); ?></th>
 		<?php endif; ?>
 
 		<?php if ($this->config['show_address']): ?>
-		<th class='club_address'><?php echo JText::_('COM_JOOMLEAGUE_CLUBS_ADDRESS'); ?></th>
+		<th class='club_address'><?php echo Text::_('COM_JOOMLEAGUE_CLUBS_ADDRESS'); ?></th>
 		<?php endif; ?>
 	</tr>
 	</thead>
@@ -39,7 +40,7 @@ defined('_JEXEC') or die;
 	foreach ($this->clubs as $club)
 	{
 		$clubinfo_link = JoomleagueHelperRoute::getClubInfoRoute($this->project->slug, $club->club_slug);
-		$title = JText::sprintf('COM_JOOMLEAGUE_CLUBS_TITLE2', $club->name);
+		$title = Text::sprintf('COM_JOOMLEAGUE_CLUBS_TITLE2', $club->name);
 
 		$picture = $club->logo_small;
 		if (is_null($picture) || !file_exists($picture))

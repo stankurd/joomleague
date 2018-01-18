@@ -1,16 +1,18 @@
-<?php use Joomla\CMS\HTML\HTMLHelper;
+<?php
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die; ?>
 <!-- START of match events -->
 
-<h2><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_EVENTS'); ?></h2>		
+<h2><?php echo Text::_('COM_JOOMLEAGUE_MATCHREPORT_EVENTS'); ?></h2>		
 
 <table class="eventstable" border="0">
 
 		<thead>
 	        <tr class="sectiontableheader">
-	            <th style="text-align:center"><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_EVENT_TIME'); ?></th>
-	            <th colspan=3><?php echo JText::_('COM_JOOMLEAGUE_EDIT_EVENTS_EVENT'); ?></th>
+	            <th style="text-align:center"><?php echo Text::_('COM_JOOMLEAGUE_MATCHREPORT_EVENT_TIME'); ?></th>
+	            <th colspan=3><?php echo Text::_('COM_JOOMLEAGUE_EDIT_EVENTS_EVENT'); ?></th>
 	        </tr>
 	    </thead>
 			
@@ -46,7 +48,7 @@ defined('_JEXEC') or die; ?>
                     <?php
                     //Icon
                     $pic_tab=$IconArr[$me->event_type_id];
-                    $eventname=JText::_($TextArr[$me->event_type_id]);
+                    $eventname=Text::_($TextArr[$me->event_type_id]);
                     
                     //Time
                     $prefix = '';
@@ -131,7 +133,7 @@ defined('_JEXEC') or die; ?>
                     else
                     {
                         //EventType 0, therefore text comment
-                        $imgTitle = JText::_('COM_JOOMLEAGUE_MATCHREPORT_EVENT_LIVE_COMMENTARY');
+                        $imgTitle = Text::_('COM_JOOMLEAGUE_MATCHREPORT_EVENT_LIVE_COMMENTARY');
                         $imgTitle2 = array('title' => $imgTitle, 'alt' => $imgTitle, 'style' => 'max-height:40px;');
                         $pic_tab = 'media/com_joomleague/jl_images/discuss.gif';
                         $txt_tab = HTMLHelper::image($pic_tab,$imgTitle,$imgTitle2);
@@ -168,7 +170,7 @@ defined('_JEXEC') or die; ?>
                     <?php
                     //Icon
                     //$pic_tab=$IconArr[$me->event_type_id];
-                    //$eventname=JText::_($TextArr[$me->event_type_id]);
+                    //$eventname=Text::_($TextArr[$me->event_type_id]);
 		    
 		    $pic_time='images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/playtime.gif';
 		    $pic_out='images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png';
@@ -183,9 +185,9 @@ defined('_JEXEC') or die; ?>
                     echo '<td class="tcenter">' . $prefix . '</td>';
                     
                         
-		    $imgTitle_in    = JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT');
+		    $imgTitle_in    = Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT');
 		    $imgTitle_in2   = array(' title' => $imgTitle_in);
-		    $imgTitle_out   = JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN');
+		    $imgTitle_out   = Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_CAME_IN');
 		    $imgTitle_out2  = array(' title' => $imgTitle_out);
 		    $txt_tab_out = HTMLHelper::image($pic_out, $imgTitle_out, $imgTitle_in2).'&nbsp;';
 		    $txt_tab_in  = HTMLHelper::image($pic_in, $imgTitle_in, $imgTitle_out2).'&nbsp;';
@@ -224,7 +226,7 @@ defined('_JEXEC') or die; ?>
 				} 
 
 				if($me->out_position!='') {
-					$outName .= '&nbsp;('.JText::_($me->out_position).')';
+					$outName .= '&nbsp;('.Text::_($me->out_position).')';
 				}
 			  }
 			}
@@ -251,7 +253,7 @@ defined('_JEXEC') or die; ?>
 				} 
 
 				if($me->in_position!='') {
-					$inName .= '&nbsp;('.JText::_($me->in_position).')';
+					$inName .= '&nbsp;('.Text::_($me->in_position).')';
 				}
 			  }
 			}

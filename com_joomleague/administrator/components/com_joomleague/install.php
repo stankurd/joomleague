@@ -414,14 +414,7 @@ class com_joomleagueInstallerScript
 	 * method to install the component
 	 *
 	 * @return void
-	 */
-	public function install($parent)
-	{
-		if(self::_versionCompare()) {
-			self::_install(false, $parent);
-		}
-	}
-private function _versionCompare () {
+	 */private function _versionCompare () {
 		//define('JOOMLA_MINIMUM_PHP', '7.0');
 		if (version_compare( PHP_VERSION, JOOMLA_MINIMUM_PHP, '<')) {
 			die(
@@ -434,6 +427,19 @@ private function _versionCompare () {
 	}
 
 	}
+	/**
+	 * method to update the component
+	 *
+	 * @return void
+	 */
+	public function install($parent)
+	{
+		if(self::_versionCompare()) {
+			self::_install(false, $parent);
+		}
+	}
+
+	
 	 
 	/**
 	 * method to update the component

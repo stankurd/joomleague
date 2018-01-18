@@ -1,12 +1,13 @@
 <?php
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
 
 <!-- START of match details -->
-<h2><?php echo JText::_('COM_JOOMLEAGUE_NEXTMATCH_DETAILS'); ?></h2>
+<h2><?php echo Text::_('COM_JOOMLEAGUE_NEXTMATCH_DETAILS'); ?></h2>
 <table
 	width="98%" align="center" border="0" cellpadding="0" cellspacing="0">
 	<!-- Prev Match-->
@@ -15,7 +16,7 @@ defined('_JEXEC') or die;
 	{
 		?>
 	<tr>
-		<td colspan="3"><span class=""><?php echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_OLD_MATCH' ); ?></span>
+		<td colspan="3"><span class=""><?php echo Text::_( 'COM_JOOMLEAGUE_NEXTMATCH_OLD_MATCH' ); ?></span>
 		<span><?php echo HTMLHelper :: link(JoomleagueHelperRoute::getMatchReportRoute( $this->project->id, 
 		$this->match->old_match_id ),
 		$this->oldmatchtext); ?></span></td>
@@ -29,7 +30,7 @@ defined('_JEXEC') or die;
 	{
 		?>
 	<tr>
-		<td colspan="3"><span class=""><?php echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_NEW_MATCH' ); ?></span>
+		<td colspan="3"><span class=""><?php echo Text::_( 'COM_JOOMLEAGUE_NEXTMATCH_NEW_MATCH' ); ?></span>
 		<span><?php echo HTMLHelper :: link(JoomleagueHelperRoute::getNextMatchRoute( $this->project->id, 
 		$this->match->new_match_id ),
 		$this->newmatchtext);?></span></td>
@@ -45,8 +46,8 @@ defined('_JEXEC') or die;
 		if ($this->match->match_date): ?>
 			<tr>
 				<td colspan="3">
-					<span class=""><?php echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_DATE' ); ?></span>
-					<span><?php echo JoomleagueHelper::getMatchDate($this->match, JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_GAMES_DATE' )); ?></span>
+					<span class=""><?php echo Text::_( 'COM_JOOMLEAGUE_NEXTMATCH_DATE' ); ?></span>
+					<span><?php echo JoomleagueHelper::getMatchDate($this->match, Text::_( 'COM_JOOMLEAGUE_NEXTMATCH_GAMES_DATE' )); ?></span>
 				</td>
 			</tr>
 			<?php endif;
@@ -59,7 +60,7 @@ defined('_JEXEC') or die;
 		if ($this->match->match_date): ?>
 			<tr>
 				<td colspan="3">
-					<span class=""><?php echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_TIME' ); ?></span>
+					<span class=""><?php echo Text::_( 'COM_JOOMLEAGUE_NEXTMATCH_TIME' ); ?></span>
 					<span><?php echo JoomleagueHelperHtml::showMatchTime($this->match, $this->config, $this->overallconfig, $this->project); ?></span>
 				</td>
 			</tr>
@@ -72,7 +73,7 @@ defined('_JEXEC') or die;
 	{
 		if ($this->match->time_present > 0): ?>
 			<tr>
-				<td colspan="3"><span class=""><?php echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_PRESENT' ); ?></span>
+				<td colspan="3"><span class=""><?php echo Text::_( 'COM_JOOMLEAGUE_NEXTMATCH_PRESENT' ); ?></span>
 					<span><?php echo $this->match->time_present; ?></span></td>
 			</tr>
 			<?php endif;
@@ -84,7 +85,7 @@ defined('_JEXEC') or die;
 	{
 		if ($this->match->match_number > 0): ?>
 			<tr>
-				<td colspan="3"><span class=""><?php echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_NUMBER' ); ?></span>
+				<td colspan="3"><span class=""><?php echo Text::_( 'COM_JOOMLEAGUE_NEXTMATCH_NUMBER' ); ?></span>
 				<span><?php echo $this->match->match_number; ?></span></td>
 			</tr>
 		<?php endif;
@@ -93,7 +94,7 @@ defined('_JEXEC') or die;
 	<!-- match canceled -->
 	<?php if ($this->match->cancel > 0): ?>
 	<tr>
-		<td colspan="3"><span class=""><?php echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_CANCEL_REASON' ); ?></span>
+		<td colspan="3"><span class=""><?php echo Text::_( 'COM_JOOMLEAGUE_NEXTMATCH_CANCEL_REASON' ); ?></span>
 		<span><?php echo $this->match->cancel_reason; ?></span></td>
 	</tr>
 	<?php endif; ?>
@@ -110,7 +111,7 @@ defined('_JEXEC') or die;
 		if ($this->match->playground_id > 0): ?>
 			<?php $playground_link = JoomleagueHelperRoute::getPlaygroundRoute( $this->project->id, $this->match->playground_id);?>
 			<tr>
-				<td colspan="3"><span class=""><?php echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_PLAYGROUND' ); ?></span>
+				<td colspan="3"><span class=""><?php echo Text::_( 'COM_JOOMLEAGUE_NEXTMATCH_PLAYGROUND' ); ?></span>
 					<span><?php echo HTMLHelper::link ($playground_link, $this->playground->name); ?></span>
 				</td>
 			</tr>
@@ -124,7 +125,7 @@ defined('_JEXEC') or die;
 		if (!empty($this->referees)): ?>
 			<?php $html = array(); ?>
 			<tr>
-				<td colspan="3"><span class=""><?php echo JText::_( 'COM_JOOMLEAGUE_NEXTMATCH_REFEREE' ); ?></span>
+				<td colspan="3"><span class=""><?php echo Text::_( 'COM_JOOMLEAGUE_NEXTMATCH_REFEREE' ); ?></span>
 				<?php foreach ($this->referees AS $ref): ?> <?php $referee_link = JoomleagueHelperRoute::getRefereeRoute($this->project->id, $ref->person_id);?>
 				<?php $html[] = HTMLHelper::link ($referee_link, JoomleagueHelper::formatName(null, $ref->firstname, $ref->nickname, $ref->lastname, $this->config["name_format"])) .' ('.$ref->position_name.')'; ?>
 				<?php endforeach;?> <span><?php echo implode('</span>, <span>', $html); ?></span>
