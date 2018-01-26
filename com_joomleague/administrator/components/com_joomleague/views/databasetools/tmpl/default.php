@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
 
 HTMLHelper::_('bootstrap.tooltip');
 ?>
-<div id="j-main-container" class="span10">
+<div id="j-main-container" class="col-md-10">
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm" name="adminForm">
 	<div id="editcell">
 		<table class="table table-striped">

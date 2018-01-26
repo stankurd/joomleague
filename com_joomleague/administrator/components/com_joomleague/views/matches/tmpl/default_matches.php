@@ -14,6 +14,7 @@ use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
 HTMLHelper::_('behavior.framework');
+HTMLHelper::_('formbehavior.chosen', 'select');
 
 ?>
 <style>

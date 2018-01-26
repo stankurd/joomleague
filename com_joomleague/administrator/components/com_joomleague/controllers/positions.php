@@ -130,11 +130,11 @@ class JoomleagueControllerPositions extends JLGControllerAdmin
 			ArrayHelper::toInteger($cid);
 			if($model->storeshort($cid,$post))
 			{
-				$msg = Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_CTRL_POSITIONS_UPDATED');
+				$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_CTRL_POSITIONS_UPDATED'),'notice');
 			}
 			else
 			{
-				$msg = Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_CTRL_ERROR_UPDATING_POS').$model->getError();
+			    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_CTRL_ERROR_UPDATING_POS').$model->getError(),'error');
 			}
 		}
 		$link = 'index.php?option=com_joomleague&view=positions';

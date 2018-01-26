@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Joomleague
@@ -91,7 +92,7 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, Text::_ ( 'Eve
 	<fieldset class="form-horizontal">
 		<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_DESCR'); ?></legend>
 		<div class="row">
-			<div class="col-md-9">
+			<div class="col-md-7">
 				<table class="adminlist table">
 					<thead>
 						<tr>
@@ -145,7 +146,7 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, Text::_ ( 'Eve
 				</tbody>
 				</table>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-5">
 				<!-- add new Event -->
 				<div id="addNewEvent">
 					<fieldset class="form-vertical">
@@ -165,21 +166,21 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, Text::_ ( 'Eve
 							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_VALUE_SUM'); ?></div>
 							<div class="controls">
 								<input type="text" size="3" value="" id="event_sum"
-									name="event_sum" class="col-md-4" />
+									name="event_sum" class="col-md-2" />
 							</div>
 						</div>
 						<div class="control-group">
 							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TIME'); ?></div>
 							<div class="controls">
 								<input type="text" size="3" value="" id="event_time"
-									name="event_time" class="col-md-4" />
+									name="event_time" class="col-md-2" />
 							</div>
 						</div>
 						<div class="control-group">
 							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_MATCH_NOTICE'); ?></div>
 							<div class="controls">
-								<textarea rows="2" cols="70" id="event_notice"
-									name="event_notice" class="col-md-5"></textarea>
+								<textarea rows="2" cols="150" id="event_notice"
+									name="event_notice" class="col-md-7"></textarea>
 							</div>
 						</div>
 						<div>
@@ -206,7 +207,7 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, Text::_ ( 'Eve
 	<fieldset class="form-horizontal">
 		<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_LIVE_COMMENTARY_DESCR'); ?></legend>
 		<div class="row">
-			<div class="col-md-9">
+			<div class="col-md-7">
 				<table class='adminlist table'>
 					<thead>
 						<tr>
@@ -259,7 +260,7 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, Text::_ ( 'Eve
 			</tbody>
 				</table>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-5">
 				<!-- add new Comment -->
 				<div id="addNewComment">
 					<fieldset class="form-vertical">
@@ -277,14 +278,14 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, Text::_ ( 'Eve
 							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TIME' ); ?></div>
 							<div class="controls">
 								<input type="text" size="3" value="" id="comment_event_time"
-									name="comment_event_time" class="col-md-4" />
+									name="comment_event_time" class="col-md-2" />
 							</div>
 						</div>
 						<div class="control-group">
 							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_NOTES' ); ?></div>
 							<div class="controls">
-								<textarea rows="2" cols="70" id="comment_note"
-									name="comment_note" class="col-md-5"></textarea>
+								<textarea rows="2" cols="100" id="comment_note"
+									name="comment_note" class="col-md-7"></textarea>
 							</div>
 						</div>
 						<div>

@@ -71,7 +71,7 @@ class JoomleagueControllerPersons extends JLGControllerAdmin
 		$cid = $input->get('cid',array(),'array');
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('Please select row to update'));
+			$app->enqueueMessage(Text::_('Please select row to update'),'error');
 		}
 		else
 		{
@@ -79,13 +79,13 @@ class JoomleagueControllerPersons extends JLGControllerAdmin
 			ArrayHelper::toInteger($cid);
 			if($model->storeshort($cid,$post))
 			{
-				$msg = Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_PERSON_UPDATE');
+			    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_PERSON_UPDATE'),'notice');
 			}
 			else
 			{
-				$msg = Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_ERROR_PERSON_UPDATE').$model->getError();
+			    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_ERROR_PERSON_UPDATE').$model->getError(),'error');
 			}
-			$app->enqueueMessage($msg);
+			//$app->enqueueMessage($msg);
 		}
 		$link = 'index.php?option=com_joomleague&view=persons';
 		$this->setRedirect($link);
@@ -141,7 +141,7 @@ class JoomleagueControllerPersons extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'error');
 		}
 		else
 		{
@@ -180,7 +180,7 @@ class JoomleagueControllerPersons extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));
+		    $app->enqueueMessage(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'),'error');
 			$this->setRedirect('index.php?option=com_joomleague&view=persons');
 			return;
 		}

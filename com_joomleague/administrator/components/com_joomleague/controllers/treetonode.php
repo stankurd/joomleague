@@ -126,11 +126,11 @@ class JoomleagueControllerTreetonode extends JLGControllerForm
 		$model = $this->getModel('treetonodes');
 		if($model->setRemoveNode())
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_REMOVENODE');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_REMOVENODE'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_REMOVENODE');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_REMOVENODE'),'error');
 		}
 		$link = 'index.php?option=com_joomleague&view=treetos';
 		$this->setRedirect($link,$msg);
@@ -147,11 +147,11 @@ class JoomleagueControllerTreetonode extends JLGControllerForm
 		$model = $this->getModel('treetonode');
 		if($model->setUnpublishNode())
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_UNPUBLISHNODE');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_UNPUBLISHNODE'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_UNPUBLISHNODE');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_UNPUBLISHNODE'),'error');
 		}
 		$link = 'index.php?option=com_joomleague&view=treetonodes';
 		$this->setRedirect($link,$msg);
@@ -176,11 +176,11 @@ class JoomleagueControllerTreetonode extends JLGControllerForm
 
 		if($model->storeshortleaf($cid,$post))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_SAVED');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_SAVED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_SAVED') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_SAVED') . $model->getError(),'error');
 		}
 		$link = 'index.php?option=com_joomleague&view=treetonodes';
 		$this->setRedirect($link,$msg);
@@ -203,11 +203,11 @@ class JoomleagueControllerTreetonode extends JLGControllerForm
 		$model = $this->getModel('treetonodes');
 		if($model->storefinishleaf())
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_LEAFS_SAVED');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_LEAFS_SAVED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_LEAFS_ERROR_SAVED');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_LEAFS_ERROR_SAVED'),'error');
 		}
 		$link = 'index.php?option=com_joomleague&view=treetonodes';
 		$this->setRedirect($link,$msg);
@@ -231,11 +231,11 @@ class JoomleagueControllerTreetonode extends JLGControllerForm
 		$model = $this->getModel('treetonodes');
 		if($model->storeshort($cid,$post))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_SAVED');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_SAVED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_SAVED') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_SAVED') . $model->getError(),'error');
 		}
 		$link = 'index.php?option=com_joomleague&view=treetonodes&task=treetonode';
 		$this->setRedirect($link,$msg);
@@ -257,11 +257,11 @@ class JoomleagueControllerTreetonode extends JLGControllerForm
 		$model = $this->getModel('treetonode');
 		if($model->store($post))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_SAVED');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_SAVED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_SAVED') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_SAVED') . $model->getError(),'error');
 		}
 		// Check the table in so it can be edited.... we are done with it anyway
 		$model->checkin();
@@ -294,11 +294,11 @@ class JoomleagueControllerTreetonode extends JLGControllerForm
 		$model = $this->getModel('treetonode');
 		if($model->store($post))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ADD_MATCH');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ADD_MATCH'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_ADD_MATCH') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_CTRL_ERROR_ADD_MATCH') . $model->getError(),'error');
 		}
 		$link = 'index.php?option=com_joomleague&view=matches';
 		$this->setRedirect($link,$msg);

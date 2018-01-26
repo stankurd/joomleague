@@ -186,11 +186,11 @@ class JoomleagueControllerMatch extends JLGControllerForm
 
 		if ($model->updateReferees($post))
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_MR');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_MR'),'notice');
 		}
 		else
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVE_MR').'<br />'.$model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVE_MR').'<br />'.$model->getError(),'error');
 		}
 
 		// Checkout the match
@@ -266,12 +266,12 @@ class JoomleagueControllerMatch extends JLGControllerForm
 
 								if ($model->save($post))
 								{
-									$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ADD_MATCH');
+								    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ADD_MATCH'),'notice');
 									$matchNumber++;
 								}
 								else
 								{
-									$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_ADD_MATCH').$model->getError();
+								    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_ADD_MATCH').$model->getError(),'error');
 									break;
 								}
 							}
@@ -325,17 +325,17 @@ class JoomleagueControllerMatch extends JLGControllerForm
 
 					if ($model->save($dmatch))
 					{
-						$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_COPY_MATCH');
+					    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_COPY_MATCH'),'notice');
 					}
 					else
 					{
-						$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_COPY_MATCH').$model->getError();
+					    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_COPY_MATCH').$model->getError(),'error');
 					}
 				}
 			}
 			else
 			{
-				$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_COPY_MATCH2').$model->getError();
+			    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_COPY_MATCH2').$model->getError(),'error');
 			}
 		}
 		
@@ -380,11 +380,11 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		
 		if ($model->save($post))
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ADD_MATCH');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ADD_MATCH'),'notice');
 		}
 		else
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_ADD_MATCH').$model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_ADD_MATCH').$model->getError(),'error');
 		}
 		$link='index.php?option=com_joomleague&view=matches';
 		$this->setRedirect($link,$msg);
@@ -556,11 +556,11 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		$project_id = $app->getUserState($option.'project',0);
 		if ($model->saveeventbb($post,$project_id,$match_id))
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_UPDATE_EVENTS');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_UPDATE_EVENTS'),'notice');
 		}
 		else
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_UPDATE_EVENTS').$model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_UPDATE_EVENTS').$model->getError(),'error');
 		}
 		
 		$link = 'index.php?option=com_joomleague&view=match&layout=editeventsbb&match_id='.$match_id;
@@ -585,11 +585,11 @@ class JoomleagueControllerMatch extends JLGControllerForm
 		$model	= $this->getModel('match');
 		if ($model->savestats($post))
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_UPDATE_STATS');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_UPDATE_STATS'),'notice');
 		}
 		else
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_UPDATE_STATS').$model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_UPDATE_STATS').$model->getError(),'error');
 		}
 		
 		$link = 'index.php?option=com_joomleague&view=match&layout=editstats&match_id='.$match_id;

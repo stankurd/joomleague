@@ -73,7 +73,7 @@ class JoomleagueControllerSportsTypes extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-		    throw new Exception (Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+		   $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'error');
 		}
 		else
 		{
@@ -130,7 +130,7 @@ class JoomleagueControllerSportsTypes extends JLGControllerAdmin
 		ArrayHelper::toInteger($cid);
 		if(!is_array($cid) || count($cid) < 1)
 		{
-		    throw new Exception (Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'),'error');
 			$this->setRedirect('index.php?option=com_joomleague&view=sportstypes');
 			return;
 		}

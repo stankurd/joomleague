@@ -78,7 +78,7 @@ class JoomleagueControllerDivisions extends JLGControllerAdmin
 
 		if($model->store($post))
 		{
-			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_DIVISION_CTRL_SAVED'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_DIVISION_CTRL_SAVED'),'notice');
 		}
 		else
 		{
@@ -118,7 +118,7 @@ class JoomleagueControllerDivisions extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'error');
 		} else {
 			$model = $this->getModel('division');
 

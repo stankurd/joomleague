@@ -79,7 +79,7 @@ class JoomleagueControllerStatistics extends JLGControllerAdmin
 		$cid = $input->get('cid',array(),'array');
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'),'error');
 			$this->setRedirect('index.php?option=com_joomleague&view=statistics');
 			return;
 		}
@@ -131,7 +131,7 @@ class JoomleagueControllerStatistics extends JLGControllerAdmin
 				// output notices
 			}
 
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_STAT_CTRL_DELETED');
+			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_STAT_CTRL_DELETED'),'notice');
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=statistics');
 	}

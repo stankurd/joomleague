@@ -150,7 +150,7 @@ class JoomleagueControllerMatches extends JLGControllerAdmin
 			}
 		}
 	
-		$msg	= Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_MATCH');
+		$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_MATCH'),'notice');
 		$link	= 'index.php?option=com_joomleague&view=matches';
 		$this->setRedirect($link,$msg);
 	}

@@ -71,7 +71,7 @@ class JoomleagueControllerTeams extends JLGControllerAdmin
 		
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('Select Teams to be copied'));
+			$app->enqueueMessage(Text::_('Select Teams to be copied'),'notice');
 		}
 		else
 		{
@@ -80,11 +80,11 @@ class JoomleagueControllerTeams extends JLGControllerAdmin
 			$result = $model->copyTeams($cid);
 			if($result)
 			{
-				$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAM_CTRL_COPY_TEAM'));
+				$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAM_CTRL_COPY_TEAM'),'notice');
 			}
 			else
 			{
-				$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAM_CTRL_ERROR_COPY_TEAM').$model->getError());
+				$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAM_CTRL_ERROR_COPY_TEAM').$model->getError(),'error');
 			}
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=teams');

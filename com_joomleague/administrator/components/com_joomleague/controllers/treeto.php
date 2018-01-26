@@ -60,12 +60,12 @@ class JoomleagueControllerTreeto extends JLGControllerForm
 		// trigger model function
 		if($model->setGenerateNode($post))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_GENERATE_NODE');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_GENERATE_NODE'),'notice');
 			$link = 'index.php?option=com_joomleague&view=treetonodes&tid[]=' . $post['id'];
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_ERROR_GENERATE_NODE') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_ERROR_GENERATE_NODE') . $model->getError(),'error');
 			$link = 'index.php?option=com_joomleague&view=treetos';
 		}
 		$this->setRedirect($link,$msg);

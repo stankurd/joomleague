@@ -73,7 +73,7 @@ class JoomleagueControllerClubs extends JLGControllerAdmin
 		
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_ADMIN_CLUB_CTRL_SELECT_TO_DELETE'));
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_CLUB_CTRL_SELECT_TO_DELETE'),'error');
 		}
 		else
 		{

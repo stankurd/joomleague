@@ -52,13 +52,13 @@ class JoomleagueViewTeamplayers extends JLGView
 	function _displayDefault($tpl)
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$document = Factory::getDocument();
 		$baseurl = Uri::root();
 		$uri = Uri::getInstance();
 
-		$pid = $jinput->get('pid');
+		$pid = $input->get('pid');
 		if($pid)
 		{
 			$project_id = $pid;
@@ -68,7 +68,7 @@ class JoomleagueViewTeamplayers extends JLGView
 			$project_id = $app->getUserState($option.'project');
 		}
 
-		$team_id = $jinput->get('team_id');
+		$team_id = $input->get('team_id');
 		if($team_id)
 		{
 			$team_id = $team_id;
@@ -79,7 +79,7 @@ class JoomleagueViewTeamplayers extends JLGView
 			$team_id = $app->getUserState($option . 'team');
 		}
 
-		$project_team_id = $jinput->get('project_team_id');
+		$project_team_id = $input->get('project_team_id');
 		if($project_team_id)
 		{
 			$project_team_id = $project_team_id;
@@ -124,8 +124,8 @@ class JoomleagueViewTeamplayers extends JLGView
 		$document->addStyleSheet($baseurl.'administrator/components/com_joomleague/assets/css/Autocompleter.css');
 		$document->addScript($baseurl.'media/com_joomleague/bootstrap-editable/js/bootstrap-editable.js');
 		$document->addStyleSheet($baseurl.'media/com_joomleague/bootstrap-editable/css/bootstrap-editable.css');
-		//$document->addStyleSheet($baseurl.'media/com_joomleague/bootstrap-editable/css/bootstrap-extended.css');
-		//$document->addScript($baseurl.'media/com_joomleague/bootstrap-editable/js/bootstrap-tooltip-extended.js');
+		$document->addStyleSheet($baseurl.'media/com_joomleague/bootstrap-editable/css/bootstrap-extended.css');
+		$document->addScript($baseurl.'media/com_joomleague/bootstrap-editable/js/bootstrap-tooltip-extended.js');
 		
 		$this->filterForm = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');
@@ -141,13 +141,11 @@ class JoomleagueViewTeamplayers extends JLGView
 	function _displayAssignPlayers($tpl = null)
 	{
 		$app 	= Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 		$params = ComponentHelper::getParams($option);
 		$uri 	= Uri::getInstance();
-
 		$project_id = $app->getUserState($option.'project');
-
 		$mdlProject 	= BaseDatabaseModel::getInstance('project','JoomLeagueModel');
 		$mdlPerson  	= BaseDatabaseModel::getInstance('persons','JoomLeagueModel');
 		$mdlTeamplayers = BaseDatabaseModel::getInstance('teamplayers','JoomLeagueModel');

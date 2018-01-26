@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
 ?>
 <script type="text/javascript">
 <!--
-window.addEvent('domready', function()
+(function()
 {
 	$('templateid').addEvent('change', function()
 	{
@@ -25,6 +25,7 @@ window.addEvent('domready', function()
 		}
 	});
 });
+)();
 //-->
 </script>
 <div id="masterimport">

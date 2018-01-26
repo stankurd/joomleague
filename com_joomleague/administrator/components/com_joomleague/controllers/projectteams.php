@@ -129,11 +129,11 @@ class JoomleagueControllerProjectteams extends JLGControllerAdmin
 			// clear ranking cache
 			$cache = Factory::getCache('joomleague.project' . $post['id']);
 			$cache->clean();
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_SAVED');
+			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_SAVED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_ERROR_SAVE') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_ERROR_SAVE') . $model->getError(),'error');
 		}
 
 		$link = 'index.php?option=com_joomleague&view=projectteams';
@@ -160,11 +160,11 @@ class JoomleagueControllerProjectteams extends JLGControllerAdmin
 			// clear cache
 			$cache = Factory::getCache('joomleague.project' . $project_id);
 			$cache->clean();
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_UPDATED');
+			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_UPDATED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_ERROR_UPDATED') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_CTRL_ERROR_UPDATED') . $model->getError(),'error');
 		}
 
 		$link = 'index.php?option=com_joomleague&view=projectteams';
@@ -198,7 +198,7 @@ class JoomleagueControllerProjectteams extends JLGControllerAdmin
 		}
 
 		echo '{"success":true}';
-		Factory::getApplication()->close();
+		$app->close();
 	}
 
 

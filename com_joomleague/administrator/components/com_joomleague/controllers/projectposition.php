@@ -84,11 +84,11 @@ class JoomleagueControllerProjectposition extends JoomleagueController
 		$model=$this->getModel();
 		if ($model->store($post))
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_POSITION_LIST_SAVED');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_POSITION_LIST_SAVED'),'notice');
 		}
 		else
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_ERROR_SAVING_POS').$model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_ERROR_SAVING_POS').$model->getError(),'error');
 		}
 		$link='index.php?option='.$this->option.'&view='.$this->view_list.'&task=projectposition.display';
 		$this->setRedirect($link,$msg);
@@ -108,11 +108,11 @@ class JoomleagueControllerProjectposition extends JoomleagueController
 		//if ($model->store($post))
 		if (1==2)
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_TEAM_SAVED');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_TEAM_SAVED'),'notice');
 		}
 		else
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_ERROR_SAVING_TEAM').$model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_ERROR_SAVING_TEAM').$model->getError(),'error');
 		}
 		// Check the table in so it can be edited.... we are done with it anyway
 		$model->checkin();
@@ -139,11 +139,11 @@ class JoomleagueControllerProjectposition extends JoomleagueController
 		$model=$this->getModel();
 		if ($model->storeshort($cid,$post))
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_POSITIONS_UPDATED');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_POSITIONS_UPDATED'),'notice');
 		}
 		else
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_ERROR_UPDATING_POS').$model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_ERROR_UPDATING_POS').$model->getError(),'error');
 		}
 		$link='index.php?option='.$this->option.'&view='.$this->view_list.'&task=projectposition.display';
 		$this->setRedirect($link,$msg);
@@ -152,12 +152,13 @@ class JoomleagueControllerProjectposition extends JoomleagueController
 	public function remove()
 	{
 		Session::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
-		$input = $this->input;
+		$app = Factory::getApplication();
+		$input = $app->input;
 		$cid = $input->post->get('cid', array(), 'array');
 		ArrayHelper::toInteger($cid);
 		if (count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_SELECT_TO_DELETE'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_SELECT_TO_DELETE'),'error');
 		}
 		// TODO: why do we delete something from the team model?
 		$model=$this->getModel('team');

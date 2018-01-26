@@ -71,11 +71,11 @@ class JoomleagueControllerProjectReferees extends JLGControllerAdmin
 
 		if($model->saveshort($cid,$post))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_UPDATED');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_UPDATED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_ERROR_UPDATED') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_ERROR_UPDATED') . $model->getError(),'error');
 		}
 
 		$link = 'index.php?option=com_joomleague&view=projectreferees';
@@ -101,7 +101,7 @@ class JoomleagueControllerProjectReferees extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'error');
 		}
 		// Access checks.
 		foreach($cid as $i=>$id)
@@ -111,7 +111,7 @@ class JoomleagueControllerProjectReferees extends JLGControllerAdmin
 			{
 				// Prune items that you can't delete.
 				unset($cid[$i]);
-				JError::raiseNotice(403,Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
+				$app->enqueueMessage(Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'),'notice');
 			}
 		}
 		$model = $this->getModel('team');
@@ -158,7 +158,7 @@ class JoomleagueControllerProjectReferees extends JLGControllerAdmin
 	public function assign()
 	{
 		// redirect to ProjectReferees page, with a message
-		$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_ASSIGN'));
+		$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_REFEREE_CTRL_ASSIGN'),'notice');
 		$this->setRedirect('index.php?option=com_joomleague&view=projectreferees&layout=assignplayers');
 	}
 

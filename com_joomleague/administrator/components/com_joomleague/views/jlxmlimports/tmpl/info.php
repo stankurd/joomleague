@@ -25,13 +25,15 @@ defined('_JEXEC') or die;
 		$iSlider = 0;
 		foreach ($this->importData as $key => $value)
 		{
+		    $selector = "importaccordion";
 			$ret = '';
-			$ret .= HTMLHelper::_('bootstrap.startAccordion','sliders',array(
+			$text =  Text::_($key);
+			$ret .= HTMLHelper::_('bootstrap.startAccordion',$selector, 'sliders',array(
 					'allowAllClose' => false,
 					'startOffset' => 1,
 					'startTransition' => true,
 					true));
-			$ret .= HTMLHelper::_('bootstrap.addSlide', Text::_($key), 'slider'.($iSlider++));
+			$ret .= HTMLHelper::_('bootstrap.addSlide', $selector, $text, 'slider'.($iSlider++));
 			$ret .= '<table class="table table-striped"><tr><td>'.$value.'</td></tr></table>';
 			$ret .=  HTMLHelper::_('bootstrap.endSlide');
 			$ret = HTMLHelper::_('bootstrap.endAccordion');

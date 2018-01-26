@@ -13,6 +13,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
+HtmlHelper::_('behavior.formvalidator');
 
 ?>
 

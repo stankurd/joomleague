@@ -10,6 +10,17 @@ use Joomla\CMS\Language\Text;
 
 defined ( '_JEXEC' ) or die ();
 ?>
+<script>
+jQuery(document).ready(function($) {
+	jQuery('#multiselect2').multiselect({		
+		right: '#multiselect2_to',
+		rightSelected: '#multiselect2_rightSelected',
+		leftSelected: '#multiselect2_leftSelected',
+		sort: false
+	});
+});
+</script>
+
 <fieldset class="adminform">
 	<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_ELUS'); ?></legend>
 	<table class='adminlist'>
@@ -41,12 +52,18 @@ defined ( '_JEXEC' ) or die ();
 								?>
 								<tr>
 						<td style='text-align: center; vertical-align: middle;'>
-							<!-- left / right buttons --> <br /> <input type="button"
-							id="smoveright-<?php echo $position_id;?>"
-							class="inputbox smove-right" value="&gt;&gt;" /><br />
-							&nbsp;&nbsp; <input type="button"
-							id="smoveleft-<?php echo $position_id;?>"
-							class="inputbox smove-left" value="&lt;&lt;" /> &nbsp;&nbsp;
+							<!-- left / right buttons --> <br />
+							<div class="col-md-2">
+							<button type="button" id="multiselect2_rightSelected"
+									class="btn btn-block">
+							<i class="icon-arrow-right"></i>
+							</button>
+							<button type="button" id="multiselect2_leftSelected"
+									class="btn btn-block">
+							<i class="icon-arrow-left"></i>
+							</button>
+							
+						</div>
 						</td>
 						<td>
 							<!-- player affected to this position --> <b><?php echo Text::_($pos->text); ?></b><br />

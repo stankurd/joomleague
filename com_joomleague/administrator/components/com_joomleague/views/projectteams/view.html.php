@@ -320,11 +320,8 @@ class JoomleagueViewProjectteams extends JLGView
 		JLToolBarHelper::apply('projectteams.saveshort');
 		JLToolBarHelper::custom('projectteams.changeteams','move.png','move_f2.png','COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_BUTTON_CHANGE_TEAMS',false);
 		JLToolBarHelper::custom('projectteams.editlist','upload.png','upload_f2.png','COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_BUTTON_ASSIGN',false);
-
-		// @todo: fix function
-		/*
-		 * JLToolBarHelper::custom('projectteams.copy','copy','copy','COM_JOOMLEAGUE_GLOBAL_COPY', true);
-		 */
+		JLToolBarHelper::custom('projectteam.copy','copy','copy','COM_JOOMLEAGUE_GLOBAL_COPY', true);
+		 
 		JLToolbarHelper::divider();
 		JLToolbarHelper::help('screen.joomleague',true);
 	}

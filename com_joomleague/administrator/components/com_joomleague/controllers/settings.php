@@ -213,11 +213,11 @@ class JoomleagueControllerSettings extends JoomleagueController
 		// save the changes
 		if ($table->store())
 		{
-			$msg	= Text::_( 'COM_JOOMLEAGUE_ADMIN_SETTINGS_CTRL_STAT_SAVED');
+		    $this->setMessage(Text::_( 'COM_JOOMLEAGUE_ADMIN_SETTINGS_CTRL_STAT_SAVED'),'notice');
 		}
 		else
 		{
-			$msg	= Text::_( 'COM_JOOMLEAGUE_ADMIN_SETTINGS_CTRL_ERROR_SAVE');
+		    $this->setMessage(Text::_( 'COM_JOOMLEAGUE_ADMIN_SETTINGS_CTRL_ERROR_SAVE'),'error');
 		}
 
 		switch ($task)

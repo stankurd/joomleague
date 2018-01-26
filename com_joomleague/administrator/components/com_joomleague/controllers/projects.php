@@ -74,7 +74,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_COPY'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_COPY'),'error');
 			$this->setRedirect('index.php?option=com_joomleague&view=projects');
 			return;
 		} else {
@@ -107,7 +107,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'error');
 			$this->setRedirect(Route::_('index.php?option=com_joomleague&view=' . $this->view_list,false));
 			return;
 		}
@@ -121,7 +121,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 				{
 					// Prune items that you can't delete.
 					unset($cid[$i]);
-					JError::raiseNotice(403,Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
+					$app->enqueueMessage(Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'),'warning');
 				}
 			}
 			if ($cid) {
@@ -260,7 +260,7 @@ class JoomleagueControllerProjects extends JLGControllerAdmin
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ERROR_SAVING_PROJECT') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ERROR_SAVING_PROJECT') . $model->getError(),'error');
 		}
 
 		// Check the table in so it can be edited.... we are done with it anyway

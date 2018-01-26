@@ -110,7 +110,7 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 					}
 					if (!JFile::upload($tempFilePath,$dest))
 					{
-						JError::raiseWarning(500,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_CANT_UPLOAD'));
+						$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_CANT_UPLOAD'),'error');
 						return;
 					}
 					else
@@ -120,14 +120,14 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 							$result=Archive::extract($dest,$extractdir);
 							if ($result === false)
 							{
-								JError::raiseWarning(500,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_EXTRACT_ERROR'));
+							    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_EXTRACT_ERROR'),'warning');
 								return false;
 							}
 							JFile::delete($dest);
 							$src=JFolder::files($extractdir,'jlg',false,true);
 							if(!count($src))
 							{
-								JError::raiseWarning(500,'COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_EXTRACT_NOJLG');
+							    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_EXTRACT_NOJLG'),'warning');
 								//todo: delete every extracted file / directory
 								return false;
 							}
@@ -135,13 +135,13 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 							{
 								if (!@ rename($src[0],$importFile))
 								{
-									JError::raiseWarning(21,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_ERROR_RENAME'));
+								    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_ERROR_RENAME'),'warning');
 									return false;
 								}
 							}
 							else
 							{
-								JError::raiseWarning(500,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_TMP_DELETED'));
+							    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_TMP_DELETED'),'warning');
 								return;
 							}
 						}
@@ -151,13 +151,13 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 							{
 								if (!@ rename($dest,$importFile))
 								{
-									JError::raiseWarning(21,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_RENAME_FAILED'));
+								    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_RENAME_FAILED'),'warning');
 									return false;
 								}
 							}
 							else
 							{
-								JError::raiseWarning(21,Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_WRONG_EXTENSION'));
+							    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_WRONG_EXTENSION'),'warning');
 								return false;
 							}
 						}

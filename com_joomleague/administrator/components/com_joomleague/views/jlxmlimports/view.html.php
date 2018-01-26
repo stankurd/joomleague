@@ -76,7 +76,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 		$mtime			= $mtime[1] + $mtime[0];
 		$starttime		= $mtime;
 		$option			= 'com_joomleague';
-		$app		= Factory::getApplication();
+		$app		    = Factory::getApplication();
 		$document		= Factory::getDocument();
 		$db				= Factory::getDbo();
 		$uri			= Uri::getInstance();
@@ -155,7 +155,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 
 	private function _displaySelectpage($tpl)
 	{
-		$app 	= Factory::getApplication();
+		$app 	    = Factory::getApplication();
 		$option 	= $app->input->get('option');
 		$document 	= Factory::getDocument();
 		$db 		= Factory::getDbo();

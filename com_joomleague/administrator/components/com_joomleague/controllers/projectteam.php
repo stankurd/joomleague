@@ -110,7 +110,7 @@ class JoomleagueControllerProjectteam extends JLGControllerForm
 
 		if(count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'notice');
 		}
 		// Access checks.
 		foreach($cid as $i=>$id)
@@ -120,7 +120,7 @@ class JoomleagueControllerProjectteam extends JLGControllerForm
 			{
 				// Prune items that you can't delete.
 				unset($cid[$i]);
-				JError::raiseNotice(403,Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
+				$app->enqueueMessage(Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'),'noptice');
 			}
 		}
 		$model = $this->getModel('team');
@@ -166,7 +166,7 @@ class JoomleagueControllerProjectteam extends JLGControllerForm
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_COPY_SUCCESS');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_COPY_SUCCESS'),'notice');
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=projectteams',$msg,$type);
 		$this->redirect();

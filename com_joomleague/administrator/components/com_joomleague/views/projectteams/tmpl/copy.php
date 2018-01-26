@@ -6,9 +6,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
+HTMLHelper::_('behavior.framework');
+HTMLHelper::_('formbehavior.chosen', 'select');
 ?>
 
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm" name="adminForm">

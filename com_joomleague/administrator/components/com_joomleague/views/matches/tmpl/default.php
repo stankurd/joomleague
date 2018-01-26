@@ -15,6 +15,7 @@ defined('_JEXEC') or die;
 HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('behavior.modal');
 
+
 $app 		= Factory::getApplication();
 $input		= $app->input;
 $massadd	= $input->getInt('massadd',0);

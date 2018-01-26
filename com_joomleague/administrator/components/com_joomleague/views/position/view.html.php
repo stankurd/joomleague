@@ -50,9 +50,9 @@ class JoomleagueViewPosition extends JLGView
 		$res = array();
 		$res1 = array();
 		$notusedevents = array();
-		if($res = $model->getEventsPosition($pk))
+		if($res = $model->getEventsPosition($pk))//prawa stroma
 		{
-			$lists['position_events'] = HTMLHelper::_('select.genericlist',$res,'position_eventslist[]',
+			 $lists['position_events'] = HTMLHelper::_('select.genericlist',$res,'position_eventslist[]',
 					' style="width:250px; height:300px;" class="inputbox" multiple="true" size="' . max(10,count($res)) . '"','value','text',false,
 					'multiselect_to');
 		}
@@ -87,7 +87,7 @@ class JoomleagueViewPosition extends JLGView
 		}
 		
 		// build the html select list for events
-		if(($notusedevents) && (count($notusedevents) > 0))
+		if(($notusedevents) && (count($notusedevents) > 0))//lewa strona
 		{
 			$lists['events'] = HTMLHelper::_('select.genericlist',$notusedevents,'eventslist[]',
 					' style="width:250px; height:300px;" class="inputbox" multiple="true" size="' . max(10,count($notusedevents)) . '"','value','text',

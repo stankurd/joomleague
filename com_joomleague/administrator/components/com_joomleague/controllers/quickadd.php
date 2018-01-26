@@ -68,7 +68,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		
 		// Send the response.
 		echo '{ "suggestions": ' . json_encode($suggestions) . ' }';
-		Factory::getApplication()->close();
+		$app->close();
 	}
 
 	/**
@@ -106,7 +106,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		
 		// Send the response.
 		echo '{ "suggestions": ' . json_encode($suggestions) . ' }';
-		Factory::getApplication()->close();
+		$app->close();
 	}
 
 	/**
@@ -144,7 +144,7 @@ class JoomleagueControllerQuickadd extends JLGControllerAdmin
 		
 		// Send the response.
 		echo '{ "suggestions": ' . json_encode($suggestions) . ' }';
-		Factory::getApplication()->close();
+		$app->close();
 	}
 
 	/**

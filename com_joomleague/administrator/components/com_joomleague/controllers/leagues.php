@@ -72,7 +72,7 @@ class JoomleagueControllerLeagues extends JLGControllerAdmin
 		
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'error');
 		}
 		else
 		{
@@ -82,7 +82,7 @@ class JoomleagueControllerLeagues extends JLGControllerAdmin
 			$result = $model->delete($cid);
 			if($result['removed'])
 			{
-				$app->enqueueMessage(Text::plural($this->text_prefix.'_N_ITEMS_DELETED',$result['removedCount']));
+				$app->enqueueMessage(Text::plural($this->text_prefix.'_N_ITEMS_DELETED',$result['removedCount']),'notice');
 			}
 			if($result['error'])
 			{
@@ -127,7 +127,7 @@ class JoomleagueControllerLeagues extends JLGControllerAdmin
 		$cid = $input->get('cid',array(),'array');
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'),'error');
 			$this->setRedirect('index.php?option=com_joomleague&view=leagues');
 			return;
 		}

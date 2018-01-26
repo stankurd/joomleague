@@ -128,11 +128,11 @@ class JoomleagueControllerTreetomatches extends JLGControllerAdmin
 		$model = $this->getModel('treetomatchs');
 		if($model->store($post))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_CTRL_SAVED');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_CTRL_SAVED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_CTRL_ERROR_SAVE') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_CTRL_ERROR_SAVE') . $model->getError(),'error');
 		}
 
 		$link = 'index.php?option=com_joomleague&view=treetonodes';

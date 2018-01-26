@@ -81,7 +81,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 		$table = Table::getInstance('Round','Table');
 		if($table->save($post))
 		{
-			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_ADDED'));
+			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_ADDED'),'notice');
 		}
 		else
 		{
@@ -138,11 +138,11 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 		}
 		if($model->store($post))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_SAVED');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_SAVED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ERROR_SAVE') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ERROR_SAVE') . $model->getError(),'error');
 		}
 		// Check the table in so it can be edited.... we are done with it anyway
 		$model->checkin();
@@ -191,11 +191,11 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 		}
 		if($model->storeshort($cid,$post))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_SAVED');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ROUND_SAVED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ERROR_SAVE') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_ERROR_SAVE') . $model->getError(),'error');
 		}
 		$link = 'index.php?option=com_joomleague&view=rounds';
 		$this->setRedirect($link,$msg);
@@ -250,7 +250,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 		ArrayHelper::toInteger($cid);
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'error');
 		} else {
 			$mdlMatches = $this->getModel('matches');
 			$mdlMatch = $this->getModel('match');
@@ -259,7 +259,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 			{
 				echo "<script> alert('" . $model->getError(true) . "'); window.history.go(-1); </script>\n";
 			}
-			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_DELETED'));
+			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_DELETED'),'notice');
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=rounds');
 	}
@@ -276,7 +276,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 		ArrayHelper::toInteger($cid);
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_SELECT_TO_DELETE_MATCHES'));
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_SELECT_TO_DELETE_MATCHES'),'error');
 		} else {
 			$mdlMatches = $this->getModel('matches');
 			$mdlMatch = $this->getModel('match');
@@ -285,7 +285,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 			{
 				echo "<script> alert('" . $model->getError(true) . "'); window.history.go(-1); </script>\n";
 			}
-			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_MATCHES_DELETED'));
+			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_CTRL_MATCHES_DELETED'),'notice');
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=rounds');
 	}
@@ -355,7 +355,7 @@ class JoomleagueControllerRounds extends JLGControllerAdmin
 		$bSuccess = $model->populate($project_id,$scheduling,$time,$interval,$start,$roundname,$teamsorder,$matchnumber);
 		if($bSuccess)
 		{
-			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_SUCCESSFULL'));
+			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_SUCCESSFULL'),'notice');
 		}
 		else
 		{

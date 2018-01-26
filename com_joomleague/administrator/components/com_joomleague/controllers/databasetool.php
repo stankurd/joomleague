@@ -38,11 +38,11 @@ class JoomleagueControllerDatabaseTool extends JLGControllerAdmin
 		$model=$this->getModel('databasetools');
 		if ($model->optimize())
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_OPTIMIZE');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_OPTIMIZE'),'notice');
 		}
 		else
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_ERROR_OPTIMIZE').$model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_ERROR_OPTIMIZE').$model->getError(),'error');
 		}
 		$link='index.php?option=com_joomleague&view=databasetools';
 		$this->setRedirect($link,$msg);
@@ -53,11 +53,11 @@ class JoomleagueControllerDatabaseTool extends JLGControllerAdmin
 		$model=$this->getModel('databasetools');
 		if ($model->repair())
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_REPAIR');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_REPAIR'),'notice');
 		}
 		else
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_ERROR_REPAIR').$model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_ERROR_REPAIR').$model->getError(),'error');
 		}
 		$link='index.php?option=com_joomleague&view=databasetools';
 		$this->setRedirect($link,$msg);

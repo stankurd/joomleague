@@ -105,11 +105,11 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 		$model = $this->getModel('TeamPlayer');
 		if($model->store($post,'TeamPlayer'))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYER_SAVED');
+			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYER_SAVED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_ERROR_PLAYER_SAVE') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_ERROR_PLAYER_SAVE') . $model->getError(),'error');
 		}
 		// Check the table in so it can be edited.... we are done with it anyway
 		$model->checkin();
@@ -142,11 +142,11 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 		$model = $this->getModel('teamplayers');
 		if($model->storeshort($cid,$post))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYERS_UPDATED');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYERS_UPDATED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_ERROR_PLAYERS_UPDATED').$model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_ERROR_PLAYERS_UPDATED').$model->getError(),'error');
 		}
 		$link = 'index.php?option=com_joomleague&view=teamplayers';
 		$this->setRedirect($link,$msg);
@@ -202,7 +202,7 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'notice');
 		}
 		else
 		{
@@ -214,7 +214,7 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 				{
 					// Prune items that you can't delete.
 					unset($cid[$i]);
-					JError::raiseNotice(403,Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
+					$app->enqueueMessage(Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'),'warning');
 				}
 			}
 			$model = $this->getModel('teamplayer');
@@ -242,7 +242,7 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 
 		$model = $this->getModel('teamplayer');
 		$model->saveorder($cid,$order);
-		$$this->setMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED'));
+		$this->setMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED'),'notice');
 		$this->setRedirect('index.php?option=com_joomleague&view=teamplayers');
 	}
 
@@ -276,7 +276,7 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 		$input->set('project_team_id',$input->getInt('project_team_id'));
 
 		// redirect to players page,with a message
-		$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYERS_ASSIGN'));
+		$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYERS_ASSIGN'),'notice');
 		$this->setRedirect('index.php?option=com_joomleague&view=teamplayers&layout=assignplayers');
 	}
 
@@ -302,7 +302,7 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 		else
 		{
 			$msg = Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMPLAYERS_CTRL_PLAYERS_UNASSIGN',$nDeleted);
-			$this->setRedirect('index.php?option=com_joomleague&view=teamplayers',$msg);
+			$this->setRedirect('index.php?option=com_joomleague&view=teamplayers',$msg,'notice');
 		}
 	}
 
@@ -326,11 +326,11 @@ class JoomleagueControllerTeamplayers extends JLGControllerAdmin
 
 		if($model->storeassigned($cid,$project_team_id))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_PERSON_ASSIGNED_AS_PLAYER');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_PERSON_ASSIGNED_AS_PLAYER'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_ERROR_PERSON_ASSIGNED_AS_PLAYER') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_ERROR_PERSON_ASSIGNED_AS_PLAYER') . $model->getError(),'error');
 		}
 
 		$link = 'index.php?option=com_joomleague&view=teamplayers';

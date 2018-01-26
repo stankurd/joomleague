@@ -71,7 +71,7 @@ class JoomleagueControllerPlaygrounds extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'error');
 		}
 		else
 		{
@@ -117,7 +117,7 @@ class JoomleagueControllerPlaygrounds extends JLGControllerAdmin
 
 		$model = $this->getModel('playground');
 		$model->saveorder($cid,$order);
-		$this->setMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED'));
+		$this->setMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED'),'notice');
 		$this->setRedirect('index.php?option=com_joomleague&view=playgrounds');
 	}
 
@@ -145,7 +145,7 @@ class JoomleagueControllerPlaygrounds extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'),'error');
 			$this->setRedirect('index.php?option=com_joomleague&view=playgrounds');
 			return;
 		}

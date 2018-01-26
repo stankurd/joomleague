@@ -130,11 +130,11 @@ class JoomleagueControllerTreetos extends JLGControllerAdmin
 		$model = $this->getModel('treetos');
 		if($model->storeshort($cid,$post))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_SAVED');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_SAVED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_ERROR_SAVED') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_ERROR_SAVED') . $model->getError(),'error');
 		}
 		
 		$link = 'index.php?option=com_joomleague&view=treetos';
@@ -174,11 +174,11 @@ class JoomleagueControllerTreetos extends JLGControllerAdmin
 		$table = Table::getInstance('Treeto','Table');
 		if($table->save($data))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_SAVED');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_SAVED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_ERROR_SAVED') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_CTRL_ERROR_SAVED') . $model->getError(),'error');
 		}
 		// Check the table in so it can be edited.... we are done with it anyway
 		// $model->checkin();

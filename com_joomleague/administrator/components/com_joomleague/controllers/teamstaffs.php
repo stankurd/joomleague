@@ -102,11 +102,11 @@ class JoomleagueControllerTeamStaffs extends JLGControllerAdmin
 		$model->storeshort($cid,$post);
 		if($model->storeshort($cid,$post))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_UPDATED');
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_UPDATED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_ERROR_UPDATED') . $model->getError();
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_ERROR_UPDATED') . $model->getError(),'error');
 		}
 		$link = 'index.php?option=com_joomleague&view=teamstaffs';
 		$this->setRedirect($link,$msg);
@@ -131,7 +131,7 @@ class JoomleagueControllerTeamStaffs extends JLGControllerAdmin
 
 		if(!is_array($cid) || count($cid) < 1)
 		{
-			JError::raiseError(500,Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'),'error');
 		} else {
 			// Access checks.
 			foreach($cid as $i=>$id)
@@ -141,7 +141,7 @@ class JoomleagueControllerTeamStaffs extends JLGControllerAdmin
 				{
 					// Prune items that you can't delete.
 					unset($cid[$i]);
-					JError::raiseNotice(403,Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
+					$app->enqueueMessage(Text::_('JERROR_CORE_DELETE_NOT_PERMITTED'),'notice');
 				}
 			}
 			$model = $this->getModel('team');
@@ -180,7 +180,7 @@ class JoomleagueControllerTeamStaffs extends JLGControllerAdmin
 	 */
 	public function assign()
 	{
-		$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_ASSIGN'));
+		$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_ASSIGN'),'notice');
 		$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs&layout=assignplayers');
 	}
 
@@ -199,13 +199,13 @@ class JoomleagueControllerTeamStaffs extends JLGControllerAdmin
 		if($nDeleted != count($cid))
 		{
 			$msg = Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_UNASSIGN',$nDeleted);
-			$msg .= '<br/>' . $model->getError();
+			$msg .='<br/>' . $model->getError();
 			$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs',$msg,'error');
 		}
 		else
 		{
 			$msg = Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMSTAFF_CTRL_UNASSIGN',$nDeleted);
-			$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs',$msg);
+			$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs',$msg,'notice');
 		}
 	}
 
@@ -229,11 +229,11 @@ class JoomleagueControllerTeamStaffs extends JLGControllerAdmin
 
 		if($model->storeassigned($cid,$project_team_id))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_PERSON_ASSIGNED_AS_STAFF');
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_PERSON_ASSIGNED_AS_STAFF'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_ERROR_PERSON_ASSIGNED_AS_STAFF') . $model->getError();
+		    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_ERROR_PERSON_ASSIGNED_AS_STAFF') . $model->getError(),'error');
 		}
 
 		$link = 'index.php?option=com_joomleague&view=teamstaffs';

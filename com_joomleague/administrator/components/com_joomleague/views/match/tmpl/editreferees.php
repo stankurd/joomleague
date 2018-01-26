@@ -77,7 +77,8 @@ jQuery(document).ready(function($) {
 									<!-- up/down buttons --> <br /> 
 									<div class="col-md-2">
 			<button type="button" id="multiselect_moveUp" class="btn btn-block"
-				onclick="moveOptionUp('multiselect_to');">
+				onclick="moveOptionUp('multiselect_to
+					');">
 				<i class="icon-uparrow"></i>
 			</button>
 			<button type="button" id="multiselect_moveDown" class="btn btn-block"

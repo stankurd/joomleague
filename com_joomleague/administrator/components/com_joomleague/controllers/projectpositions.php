@@ -70,11 +70,11 @@ class JoomleagueControllerProjectpositions extends JLGControllerAdmin
 		$model = $this->getModel('projectpositions');
 		if($model->store($post))
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_POSITION_LIST_SAVED');
+			$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_POSITION_LIST_SAVED'),'notice');
 		}
 		else
 		{
-			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_ERROR_SAVING_POS') . $model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_ERROR_SAVING_POS') . $model->getError(),'error');
 		}
 		$link = 'index.php?option=com_joomleague&view=projectpositions';
 		$this->setRedirect($link,$msg);
@@ -105,7 +105,7 @@ class JoomleagueControllerProjectpositions extends JLGControllerAdmin
 		
 		$model = $this->getModel('team');
 		$model->saveorder($cid,$order);
-		$this->setMessage('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_SAVED_NEW_ORDERING');
+		$this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_CTRL_SAVED_NEW_ORDERING'),'notice');
 		$this->setRedirect('index.php?option=com_joomleague&view=projectpositions');
 	}
 
