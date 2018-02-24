@@ -8,11 +8,7 @@
  * @note
  * JSON.stringify(response) can be used to convert object to string
  */
-(function() {
-	'use strict';
-
-	document.addEventListener('DOMContentLoaded', function() {
-//window.addEvent('domready', function() {
+$(document).ready(function() {
 	updatePlayerSelect();
 	if(jQuery('#team_id')) {
 		jQuery('#team_id').change(updatePlayerSelect);
@@ -93,6 +89,7 @@
 			var player = jQuery('#teamplayer_id').val();
 			var event = jQuery('#event_type_id').val();
 			var team = jQuery('#team_id').val();
+			var event_sum = jQuery('#event_sum').val();
 			var time = jQuery('#event_time').val();
 			var notice = encodeURIComponent(jQuery('#event_notice').val());
 			var querystring = 'teamplayer_id=' + player +
@@ -100,7 +97,7 @@
 					'&event_type_id=' + event +
 					'&event_time=' + time +
 					'&match_id=' + matchid +
-					'&event_sum=' + $('event_sum').value +
+					'&event_sum=' + event_sum +
 					'&notice=' + notice
 				;
 			
@@ -122,7 +119,7 @@
 				jQuery('#ajaxresponseevent').addClass('ajax-loading');
 				jQuery('#ajaxresponseevent').text('');
 				
-				var jqXhr = jQuery.ajax({
+				var jqXhr = $.ajax({
 					url: url + querystring,
 					type : 'POST',
 					success: eventaddsuccess,
@@ -193,14 +190,12 @@ function eventdeleteerror(xhr, status, error) {
  * event-add-success
  */
 function eventaddsuccess(data,textStatus,jqXHR) {
-	
 	// blank ajax response div
 	jQuery('#ajaxresponseevent').removeClass('ajax-loading');
 	
 	// modify response
 	var obj 	= jQuery.parseJSON(data);
 	var status	= obj.success;
-	
 	if (status) {
 		//------ create output ------//
 	
@@ -219,7 +214,7 @@ function eventaddsuccess(data,textStatus,jqXHR) {
 		
 		// create delete-td + delete button
 		var deletebutton = jQuery("<button>").attr({id : 'delete-' + obj.id,type : 'button'}).addClass('inputbox button-delete-e btn btn-small').click(deleteevent);
-		deletebutton.append(jQuery("<span>").addClass("icon-delete"));
+		deletebutton.append(jQuery("<col-md->").addClass("icon-delete"));
 		
 		var deletetd = jQuery("<td>").addClass("center");
 		deletetd.append(deletebutton);		
@@ -230,7 +225,7 @@ function eventaddsuccess(data,textStatus,jqXHR) {
 		jQuery('#row-new-event').after(newrow);
 	
 		// display response message
-		/* new Element('span').addClass('label').addClass('label-message').set('text','note:event created').inject($('ajaxresponseevent'),'inside');*/
+		/* new Element('col-md-').addClass('label').addClass('label-message').set('text','note:event created').inject($('ajaxresponseevent'),'inside');*/
 	} else {
 		var $label = jQuery("<label>").text(obj.message).attr({class: 'label label-warning'});
 		$label.appendTo(jQuery('#ajaxresponseevent'));	
@@ -339,7 +334,7 @@ function commentaddsuccess(data,textStatus,jqXHR) {
 		
 		// create delete-td + delete button
 		var deletebutton = jQuery("<button>").attr({id : 'delete-' + obj.id,type : 'button'}).addClass('inputbox button-delete-c btn btn-small').click(deletecomment);
-		deletebutton.append(jQuery("<span>").addClass("icon-delete"));
+		deletebutton.append(jQuery("<col-md->").addClass("icon-delete"));
 		
 		var deletetd = jQuery("<td>").addClass("center");
 		deletetd.append(deletebutton);		
@@ -350,7 +345,7 @@ function commentaddsuccess(data,textStatus,jqXHR) {
 		jQuery('#row-new-comment').after(newrow);
 	
 		// display response message
-		/* new Element('span').addClass('label').addClass('label-message').set('text','note:comment created').inject($('ajaxresponsecomment'),'inside');*/
+		/* new Element('col-md-').addClass('label').addClass('label-message').set('text','note:comment created').inject($('ajaxresponsecomment'),'inside');*/
 	} else {
 		var $label = jQuery("<label>").text(obj.message).attr({class: 'label label-warning'});
 		$label.appendTo(jQuery('#ajaxresponsecomment'));	
@@ -391,7 +386,7 @@ function getPlayerSelect(index) {
 	var roster = rosters[index];
 
 	// create select
-	var select = jQuery("<select>").attr({id: 'teamplayer_id',class:'span12'});
+	var select = jQuery("<select>").attr({id: 'teamplayer_id',class:'col-md-12'});
 	// add options
 	for (var i = 0, n = roster.length; i < n; i++) {
 		select.append(jQuery("<option>").attr({value : roster[i].value}).text(roster[i].text));
@@ -413,13 +408,14 @@ function trimstr(str, mylength) {
  * Please acknowledge use of this code by including this header
  * http://www.the-art-of-web.com/javascript/validate-date/
  */
+
 function checkTime(field)
 {
   var errorMsg = "";
-
+ 
   // regular expression to match required time format
   var re = /^(\d{1,2}):(\d{2})(:00)?([ap]m)?$/;
- 
+  var regs = new Array();
   if(field != '') {  
     if(regs = field.match(re)) {
       if(regs[4]) {
@@ -454,4 +450,3 @@ function checkTime(field)
   return true;
 }
 
-})();
