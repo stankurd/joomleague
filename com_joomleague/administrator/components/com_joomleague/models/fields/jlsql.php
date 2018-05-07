@@ -13,7 +13,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
-HTMLHelper::_('behavior.framework');
+//HTMLHelper::_('behavior.framework');
 
 /**
  * Renders a Dynamic SQL element
@@ -42,25 +42,28 @@ class JFormFieldJLSQL extends FormField
 			$view = $this->elements['rawview'];
 			$doc->addScriptDeclaration("function update_".$updates."()
 			{
-				$('".$control_name.$updates."').onclick = function () { return false;};
-				var combo = $('".$control_name.$this->name."');
-				var value = combo.options[combo.selectedIndex].value;
+				jQuery('".$control_name.$updates."').onclick = function () { return false;};
+				var combo = jQuery('".$control_name.$this->name."');
+				var value = jQuery(combo).options[jQuery(combo).selectedIndex].val();
 				var postStr  = '';
 				var url = '".Uri::base()."' + 'index.php?option=com_joomleague&view=".$view."&format=raw&".$this->name."='+value;
-				var theAjax = new Ajax(url, {
-					method: 'post',
-					postBody : postStr
-					});
-				theAjax.addEvent('onSuccess', function(html) {
-					var comboToUpdate = $('".$control_name.$updates."');
-					var previousValue = comboToUpdate.selectedIndex>0 ? comboToUpdate.options[comboToUpdate.selectedIndex].value : -1;
+				
+					var jqXhr = jQuery.ajax({
+						url : url,
+						type : 'Post',
+						dataType: 'json',
+						postBody : postStr,
+						success:  function(html) {
+					var comboToUpdate = jQuery('".$control_name.$updates."');
+					var previousValue = jQuery(comboToUpdate).selectedIndex>0 ? jQuery(comboToUpdate).options[jQuery(comboToUpdate).selectedIndex].val() : -1;
 					var msie = navigator.userAgent.toLowerCase().match(/msie\s+(\d)/);
+					console.log(jqXhr);
 					if(msie) {
-						comboToUpdate.empty();
-						comboToUpdate.outerHTML='<SELECT id=\"".$control_name.$updates."\" name=\"".$control_name."[".$updates."]\">'+html+'</SELECT>';
+						jQuery(comboToUpdate).empty();
+						jQuery(comboToUpdate).outerHTML='<SELECT id=\"".$control_name.$updates."\" name=\"".$control_name."[".$updates."]\">'+html+'</SELECT>';
 					}
 					else {
-						comboToUpdate.empty().set('html',html);
+						jQuery(comboToUpdate).empty().set('html',html);
 					}
 					if(previousValue!=-1){
 						for (var i=0; i<comboToUpdate.options.length;i++) {
@@ -71,7 +74,6 @@ class JFormFieldJLSQL extends FormField
 		  				}
 	  				}
 				});
-				theAjax.request();
 			}");
 		}
 		$html = HTMLHelper::_('select.genericlist',  $db->loadObjectList(), $this->name, 'class="inputbox"'.($updates ? ' onchange="javascript:update_'.$updates.'()"' : '').($depends ? ' onclick="javascript:update_'.$this->name.'()"' : ''), $key, $val, $this->value, $this->name);

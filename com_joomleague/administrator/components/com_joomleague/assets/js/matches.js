@@ -9,11 +9,8 @@
  * 				to all other fields with the same name
  *
  */
-Joomla = window.Joomla || {};
-(function() {
-	'use strict';
 
-	document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function() {
 	$('tr.row-result').each(function(row) {
 		var matchid = row.id.substr(7);
 		var cb = row.getElement('input[id^=cb]');
@@ -138,4 +135,3 @@ function askPrefillRosterByLastMatch(alert1) {
 function askPrefillRosterByProjectTeamPlayer(alert2) {
 	return confirm(alert2);
 }
-})();

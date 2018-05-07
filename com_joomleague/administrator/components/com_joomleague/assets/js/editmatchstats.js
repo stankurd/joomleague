@@ -6,9 +6,9 @@
  * @link		http://www.joomleague.at
  */
 
-window.addEvent('domready', function() {
+$(document).ready(function() {
 	// check row box when a value is updated
-	$$('tr.statrow').each(function(row){
+	$('tr.statrow').each(function(row){
 		row.getElements('.stat').each(function(stat){
 			stat.addEvent('change', function(){
 				row.getElement('.statcheck').setProperty('checked', 'true');
@@ -17,7 +17,7 @@ window.addEvent('domready', function() {
 	});
 
 	// check row box when a value is updated
-	$$('tr.staffstatrow').each(function(row){
+	$('tr.staffstatrow').each(function(row){
 		row.getElements('.staffstat').each(function(stat){
 			stat.addEvent('change', function(){
 				row.getElement('.staffstatcheck').setProperty('checked', 'true');

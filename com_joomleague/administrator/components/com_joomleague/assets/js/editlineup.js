@@ -9,30 +9,32 @@
  * functions move, moveoptionup, moveoptiondown are defined in joomleague.js
  */
 
-(function() {
-
+	jQuery('domready', function() {
+	console.log('ready');
 	var moverightCount = jQuery("input[class*='move-right'").length;
-
+	console.log(moverightCount);
 	if (!moverightCount) {
 		return;
 	}
-		
 	// players - move - right
 	jQuery("input[class*='pmove-right'").click(function() {
 		jQuery('#changes_check').val(1);
 		var posid = this.id.substr(10);
-		var fbox = $('roster');
-		var tbox = $('position' + posid);
-		move(fbox,tbox);
+		var fbox = document.getElementById('roster');
+		var tbox = document.getElementById('position' + posid);
+		//moveSelectedOptions(fbox,tbox);
+		move (fbox,tbox);
+		console.log(posid, fbox, tbox);
 	});
 	
 	// players - move - left
 	jQuery("input[class*='pmove-left'").click(function() {
 		jQuery('#changes_check').val(1);
 		var posid = this.id.substr(9);
-		var fbox = $('position' + posid);
-		var tbox = $('roster');
-		move(fbox,tbox);
+		var fbox = document.getElementById('position' + posid);
+		var tbox = document.getElementById('roster');
+		//moveSelectedOptions(fbox,tbox);
+		move (fbox,tbox);
 	});
 	
 	// player - move - up
@@ -40,6 +42,7 @@
 		jQuery('#changes_check').val(1);
 		var posid = this.id.substr(7);
 		moveOptionUp('position' + posid);
+		console.log(posid);
 	});
 	
 	// player - move - down
@@ -54,18 +57,20 @@
 	jQuery("input[class*='smove-right'").click(function() {
 		jQuery('#changes_check').val(1);
 		var posid = this.id.substr(11);
-		var fbox = $('staff');
-		var tbox = $('staffposition' + posid);
-		move(fbox,tbox);
+		var fbox = document.getElementById('staff');
+		var tbox = document.getElementById('staffposition' + posid);
+		//moveSelectedOptions(fbox,tbox);
+		move (fbox,tbox);
 	});
 	
 	//  staff - move - left
 	jQuery("input[class*='smove-left'").click(function() {
 		jQuery('#changes_check').val(1);
 		var posid = this.id.substr(10);
-		var fbox = $('staffposition' + posid);
-		var tbox = $('staff');
-		move(fbox,tbox);
+		var fbox = document.getElementById('staffposition' + posid);
+		var tbox = document.getElementById('staff');
+		//moveSelectedOptions(fbox,tbox);
+		move (fbox,tbox);
 	});
 	
 	// staff - move - up
@@ -85,20 +90,24 @@
 	// upon submit
 	if (document.adminForm) {
 		// on submit select all elements of select lists
-		$('adminForm').addEvent('submit', function(event) {
-			$$('select.position-starters').each(function(element) {
-				selectAll(element);
+		jQuery('#adminForm').submit (function(event) {
+		 var choice = jQuery('*').val();
+			if(!choice) {	
+            jQuery('*').attr('selected','selected');			
+			}	
 			});
+		};
 
-			$$('select.position-staff').each(function(element) {
-				selectAll(element);
-			});
-		});
-	}
-	
+		//---- DELETE ----//
+		
+		// button-delete: click function for comments
+		jQuery("button[class*='button-delete'").click(deletesubst);
+
 	// ajax save substitution
-	$$('input.button-save').addEvent('click',function() {
-				
+	jQuery('input.button-save').click (function() {
+			// blank ajax status div
+			jQuery('#ajaxresponse').text('');
+				// define variables
 				var rowid = this.id.substr(5);
 				var playerin = jQuery('#in').val();
 				var playerout = jQuery('#out').val();
@@ -109,107 +118,131 @@
 						+ '&project_position_id=' + position + '&in_out_time='
 						+ time + '&teamid=' + teamid + '&matchid=' + matchid
 						+ '&rowid=' + rowid;
-				
-				var url = baseajaxurl + '&task=match.savesubst&' + querystring;
+				console.log(querystring);
+				var url = baseajaxurl + '&task=match.savesubst&';
 				
 				if (playerin != 0 || playerout != 0) {
-					var myXhr = new Request.JSON({
-						url : url,
-						postBody : querystring,
-						method : 'post',
-						onRequest : substRequest,
-						onSuccess : substSaved,
-						onFailure : substFailed,
+					var jqXhr = jQuery.ajax({
+						url : url + querystring,
+						method : 'Post',
+						success : substSaved,
+						error : substFailed,
 						rowid: rowid
 					});
-					myXhr.post();
+					//console.log(jqXhr);
 				}
 			});
 	// ajax remove substitution
-	$$('input.button-delete').addEvent('click', deletesubst);
+	jQuery('input.button-delete').click (deletesubst);
 
 });
 
 function substRequest() {
-	$('ajaxresponse').addClass('ajax-loading');
-	$('ajaxresponse').innerHTML = '';
+	jQuery('#ajaxresponse').addClass('ajax-loading');
+	//jQuery('#ajaxresponse').text('');
+
+	//jQuery('#ajaxresponse').innerHTML = '';
 }
 
 function deletesubst() {
 	var substid = this.id.substr(7);
 	var querystring = '&substid=' + substid;
 	var url = baseajaxurl + '&task=match.removeSubst';
+	console.log(querystring);
 	if (substid) {
-		var myXhr = new Request.JSON({
+		var jqXhr = jQuery.ajax({
 			url : url + querystring,
-			method : 'post',
-			onRequest : substRequest,
-			onSuccess : substRemoved,
-			onFailure : substFailed,
+			method : 'Post',
+			success : substRemoved,
+			error : substFailed,
 			substid: substid
 		});
-		myXhr.post();
 	}
 }
 
-function substSaved(response) {
-	$('ajaxresponse').removeClass('ajax-loading');
-	var currentrow = $('row-' + this.options.rowid);
-	var si_out = $('out').selectedIndex;
-	var si_in  = $('in').selectedIndex;
-	var si_project_position_id = $('project_position_id').selectedIndex;
+function substSaved(data,textStatus,jqXHR) {
+	jQuery('#ajaxresponse').removeClass('ajax-loading');
+	var currentrow = document.getElementById('row-' + this.rowid);
+	var si_out = document.getElementById('out').selectedIndex;
+	var si_in  = document.getElementById('in').selectedIndex;
+	var si_project_position_id = document.getElementById('project_position_id').selectedIndex;
+	console.log(currentrow);
+	console.log(si_in, si_out);
+	// modify response
+	var obj 	= jQuery.parseJSON(data);
+	var status	= obj.success;
+	console.log(data);
+	if (status) {
+		//------ create output ------//
+	jQuery('#ajaxresponse').removeClass('ajax-loading');
 	// first line contains the status, second line contains the new row.
-	if (response.success) {
-		// create new row in substitutions table
-		var newrow = new Element('tr', {
-			id : 'sub-' + response.id
-		});
+	
+		var newrow = jQuery("<tr>").attr({id: 'sub-' + obj.id});
+		console.log(newrow , obj.id);
 		if(si_out > 0) {
-			new Element('td').set('text', $('out').options[si_out].text).inject(newrow);
-			move($('out'), $('in'));
-			$('out').selectedIndex = si_out;
-			$('in').selectedIndex = si_in;
+			newrow.append(jQuery("<td>").text(jQuery('#out option:selected').text()));
+			move(document.getElementById('out'), document.getElementById('in'));
+			document.getElementById('out').selectedIndex = si_out;
+			document.getElementById('in').selectedIndex = si_in;
 		} else {
-			new Element('td').set('text', '').inject(newrow);
+			newrow.appendTo(jQuery("<td>").text(''));
 		}
 		if(si_in > 0) {
-			new Element('td').set('text', $('in').options[si_in].text).inject(newrow);
-			move($('in'), $('out'));
-			$('out').selectedIndex = si_out;
-			$('in').selectedIndex = si_in;
+		newrow.append(jQuery("<td>").text(jQuery('#in option:selected').text()));
+			move(document.getElementById('in'), document.getElementById('out'));
+			document.getElementById('out').selectedIndex = si_out;
+			document.getElementById('in').selectedIndex = si_in;
 		} else {
-			new Element('td').set('text', '').inject(newrow);
+			newrow.appendTo(jQuery("<td>").text(''));
 		}
 		if(si_project_position_id > 0) {
-			new Element('td').set('text', $('project_position_id').options[si_project_position_id].text).inject(newrow);
+		newrow.append(jQuery("<td>").text(jQuery('#project_position_id option:selected').text()));
 		} else {
-			new Element('td').set('text', '').inject(newrow);
+		newrow.appendTo(jQuery("<td>").text(''));
 		}
-		new Element('td').set('text', $('in_out_time').value).inject(newrow);
-		var deletebutton = new Element('input', {
-			id : 'delete-' + response.id,
-			type : 'button',
-			value : str_delete
-		}).addClass('inputbox button-delete').addEvent('click', deletesubst);
-		var td = new Element('td').inject(newrow).appendChild(deletebutton);
-		newrow.inject(currentrow, 'before');
-		$('ajaxresponse').set('text', response.message);
+		newrow.append(jQuery("<td>").text( jQuery('#in_out_time').val()));
+		
+		// create delete-td + delete button
+		var deletebutton = jQuery("<button>").attr({id : 'delete-' + obj.id,type : 'button'}).addClass('inputbox button-delete-e btn btn-small').click(deletesubst);
+		deletebutton.append(jQuery("<col-md->").addClass("icon-delete"));
+		
+		var deletetd = jQuery("<td>").addClass("center");
+		deletetd.append(deletebutton);		
+		
+		newrow.append(deletetd);
+		
+		// add row after the new entry row
+		jQuery('#row-new').before(newrow);
+	// display response message
+		var $label = jQuery("<label>").text(obj.message).attr({class: 'label label-message'});
+		$label.appendTo(jQuery('#ajaxresponse'));	
 	} else {
-		$('ajaxresponse').set('text', response.message);
+		var $label = jQuery("<label>").text(obj.message).attr({class: 'label label-warning'});
+		$label.appendTo(jQuery('#ajaxresponse'));	
 	}
 }
 
-function substFailed(response) {
-	$('ajaxresponse').removeClass('ajax-loading');
-	document.html.innerHTML = response.message || "";
+function substFailed(xhr, status, error) {
+	jQuery('#ajaxresponse').removeClass('ajax-loading');
+	var err = eval("(" + xhr.responseText + ")");
+	var $label = jQuery("<label>").text(err.Message).attr({class: 'label label-warning'});
+	$label.appendTo(jQuery('#ajaxresponse'));	
 }
 
-function substRemoved(response) {
-	if (response.success) {
-		var currentrow = $('sub-' + this.options.substid);
-		currentrow.dispose();
-	}
-
-	$('ajaxresponse').removeClass('ajax-loading');
-	$('ajaxresponse').innerHTML = response.message;
+function substRemoved(data,textStatus,jqXHR) {
+	// blank ajax response container
+	jQuery('#ajaxresponse').removeClass('ajax-loading');
+	
+	var obj 	= jQuery.parseJSON(data);
+	var status	= obj.success;
+	console.log(obj);
+	//console.dir(obj);
+	if (status) {
+		// remove entry from view
+		var currentrow = jQuery('#sub-' + this.substid);
+		currentrow.remove();
+	} else {
+		var $label = jQuery("<label>").text(obj.message).attr({class: 'label label-warning'});
+		$label.appendTo(jQuery('#ajaxresponse'));
+	}		
 }

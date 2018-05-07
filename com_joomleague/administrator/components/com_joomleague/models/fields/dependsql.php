@@ -19,7 +19,7 @@ defined('_JEXEC') or die;
 
 FormHelper::loadFieldClass('list');
 
-HTMLHelper::_( 'behavior.framework' );
+//HTMLHelper::_( 'behavior.framework' );
 
 /**
  * Renders a Dynamic SQL field

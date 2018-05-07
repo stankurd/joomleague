@@ -89,7 +89,7 @@ $(document).ready(function() {
 			var player = jQuery('#teamplayer_id').val();
 			var event = jQuery('#event_type_id').val();
 			var team = jQuery('#team_id').val();
-			var event_sum = jQuery('#event_sum').val();
+			var sum = jQuery('#event_sum').val();
 			var time = jQuery('#event_time').val();
 			var notice = encodeURIComponent(jQuery('#event_notice').val());
 			var querystring = 'teamplayer_id=' + player +
@@ -97,7 +97,7 @@ $(document).ready(function() {
 					'&event_type_id=' + event +
 					'&event_time=' + time +
 					'&match_id=' + matchid +
-					'&event_sum=' + event_sum +
+					'&event_sum=' + sum +
 					'&notice=' + notice
 				;
 			
@@ -200,9 +200,10 @@ function eventaddsuccess(data,textStatus,jqXHR) {
 		//------ create output ------//
 	
 		// create new row in events table
-		/* var newrow = new Element('tr', {id : 'rowe-' + obj.id}); */
+		 //var newrow = new Element('tr', {id : 'rowe-' + obj.id}); 
 		var newrow = jQuery("<tr>").attr({id: 'rowe-'+obj.id});
-		
+		console.log(obj);
+
 		// add td's
 		newrow.append(jQuery("<td>").text(obj.id));
 		newrow.append(jQuery("<td>").text(jQuery('#team_id option:selected').text()));
@@ -225,7 +226,7 @@ function eventaddsuccess(data,textStatus,jqXHR) {
 		jQuery('#row-new-event').after(newrow);
 	
 		// display response message
-		/* new Element('col-md-').addClass('label').addClass('label-message').set('text','note:event created').inject($('ajaxresponseevent'),'inside');*/
+		// new Element('span').addClass('label').addClass('label-message').set('text','note:event created').inject($('ajaxresponseevent'),'inside');
 	} else {
 		var $label = jQuery("<label>").text(obj.message).attr({class: 'label label-warning'});
 		$label.appendTo(jQuery('#ajaxresponseevent'));	
@@ -345,7 +346,7 @@ function commentaddsuccess(data,textStatus,jqXHR) {
 		jQuery('#row-new-comment').after(newrow);
 	
 		// display response message
-		/* new Element('col-md-').addClass('label').addClass('label-message').set('text','note:comment created').inject($('ajaxresponsecomment'),'inside');*/
+		/* new Element('span').addClass('label').addClass('label-message').set('text','note:comment created').inject($('ajaxresponsecomment'),'inside');*/
 	} else {
 		var $label = jQuery("<label>").text(obj.message).attr({class: 'label label-warning'});
 		$label.appendTo(jQuery('#ajaxresponsecomment'));	
@@ -415,7 +416,7 @@ function checkTime(field)
  
   // regular expression to match required time format
   var re = /^(\d{1,2}):(\d{2})(:00)?([ap]m)?$/;
-  var regs = new Array();
+  var regs = [];
   if(field != '') {  
     if(regs = field.match(re)) {
       if(regs[4]) {

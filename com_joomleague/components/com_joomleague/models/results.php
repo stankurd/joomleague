@@ -149,7 +149,7 @@ class JoomleagueModelResults extends JoomleagueModelProject
 			->where($db->quoteName('m.published') . ' = 1')
 			->where($db->quoteName('r.id') . ' = ' . (int)$round)
 			->where($db->quoteName('r.project_id') . ' = ' . (int)$project->id)
-			->group($db->quoteName('m.id'))
+			//->group('m.id') //don't works correct
 			->order($db->quoteName('m.match_date') . ' ASC')
 			->order($db->quoteName('m.match_number'));
 

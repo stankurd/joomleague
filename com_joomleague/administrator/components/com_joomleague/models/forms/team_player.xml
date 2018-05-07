@@ -23,7 +23,7 @@
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
 		</field>
-		<field name="injury_date" type="matchdaylist" required="false" default="0"
+		<field name="injury_date" type="matchdaylist" required="false" default=""
 			varname="cid" label="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_INJURY_DATE"
 			description="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_INJURY_DATE_DESC" class="inputbox">
 			
@@ -48,16 +48,12 @@
 			description="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_SUSPENSION_DATE_DESC"
 			class="inputbox"
 			default="0">
-			<option value="0">
-				COM_JOOMLEAGUE_GLOBAL_SELECT</option>
 			</field>
 		<field name="suspension_end" type="matchdaylist" required="false"
 			varname="cid" label="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_SUSPENSION_END"
 			description="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_SUSPENSION_END_DESC"
 			class="inputbox"
 			default="0">
-			<option value="0">
-				COM_JOOMLEAGUE_GLOBAL_SELECT</option>
 			</field>
 		<field name="suspension_detail" type="text"
 			label="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_SUSPENSION_TYPE" description="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_SUSPENSION_TYPE_DESC"
@@ -71,15 +67,11 @@
 			varname="cid" label="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_AWAY_DATE"
 			description="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_AWAY_DATE_DESC" class="inputbox"
 			default="0">
-			<option value="0">
-				COM_JOOMLEAGUE_GLOBAL_SELECT</option>
 			</field>
 		<field name="away_end" type="matchdaylist" required="false"
 			varname="cid" label="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_AWAY_END"
 			description="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_AWAY_END_DESC" class="inputbox"
 			default="0">
-			<option value="0">
-				COM_JOOMLEAGUE_GLOBAL_SELECT</option>
 			</field>
 		<field name="away_detail" type="text"
 			label="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_AWAY_TYPE" description="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_AWAY_TYPE_DESC"

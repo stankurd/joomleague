@@ -5,9 +5,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
-Joomla = window.Joomla || {};
-	(function() {
-	'use strict';
+
 function joomleague_changedoc(docid){
   if (docid != "" && docid.options[docid.options.selectedIndex].value!="") {
     window.location.href = docid.options[docid.options.selectedIndex].value;
@@ -119,4 +117,3 @@ function moveOptionDown(selectId) {
 		}
 	}
 }
-})();

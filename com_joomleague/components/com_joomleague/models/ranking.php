@@ -103,7 +103,7 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 		       	$query .= '   AND (pt1.division_id = ' . $this->_db->Quote($this->selDivision);
 				$query .= '   OR pt2.division_id = ' . $this->_db->Quote($this->selDivision) . ')';
 		       }
-		       $query .= ' ORDER BY r.roundcode ASC '
+		       //$query .= ' ORDER BY r.roundcode ASC '
 		       ;
 		$this->_db->setQuery($query);
 		$games = $this->_db->loadObjectList();

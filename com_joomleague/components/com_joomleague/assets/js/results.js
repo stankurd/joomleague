@@ -9,13 +9,13 @@
 */
 
 (function(){
-	$$('.eventstoggle').addEvent('click', function(){
+	jQuery('.eventstoggle').click (function(){
 		var id = this.getProperty('id').substr(7);
-		if ($('info'+id).getStyle('display') == 'block') {
-			$('info'+id).setStyle('display', 'none');
+		if (document.getElementById('info'+id).getStyle('display') == 'block') {
+			document.getElementById('info'+id).setStyle('display', 'none');
 		}
 		else {
-			$('info'+id).setStyle('display', 'block');
+			document.getElementById('info'+id).setStyle('display', 'block');
 		}
 	});
 });

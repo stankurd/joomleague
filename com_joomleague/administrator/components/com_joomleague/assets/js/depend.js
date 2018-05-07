@@ -7,49 +7,50 @@
  *
  * @description	javascript for dependant element xml parameter
  */
-//Joomla = window.Joomla || {};
-//(function() {
 
-(function() {
-	$$('.mdepend').addEventListener('click', function() {
+
+// add update of field when fields it depends on change.
+jQuery('domready', function() {
+	console.log('ready');
+	jQuery('.mdepend').click (function() {
 		// rebuild hidden field list
-		var sel = new Array();
+		var sel = [];
 		var i = 0;
 		this.getElements('option').each(function(el) {
-			if (el.getProperty('selected')) {
-				sel[i++] = el.value;
+			if (el.attr('selected')) {
+				sel[i++] = el.val();
+				console.log(sel);
 			}
 		});
 		this.getParent().getElement('input').value = sel.join("|");
 	});
-	
 
-	$$('.depend').each(function(element) {
+	jQuery(".depend").each(function() {
 		// get value of attribute "depends", can be multiple
-		var depends = element.getProperty('depends');
 		// create array
-		var dependsArray = depends.split(',');
+		var dependsArray = jQuery(this).attr('depends').split(',');
 		// gets the active element
-		var myelement = element;
+		var myelement = this;
 
 		// gets the prefix of the current element
-		var prefix = getElementIdPrefix(element);
+		var prefix = getElementIdPrefix(this);
 
 		// Attach update_depend to the change event of all elements it depends upon,
 		// so that when (one of) the dependencies change, the element is refreshed.
-		dependsArray.each(function(el) {
-
+		jQuery.each(dependsArray, function(){
 			// incoming: string, without prefix so let's attach the prefix
-			var combined = '#'+String(prefix)+String(el);
-			var newid = document.id(combined);
+			var combined = '#'+String(prefix)+String(this);
+			var newid = jQuery(combined);
 
 			jQuery(combined).change(function() {
 				update_depend(myelement);
+				console.log(combined,myelement);
 			});
 		});
 
 		// Refresh the element also after the page is loaded (to fill the element)
 		load_default(myelement);
+		console.log(myelement);
 
 	});
 });
@@ -63,7 +64,8 @@ function load_default(element) {
 	// prefix
 	var prefix = getElementIdPrefix(element);
 	// do we have a required attributed?
-	var required = element.getProperty('required') || 'false';
+	//var required = element.getProperty('required') || 'false';
+	var required = jQuery(element).attr('required') || 'false';
 
 	if (required == 'true') {
 		var required = "&required=true";
@@ -72,67 +74,68 @@ function load_default(element) {
 		var required = "&required=false";
 	}
 
-	var selectedItems = combo.getProperty('current').split('|');
-	var depends = combo.getProperty('depends').split(',');
+	//var selectedItems = combo.getProperty('current').split('|');
+	//var depends = combo.getProperty('depends').split(',');
+	var selectedItems = jQuery(combo).attr('current').split('|');
+	var depends = jQuery(combo).attr('depends').split(',');
 	var dependquery = '';
-	depends.each(function(str) {
-		dependquery += '&' + str + '=' + $(prefix + str).value;
+	jQuery.each(depends,function(str) {
+		dependquery += '&' + this + '=' + jQuery('#' + prefix + this).val();
 	});
-
 	var loaddefault = 1;
-	var task = combo.getProperty('task');
+	var task = jQuery(combo).attr('task');
 	var postStr = '';
 	var url = 'index.php?option=com_joomleague&format=json&task=ajax.' + task
 		+ required + dependquery;
-	var theAjax = new Request.JSON({
-		url : url,
-		method : 'post',
-		postBody : postStr,
-		onSuccess : function(response) {
-			/* var JSON_output = JSON.stringify(response); */
-
+		console.log(url,task,dependquery);
+	var jqXhr = jQuery.ajax({
+	    url : url,
+	    type : 'Post',
+	    dataType: 'json',
+		//postBody : postStr,
+	    success:  function(data,textStatus,jqXHR) {		
 			// options is equal to the response
-			var options = response;
-
-
+			var options = data;
 			var headingLine = null;
-
+			console.log(data);
 			// @todo: check!
-			if (combo.getProperty('isrequired') == 0) {
+			if (jQuery(combo).attr('isrequired') == 0) {
 				// In case the element is not mandatory, then first option is 'select': keep it
 				// Remark : the old solution options.unshift(combo.options[0]); does not work properly
 				//          It seems to result in problems in the mootools library.
 				//          Therefore a different approach is taken.
-				headingLine = {value: combo.options[0].value, text: combo.options[0].text};
-			}
-			combo.empty();
+				headingLine = {value: jQuery(combo).options[0].val(), text: jQuery(combo).options[0].text};
+				}
+			jQuery(combo).empty();
 
 			// adding first option
 			if (headingLine != null) {
-				new Element('option', headingLine).injec(combo,'inside');
+				jQuery(combo).append(jQuery('option: headingLine'));
+				console.log(combo,headingLine);
 			}
 
-			options.each(function(el) {
+			jQuery.each(options,function(el) {				
 				/*
 				 if (typeof el == "undefined") return;
 				 if (selectedItems != null && selectedItems.indexOf(el.value) != -1) {
 				 el.selected = "selected";
 				 }
-				 */
-				new Element('option', {'value': el.value, 'text':el.text}).inject(combo,'inside');
-			});
-
+				*/
+				 
+				var option = jQuery('<option>');
+				jQuery(option).text(this.text),jQuery(option).val(this.value);
+				jQuery(combo).append(option);
+				console.log(el,option);
+				});
 			jQuery(combo).val(selectedItems);
 			jQuery(combo).trigger("chosen:updated");
 			jQuery(combo).trigger("liszt:updated");
 
 		}
 	});
-
-	theAjax.post();
+	console.log(jqXhr);
+	
 }
-
-
 
 
 
@@ -144,8 +147,8 @@ function update_depend(element) {
 	// prefix
 	var prefix = getElementIdPrefix(element);
 	// do we have a required attributed?
-	var required = element.getProperty('required') || 'false';
-
+	//var required = element.getProperty('required') || 'false';
+	var required = jQuery(element).attr('required') || 'false';
 	if (required == 'true') {
 		var required = "&required=true";
 	}
@@ -153,69 +156,74 @@ function update_depend(element) {
 		var required = "&required=false";
 	}
 
-	var selectedItems = combo.getProperty('current').split('|');
-	var depends = combo.getProperty('depends').split(',');
+	//var selectedItems = combo.getProperty('current').split('|');
+	//var depends = combo.getProperty('depends').split(',');
+	var selectedItems = jQuery(combo).attr('current').split('|');
+	var depends = jQuery(combo).attr('depends').split(',');
 	var dependquery = '';
-	depends.each(function(str) {
-		dependquery += '&' + str + '=' + $(prefix + str).value;
+	jQuery(depends).each(function() {
+		dependquery += '&' + this + '=' + jQuery('#' + prefix + this).val();
+			console.log(depends, dependquery,this, prefix);
 	});
 
-	var task = combo.getProperty('task');
+	var task = jQuery(combo).attr('task');
 	var postStr = '';
 	var url = 'index.php?option=com_joomleague&format=json&task=ajax.' + task
 		+ required + dependquery;
-	var theAjax = new Request.JSON({
-		url : url,
-		method : 'post',
+		console.log(url);
+	var jqXhr = jQuery.ajax({
+	    url : url,
+	    type : 'Post',
+	    dataType: 'json',
 		postBody : postStr,
-		onSuccess : function(response) {
-			/* var JSON_output = JSON.stringify(response); */
-
+	    success:  function(data,textStatus,jqXHR) {
+		console.log(data);
 			// options is equal to the response
-			var options = response;
-
-
+			var options = data;
 			var headingLine = null;
 
 			// @todo: check!
-			if (combo.getProperty('isrequired') == 0) {
+			if (jQuery(combo).attr('isrequired') == 0) {
 				// In case the element is not mandatory, then first option is 'select': keep it
 				// Remark : the old solution options.unshift(combo.options[0]); does not work properly
 				//          It seems to result in problems in the mootools library.
 				//          Therefore a different approach is taken.
-				headingLine = {value: combo.options[0].value, text: combo.options[0].text};
+				headingLine = {value: jQuery(combo).options[0].val(), text: jQuery(combo).options[0].text};
 			}
-			combo.empty();
+			jQuery(combo).empty();
 
 			// adding first option
 			if (headingLine != null) {
-				new Element('option', headingLine).injec(combo,'inside');
+				jQuery(combo).append(jQuery('option: headingLine'));
 			}
 
-			options.each(function(el) {
+			jQuery(options).each(function(el) {				
 				/*
 				 if (typeof el == "undefined") return;
 				 if (selectedItems != null && selectedItems.indexOf(el.value) != -1) {
 				 el.selected = "selected";
 				 }
-				 */
-				new Element('option', {'value': el.value, 'text':el.text}).inject(combo,'inside');
-			});
-
+				*/
+				 
+				var option = jQuery('<option>');
+				jQuery(option).text(this.text),jQuery(option).val(this.value);
+				jQuery(combo).append(option);
+				});
 			jQuery(combo).trigger("chosen:updated");
 			jQuery(combo).trigger("liszt:updated");
 		}
 	});
-
-	theAjax.post();
+	console.log(jqXhr);
 }
 
 /** The element IDs can be either "jform_request_" (for menu items) or "jform_params_" (for modules)
  *  This function will check if we have to do with menu items or modules, and return the right
  *  prefix to be used for element-IDs */
 function getElementIdPrefix(el) {
-	var id = el.getProperty('id');
-	var infix = id.replace(/^jform_(\w+)_.*$/, "$1");
+	//var id = el.getAttribute('id');
+	var id = jQuery(el).attr('id');
+	console.log(id);
+	var infix = jQuery(el).attr('id').replace(/^jform_(\w+)_.*$/, "$1");
 	return infix.match("request") ? "jform_request_" : "jform_params_";
 }
-//})();
+ 

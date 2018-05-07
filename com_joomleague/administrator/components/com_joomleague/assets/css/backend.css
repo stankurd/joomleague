@@ -21,6 +21,8 @@ div#addNewComment textarea,
 div#addNewEvent textarea
  {
 	border: 2px solid black;
+	margin-left="100px"
+
 }
 
 div#addNewEvent .control-label,
@@ -62,7 +64,7 @@ button#multiselect_moveDown {
     width: 40px;
 }
 
-h1 span.toolbarTitleType {
+h1 col-md-.toolbarTitleType {
     color: #c7c7c7;
 }
 
@@ -109,7 +111,7 @@ body.com_joomleague h1.page-title {
     margin-top: 5px;
 }
 
-body.com_joomleague h1 span[class^="icon-jl-"] {
+body.com_joomleague h1 col-md-[class^="icon-jl-"] {
     width: 48px;
     height: 48px;
     vertical-align: middle;
@@ -271,12 +273,12 @@ div.pagetitle {
 	border: 0 none;
 }
 
-.pane-toggler span {
+.pane-toggler col-md- {
 	background: transparent url(../images/j_arrow.png) 5px 50% no-repeat;
 	padding-left: 20px;
 }
 
-.pane-toggler-down span {
+.pane-toggler-down col-md- {
 	background: transparent url(../images/j_arrow_down.png) 5px 50% no-repeat;
 	padding-left: 20px;
 }
@@ -366,7 +368,7 @@ div#position-icon.pane-sliders .icon {
     margin: 0 auto;
 }
 
-#cpanel span, .cpanel span {
+#cpanel col-md-, .cpanel col-md- {
     display: block;
     text-align: center;
 }

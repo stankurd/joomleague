@@ -43,6 +43,7 @@ jQuery(document).ready(function(){
 
 	document.formvalidator.setHandler('time',
 		function (value) {
+			var regex = new Array();
 			regex=/^[0-9]{1,2}:[0-9]{1,2}$/;
 			return regex.test(value);
 		});

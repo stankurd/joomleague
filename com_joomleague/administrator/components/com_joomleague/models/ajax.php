@@ -57,7 +57,7 @@ class JoomleagueModelAjax extends JLGModel
 									JOIN #__joomleague_division d ON d.id = pt.division_id
 									JOIN #__joomleague_project p ON p.id = pt.project_id
 									WHERE pt.project_id = " . $db->Quote($project_id) . "
-				                    GROUP BY d.id
+				                    GROUP BY d.id,  d.alias, d.name
 									ORDER BY d.name" );
 		return self::addGlobalSelectElement($db->loadObjectList(), $required);
 		$app->close();
@@ -156,7 +156,7 @@ class JoomleagueModelAjax extends JLGModel
 			$query .= " AND pt.division_id = " . $db->Quote($division_id);
 		}
 		$query .= " AND p.published = '1'
-					GROUP BY p.id
+					GROUP BY p.id, p.alias, p.firstname, p.nickname, p.lastname, p.birthday
 					ORDER BY p.lastname, p.firstname, p.nickname"; 
 		$db->setQuery($query);
 		$persons = $db->loadObjectList();
@@ -195,7 +195,7 @@ class JoomleagueModelAjax extends JLGModel
 			$query .= " AND pt.division_id = " . $db->Quote($division_id);
 		}
 		$query .= " AND p.published = '1'
-					GROUP BY p.id
+					GROUP BY p.id, p.alias, p.firstname, p.nickname, p.lastname, p.birthday
 					ORDER BY p.lastname, p.firstname, p.nickname";
 		$db->setQuery($query);
 		$persons = $db->loadObjectList();
@@ -227,7 +227,7 @@ class JoomleagueModelAjax extends JLGModel
 									INNER JOIN #__joomleague_club AS c ON c.id = t.club_id
 									INNER JOIN #__joomleague_project p ON p.id = pt.project_id
 									WHERE pt.project_id = " . $db->Quote($project_id) . "
-									GROUP BY c.id
+									GROUP BY c.id,  c.alias, c.name
 									ORDER BY c.name" );
 		return self::addGlobalSelectElement($db->loadObjectList(), $required);
 		$app->close();
@@ -245,7 +245,7 @@ class JoomleagueModelAjax extends JLGModel
 					INNER JOIN #__joomleague_match as m ON m.id = me.match_id 
 					INNER JOIN #__joomleague_round as r ON m.round_id = r.id
 					WHERE r.project_id=" . $project_id . "
-					GROUP BY et.id
+					GROUP BY et.id, et.alias, et.name 
 					ORDER BY et.ordering";
 
 		$db->setQuery( $query );
@@ -266,7 +266,7 @@ class JoomleagueModelAjax extends JLGModel
 									INNER JOIN #__joomleague_statistic AS s ON s.id = ps.statistic_id
 									INNER JOIN #__joomleague_project p ON p.id = ppos.project_id
 									WHERE ppos.project_id = " . $db->Quote($project_id) . "
-									GROUP BY s.id
+									GROUP BY s.id, s.alias, s.name
 									ORDER BY s.name" );
 		return self::addGlobalSelectElement($db->loadObjectList(), $required);
 		$app->close();

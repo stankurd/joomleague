@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<extension type="component" version="3.0" method="upgrade">
+<extension type="component" version="4.0" method="upgrade">
 	<name>com_joomleague</name>
 	<creationDate>2015</creationDate>
 	<author>JoomLeague Developers</author>
@@ -7,8 +7,8 @@
 	<authorUrl>http://www.joomleague.at</authorUrl>
 	<copyright>(C) 2005-2016 joomleague.at. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<version>3.0.22.57ae969</version>
-	<description>League Management component for Joomla 3.0.x - Release 3.0.22.57ae969</description>
+	<version>4.0.01.57ae969</version>
+	<description>League Management component for Joomla 4.0.x - Release 4.0.01.57ae969</description>
 
 	<!-- Site Main File Copy Section -->
 	<files folder="components/com_joomleague">
@@ -34,6 +34,7 @@
 	<!-- Site Main Media File Copy Section -->
 	<media destination="com_joomleague" folder="media/com_joomleague">
 		<filename>index.html</filename>
+		<folder>autocomplete</folder>
 		<folder>bootstrap-editable</folder>
 		<folder>colorpicker</folder>
 		<folder>database</folder>

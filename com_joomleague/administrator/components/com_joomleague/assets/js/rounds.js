@@ -5,18 +5,14 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
- Joomla = window.Joomla || {};
 
 (function() {
-	'use strict';
-
-	document.addEventListener('DOMContentLoaded', function() {
 	if($('populate_enter_division')) {
 		$('populate_enter_division').hide();
 		$('table.adminlist tr').each(function(el){
 			var cb;
 			if (cb=el.getElement("input[name^=cid]")) {
-				el.getElement("input[name^=roundcode]").addEventListener('change',function(){
+				el.getElement("input[name^=roundcode]").addEvent('change',function(){
 					if (isNaN(this.value)) {
 						alert(Joomla.JText._('COM_JOOMLEAGUE_ADMIN_ROUNDS_CSJS_MSG_NOTANUMBER'));
 						return false;
@@ -26,10 +22,10 @@
 		});
 	}
 	if($('buttonup')) {
-		$('buttonup').addEventListener('click', function(){
+		$('buttonup').addEvent('click', function(){
 			moveOptionUp('teamsorder');
 		});
-		$('buttondown').addEventListener('click', function(){
+		$('buttondown').addEvent('click', function(){
 			moveOptionDown('teamsorder');
 		});
 	}
@@ -67,7 +63,7 @@ function updateAddRoundMethod(element) {
 	$('interval_method').style.display = (element.value == 0) ? 'block' : 'none';
 }
 
-})();
+
 /**
  * show/hide the teams sort list
  * 

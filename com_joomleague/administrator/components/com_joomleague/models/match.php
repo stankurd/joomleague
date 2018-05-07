@@ -1931,7 +1931,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		
 		$query->where(array('t1.published = 1'));
 		
-		$query->where(array('t2.published = 1')); 
+		//$query->where(array('t2.published = 1')); 
 		 		
 		$query->where('me.match_id = '.$db->Quote($match_id));
 		$query->order(array('me.event_time DESC','me.id DESC'));

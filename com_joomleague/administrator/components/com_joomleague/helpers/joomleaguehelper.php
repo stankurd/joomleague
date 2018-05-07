@@ -17,7 +17,7 @@ use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
-use Joomla\Component\Content\Administrator\Helper\ContentHelper;
+use Joomla\CMS\Helper\ContentHelper; 
 use Joomla\Utilities\ArrayHelper;
 if( !defined('THUMBLIB_BASE_PATH') ) {
 	require_once(JLG_PATH_SITE.'/assets/classes/PHPThumb/ThumbLib.inc.php');

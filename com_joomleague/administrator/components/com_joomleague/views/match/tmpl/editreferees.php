@@ -19,11 +19,14 @@ $input = $app->input;
 
 ?>
 <script>
-jQuery(document).ready(function($) {
-	jQuery('#multiselect').multiselect({
-		sort: false
-	});
-});
+/**
+$('#destination').change(function() {
+  var selected = [];
+  for(i = 0; i < $('#destination').children().length; i++){
+    selected[i] = $($('#destination').children()[i]).data('foo');
+  }
+  console.log(selected);
+});*/
 </script>
 	
 <div id="lineup">
@@ -57,36 +60,21 @@ jQuery(document).ready(function($) {
 									<tr>
 								<td style='text-align: center; vertical-align: middle;'>
 									<!-- left / right buttons --> <br /> 
-									<div class="col-md-2">
-			
-			<button type="button" id="multiselect_rightSelected"
-				class="btn btn-block">
-				<i class="icon-arrow-right"></i>
-			</button>
-			<button type="button" id="multiselect_leftSelected"
-				class="btn btn-block">
-				<i class="icon-arrow-left"></i>
-			</button>
-		</div>
+									<input type="button" id="moveright-<?php echo $key;?>" class="inputbox rmove-right" value="&gt;&gt;" />
+									<br /> &nbsp;&nbsp; 
+									<input type="button" id="moveleft-<?php echo $key;?>" class="inputbox rmove-left" value="&lt;&lt;" /> &nbsp;&nbsp;
 								</td>
 								<td>
-									<!-- player affected to this position --> <b><?php echo Text::_($pos->text); ?></b><br />
+									<!-- player affected to this position --> <b><?php echo JText::_($pos->text); ?></b><br />
 										<?php echo $this->lists['team_referees'.$key];?>
 									</td>
 								<td style='text-align: center; vertical-align: middle;'>
 									<!-- up/down buttons --> <br /> 
-									<div class="col-md-2">
-			<button type="button" id="multiselect_moveUp" class="btn btn-block"
-				onclick="moveOptionUp('multiselect_to
-					');">
-				<i class="icon-uparrow"></i>
-			</button>
-			<button type="button" id="multiselect_moveDown" class="btn btn-block"
-				onclick="moveOptionDown('multiselect_to');">
-				<i class="icon-downarrow"></i>
-			</button>
-		</div>
+									<input type="button" id="moveup-<?php echo $key;?>" class="inputbox rmove-up" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_UP'); ?>" /><br />
+									<input type="button" id="movedown-<?php echo $key;?>" class="inputbox rmove-down" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DOWN'); ?>" />
+								</td>
 							</tr>
+
 								<?php
 							}
 							?>

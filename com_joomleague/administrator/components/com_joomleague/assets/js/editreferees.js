@@ -9,29 +9,32 @@
  * functions move, moveoptionup, moveoptiondown are defined in joomleague.js
  */
 
-(function() {
-
+	jQuery('domready', function() {
+	console.log('ready');
 	var moverightCount = jQuery("input[class*='move-right'").length;
-
+	console.log(moverightCount);
 	if (!moverightCount) {
 		return;
 	}
+	
 		
 	// referees - move - right
 	jQuery("input[class*='rmove-right'").click(function() {
 		jQuery('#changes_check').val(1);
 		var posid = this.id.substr(10);
-		var fbox = $('roster');
-		var tbox = $('position' + posid);
+		var fbox = document.getElementById('roster');
+		var tbox = document.getElementById('position' + posid);
 		move(fbox,tbox);
+
+		console.log(posid, fbox, tbox);
 	});
 	
 	// referees - move - left
 	jQuery("input[class*='rmove-left'").click(function() {
 		jQuery('#changes_check').val(1);
 		var posid = this.id.substr(9);
-		var fbox = $('position' + posid);
-		var tbox = $('roster');
+		var fbox = document.getElementById('position' + posid);
+		var tbox = document.getElementById('roster');
 		move(fbox,tbox);
 	});
 	
@@ -48,8 +51,19 @@
 		var posid = this.id.substr(9);
 		moveOptionDown('position' + posid);
 	});
+	// upon submit
+	if (document.adminForm) {
+		// on submit select all elements of select lists
+		jQuery('#adminForm').submit (function(event) {
+		 var choice = jQuery('*').val();
+			if(!choice) {	
+            jQuery('*').attr('selected','selected');			
+			}	
+			});
+		};
+});
 
-
+/*
 	// upon submit
 	if (document.adminForm) {
 		// on submit select all elements of select lists
@@ -180,4 +194,4 @@ function substRemoved(response) {
 
 	$('ajaxresponse').removeClass('ajax-loading');
 	$('ajaxresponse').innerHTML = response.message;
-}
+}*/

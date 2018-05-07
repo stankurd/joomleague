@@ -22,7 +22,6 @@ jimport('joomla.filesystem.file');
 
 HTMLHelper::_('jquery.framework');
 HTMLHelper::_('behavior.formvalidator');
-HTMLHelper::_('behavior.core');
 /**
  * HTML View class
  */
@@ -174,8 +173,7 @@ class JoomleagueViewMatch extends JLGView
 		// add the js script
 		$baseurl = Uri::root();
 		$document = Factory::getDocument();
-		$document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/multiselect.js');
-		//$document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/editreferees.js');
+		$document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/editreferees.js');
 		
 		$model = $this->getModel();
 		
@@ -200,13 +198,13 @@ class JoomleagueViewMatch extends JLGView
 			    $projectreferees2 [] = HTMLHelper::_ ( 'select.option', $referee->value, JoomleagueHelper::formatName ( null, $referee->firstname, $referee->nickname, $referee->lastname, $default_name_format ) . ' - (' . strtolower ( Text::_ ( $referee->positionname ) ) . ')' );
 			}
 		}
-		$lists ['team_referees'] = HTMLHelper::_ ( 'select.genericlist', $projectreferees2, 'roster[]', 'style="font-size:12px;height:auto;min-width:15em;" ' . 'class="inputbox"  multiple="true" size="' . max ( 10, count ( $projectreferees2 ) ) . '"', 'value', 'text' ,false, 'multiselect');
+		$lists ['team_referees'] = HTMLHelper::_ ( 'select.genericlist', $projectreferees2, 'roster[]', 'style="font-size:12px;height:auto;min-width:15em;" ' . 'class="inputbox"  multiple="true" size="' . max ( 10, count ( $projectreferees2 ) ) . '"', 'value', 'text');
 
 	    $selectpositions [] = HTMLHelper::_ ( 'select.option', '0', Text::_ ( 'COM_JOOMLEAGUE_GLOBAL_SELECT_REF_FUNCTION' ) );
 		if ($projectpositions = $model->getProjectPositionsOptions ( 0, 3 )) {
 			$selectpositions = array_merge ( $selectpositions, $projectpositions );
 		}
-		$lists ['projectpositions'] = HTMLHelper::_ ( 'select.genericlist', $selectpositions, 'project_position_id', 'class="inputbox" multiple="true" size="1"', 'value', 'text', false, 'multiselect' );
+		$lists ['projectpositions'] = HTMLHelper::_ ( 'select.genericlist', $selectpositions, 'project_position_id', 'class="inputbox" multiple="true" size="1"', 'value', 'text');
 
 		$squad = array ();
 		if (! $projectpositions) {
@@ -230,7 +228,7 @@ class JoomleagueViewMatch extends JLGView
 						$temp [$key] [] = HTMLHelper::_ ( 'select.option', $referee->value, JoomleagueHelper::formatName ( null, $referee->firstname, $referee->nickname, $referee->lastname, $default_name_format ) );
 					}
 				}
-				$lists ['team_referees' . $key] = HTMLHelper::_ ( 'select.genericlist', $temp [$key], 'position' . $key . '[]', 'id="testing" style="font-size:12px;height:auto;min-width:15em;" ' . 'class="inputbox position-starters" multiple="true" ', 'value', 'text', false,'multiselect_to' );
+				$lists ['team_referees' . $key] = HTMLHelper::_ ( 'select.genericlist', $temp [$key], 'position' . $key . '[]', 'id="testing" style="font-size:12px;height:auto;min-width:15em;" ' . 'class="inputbox position-starters" multiple="true" ', 'value', 'text' );
 			}
 		}
 		$this->project_id=$project_id;
@@ -280,8 +278,8 @@ class JoomleagueViewMatch extends JLGView
 			return false;
 		}
 		$teamname = ($team_id == $matchData->projectteam1_id) ? $matchData->team1 : $matchData->team2;
-		$this->_handlePreFillRoster($matchData, $model, $params, $matchData->projectteam1_id, $teamname);
-		$this->_handlePreFillRoster($matchData, $model, $params, $matchData->projectteam2_id, $teamname);
+		//$this->_handlePreFillRoster($matchData, $model, $params, $matchData->projectteam1_id, $teamname);
+		//$this->_handlePreFillRoster($matchData, $model, $params, $matchData->projectteam2_id, $teamname);
 
 		$homeRoster = $mdlMatch->getTeamPlayers($matchData->projectteam1_id, false, $default_name_dropdown_list_order);
 		if (count($homeRoster) == 0) {
@@ -420,8 +418,9 @@ class JoomleagueViewMatch extends JLGView
 		$match_id	= $input->getInt('match_id');
 
 		// add the js script
+		$baseurl = Uri::root();
 		$version = urlencode(JoomleagueHelper::getVersion());
-		$document->addScript(Uri::root().'/administrator/components/com_joomleague/assets/js/editmatchstats.js?v='.$version);
+		$document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/editmatchstats.js?v='.$version);
 
 		$model = $this->getModel();
 		
@@ -458,7 +457,9 @@ class JoomleagueViewMatch extends JLGView
 		if (!$stats) {
 			JLToolBarHelper::title('ERROR');
 			JLToolBarHelper::back('back');
-			JError::raiseWarning(440,'<br />'.Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_NO_STATS_POS').'<br /><br />');
+			$msg = Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_NO_STATS_POS');
+			$app->enqueueMessage($msg, 'warning');
+			
 			return false;
 		}
 		$playerstats = $model->getMatchStatsInput($match_id);
@@ -500,9 +501,8 @@ class JoomleagueViewMatch extends JLGView
 
 		// add the js script
 		$baseurl = Uri::root();
-		//$version = urlencode(JoomleagueHelper::getVersion());
-		$document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/multiselect.js');
-		//$document->addScript(Uri::root().'administrator/components/com_joomleague/assets/js/editlineup.js');
+		$version = urlencode(JoomleagueHelper::getVersion());
+		$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/editlineup.js');
 		
 		$model = $this->getModel();
 		$matchData = $model->getMatchTeams(false,$match_id);
@@ -715,7 +715,7 @@ class JoomleagueViewMatch extends JLGView
 					break;
 			}
 		}
-		$lists['team_staffs'] = HTMLHelper::_('select.genericlist', $not_assigned_options, 'staff[]', 'style="font-size:12px;height:auto;min-width:15em;" size="18" class="inputbox" multiple="true" size="18"', 'value', 'text',false,'multiselect2' );
+		$lists['team_staffs'] = HTMLHelper::_('select.genericlist', $not_assigned_options, 'staff[]', 'style="font-size:12px;height:auto;min-width:15em;" size="18" class="inputbox" multiple="true" size="18"', 'value', 'text' );
 
 		// generate selection list for each position
 		$options = array ();
@@ -727,7 +727,7 @@ class JoomleagueViewMatch extends JLGView
 					$options [] = HTMLHelper::_ ( 'select.option', $staff->team_staff_id, JoomleagueHelper::formatName(null,$staff->firstname,$staff->nickname,$staff->lastname,$default_name_format));
 				}
 			}
-			$lists ['team_staffs' . $position_id] = HTMLHelper::_ ( 'select.genericlist', $options, 'staffposition' . $position_id . '[]', 'style="font-size:12px;height:auto;min-width:15em;" size="4" class="inputbox position-staff" multiple="true" ', 'value', 'text',false,'multiselect2_to' );
+			$lists ['team_staffs' . $position_id] = HTMLHelper::_ ( 'select.genericlist', $options, 'staffposition' . $position_id . '[]', 'style="font-size:12px;height:auto;min-width:15em;" size="4" class="inputbox position-staff" multiple="true" ', 'value', 'text' );
 		}
 
 		$this->match=$matchData;

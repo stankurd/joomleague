@@ -20,7 +20,7 @@ use Joomla\CMS\Uri\Uri;
 defined('_JEXEC') or die;
 
 HTMLHelper::_('jquery.framework');
-HTMLHelper::_('behavior.core');
+//HTMLHelper::_('behavior.core');
 ?>
 <script type="text/javascript">
 <!--
@@ -76,9 +76,10 @@ var str_delete = "<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_DELETE'); ?>";
 </script>
 
 <?php
+/**
 if (isset ( $this->preFillSuccess ) && $this->preFillSuccess) {
 	Factory::getApplication ()->enqueueMessage ( Text::_ ( 'COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_DONE' ), 'message' );
-}
+}*/
 ?>
 <form method="post" id="adminForm" name="adminForm">
 <?php
@@ -91,8 +92,9 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, Text::_ ( 'Eve
 	<!-- events -->
 	<fieldset class="form-horizontal">
 		<legend><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_DESCR'); ?></legend>
+		<div id="ajaxresponse"></div>
 		<div class="row">
-			<div class="col-md-7">
+			<div class="col-md-8">
 				<table class="adminlist table">
 					<thead>
 						<tr>
@@ -146,7 +148,7 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, Text::_ ( 'Eve
 				</tbody>
 				</table>
 			</div>
-			<div class="col-md-5">
+			<div class="col-md-4">
 				<!-- add new Event -->
 				<div id="addNewEvent">
 					<fieldset class="form-vertical">
@@ -166,21 +168,21 @@ echo HTMLHelper::_ ( 'bootstrap.addTab', 'tabs', 'panel' . $p ++, Text::_ ( 'Eve
 							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_VALUE_SUM'); ?></div>
 							<div class="controls">
 								<input type="text" size="3" value="" id="event_sum"
-									name="event_sum" class="col-md-2" />
+									name="event_sum" class="col-md-4" />
 							</div>
 						</div>
 						<div class="control-group">
 							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TIME'); ?></div>
 							<div class="controls">
 								<input type="text" size="3" value="" id="event_time"
-									name="event_time" class="col-md-2" />
+									name="event_time" class="col-md-4" />
 							</div>
 						</div>
 						<div class="control-group">
 							<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_MATCH_NOTICE'); ?></div>
 							<div class="controls">
 								<textarea rows="2" cols="150" id="event_notice"
-									name="event_notice" class="col-md-7"></textarea>
+									name="event_notice" class="col-md-12"></textarea>
 							</div>
 						</div>
 						<div>
