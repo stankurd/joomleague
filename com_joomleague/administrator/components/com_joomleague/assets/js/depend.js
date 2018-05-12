@@ -65,7 +65,7 @@ function load_default(element) {
 	var prefix = getElementIdPrefix(element);
 	// do we have a required attributed?
 	//var required = element.getProperty('required') || 'false';
-	var required = jQuery(element).attr('required') || 'false';
+	var required = jQuery(this).prop('required') || 'false';
 
 	if (required == 'true') {
 		var required = "&required=true";
@@ -81,30 +81,33 @@ function load_default(element) {
 	var dependquery = '';
 	jQuery.each(depends,function(str) {
 		dependquery += '&' + this + '=' + jQuery('#' + prefix + this).val();
+		console.log(depends);
+		console.log(selectedItems);
+		console.log(dependquery);
 	});
 	var loaddefault = 1;
 	var task = jQuery(combo).attr('task');
 	var postStr = '';
-	var url = 'index.php?option=com_joomleague&format=json&task=ajax.' + task
-		+ required + dependquery;
+	var url = 'index.php?option=com_joomleague&format=json&task=ajax.' + task + required;
 		console.log(url,task,dependquery);
 	var jqXhr = jQuery.ajax({
-	    url : url,
+	    url : url+ dependquery,
 	    type : 'Post',
 	    dataType: 'json',
-		//postBody : postStr,
-	    success:  function(data,textStatus,jqXHR) {		
+		postBody : postStr,
+	    success:function (data,textStatus,jqXHR) {		
 			// options is equal to the response
 			var options = data;
 			var headingLine = null;
-			console.log(data);
+					console.log(textStatus);
+					console.log(data.error);
 			// @todo: check!
 			if (jQuery(combo).attr('isrequired') == 0) {
 				// In case the element is not mandatory, then first option is 'select': keep it
 				// Remark : the old solution options.unshift(combo.options[0]); does not work properly
 				//          It seems to result in problems in the mootools library.
 				//          Therefore a different approach is taken.
-				headingLine = {value: jQuery(combo).options[0].val(), text: jQuery(combo).options[0].text};
+				headingLine = {value: jQuery(combo).options[0].val() , text: jQuery(combo).options[0].text};
 				}
 			jQuery(combo).empty();
 
@@ -115,12 +118,12 @@ function load_default(element) {
 			}
 
 			jQuery.each(options,function(el) {				
-				/*
+				
 				 if (typeof el == "undefined") return;
 				 if (selectedItems != null && selectedItems.indexOf(el.value) != -1) {
 				 el.selected = "selected";
 				 }
-				*/
+			
 				 
 				var option = jQuery('<option>');
 				jQuery(option).text(this.text),jQuery(option).val(this.value);
@@ -130,10 +133,11 @@ function load_default(element) {
 			jQuery(combo).val(selectedItems);
 			jQuery(combo).trigger("chosen:updated");
 			jQuery(combo).trigger("liszt:updated");
-
 		}
+		
 	});
-	console.log(jqXhr);
+	
+	
 	
 }
 
@@ -148,7 +152,7 @@ function update_depend(element) {
 	var prefix = getElementIdPrefix(element);
 	// do we have a required attributed?
 	//var required = element.getProperty('required') || 'false';
-	var required = jQuery(element).attr('required') || 'false';
+	var required = jQuery(this).prop('required') || 'false';
 	if (required == 'true') {
 		var required = "&required=true";
 	}
@@ -169,15 +173,15 @@ function update_depend(element) {
 	var task = jQuery(combo).attr('task');
 	var postStr = '';
 	var url = 'index.php?option=com_joomleague&format=json&task=ajax.' + task
-		+ required + dependquery;
+		+ required ;
 		console.log(url);
 	var jqXhr = jQuery.ajax({
-	    url : url,
+	    url : url + dependquery,
 	    type : 'Post',
 	    dataType: 'json',
 		postBody : postStr,
 	    success:  function(data,textStatus,jqXHR) {
-		console.log(data);
+		console.log(data,textStatus,jqXHR);
 			// options is equal to the response
 			var options = data;
 			var headingLine = null;
@@ -198,12 +202,12 @@ function update_depend(element) {
 			}
 
 			jQuery(options).each(function(el) {				
-				/*
+				
 				 if (typeof el == "undefined") return;
 				 if (selectedItems != null && selectedItems.indexOf(el.value) != -1) {
 				 el.selected = "selected";
 				 }
-				*/
+				
 				 
 				var option = jQuery('<option>');
 				jQuery(option).text(this.text),jQuery(option).val(this.value);
@@ -224,6 +228,7 @@ function getElementIdPrefix(el) {
 	var id = jQuery(el).attr('id');
 	console.log(id);
 	var infix = jQuery(el).attr('id').replace(/^jform_(\w+)_.*$/, "$1");
+		console.log(infix.match);
 	return infix.match("request") ? "jform_request_" : "jform_params_";
+	
 }
- 
