@@ -48,7 +48,7 @@ class TableTeamPlayer extends JLTable
 				' WHERE '.$this->_tbl_key.' = '. $this->getDbo()->Quote($this->$k);
 		$this->getDbo()->setQuery( $query );
 
-		if ($this->getDbo()->query())
+		if ($this->getDbo()->execute())
 		{
 			return true;
 		}
