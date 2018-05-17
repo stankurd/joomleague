@@ -26,8 +26,7 @@ class JFormFieldSportsTypes extends FormField
 		$query 		= $db->getQuery(true);
 		$lang		= Factory::getLanguage();
 		$extension 	= "com_joomleague_sport_types";
-		$source 	= 
-		Path::clean(JPATH_ADMINISTRATOR . '/components/' . $extension);
+		$source 	= Path::clean(JPATH_ADMINISTRATOR . '/components/' . $extension);
 		$lang->load($extension, JPATH_ADMINISTRATOR, null, false, false)
 		||	$lang->load($extension, $source, null, false, false)
 		||	$lang->load($extension, JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
