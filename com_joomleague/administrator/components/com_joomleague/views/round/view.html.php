@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -88,7 +89,13 @@ class JoomleagueViewRound extends JLGView
 
 		$text = $isNew ? Text::_('COM_JOOMLEAGUE_GLOBAL_NEW') : Text::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
 		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_ROUND_TITLE') . ': ' . $this->item->name,'jl-Matchdays');
-
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'round.apply'],
+		        ['save', 'round.save'],
+		    ],
+		    'btn-success'
+		    );
 		JLToolBarHelper::apply('round.apply');
 		JLToolBarHelper::save('round.save');
 		if($isNew)

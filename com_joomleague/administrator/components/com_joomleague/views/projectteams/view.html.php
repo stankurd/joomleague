@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\Language\Text;
@@ -317,7 +318,13 @@ class JoomleagueViewProjectteams extends JLGView
 	protected function addToolbar()
 	{
 		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_TITLE'));
-		JLToolBarHelper::apply('projectteams.saveshort');
+		//JLToolBarHelper::apply('projectteams.saveshort');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'projectteams.saveshort'],
+		    ],
+		    'btn-success'
+		    );
 		JLToolBarHelper::custom('projectteams.changeteams','move.png','move_f2.png','COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_BUTTON_CHANGE_TEAMS',false);
 		JLToolBarHelper::custom('projectteams.editlist','upload.png','upload_f2.png','COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_BUTTON_ASSIGN',false);
 		JLToolBarHelper::custom('projectteam.copy','copy','copy','COM_JOOMLEAGUE_GLOBAL_COPY', true);
@@ -333,7 +340,13 @@ class JoomleagueViewProjectteams extends JLGView
 	protected function addToolbar_Editlist()
 	{
 		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGN'));
-		JLToolBarHelper::save('projectteams.save_teamslist');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['save', 'projectteams.save_teamslist'],
+		    ],
+		    'btn-success'
+		    );
+		//JLToolBarHelper::save('projectteams.save_teamslist');
 		JLToolBarHelper::cancel('projectteams.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		JLToolbarHelper::help('screen.joomleague',true);
 	}
@@ -345,7 +358,13 @@ class JoomleagueViewProjectteams extends JLGView
 	protected function addToolbar_Copy()
 	{
 		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_COPY_DEST'),'Teams');
-		JLToolBarHelper::apply('projectteam.copy');
+		//JLToolBarHelper::apply('projectteam.copy');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'projectteam.copy'],
+		    ],
+		    'btn-success'
+		    );
 		JLToolbarHelper::back();
 	}
 }

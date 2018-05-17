@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 defined('_JEXEC') or die;
 
@@ -60,17 +61,23 @@ class JoomleagueViewClub extends JLGView
 		
 		if($isNew)
 		{
-			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_CLUB_ADD_NEW'),'jl-clubs');
+			ToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_CLUB_ADD_NEW'),'jl-clubs');
 		}
 		else
 		{
-			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_CLUB_EDIT').': '.$this->form->getValue('name'),'jl-clubs');
+			ToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_CLUB_EDIT').': '.$this->form->getValue('name'),'jl-clubs');
 		}
-		
-		JLToolBarHelper::apply('club.apply');
-		JLToolBarHelper::save('club.save');
-		JLToolBarHelper::divider();
-		JLToolBarHelper::cancel('club.cancel');
-		JLToolBarHelper::help('screen.joomleague',true);		
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'club.apply'],
+		        ['save', 'club.save'],
+		    ],
+		    'btn-success'
+		    );
+		//ToolBarHelper::apply('club.apply');
+		//ToolBarHelper::save('club.save');
+		ToolBarHelper::divider();
+		ToolBarHelper::cancel('club.cancel');
+		ToolBarHelper::help('screen.joomleague',true);		
 	}	
 }

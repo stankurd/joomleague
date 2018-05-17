@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
@@ -179,7 +180,13 @@ class JoomleagueViewProjectpositions extends JLGView
 	protected function addToolbar_Editlist()
 	{
 		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_EDIT_TITLE'),'jl-Positions');
-		JLToolBarHelper::save('projectpositions.save_positionslist');
+		//JLToolBarHelper::save('projectpositions.save_positionslist');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['save', 'projectpositions.save_positionslist'],
+		    ],
+		    'btn-success'
+		    );
 		JLToolBarHelper::cancel('projectpositions.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		JLToolBarHelper::help('screen.joomleague',true);
 	}

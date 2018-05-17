@@ -11,6 +11,7 @@ use Joomla\Http\Response;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 defined('_JEXEC') or die;
 
@@ -127,8 +128,15 @@ class JoomleagueViewPerson extends JLGView
 		if($isNew)
 		{
 			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_TITLE'));
-			JLToolBarHelper::apply('person.apply');
-			JLToolBarHelper::save('person.save');
+			ToolbarHelper::saveGroup(
+			    [
+			        ['apply', 'person.apply'],
+			        ['save', 'person.save'],
+			    ],
+			    'btn-success'
+			    );
+			//JLToolBarHelper::apply('person.apply');
+			//JLToolBarHelper::save('person.save');
 			JLToolBarHelper::divider();
 			JLToolBarHelper::cancel('person.cancel');
 		}
@@ -137,8 +145,15 @@ class JoomleagueViewPerson extends JLGView
 			$name = JoomleagueHelper::formatName(null,$this->form->getValue('firstname'),$this->form->getValue('nickname'),
 					$this->form->getValue('lastname'),JoomleagueHelper::defaultNameFormat());
 			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_TITLE2') . ': ' . $name);
-			JLToolBarHelper::apply('person.apply');
-			JLToolBarHelper::save('person.save');
+			ToolbarHelper::saveGroup(
+			    [
+			        ['apply', 'person.apply'],
+			        ['save', 'person.save'],
+			    ],
+			    'btn-success'
+			    );
+			//JLToolBarHelper::apply('person.apply');
+			//JLToolBarHelper::save('person.save');
 			JLToolBarHelper::divider();
 			JLToolBarHelper::cancel('person.cancel',Text::_('COM_JOOMLEAGUE_GLOBAL_CLOSE'));
 		}

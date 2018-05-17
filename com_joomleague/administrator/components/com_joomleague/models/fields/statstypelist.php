@@ -1,5 +1,7 @@
 <?php
+use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\Form\Field\ListField;
 use Joomla\CMS\HTML\HTMLHelper;
 
 /**
@@ -17,7 +19,7 @@ FormHelper::loadFieldClass('list');
 /**
  * Statstypelist form field class
  */
-class JFormFieldStatstypelist extends JFormFieldList
+class JFormFieldStatstypelist extends ListField
 {
 	/**
 	 * field type
@@ -42,7 +44,7 @@ class JFormFieldStatstypelist extends JFormFieldList
 		//$hideDefault = (string) $this->element['hide_default'];
 
 		// Get the path in which to search for file options.
-		$files = JFolder::files(JPATH_COMPONENT_ADMINISTRATOR.'/statistics', 'php$');
+		$files = Folder::files(JPATH_COMPONENT_ADMINISTRATOR.'/statistics', 'php$');
 		$options = array();
 		foreach ($files as $file)
 		{
@@ -60,7 +62,7 @@ class JFormFieldStatstypelist extends JFormFieldList
 			if (!file_exists($path)) {
 				continue;
 			}
-			$files = JFolder::files($path, 'php$');
+			$files = Folder::files($path, 'php$');
 			foreach ($files as $file)
 			{
 				$parts = explode('.', $file);

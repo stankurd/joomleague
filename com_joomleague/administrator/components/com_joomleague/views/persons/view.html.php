@@ -68,7 +68,7 @@ class JoomleagueViewPersons extends JLGView
 		$this->filterForm = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');
 
-		//HTMLHelper::_('bootstrap.framework');
+		HTMLHelper::_('bootstrap.framework');
 
 		$baseurl = Uri::root();
 		$document = Factory::getDocument();

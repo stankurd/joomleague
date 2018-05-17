@@ -9,6 +9,9 @@
 
 // no direct access
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Filesystem\Folder;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
@@ -94,7 +97,7 @@ function updateVersion($versionData)
 	$status=0;
 	$updateVersionFile=JPATH_ADMINISTRATOR.'/components/com_joomleague/assets/updates/update_version.sql';
 
-	if (JFile::exists($updateVersionFile))
+	if (File::exists($updateVersionFile))
 	{
 		$fileContent=file_get_contents($updateVersionFile);
 	}
@@ -192,13 +195,13 @@ function addSportsType()
 			//fix for existing items
 			$tblSportsType->load(array("name" => $key));
 			$tblSportsType->name = $key;
-			$tblSportsType->icon = JPATH::clean('images/com_joomleague/database/sport_types/'.$name.'.png');
+			$tblSportsType->icon = Path::clean('images/com_joomleague/database/sport_types/'.$name.'.png');
 			if (!$tblSportsType->store())
 			{
 				//echo($tblSportsType->getError());
 				$status=2;
 			}
-			JFolder::create(JPATH::clean(JPATH_ROOT.'/images/com_joomleague/database/events/'.$name));
+			Folder::create(PATH::clean(JPATH_ROOT.'/images/com_joomleague/database/events/'.$name));
 		}
 	}
 	return $status;

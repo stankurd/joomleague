@@ -8,6 +8,7 @@
  */
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
@@ -117,7 +118,7 @@ class JoomleagueModelProject extends JLGModelItem
 			//General extension extended xml
 			$file = $JLGPATH_EXTENSION.'/assets/extended/project.xml';
 
-			if (file_exists(JPath::clean($file)))
+			if (file_exists(Path::clean($file)))
 			{
 				$form->loadFile($file, false);
 				$form->bind($data);

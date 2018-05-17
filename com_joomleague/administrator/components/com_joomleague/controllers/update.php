@@ -8,6 +8,8 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Toolbar\ToolbarHelper;
@@ -48,8 +50,8 @@ class JoomleagueControllerUpdate extends JoomleagueController
 			$filepath=JPATH_COMPONENT_ADMINISTRATOR.'/assets/updates/'.$path[0];
 		}
 		$model=$this->getModel('updates');
-		echo Text::sprintf('Updating from file [ %s ]','<b>'.JPath::clean($filepath).'</b>');
-		if (JFile::exists($filepath))
+		echo Text::sprintf('Updating from file [ %s ]','<b>'.Path::clean($filepath).'</b>');
+		if (File::exists($filepath))
 		{
 			$model->loadUpdateFile($filepath,$file_name);
 		}

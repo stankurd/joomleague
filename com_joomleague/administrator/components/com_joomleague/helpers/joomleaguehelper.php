@@ -12,6 +12,9 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Date\Date;
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Filesystem\Folder;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
@@ -725,8 +728,8 @@ class JoomleagueHelper extends ContentHelper
 			}
 		}
 
-		if(JFolder::exists(JPATH_SITE.'/components/com_joomleague/extensions')) {
-			$folderExtensions  = JFolder::folders(JPATH_SITE.'/components/com_joomleague/extensions',
+		if(Folder::exists(JPATH_SITE.'/components/com_joomleague/extensions')) {
+			$folderExtensions  = Folder::folders(JPATH_SITE.'/components/com_joomleague/extensions',
 					'.', false, false, $excludeExtension);
 			if($folderExtensions !== false) {
 				foreach ($folderExtensions as $ext)
@@ -861,7 +864,7 @@ class JoomleagueHelper extends ContentHelper
 	public static function getPictureThumb($picture, $alttext, $width=40, $height=40, $type=0)
 	{
 		$ret = "";
-		$picturepath 	= 	JPath::clean(JPATH_SITE.'/'.str_replace(JPATH_SITE.'/', '', $picture));
+		$picturepath 	= 	Path::clean(JPATH_SITE.'/'.str_replace(JPATH_SITE.'/', '', $picture));
 		$params		 	=	ComponentHelper::getParams('com_joomleague');
 		$ph_player		=	$params->get('ph_player',0);
 		$ph_logo_big	=	$params->get('ph_logo_big',0);
@@ -907,7 +910,7 @@ class JoomleagueHelper extends ContentHelper
 			}
 		}
 
-		if (!empty($picture) && is_file(JPath::clean(JPATH_SITE.'/'.str_replace(JPATH_SITE.'/', '', $picture))))
+		if (!empty($picture) && is_file(Path::clean(JPATH_SITE.'/'.str_replace(JPATH_SITE.'/', '', $picture))))
 		{
 			$params = ComponentHelper::getParams('com_joomleague');
 			$format = "JPG"; // PNG is not working in IE8
@@ -915,7 +918,7 @@ class JoomleagueHelper extends ContentHelper
 			$bUseThumbLib = $params->get('usethumblib', false);
 			$useThumbCache = $params->get('usethumbnailcache', false);
 			// Set vars to check if thumbnailcreation is needed
-			list($source_width, $source_height) = getimagesize(JPath::clean(JPATH_SITE.'/'.str_replace(JPATH_SITE.'/', '', $picture)));
+			list($source_width, $source_height) = getimagesize(Path::clean(JPATH_SITE.'/'.str_replace(JPATH_SITE.'/', '', $picture)));
 			$needthumb=1;
 
 			// Check if thumbnailcreation with phpThumb is really needed
@@ -981,7 +984,7 @@ class JoomleagueHelper extends ContentHelper
 				$bUseHighslide = $params->get('use_highslide', false);
 				// no highslide if the source picture has exact the same size as the parameters width/height
 				// e.g placeholders or correct sized images
-				if(function_exists('getimagesize') && JFile::exists($picturepath) && $width>0 && $height>0 ) {
+				if(function_exists('getimagesize') && File::exists($picturepath) && $width>0 && $height>0 ) {
 					list($iWidth, $iHeight, $type, $attr) = getimagesize($picturepath);
 					$bUseHighslide = ($width!=$iWidth && $iHeight!=$height) ? true : false;
 				}
@@ -1019,7 +1022,7 @@ class JoomleagueHelper extends ContentHelper
 			}
 
 // Use phpThumb to create cached images and check if the source-file really exists
-			$picturepath 	= 	JPath::clean(JPATH_SITE.'/'.str_replace(JPATH_SITE.'/', '', $picture));
+			$picturepath 	= 	Path::clean(JPATH_SITE.'/'.str_replace(JPATH_SITE.'/', '', $picture));
 			if($bUseThumbLib && $useThumbCache==1 && file_exists($picturepath))
 			{
 				$thumb_cache=PhpThumbFactory::create($picturepath);
@@ -1028,20 +1031,20 @@ class JoomleagueHelper extends ContentHelper
 				{
 // check if the cache-directory exitst if not create one
 					$image_path_parts = pathinfo($picture);
-					$image_cache_path=JPATH::clean(JPATH_SITE.'/cache/joomleague/'.$image_path_parts[dirname]);
+					$image_cache_path=PATH::clean(JPATH_SITE.'/cache/joomleague/'.$image_path_parts[dirname]);
 					if (!file_exists($image_cache_path))
 					{
 						mkdir($image_cache_path, 0750, true);
 					}
 // check if there is a chached actual image if not, create one
 					$image_timestamp=date("mdY_His", filectime($picturepath));
-					$cached_thumb=JPATH::clean(JPATH_SITE.'/cache/joomleague/'.$image_path_parts[dirname].'/'.$image_timestamp.'_'.$height.'_'.$width.'_'.$image_path_parts[filename].'.'.$format);
+					$cached_thumb=PATH::clean(JPATH_SITE.'/cache/joomleague/'.$image_path_parts[dirname].'/'.$image_timestamp.'_'.$height.'_'.$width.'_'.$image_path_parts[filename].'.'.$format);
 					$web_cached_thumb=Uri::root(true).'/'.str_replace(JPATH_SITE.'/', "", $cached_thumb);
 
 					if (!file_exists($cached_thumb))
 					{
 // Check if there is are older files. If Yes, delete them.
-					$matches = glob(JPATH::clean(JPATH_SITE.'/cache/joomleague/'.$image_path_parts[dirname].'/'.'*_'.$height.'_'.$width.'_'.$image_path_parts[filename].'*'));
+					$matches = glob(PATH::clean(JPATH_SITE.'/cache/joomleague/'.$image_path_parts[dirname].'/'.'*_'.$height.'_'.$width.'_'.$image_path_parts[filename].'*'));
 					foreach ($matches as $delete_matches) {
 						unlink($delete_matches);
 					}
@@ -1075,7 +1078,7 @@ class JoomleagueHelper extends ContentHelper
 				$bUseHighslide = $params->get('use_highslide', false);
 				// no highslide if the source picture has exact the same size as the parameters width/height
 				// e.g placeholders or correct sized images
-				if(function_exists('getimagesize') && JFile::exists($picturepath) && $width>0 && $height>0 ) {
+				if(function_exists('getimagesize') && File::exists($picturepath) && $width>0 && $height>0 ) {
 					list($iWidth, $iHeight, $type, $attr) = getimagesize($picturepath);
 					$bUseHighslide = ($width!=$iWidth && $iHeight!=$height) ? true : false;
 				}
@@ -1143,7 +1146,7 @@ class JoomleagueHelper extends ContentHelper
 				{
 					$extension_views = JPATH_COMPONENT_SITE.'/extensions/'.$extension.'/views';
 					$tmpl_path = $extension_views.'/'.$template.'/tmpl';
-					if (JFolder::exists($tmpl_path))
+					if (Folder::exists($tmpl_path))
 					{
 						$view->addTemplatePath($tmpl_path);
 					}

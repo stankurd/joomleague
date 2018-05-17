@@ -37,7 +37,7 @@ require_once JLG_PATH_ADMIN.'/models/jlglist.php';
 require_once JLG_PATH_SITE.'/helpers/extensioncontroller.php';
 
 //load classes
-JLoader::registerPrefix('Joomleague', JPATH_COMPONENT_ADMINISTRATOR);
+//JLoader::registerPrefix('Joomleague', JPATH_COMPONENT_ADMINISTRATOR);
 //Load plugins
 PluginHelper::importPlugin('Joomleague');
 

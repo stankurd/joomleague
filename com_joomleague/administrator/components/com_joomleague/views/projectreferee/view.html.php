@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
@@ -103,14 +104,26 @@ class JoomleagueViewProjectReferee extends JLGView
 		
 		if($isNew)
 		{
-			JLToolBarHelper::apply('projectreferee.apply');
-			JLToolBarHelper::save('projectreferee.save');
+		    ToolbarHelper::saveGroup(
+		        [
+		            ['apply', 'projectreferee.apply'],
+		            ['save', 'projectreferee.save'],
+		        ],
+		        'btn-success'
+		        );
+			//JLToolBarHelper::apply('projectreferee.apply');
+			//JLToolBarHelper::save('projectreferee.save');
 			JLToolBarHelper::cancel('projectreferee.cancel');
 		}
 		else
 		{
-			JLToolBarHelper::apply('projectreferee.apply');
-			JLToolBarHelper::save('projectreferee.save');
+		    ToolBarHelper::saveGroup(
+		        [
+		            ['apply', 'projectreferee.apply'],
+		            ['save', 'projectreferee.save'],
+		        ],
+		        'btn-success'
+		        );
 			JLToolBarHelper::cancel('projectreferee.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}
 		JLToolBarHelper::help('screen.joomleague',true);

@@ -657,7 +657,7 @@ class JoomleagueModelPosition extends JLGModelItem
 			$query->where(array('IFNULL(ps.position_id,"0") NOT LIKE ' . $db->Quote($pk)));
 		}
 
-		$query->group('s.id, ps.position_id');
+		$query->group('s.id, ps.position_id, s.name, st.name');
 		$query->order('s.ordering ASC ');
 		try
 			{

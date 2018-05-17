@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die;
 use Joomla\CMS\FACTORY;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 
@@ -227,7 +228,7 @@ class JoomleagueModelJLXMLExport extends BaseDatabaseModel
 		$this->_project_id = $app->getUserState($option.'project');
 		if (empty($this->_project_id) || $this->_project_id == 0)
 		{
-			$app->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_XML_EXPORT_MODEL_SELECT_PROJECT'), 'warning');
+			$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_XML_EXPORT_MODEL_SELECT_PROJECT'), 'warning');
 				
 		}
 		else
@@ -369,7 +370,7 @@ class JoomleagueModelJLXMLExport extends BaseDatabaseModel
 			$this->_project_id = $app->getUserState($option.'project');
 			if (empty($this->_project_id) || $this->_project_id == 0)
 			{
-				 $app->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_XML_EXPORT_MODEL_SELECT_PROJECT'), 'warning');
+				 $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_XML_EXPORT_MODEL_SELECT_PROJECT'), 'warning');
 				$filename[0] = $table;
 			}
 			else {

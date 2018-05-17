@@ -8,7 +8,9 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -78,7 +80,7 @@ class JoomleagueViewRounds extends JLGView
 		$options[] = HTMLHelper::_('select.option',$massAddType ++,Text::_("Number of rounds with start date and interval"));
 
 		// Add additional options to select
-		$path = JPath::clean(JPATH_ROOT.'/media/com_joomleague/database/round_templates');
+		$path = Path::clean(JPATH_ROOT.'/media/com_joomleague/database/round_templates');
 		if(JFolder::exists($path))
 		{
 			$files = JFolder::files($path,'\.csv',false);
@@ -144,7 +146,7 @@ class JoomleagueViewRounds extends JLGView
 		$options = array();
 		$options[] = HTMLHelper::_('select.option',$iScheduleType ++,Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_SINGLE_ROUND_ROBIN'));
 		$options[] = HTMLHelper::_('select.option',$iScheduleType ++,Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_DOUBLE_ROUND_ROBIN'));
-		$path = JPath::clean(JPATH_ROOT . '/media/com_joomleague/database/round_populate_templates');
+		$path = Path::clean(JPATH_ROOT . '/media/com_joomleague/database/round_populate_templates');
 		if(JFolder::exists($path))
 		{
 			$files = JFolder::files($path,'\.txt',false);
@@ -184,7 +186,13 @@ class JoomleagueViewRounds extends JLGView
 		if(!$this->massadd)
 		{
 			JLToolBarHelper::addNew('rounds.quickAdd');
-			JLToolBarHelper::apply('rounds.saveshort');
+			ToolbarHelper::saveGroup(
+			    [
+			        ['apply', 'rounds.saveshort'],
+			    ],
+			    'btn-success'
+			    );
+			//JLToolBarHelper::apply('rounds.saveshort');
 			JLToolbarHelper::divider();
 			JLToolBarHelper::custom('rounds.massadd','new.png','new_f2.png','COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_BUTTON',false);
 			$teams = $this->get('projectteams');
@@ -212,7 +220,13 @@ class JoomleagueViewRounds extends JLGView
 	protected function addToolbar_Populate()
 	{
 		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TITLE'));
-		JLToolBarHelper::apply('rounds.startpopulate');
+		//JLToolBarHelper::apply('rounds.startpopulate');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'rounds.startpopulate'],
+		    ],
+		    'btn-success'
+		    );
 		JLToolbarHelper::back();
 	}
 }

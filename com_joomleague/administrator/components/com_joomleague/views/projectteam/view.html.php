@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
@@ -104,8 +105,15 @@ class JoomleagueViewProjectteam extends JLGView
 	protected function addToolbar()
 	{
 		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_TITLE').': '.$this->item->name);
-		JLToolBarHelper::apply('projectteam.apply');
-		JLToolBarHelper::save('projectteam.save');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'projectteam.apply'],
+		        ['save', 'projectteam.save'],
+		    ],
+		    'btn-success'
+		    );
+		//JLToolBarHelper::apply('projectteam.apply');
+		//JLToolBarHelper::save('projectteam.save');
 		JLToolBarHelper::cancel('projectteam.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		JLToolBarHelper::divider();
 		JLToolBarHelper::help('screen.joomleague',true);

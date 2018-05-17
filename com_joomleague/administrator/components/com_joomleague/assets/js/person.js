@@ -36,10 +36,10 @@ Joomla.submitbutton = function(pressbutton) {
 
 function projectSelected() {
 	var adminForm = window.top.document.forms.adminForm; 
-	adminForm.elements.project_id.value 	= $('prjid').getSelected().get('value');
-	adminForm.elements.project_name.value 	= $('prjid').getSelected().get('text');
-	adminForm.elements.team_id.value 		= $('xtid').getSelected().get('value');
-	adminForm.elements.team_name.value 		= $('xtid').getSelected().get('text');
+	adminForm.elements.project_id.value 	= document.getElementById('prjid').getSelected().get('value');
+	adminForm.elements.project_name.value 	= document.getElementById('prjid').getSelected().get('text');
+	adminForm.elements.team_id.value 		= document.getElementById('xtid').getSelected().get('value');
+	adminForm.elements.team_name.value 		= document.getElementById('xtid').getSelected().get('text');
 	adminForm.elements.assignperson.value 	= '1';
 	window.parent.SqueezeBox.close();
 }

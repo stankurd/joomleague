@@ -7,7 +7,9 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -58,10 +60,10 @@ class JoomleagueViewDivisions extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_DIVS_TITLE'),'jl-divisions');
-		JLToolBarHelper::addNew('division.add');
-		JLToolBarHelper::deleteList(JText::_('COM_JOOMLEAGUE_ADMIN_DIVISIONS_DELETE_WARNING'),'divisions.remove');
-		JLToolBarHelper::divider();
-		JLToolBarHelper::help('screen.joomleague',true);
+		ToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_DIVS_TITLE'),'jl-divisions');
+		ToolBarHelper::addNew('division.add');
+		ToolBarHelper::deleteList(Text::_('COM_JOOMLEAGUE_ADMIN_DIVISIONS_DELETE_WARNING'),'divisions.remove');
+		ToolBarHelper::divider();
+		ToolBarHelper::help('screen.joomleague',true);
 	}
 }

@@ -7,8 +7,10 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Helper\TagsHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
@@ -68,15 +70,15 @@ class JoomleagueViewEventtypes extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_EVENTTYPES_TITLE'),'jl-eventtypes');
-		JLToolBarHelper::addNew('eventtype.add');
-		JLToolBarHelper::publishList('eventtypes.publish');
-		JLToolBarHelper::unpublishList('eventtypes.unpublish');
-		JLToolBarHelper::divider();
-		JLToolBarHelper::custom('eventtypes.import','upload','upload','COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT',false);
-		JLToolBarHelper::archiveList('eventtypes.export','COM_JOOMLEAGUE_GLOBAL_XML_EXPORT');
-		JLToolBarHelper::deleteList('COM_JOOMLEAGUE_GLOBAL_CONFIRM_DELETE','eventtypes.remove');
-		JLToolBarHelper::divider();
-		JLToolBarHelper::help('screen.joomleague',true);
+	    ToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_EVENTTYPES_TITLE'),'jl-eventtypes');
+		ToolBarHelper::addNew('eventtype.add');
+		ToolBarHelper::publishList('eventtypes.publish');
+	    ToolBarHelper::unpublishList('eventtypes.unpublish');
+		ToolBarHelper::divider();
+		ToolBarHelper::custom('eventtypes.import','upload','upload','COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT',false);
+		ToolBarHelper::archiveList('eventtypes.export','COM_JOOMLEAGUE_GLOBAL_XML_EXPORT');
+		ToolBarHelper::deleteList('COM_JOOMLEAGUE_GLOBAL_CONFIRM_DELETE','eventtypes.remove');
+		ToolBarHelper::divider();
+		ToolBarHelper::help('screen.joomleague',true);
 	}
 }

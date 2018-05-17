@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -171,7 +172,12 @@ class JoomleagueViewTeamplayers extends JLGView
 		$this->activeFilters = $this->get('ActiveFilters');
 		
 		// save icon should be replaced by the apply
-		JLToolBarHelper::apply('teamplayers.saveassigned','COM_JOOMLEAGUE_ADMIN_PERSONS_SAVE_SELECTED');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'teamplayers.saveassigned','COM_JOOMLEAGUE_ADMIN_PERSONS_SAVE_SELECTED'],
+		    ],
+		    'btn-success'
+		    );
 		JLToolbarHelper::back('COM_JOOMLEAGUE_ADMIN_PERSONS_BACK','index.php?option=com_joomleague&view=teamplayers');
 		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PERSONS_ASSIGN_PLAYERS'),'generic.png');
 		JLToolbarHelper::help('screen.joomleague',true);
@@ -188,7 +194,12 @@ class JoomleagueViewTeamplayers extends JLGView
 		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TPLAYERS_TITLE'));
 		JLToolBarHelper::publishList('teamplayers.publish');
 		JLToolBarHelper::unpublishList('teamplayers.unpublish');
-		JLToolBarHelper::apply('teamplayers.saveshort','COM_JOOMLEAGUE_ADMIN_TPLAYERS_APPLY');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'teamplayers.saveshort','COM_JOOMLEAGUE_ADMIN_TPLAYERS_APPLY'],
+		    ],
+		    'btn-success'
+		    );
 		JLToolbarHelper::divider();
 		JLToolBarHelper::custom('teamplayers.assign','upload.png','upload_f2.png','COM_JOOMLEAGUE_ADMIN_TPLAYERS_ASSIGN',false);
 		JLToolBarHelper::custom('teamplayers.unassign','cancel.png','cancel_f2.png','COM_JOOMLEAGUE_ADMIN_TPLAYERS_UNASSIGN',false);

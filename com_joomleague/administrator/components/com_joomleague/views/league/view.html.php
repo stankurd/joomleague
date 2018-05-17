@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 defined('_JEXEC') or die;
 
@@ -59,21 +60,31 @@ class JoomleagueViewLeague extends JLGView
 		// Set toolbar items for the page
 		if($isNew)
 		{
-			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_LEAGUE_ADD_NEW'),'jl-leagues');
-			JLToolBarHelper::apply('league.apply');
-			JLToolBarHelper::save('league.save');
-			JLToolBarHelper::divider();
-			JLToolBarHelper::cancel('league.cancel');
+			ToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_LEAGUE_ADD_NEW'),'jl-leagues');
+			ToolbarHelper::saveGroup(
+			    [
+			        ['apply', 'league.apply'],
+			        ['save', 'league.save'],
+			    ],
+			    'btn-success'
+			    );
+			ToolBarHelper::divider();
+			ToolBarHelper::cancel('league.cancel');
 		}
 		else
 		{
-			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_LEAGUE_EDIT') . ': ' . $this->form->getValue('name'),'jl-leagues');
-			JLToolBarHelper::apply('league.apply');
-			JLToolBarHelper::save('league.save');
-			JLToolBarHelper::divider();
-			JLToolBarHelper::cancel('league.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
+			ToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_LEAGUE_EDIT') . ': ' . $this->form->getValue('name'),'jl-leagues');
+			ToolbarHelper::saveGroup(
+			    [
+			        ['apply', 'league.apply'],
+			        ['save', 'league.save'],
+			    ],
+			    'btn-success'
+			    );
+			ToolBarHelper::divider();
+			ToolBarHelper::cancel('league.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}
-		JLToolBarHelper::divider();
-		JLToolBarHelper::help('screen.joomleague',true);
+		ToolBarHelper::divider();
+		ToolBarHelper::help('screen.joomleague',true);
 	}
 }

@@ -11,6 +11,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\String\StringHelper;
 use Joomla\Utilities\ArrayHelper;
@@ -213,8 +214,13 @@ class JoomleagueViewMatches extends JLGView
 			JLToolBarHelper::publishList('matches.publish');
 			JLToolBarHelper::unpublishList('matches.unpublish');
 			JLToolbarHelper::divider();
-
-			JLToolBarHelper::apply('matches.saveshort');
+			ToolbarHelper::saveGroup(
+			    [
+			        ['apply', 'matches.saveshort'],
+			    ],
+			    'btn-success'
+			    );
+			//ToolBarHelper::apply('matches.saveshort');
 			JLToolbarHelper::divider();
 
 			JLToolBarHelper::custom('matches.massadd','new.png','new_f2.png','COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_MATCHES',false);

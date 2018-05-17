@@ -11,6 +11,7 @@ use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -158,14 +159,26 @@ class JoomleagueViewTeamPlayer extends JLGView
 
 		if($isNew)
 		{
-			JLToolBarHelper::apply('teamplayer.apply');
-			JLToolBarHelper::save('teamplayer.save');
+		    ToolbarHelper::saveGroup(
+		        [
+		            ['apply', 'teamplayer.apply'],
+		            ['save', 'teamplayer.save'],
+		        ],
+		        'btn-success'
+		        );
+			
 			JLToolBarHelper::cancel('teamplayer.cancel');
 		}
 		else
 		{
-			JLToolBarHelper::apply('teamplayer.apply');
-			JLToolBarHelper::save('teamplayer.save');
+		    ToolbarHelper::saveGroup(
+		        [
+		            ['apply', 'teamp[layer.apply'],
+		            ['save', 'teamplayer.save'],
+		        ],
+		        'btn-success'
+		        );
+			
 			JLToolBarHelper::cancel('teamplayer.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}
 		JLToolBarHelper::help('screen.joomleague',true);

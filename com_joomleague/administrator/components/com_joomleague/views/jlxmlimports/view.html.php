@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
@@ -55,8 +56,8 @@ class JoomleagueViewJLXMLImports extends JLGView
 		}
 
 		// Set toolbar items for the page
-		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_1_3'),'generic.png');
-		JLToolBarHelper::help('screen.joomleague',true);
+		ToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_1_3'),'generic.png');
+		ToolBarHelper::help('screen.joomleague',true);
 
 		$uri 	= Uri::getInstance();
 		$config = ComponentHelper::getParams('com_media');
@@ -122,11 +123,11 @@ class JoomleagueViewJLXMLImports extends JLGView
 		$this->lists=$lists;
 		
 		// Set toolbar items for the page
-		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_2_3'),'generic.png');
+		ToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_2_3'),'generic.png');
 		//                       task    image  mouseover_img           alt_text_for_image              check_that_standard_list_item_is_checked
-		JLToolBarHelper::custom('jlxmlimport.insert','upload','upload',Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_START_BUTTON'), false); // --> bij clicken op import wordt de insert view geactiveerd
-		JLToolBarHelper::back();
-		JLToolBarHelper::help('screen.joomleague',true);
+		ToolbarHelper::custom('jlxmlimport.insert','upload','upload',Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_START_BUTTON'), false); // --> bij clicken op import wordt de insert view geactiveerd
+		ToolBarHelper::back();
+		ToolBarHelper::help('screen.joomleague',true);
 
 		parent::display($tpl);
 	}
@@ -142,9 +143,9 @@ class JoomleagueViewJLXMLImports extends JLGView
 		$post		= $app->input->post->getArray();
 		
 		// Set toolbar items for the page
-		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_3_3'),'generic.png');
+		ToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_3_3'),'generic.png');
 		//JLToolBarHelper::back();
-		JLToolBarHelper::help('screen.joomleague',true);
+		ToolBarHelper::help('screen.joomleague',true);
 
 		$this->starttime=$starttime;
 		$this->importData=$model->importData($post);

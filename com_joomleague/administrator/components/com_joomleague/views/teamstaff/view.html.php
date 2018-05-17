@@ -10,6 +10,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -121,14 +122,25 @@ class JoomleagueViewTeamStaff extends JLGView
 
 		if($isNew)
 		{
-			JLToolBarHelper::apply('teamstaff.apply');
-			JLToolBarHelper::save('teamstaff.save');
+		    ToolbarHelper::saveGroup(
+		        [
+		            ['apply', 'teamstaff.apply'],
+		            ['save', 'teamstaff.save'],
+		        ],
+		        'btn-success'
+		        );
+			
 			JLToolBarHelper::cancel('teamstaff.cancel');
 		}
 		else
 		{
-			JLToolBarHelper::apply('teamstaff.apply');
-			JLToolBarHelper::save('teamstaff.save');
+		    ToolBarHelper::saveGroup(
+		        [
+		            ['apply', 'teamstaff.apply'],
+		            ['save', 'teamstaff.save'],
+		        ],
+		        'btn-success'
+		        );
 			JLToolBarHelper::cancel('teamstaff.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}
 		JLToolbarHelper::help('screen.joomleague',true);

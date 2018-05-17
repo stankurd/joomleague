@@ -10,6 +10,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -175,6 +176,12 @@ class JoomleagueViewTeamStaffs extends JLGView
 		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_TITLE'));
 		JLToolBarHelper::publishList('teamstaffs.publish');
 		JLToolBarHelper::unpublishList('teamstaffs.unpublish');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'teamstaffs.saveshort','COM_JOOMLEAGUE_ADMIN_TSTAFFS_APPLY'],
+		    ],
+		    'btn-success'
+		    );
 		JLToolBarHelper::apply('teamstaffs.saveshort','COM_JOOMLEAGUE_ADMIN_TSTAFFS_APPLY');
 		JLToolbarHelper::divider();
 		JLToolBarHelper::custom('teamstaffs.assign','upload.png','upload_f2.png','COM_JOOMLEAGUE_ADMIN_TSTAFFS_ASSIGN',false);

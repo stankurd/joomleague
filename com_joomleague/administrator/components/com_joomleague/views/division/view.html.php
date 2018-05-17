@@ -10,6 +10,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 defined('_JEXEC') or die;
 
@@ -111,20 +112,30 @@ class JoomleagueViewDivision extends JLGView
 				 $this->item->name;
 
 		// Set toolbar items for the page
-		JLToolBarHelper::title($text,'jl-divisions');
+		ToolBarHelper::title($text,'jl-divisions');
 
 		if($isNew)
 		{
-			JLToolBarHelper::apply('division.apply');
-			JLToolBarHelper::save('division.save');
-			JLToolBarHelper::cancel('division.cancel');
+		    ToolbarHelper::saveGroup(
+		        [
+		            ['apply', 'division.apply'],
+		            ['save', 'division.save'],
+		        ],
+		        'btn-success'
+		        );
+			ToolBarHelper::cancel('division.cancel');
 		}
 		else
 		{
-			JLToolBarHelper::apply('division.apply');
-			JLToolBarHelper::save('division.save');
-			JLToolBarHelper::cancel('division.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
+		    ToolbarHelper::saveGroup(
+		        [
+		            ['apply', 'division.apply'],
+		            ['save', 'division.save'],
+		        ],
+		        'btn-success'
+		        );
+			ToolBarHelper::cancel('division.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}
-		JLToolBarHelper::help('screen.joomleague',true);
+		ToolBarHelper::help('screen.joomleague',true);
 	}
 }

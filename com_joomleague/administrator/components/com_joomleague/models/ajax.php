@@ -13,6 +13,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\HTML\HTMLHelper;
 
 /**
@@ -279,7 +280,7 @@ class JoomleagueModelAjax extends JLGModel
 		$query = $db->getQuery(true);
 		$lang		= Factory::getLanguage();
 		$extension 	= "com_joomleague";
-		$source 	= JPath::clean(JPATH_SITE. '/components/' . $extension);
+		$source 	= Path::clean(JPATH_SITE. '/components/' . $extension);
 		$lang->load($extension, JPATH_SITE, null, false, false)
 		||	$lang->load($extension, $source, null, false, false)
 		||	$lang->load($extension, JPATH_SITE, $lang->getDefault(), false, false)

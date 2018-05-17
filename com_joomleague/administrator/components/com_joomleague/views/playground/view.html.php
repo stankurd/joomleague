@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 defined('_JEXEC') or die;
 
@@ -55,16 +56,28 @@ class JoomleagueViewPlayground extends JLGView
 		if($isNew)
 		{
 			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUND_ADD_NEW'),'jl-playground');
-			JLToolBarHelper::apply('playground.apply');
-			JLToolBarHelper::save('playground.save');
+			ToolbarHelper::saveGroup(
+			    [
+			        ['apply', 'playground.apply'],
+			        ['save', 'playground.save'],
+			    ],
+			    'btn-success'
+			    );
+			//JLToolBarHelper::apply('playground.apply');
+			//JLToolBarHelper::save('playground.save');
 			JLToolBarHelper::divider();
 			JLToolBarHelper::cancel('playground.cancel');
 		}
 		else
 		{
 			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PLAYGROUND_EDIT'),'jl-playground');
-			JLToolBarHelper::apply('playground.apply');
-			JLToolBarHelper::save('playground.save');
+			ToolBarHelper::saveGroup(
+			    [
+			        ['apply', 'playground.apply'],
+			        ['save', 'playground.save'],
+			    ],
+			    'btn-success'
+			    );
 			JLToolBarHelper::divider();
 			JLToolBarHelper::cancel('playground.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}

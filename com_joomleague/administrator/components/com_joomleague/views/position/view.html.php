@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -158,16 +159,28 @@ class JoomleagueViewPosition extends JLGView
 		if($isNew)
 		{
 			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_ADD_NEW'),'jl-Positions');
-			JLToolBarHelper::apply('position.apply');
-			JLToolBarHelper::save('position.save');
+			//JLToolBarHelper::apply('position.apply');
+			//JLToolBarHelper::save('position.save');
+			ToolBarHelper::saveGroup(
+			    [
+			        ['apply', 'position.apply'],
+			        ['save', 'position.save'],
+			    ],
+			    'btn-success'
+			    );
 			JLToolBarHelper::divider();
 			JLToolBarHelper::cancel('position.cancel');
 		}
 		else
 		{
 			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_POSITION_EDIT'),'jl-Positions');
-			JLToolBarHelper::apply('position.apply');
-			JLToolBarHelper::save('position.save');
+			ToolbarHelper::saveGroup(
+			    [
+			        ['apply', 'position.apply'],
+			        ['save', 'position.save'],
+			    ],
+			    'btn-success'
+			    );
 			JLToolBarHelper::divider();
 			JLToolBarHelper::cancel('position.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}

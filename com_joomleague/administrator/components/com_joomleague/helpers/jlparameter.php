@@ -18,6 +18,7 @@
 
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Filter\InputFilter;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Log\Log;
@@ -458,7 +459,7 @@ class JLParameter extends Registry
 			$file = InputFilter::getInstance()->clean(str_replace('_', DS, $type) . '.php', 'path');
 
 			jimport('joomla.filesystem.path');
-			if ($elementFile = JPath::find($dirs, $file))
+			if ($elementFile = Path::find($dirs, $file))
 			{
 				include_once $elementFile;
 			}

@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 defined('_JEXEC') or die;
 
@@ -80,8 +81,15 @@ class JoomleagueViewProject extends JLGView
 
 		if(!$this->copy)
 		{
-			JLToolBarHelper::apply('project.apply');
-			JLToolBarHelper::save('project.save');
+		    ToolbarHelper::saveGroup(
+		        [
+		            ['apply', 'project.apply'],
+		            ['save', 'project.save'],
+		        ],
+		        'btn-success'
+		        );
+			//JLToolBarHelper::apply('project.apply');
+			//JLToolBarHelper::save('project.save');
 		}
 		else
 		{

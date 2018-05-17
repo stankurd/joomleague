@@ -12,6 +12,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -226,7 +227,13 @@ class JoomleagueViewProjectReferees extends JLGView
 	protected function addToolbar()
 	{
 		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PREF_TITLE'),'jl-Referees');
-		JLToolBarHelper::apply('projectreferees.saveshort','COM_JOOMLEAGUE_ADMIN_PREF_APPLY');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'projectreferees.saveshort','COM_JOOMLEAGUE_ADMIN_PREF_APPLY'],
+		    ],
+		    'btn-success'
+		    );
+		//JLToolBarHelper::apply('projectreferees.saveshort','COM_JOOMLEAGUE_ADMIN_PREF_APPLY');
 		JLToolBarHelper::custom('projectreferees.assign','upload.png','upload_f2.png','COM_JOOMLEAGUE_ADMIN_PREF_ASSIGN',false);
 		JLToolBarHelper::custom('projectreferees.unassign','cancel.png','cancel_f2.png','COM_JOOMLEAGUE_ADMIN_PREF_UNASSIGN',false);
 		JLToolBarHelper::divider();

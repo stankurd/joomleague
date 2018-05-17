@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Table\Table;
@@ -484,7 +485,7 @@ class JoomleagueModelRounds extends JLGModelList
 
 		try
 		{
-			$path = JPath::clean(JPATH_ROOT.'/media/com_joomleague/database/round_templates');
+			$path = Path::clean(JPATH_ROOT.'/media/com_joomleague/database/round_templates');
 			$handle = fopen($path.'/'.$filename,'r');
 			if(! $handle)
 			{
@@ -698,7 +699,7 @@ class JoomleagueModelRounds extends JLGModelList
 	 */
 	private function getScheduleFromTemplate($teams,$filename)
 	{
-		$path = JPath::clean(JPATH_ROOT . '/media/com_joomleague/database/round_populate_templates');
+		$path = Path::clean(JPATH_ROOT . '/media/com_joomleague/database/round_populate_templates');
 		$handle = fopen($path . '/' . $filename,'r');
 		if(! $handle)
 		{

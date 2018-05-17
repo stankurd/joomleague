@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 defined('_JEXEC') or die;
 
@@ -35,7 +36,7 @@ class JoomleagueViewTeam extends JLGView
 		// Check for errors.
 		if(count($errors = $this->get('Errors')))
 		{
-			JError::raiseError(500,implode("\n",$errors));
+			$app->enqueueMessage(500,implode("\n",$errors));
 			return false;
 		}
 		
@@ -61,15 +62,27 @@ class JoomleagueViewTeam extends JLGView
 		
 		if($isNew)
 		{
-			JLToolBarHelper::apply('team.apply');
-			JLToolBarHelper::save('team.save');
+		    ToolbarHelper::saveGroup(
+		        [
+		            ['apply', 'team.apply'],
+		            ['save', 'team.save'],
+		        ],
+		        'btn-success'
+		        );
+			//JLToolBarHelper::apply('team.apply');
+			//JLToolBarHelper::save('team.save');
 			JLToolBarHelper::divider();
 			JLToolBarHelper::cancel('team.cancel');
 		}
 		else
 		{
-			JLToolBarHelper::apply('team.apply');
-			JLToolBarHelper::save('team.save');
+		    ToolBarHelper::saveGroup(
+		        [
+		            ['apply', 'team.apply'],
+		            ['save', 'team.save'],
+		        ],
+		        'btn-success'
+		        );
 			JLToolBarHelper::divider();
 			JLToolBarHelper::cancel('team.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}
