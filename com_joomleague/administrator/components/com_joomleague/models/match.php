@@ -2297,7 +2297,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 	* @author And_One <andone@mfga.at>
 	* @return boolean
 	*/
-	/**
+	
 	function prefillMatchPlayersWithLastMatch($projectteam_id, $bDeleteCurrrentRoster,$match_id=false)
 	{
 		$app 	= Factory::getApplication();
@@ -2386,5 +2386,5 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		}
 		return $result;
 	}
-*/
+
 }
