@@ -7,8 +7,6 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
-use Joomla\CMS\Filesystem\File;
-use Joomla\CMS\Filesystem\Folder;
 
 defined('_JEXEC') or die;
 
@@ -406,7 +404,7 @@ class JoomleagueModelTools extends JoomleagueModelList
 		jimport('joomla.filesystem.file');
 		jimport('joomla.filesystem.folder');
 				
-		$folders = Folder::folders(JPATH_SITE.'/cache');
+		$folders = JFolder::folders(JPATH_SITE.'/cache');
 		
 		foreach ($folders AS $folder) 
 		{
@@ -447,46 +445,46 @@ class JoomleagueModelTools extends JoomleagueModelList
 		jimport('joomla.filesystem.folder');
 	
 		// SITE
-		$folders = Folder::folders(JPATH_SITE.'/language',false,true,true);
+		$folders = JFolder::folders(JPATH_SITE.'/language',false,true,true);
 				
 		foreach ($folders AS $folder)
 		{
-			$files = Folder::files($folder,'joomleague',true,true);
+			$files = JFolder::files($folder,'joomleague',true,true);
 			if ($files) {
 				foreach ($files AS $file) {
-					File::delete($file);
+					JFile::delete($file);
 				}
 			}	
 		
 			// check if folder is empty
 			if(count(scandir($folder)) == 2) {
-				Folder::delete($folder);
+				JFolder::delete($folder);
 			} 	
 		}
 		
 		// BACKEND - LANGUAGETAG FOLDERS
-		$folders = Folder::folders(JPATH_SITE.'/administrator/language',false,true,true);
+		$folders = JFolder::folders(JPATH_SITE.'/administrator/language',false,true,true);
 		
 		foreach ($folders AS $folder)
 		{
-			$files = Folder::files($folder,'joomleague',true,true);
+			$files = JFolder::files($folder,'joomleague',true,true);
 			if ($files) {
 				foreach ($files AS $file) {
-					File::delete($file);
+					JFile::delete($file);
 				}
 			}
 		
 			// check if folder is empty
 			if(count(scandir($folder)) == 2) {
-				Folder::delete($folder);
+				JFolder::delete($folder);
 			}
 		}
 		
 		// BACKEND - LANGUAGEFOLDER ROOT
-		$files = Folder::files(JPATH_SITE.'/administrator/language','joomleague',true,true);
+		$files = JFolder::files(JPATH_SITE.'/administrator/language','joomleague',true,true);
 		if ($files) {
 			foreach ($files AS $file) {
-				File::delete($file);
+				JFile::delete($file);
 			}
 		}
 		

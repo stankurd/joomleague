@@ -9,7 +9,6 @@
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
-use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\Language\Text;
 
@@ -50,7 +49,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 
 	private function _getXml()
 	{
-		if (File::exists(JPATH_SITE.'/tmp/joomleague_import.jlg'))
+		if (JFile::exists(JPATH_SITE.'/tmp/joomleague_import.jlg'))
 		{
 			if (function_exists('simplexml_load_file'))
 			{
@@ -719,7 +718,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 	private function _deleteImportFile()
 	{
 		$importFileName=JPATH_SITE.'/tmp/joomleague_import.jlg';
-		if (File::exists($importFileName)){File::delete($importFileName);}
+		if (JFile::exists($importFileName)){JFile::delete($importFileName);}
 		return true;
 	}
 
@@ -4410,20 +4409,20 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				}
 				else
 				{
-				    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing projectname'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing projectname'));
 					echo "<script> alert('".Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing projectname')."'); window.history.go(-1); </script>\n";
 				}
 
 				if (empty($this->_datas['project']))
 				{
-				    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Project object is missing inside import file!!!'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Project object is missing inside import file!!!'));
 					echo "<script> alert('".Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Project object is missing inside import file!!!')."'); window.history.go(-1); </script>\n";
 					return false;
 				}
 
 				if ($this->_checkProject()===false)
 				{
-				    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Projectname already exists'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Projectname already exists'));
 					echo "<script> alert('".Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Projectname already exists')."'); window.history.go(-1); </script>\n";
 					return false;
 				}
@@ -4442,7 +4441,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 					}
 					else
 					{
-					    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing sportstype'));
+						JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing sportstype'));
 						echo "<script> alert('".Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing sportstype')."'); window.history.go(-1); </script>\n";
 						return false;
 					}
@@ -4461,7 +4460,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				}
 				else
 				{
-				    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing league'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing league'));
 					echo "<script> alert('".Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing league')."'); window.history.go(-1); </script>\n";
 					return false;
 				}
@@ -4476,7 +4475,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				}
 				else
 				{
-				    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing season'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing season'));
 					echo "<script> alert('".Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing season')."'); window.history.go(-1); </script>\n";
 					return false;
 				}
@@ -4514,7 +4513,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				// import sportstype
 				if ($this->_importSportsType()===false)
 				{
-				    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','sports-type'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','sports-type'));
 					return $this->_success_text;
 				}
 			}
@@ -4524,14 +4523,14 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				// import league
 				if ($this->_importLeague()===false)
 				{
-				    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','league'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','league'));
 					return $this->_success_text;
 				}
 
 				// import season
 				if ($this->_importSeason()===false)
 				{
-				    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','season'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','season'));
 					return $this->_success_text;
 				}
 			}
@@ -4539,49 +4538,49 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			// import events / should also work with exported events-XML without problems
 			if ($this->_importEvents()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','event'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','event'));
 				return $this->_success_text;
 			}
 
 			// import Statistic
 			if ($this->_importStatistics()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','statistic'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','statistic'));
 				return $this->_success_text;
 			}
 
 			// import parent positions
 			if ($this->_importParentPositions()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','parent-position'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','parent-position'));
 				return $this->_success_text;
 			}
 
 			// import positions
 			if ($this->_importPositions()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','position'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','position'));
 				return $this->_success_text;
 			}
 
 			// import PositionEventType
 			if ($this->_importPositionEventType()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','position-eventtype'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','position-eventtype'));
 				return $this->_success_text;
 			}
 
 			// import playgrounds
 			if ($this->_importPlayground()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','playground'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','playground'));
 				return $this->_success_text;
 			}
 
 			// import clubs
 			if ($this->_importClubs()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','club'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','club'));
 				return $this->_success_text;
 			}
 
@@ -4590,7 +4589,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				// convert playground Club-IDs
 				if ($this->_convertNewPlaygroundIDs()===false)
 				{
-				    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','conversion of playground club-id'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','conversion of playground club-id'));
 					return $this->_success_text;
 				}
 			}
@@ -4598,14 +4597,14 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			// import teams
 			if ($this->_importTeams()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','team'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','team'));
 				return $this->_success_text;
 			}
 
 			// import persons
 			if ($this->_importPersons()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','person'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','person'));
 				return $this->_success_text;
 			}
 
@@ -4614,14 +4613,14 @@ class JoomleagueModelJLXMLImport extends JLGModel
 				// import project
 				if ($this->_importProject()===false)
 				{
-				    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','project'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','project'));
 					return $this->_success_text;
 				}
 
 				// import template
 				if ($this->_importTemplate()===false)
 				{
-				    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','template'));
+					JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','template'));
 					return $this->_success_text;
 				}
 			}
@@ -4629,21 +4628,21 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			// import divisions
 			if ($this->_importDivisions()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','division'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','division'));
 				return $this->_success_text;
 			}
 
 			// import project positions
 			if ($this->_importProjectPositions()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','projectpositions'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','projectpositions'));
 				return $this->_success_text;
 			}
 
 			// import project referees
 			if ($this->_importProjectReferees()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','projectreferees'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','projectreferees'));
 				return $this->_success_text;
 			}
 
@@ -4651,35 +4650,35 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			// import projectteam
 			if ($this->_importProjectTeam()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','projectteam'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','projectteam'));
 				return $this->_success_text;
 			}
 
 			// import teamplayers
 			if ($this->_importTeamPlayer()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','teamplayer'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','teamplayer'));
 				return $this->_success_text;
 			}
 
 			// import teamstaffs
 			if ($this->_importTeamStaff()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','teamstaff'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','teamstaff'));
 				return $this->_success_text;
 			}
 
 			// import teamtrainingdata
 			if ($this->_importTeamTraining()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','teamtraining'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','teamtraining'));
 				return $this->_success_text;
 			}
 
 			// import rounds
 			if ($this->_importRounds()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','round'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','round'));
 				return $this->_success_text;
 			}
 
@@ -4690,76 +4689,76 @@ class JoomleagueModelJLXMLImport extends JLGModel
 			// imported matches
 			if ($this->_importMatches()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','match'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','match'));
 				return $this->_success_text;
 			}
 
 			// import MatchPlayer
 			if ($this->_importMatchPlayer()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchplayer'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchplayer'));
 				return $this->_success_text;
 			}
 
 			// import MatchStaff
 			if ($this->_importMatchStaff()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchstaff'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchstaff'));
 				return $this->_success_text;
 			}
 
 			// import MatchReferee
 			if ($this->_importMatchReferee()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchreferee'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchreferee'));
 				return $this->_success_text;
 			}
 
 			// import MatchEvent
 			if ($this->_importMatchEvent()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchevent'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchevent'));
 				return $this->_success_text;
 			}
 
 			// import PositionStatistic
 			if ($this->_importPositionStatistic()===false)
 			{
-			    Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','positionstatistic'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','positionstatistic'));
 				return $this->_success_text;
 			}
 
 			// import MatchStaffStatistic
 			if ($this->_importMatchStaffStatistic()===false)
 			{
-				Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchstaffstatistic'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchstaffstatistic'));
 				return $this->_success_text;
 			}
 
 			// import MatchStatistic
 			if ($this->_importMatchStatistic()===false)
 			{
-				Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchstatistic'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','matchstatistic'));
 				return $this->_success_text;
 			}
 			// import Treeto
 			if ($this->_importTreetos()===false)
 			{
-				Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','treeto'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','treeto'));
 				return $this->_success_text;
 			}
 
 			// import Treetonode
 			if ($this->_importTreetonode()===false)
 			{
-				Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','treetonode'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','treetonode'));
 				return $this->_success_text;
 			}
 
 			// import Treetomatch
 			if ($this->_importTreetomatch()===false)
 			{
-				Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','treetomatch'));
+				JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_ERROR_DURING','treetomatch'));
 				return $this->_success_text;
 			}
 
@@ -4775,7 +4774,7 @@ class JoomleagueModelJLXMLImport extends JLGModel
 		else
 		{
 			$this->_deleteImportFile();
-			Factory::getApplication()->enqueueMessage(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing import data'));
+			JError::raiseWarning(500,Text::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR','Missing import data'));
 			return false;
 		}
 	}

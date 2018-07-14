@@ -7,7 +7,6 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
-use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -116,7 +115,7 @@ class JoomleagueModelTreetonodes extends JLGModelList
 		$query .= ' WHERE ttn.treeto_id = ' . $treeto_id;
 		$query .= ';';
 		$db->setQuery($query);
-		$db->execute($query);
+		$db->query($query);
 
 		$query = ' UPDATE #__joomleague_treeto AS tt ';
 		$query .= ' SET ';
@@ -131,7 +130,7 @@ class JoomleagueModelTreetonodes extends JLGModelList
 		$query .= ' WHERE tt.id = ' . $treeto_id;
 		$query .= ';';
 		$db->setQuery($query);
-		$db->execute($query);
+		$db->query($query);
 
 		return true;
 	}

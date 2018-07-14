@@ -8,11 +8,8 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
-<<<<<<< HEAD
 use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Filesystem\Folder;
-=======
->>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Toolbar\ToolbarHelper;
@@ -86,11 +83,7 @@ class JoomleagueViewRounds extends JLGView
 
 		// Add additional options to select
 		$path = Path::clean(JPATH_ROOT.'/media/com_joomleague/database/round_templates');
-<<<<<<< HEAD
 		if(Folder::exists($path))
-=======
-		if(JFolder::exists($path))
->>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 		{
 			$files = Folder::files($path,'\.csv',false);
 			foreach($files as $file)
@@ -156,11 +149,7 @@ class JoomleagueViewRounds extends JLGView
 		$options[] = HTMLHelper::_('select.option',$iScheduleType ++,Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_SINGLE_ROUND_ROBIN'));
 		$options[] = HTMLHelper::_('select.option',$iScheduleType ++,Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_DOUBLE_ROUND_ROBIN'));
 		$path = Path::clean(JPATH_ROOT . '/media/com_joomleague/database/round_populate_templates');
-<<<<<<< HEAD
 		if(Folder::exists($path))
-=======
-		if(JFolder::exists($path))
->>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 		{
 			$files = Folder::files($path,'\.txt',false);
 			foreach($files as $file)
@@ -205,10 +194,6 @@ class JoomleagueViewRounds extends JLGView
 			    ],
 			    'btn-success'
 			    );
-<<<<<<< HEAD
-=======
-			//JLToolBarHelper::apply('rounds.saveshort');
->>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 			JLToolbarHelper::divider();
 			JLToolBarHelper::custom('rounds.massadd','new.png','new_f2.png','COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_BUTTON',false);
 			$teams = $this->get('projectteams');
@@ -236,16 +221,9 @@ class JoomleagueViewRounds extends JLGView
 	protected function addToolbar_Populate()
 	{
 		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TITLE'));
-<<<<<<< HEAD
 		ToolbarHelper::saveGroup(
 		    [
 		        ['apply','rounds.startpopulate'],
-=======
-		//JLToolBarHelper::apply('rounds.startpopulate');
-		ToolbarHelper::saveGroup(
-		    [
-		        ['apply', 'rounds.startpopulate'],
->>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 		    ],
 		    'btn-success'
 		    );

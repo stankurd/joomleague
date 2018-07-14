@@ -9,7 +9,6 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
-use Joomla\CMS\Access\Access;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Session\Session;

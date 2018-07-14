@@ -158,7 +158,7 @@ class JLToolBarHelper extends ToolBarHelper {
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {
 			//display the task which is not handled by the access.xml
-			return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
+			//return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
 			$allowed = false;
 		}
 		if($allowed) {
@@ -171,7 +171,7 @@ class JLToolBarHelper extends ToolBarHelper {
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {
 			//display the task which is not handled by the access.xml
-		      return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
+			//return JError::raiseWarning(404, Text::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
 			$allowed = false;
 		}
 		if($allowed) {

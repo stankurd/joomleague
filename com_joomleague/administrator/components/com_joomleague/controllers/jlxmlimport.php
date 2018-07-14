@@ -10,8 +10,6 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\Archive\Archive;
 use Joomla\CMS\Factory;
-use Joomla\CMS\Filesystem\File;
-use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
@@ -100,24 +98,24 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 			$dest=JPATH_SITE.'/tmp/'.$upload['name'];
 			$extractdir=JPATH_SITE.'/tmp';
 			$importFile=JPATH_SITE.'/tmp/joomleague_import.jlg';
-			if (File::exists($importFile))
+			if (JFile::exists($importFile))
 			{
-				File::delete($importFile);
+				JFile::delete($importFile);
 			}
-			if (File::exists($tempFilePath))
+			if (JFile::exists($tempFilePath))
 			{
-					if (File::exists($dest))
+					if (JFile::exists($dest))
 					{
-						File::delete($dest);
+						JFile::delete($dest);
 					}
-					if (!File::upload($tempFilePath,$dest))
+					if (!JFile::upload($tempFilePath,$dest))
 					{
 						$app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_CANT_UPLOAD'),'error');
 						return;
 					}
 					else
 					{
-						if (strtolower(File::getExt($dest))=='zip')
+						if (strtolower(JFile::getExt($dest))=='zip')
 						{
 							$result=Archive::extract($dest,$extractdir);
 							if ($result === false)
@@ -125,15 +123,15 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 							    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_EXTRACT_ERROR'),'warning');
 								return false;
 							}
-							File::delete($dest);
-							$src=Folder::files($extractdir,'jlg',false,true);
+							JFile::delete($dest);
+							$src=JFolder::files($extractdir,'jlg',false,true);
 							if(!count($src))
 							{
 							    $app->enqueueMessage(Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_EXTRACT_NOJLG'),'warning');
 								//todo: delete every extracted file / directory
 								return false;
 							}
-							if (strtolower(File::getExt($src[0]))=='jlg')
+							if (strtolower(JFile::getExt($src[0]))=='jlg')
 							{
 								if (!@ rename($src[0],$importFile))
 								{
@@ -149,7 +147,7 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 						}
 						else
 						{
-							if (strtolower(File::getExt($dest))=='jlg')
+							if (strtolower(JFile::getExt($dest))=='jlg')
 							{
 								if (!@ rename($dest,$importFile))
 								{

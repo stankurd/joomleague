@@ -135,11 +135,6 @@ class JoomleagueViewPerson extends JLGView
 			    ],
 			    'btn-success'
 			    );
-<<<<<<< HEAD
-=======
-			//JLToolBarHelper::apply('person.apply');
-			//JLToolBarHelper::save('person.save');
->>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 			JLToolBarHelper::divider();
 			JLToolBarHelper::cancel('person.cancel');
 		}
@@ -155,11 +150,6 @@ class JoomleagueViewPerson extends JLGView
 			    ],
 			    'btn-success'
 			    );
-<<<<<<< HEAD
-=======
-			//JLToolBarHelper::apply('person.apply');
-			//JLToolBarHelper::save('person.save');
->>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 			JLToolBarHelper::divider();
 			JLToolBarHelper::cancel('person.cancel',Text::_('COM_JOOMLEAGUE_GLOBAL_CLOSE'));
 		}

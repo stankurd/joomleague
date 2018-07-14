@@ -90,11 +90,11 @@ class JoomleagueControllerTemplate extends JoomleagueController
 		$index=0;
 		if ($model->store($post))
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_SAVED_TEMPLATE');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_SAVED_TEMPLATE'),'notice');
 		}
 		else
 		{
-			$msg=Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_SAVE_TEMPLATE',$index).' '.$model->getError();
+		    $this->setMessage(Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_SAVE_TEMPLATE',$index).' '.$model->getError(),'error');
 		}
 		// Check the table in so it can be edited.... we are done with it anyway
 		$model->checkin();
@@ -124,11 +124,11 @@ class JoomleagueControllerTemplate extends JoomleagueController
 			$model=$this->getModel('template');
 			if ($model->store($post))
 			{
-				$msg=Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_SAVED_TEMPLATE');
+			    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_SAVED_TEMPLATE'),'notice');
 			}
 			else
 			{
-				$msg=Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_SAVE_TEMPLATE',$index).' '.$model->getError();
+			    $this->setMessage(Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_SAVE_TEMPLATE',$index).' '.$model->getError(),'error');
 			}
 			// Check the table in so it can be edited.... we are done with it anyway
 			$model->checkin();
@@ -159,11 +159,11 @@ class JoomleagueControllerTemplate extends JoomleagueController
 				}
 				if ($model->store($post))
 				{
-					$msg=Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_REBUILD_TEMPLATES');
+				    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_REBUILD_TEMPLATES'),'notice');
 				}
 				else
 				{
-					$msg=Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_REBUILD_TEMPLATE',$index).' '.$model->getError();
+				    $this->setMessage(Text::sprintf('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_REBUILD_TEMPLATE',$index).' '.$model->getError(),'error');
 					break;
 				}
 				// Check the table in so it can be edited.... we are done with it anyway
@@ -205,7 +205,7 @@ class JoomleagueControllerTemplate extends JoomleagueController
 		{
 			echo "<script> alert('".$model->getError(true)."'); window.history.go(-1); </script>\n";
 		}
-		$msg = Text::_("COM_JOOMLEAGUE_ADMIN_TEMPLATES_RESET_SUCCESS");
+		$this->setMessage(Text::_("COM_JOOMLEAGUE_ADMIN_TEMPLATES_RESET_SUCCESS"),'notice');
 		$this->setRedirect('index.php?option='.$this->option.'&view='.$this->view_list.'&task=template.display', $msg);
 	}
 
@@ -226,11 +226,11 @@ class JoomleagueControllerTemplate extends JoomleagueController
 		$model=$this->getModel('template');
 		if ($model->import($templateid,$projectid))
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_IMPORTED_TEMPLATE');
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_IMPORTED_TEMPLATE'),'notice');
 		}
 		else
 		{
-			$msg=Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_IMPORT_TEMPLATE').$model->getError();
+		    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CTRL_ERROR_IMPORT_TEMPLATE').$model->getError(),'error');
 		}
 		$this->setRedirect('index.php?option='.$this->option.'&view='.$this->view_list.'&task=template.display',$msg);
 	}

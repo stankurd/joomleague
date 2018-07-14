@@ -40,7 +40,7 @@ class JLGStatisticComplexsum extends JLGStatistic {
 			$stat_ids = $params->get('stat_ids');	
 		}
 		if (!count($stat_ids)) {
-			Factory::getApplication()->enqueueMessage(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
+			JError::raiseWarning(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
 		}
 		$sids = array();
@@ -57,7 +57,7 @@ class JLGStatisticComplexsum extends JLGStatistic {
 		$stat_ids = $this->getSids();
 		
 		if (count($stat_ids) != count($factors)) {
-			Factory::getApplication()->enqueueMessage(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION - BAD FACTORS COUNT', $this->_name, $this->id));
+			JError::raiseWarning(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION - BAD FACTORS COUNT', $this->_name, $this->id));
 			return(array(0));
 		}
 		
@@ -78,7 +78,7 @@ class JLGStatisticComplexsum extends JLGStatistic {
 			$stat_ids = $params->get('stat_ids');	
 		}
 		if (!count($stat_ids)) {
-			Factory::getApplication()->enqueueMessage(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
+			JError::raiseWarning(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
 		}
 		

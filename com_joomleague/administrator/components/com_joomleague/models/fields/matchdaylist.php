@@ -8,7 +8,6 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormHelper;
-use Joomla\CMS\Form\Field\ListField;
 
 defined('_JEXEC') or die;
 
@@ -18,7 +17,7 @@ FormHelper::loadFieldClass('list');
 /**
  * Matchdaylist form field class
  */
-class JFormFieldMatchdaylist extends ListField
+class JFormFieldMatchdaylist extends JFormFieldList
 {
 	/**
 	 * field type

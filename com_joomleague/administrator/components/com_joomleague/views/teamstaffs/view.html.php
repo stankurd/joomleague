@@ -186,10 +186,6 @@ class JoomleagueViewTeamStaffs extends JLGView
 		    ],
 		    'btn-success'
 		    );
-<<<<<<< HEAD
-=======
-		JLToolBarHelper::apply('teamstaffs.saveshort','COM_JOOMLEAGUE_ADMIN_TSTAFFS_APPLY');
->>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 		JLToolbarHelper::divider();
 		JLToolBarHelper::custom('teamstaffs.assign','upload.png','upload_f2.png','COM_JOOMLEAGUE_ADMIN_TSTAFFS_ASSIGN',false);
 		JLToolBarHelper::custom('teamstaffs.unassign','cancel.png','cancel_f2.png','COM_JOOMLEAGUE_ADMIN_TSTAFFS_UNASSIGN',false);

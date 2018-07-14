@@ -10,7 +10,6 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Form\Field\ListField;
 
 defined('_JEXEC') or die;
 
@@ -20,7 +19,7 @@ FormHelper::loadFieldClass('list');
 /**
  * Currentround form field class
  */
-class JFormFieldCurrentround extends ListField
+class JFormFieldCurrentround extends JFormFieldList
 {
 	/**
 	 * field type

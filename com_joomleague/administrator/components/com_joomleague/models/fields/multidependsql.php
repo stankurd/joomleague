@@ -88,7 +88,7 @@ class JFormFieldMultiDependSQL extends FormField
 		}
 
 		if ($query!='')
-		{
+		
 			$db = Factory::getDbo();
 			$query = $db->getQuery(true);
 			$db->setQuery($query);

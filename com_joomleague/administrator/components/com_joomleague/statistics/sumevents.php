@@ -40,7 +40,7 @@ class JLGStatisticSumevents extends JLGStatistic {
 			$stat_ids = $params->get('stat_ids');
 		}
 		if (!count($stat_ids)) {
-		    Factory::getApplication()->enqueueMessage(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
+			JError::raiseWarning(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
 		}
 		$sids = array();
@@ -59,7 +59,7 @@ class JLGStatisticSumevents extends JLGStatistic {
 			$stat_ids = $params->get('stat_ids');
 		}
 		if (!count($stat_ids)) {
-		    Factory::getApplication()->enqueueMessage(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
+			JError::raiseWarning(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
 		}
 				
