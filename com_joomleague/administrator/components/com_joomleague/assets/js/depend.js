@@ -11,7 +11,6 @@
 
 // add update of field when fields it depends on change.
 jQuery('domready', function() {
-	console.log('ready');
 	jQuery('.mdepend').click (function() {
 		// rebuild hidden field list
 		var sel = [];
@@ -19,7 +18,6 @@ jQuery('domready', function() {
 		this.getElements('option').each(function(el) {
 			if (el.attr('selected')) {
 				sel[i++] = el.val();
-				console.log(sel);
 			}
 		});
 		this.getParent().getElement('input').value = sel.join("|");
@@ -44,13 +42,11 @@ jQuery('domready', function() {
 
 			jQuery(combined).change(function() {
 				update_depend(myelement);
-				console.log(combined,myelement);
 			});
 		});
 
 		// Refresh the element also after the page is loaded (to fill the element)
 		load_default(myelement);
-		console.log(myelement);
 
 	});
 });

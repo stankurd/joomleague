@@ -143,7 +143,7 @@ class JoomleagueModelMatches extends JoomleagueModelList
 		$db = Factory::getDbo();	
 		$query = $db->getQuery(true);
 		$option = $app->input->get('option');
-		// $project_id = $app->getUserState($option . 'project');
+		$project_id = $app->getUserState($option . 'project');
 		$division = (int) $app->getUserStateFromRequest($option.'mc_division', 'division', 0);
 		$round_id = $app->getUserState($option . 'round_id');
 

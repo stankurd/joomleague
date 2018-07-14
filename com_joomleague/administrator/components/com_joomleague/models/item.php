@@ -143,7 +143,7 @@ if(!class_exists('JoomleagueModelItem')) {
 			{
 				try
 					{
-						$db->execute();
+						//$db->execute();
 					}
 					catch (RuntimeException $e)
 					{
@@ -156,7 +156,7 @@ if(!class_exists('JoomleagueModelItem')) {
 			{
 				try
 				{
-					$db->execute();
+					//$db->execute();
 				}
 				catch (RuntimeException $e)
 				{
@@ -183,7 +183,7 @@ if(!class_exists('JoomleagueModelItem')) {
 			{
 				try
 				{
-					$db->execute();
+					//$db->execute();
 				}
 				catch (RuntimeException $e)
 				{
@@ -195,7 +195,7 @@ if(!class_exists('JoomleagueModelItem')) {
 			{
 				try
 				{
-				$db->execute();
+				//$db->execute();
 				}
 				catch (RuntimeException $e)
 				{

@@ -64,7 +64,7 @@ class JoomleagueControllerPerson extends JoomleagueController
 				// save player information
 				if (JoomleagueControllerPerson::_saveTeamplayer($tpid, $post))
 				{
-				    $msg = Text::_('COM_JOOMLEAGUE_EDIT_PERSON_SAVED');
+					$msg = Text::_('COM_JOOMLEAGUE_EDIT_PERSON_SAVED');
 				}
 				else
 				{

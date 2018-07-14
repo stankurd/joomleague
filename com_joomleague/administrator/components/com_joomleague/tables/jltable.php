@@ -146,12 +146,12 @@ class JLTable extends Table
 	 */
 	public function store($updateNulls = false)
 	{
-		$db = $this->getDbo();
+		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		$k = $this->_tbl_keys;
 
 		// Implement JObservableInterface: Pre-processing by observers
-		//$this->_observers->update('onBeforeStore', array($updateNulls, $k));
+		//$this->_observers->->update('onBeforeStore', array($updateNulls, $k));
 
 		$currentAssetId = 0;
 
@@ -243,18 +243,19 @@ class JLTable extends Table
 						// Update the asset_id field in this table.
 						$this->asset_id = (int) $asset->id;
 
-						$query = $this->_db->getQuery(true)
+						$query = $db->getQuery(true)
 							->update($db->quoteName($this->_tbl))
 							->set('asset_id = ' . (int) $this->asset_id);
 						$this->appendPrimaryKeys($query);
-						$db->setQuery($query)->execute();
+						$db->setQuery($query);
+						$db->execute();
 					}
 				}
 			}
 		}
 
 		// Implement JObservableInterface: Post-processing by observers
-		//$this->_observers->update('onAfterStore', array(&$result));
+		//$this->_observers->->update('onAfterStore', array(&$result));
 
 		return $result;
 	}

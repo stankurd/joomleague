@@ -14,6 +14,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\Table\Table;
 use Joomla\Registry\Registry;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\HTML\HTMLHelper;
 
@@ -121,7 +122,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	{
 		if (!$project = $this->getProject())
 		{
-			$this->setError(0, Jtext::_('COM_JOOMLEAGUE_ERROR_PROJECTMODEL_PROJECT_IS_REQUIRED'));
+			$this->setError(0, Text::_('COM_JOOMLEAGUE_ERROR_PROJECTMODEL_PROJECT_IS_REQUIRED'));
 			return false;
 		}
 
@@ -161,7 +162,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		if (!$this->_current_round)
 		{
 			if (!$project = $this->getProject()) {
-				$this->setError(0, Jtext::_('COM_JOOMLEAGUE_ERROR_PROJECTMODEL_PROJECT_IS_REQUIRED'));
+				$this->setError(0, Text::_('COM_JOOMLEAGUE_ERROR_PROJECTMODEL_PROJECT_IS_REQUIRED'));
 				return false;
 			}
 
@@ -257,7 +258,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 				       . ' WHERE id = ' . $db->Quote($project->id);
 				$db->setQuery($query);
 				if (!$db->execute()) {
-				    Factory::getApplication()->enqueueMessage( JText::_('COM_JOOMLEAGUE_ERROR_CURRENT_ROUND_UPDATE_FAILED'));
+				    Factory::getApplication()->enqueueMessage( Text::_('COM_JOOMLEAGUE_ERROR_CURRENT_ROUND_UPDATE_FAILED'));
 				}
 			}
 			$this->_current_round = $result;
@@ -317,7 +318,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		$db->setQuery($query);
 		$res = $db->loadColumn();
 		if(count($res) == 0) {
-			echo JText::_('COM_JOOMLEAGUE_RANKING_NO_SUBLEVEL_DIVISION_FOUND') . $divLevel;
+			echo Text::_('COM_JOOMLEAGUE_RANKING_NO_SUBLEVEL_DIVISION_FOUND') . $divLevel;
 		}
 		return $res;
 	}
@@ -430,7 +431,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		$query="SELECT
 					id as value,
 				    CASE LENGTH(name)
-				    	when 0 then CONCAT('".JText::_('COM_JOOMLEAGUE_MATCHDAY_NAME'). "',' ', id)
+				    	when 0 then CONCAT('".Text::_('COM_JOOMLEAGUE_MATCHDAY_NAME'). "',' ', id)
 				    	else name
 				    END as text
 				  FROM #__joomleague_round
@@ -679,7 +680,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		try {
 		    $result = $db->loadObjectList();
 		} catch (RuntimeException $e) {
-		    Factory::getApplication()->enqueueMessage(JText::_($e->getMessage()), 'error');
+		    Factory::getApplication()->enqueueMessage(Text::_($e->getMessage()), 'error');
 		    return false;
 		}			
 			return $result;
@@ -776,9 +777,9 @@ class JoomleagueModelProject extends BaseDatabaseModel
 				$db->setQuery($query);
 				if (! $result=$db->loadResult())
 				{
-				    Factory::getApplication()->enqueueMessage(JText::_('COM_JOOMLEAGUE_MASTER_TEMPLATE_MISSING')." ".$template , 'notice');
-				    Factory::getApplication()->enqueueMessage(JText::_('COM_JOOMLEAGUE_MASTER_TEMPLATE_MISSING_PID'). $project->master_template , 'notice');
-				    Factory::getApplication()->enqueueMessage(JText::_('COM_JOOMLEAGUE_TEMPLATE_MISSING_HINT') , 'notice');
+				    Factory::getApplication()->enqueueMessage(Text::_('COM_JOOMLEAGUE_MASTER_TEMPLATE_MISSING')." ".$template , 'notice');
+				    Factory::getApplication()->enqueueMessage(Text::_('COM_JOOMLEAGUE_MASTER_TEMPLATE_MISSING_PID'). $project->master_template , 'notice');
+				    Factory::getApplication()->enqueueMessage(Text::_('COM_JOOMLEAGUE_TEMPLATE_MISSING_HINT') , 'notice');
 					return $arrStandardSettings;
 				}
 			}
@@ -994,7 +995,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		// Bind the form fields to the items table
 		if (!$row->bind($data))
 		{
-			$this->setError(JText::_('Binding failed'));
+			$this->setError(Text::_('Binding failed'));
 			return false;
 		}
 

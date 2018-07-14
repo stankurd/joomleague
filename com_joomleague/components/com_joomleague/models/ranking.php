@@ -18,10 +18,10 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport( 'joomla.application.component.model' );
 
-require_once( JLG_PATH_SITE . '/helpers/ranking.php' );
-require_once( JLG_PATH_SITE . '/models/project.php' );
-//JLoader::register('JLGRanking', JLG_PATH_SITE.'/helpers/ranking.php');
-//JLoader::register('JoomleagueModelProject', JLG_PATH_SITE.'/models/project.php');
+//require_once( JLG_PATH_SITE . '/helpers/ranking.php' );
+//require_once( JLG_PATH_SITE . '/models/project.php' );
+JLoader::register('JLGRanking', JLG_PATH_SITE.'/helpers/ranking.php');
+JLoader::register('JoomleagueModelProject', JLG_PATH_SITE.'/models/project.php');
 
 class JoomleagueModelRanking extends JoomleagueModelProject
 {
@@ -46,16 +46,15 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 	function __construct( )
 	{
 		parent::__construct( );
-		$app		= Factory::getApplication();
-		$this->projectid = $app->input->getInt( "p", 0 );
-		$this->round = $app->input->getInt( "r", $this->getCurrentRound());
-		$this->part  = $app->input->getInt( "part", 0);
-		$this->from  = $app->input->getInt( 'from', $this->round );
-		$this->to	 = $app->input->getInt( 'to', $this->round);
-		$this->type  = $app->input->getInt( 'type', 0 );
-		$this->last  = $app->input->getInt( 'last', 0 );
+		$this->projectid = Factory::getApplication()->input->getInt( "p", 0 );
+		$this->round = Factory::getApplication()->input->getInt( "r", $this->getCurrentRound());
+		$this->part  = Factory::getApplication()->input->getInt( "part", 0);
+		$this->from  = Factory::getApplication()->input->getInt( 'from', $this->round );
+		$this->to	 = Factory::getApplication()->input->getInt( 'to', $this->round);
+		$this->type  = Factory::getApplication()->input->getInt( 'type', 0 );
+		$this->last  = Factory::getApplication()->input->getInt( 'last', 0 );
 
-		$this->selDivision = $app->input->getInt( 'division', 0 );
+		$this->selDivision = Factory::getApplication()->input->getInt( 'division', 0 );
 	}
 
 	
@@ -83,8 +82,8 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 			if (!$current) {
 			return false;
 		}
-		$this->_db = Factory::getDbo();
-		$query = $this->_db->getQuery(true);
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		// previous games of each team, until current round
 		$query = ' SELECT m.*, r.roundcode, '
 		       . ' CASE WHEN CHAR_LENGTH(t1.alias) AND CHAR_LENGTH(t2.alias) THEN CONCAT_WS(\':\',m.id,CONCAT_WS("_",t1.alias,t2.alias)) ELSE m.id END AS slug, '
@@ -96,17 +95,17 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 		       . ' INNER JOIN #__joomleague_project_team AS pt2 ON m.projectteam2_id=pt2.id '
 		       . ' INNER JOIN #__joomleague_team AS t1 ON pt1.team_id = t1.id '
 		       . ' INNER JOIN #__joomleague_team AS t2 ON pt2.team_id = t2.id '
-		       . ' WHERE r.project_id = ' . $this->_db->Quote($this->projectid)
-		       . '   AND r.roundcode <= ' . $this->_db->Quote($current->roundcode)
+		       . ' WHERE r.project_id = ' . $db->Quote($this->projectid)
+		       . '   AND r.roundcode <= ' . $db->Quote($current->roundcode)
 		       . '   AND m.team1_result IS NOT NULL ';
 		       if($this->selDivision>0) {
-		       	$query .= '   AND (pt1.division_id = ' . $this->_db->Quote($this->selDivision);
-				$query .= '   OR pt2.division_id = ' . $this->_db->Quote($this->selDivision) . ')';
+		       	$query .= '   AND (pt1.division_id = ' . $db->Quote($this->selDivision);
+				$query .= '   OR pt2.division_id = ' . $db->Quote($this->selDivision) . ')';
 		       }
-		       //$query .= ' ORDER BY r.roundcode ASC '
+		       $query .= ' ORDER BY r.roundcode ASC '
 		       ;
-		$this->_db->setQuery($query);
-		$games = $this->_db->loadObjectList();
+		$db->setQuery($query);
+		$games = $db->loadObjectList();
 
 		$teams = $this->getTeamsIndexedByPtid();
 
@@ -171,19 +170,19 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 		}
 		else
 		{
-			if ($app->input->getInt( 'from' ) == "0") {
+			if (Factory::getApplication()->input->getInt( 'from' ) == "0") {
 				$this->from = $firstRound['id'];
 			}
 			else
 			{
-				$this->from = $app->input->getInt( 'from', $firstRound['id'] );
+				$this->from = Factory::getApplication()->input->getInt( 'from', $firstRound['id'] );
 			}
-			if ($app->input->getInt( 'to' ) == "0") {
+			if (Factory::getApplication()->input->getInt( 'to' ) == "0") {
 				$this->to   = $this->round;
 			}
 			else
 			{
-				$this->to   = $app->input->getInt( 'to', $this->round, $lastRound['id'] );
+				$this->to   = Factory::getApplication()->input->getInt( 'to', $this->round, $lastRound['id'] );
 			}
 		}
 		if( $this->part > 0 )
@@ -194,7 +193,7 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 		{
 			$url.='&amp;from='.$this->from.'&amp;to='.$this->to;
 		}
-		$this->type = $app->input->getInt( 'type', 0 );
+		$this->type = Factory::getApplication()->input->getInt( 'type', 0 );
 		if ( $this->type > 0 )
 		{
 			$url.='&amp;type='.$this->type;
@@ -205,8 +204,8 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 		//for sub division ranking tables
 		if ( $project->project_type=='DIVISIONS_LEAGUE' )
 		{
-			$selDivision = $app->input->getInt( 'division', 0 );
-			$this->divLevel = $app->input->getInt( 'divLevel', $tableconfig['default_division_view'] );
+			$selDivision = Factory::getApplication()->input->getInt( 'division', 0 );
+			$this->divLevel = Factory::getApplication()->input->getInt( 'divLevel', $tableconfig['default_division_view'] );
 
 			if ( $selDivision > 0 )
 			{
@@ -239,12 +238,12 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 		}
 		$selectedvalue = 0;
 
-		$last = $app->input->getInt( 'last', 0 );
+		$last = Factory::getApplication()->input->getInt( 'last', 0 );
 		if ($last > 0)
 		{
 			$url .= '&amp;last='.$last;
 		}
-		if ( $app->input->getInt( 'sef', 0) == 1 )
+		if ( Factory::getApplication()->input->getInt( 'sef', 0) == 1 )
 		{
 			$app->redirect( Route::_( $url ) );
 		}
@@ -313,14 +312,14 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 	 */
 	public function _getPreviousRoundId($round_id)
 	{
-	    $this->_db = Factory::getDbo();
-	    $query = $this->_db->getQuery(true);
+	    $db = Factory::getDbo();
+	    $query = $db->getQuery(true);
 		$query = ' SELECT id ' 
 		       . ' FROM #__joomleague_round ' 
 		       . ' WHERE project_id = ' . $this->projectid
 		       . ' ORDER BY roundcode ASC ';
-		$this->_db->setQuery($query);
-		$res = $this->_db->loadColumn();
+		$db->setQuery($query);
+		$res = $db->loadColumn();
 		
 		if (!$res) {
 			return $round_id;
@@ -340,9 +339,8 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 
 	public function _sortRanking(&$ranking)
 	{
-	    $app = Factory::getApplication();
-		$order     = $app->input->get( 'order', '' );
-		$order_dir = $app->input->get( 'dir', 'ASC' );
+		$order     = Factory::getApplication()->input->get( 'order', '' );
+		$order_dir = Factory::getApplication()->input->get( 'dir', 'ASC' );
 
 		switch ($order)
 		{

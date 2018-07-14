@@ -11,6 +11,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -67,12 +68,12 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 			{
 				if (!$this->teamid)
 				{
-					$this->setError(JText::_('Missing team id'));
+					$this->setError(Text::_('Missing team id'));
 					return false;
 				}
 				if (!$this->projectid)
 				{
-					$this->setError(JText::_('Missing project id'));
+					$this->setError(Text::_('Missing project id'));
 					return false;
 				}
 				$db = Factory::getDbo();
@@ -100,12 +101,12 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 		{
 			if (!$this->teamid)
 			{
-				$this->setError(JText::_('Missing team id'));
+				$this->setError(Text::_('Missing team id'));
 				return false;
 			}
 			if (!$this->projectid)
 			{
-				$this->setError(JText::_('Missing project id'));
+				$this->setError(Text::_('Missing project id'));
 				return false;
 			}
 			$db = Factory::getDbo();

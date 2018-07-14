@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\String\StringHelper;
 use Joomla\CMS\HTML\HTMLHelper;
@@ -198,6 +199,12 @@ class JoomleagueViewProjectposition extends JLGView
 	{ 
 		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_EDIT_TITLE'),'jl-Positions');
 		JLToolBarHelper::save('projectposition.save_positionslist');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['save', 'projectposition.save_positionslist'],
+		    ],
+		    'btn-success'
+		    );
 		JLToolBarHelper::cancel('projectposition.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		JLToolBarHelper::help('screen.joomleague',true);
 	}	

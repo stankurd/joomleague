@@ -152,7 +152,7 @@ if ($this->config['show_comments_count'] > 0)
 		<?php endif;?>
 
 		<?php if ($this->config['show_events']): ?>
-		<td width="16" class="ko">
+		<td width="20" class="ko">
 			<?php
 			if ($hasEvents)
 			{
@@ -279,10 +279,10 @@ if ($this->config['show_comments_count'] > 0)
 		<?php endif; ?>
 
 		<!-- show hammer if there is a alternative decision of the score -->
-		<td width="5" class="ko"><?php $this->showReportDecisionIcons($game); ?></td>
+		<td width="20" class="ko"><?php $this->showReportDecisionIcons($game); ?></td>
 
 		<?php if($this->config['show_referee']): ?>
-		<td width="5" class="referees"><?php $this->showMatchRefereesAsTooltip($game); ?></td>
+		<td width="20" class="referees"><?php $this->showMatchRefereesAsTooltip($game); ?></td>
 		<?php endif; ?>
 
 		<?php if ($this->config['show_playground'] || $this->config['show_playground_alert']): ?>

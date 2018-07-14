@@ -144,7 +144,7 @@ class JoomleagueViewTreetomatches extends JLGView
 		}
 		else
 		{
-			JError::raiseWarning('ERROR_CODE','<br />' . Text::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ADD_MATCH') . '<br /><br />');
+			$app->enqueueMessage('ERROR_CODE','<br />' . Text::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_ADD_MATCH') . '<br /><br />');
 		}
 
 		// build the html select list for matches

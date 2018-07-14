@@ -14,7 +14,7 @@ use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
-HTMLHelper::_('behavior.framework');
+//HTMLHelper::_('behavior.framework');
 
 /**
  * Renders a Dynamic SQL element

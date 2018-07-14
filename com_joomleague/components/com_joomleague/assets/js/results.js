@@ -8,8 +8,8 @@
 * See COPYRIGHT.php for copyright notices and details.
 */
 
-(function(){
-	jQuery('.eventstoggle').click (function(){
+document.addEventListener('DOMContentLoaded', function() {
+	document.querySelector('.eventstoggle').addEventListener('click', function(){
 		var id = this.getProperty('id').substr(7);
 		if (document.getElementById('info'+id).getStyle('display') == 'block') {
 			document.getElementById('info'+id).setStyle('display', 'none');

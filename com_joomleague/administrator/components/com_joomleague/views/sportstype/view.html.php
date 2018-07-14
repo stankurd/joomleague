@@ -54,6 +54,13 @@ class JoomleagueViewSportsType extends JLGView
 		if($isNew)
 		{
 			ToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_SPORTSTYPE_ADD_NEW'),'jl-sportstypes');
+			ToolbarHelper::saveGroup(
+			    [
+			        ['apply', 'sportstype.apply'],
+			        ['save', 'sportstype.save'],
+			    ],
+			    'btn-success'
+			    );
 			JLToolBarHelper::apply('sportstype.apply');
 			JLToolBarHelper::save('sportstype.save');
 			ToolbarHelper::divider();
@@ -62,8 +69,13 @@ class JoomleagueViewSportsType extends JLGView
 		else
 		{
 			ToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_SPORTSTYPE_EDIT').': '.Text::_($this->form->getValue('name')),'jl-sportstypes');
-			JLToolBarHelper::apply('sportstype.apply');
-			JLToolBarHelper::save('sportstype.save');
+			ToolbarHelper::saveGroup(
+			    [
+			        ['apply', 'sportstype.apply'],
+			        ['save', 'sportstype.save'],
+			    ],
+			    'btn-success'
+			    );
 			ToolBarHelper::divider();
 			JLToolBarHelper::cancel('sportstype.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}

@@ -114,13 +114,7 @@ class JoomleagueViewJoomleague extends JLGView
 
 		parent::display($tpl);
 	}
- /**
-     * 
-     * Add a menu on the sidebar of page
-     */
-    protected function addSidebar() {
-		$this->sidebar = JHtmlSidebar::render();
-    }
+
 	/**
 	 * display left Menu
 	 */

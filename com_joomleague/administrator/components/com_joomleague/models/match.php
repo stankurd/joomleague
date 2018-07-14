@@ -1174,7 +1174,9 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 							mp.match_id = '.$db->Quote($mid).' AND
 							tp.projectteam_id = '.$db->Quote($team_id);	
 		
-		$db->setQuery($query)->loadColumn();
+		//$db->setQuery($query)->loadColumn();
+		$db->setQuery($query);
+		
 
 		try{
 			$db->execute();
@@ -2295,6 +2297,7 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 	* @author And_One <andone@mfga.at>
 	* @return boolean
 	*/
+	/**
 	function prefillMatchPlayersWithLastMatch($projectteam_id, $bDeleteCurrrentRoster,$match_id=false)
 	{
 		$app 	= Factory::getApplication();
@@ -2383,5 +2386,5 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 		}
 		return $result;
 	}
-
+*/
 }

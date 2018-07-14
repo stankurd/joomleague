@@ -8,10 +8,9 @@
 * See COPYRIGHT.php for copyright notices and details.
 */
 
-//add 1.5 compatibility layer
-(function() {
-	if($('adminForm')) {
-		$('adminForm').setProperty('name', 'adminForm');
+	document.addEventListener('DOMContentLoaded', function() {
+	if(document.getElementById('adminForm')) {
+		document.getElementById('adminForm').setProperty('name', 'adminForm');
 	}
 });
 

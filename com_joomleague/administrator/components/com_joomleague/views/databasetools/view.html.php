@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -36,9 +37,9 @@ class JoomleagueViewDatabaseTools extends JLGView
 	protected function addToolbar()
 	{
 		// Set toolbar items for the page
-		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOLS_TITLE'),'config.png');
-		JLToolBarHelper::back();
-		JLToolBarHelper::help( 'screen.joomleague', true );
+		ToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_DBTOOLS_TITLE'),'config.png');
+		ToolBarHelper::back();
+		ToolbarHelper::help( 'screen.joomleague', true );
 	}	
 	
 }

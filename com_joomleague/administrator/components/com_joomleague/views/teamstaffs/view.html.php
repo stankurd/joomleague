@@ -10,6 +10,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -157,8 +158,12 @@ class JoomleagueViewTeamStaffs extends JLGView
 		
 		$this->filterForm = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');
-
-		JLToolBarHelper::apply('teamstaffs.saveassigned','COM_JOOMLEAGUE_ADMIN_PERSONS_SAVE_SELECTED');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'teamstaffs.saveassigned','COM_JOOMLEAGUE_ADMIN_PERSONS_SAVE_SELECTED'],
+		    ],
+		    'btn-success'
+		    );
 		JLToolbarHelper::back('COM_JOOMLEAGUE_ADMIN_PERSONS_BACK','index.php?option=com_joomleague&view=teamstaffs');
 		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PERSONS_ASSIGN_STAFF'),'generic.png');
 		JLToolbarHelper::help('screen.joomleague',true);
@@ -175,7 +180,12 @@ class JoomleagueViewTeamStaffs extends JLGView
 		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TSTAFFS_TITLE'));
 		JLToolBarHelper::publishList('teamstaffs.publish');
 		JLToolBarHelper::unpublishList('teamstaffs.unpublish');
-		JLToolBarHelper::apply('teamstaffs.saveshort','COM_JOOMLEAGUE_ADMIN_TSTAFFS_APPLY');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'teamstaffs.saveshort','COM_JOOMLEAGUE_ADMIN_TSTAFFS_APPLY'],
+		    ],
+		    'btn-success'
+		    );
 		JLToolbarHelper::divider();
 		JLToolBarHelper::custom('teamstaffs.assign','upload.png','upload_f2.png','COM_JOOMLEAGUE_ADMIN_TSTAFFS_ASSIGN',false);
 		JLToolBarHelper::custom('teamstaffs.unassign','cancel.png','cancel_f2.png','COM_JOOMLEAGUE_ADMIN_TSTAFFS_UNASSIGN',false);

@@ -112,8 +112,6 @@ class JoomleagueViewTemplate extends JLGView
 		    ],
 		    'btn-success'
 		    );
-		//ToolbarHelper::save('template.save');
-		//ToolbarHelper::apply('template.apply');
 
 		if (!$edit)
 		{

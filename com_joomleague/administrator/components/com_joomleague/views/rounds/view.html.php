@@ -8,7 +8,11 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Filesystem\Folder;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -64,7 +68,7 @@ class JoomleagueViewRounds extends JLGView
 		$massadd 		= $jinput->get('massadd');
 
 		// build the html options for divisions
-		$divisions[] = JHtmlSelect::option('0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
+		$divisions[] =  HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
 		$mdlDivisions = BaseDatabaseModel::getInstance('divisions','JoomLeagueModel');
 		if($res = $mdlDivisions->getDivisions($project->id))
 		{
@@ -78,10 +82,10 @@ class JoomleagueViewRounds extends JLGView
 		$options[] = HTMLHelper::_('select.option',$massAddType ++,Text::_("Number of rounds with start date and interval"));
 
 		// Add additional options to select
-		$path = JPath::clean(JPATH_ROOT.'/media/com_joomleague/database/round_templates');
-		if(JFolder::exists($path))
+		$path = Path::clean(JPATH_ROOT.'/media/com_joomleague/database/round_templates');
+		if(Folder::exists($path))
 		{
-			$files = JFolder::files($path,'\.csv',false);
+			$files = Folder::files($path,'\.csv',false);
 			foreach($files as $file)
 			{
 				$filename = str_replace('_',' ',JFile::stripExt($file));
@@ -144,13 +148,13 @@ class JoomleagueViewRounds extends JLGView
 		$options = array();
 		$options[] = HTMLHelper::_('select.option',$iScheduleType ++,Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_SINGLE_ROUND_ROBIN'));
 		$options[] = HTMLHelper::_('select.option',$iScheduleType ++,Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_DOUBLE_ROUND_ROBIN'));
-		$path = JPath::clean(JPATH_ROOT . '/media/com_joomleague/database/round_populate_templates');
-		if(JFolder::exists($path))
+		$path = Path::clean(JPATH_ROOT . '/media/com_joomleague/database/round_populate_templates');
+		if(Folder::exists($path))
 		{
-			$files = JFolder::files($path,'\.txt',false);
+			$files = Folder::files($path,'\.txt',false);
 			foreach($files as $file)
 			{
-				$filename = strtoupper(JFile::stripExt($file));
+				$filename = strtoupper(File::stripExt($file));
 				$options[] = HTMLHelper::_('select.option',$file,Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_' . $filename));
 			}
 		}
@@ -184,7 +188,12 @@ class JoomleagueViewRounds extends JLGView
 		if(!$this->massadd)
 		{
 			JLToolBarHelper::addNew('rounds.quickAdd');
-			JLToolBarHelper::apply('rounds.saveshort');
+			ToolbarHelper::saveGroup(
+			    [
+			        ['apply', 'rounds.saveshort'],
+			    ],
+			    'btn-success'
+			    );
 			JLToolbarHelper::divider();
 			JLToolBarHelper::custom('rounds.massadd','new.png','new_f2.png','COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_BUTTON',false);
 			$teams = $this->get('projectteams');
@@ -212,7 +221,12 @@ class JoomleagueViewRounds extends JLGView
 	protected function addToolbar_Populate()
 	{
 		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TITLE'));
-		JLToolBarHelper::apply('rounds.startpopulate');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply','rounds.startpopulate'],
+		    ],
+		    'btn-success'
+		    );
 		JLToolbarHelper::back();
 	}
 }

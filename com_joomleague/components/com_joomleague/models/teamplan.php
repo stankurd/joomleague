@@ -11,6 +11,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -398,7 +399,7 @@ class JoomleagueModelTeamPlan extends JoomleagueModelProject
 			try {
 			    $referees = $db->loadObjectList();
 			} catch (Exception $e) {
-			    Factory::getApplication()->enqueueMessage(JText::_($e->getMessage()), 'error');
+			    Factory::getApplication()->enqueueMessage(Text::_($e->getMessage()), 'error');
 			    return false;
 			}
 			$matches[$index]->referees = $referees;

@@ -11,6 +11,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -102,7 +103,7 @@ class JoomleagueModelMatchReport extends JoomleagueModelProject
 		//if no match title set then set the default one
 		if(is_null($round->name) || empty($round->name))
 		{
-			$round->name=JText::sprintf('COM_JOOMLEAGUE_RESULTS_GAMEDAY_NB',$round->id);
+			$round->name=Text::sprintf('COM_JOOMLEAGUE_RESULTS_GAMEDAY_NB',$round->id);
 		}
 
 		return $round;

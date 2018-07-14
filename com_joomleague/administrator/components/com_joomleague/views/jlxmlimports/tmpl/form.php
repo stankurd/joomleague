@@ -10,6 +10,7 @@
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Factory;
 
 defined('_JEXEC') or die;
 
@@ -121,7 +122,7 @@ if (isset($this->xml) && is_array($this->xml))
 			$xmlImportType='statistics';
 			$xmlImportTitle='Standard XML-Import of JoomLeague Statistics';
 		}
-		JError::raiseNotice(500,Text::_($xmlImportTitle));
+		Factory::getApplication()->enqueueMessage(500,Text::_($xmlImportTitle));
 	}
 	else
 	{

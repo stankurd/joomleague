@@ -13,7 +13,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 defined('_JEXEC') or die;
 
 HTMLHelper::_('bootstrap.tooltip');
-HTMLHelper::_('behavior.modal');
+//HTMLHelper::_('behavior.modal');
 
 
 $app 		= Factory::getApplication();

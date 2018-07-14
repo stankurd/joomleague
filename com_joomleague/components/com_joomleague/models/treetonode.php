@@ -11,6 +11,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -38,7 +39,7 @@ class JoomleagueModelTreetonode extends JoomleagueModelProject
 	function getTreetonode()
 	{
 		if (!$this->projectid) {
-			$this->setError(JText::_('Missing project id'));
+			$this->setError(Text::_('Missing project id'));
 			return false;
 		}
 		$db = Factory::getDbo();

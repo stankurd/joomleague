@@ -11,6 +11,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -124,7 +125,7 @@ class JoomleagueModelMatrix extends JoomleagueModelProject
 		try {
 		    $result = $db->loadObjectList();
 		} catch (RuntimeException $e) {
-		    Factory::getApplication()->enqueueMessage(JText::_($e->getMessage()), 'error');	    
+		    Factory::getApplication()->enqueueMessage(Text::_($e->getMessage()), 'error');	    
 		}	
 		return $result;
 	}

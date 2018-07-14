@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -123,15 +124,33 @@ class JoomleagueViewTreetonodes extends JLGView
 		$isleafed = $this->treeto->leafed;
 		if($isleafed == 1)
 		{
-			JLToolBarHelper::apply('treetonodes.saveshort',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_SAVE_APPLY'),false);
+		    ToolbarHelper::saveGroup(
+		        [
+		            ['apply', 'treetonodes.saveshort',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_SAVE_APPLY'),false],
+		        ],
+		        'btn-success'
+		        );
+			//JLToolBarHelper::apply('treetonodes.saveshort',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_SAVE_APPLY'),false);
 			JLToolBarHelper::custom('treetonodes.removenode','delete.png','delete_f2.png',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_DELETE_ALL'),false);
 		}
 		elseif($isleafed)
 		{
-			JLToolBarHelper::apply('treetonodes.saveshortleaf',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TEST_SHOW'),false);
+		    ToolbarHelper::saveGroup(
+		        [
+		            ['apply', 'treetonodes.saveshortleaf',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TEST_SHOW'),false],
+		        ],
+		        'btn-success'
+		        );
+			//JLToolBarHelper::apply('treetonodes.saveshortleaf',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TEST_SHOW'),false);
 			if($isleafed == 3)
 			{
-				JLToolBarHelper::apply('treetonodes.savefinishleaf',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_SAVE_LEAF'),false);
+			    ToolbarHelper::saveGroup(
+			        [
+			            ['apply', 'treetonodes.saveshortleaf',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TEST_SHOW'),false],
+			        ],
+			        'btn-success'
+			        );
+				//JLToolBarHelper::apply('treetonodes.savefinishleaf',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_SAVE_LEAF'),false);
 			}
 		JLToolBarHelper::custom('treetonodes.removenode','delete.png','delete_f2.png',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_DELETE'),false);
 		}

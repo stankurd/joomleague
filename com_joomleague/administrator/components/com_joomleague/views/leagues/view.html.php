@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 defined('_JEXEC') or die;
 
@@ -43,12 +44,12 @@ class JoomleagueViewLeagues extends JLGView
 	 */
 	protected function addToolbar()
 	{
-	    JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_LEAGUES_TITLE'),'jl-leagues');
-		JLToolBarHelper::addNew('league.add');
-		JLToolBarHelper::custom('leagues.import','upload','upload','COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT',false);
-		JLToolBarHelper::archiveList('leagues.export','COM_JOOMLEAGUE_GLOBAL_XML_EXPORT');
-		JLToolBarHelper::deleteList('COM_JOOMLEAGUE_GLOBAL_CONFIRM_DELETE','leagues.remove');
-		JLToolBarHelper::divider();
-		JLToolBarHelper::help('screen.joomleague',true);
+	    ToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_LEAGUES_TITLE'),'jl-leagues');
+		ToolBarHelper::addNew('league.add');
+		ToolBarHelper::custom('leagues.import','upload','upload','COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT',false);
+		ToolBarHelper::archiveList('leagues.export','COM_JOOMLEAGUE_GLOBAL_XML_EXPORT');
+		ToolBarHelper::deleteList('COM_JOOMLEAGUE_GLOBAL_CONFIRM_DELETE','leagues.remove');
+		ToolBarHelper::divider();
+		ToolBarHelper::help('screen.joomleague',true);
 	}
 }

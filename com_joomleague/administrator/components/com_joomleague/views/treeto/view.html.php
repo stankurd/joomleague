@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -108,8 +109,13 @@ class JoomleagueViewTreeto extends JLGView
 	protected function addToolbar()
 	{
 		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TREETO_TITLE'));
-		JLToolBarHelper::save('treeto.save');
-		JLToolBarHelper::apply('treeto.apply');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'treeto.apply'],
+		        ['save', 'treeto.save'],
+		    ],
+		    'btn-success'
+		    );
 		JLToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetos');
 		JLToolBarHelper::help('screen.joomleague',true);
 	}

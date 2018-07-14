@@ -418,7 +418,7 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 				. '     AND p.id='.$db->Quote($project_id)
 		        . '     AND (pt1.id='.$quotedPtId.' OR pt2.id='.$quotedPtId.')'
 				. '     AND m.published = 1 AND p.published = 1'
-				//. '   GROUP BY mp.match_id'
+				. '   GROUP BY mp.match_id'
 				. ' ) AS ios ON ios.match_id=m.id';
 		$db->setQuery($query);
 		$inoutstat = $db->loadObject();
@@ -600,7 +600,7 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 				$query->where('pos.sports_type_id = '.$db->Quote($sports_type_id));
 			}
 
-			$query->group('s.id, ppos.id, s.name, s.short, s.class, s.icon , s.calculated , s.params , s.baseparams, ppos.position_id');
+			$query->group('s.id, ppos.id, s.name, s.short, s.class, s.icon , s.calculated , s.params , s.baseparams');
 
 			// join Teamplayer
 			$query->join('INNER', '#__joomleague_team_player AS tp ON tp.person_id=p.id');
@@ -797,7 +797,7 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 					me.match_id
 				FROM #__joomleague_match_event AS me
 				WHERE me.teamplayer_id IN ('. implode(',', $quoted_tpids) .')
-				GROUP BY me.match_id, me.event_type_id, me.id, me.projectteam_id, me.teamplayer_id, me.teamplayer_id2, me.event_time, me.event_sum, me.notice, me.notes, me.checked_out, me.checked_out_time,me.modified, me.modified_by';
+				GROUP BY me.match_id, me.event_type_id, me.id ';
 			$db->setQuery($query);
 			$events=$db->loadObjectList();
 			foreach ((array) $events as $ev)

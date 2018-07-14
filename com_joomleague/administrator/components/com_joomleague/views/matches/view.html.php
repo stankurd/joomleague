@@ -11,6 +11,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\String\StringHelper;
 use Joomla\Utilities\ArrayHelper;
@@ -143,9 +144,9 @@ class JoomleagueViewMatches extends JLGView
 		}
 
 		//build the html options for extratime
-		$match_result_type[]=JHtmlSelect::option('0',Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_RT'));
-		$match_result_type[]=JHtmlSelect::option('1',Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_OT'));
-		$match_result_type[]=JHtmlSelect::option('2',Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_SO'));
+		$match_result_type[]=HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_RT'));
+		$match_result_type[]=HTMLHelper::_('select.option','1',Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_OT'));
+		$match_result_type[]=HTMLHelper::_('select.option','2',Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_SO'));
 		$lists['match_result_type']=$match_result_type;
 		unset($match_result_type);
 
@@ -156,7 +157,7 @@ class JoomleagueViewMatches extends JLGView
 		);
 		$ctOptions=array();
 		foreach($createTypes AS $key => $value){
-			$ctOptions[]=JHtmlSelect::option($key,$value);
+		    $ctOptions[]=HTMLHelper::_('select.option',$key,$value);
 		}
 		$lists['createTypes']=JHtmlSelect::genericlist($ctOptions,'ct[]','class="inputbox" onchange="javascript:displayTypeView();"','value','text',1,'ct');
 		unset($createTypes);
@@ -165,14 +166,14 @@ class JoomleagueViewMatches extends JLGView
 		$createYesNo=array(0 => Text::_('COM_JOOMLEAGUE_GLOBAL_NO'),1 => Text::_('COM_JOOMLEAGUE_GLOBAL_YES'));
 		$ynOptions=array();
 		foreach($createYesNo AS $key => $value){
-			$ynOptions[]=JHtmlSelect::option($key,$value);
+		    $ynOptions[]=HTMLHelper::_('select.option',$key,$value);
 		}
 		$lists['addToRound']=JHtmlSelect::radiolist($ynOptions,'addToRound','class="inputbox"','value','text',0);
 
 		// build the html radio for auto publish new matches
 		$lists['autoPublish']=JHtmlSelect::radiolist($ynOptions,'autoPublish','class="inputbox"','value','text',0);
 		//build the html options for divisions
-		$divisions[]=JHtmlSelect::option('0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
+		$divisions[]=HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
 		$mdlDivisions = BaseDatabaseModel::getInstance("divisions", "JoomLeagueModel");
 		if ($res = $mdlDivisions->getDivisions($project_id)){
 			$divisions=array_merge($divisions,$res);
@@ -213,8 +214,12 @@ class JoomleagueViewMatches extends JLGView
 			JLToolBarHelper::publishList('matches.publish');
 			JLToolBarHelper::unpublishList('matches.unpublish');
 			JLToolbarHelper::divider();
-
-			JLToolBarHelper::apply('matches.saveshort');
+			ToolbarHelper::saveGroup(
+			    [
+			        ['apply', 'matches.saveshort'],
+			    ],
+			    'btn-success'
+			    );
 			JLToolbarHelper::divider();
 
 			JLToolBarHelper::custom('matches.massadd','new.png','new_f2.png','COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_MATCHES',false);

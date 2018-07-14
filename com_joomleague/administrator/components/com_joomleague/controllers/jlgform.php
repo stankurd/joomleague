@@ -2,6 +2,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\FormController;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Filter\InputFilter;
 
 /**
@@ -64,7 +65,7 @@ class JLGControllerForm extends FormController
 			if (!class_exists($viewClassExtension))
 			{
 				jimport('joomla.filesystem.path');
-				$path = JPath::find($this->paths['view'],$this->createFileName('view',array(
+				$path = Path::find($this->paths['view'],$this->createFileName('view',array(
 					'name' => $viewName,
 					'type' => $viewType
 				)));

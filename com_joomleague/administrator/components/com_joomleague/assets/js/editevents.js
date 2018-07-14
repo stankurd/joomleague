@@ -202,7 +202,6 @@ function eventaddsuccess(data,textStatus,jqXHR) {
 		// create new row in events table
 		 //var newrow = new Element('tr', {id : 'rowe-' + obj.id}); 
 		var newrow = jQuery("<tr>").attr({id: 'rowe-'+obj.id});
-		console.log(obj);
 
 		// add td's
 		newrow.append(jQuery("<td>").text(obj.id));

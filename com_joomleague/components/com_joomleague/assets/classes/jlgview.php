@@ -31,7 +31,7 @@ class JLGView extends BaseHtmlView
 		parent::__construct($config);
 
 		$app  	= Factory::getApplication();
-		$input = $app->input;
+		$jinput = $app->input;
 
 		$this->input = Factory::getApplication()->input;
 
@@ -58,9 +58,9 @@ class JLGView extends BaseHtmlView
 	{
 		$option     = ApplicationHelper::getComponentName();
 		$app		= Factory::getApplication();
-		$input		= $app->input;
+		$jinput		= $app->input;
 
-		$extensions	= JoomleagueHelper::getExtensions($input->getInt('p'));
+		$extensions	= JoomleagueHelper::getExtensions($jinput->getInt('p'));
 		if (!count($extensions))
 		{
 			return parent::_setPath($type, $path);
@@ -101,8 +101,8 @@ class JLGView extends BaseHtmlView
 	public function display($tpl = null )
 	{
 		$app		= Factory::getApplication();
-		$input		= $app->input;
-		$option 	= $input->get('option');
+		$jinput		= $app->input;
+		$option 	= $jinput->get('option');
 		$document	= Factory::getDocument();
 		$version 	= urlencode(JoomleagueHelper::getVersion());
 
@@ -165,7 +165,7 @@ class JLGView extends BaseHtmlView
 		}
 
 		// extension management
-		$extensions = JoomleagueHelper::getExtensions($input->getInt('p'));
+		$extensions = JoomleagueHelper::getExtensions($jinput->getInt('p'));
 		foreach ($extensions as $e => $extension) {
 			$JLGPATH_EXTENSION =  JPATH_COMPONENT_SITE.'/extensions/'.$extension;
 
@@ -194,8 +194,8 @@ class JLGView extends BaseHtmlView
 			}
 
 			// Only for admin side
-			if ($app->isClient('administrator')) {
-			    $JLGPATH_EXTENSION = JPATH_COMPONENT_SITE.'/extensions/'.$extension.'/admin';
+			if($app->isAdmin()) {
+				$JLGPATH_EXTENSION = JPATH_COMPONENT_SITE.'/extensions/'.$extension.'/admin';
 
 				// General extension CSS include
 				$file = $JLGPATH_EXTENSION.'/assets/css/'.$extension.'.css';
@@ -235,12 +235,12 @@ class JLGView extends BaseHtmlView
 	function getExtended($data = '', $file, $projectId = null)
 	{
 		$app 	= Factory::getApplication();
-		$input = $app->input;
+		$jinput = $app->input;
 
 		$xmlfile = JLG_PATH_ADMIN.'/assets/extended/'.$file.'.xml';
 
 		// extension management
-		$extensions = JoomleagueHelper::getExtensions($projectId ?: $input->getInt('p'));
+		$extensions = JoomleagueHelper::getExtensions($projectId ?: $jinput->getInt('p'));
 
 		foreach ($extensions as $e => $extension) {
 			$JLGPATH_EXTENSION = JPATH_COMPONENT_SITE.'/extensions/'.$extension.'/admin';

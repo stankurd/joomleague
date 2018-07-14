@@ -10,9 +10,7 @@
  */
 
 	jQuery('domready', function() {
-	console.log('ready');
 	var moverightCount = jQuery("input[class*='move-right'").length;
-	console.log(moverightCount);
 	if (!moverightCount) {
 		return;
 	}
@@ -22,9 +20,7 @@
 		var posid = this.id.substr(10);
 		var fbox = document.getElementById('roster');
 		var tbox = document.getElementById('position' + posid);
-		//moveSelectedOptions(fbox,tbox);
 		move (fbox,tbox);
-		console.log(posid, fbox, tbox);
 	});
 	
 	// players - move - left
@@ -33,7 +29,6 @@
 		var posid = this.id.substr(9);
 		var fbox = document.getElementById('position' + posid);
 		var tbox = document.getElementById('roster');
-		//moveSelectedOptions(fbox,tbox);
 		move (fbox,tbox);
 	});
 	
@@ -42,7 +37,6 @@
 		jQuery('#changes_check').val(1);
 		var posid = this.id.substr(7);
 		moveOptionUp('position' + posid);
-		console.log(posid);
 	});
 	
 	// player - move - down
@@ -59,7 +53,6 @@
 		var posid = this.id.substr(11);
 		var fbox = document.getElementById('staff');
 		var tbox = document.getElementById('staffposition' + posid);
-		//moveSelectedOptions(fbox,tbox);
 		move (fbox,tbox);
 	});
 	
@@ -69,7 +62,6 @@
 		var posid = this.id.substr(10);
 		var fbox = document.getElementById('staffposition' + posid);
 		var tbox = document.getElementById('staff');
-		//moveSelectedOptions(fbox,tbox);
 		move (fbox,tbox);
 	});
 	
@@ -118,7 +110,6 @@
 						+ '&project_position_id=' + position + '&in_out_time='
 						+ time + '&teamid=' + teamid + '&matchid=' + matchid
 						+ '&rowid=' + rowid;
-				console.log(querystring);
 				var url = baseajaxurl + '&task=match.savesubst&';
 				
 				if (playerin != 0 || playerout != 0) {
@@ -129,7 +120,6 @@
 						error : substFailed,
 						rowid: rowid
 					});
-					//console.log(jqXhr);
 				}
 			});
 	// ajax remove substitution
@@ -139,16 +129,13 @@
 
 function substRequest() {
 	jQuery('#ajaxresponse').addClass('ajax-loading');
-	//jQuery('#ajaxresponse').text('');
-
-	//jQuery('#ajaxresponse').innerHTML = '';
+	jQuery('#ajaxresponse').innerHTML = '';
 }
 
 function deletesubst() {
 	var substid = this.id.substr(7);
 	var querystring = '&substid=' + substid;
 	var url = baseajaxurl + '&task=match.removeSubst';
-	console.log(querystring);
 	if (substid) {
 		var jqXhr = jQuery.ajax({
 			url : url + querystring,
@@ -166,19 +153,16 @@ function substSaved(data,textStatus,jqXHR) {
 	var si_out = document.getElementById('out').selectedIndex;
 	var si_in  = document.getElementById('in').selectedIndex;
 	var si_project_position_id = document.getElementById('project_position_id').selectedIndex;
-	console.log(currentrow);
-	console.log(si_in, si_out);
+	
 	// modify response
 	var obj 	= jQuery.parseJSON(data);
 	var status	= obj.success;
-	console.log(data);
 	if (status) {
 		//------ create output ------//
 	jQuery('#ajaxresponse').removeClass('ajax-loading');
 	// first line contains the status, second line contains the new row.
 	
 		var newrow = jQuery("<tr>").attr({id: 'sub-' + obj.id});
-		console.log(newrow , obj.id);
 		if(si_out > 0) {
 			newrow.append(jQuery("<td>").text(jQuery('#out option:selected').text()));
 			move(document.getElementById('out'), document.getElementById('in'));
@@ -235,8 +219,7 @@ function substRemoved(data,textStatus,jqXHR) {
 	
 	var obj 	= jQuery.parseJSON(data);
 	var status	= obj.success;
-	console.log(obj);
-	//console.dir(obj);
+	
 	if (status) {
 		// remove entry from view
 		var currentrow = jQuery('#sub-' + this.substid);

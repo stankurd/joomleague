@@ -140,7 +140,7 @@ class JLToolBarHelper extends ToolBarHelper {
 		JLToolBarHelper::deleteList($msg, $task, $alt);
 	}
 	
-	public static function apply($task = 'apply', $alt = 'JTOOLBAR_APPLY')
+	public static function apply($task = 'apply', $alt = 'JTOOLBAR_APPLY', $group = false)
 	{
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {

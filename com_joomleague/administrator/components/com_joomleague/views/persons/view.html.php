@@ -9,6 +9,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\Language\Text;
@@ -68,7 +69,7 @@ class JoomleagueViewPersons extends JLGView
 		$this->filterForm = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');
 
-		//HTMLHelper::_('bootstrap.framework');
+		HTMLHelper::_('bootstrap.framework');
 
 		$baseurl = Uri::root();
 		$document = Factory::getDocument();
@@ -126,7 +127,12 @@ class JoomleagueViewPersons extends JLGView
 		JLToolBarHelper::publishList('persons.publish');
 		JLToolBarHelper::unpublishList('persons.unpublish');
 		JLToolBarHelper::divider();
-		JLToolBarHelper::apply('persons.saveshort');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'persons.saveshort'],
+		    ],
+		    'btn-success'
+		    );
 		JLToolBarHelper::custom('persons.import','upload','upload','COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT',false);
 		JLToolBarHelper::archiveList('persons.export','COM_JOOMLEAGUE_GLOBAL_XML_EXPORT');
 		JLToolBarHelper::deleteList('COM_JOOMLEAGUE_ADMIN_PERSONS_DELETE_WARNING','persons.remove');

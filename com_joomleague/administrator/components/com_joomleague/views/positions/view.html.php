@@ -10,6 +10,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -90,7 +91,13 @@ class JoomleagueViewPositions extends JLGView
 		JLToolBarHelper::publishList('positions.publish');
 		JLToolBarHelper::unpublishList('positions.unpublish');
 		JLToolBarHelper::divider();
-		JLToolBarHelper::apply('positions.saveshort');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'positions.saveshort'],
+		    ],
+		    'btn-success'
+		    );
+		//JLToolBarHelper::apply('positions.saveshort');
 		JLToolBarHelper::custom('positions.import','upload','upload',Text::_('COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT'),false);
 		JLToolBarHelper::archiveList('positions.export',Text::_('COM_JOOMLEAGUE_GLOBAL_XML_EXPORT'));
 		JLToolBarHelper::deleteList('COM_JOOMLEAGUE_GLOBAL_CONFIRM_DELETE','positions.remove');

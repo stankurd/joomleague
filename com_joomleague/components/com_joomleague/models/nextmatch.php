@@ -445,7 +445,7 @@ class JoomleagueModelNextMatch extends JoomleagueModelProject
 		. ' AND m.published = 1 '
 		. ' AND m.team1_result IS NOT NULL AND m.team2_result IS NOT NULL';
 
-		$query .= " ORDER BY p.ordering, m.match_date ASC";
+		$query .= " GROUP BY m.id ORDER BY p.ordering, m.match_date ASC";
 		$db->setQuery( $query );
 		$result = $db->loadObjectList();
 		if ($result)

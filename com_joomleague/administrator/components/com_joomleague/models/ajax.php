@@ -13,6 +13,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\HTML\HTMLHelper;
 
 /**
@@ -47,8 +48,7 @@ class JoomleagueModelAjax extends JLGModel
 
 	function getProjectDivisionsOptions($project_id, $required = false)
 	{
-				$app = Factory::getApplication();
-
+		$app = Factory::getApplication();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		$db->setQuery(	"	SELECT CASE WHEN CHAR_LENGTH(d.alias) THEN CONCAT_WS(':', d.id, d.alias) ELSE d.id END AS value,
@@ -279,7 +279,7 @@ class JoomleagueModelAjax extends JLGModel
 		$query = $db->getQuery(true);
 		$lang		= Factory::getLanguage();
 		$extension 	= "com_joomleague";
-		$source 	= JPath::clean(JPATH_SITE. '/components/' . $extension);
+		$source 	= Path::clean(JPATH_SITE. '/components/' . $extension);
 		$lang->load($extension, JPATH_SITE, null, false, false)
 		||	$lang->load($extension, $source, null, false, false)
 		||	$lang->load($extension, JPATH_SITE, $lang->getDefault(), false, false)

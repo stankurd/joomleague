@@ -86,7 +86,7 @@ class JoomleagueModelList extends JLGModel
 													$this->getState('limit') ) )
 			try
 			{
-				$db->execute();
+				//$db->execute();
 			}
 			
 			catch (RuntimeException $e)

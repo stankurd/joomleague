@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -67,15 +68,26 @@ class JoomleagueViewStatistic extends JLGView
 		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_STAT_TITLE').': <span class="toolbarTitleType">[ '.$text.']</span>','jl-statistics');
 		if($isNew)
 		{
-			JLToolBarHelper::apply('statistic.apply');
-			JLToolBarHelper::save('statistic.save');
+		    ToolbarHelper::saveGroup(
+		        [
+		            ['apply', 'statistic.apply'],
+		            ['save', 'statistic.save'],
+		        ],
+		        'btn-success'
+		        );
+			
 			JLToolBarHelper::divider();
 			JLToolBarHelper::cancel('statistic.cancel');
 		}
 		else
 		{
-			JLToolBarHelper::apply('statistic.apply');
-			JLToolBarHelper::save('statistic.save');
+		    ToolbarHelper::saveGroup(
+		        [
+		            ['apply', 'statistic.apply'],
+		            ['save', 'statistic.save'],
+		        ],
+		        'btn-success'
+		        );
 			JLToolBarHelper::divider();
 			JLToolBarHelper::cancel('statistic.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}

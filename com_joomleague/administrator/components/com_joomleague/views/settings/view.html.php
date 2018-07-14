@@ -14,6 +14,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\Registry\Registry;
 
 /**
@@ -44,8 +45,15 @@ class JoomleagueViewSettings extends JLGView
 	{
 		//create the toolbar
 		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_SETTINGS_TITLE'),'jl-ProjectSettings');
-		JLToolBarHelper::apply('settings.apply');
-		JLToolBarHelper::save('settings.save');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'settings.apply'],
+		        ['save', 'settings.save'],
+		    ],
+		    'btn-success'
+		    );
+		//JLToolBarHelper::apply('settings.apply');
+		//JLToolBarHelper::save('settings.save');
 		JLToolBarHelper::cancel('settings.cancel');
 		JLToolBarHelper::spacer();
 		JLToolBarHelper::help('screen.joomleague',true);		

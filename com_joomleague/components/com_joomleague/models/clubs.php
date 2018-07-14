@@ -72,7 +72,7 @@ class JoomleagueModelClubs extends JoomleagueModelProject
 			}
 		}
 		$query
-			//->group($db->quoteName('c.id'))
+			->group($db->quoteName('c.id'))
 			->order($ordering ? $db->quoteName('$ordering') : $db->quoteName('c.name'));
 
 		$db->setQuery($query);

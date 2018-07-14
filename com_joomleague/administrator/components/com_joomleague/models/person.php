@@ -277,7 +277,7 @@ class JoomleagueModelPerson extends JLGModelItem
 	/**
 	 * Prepare and sanitise the table prior to saving.
 	 *
-	 * @param   JTable  $table  A JTable object.
+	 * @param   Table  $table  A Table object.
 	 *
 	 * @return  void
 	 */

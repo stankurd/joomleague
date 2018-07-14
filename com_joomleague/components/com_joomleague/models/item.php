@@ -12,6 +12,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Table\Table;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\AdminModel;
 
 defined('_JEXEC') or die;
@@ -122,7 +123,7 @@ class JoomleagueModelItem extends AdminModel
 		// Bind the form fields to the items table
 		if ( !$row->bind( $data ) )
 		{
-			$this->setError( JText::_('Binding failed') );
+			$this->setError( Text::_('Binding failed') );
 			return false;
 		}
 

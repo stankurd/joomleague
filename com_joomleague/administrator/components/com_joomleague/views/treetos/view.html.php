@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -69,7 +70,13 @@ class JoomleagueViewTreetos extends JLGView
 	protected function addToolbar()
 	{
 		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TREETOS_TITLE'),'jl-Tree');
-		JLToolBarHelper::apply('treetos.saveshort');
+		ToolbarHelper::saveGroup(
+		    [
+		        ['apply', 'treetos.saveshort'],
+		    ],
+		    'btn-success'
+		    );
+		//JLToolBarHelper::apply('treetos.saveshort');
 		JLToolBarHelper::publishList('treetos.publish');
 		JLToolBarHelper::unpublishList('treetos.unpublish');
 		JLToolBarHelper::divider();
