@@ -220,6 +220,10 @@ class JoomleagueViewMatches extends JLGView
 			    ],
 			    'btn-success'
 			    );
+<<<<<<< HEAD
+=======
+			//ToolBarHelper::apply('matches.saveshort');
+>>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 			JLToolbarHelper::divider();
 
 			JLToolBarHelper::custom('matches.massadd','new.png','new_f2.png','COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_MATCHES',false);

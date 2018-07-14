@@ -14,6 +14,7 @@ use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Form\Field\ListField;
 
 defined('_JEXEC') or die;
 
@@ -29,7 +30,7 @@ FormHelper::loadFieldClass('list');
  * - task: the task used to return the query, using defined depends field names as parameters for 
  * query (=> 'index.php?option=com_joomleague&controller=ajax&task=<task>&p=1&tid=34')
  */
-class JFormFieldDependSQL extends JFormFieldList
+class JFormFieldDependSQL extends ListField
 {
 	/**
 	 * field name

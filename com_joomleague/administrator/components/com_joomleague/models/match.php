@@ -2297,7 +2297,11 @@ function save_array($cid = null,$post = null,$zusatz = false,$project_id)
 	* @author And_One <andone@mfga.at>
 	* @return boolean
 	*/
+<<<<<<< HEAD
 	/**
+=======
+	
+>>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 	function prefillMatchPlayersWithLastMatch($projectteam_id, $bDeleteCurrrentRoster,$match_id=false)
 	{
 		$app 	= Factory::getApplication();

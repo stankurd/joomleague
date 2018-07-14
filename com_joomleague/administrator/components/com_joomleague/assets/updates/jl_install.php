@@ -195,13 +195,21 @@ function addSportsType()
 			//fix for existing items
 			$tblSportsType->load(array("name" => $key));
 			$tblSportsType->name = $key;
+<<<<<<< HEAD
 			$tblSportsType->icon = PATH::clean('images/com_joomleague/database/sport_types/'.$name.'.png');
+=======
+			$tblSportsType->icon = Path::clean('images/com_joomleague/database/sport_types/'.$name.'.png');
+>>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 			if (!$tblSportsType->store())
 			{
 				//echo($tblSportsType->getError());
 				$status=2;
 			}
+<<<<<<< HEAD
 			Folder::create(Path::clean(JPATH_ROOT.'/images/com_joomleague/database/events/'.$name));
+=======
+			Folder::create(PATH::clean(JPATH_ROOT.'/images/com_joomleague/database/events/'.$name));
+>>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 		}
 	}
 	return $status;

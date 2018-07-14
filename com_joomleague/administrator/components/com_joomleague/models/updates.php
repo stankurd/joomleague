@@ -10,6 +10,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Table\Table;
+use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
@@ -151,16 +152,16 @@ class JoomleagueModelUpdates extends BaseDatabaseModel
 		$option = $app->input->get('option');
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		//$updateFileList=JFolder::files(JPATH_COMPONENT_ADMINISTRATOR.'/'.'assets'.'/'.'updates'.'/','.php$',false,true,array('',''));
-		$updateFileList=JFolder::files(JPATH_COMPONENT_ADMINISTRATOR.'/assets/updates/','.php$');
+		//$updateFileList=Folder::files(JPATH_COMPONENT_ADMINISTRATOR.'/'.'assets'.'/'.'updates'.'/','.php$',false,true,array('',''));
+		$updateFileList=Folder::files(JPATH_COMPONENT_ADMINISTRATOR.'/assets/updates/','.php$');
 		// installer for extensions
-		$extensions=JFolder::folders(JPATH_COMPONENT_SITE.'/extensions');
+		$extensions=Folder::folders(JPATH_COMPONENT_SITE.'/extensions');
 		foreach ($extensions as $ext)
 		{
 			$path=JPATH_COMPONENT_SITE.'/extensions/'.$ext.'/admin/install';
-			if (JFolder::exists($path))
+			if (Folder::exists($path))
 			{
-				foreach (JFolder::files($path,'.php$') as $file)
+				foreach (Folder::files($path,'.php$') as $file)
 				{
 					$updateFileList[]=$ext.'/'.$file;
 				}

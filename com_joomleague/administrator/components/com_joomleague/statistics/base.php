@@ -101,7 +101,7 @@ class JLGStatistic extends CMSObject {
 		{
 			$file = JLG_PATH_ADMIN.'/statistics/'.$class.'.php';
 			if (!file_exists($file)) {
-				JError::raiseError(0, $class .': '. Text::_('STATISTIC CLASS NOT DEFINED'));
+			    Factory::getApplication()->enqueueMessage(0, $class .': '. Text::_('STATISTIC CLASS NOT DEFINED'));
 			}
 			require_once($file);
 		}
@@ -250,7 +250,7 @@ class JLGStatistic extends CMSObject {
 			$statistic_views = $params->get('statistic_views');
 		}
 		if (!count($statistic_views)) {
-			JError::raiseWarning(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
+			Factory::getApplication()->enqueueMessage(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
 		}
 				
@@ -275,7 +275,7 @@ class JLGStatistic extends CMSObject {
 			$statistic_views = $params->get('statistic_views');
 		}
 		if (!count($statistic_views)) {
-			JError::raiseWarning(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
+			Factory::getApplication()->enqueueMessage(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
 		}
 				
@@ -300,7 +300,7 @@ class JLGStatistic extends CMSObject {
 			$statistic_views = $params->get('statistic_views');
 		}
 		if (!count($statistic_views)) {
-			JError::raiseWarning(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
+			Factory::getApplication()->enqueueMessage(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
 		}
 				
@@ -337,7 +337,7 @@ class JLGStatistic extends CMSObject {
 	 */
 	function getMatchPlayerStat(&$gamemodel, $teamplayer_id)
 	{
-		JError::raiseWarning(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
+		Factory::getApplication()->enqueueMessage(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
 		return 0;
 	}
 	
@@ -348,7 +348,7 @@ class JLGStatistic extends CMSObject {
 	 */
 	function getMatchPlayersStats($match_id)
 	{
-		JError::raiseWarning(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
+		Factory::getApplication()->enqueueMessage(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
 		return 0;
 	}
 
@@ -359,7 +359,7 @@ class JLGStatistic extends CMSObject {
 	 */
 	function getPlayerStatsByGame($teamplayer_id, $project_id)
 	{
-		JError::raiseWarning(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
+		Factory::getApplication()->enqueueMessage(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
 		return 0;
 	}
 	
@@ -370,7 +370,7 @@ class JLGStatistic extends CMSObject {
 	 */
 	function getPlayerStatsByProject($person_id, $projectteam_id = 0, $project_id = 0, $sports_type_id = 0)
 	{
-		JError::raiseWarning(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
+		Factory::getApplication()->enqueueMessage(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
 		return 0;
 	}
 	
@@ -383,7 +383,7 @@ class JLGStatistic extends CMSObject {
 	 */
 	function getRosterStats($team_id, $project_id, $position_id)
 	{
-		JError::raiseWarning(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
+		Factory::getApplication()->enqueueMessage(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
 		return 0;
 	}
 	
@@ -397,7 +397,7 @@ class JLGStatistic extends CMSObject {
 	 */
 	function getPlayersRanking($project_id, $division_id, $team_id, $limit = 20, $limitstart = 0, $order = null)
 	{
-		JError::raiseWarning(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
+		Factory::getApplication()->enqueueMessage(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
 		return array();
 	}
 
@@ -410,7 +410,7 @@ class JLGStatistic extends CMSObject {
 	 */
 	function getTeamsRanking($project_id, $limit = 20, $limitstart = 0, $order = null)
 	{
-		JError::raiseWarning(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
+		Factory::getApplication()->enqueueMessage(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
 		return array();
 	}
 	
@@ -422,7 +422,7 @@ class JLGStatistic extends CMSObject {
 	 */
 	function getMatchStaffStat(&$gamemodel, $team_staff_id)
 	{		
-		JError::raiseWarning(0,$this->_name .': '.  Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
+		Factory::getApplication()->enqueueMessage(0,$this->_name .': '.  Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
 		return 0;
 	}
 	
@@ -434,7 +434,7 @@ class JLGStatistic extends CMSObject {
 	 */
 	function getStaffStats($person_id, $team_id, $project_id)
 	{
-		JError::raiseWarning(0,$this->_name .': '.  Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
+		Factory::getApplication()->enqueueMessage(0,$this->_name .': '.  Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
 		return 0;
 	}
 
@@ -446,7 +446,7 @@ class JLGStatistic extends CMSObject {
 	 */
 	function getHistoryStaffStats($person_id)
 	{
-		JError::raiseWarning(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
+		Factory::getApplication()->enqueueMessage(0, $this->_name .': '. Text::_('METHOD NOT IMPLEMENTED IN THIS STATISTIC INSTANCE'));
 		return 0;
 	}
 

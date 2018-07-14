@@ -40,7 +40,7 @@ class JLGStatisticPergame extends JLGStatistic {
 			$numerator_ids = $params->get('numerator_ids');
 		}
 		if (!count($numerator_ids)) {
-			JError::raiseWarning(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
+		    Factory::getApplication()->enqueueMessage(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
 		}
 		$ids = array();
@@ -60,7 +60,7 @@ class JLGStatisticPergame extends JLGStatistic {
 			$numerator_ids = $params->get('numerator_ids');
 		}
 		if (!count($numerator_ids)) {
-			JError::raiseWarning(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
+		    Factory::getApplication()->enqueueMessage(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
 		}
 		$ids = array();

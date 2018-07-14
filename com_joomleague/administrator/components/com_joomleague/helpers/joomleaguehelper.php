@@ -12,6 +12,11 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Date\Date;
+<<<<<<< HEAD
+=======
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Filesystem\Folder;
+>>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Router\Route;
@@ -726,8 +731,8 @@ class JoomleagueHelper extends ContentHelper
 			}
 		}
 
-		if(JFolder::exists(JPATH_SITE.'/components/com_joomleague/extensions')) {
-			$folderExtensions  = JFolder::folders(JPATH_SITE.'/components/com_joomleague/extensions',
+		if(Folder::exists(JPATH_SITE.'/components/com_joomleague/extensions')) {
+			$folderExtensions  = Folder::folders(JPATH_SITE.'/components/com_joomleague/extensions',
 					'.', false, false, $excludeExtension);
 			if($folderExtensions !== false) {
 				foreach ($folderExtensions as $ext)
@@ -982,7 +987,7 @@ class JoomleagueHelper extends ContentHelper
 				$bUseHighslide = $params->get('use_highslide', false);
 				// no highslide if the source picture has exact the same size as the parameters width/height
 				// e.g placeholders or correct sized images
-				if(function_exists('getimagesize') && JFile::exists($picturepath) && $width>0 && $height>0 ) {
+				if(function_exists('getimagesize') && File::exists($picturepath) && $width>0 && $height>0 ) {
 					list($iWidth, $iHeight, $type, $attr) = getimagesize($picturepath);
 					$bUseHighslide = ($width!=$iWidth && $iHeight!=$height) ? true : false;
 				}
@@ -1076,7 +1081,7 @@ class JoomleagueHelper extends ContentHelper
 				$bUseHighslide = $params->get('use_highslide', false);
 				// no highslide if the source picture has exact the same size as the parameters width/height
 				// e.g placeholders or correct sized images
-				if(function_exists('getimagesize') && JFile::exists($picturepath) && $width>0 && $height>0 ) {
+				if(function_exists('getimagesize') && File::exists($picturepath) && $width>0 && $height>0 ) {
 					list($iWidth, $iHeight, $type, $attr) = getimagesize($picturepath);
 					$bUseHighslide = ($width!=$iWidth && $iHeight!=$height) ? true : false;
 				}
@@ -1144,7 +1149,7 @@ class JoomleagueHelper extends ContentHelper
 				{
 					$extension_views = JPATH_COMPONENT_SITE.'/extensions/'.$extension.'/views';
 					$tmpl_path = $extension_views.'/'.$template.'/tmpl';
-					if (JFolder::exists($tmpl_path))
+					if (Folder::exists($tmpl_path))
 					{
 						$view->addTemplatePath($tmpl_path);
 					}
