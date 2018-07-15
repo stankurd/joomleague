@@ -11,6 +11,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die('Restricted access');
@@ -104,7 +105,7 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 					
 				echo '<table class="adminlist" style="width:100%; " border="0"><thead><tr><td colspan="2" class="key" style="text-align:center;"><h3>';
 				echo "Checking existence of table [$DummyStr] - <span style='color:";
-				if ($db->execute()){echo "green'>".JText::_('Success');}else{echo "red'>".JText::_('Failed');}
+				if ($db->execute()){echo "green'>".Text::_('Success');}else{echo "red'>".Text::_('Failed');}
 				echo '</span>';
 				echo '</h3></td></tr></thead><tbody>';
 				$DummyStr=$import;
@@ -158,7 +159,7 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 	
 				$rows=count($newIndexes)+1;
 				echo '<tr><th class="key" style="vertical-align:top; width:10; white-space:nowrap; " rowspan="'.$rows.'">';
-				echo JText::sprintf('Table needs following<br />keys/indexes:',$tableName);
+				echo Text::sprintf('Table needs following<br />keys/indexes:',$tableName);
 				echo '</th></tr>';
 				$k=0;
 				foreach ($newIndexes AS $index)
@@ -172,7 +173,7 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 	
 				$rows=count($newIndexes)+1;
 				echo '<tr><th class="key" style="vertical-align:top; width:10; white-space:nowrap; " rowspan="'.$rows.'">';
-				echo JText::_('Dropping keys/indexes:');
+				echo Text::_('Dropping keys/indexes:');
 				echo '</th></tr>';
 				$keys = $db->getTableKeys($tableName);
 				foreach ($newIndexes AS $index)
@@ -204,7 +205,7 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 						foreach($keys as $key) {
 							preg_match('/`(.*?)`/', $keyName, $reg);
 							if(strcasecmp($key->Key_name, $reg[1])!==0) {
-								echo "<span style='color:orange; '>".JText::sprintf('Skipping handling of %1$s',$queryDelete).'</span>';
+								echo "<span style='color:orange; '>".Text::sprintf('Skipping handling of %1$s',$queryDelete).'</span>';
 								$skip = true;
 								break;
 							}
@@ -212,12 +213,12 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 						if($skip) continue;
 						$db->setQuery($queryDelete);
 						echo "$queryDelete - <span style='color:";
-						if ($db->execute()){echo "green'>".JText::_('Success');}else{echo "red'>".JText::_('Failed');}
+						if ($db->execute()){echo "green'>".Text::_('Success');}else{echo "red'>".Text::_('Failed');}
 						echo '</span>';
 					}
 					else
 					{
-						echo "<span style='color:orange; '>".JText::sprintf('Skipping handling of %1$s',$index).'</span>';
+						echo "<span style='color:orange; '>".Text::sprintf('Skipping handling of %1$s',$index).'</span>';
 					}
 					echo '&nbsp;</td></tr>';
 					$k=(1-$k);
@@ -225,7 +226,7 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 	
 				$rows=count($newFields)+1;
 				echo '<tr><th class="key" style="vertical-align:top; width:10; white-space:nowrap; " rowspan="'.$rows.'">';
-				echo JText::_('Updating fields:');
+				echo Text::_('Updating fields:');
 				echo '</th></tr>';
 				$columns = $db->getTableColumns($tableName, false);
 				foreach ($newFields AS $field)
@@ -239,7 +240,7 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 					if(array_key_exists($fieldName, $columns) && 
 						(strcasecmp($fieldName,$columns[$fieldName]->Field)===0) && 
 						strpos(strtolower($dFieldSetting), $columns[$fieldName]->Type)) {
-						echo "<span style='color:orange; '>".JText::sprintf('Skipping handling of %1$s',$query).'</span>';
+						echo "<span style='color:orange; '>".Text::sprintf('Skipping handling of %1$s',$query).'</span>';
 						continue;
 					} else {
 						if(isset($columns[$fieldName])) {
@@ -254,7 +255,7 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 						$db->setQuery($query);
 						$db->execute();
 						echo "$query - <span style='color:";
-						if ($db->execute()){echo "green'>".JText::_('Success');}else{echo "red'>".JText::_('Failed');} //fehlgeschlagen
+						if ($db->execute()){echo "green'>".Text::_('Success');}else{echo "red'>".Text::_('Failed');} //fehlgeschlagen
 						echo '</span>';
 					} else {
 						if(array_key_exists($fieldName, $columns)) {
@@ -262,7 +263,7 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 						}
 						$db->setQuery($query);
 						echo "$query - <span style='color:";
-						if ($db->execute()){echo "green'>".JText::_('Success');}else{echo "red'>".JText::_('Failed');} //fehlgeschlagen
+						if ($db->execute()){echo "green'>".Text::_('Success');}else{echo "red'>".Text::_('Failed');} //fehlgeschlagen
 						echo '</span>';
 					}
 					echo '&nbsp;</td></tr>';
@@ -271,7 +272,7 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 	
 				$rows=count($newIndexes)+1;
 				echo '<tr><th class="key" style="vertical-align:top; width:10; white-space:nowrap; " rowspan="'.$rows.'">';
-				echo JText::_('Adding keys/indexes:');
+				echo Text::_('Adding keys/indexes:');
 				echo '</th></tr>';
 				$keys = $db->getTableKeys($tableName);
 				foreach ($newIndexes AS $index)
@@ -303,7 +304,7 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 						foreach($keys as $key) {
 							preg_match('/`(.*?)`/', $keyName, $reg);
 							if(strcasecmp($key->Key_name, $reg[1])===0) {
-								echo "<span style='color:orange; '>".JText::sprintf('Skipping handling of %1$s',$queryDelete).'</span>';
+								echo "<span style='color:orange; '>".Text::sprintf('Skipping handling of %1$s',$queryDelete).'</span>';
 								$skip = true;
 								break;
 							}
@@ -311,12 +312,12 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 						if($skip) continue;
 						$db->setQuery($queryAdd);
 						echo "$queryAdd - <span style='color:";
-						if ($db->execute()){echo "green'>".JText::_('Success');}else{echo "red'>".JText::_('Failed');}
+						if ($db->execute()){echo "green'>".Text::_('Success');}else{echo "red'>".Text::_('Failed');}
 						echo '</span>';
 					}
 					else
 					{
-						echo "<span style='color:orange; '>".JText::sprintf('Skipping handling of %1$s',$index).'</span>';
+						echo "<span style='color:orange; '>".Text::sprintf('Skipping handling of %1$s',$index).'</span>';
 					}
 					echo '&nbsp;</td></tr>';
 					$k=(1-$k);
@@ -377,7 +378,7 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 		$db->setQuery($query);
 		$results = $db->loadColumn();
 		if(is_array($results)) {
-			echo JText::_('Database Tables Picture Path Migration');
+			echo Text::_('Database Tables Picture Path Migration');
 			foreach ($arrQueries as $key=>$value) {
 				$db->setQuery($value);
 				try
@@ -386,16 +387,16 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 				}
 				catch (RuntimeException $e)
 				{
-				    echo '-> '.JText::_('Failed').'! <br>';
+				    echo '-> '.Text::_('Failed').'! <br>';
 				    throw new Exception($e->getMessage());
 				    return false;
 				}
 				
 	
 			}
-			echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
+			echo ' - <span style="color:green">'.Text::_('Success').'</span><br />';
 		} else {
-			echo JText::_('No Picture Path Migration neccessary!');
+			echo Text::_('No Picture Path Migration neccessary!');
 		}
 	}
 	

@@ -115,8 +115,7 @@ class JoomleagueModelTreetonodes extends JLGModelList
 		$query .= ' WHERE ttn.treeto_id = ' . $treeto_id;
 		$query .= ';';
 		$db->setQuery($query);
-		$db->query($query);
-
+		$db->execute($query);
 		$query = ' UPDATE #__joomleague_treeto AS tt ';
 		$query .= ' SET ';
 		$query .= ' tt.tree_i = 0 ';
@@ -130,8 +129,7 @@ class JoomleagueModelTreetonodes extends JLGModelList
 		$query .= ' WHERE tt.id = ' . $treeto_id;
 		$query .= ';';
 		$db->setQuery($query);
-		$db->query($query);
-
+		$db->execute($query);
 		return true;
 	}
 

@@ -10,13 +10,20 @@ Joomla = window.Joomla || {};
 (function() {
 	'use strict';
 Joomla.submitbutton = function(task) {
-	var form = jQuery('adminForm');
+	var res = true;
+	var validator = document.formvalidator;
+	var form = jQuery('#adminForm')
 	if (task == 'template.cancel') {
 		Joomla.submitform(task);
 		return;
 	}
 
 	// do field validation
+	if (validator.validate(form)) {
+		Joomla.submitform(task);
+		res = false;
+		}
+	if (res) {
 	if (document.formvalidator.isValid(form)) {
 		Joomla.submitform(task);
 		return true;

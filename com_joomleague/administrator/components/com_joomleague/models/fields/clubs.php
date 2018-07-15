@@ -8,6 +8,7 @@
  */
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
@@ -24,7 +25,7 @@ class JFormFieldClubs extends FormField
 		$query = $db->getQuery(true);
 		$lang = Factory::getLanguage();
 		$extension = "com_joomleague";
-		$source = JPath::clean(JPATH_ADMINISTRATOR . '/components/' . $extension);
+		$source = Path::clean(JPATH_ADMINISTRATOR . '/components/' . $extension);
 		$lang->load($extension, JPATH_ADMINISTRATOR, null, false, false)
 		||	$lang->load($extension, $source, null, false, false)
 		||	$lang->load($extension, JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)

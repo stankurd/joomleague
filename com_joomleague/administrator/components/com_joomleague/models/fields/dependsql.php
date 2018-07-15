@@ -10,6 +10,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\Form\Field\ListField;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
@@ -29,7 +30,7 @@ FormHelper::loadFieldClass('list');
  * - task: the task used to return the query, using defined depends field names as parameters for 
  * query (=> 'index.php?option=com_joomleague&controller=ajax&task=<task>&p=1&tid=34')
  */
-class JFormFieldDependSQL extends JFormFieldList
+class JFormFieldDependSQL extends ListField
 {
 	/**
 	 * field name

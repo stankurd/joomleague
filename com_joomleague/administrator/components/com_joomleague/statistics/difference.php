@@ -38,8 +38,8 @@ class JLGStatisticDifference extends JLGStatistic {
 			$add_ids = $params->get('add_ids');
 		}
 		if (!count($add_ids)) {
-			JError::raiseWarning(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION ADD_IDS', $this->_name, $this->id));
-			return(array(0));
+            Factory::getApplication()->enqueueMessage(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION ADD_IDS', $this->_name, $this->id));
+		    return(array(0));
 		}
 		if(!is_array($params->get('sub_ids'))) {
 			$sub_ids = explode(',', $params->get('sub_ids'));
@@ -47,8 +47,8 @@ class JLGStatisticDifference extends JLGStatistic {
 			$sub_ids = $params->get('sub_ids');
 		}
 		if (!count($sub_ids)) {
-			JError::raiseError(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION SUB_IDS', $this->_name, $this->id));
-			return(array(0));
+		    Factory::getApplication()->enqueueMessage(0, Text::sprintf('STAT %s/%s WRONG CONFIGURATION ADD_IDS', $this->_name, $this->id));
+		    return(array(0));
 		}
 				
 		$ids = array('add' => $add_ids, 'sub' => $sub_ids);

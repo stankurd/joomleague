@@ -6,7 +6,9 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\Form\Field\ListField;
 use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
@@ -17,7 +19,7 @@ FormHelper::loadFieldClass('list');
 /**
  * Extensionlist form field class
  */
-class JFormFieldExtensionlist extends JFormFieldList
+class JFormFieldExtensionlist extends ListField
 {
 	/**
 	 * field type
@@ -49,7 +51,7 @@ class JFormFieldExtensionlist extends JFormFieldList
 		}
 
 		// Get a list of folders in the search path with the given filter.
-		$folders = JFolder::folders($path, $filter);
+		$folders = Folder::folders($path, $filter);
 
 		// Build the options list from the list of folders.
 		if (is_array($folders))
