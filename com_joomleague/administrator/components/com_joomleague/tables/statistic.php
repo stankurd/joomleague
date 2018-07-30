@@ -1,5 +1,7 @@
 <?php
 
+use Joomla\CMS\Filter\OutputFilter;
+use Joomla\CMS\Language\Text;
 use Joomla\Registry\Registry;
 
 /**
@@ -41,7 +43,7 @@ class TableStatistic extends JLTable
 	public function check()
 	{
 		if (empty($this->name)) {
-			$this->setError(JText::_('NAME REQUIRED'));
+			$this->setError(Text::_('NAME REQUIRED'));
 			return false;
 		}
 		
@@ -52,10 +54,10 @@ class TableStatistic extends JLTable
 		// setting alias
 		if ( empty( $this->alias ) )
 		{
-			$this->alias = JFilterOutput::stringURLSafe( $this->name );
+			$this->alias = OutputFilter::stringURLSafe( $this->name );
 		}
 		else {
-		    $this->alias = JFilterOutput::stringURLSafe( $this->alias ); // make sure the user didn't modify it to something illegal...
+		    $this->alias = OutputFilter::stringURLSafe( $this->alias ); // make sure the user didn't modify it to something illegal...
 		}
 		
 		return true;

@@ -12,7 +12,9 @@
 // Check to ensure this file is within the rest of the framework
 defined('JPATH_BASE') or die;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\BaseController;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Filter\InputFilter;
 
 /**
@@ -60,7 +62,7 @@ class JLGController extends BaseController
 			if (!class_exists($viewClassExtension))
 			{
 				jimport('joomla.filesystem.path' );
-				$path = JPath::find(
+				$path = Path::find(
 					$this->paths['view'],
 					$this->createFileName('view', array( 'name' => $viewName, 'type' => $viewType)));
 				if ($path)
@@ -169,7 +171,7 @@ class JLGController extends BaseController
 				}
 				else
 				{
-					throw new InvalidArgumentException(JText::_('COM_JOOMLEAGUE_WRONG_CLASSNAME_IN_CONTROLLER_FILE') . $className);
+					throw new InvalidArgumentException(Text::_('COM_JOOMLEAGUE_WRONG_CLASSNAME_IN_CONTROLLER_FILE') . $className);
 				}
 			}
 

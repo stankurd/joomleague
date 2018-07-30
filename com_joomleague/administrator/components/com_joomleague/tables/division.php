@@ -9,6 +9,8 @@
 
 // Check to ensure this file is included in Joomla!
 
+use Joomla\CMS\Filter\OutputFilter;
+
 defined('_JEXEC') or die;
 
 // Include library dependencies
@@ -40,7 +42,7 @@ class TableDivision extends JLTable
 		// setting alias
 		if ( empty( $this->alias ) )
 		{
-		    $this->alias = JFilterOutput::stringURLSafe( $this->name );
+		    $this->alias = OutputFilter::stringURLSafe( $this->name );
 		}
 		else {
 		    $this->alias = JFilterOutput::stringURLSafe( $this->alias ); // make sure the user didn't modify it to something illegal...

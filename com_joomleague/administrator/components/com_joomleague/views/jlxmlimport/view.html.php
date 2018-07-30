@@ -27,19 +27,19 @@ class JoomleagueViewJLXMLImport extends JLGView
 		// Set toolbar items for the page
 		JLToolBarHelper::title(Text::_('JoomLeague XML Import'), 'generic.png');
 		JLToolBarHelper::back();
-		#JLToolBarHelper::save( 'save', 'Import' );
+		//JLToolBarHelper::save( 'save', 'Import' );
 		JLToolBarHelper::help('screen.joomleague', true );
 
 		$db		= Factory::getDbo();
 		$uri	= Uri::getInstance();
 
-		#$user = Factory::getUser();
-		#$config = JFactory::getConfig();
+		//$user = Factory::getUser();
+	    //$config = Factory::getConfig();
 		$config = ComponentHelper::getParams('com_media');
 
-		#$this->user=JFactory::getUser();
+		//$this->user=Factory::getUser();
 		$this->request_url=$uri->toString();
-		#$this->user=$user;
+		//$this->user=$user;
 		$this->config=$config;
 
 		parent::display( $tpl );

@@ -90,19 +90,19 @@ class JoomleagueViewTreetonodes extends JLGView
 		$lrOptions = array();
 		foreach($createYesNo as $key=>$value)
 		{
-			$ynOptions[] = JHtmlSelect::option($key,$value);
+			$ynOptions[] = HTMLHelper::_('select.option',$key,$value);
 		}
 		foreach($createLeftRight as $key=>$value)
 		{
-			$lrOptions[] = JHtmlSelect::option($key,$value);
+			$lrOptions[] = HTMLHelper::_('select.option',$key,$value);
 		}
-		$lists['addToRound'] = JHtmlSelect::radiolist($ynOptions,'addToRound','class="inputbox"','value','text',1);
+		$lists['addToRound'] = HTMLHelper::_('select.radiolist',$ynOptions,'addToRound','class="inputbox"','value','text',1);
 		// build the html radio for auto publish new matches
-		$lists['autoPublish'] = JHtmlSelect::radiolist($ynOptions,'autoPublish','class="inputbox"','value','text',0);
+		$lists['autoPublish'] = HTMLHelper::_('select.radiolist',$ynOptions,'autoPublish','class="inputbox"','value','text',0);
 		// build the html radio for Left or Right redepth
-		$lists['LRreDepth'] = JHtmlSelect::radiolist($lrOptions,'LRreDepth','class="inputbox"','value','text',0);
+		$lists['LRreDepth'] = HTMLHelper::_('select.radiolist',$lrOptions,'LRreDepth','class="inputbox"','value','text',0);
 		// build the html radio for create new treeto
-		$lists['createNewTreeto'] = JHtmlSelect::radiolist($ynOptions,'createNewTreeto','class="inputbox"','value','text',1);
+		$lists['createNewTreeto'] = HTMLHelper::_('select.radiolist',$ynOptions,'createNewTreeto','class="inputbox"','value','text',1);
 
 		$this->lists = $lists;
 		// @todo fix!
@@ -141,7 +141,6 @@ class JoomleagueViewTreetonodes extends JLGView
 		        ],
 		        'btn-success'
 		        );
-			//JLToolBarHelper::apply('treetonodes.saveshortleaf',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TEST_SHOW'),false);
 			if($isleafed == 3)
 			{
 			    ToolbarHelper::saveGroup(
@@ -150,7 +149,6 @@ class JoomleagueViewTreetonodes extends JLGView
 			        ],
 			        'btn-success'
 			        );
-				//JLToolBarHelper::apply('treetonodes.savefinishleaf',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_SAVE_LEAF'),false);
 			}
 		JLToolBarHelper::custom('treetonodes.removenode','delete.png','delete_f2.png',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_DELETE'),false);
 		}

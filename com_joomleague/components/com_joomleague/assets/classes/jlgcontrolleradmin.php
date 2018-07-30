@@ -11,6 +11,7 @@
 
 // Check to ensure this file is within the rest of the framework
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\MVC\Controller\AdminController;
 
 defined('JPATH_BASE') or die;
@@ -62,7 +63,7 @@ class JLGControllerAdmin extends AdminController
 			if (!class_exists($viewClassExtension))
 			{
 				jimport('joomla.filesystem.path' );
-				$path = JPath::find(
+				$path = Path::find(
 						$this->paths['view'],
 						$this->createFileName('view', array( 'name' => $viewName, 'type' => $viewType)));
 

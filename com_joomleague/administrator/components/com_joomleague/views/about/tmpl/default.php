@@ -7,6 +7,7 @@
 * @link		http://www.joomleague.at
 */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -15,15 +16,15 @@ defined('_JEXEC') or die;
 	$p=1;
 	echo HTMLHelper::_('bootstrap.startTabSet', 'tabs', array('active' => 'panel1'));
 	
-	echo HTMLHelper::_('bootstrap.addTab', 'tabs', 'panel'.$p++,'<span class="icon-database"></span>'.JText::_('COM_JOOMLEAGUE_TABS_ABOUT_DETAILS', true));
+	echo HTMLHelper::_('bootstrap.addTab', 'tabs', 'panel'.$p++,'<span class="icon-database"></span>'.Text::_('COM_JOOMLEAGUE_TABS_ABOUT_DETAILS', true));
 	echo $this->loadTemplate('details');
 	echo HTMLHelper::_('bootstrap.endTab');
 	
-	echo HTMLHelper::_('bootstrap.addTab', 'tabs', 'panel'.$p++,'<span class="icon-database"></span>'.JText::_('COM_JOOMLEAGUE_TABS_ABOUT_TEAM', true));
+	echo HTMLHelper::_('bootstrap.addTab', 'tabs', 'panel'.$p++,'<span class="icon-database"></span>'.Text::_('COM_JOOMLEAGUE_TABS_ABOUT_TEAM', true));
 	echo $this->loadTemplate('team');
 	echo HTMLHelper::_('bootstrap.endTab'); 
 
-	echo HTMLHelper::_('bootstrap.addTab', 'tabs', 'panel'.$p++,'<span class="icon-database"></span>'.JText::_('COM_JOOMLEAGUE_TABS_ABOUT_3RD', true));
+	echo HTMLHelper::_('bootstrap.addTab', 'tabs', 'panel'.$p++,'<span class="icon-database"></span>'.Text::_('COM_JOOMLEAGUE_TABS_ABOUT_3RD', true));
 	echo $this->loadTemplate('3rd');
 	echo HTMLHelper::_('bootstrap.endTab');
 	

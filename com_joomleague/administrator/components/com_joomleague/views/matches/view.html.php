@@ -159,7 +159,7 @@ class JoomleagueViewMatches extends JLGView
 		foreach($createTypes AS $key => $value){
 		    $ctOptions[]=HTMLHelper::_('select.option',$key,$value);
 		}
-		$lists['createTypes']=JHtmlSelect::genericlist($ctOptions,'ct[]','class="inputbox" onchange="javascript:displayTypeView();"','value','text',1,'ct');
+		$lists['createTypes']=HTMLHelper::_('select.genericlist', $ctOptions,'ct[]','class="inputbox" onchange="javascript:displayTypeView();"','value','text',1,'ct');
 		unset($createTypes);
 
 		// build the html radio for adding into one round / all rounds
@@ -168,10 +168,10 @@ class JoomleagueViewMatches extends JLGView
 		foreach($createYesNo AS $key => $value){
 		    $ynOptions[]=HTMLHelper::_('select.option',$key,$value);
 		}
-		$lists['addToRound']=JHtmlSelect::radiolist($ynOptions,'addToRound','class="inputbox"','value','text',0);
+		$lists['addToRound']=HTMLHelper::_('select.radiolist', $ynOptions,'addToRound','class="inputbox"','value','text',0);
 
 		// build the html radio for auto publish new matches
-		$lists['autoPublish']=JHtmlSelect::radiolist($ynOptions,'autoPublish','class="inputbox"','value','text',0);
+		$lists['autoPublish']=HTMLHelper::_('select.radiolist', $ynOptions,'autoPublish','class="inputbox"','value','text',0);
 		//build the html options for divisions
 		$divisions[]=HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
 		$mdlDivisions = BaseDatabaseModel::getInstance("divisions", "JoomLeagueModel");

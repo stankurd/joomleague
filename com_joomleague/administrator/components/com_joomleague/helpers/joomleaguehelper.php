@@ -43,8 +43,8 @@ class JoomleagueHelper extends ContentHelper
 		$option = $input->getCmd('option');
 		$lists = array();
 
-		//HTMLHelper::_('behavior.framework');
-		//HTMLHelper::_('behavior.core');
+		HTMLHelper::_('behavior.framework');
+		HTMLHelper::_('behavior.core');
 		$db = Factory::getDbo();
 		$document = Factory::getDocument();
 		$version = urlencode(JoomleagueHelper::getVersion());

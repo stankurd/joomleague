@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
@@ -25,7 +26,7 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 	<fieldset class="form-horizontal">
 		<legend>
 		<?php
-			echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_DIVS_TITLE2','<i>'.$this->project->name.'</i>');
+			echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_DIVS_TITLE2','<i>'.$this->project->name.'</i>');
 		?>
 		</legend>
 	<div class="clearfix">	
@@ -54,7 +55,7 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_ADMIN_DIVS_PARENT_NAME','parent_name',$listDirn, $listOrder);?>
 				</th>
 				<th width="1%">
-					<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED'); ?>
+					<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED'); ?>
 				</th>
 				<th width="1%">
 					<?php echo HTMLHelper::_('searchtools.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$listDirn, $listOrder);?>
@@ -85,7 +86,7 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 				?>
 				<td style="text-align: center;"><a href="<?php echo $link; ?>">
 				<?php
-					$imageTitle = JText::_('COM_JOOMLEAGUE_ADMIN_DIVS_EDIT_DETAILS');
+					$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_DIVS_EDIT_DETAILS');
 					echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/edit.png',$imageTitle,'title= "' . $imageTitle . '"');
 				?></a>
 				</td>

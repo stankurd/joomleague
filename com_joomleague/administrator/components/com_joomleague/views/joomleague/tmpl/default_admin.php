@@ -10,6 +10,7 @@ use Joomla\CMS\Factory;
 use Joomla\Input\Input;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 
@@ -111,7 +112,7 @@ $option = 'com_joomleague';
 			{
 				$JLGPATH_EXTENSION = JPATH_COMPONENT_SITE . '/extensions/' . $extension;
 				$menufile = $JLGPATH_EXTENSION . '/admin/views/joomleague/tmpl/default_' . $extension . '.php';
-				if(JFile::exists($menufile))
+				if(File::exists($menufile))
 				{
 					echo $this->loadTemplate($extension);
 				}
@@ -142,6 +143,6 @@ $option = 'com_joomleague';
 		</div>
 </div>
 
-
 	<div class="col-md-10">
 	<div id="j-main-container" class="j-main-container">
+	

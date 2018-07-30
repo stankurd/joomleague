@@ -65,13 +65,13 @@ $('#destination').change(function() {
 									<input type="button" id="moveleft-<?php echo $key;?>" class="inputbox rmove-left" value="&lt;&lt;" /> &nbsp;&nbsp;
 								</td>
 								<td>
-									<!-- player affected to this position --> <b><?php echo JText::_($pos->text); ?></b><br />
+									<!-- player affected to this position --> <b><?php echo Text::_($pos->text); ?></b><br />
 										<?php echo $this->lists['team_referees'.$key];?>
 									</td>
 								<td style='text-align: center; vertical-align: middle;'>
 									<!-- up/down buttons --> <br /> 
-									<input type="button" id="moveup-<?php echo $key;?>" class="inputbox rmove-up" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_UP'); ?>" /><br />
-									<input type="button" id="movedown-<?php echo $key;?>" class="inputbox rmove-down" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DOWN'); ?>" />
+									<input type="button" id="moveup-<?php echo $key;?>" class="inputbox rmove-up" value="<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_UP'); ?>" /><br />
+									<input type="button" id="movedown-<?php echo $key;?>" class="inputbox rmove-down" value="<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_DOWN'); ?>" />
 								</td>
 							</tr>
 

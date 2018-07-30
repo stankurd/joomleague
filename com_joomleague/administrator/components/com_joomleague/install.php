@@ -559,7 +559,7 @@ class com_joomleagueInstallerScript
 			
 		// Initialise variables
 		$conf = Factory::getConfig();
-		//$dispatcher = Dispatcher::getInstance();
+		$dispatcher = Dispatcher::getInstance();
 			
 		$options = array(
 				'defaultgroup' => ($tblModules->module) ? $tblModules->module : (isset($this->option) ? $this->option : Factory::getApplication()->input->get('option')),

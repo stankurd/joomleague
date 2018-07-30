@@ -8,6 +8,8 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 
 // Include library dependencies
@@ -70,7 +72,7 @@ class TableTeamPlayer extends JLTable
 		$res = $this->getDbo()->loadResult();
 		
 		if ($res) {
-			$this->setError(Jtext::sprintf('PLAYER ASSIGNED TO %d GAMES', $res));
+			$this->setError(Text::sprintf('PLAYER ASSIGNED TO %d GAMES', $res));
 			return false;
 		}
 		
@@ -82,7 +84,7 @@ class TableTeamPlayer extends JLTable
 		$res = $this->getDbo()->loadResult();
 		
 		if ($res) {
-			$this->setError(JText::sprintf('%d EVENTS ASSIGNED TO PLAYER', $res));
+			$this->setError(Text::sprintf('%d EVENTS ASSIGNED TO PLAYER', $res));
 			return false;
 		}
 		
@@ -94,7 +96,7 @@ class TableTeamPlayer extends JLTable
 		$res = $this->getDbo()->loadResult();
 		
 		if ($res) {
-			$this->setError(JText::sprintf('%d STATS ASSIGNED TO PLAYER', $res));
+			$this->setError(Text::sprintf('%d STATS ASSIGNED TO PLAYER', $res));
 			return false;
 		}
 		

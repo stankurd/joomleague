@@ -12,6 +12,7 @@
 // Check to ensure this file is within the rest of the framework
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 
@@ -35,11 +36,11 @@ class JLGModel extends BaseDatabaseModel
 			{
 				jimport('joomla.filesystem.path');
 
-				$path = JPath::find(parent::addIncludePath(null, $prefix), self::_createFileName('model', array('name' => $type)));
+				$path = Path::find(parent::addIncludePath(null, $prefix), self::_createFileName('model', array('name' => $type)));
 
 				if (!$path)
 				{
-					$path = JPath::find(parent::addIncludePath(null, ''), self::_createFileName('model', array('name' => $type)));
+					$path = Path::find(parent::addIncludePath(null, ''), self::_createFileName('model', array('name' => $type)));
 				}
 
 				if ($path)

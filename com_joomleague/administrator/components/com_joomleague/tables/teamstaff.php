@@ -8,6 +8,8 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 
 // Include library dependencies
@@ -39,7 +41,7 @@ class TableTeamStaff extends JLTable
 		$res = $this->getDbo()->loadResult();
 		
 		if ($res) {
-			$this->setError(Jtext::sprintf('STAFF ASSIGNED TO %d GAMES', $res));
+			$this->setError(Text::sprintf('STAFF ASSIGNED TO %d GAMES', $res));
 			return false;
 		}
 		
@@ -51,7 +53,7 @@ class TableTeamStaff extends JLTable
 		$res = $this->getDbo()->loadResult();
 		
 		if ($res) {
-			$this->setError(JText::sprintf('%d STATS ASSIGNED TO STAFF', $res));
+			$this->setError(Text::sprintf('%d STATS ASSIGNED TO STAFF', $res));
 			return false;
 		}
 		

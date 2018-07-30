@@ -14,12 +14,14 @@ defined('JPATH_BASE') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Application\ApplicationHelper;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\Registry\Registry;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 class JLGView extends BaseHtmlView
 {
@@ -123,11 +125,11 @@ class JLGView extends BaseHtmlView
 		foreach ($strings as $key => $value) {
 		    if ($app->isClient('administrator')) {
 		        if(strpos($key, 'COM_JOOMLEAGUE_ADMIN_'.strtoupper($this->getName()).'_CSJS') !== false) {
-					JText::script($key, true);
+					Text::script($key, true);
 				}
 			} else {
 				if(strpos($key, 'COM_JOOMLEAGUE_'.strtoupper($this->getName()).'_CSJS_')  !== false) {
-					JText::script($key, true);
+					Text::script($key, true);
 				}
 			}
 		}
@@ -135,31 +137,31 @@ class JLGView extends BaseHtmlView
 		if ($app->isClient('administrator')) {
 		    // include backend.css
 			$file = JPATH_COMPONENT.'/assets/css/backend.css';
-			if(file_exists(JPath::clean($file))) {
+			if(file_exists(Path::clean($file))) {
 				$document->addStyleSheet($this->baseurl.'/components/'.$option.'/assets/css/backend.css?v='.$version);
 			}
 		} else {
 			// General Joomleague CSS include
 			$file = JPATH_COMPONENT.'/assets/css/joomleague.css';
-			if(file_exists(JPath::clean($file))) {
+			if(file_exists(Path::clean($file))) {
 				$document->addStyleSheet($this->baseurl.'/components/'.$option.'/assets/css/joomleague.css?v='.$version);
 			}
 		}
 		// Genereal CSS include per view
 		$file = JPATH_COMPONENT.'/assets/css/'.$this->getName().'.css';
-		if(file_exists(JPath::clean($file))) {
+		if(file_exists(Path::clean($file))) {
 			//add css file
 			$document->addStyleSheet($this->baseurl.'/components/'.$option.'/assets/css/'.$this->getName().'.css?v='.$version);
 		}
 		// General Joomleague JS include
 		$file = JPATH_COMPONENT.'/assets/js/joomleague.js';
-		if(file_exists(JPath::clean($file))) {
+		if(file_exists(Path::clean($file))) {
 			$js = $this->baseurl.'/components/'.$option.'/assets/js/joomleague.js?v='.$version;
 			$document->addScript($js);
 		}
 		// General JS include per view
 		$file = JPATH_COMPONENT.'/assets/js/'.$this->getName().'.js';
-		if(file_exists(JPath::clean($file))) {
+		if(file_exists(Path::clean($file))) {
 			$js = $this->baseurl.'/components/'.$option.'/assets/js/'.$this->getName().'.js?v='.$version;
 			$document->addScript($js);
 		}
@@ -171,24 +173,24 @@ class JLGView extends BaseHtmlView
 
 			// General extension CSS include
 			$file = $JLGPATH_EXTENSION.'/assets/css/'.$extension.'.css';
-			if(file_exists(JPath::clean($file))) {
+			if(file_exists(Path::clean($file))) {
 				$document->addStyleSheet($this->baseurl.'/components/'.$option.'/extensions/'.$extension.'/assets/css/'.$extension.'.css?v='.$version);
 			}
 			// CSS override
 			$file = $JLGPATH_EXTENSION.'/assets/css/'.$this->getName().'.css';
-			if(file_exists(JPath::clean($file))) {
+			if(file_exists(Path::clean($file))) {
 				// add css file
 				$document->addStyleSheet($this->baseurl.'/components/'.$option.'/extensions/'.$extension.'/assets/css/'.$this->getName().'.css?v='.$version);
 			}
 			// General extension JS include
 			$file = $JLGPATH_EXTENSION.'/assets/js/'.$extension.'.js';
-			if(file_exists(JPath::clean($file))) {
+			if(file_exists(Path::clean($file))) {
 				// add js file
 				$document->addScript(  $this->baseurl . '/components/'.$option.'/extensions/'.$extension.'/assets/js/'.$extension.'.js?v='.$version);
 			}
 			// JS override
 			$file = $JLGPATH_EXTENSION.'/assets/js/'.$this->getName().'.js';
-			if(file_exists(JPath::clean($file))) {
+			if(file_exists(Path::clean($file))) {
 				// add js file
 				$document->addScript($this->baseurl.'/components/'.$option.'/extensions/'.$extension.'/assets/js/'.$this->getName().'.js?v='.$version);
 			}
@@ -199,24 +201,24 @@ class JLGView extends BaseHtmlView
 
 				// General extension CSS include
 				$file = $JLGPATH_EXTENSION.'/assets/css/'.$extension.'.css';
-				if(file_exists(JPath::clean($file))) {
+				if(file_exists(Path::clean($file))) {
 					$document->addStyleSheet($this->baseurl.'/../components/'.$option.'/extensions/'.$extension.'/admin/assets/css/'.$extension.'.css?v='.$version);
 				}
 				// CSS override
 				$file = $JLGPATH_EXTENSION.'/assets/css/'.$this->getName().'.css';
-				if(file_exists(JPath::clean($file))) {
+				if(file_exists(Path::clean($file))) {
 					// add css file
 					$document->addStyleSheet($this->baseurl.'/../components/'.$option.'/extensions/'.$extension.'/admin/assets/css/'.$this->getName().'.css?v='.$version);
 				}
 				// General extension JS include
 				$file = $JLGPATH_EXTENSION.'/assets/js/'.$extension.'.js';
-				if(file_exists(JPath::clean($file))) {
+				if(file_exists(Path::clean($file))) {
 					// add js file
 					$document->addScript($this->baseurl.'/../components/'.$option.'/extensions/'.$extension.'/admin/assets/js/'.$extension.'.js?v='.$version);
 				}
 				// JS override
 				$file = $JLGPATH_EXTENSION.'/assets/js/'.$this->getName().'.js';
-				if(file_exists(JPath::clean($file))) {
+				if(file_exists(Path::clean($file))) {
 					// add js file
 					$document->addScript($this->baseurl.'/../components/'.$option.'/extensions/'.$extension.'/admin/assets/js/'.$this->getName().'.js?v='.$version);
 				}
@@ -246,7 +248,7 @@ class JLGView extends BaseHtmlView
 			$JLGPATH_EXTENSION = JPATH_COMPONENT_SITE.'/extensions/'.$extension.'/admin';
 			//General extension extended xml
 			$file = $JLGPATH_EXTENSION.'/assets/extended/'.$file.'.xml';
-			if(file_exists(JPath::clean($file))) {
+			if(file_exists(Path::clean($file))) {
 				$xmlfile = $file;
 				break; //first extension file will win
 			}
@@ -258,8 +260,7 @@ class JLGView extends BaseHtmlView
 
 		// Convert the extended field to an array.
 		$registry = new Registry;
-		//$registry->loadstring($data);
-
+		$registry->loadstring($data);
 		/*
 		 * extended data
 		*/

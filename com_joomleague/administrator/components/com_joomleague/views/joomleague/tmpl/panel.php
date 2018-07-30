@@ -21,7 +21,7 @@ $this->addTemplatePath(JPATH_COMPONENT . '/views/joomleague');
 ?>
 <div id="element-box">
 	<div class="m">
-		<div class="adminform">
+		<div class="adminform">		
 			<div><h3><?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECTS_CONTROL_PANEL_LEGEND','<i>'.$this->project->name.'</i>'); ?></h3><hr></div>
 			<div class="cpanel">
 							<?php

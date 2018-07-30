@@ -88,7 +88,7 @@ class JoomleagueViewRounds extends JLGView
 			$files = Folder::files($path,'\.csv',false);
 			foreach($files as $file)
 			{
-				$filename = str_replace('_',' ',JFile::stripExt($file));
+				$filename = str_replace('_',' ',File::stripExt($file));
 				$options[] = HTMLHelper::_('select.option',$file,Text::sprintf('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_TYPE',$filename));
 			}
 		}

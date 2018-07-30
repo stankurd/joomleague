@@ -29,7 +29,7 @@ $saveOrder = $listOrder == 'a.ordering';
 if($saveOrder)
 {
     $saveOrderingUrl = 'index.php?option=com_joomleague&task=projects.saveOrderAjax&tmpl=component'. Session::getFormToken() . '=1';
-	//HTMLHelper::_('sortablelist.sortable','projectList','adminForm',strtolower($listDirn),$saveOrderingUrl);
+	HTMLHelper::_('sortablelist.sortable','projectList','adminForm',strtolower($listDirn),$saveOrderingUrl);
 	HTMLHelper::_('draggablelist.draggable');
 }
 //$colSpan = $clientId === 1 ? 9 : 10;

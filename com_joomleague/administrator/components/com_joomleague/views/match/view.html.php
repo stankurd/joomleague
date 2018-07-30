@@ -401,7 +401,6 @@ class JoomleagueViewMatch extends JLGView
 		    ],
 		    'btn-success'
 		    );
-		//ToolBarHelper::apply('match.saveeventbb');
 		JLToolBarHelper::back('back', 'index.php?option=com_joomleague&view=matches');
 	}
 	
@@ -862,8 +861,6 @@ class JoomleagueViewMatch extends JLGView
 		    ],
 		    'btn-success'
 		    );
-		//JLToolBarHelper::apply('match.saveroster');
-		//JLToolBarHelper::save('match.saveroster2');
 		JLToolBarHelper::cancel('match.cancel');
 	}
 	
@@ -884,8 +881,6 @@ class JoomleagueViewMatch extends JLGView
 		    ],
 		    'btn-success'
 		    );
-		//JLToolBarHelper::apply('match.saveReferees');
-		//JLToolBarHelper::save('match.saveReferees2');
 		JLToolBarHelper::cancel('match.cancel');
 	}
 	
@@ -906,8 +901,6 @@ class JoomleagueViewMatch extends JLGView
 		    ],
 		    'btn-success'
 		    );
-		//JLToolBarHelper::apply('match.savestats');
-		//JLToolBarHelper::save('match.savestats2');
 		JLToolBarHelper::cancel('match.cancel');
 	}
 }

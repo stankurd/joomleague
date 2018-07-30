@@ -248,7 +248,7 @@ class JoomleagueViewProjectteams extends JLGView
 
 		// build the html options for divisions
 		$divisions = array();
-		$divisions[] = JHtmlSelect::option('0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'),'value','text');
+		$divisions[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'),'value','text');
 		$mdlDivisions = BaseDataBaseModel::getInstance('divisions','JoomleagueModel');
 		if($res = $mdlDivisions->getDivisions($project_id))
 		{

@@ -8,6 +8,8 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 
 // Include library dependencies
@@ -39,7 +41,7 @@ class TableMatchStaff extends JLTable
 	{
 		if (!($this->match_id && $this->team_staff_id))
 		{
-			$this->setError(JText::_('CHECK FAILED'));
+			$this->setError(Text::_('CHECK FAILED'));
 			return false;
 		}
 		return true;

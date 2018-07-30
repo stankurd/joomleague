@@ -8,6 +8,7 @@
  */
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
@@ -197,7 +198,7 @@ if ($clubid) {
 								echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/information.png',
 				  								  $imageTitle,'title= "'.$imageTitle.'"');
 							} else {
-								if (JFile::exists(JPATH_SITE.'/'.$row->picture)) {
+								if (File::exists(JPATH_SITE.'/'.$row->picture)) {
 									$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_TEAMS_CUSTOM_IMAGE');
 									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/ok.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');

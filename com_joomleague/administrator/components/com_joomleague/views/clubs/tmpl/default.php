@@ -8,6 +8,7 @@
  */
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
@@ -180,7 +181,7 @@ if($saveOrder)
 								echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/information.png',
 												  $imageTitle,'title= "'.$imageTitle.'"');
 							} else {
-								if (JFile::exists(JPATH_SITE.'/'.$row->logo_big)) {
+								if (File::exists(JPATH_SITE.'/'.$row->logo_big)) {
 									$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_CUSTOM_IMAGE');
 									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/ok.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');
@@ -206,7 +207,7 @@ if($saveOrder)
 								echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/information.png',
 												  $imageTitle,'title= "'.$imageTitle.'"');
 							} else {
-								if (JFile::exists(JPATH_SITE.'/'.$row->logo_middle)) {
+								if (File::exists(JPATH_SITE.'/'.$row->logo_middle)) {
 									$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_CUSTOM_IMAGE');
 									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/ok.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');
@@ -232,7 +233,7 @@ if($saveOrder)
 								echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/information.png',
 				  								  $imageTitle,'title= "'.$imageTitle.'"');
 							} else {
-								if (JFile::exists(JPATH_SITE.'/'.$row->logo_small)) {
+								if (File::exists(JPATH_SITE.'/'.$row->logo_small)) {
 									$imageTitle=Text::_('COM_JOOMLEAGUE_ADMIN_CLUBS_CUSTOM_IMAGE');
 									echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/ok.png',
 													  $imageTitle,'title= "'.$imageTitle.'"');

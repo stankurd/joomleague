@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 /*
  * $imagePath='administrator/components/com_joomleague/assets/images/';
  * // active pane selector
- * switch (JFactory::getApplication()->input->get('view'))
+ * switch (Factory::getApplication()->input->get('view'))
  * {
  * case 'yourview': $active=count($this->tabs);
  * break;
@@ -22,7 +22,7 @@ defined('_JEXEC') or die;
  *
  * $pane=new stdClass();
  * $pane->id = 'Extension';
- * $pane->title=JText::_('COM_JOOMLEAGUE_T_MENU_Extension');
+ * $pane->title=Text::_('COM_JOOMLEAGUE_T_MENU_Extension');
  * $pane->name='ExtMenuExtension';
  * $pane->alert=false;
  * $tabs[]=$pane;
@@ -30,9 +30,9 @@ defined('_JEXEC') or die;
  * $link5=array();
  * $label5=array();
  * $limage5=array();
- * $link5[]=JRoute::_('index.php?option=com_joomleague&view=yourview&active='.$active);
- * $label5[]=JText::_('COM_JOOMLEAGUE_T_MENU_yourview');
- * $limage5[]=JHtml::_('image',$imagePath.'icon-16-FrontendSettings.png',JText::_('COM_JOOMLEAGUE_T_MENU_yourview'));
+ * $link5[]=Route::_('index.php?option=com_joomleague&view=yourview&active='.$active);
+ * $label5[]=Text::_('COM_JOOMLEAGUE_T_MENU_yourview');
+ * $limage5[]=HtmlHelper::_('image',$imagePath.'icon-16-FrontendSettings.png',Text::_('COM_JOOMLEAGUE_T_MENU_yourview'));
  *
  * $link[]=$link5;
  * $label[]=$label5;
@@ -41,22 +41,22 @@ defined('_JEXEC') or die;
  *
  * $n=0;
  *
- * echo JHtml::_('sliders.start','sliders',array('allowAllClose' => true,
+ * echo HtmlHelper::_('sliders.start','sliders',array('allowAllClose' => true,
  * 'startOffset' => $this->active,
  * 'startTransition' => true, true));
  *
  * foreach ($tabs as $tab)
  * {
- * $title=JText::_($tab->title);
- * echo JHtml::_('sliders.panel',$title, $tab->id);
+ * $title=Text::_($tab->title);
+ * echo HtmlHelper::_('sliders.panel',$title, $tab->id);
  * ?>
  * <div style="float: left;">
  * <table><?php
  * for ($i=0;$i < count($link[$n]); $i++)
  * {
  * ?><tr><td><b><a href="<?php echo $link[$n][$i]; ?>" title="<?php echo
- * JText::_($label[$n][$i]); ?>">
- * <?php echo $limage[$n][$i].' '.JText::_($label[$n][$i]); ?>
+ * Text::_($label[$n][$i]); ?>">
+ * <?php echo $limage[$n][$i].' '.Text::_($label[$n][$i]); ?>
  * </a></b></td></tr><?php
  * }
  * ?></table>
@@ -64,6 +64,6 @@ defined('_JEXEC') or die;
  * <?php
  * $n++;
  * }
- * echo JHtml::_('sliders.end');
+ * echo HtmlHelper::_('sliders.end');
  */
 ?>

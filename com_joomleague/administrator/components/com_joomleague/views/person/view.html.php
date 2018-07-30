@@ -73,7 +73,7 @@ class JoomleagueViewPerson extends JLGView
 		$input->set('hidesidemenu',true);
 	
 		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_ASSIGN_DESCR'));
-		Response::allowCache(false);
+		\Joomla\CMS\Http\Response::allowCache(false);
 
 		$document = Factory::getDocument();
 		$prjid = $input->get('prjid',array(0),'array');
@@ -87,7 +87,7 @@ class JoomleagueViewPerson extends JLGView
 		{
 			$projects = array_merge($projects,$res);
 		}
-		$lists['projects'] = JHtmlSelect::genericlist($projects,'prjid[]','class="inputbox" onChange="this.form.submit();" style="width:170px"','id',
+		$lists['projects'] = HTMLHelper::_('select.genericlist', $projects,'prjid[]','class="inputbox" onChange="this.form.submit();" style="width:170px"','id',
 				'name',$proj_id);
 		unset($projects);
 
@@ -100,7 +100,7 @@ class JoomleagueViewPerson extends JLGView
 			{
 				$projectteams = array_merge($projectteams,$res);
 			}
-			$lists['projectteams'] = JHtmlSelect::genericlist($projectteams,'xtid[]','class="inputbox" style="width:170px"','value','text');
+			$lists['projectteams'] = HTMLHelper::_('select.genericlist', $projectteams,'xtid[]','class="inputbox" style="width:170px"','value','text');
 			unset($projectteams);
 		}
 

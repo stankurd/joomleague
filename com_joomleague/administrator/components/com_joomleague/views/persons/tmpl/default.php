@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
@@ -20,7 +21,7 @@ jimport('joomla.filesystem.file');
 $app = Factory::getApplication();
 $user = Factory::getUser();
 $userId = $user->get('id');
-//$inplaceEditing = $this->params->get('inplaceEditing',0);
+$inplaceEditing = $this->params->get('inplaceEditing',0);
 $inplaceEditing = 1;
 
 $listOrder = $this->escape($this->state->get('list.ordering'));
@@ -294,7 +295,7 @@ jQuery(document).ready(function() {
 				</td>
 				<td class="center image">
 				<?php
-				if(empty($row->picture) || ! JFile::exists(JPATH_SITE.'/'.$row->picture))
+				if(empty($row->picture) || ! File::exists(JPATH_SITE.'/'.$row->picture))
 				{
 					$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PERSONS_NO_IMAGE').$row->picture;
 					echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "'.$imageTitle.'"');
@@ -306,7 +307,7 @@ jQuery(document).ready(function() {
 				}
 				else
 				{
-					if(JFile::exists(JPATH_SITE.'/'.$row->picture))
+					if(File::exists(JPATH_SITE.'/'.$row->picture))
 					{
 						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_TEAMS_CUSTOM_IMAGE');
 						echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/ok.png',$imageTitle,'title= "'.$imageTitle.'"');
@@ -365,7 +366,7 @@ jQuery(document).ready(function() {
 				{
 					$append = ' background-color:#FFCCCC;';
 				}
-					echo JHtmlSelect::genericlist($this->lists['nation'],'country'.$row->id,
+				echo HTMLHelper::_('select.genericlist', $this->lists['nation'],'country'.$row->id,
 					$inputappend . ' class="inputbox" style="width:140px; '.$append.'" onchange="document.getElementById(\'cb'.$i.'\').checked=true"','value','text',$row->country);
 						?>
 							</td>
@@ -376,7 +377,7 @@ jQuery(document).ready(function() {
 					{
 						$append = ' background-color:#FFCCCC;';
 					}
-					echo JHtmlSelect::genericlist($this->lists['positions'],'position'.$row->id,
+					echo HTMLHelper::_('select.genericlist', $this->lists['positions'],'position'.$row->id,
 					$inputappend . 'class="inputbox" style="width:140px; '.$append.'" onchange="document.getElementById(\'cb'.$i.'\').checked=true"','value','text',$row->position_id);
 				?>
 				</td>

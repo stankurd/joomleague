@@ -47,7 +47,7 @@ class JoomleagueViewTreetos extends JLGView
 		$division = $app->getUserStateFromRequest($this->context.'.division','division','','string');
 
 		// build the html options for divisions
-		$divisions[] = JHtmlSelect::option('0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
+		$divisions[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
 		$mdlDivisions = BaseDatabaseModel::getInstance('divisions','JoomLeagueModel');
 		if($res = $mdlDivisions->getDivisions($project_id))
 		{

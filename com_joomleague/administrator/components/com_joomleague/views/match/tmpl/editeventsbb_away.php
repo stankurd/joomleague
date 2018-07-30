@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 
@@ -33,7 +34,7 @@ if (isset ( $this->preFillSuccess ) && $this->preFillSuccess) {
 					?>
 					<th style="text-align: center;">
 					<?php
-					if (JFile::exists ( JPATH_SITE . '/' . $ev->icon )) {
+					if (File::exists ( JPATH_SITE . '/' . $ev->icon )) {
 						$imageTitle = Text::sprintf ( '%1$s', Text::_ ( $ev->text ) );
 						$iconFileName = $ev->icon;
 						echo HTMLHelper::image ( $iconFileName, $imageTitle, 'title= "' . $imageTitle . '"' );

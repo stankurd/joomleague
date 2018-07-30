@@ -19,17 +19,17 @@ defined ( '_JEXEC' ) or die ();
 	jQuery('#jform_alt_decision').change(toggle_altdecision);
 });
 
-function toggle_altdecision() {
-	if ($('jform_alt_decision').value == 0) {
-		$('alt_decision_enter').style.display='none';
-		$('team1_result_decision').disabled=true;
-		$('team2_result_decision').disabled=true;
-		$('decision_info').disabled=true;
+$function toggle_altdecision() {
+	if (document.getElementById('jform_alt_decision').value == 0) {
+		document.getElementById'alt_decision_enter').style.display='none';
+		document.getElementById('team1_result_decision').disabled=true;
+		document.getElementById('team2_result_decision').disabled=true;
+		document.getElementById('decision_info').disabled=true;
 	} else {
-		$('alt_decision_enter').style.display='block';
-		$('team1_result_decision').disabled=false;
-		$('team2_result_decision').disabled=false;
-		$('decision_info').disabled=false;
+		document.getElementById('alt_decision_enter').style.display='block';
+		document.getElementById('team1_result_decision').disabled=false;
+		document.getElementById('team2_result_decision').disabled=false;
+		document.getElementById('decision_info').disabled=false;
 	}
 }
 

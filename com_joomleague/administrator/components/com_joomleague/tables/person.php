@@ -10,6 +10,9 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Filter\OutputFilter;
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 
 /**
@@ -38,11 +41,11 @@ class TablePerson extends JLTable
 	{
 		if (empty($this->firstname) && empty($this->lastname))
 		{
-			$this->setError(JText::_('ERROR FIRSTNAME OR LASTNAME REQUIRED'));
+			$this->setError(Text::_('ERROR FIRSTNAME OR LASTNAME REQUIRED'));
 			return false;
 		}
 		$parts = array(trim($this->firstname), trim($this->lastname));
-		$alias = JFilterOutput::stringURLSafe( implode( ' ', $parts ) );
+		$alias = OutputFilter::stringURLSafe( implode( ' ', $parts ) );
 	
 		// setting alias
 		if (empty($this->alias))
@@ -50,7 +53,7 @@ class TablePerson extends JLTable
 			$this->alias = $alias;
 		}
 		else {
-			$this->alias = JFilterOutput::stringURLSafe($this->alias); // make sure the user didn't modify it to something illegal...
+			$this->alias = OutputFilter::stringURLSafe($this->alias); // make sure the user didn't modify it to something illegal...
 		}
 		//should check name unicity
 		return true;

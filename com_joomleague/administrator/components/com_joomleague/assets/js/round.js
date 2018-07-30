@@ -12,7 +12,7 @@ Joomla = window.Joomla || {};
 Joomla.submitbutton = function(task) {
 	var res = true;
 	var validator = document.formvalidator;
-	var form = $('adminForm');
+	var form = document.getElementById("adminForm");
 
 	if (task == 'round.cancel') {
 		Joomla.submitform(task);

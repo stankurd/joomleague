@@ -19,7 +19,7 @@ use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 jimport('joomla.html.pane');
 HTMLHelper::_('jquery.framework');
-//HTMLHelper::_('behavior.core');
+HTMLHelper::_('behavior.core');
 require_once JPATH_COMPONENT . '/models/sportstypes.php';
 require_once JPATH_COMPONENT . '/models/leagues.php';
 defined('_JEXEC') or die;
@@ -114,7 +114,7 @@ class JoomleagueViewJoomleague extends JLGView
 
 		parent::display($tpl);
 	}
-
+	
 	/**
 	 * display left Menu
 	 */

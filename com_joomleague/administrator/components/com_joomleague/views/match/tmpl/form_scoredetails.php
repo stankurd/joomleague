@@ -74,7 +74,7 @@ defined ( '_JEXEC' ) or die ();
 				?>
 				</label></td>
 			<td colspan='3'><input type="text" name="match_result_detail"
-				value="<?php echo $this->item->match_result_detail; ?>" size="40"
+				value="<?php echo $this->item->match_result_detail; ?>" size="80"
 				class="inputbox" /></td>
 		</tr>
 		<!-- Result notice END -->

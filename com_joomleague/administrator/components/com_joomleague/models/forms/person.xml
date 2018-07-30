@@ -47,7 +47,7 @@
 			description="COM_CONTACT_SELECT_CONTACT_DESC"
 			label="COM_CONTACT_SELECT_CONTACT_LABEL"
 			required="false"
-			default="4"/>
+			default="0"/>
 
 		<field
 			name="position_id"

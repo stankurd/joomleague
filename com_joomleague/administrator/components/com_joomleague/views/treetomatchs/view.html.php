@@ -8,6 +8,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
@@ -78,15 +79,15 @@ class JoomleagueViewTreetomatchs extends JLGView
 			{				
 				if(empty($res->info))
 				{
-					$node_matcheslist[] = JHtmlSelect::option($res->value,$res->text);
+					$node_matcheslist[] = HTMLHelper::_ ( 'select.option',$res->value,$res->text);
 				}
 				else
 				{
-					$node_matcheslist[] = JHtmlSelect::option($res->value,$res->text.' ('.$res->info.')');
+					$node_matcheslist[] = HTMLHelper::_ ( 'select.option',$res->value,$res->text.' ('.$res->info.')');
 				}
 			}
 
-			$lists['node_matches'] = JHtmlSelect::genericlist($node_matcheslist, 'node_matcheslist[]',
+			$lists['node_matches'] = HTMLHelper::_ ( 'select.genericlist',$node_matcheslist, 'node_matcheslist[]',
 	' style="width:250px; height:300px;" class="inputbox" multiple="true" size="'.min(30,count($ress)).'"',
 				'value',
 				'text',false,'multiselect_to');
@@ -109,11 +110,11 @@ class JoomleagueViewTreetomatchs extends JLGView
 					}
 
 					if ($used == 0 && !empty($res1->info)){
-						$notusedmatches[]=JHtmlSelect::option($res1->value,$res1->text.' ('.$res1->info.')');
+						$notusedmatches[]=HTMLHelper::_ ( 'select.option',$res1->value,$res1->text.' ('.$res1->info.')');
 					}
 					elseif($used == 0 && empty($res1->info))
 					{
-						$notusedmatches[] = JHtmlSelect::option($res1->value,$res1->text);
+						$notusedmatches[] = HTMLHelper::_ ( 'select.option',$res1->value,$res1->text);
 					}
 				}
 			}
@@ -123,11 +124,11 @@ class JoomleagueViewTreetomatchs extends JLGView
 				{
 					if(empty($res1->info))
 					{
-						$notusedmatches[] = JHtmlSelect::option($res1->value,$res1->text);
+						$notusedmatches[] = HTMLHelper::_ ( 'select.option',$res1->value,$res1->text);
 					}
 					else
 					{
-						$notusedmatches[] = JHtmlSelect::option($res1->value,$res1->text.' ('.$res1->info.')');
+						$notusedmatches[] = HTMLHelper::_ ( 'select.option',$res1->value,$res1->text.' ('.$res1->info.')');
 					}
 				}
 			}
@@ -140,7 +141,7 @@ class JoomleagueViewTreetomatchs extends JLGView
 		//build the html select list for matches
 		if (count($notusedmatches) > 0)
 		{
-			$lists['matches'] = JHtmlSelect::genericlist( $notusedmatches,
+			$lists['matches'] = HTMLHelper::_ ( 'select.genericlist', $notusedmatches,
 				'matcheslist[]',
 	' style="width:250px; height:300px;" class="inputbox" multiple="true" size="'.min(30,count($notusedmatches)).'"',
 			'value',

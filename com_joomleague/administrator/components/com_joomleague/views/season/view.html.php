@@ -54,8 +54,6 @@ class JoomleagueViewSeason extends JLGView
 		if($isNew)
 		{
 			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_SEASON_ADD_NEW'),'jl-seasons');
-			//JLToolBarHelper::apply('season.apply');
-			//JLToolBarHelper::save('season.save');
 			JLToolbarHelper::saveGroup(
 			[
 				['apply', 'season.apply'],
@@ -69,8 +67,6 @@ class JoomleagueViewSeason extends JLGView
 		else
 		{
 			JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_SEASON_EDIT').': '.$this->form->getValue('name'),'jl-seasons');
-			//JLToolBarHelper::apply('season.apply');
-			//JLToolBarHelper::save('season.save');
 			JLToolbarHelper::saveGroup(
 			[
 				['apply', 'season.apply'],

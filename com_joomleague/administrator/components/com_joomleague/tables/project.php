@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 
+use Joomla\CMS\Filter\OutputFilter;
 use Joomla\Registry\Registry;
 
 defined('_JEXEC') or die;
@@ -72,10 +73,10 @@ class TableProject extends JLTable
 		// setting alias
 		if ( empty( $this->alias ) )
 		{
-		    $this->alias = JFilterOutput::stringURLSafe( $this->name );
+		    $this->alias = OutputFilter::stringURLSafe( $this->name );
 		}
 		else {
-		    $this->alias = JFilterOutput::stringURLSafe( $this->alias ); // make sure the user didn't modify it to something illegal...
+		    $this->alias = OutputFilter::stringURLSafe( $this->alias ); // make sure the user didn't modify it to something illegal...
 		}
 		return true;
 	}

@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 /**
  * Joomleague
@@ -13,28 +14,28 @@ defined('_JEXEC') or die;
 HTMLHelper::_('bootstrap.tooltip');
 jimport('joomla.html.pane');
 
-JLToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_TITLE'));
+JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_TITLE'));
 // JLToolBarHelper::save();
-JLToolBarHelper::custom('treetomatches.editlist','upload.png','upload_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_BUTTON_ASSIGN'),false);
+JLToolBarHelper::custom('treetomatches.editlist','upload.png','upload_f2.png',Text::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_BUTTON_ASSIGN'),false);
 JLToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetonodes');
 JLToolBarHelper::help('screen.joomleague',true);
 $colspan = 9;
 ?>
 
 <fieldset class="adminform">
-	<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_MATCHES_TITLE','<i>'.$this->node->node.'</i>','<i>'.$this->project->name.'</i>'); ?></legend>
+	<legend><?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_MATCHES_TITLE','<i>'.$this->node->node.'</i>','<i>'.$this->project->name.'</i>'); ?></legend>
 	<!-- Start games list -->
 	<form action="<?php echo $this->request_url; ?>" method="post" id='adminForm' name="adminForm">
 		<table class="table table-striped" id="treetomatchList">
 			<thead>
 				<tr>
 					<th width="5" style="vertical-align: top;"><?php echo count($this->items).'/'.$this->pagination->total; ?></th>
-					<th width="20" style="vertical-align: top;"><?php echo JTEXT::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MATCHNR'); ?></th>
-					<th width="20" style="vertical-align: top;"><?php echo JTEXT::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_ROUND_NR'); ?></th>
-					<th class="title" nowrap="nowrap" style="vertical-align: top;"><?php echo JTEXT::_('COM_JOOMLEAGUE_ADMIN_MATCHES_HOME_TEAM'); ?></th>
-					<th style="text-align: center; vertical-align: top;"><?php echo JTEXT::_('COM_JOOMLEAGUE_ADMIN_MATCHES_RESULT'); ?></th>
-					<th class="title" nowrap="nowrap" style="vertical-align: top;"><?php echo JTEXT::_('COM_JOOMLEAGUE_ADMIN_MATCHES_AWAY_TEAM'); ?></th>
-					<th width="1%" nowrap="nowrap" style="vertical-align: top;"><?php echo JTEXT::_('COM_JOOMLEAGUE_GLOBAL_ID'); ?></th>
+					<th width="20" style="vertical-align: top;"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MATCHNR'); ?></th>
+					<th width="20" style="vertical-align: top;"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_ROUND_NR'); ?></th>
+					<th class="title" nowrap="nowrap" style="vertical-align: top;"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_HOME_TEAM'); ?></th>
+					<th style="text-align: center; vertical-align: top;"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_RESULT'); ?></th>
+					<th class="title" nowrap="nowrap" style="vertical-align: top;"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_MATCHES_AWAY_TEAM'); ?></th>
+					<th width="1%" nowrap="nowrap" style="vertical-align: top;"><?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_ID'); ?></th>
 				</tr>
 			</thead>
 			<tbody>

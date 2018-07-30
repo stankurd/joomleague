@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filter\OutputFilter;
 
 
 defined('_JEXEC') or die;
@@ -44,11 +45,11 @@ class TableClub extends JLTable
 
 		if(empty($this->alias))
 		{
-		    $this->alias = JFilterOutput::stringURLSafe($this->name);
+		    $this->alias = OutputFilter::stringURLSafe($this->name);
 		}
 		else
 		{
-		    $this->alias = JFilterOutput::stringURLSafe($this->alias);
+		    $this->alias = OutputFilter::stringURLSafe($this->alias);
 		}
 
 		// check if name is unique
