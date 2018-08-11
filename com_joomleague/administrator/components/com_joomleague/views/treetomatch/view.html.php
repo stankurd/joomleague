@@ -92,11 +92,11 @@ class JoomleagueViewTreetomatchs extends JLGView
 			{
 				if(empty($res->info))
 				{
-					$node_matcheslist[] =  HTMLHelper::_ ( 'select.option',$res->value,$res->text);
+					$node_matcheslist[] = HTMLHelper::_ ( 'select.option',$res->value,$res->text);
 				}
 				else
 				{
-					$node_matcheslist[] =  HTMLHelper::_ ( 'select.option',$res->value,$res->text . ' (' . $res->info . ')');
+					$node_matcheslist[] = HTMLHelper::_ ( 'select.option',$res->value,$res->text . ' (' . $res->info . ')');
 				}
 			}
 
@@ -126,11 +126,11 @@ class JoomleagueViewTreetomatchs extends JLGView
 
 					if($used == 0 && ! empty($res1->info))
 					{
-						$notusedmatches[] =  HTMLHelper::_ ( 'select.option',$res1->value,$res1->text . ' (' . $res1->info . ')');
+						$notusedmatches[] = HTMLHelper::_ ( 'select.option',$res1->value,$res1->text . ' (' . $res1->info . ')');
 					}
 					elseif($used == 0 && empty($res1->info))
 					{
-						$notusedmatches[] =  HTMLHelper::_ ( 'select.option',$res1->value,$res1->text);
+						$notusedmatches[] = HTMLHelper::_ ( 'select.option',$res1->value,$res1->text);
 					}
 				}
 			}
@@ -140,11 +140,11 @@ class JoomleagueViewTreetomatchs extends JLGView
 				{
 					if(empty($res1->info))
 					{
-						$notusedmatches[] =  HTMLHelper::_ ( 'select.option',$res1->value,$res1->text);
+						$notusedmatches[] = HTMLHelper::_ ( 'select.option',$res1->value,$res1->text);
 					}
 					else
 					{
-						$notusedmatches[] =  HTMLHelper::_ ( 'select.option',$res1->value,$res1->text . ' (' . $res1->info . ')');
+						$notusedmatches[] =HTMLHelper::_ ( 'select.option',$res1->value,$res1->text . ' (' . $res1->info . ')');
 					}
 				}
 			}

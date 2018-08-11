@@ -178,7 +178,7 @@ class JLGController extends BaseController
 			if ($class)
 			{
 				// Reset the task without the controller context.
-				$jinput->set('task', $task);
+				$input->set('task', $task);
 
 				self::$instance = new $class;
 

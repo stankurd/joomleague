@@ -12,6 +12,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -235,13 +236,13 @@ class JLGRanking
 	{
 		if (!$this->_projectid)
 		{
-		    Factory::getApplication()->enqueueMessage(JText::_('COM_JOOMLEAGUE_RANKING_ERROR_PROJECTID_REQUIRED'),'warning');
+		    Factory::getApplication()->enqueueMessage(Text::_('COM_JOOMLEAGUE_RANKING_ERROR_PROJECTID_REQUIRED'),'warning');
 			return false;
 		}
 
 		// Get a reference to the global cache object.
 		$cache = Factory::getCache('joomleague.project.'.$this->_projectid.'.division.'.$this->_division);
-
+		var_dump ($cache);
 		// Enable caching regardless of global setting
 		$params = ComponentHelper::getParams('com_joomleague');
 		// TODO: ranking is not immediately updated when a match result is entered. Is this due to this forcing here?
@@ -854,7 +855,8 @@ class JLGRanking
 		}
 		if (!isset($this->_roundcodes[$round_id]))
 		{
-			JError::raiseWarning(0, JText::_('COM_JOOMLEAGUE_RANKING_ERROR_UNKOWN_ROUND_ID').': '.$round_id);
+		    
+		    Factory::getApplication()->enqueueMessage(0, Text::_('COM_JOOMLEAGUE_RANKING_ERROR_UNKOWN_ROUND_ID').': '.$round_id, 'warning');
 			return false;
 		}
 		return $this->_roundcodes[$round_id];
@@ -883,7 +885,7 @@ class JLGRanking
 				}
 				else
 				{
-					JError::raiseWarning(0, JText::_('COM_JOOMLEAGUE_RANKING_NOT_VALID_CRITERIA').': '.$v);
+				    Factory::getApplication()->enqueueMessage(0, Text::_('COM_JOOMLEAGUE_RANKING_NOT_VALID_CRITERIA').': '.$v, 'warnning');
 				}
 			}
 			// set a default criteria if empty

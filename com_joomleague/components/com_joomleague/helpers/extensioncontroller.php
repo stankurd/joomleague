@@ -84,7 +84,7 @@ class JoomleagueHelperExtensioncontroller
 
 			if (file_exists($path))
 			{
-				$controller->addModelPath($path, 'joomleagueModel');
+				$controller->addModelPath($path, 'JoomleagueModel');
 			}
 		}
 	}
@@ -101,7 +101,7 @@ class JoomleagueHelperExtensioncontroller
 
 			if (file_exists($path))
 			{
-				$controller->addViewPath($path, 'joomleagueView');
+				$controller->addViewPath($path, 'JoomleagueView');
 			}
 		}
 	}
