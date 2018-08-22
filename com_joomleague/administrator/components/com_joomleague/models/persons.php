@@ -49,7 +49,7 @@ class JoomleagueModelPersons extends JLGModelList
 		$this->setState('filter.search',$search);
 
 		// List state information.
-		parent::populateState('a.lastname','desc');
+		parent::populateState('a.lastname','asc');
 	}
 
 

@@ -42,7 +42,7 @@
 			class="inputbox"/>
 
 		<field name="contact_id"
-			addfieldpath="/administrator/components/com_contact/models/fields"
+			addfieldpath="/administrator/components/com_contact/Field"
 			type="modal_contact"
 			description="COM_CONTACT_SELECT_CONTACT_DESC"
 			label="COM_CONTACT_SELECT_CONTACT_LABEL"

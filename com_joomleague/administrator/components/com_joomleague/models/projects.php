@@ -48,7 +48,7 @@ class JoomleagueModelProjects extends JLGModelList
 		$this->setState('filter.search',$value);
 
 		// List state information.
-		parent::populateState('a.name','desc');
+		parent::populateState('a.name','asc');
 		
 		// values of select outside form
 		$value = $this->getUserStateFromRequest($this->context.'.filter.season','filter_season');
@@ -157,7 +157,7 @@ class JoomleagueModelProjects extends JLGModelList
 
 		// filter - order
 		$filter_order = $this->state->get('list.ordering','a.id');
-		$filter_order_Dir = $this->state->get('list.direction','desc');
+		$filter_order_Dir = $this->state->get('list.direction','asc');
 		if($filter_order == 'a.ordering')
 		{
 			$query->order('a.ordering '.$filter_order_Dir);

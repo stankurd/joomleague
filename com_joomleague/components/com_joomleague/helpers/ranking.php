@@ -239,10 +239,9 @@ class JLGRanking
 		    Factory::getApplication()->enqueueMessage(Text::_('COM_JOOMLEAGUE_RANKING_ERROR_PROJECTID_REQUIRED'),'warning');
 			return false;
 		}
-
+/**
 		// Get a reference to the global cache object.
 		$cache = Factory::getCache('joomleague.project.'.$this->_projectid.'.division.'.$this->_division);
-		var_dump ($cache);
 		// Enable caching regardless of global setting
 		$params = ComponentHelper::getParams('com_joomleague');
 		// TODO: ranking is not immediately updated when a match result is entered. Is this due to this forcing here?
@@ -254,6 +253,8 @@ class JLGRanking
 		$class = get_class($this);
 		$newClass = new $class();
 		$data = $cache->__call(array($newClass, '_cachedGetData'), $this->_projectid, $this->_division);
+		*/
+		$data = self::_cachedGetData($this->_projectid, $this->_division);
 		
 		return $data;
 	}
@@ -266,7 +267,6 @@ class JLGRanking
 	public function _cachedGetData($pid, $division=0)
 	{
 		$data = new stdclass();
-
 		$data->_teams   = self::_initTeams($pid, $division);
 		$data->_matches = self::_getMatches($pid, $division);
 
@@ -286,7 +286,6 @@ class JLGRanking
 		$division 	= $this->_division;
 		$project  	= $this->_project->getProject();
 		$data 		= $this->_initData();
-
 		foreach ((array)$data->_matches as $match)
 		{
 
