@@ -77,6 +77,7 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 				}
 				$db = Factory::getDbo();
 				$query = $db->getQuery(true);
+				
 				$query='	SELECT	pt.id
 							FROM #__joomleague_project_team AS pt
 							WHERE pt.team_id='.$db->Quote($this->teamid).'
