@@ -239,7 +239,7 @@ class JLGRanking
 		    Factory::getApplication()->enqueueMessage(Text::_('COM_JOOMLEAGUE_RANKING_ERROR_PROJECTID_REQUIRED'),'warning');
 			return false;
 		}
-/**
+
 		// Get a reference to the global cache object.
 		$cache = Factory::getCache('joomleague.project.'.$this->_projectid.'.division.'.$this->_division);
 		// Enable caching regardless of global setting
@@ -252,8 +252,7 @@ class JLGRanking
 
 		$class = get_class($this);
 		$newClass = new $class();
-		$data = $cache->__call(array($newClass, '_cachedGetData'), $this->_projectid, $this->_division);
-		*/
+		//$data = $cache->__call(array($newClass, '_cachedGetData'), $this->_projectid, $this->_division);
 		$data = self::_cachedGetData($this->_projectid, $this->_division);
 		
 		return $data;

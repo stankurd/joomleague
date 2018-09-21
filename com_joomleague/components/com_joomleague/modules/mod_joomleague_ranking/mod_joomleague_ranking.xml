@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.01" client="site" method="upgrade">
+<extension type="module" version="4.01" client="site" method="upgrade">
 	<name>mod_joomleague_ranking</name>
 	<creationDate>July 2015</creationDate>
 	<author>JoomLeague Developers</author>
@@ -7,7 +7,7 @@
 	<authorUrl>http://www.joomleague.at</authorUrl>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<copyright>(C) 2005-2016 joomleague.at. All rights reserved.</copyright>
-	<version>3.0.22.57ae969</version>
+	<version>4.0.01.57ae969</version>
 	<description>MOD_JOOMLEAGUE_RANKING_XML_DESC</description>
 
 	<files>

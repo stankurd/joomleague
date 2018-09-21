@@ -10,13 +10,14 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Helper\ModuleHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
 require_once dirname(__FILE__).'/helper.php';
 require_once JPATH_SITE.'/components/com_joomleague/joomleague.core.php';
 
-//JHtml::_('behavior.framework');
+HTMLHelper::_('behavior.framework');
 $document = Factory::getDocument();
 $document->addStyleSheet(Uri::base().'modules/mod_joomleague_navigation_menu/css/mod_joomleague_navigation_menu.css');
 $document->addScript(Uri::base().'modules/mod_joomleague_navigation_menu/js/mod_joomleague_navigation_menu.js');
@@ -31,5 +32,4 @@ $teamselect		= $helper->getTeamSelect();
 
 $defaultview   = $params->get('project_start');
 $defaultitemid = $params->get('custom_item_id');
-
 require ModuleHelper::getLayoutPath('mod_joomleague_navigation_menu', $params->get('layout', 'default'));

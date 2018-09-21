@@ -1,5 +1,7 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Factory;
 
 /**
  * Joomleague
@@ -14,7 +16,7 @@ defined('_JEXEC') or die;
 // check if any results returned
 $items = count($list['ranking']);
 if (!$items) {
-   echo '<p class="modjlgranking">' . JText::_('NO ITEMS') . '</p>';
+   echo '<p class="modjlgranking">' . Text::_('NO ITEMS') . '</p>';
    return;
 }
 
@@ -22,7 +24,8 @@ $columns     = explode(',', $params->get('columns', 'JL_PLAYED, JL_POINTS'));
 $column_names = explode(',', $params->get('column_names', 'MP, PTS'));
 
 if (count($columns) != count($column_names)) {
-	JError::raiseWarning(1, JText::_('MOD_JOOMLEAGUE_RANKING_COLUMN_NAMES_COUNT_MISMATCH'));
+	$msg = Text::_('MOD_JOOMLEAGUE_RANKING_COLUMN_NAMES_COUNT_MISMATCH');
+	Factory::getApplication()->enqueueMessage($msg, 'error');
 	$columns     = array();
 	$column_name = array();
 }
@@ -41,11 +44,11 @@ $colors = $list['colors'];
 	<thead>
 		<tr class="sectiontableheader">
 			<?php if($params->get('showRankColumn') == 1) { ?>
-			<th class="rank"><?php echo JText::_('MOD_JOOMLEAGUE_RANKING_COLUMN_RANK')?></th>
+			<th class="rank"><?php echo Text::_('MOD_JOOMLEAGUE_RANKING_COLUMN_RANK')?></th>
 			<?php } ?>
-			<th class="team"><?php echo JText::_('MOD_JOOMLEAGUE_RANKING_COLUMN_TEAM')?></th>
+			<th class="team"><?php echo Text::_('MOD_JOOMLEAGUE_RANKING_COLUMN_TEAM')?></th>
 			<?php foreach ($column_names as $col): ?>
-			<th class="rankcolval"><?php echo JText::_(trim($col)); ?></th>
+			<th class="rankcolval"><?php echo Text::_(trim($col)); ?></th>
 			<?php endforeach; ?>
 		</tr>
 	</thead>
@@ -131,6 +134,6 @@ $colors = $list['colors'];
 	$divisionid = explode(':', $params->get('division_id', 0));
 	$divisionid = $divisionid[0];
 	echo HTMLHelper::link(JoomleagueHelperRoute::getRankingRoute($list['project']->slug, null, null, null, null, $divisionid), 
-			         JText::_('MOD_JOOMLEAGUE_RANKING_VIEW_FULL_TABLE')); ?></p>
+			         Text::_('MOD_JOOMLEAGUE_RANKING_VIEW_FULL_TABLE')); ?></p>
 <?php endif; ?>
 </div>

@@ -16,7 +16,7 @@ defined('_JEXEC') or die;
 /**
  * Randomplayer Module helper
  */
-abstract class modJLGRandomplayerHelper
+class modJLGRandomplayerHelper
 {
 
 	/**

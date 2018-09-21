@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	window.addEvent('domready', function() {
+	document.addEventListener('DOMContentLoaded', function() {
 	var opt<?php echo $params->get( 'moduleclass_sfx' ); ?> = {
 	  duration: 3000,
 	  delay: <?php echo $tickerpause ?>000,

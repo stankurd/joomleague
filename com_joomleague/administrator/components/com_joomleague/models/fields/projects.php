@@ -29,7 +29,7 @@ class JFormFieldProjects extends FormField
 		||	$lang->load($extension, $source, null, false, false)
 		||	$lang->load($extension, JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
 		||	$lang->load($extension, $source, $lang->getDefault(), false, false);
-		
+		$query 		= $db->getQuery(true);
 		$query->select('p.id, concat(p.name, \' ('.Text::_('COM_JOOMLEAGUE_GLOBAL_LEAGUE').': \', l.name, \')\', \' ('.Text::_('COM_JOOMLEAGUE_GLOBAL_SEASON').': \', s.name, \' )\' ) as name')
 		->from('#__joomleague_project AS p')
 		->join('LEFT',' #__joomleague_season AS s ON s.id = p.season_id')

@@ -105,16 +105,22 @@
 		
 				<field type="spacer" hr="true" />
 		
+		        </fieldset>
+
+				<field type="spacer" hr="true" />
+				<fieldset name="nav_links" label="MOD_JOOMLEAGUE_NAVIGATION_NAV_LINKS_ITEM_LABEL"
+				description="MOD_JOOMLEAGUE_NAVIGATION_NAV_LINKS_ITEM_DESC"
+				addfieldpath="/modules/mod_joomleague_navigation_menu/fields">
+				
 				<field name="show_nav_links" type="radio" class="switcher" default="none" label="MOD_JOOMLEAGUE_NAVIGATION_NAV_MENU_ITEM_LABEL" description="MOD_JOOMLEAGUE_NAVIGATION_NAV_MENU_ITEM_DESC">
 					<option value="0">MOD_JOOMLEAGUE_NAVIGATION_NAV_MENU_ITEM_OPTION1</option>
 					<option value="1">MOD_JOOMLEAGUE_NAVIGATION_NAV_MENU_ITEM_OPTION2</option>
 				</field>
-		
-				<field type="spacer" hr="true" />
-		
+
 				<field name="navpoint1"
 				       type="JLMenuItems"
 				       default=""
+					   layout="default"
 				       label="MOD_JOOMLEAGUE_NAVIGATION_NAV_ITEM_LABEL" 
 				       description="MOD_JOOMLEAGUE_NAVIGATION_NAV_ITEM_DESC">
 				</field>
@@ -284,9 +290,9 @@
 				       description="MOD_JOOMLEAGUE_NAVIGATION_NAV_ITEM_DESC">
 				</field>
 		
-				<field name="navpoint_label16" type="text" default="" label="MOD_JOOMLEAGUE_NAVIGATION_NAV_ITEM_TEXT_LABEL" description="MOD_JOOMLEAGUE_NAVIGATION_NAV_ITEM_TEXT_DESC" />
-		  </fieldset>
-			  
+			<field name="navpoint_label16" type="text" default="" label="MOD_JOOMLEAGUE_NAVIGATION_NAV_ITEM_TEXT_LABEL" description="MOD_JOOMLEAGUE_NAVIGATION_NAV_ITEM_TEXT_DESC" />
+			
+		  </fieldset>	  
 				<fieldset
 					name="advanced">
 					<field

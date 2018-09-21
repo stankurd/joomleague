@@ -11,12 +11,13 @@ use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Form\Field\ListField;
 
 defined('_JEXEC') or die;
 
 FormHelper::loadFieldClass('list');
 
-class JFormFieldTeams extends FormField
+class JFormFieldTeams extends JFormFieldList
 {
 
 	Public $type = 'teams';

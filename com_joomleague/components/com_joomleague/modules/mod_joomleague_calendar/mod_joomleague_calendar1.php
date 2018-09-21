@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Joomleague
  * @subpackage	Module-Calendar
@@ -19,24 +18,18 @@ use Joomla\CMS\Date\Date;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\CMS\HTML\HTMLHelper;
-
 defined('_JEXEC') or die;
 
 require_once dirname(__FILE__).'/helper.php';
-//require_once dirname(__FILE__).'/connectors/joomleague.php';
 require_once JPATH_SITE.'/components/com_joomleague/joomleague.core.php';
-
 $app = Factory::getApplication();
 $input = $app->input;
-$document = Factory::getDocument();
-// add the js script
-$baseurl = Uri::root();
-$document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/depend.js');
 HTMLHelper::_('behavior.tooltip');
+
 $ajax= $input->post->get('ajaxCalMod',0,'default');
 $ajaxmod= $input->post->get('ajaxmodid',0,'default');
 if(!$params->get('cal_start_date')){
-	$year = $input->get('year',date('Y'));    /*if there is no date requested, use the current month*/
+    $year = Factory::getApplication()->get('year',date('Y'));    /*if there is no date requested, use the current month*/
 	$month  = $input->get('month',date('m'));
 	$day  = $input->get('day',0);
 }
@@ -54,9 +47,9 @@ HTMLHelper::_('behavior.framework');
 HTMLHelper::_('behavior.modal');
 if ($lightbox ==1 && (!isset($_GET['format']) OR ($_GET['format'] != 'pdf'))) {
 	$doc->addScriptDeclaration(";
-        jQuery(function($) {
-          jQuery('a.jlcmodal".$module->id."').each(function(el) {
-            el.click, (function(e) {
+      window.addEvent('domready', function() {
+          $$('a.jlcmodal".$module->id."').each(function(el) {
+            el.addEvent('click', function(e) {
               new Event(e).stop();
               SqueezeBox.fromElement(el);
             });
@@ -80,4 +73,6 @@ if (!defined('JLC_MODULESCRIPTLOADED')) {
 }
 $calendar = $helper->showCal($params,$year,$month,$ajax,$module->id);
 
+//require JModuleHelper::getLayoutPath('mod_joomleague_calendar');
 require ModuleHelper::getLayoutPath('mod_joomleague_calendar', $params->get('layout', 'default'));
+

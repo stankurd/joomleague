@@ -29,6 +29,7 @@ abstract class modJLGResultsHelper
 		if (!class_exists('JoomleagueModelResults')) {
 			require_once JLG_PATH_SITE.'/models/results.php';
 		}
+		//$model = new JoomleagueModelResults;
 		$model = JLGModel::getInstance('Results', 'JoomleagueModel');
 		$model->setProjectId($params->get('p'));
 		

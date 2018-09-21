@@ -1,5 +1,5 @@
 
-window.addEvent('domready', function() {
+document.addEventListener('DOMContentLoaded', function() {
 	var opt = {
 	  duration: 3000,
 	  delay: 2000,

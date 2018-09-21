@@ -14,17 +14,19 @@
  * Modified by Johncage for uw with Joomleague
  */
 use Joomla\CMS\Factory;
-use Joomla\CMS\Date\Date;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Date\Date;
 
 defined('_JEXEC') or die;
 
 require_once (dirname(__FILE__).'/calendarClass.php');
 
-class modJLCalendarHelper{
-	public function showCal(&$params,$year,$month,$ajax=0,$modid) //this function returns the html of the calendar for a given month
+class modJLCalendarHelper
+{
+	function showCal(&$params,$year,$month,$ajax=0,$modid) //this function returns the html of the calendar for a given month
 	{
 		// $offset = 0; //$mainframe->getCfg('offset');
 		$language= Factory::getLanguage(); //get the current language
@@ -37,28 +39,28 @@ class modJLCalendarHelper{
 		$dayNamLen= $params->get('cal_length_days');
 
 		$cal->dayNames = array(
-		substr(JText::_( 'SUN' ),0,$dayNamLen),
-		substr(JText::_( 'MON' ),0,$dayNamLen),
-		substr(JText::_( 'TUE' ),0,$dayNamLen),
-		substr(JText::_( 'WED' ),0,$dayNamLen),
-		substr(JText::_( 'THU' ),0,$dayNamLen),
-		substr(JText::_( 'FRI' ),0,$dayNamLen),
-		substr(JText::_( 'SAT' ),0,$dayNamLen)
+		substr(Text::_( 'SUN' ),0,$dayNamLen),
+		substr(Text::_( 'MON' ),0,$dayNamLen),
+		substr(Text::_( 'TUE' ),0,$dayNamLen),
+		substr(Text::_( 'WED' ),0,$dayNamLen),
+		substr(Text::_( 'THU' ),0,$dayNamLen),
+		substr(Text::_( 'FRI' ),0,$dayNamLen),
+		substr(Text::_( 'SAT' ),0,$dayNamLen)
 		);
 
 		$cal->monthNames = array(
-		JText::_( 'JANUARY' ),
-		JText::_( 'FEBRUARY' ),
-		JText::_( 'MARCH' ),
-		JText::_( 'APRIL' ),
-		JText::_( 'MAY' ),
-		JText::_( 'JUNE' ),
-		JText::_( 'JULY' ),
-		JText::_( 'AUGUST' ),
-		JText::_( 'SEPTEMBER' ),
-		JText::_( 'OCTOBER' ),
-		JText::_( 'NOVEMBER' ),
-		JText::_( 'DECEMBER' )
+		Text::_( 'JANUARY' ),
+		Text::_( 'FEBRUARY' ),
+		Text::_( 'MARCH' ),
+		Text::_( 'APRIL' ),
+		Text::_( 'MAY' ),
+		Text::_( 'JUNE' ),
+		Text::_( 'JULY' ),
+		Text::_( 'AUGUST' ),
+		Text::_( 'SEPTEMBER' ),
+		Text::_( 'OCTOBER' ),
+		Text::_( 'NOVEMBER' ),
+		Text::_( 'DECEMBER' )
 		);
 
 		$cal->startDay = $params->get('cal_start_day'); //set the startday (this is the day that appears in the first column). Sunday = 0
@@ -78,21 +80,18 @@ class modJLCalendarHelper{
 		$cal->getMatches($month,$year);
 
 		$counter= Array();
-		jimport('joomla.utilities.date');
 		
 		foreach ( $cal->matches as $row )
 		{
-			// @todo check/fix!
-			/* $created= new Date($row['date'], -$offset); */
 			$created= new Date($row['date']);
-			$createdYear=$created->format('%Y');
-			$createdMonth=$created->format('%m');
-			$createdDay=$created->format('%d'); //have to use %d because %e doesn't works on windows
+			$createdYear=$created->format('Y');
+			$createdMonth=$created->format('m');
+			$createdDay=$created->format('d'); //have to use d because e doesn't works on windows
 			$createdDate=$createdYear . $createdMonth . $createdDay; //this makes an unique variable for every day
 			$counter[$createdDate]['createdYear'] = $createdYear;
 			$counter[$createdDate]['createdMonth'] = $createdMonth;
 			$counter[$createdDate]['createdDay'] = $createdDay;
-			$counter[$createdDate]['tiptitle'] = $created->format('%A, %d.%m.%Y');
+			$counter[$createdDate]['tiptitle'] = $created->format('l, d.m.Y');
 			if (!isset($counter[$createdDate]['count'])) $counter[$createdDate]['count'] = 1;
 			else $counter[$createdDate]['count'] += 1; //$counter[$date] counts the number of articles in each day, to display it as a title in the link of the day
 		}
@@ -123,28 +122,23 @@ class modJLCalendarHelper{
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
+	    
 		// $offset = 0; // $mainframe->getCfg('offset');
 		$prefix = $params->get('custom_prefix');
 		$query=	' SELECT match_date' .
 			' FROM #__joomleague_matches'.
 			' WHERE match_id=\'' . $id . '\'';
 		$query = ($prefix != '') ? str_replace('#__', $prefix, $query) : $query;
-		$db = Factory::getDbo();
 		$db->setQuery($query);
 		$row= $db->loadObjectList();
 
-		jimport('joomla.utilities.date');
-		
-		// @todo check/fix! 
-		/* $created=new Date($row[0]->match_date, -$offset); */
 		$created=new Date($row[0]->match_date);
 
-		$createdYear=$created->format('%Y');
-		$createdMonth=$created->format('%m');
-		$createdDay=$created->format('%d');
+		$createdYear=$created->format('Y');
+		$createdMonth=$created->format('m');
+		$createdDay=$created->format('d');
 
 		$createdDate=Array($createdYear,$createdMonth,$createdDay);
-
 		return $createdDate;
 	}
 
@@ -154,8 +148,8 @@ class modJLCalendarHelper{
 
 		foreach($results as $key => $result){
 			$created=new Date($results[$key]->match_date);
-			$createdYear= $created->format('%Y');
-			$createdMonth= $created->format('%m');
+			$createdYear= $created->format('Y');
+			$createdMonth= $created->format('m');
 
 
 			$results[$key]->year = $createdYear;
@@ -169,7 +163,6 @@ class modJLCalendarHelper{
 			$articleCounter[$createdYear]['total']++;
 
 		}
-
 		return array($results,$articleCounter);
 	}
 
@@ -213,9 +206,8 @@ class JLCalendar extends PHPCalendar
 
 		$date= $year . $month . $day;
 		if(isset($this->linklist[$date]['link'])){
-			$link=$this->linklist[$date]['link'];  //$this->linklist[$date] was set for every date in the foreach bucle at lines 50-83
-		}
-
+		    $link=$this->linklist[$date]['link'];  //$this->linklist[$date] was set for every date in the foreach bucle at lines 50-83
+		}		
 		return $link;
 	}
 	function getDateClick($day, $month, $year) //this function is called from getMonthView(month,year) to get the link of the given day
@@ -239,15 +231,21 @@ class JLCalendar extends PHPCalendar
 	//this function is called to get the links of the two arrows in the header.
 	function getCalendarLink($month, $year)
 	{
-		$getquery = Factory::getApplication()->input->get->get(); //get the GET query
+	    $db = Factory::getDbo();
+	    $query = $db->getQuery(true);
+	    // @todo check/fix!
+	    /*$getquery = JRequest::get('GET'); //get the GET query*/
+	    $getquery = Factory::getApplication()->input->get('GET'); //get the GET query
+	   // var_dump($getquery);
 		$calendarLink= Uri::current().'?'; //get the current url, without the GET query; and add "?", to set the GET vars
-
+		//var_dump($calendarLink);
 		foreach($getquery as $key => $value){  /*this bucle goes through every GET variable that was in the url*/
 			if($key!='month' && $key!='year' && $key!='day' && $value){ /*the month,year, and day Variables must be diferent of the current ones, because this is a link for a diferent month */
 				$calendarLink.= $key . '=' . $value . '&amp;';
 			}
 		}
 		$calendarLink.='month='.$month.'&amp;year='.$year; //add the month and the year that was passed to the function to the GET string
+		//var_dump($calendarLink);
 		return $calendarLink;
 	}
 
@@ -262,11 +260,13 @@ class JLCalendar extends PHPCalendar
 		elseif (strtolower($fromenc) == 'iso-8859-1' && strtolower($toenc) == 'utf-8') {
 			return utf8_encode($text);
 		}
-		elseif (strtolower($fromenc) == 'utf-8' && strtolower($toenc) == 'iso-8859-1') {
+		elseif (strtolower($fromenc) == 'utf-8' && strtolower($toenc) == 'iso-8859-1')
+		{
 			return utf8_decode($text);
 		}
 		else return $text;
 	}
+	
 	function sortObject($array, $comparefunction, $property = '')
 	{
 		$zcount=count($array);
@@ -325,10 +325,10 @@ class JLCalendar extends PHPCalendar
 		$this->params->prefix = $this->prefix;
 		
 		// @todo Check!
-		$entries = JoomleagueConnector($this->params);
+		$entries = new JoomleagueConnector($this->params);
 		$entries->getEntries($caldates, $this->params, $this->matches);
 		
-		 JoomleagueConnector::getEntries($caldates, $this->params, $this->matches); 
+		//var_dump($entries);
 
 		if ($livescore != ''){
 			require_once (dirname(__FILE__).'/connectors/livescore.php');
@@ -353,7 +353,7 @@ class JLCalendar extends PHPCalendar
 		$matches = $this->matches;
 		$div = '';
 		$now = new Date();
-		$today = $now->format('%Y-%m-%d');
+		$today = $now->format('Y-m-d');
 		$todaytitle = '';
 		$pm='';
 		//$offset = 0; // $mainframe->getCfg('offset');
@@ -376,9 +376,9 @@ class JLCalendar extends PHPCalendar
 			// @todo check/fix!
 			/* $da= new Date($row['date'], -$offset); */
 			$da= new Date($row['date']);
-			if ($div !=$da->format('%Y-%m-%d')) {
+			if ($div !=$da->format('Y-m-d')) {
 				$counter = 0;
-				$div = $da->format('%Y-%m-%d');
+				$div = $da->format('Y-m-d');
 				$format[] = array('tag' => 'div', 'divid' => 'jlcal_'.$div."-".$this->modid, 'class' => 'jlcal_hiddenmatches');
 				$format[] = array('tag' => 'table', 'divid' => 'jlcal_'.$div."-".$this->modid, 'class' => 'jlcal_result_table');
 			}
@@ -394,7 +394,7 @@ class JLCalendar extends PHPCalendar
 			/* if (isset($matches[$x+1])) $nd= new Date($matches[$x+1]['date'], -$offset); */
 			if (isset($matches[$x+1])) $nd= new Date($matches[$x+1]['date']);
 			else $nd = false;
-			if (!$nd || $nd->format('%Y-%m-%d') != $da->format('%Y-%m-%d')) {
+			if (!$nd || $nd->format('Y-m-d') != $da->format('Y-m-d')) {
 
 				$pm = '';
 				$format[] = array('tag' => 'tableend');
@@ -403,8 +403,8 @@ class JLCalendar extends PHPCalendar
 				$titletext .= ' ';
 				$titletext .= ($counter > 1)? $articles : $article;
 				$titletext .= ' ';
-				$titletext .= ($today == $da->format('%Y-%m-%d')) ? $language->_('MOD_JOOMLEAGUE_CALENDAR_TODAY'): $language->_('MOD_JOOMLEAGUE_CALENDAR_AT');
-				$titletext .= ' ' .$da->format('%d').'. '.$this->monthNames[$month - 1] . ' ' . $year;
+				$titletext .= ($today == $da->format('Y-m-d')) ? $language->_('MOD_JOOMLEAGUE_CALENDAR_TODAY'): $language->_('MOD_JOOMLEAGUE_CALENDAR_AT');
+				$titletext .= ' ' .$da->format('d').'. '.$this->monthNames[$month - 1] . ' ' . $year;
 				$format[] = array('tag' => 'span', 'divid' => 'jlcaltitte_'.$div."-".$this->modid, 'class' => 'jlcal_hiddenmatches', 'text' => $titletext);
 
 			}
@@ -417,9 +417,9 @@ class JLCalendar extends PHPCalendar
 		$teamslist = array();
 		if(count($this->teams) > 0 && $this->params->get('show_teamslist', 0) == 1) {
 			$teams = $this->sortObject($this->teamslist, 'asc', 'name');
-			$teamslist[] = HTMLHelper::_('select.option', 0, JText::_($this->params->get('teamslist_option')));
+			$teamslist[] = HTMLHelper::_('select.option', 0, Text::_($this->params->get('teamslist_option')));
 			foreach ($teams AS $id => $obj) {
-				$teamslist[] = HTMLHelper::_('select.option', $obj->value, JText::_($obj->name));
+				$teamslist[] = HTMLHelper::_('select.option', $obj->value, Text::_($obj->name));		
 			}
 		}
 		return $teamslist;

@@ -10,7 +10,7 @@
 
 	document.addEventListener('DOMContentLoaded', function() {
 	if(document.getElementById('adminForm')) {
-		document.getElementById('adminForm').setProperty('name', 'adminForm');
+		//document.getElementById('adminForm').setProperty('name', 'adminForm');
 	}
 });
 

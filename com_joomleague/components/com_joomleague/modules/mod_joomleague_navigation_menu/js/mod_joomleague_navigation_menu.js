@@ -4,7 +4,6 @@
  */
 (function($){
 	var form;
-
 	var updateProjects = function(response)
 	{
 		var select = form.find('#p');
@@ -60,7 +59,7 @@
 		window.location = response;
 	};
 
-	$(document).ready(function(){
+jQuery(document).ready(function($) {	
 		form = $('div#jl-nav-module form');
 
 		$('div#jl-nav-module .jlnav-select').change(function() {

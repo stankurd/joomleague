@@ -1,7 +1,4 @@
 <?php
-use Joomla\CMS\Factory;
-use Joomla\CMS\Uri\Uri;
-
 /**
  * Joomleague
  * @subpackage	Module-Calendar
@@ -10,6 +7,9 @@ use Joomla\CMS\Uri\Uri;
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+
 defined('_JEXEC') or die;
 
 class JoomleagueConnector extends JLCalendar{
@@ -53,7 +53,7 @@ class JoomleagueConnector extends JLCalendar{
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-
+	    
 		$query = "SELECT id, fav_team FROM #__joomleague_project
       where fav_team != '' ";
 
@@ -67,7 +67,6 @@ class JoomleagueConnector extends JLCalendar{
 		}
 
 		$query = ($this->prefix != '') ? str_replace('#__', $this->prefix, $query) : $query;
-		$db = Factory::getDbo();
 		$db->setQuery($query);
 		$fav=$db->loadObjectList();
 
@@ -90,8 +89,8 @@ class JoomleagueConnector extends JLCalendar{
 
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-
-		$customteam = Factory::getApplication()->input->post->get('jlcteam',0,'default','');
+		
+		$customteam = Factory::getApplication()->input->post->get('jlcteam',0,'default');
 		$teamid		= $this->xparams->get('team_ids') ;
 
 
@@ -174,7 +173,9 @@ class JoomleagueConnector extends JLCalendar{
 		}
 
 		$query .= $limitingcondition;
-		$query .= "  GROUP BY p.id ORDER BY p.birthday";
+		//$query .= "GROUP BY p.id";
+		$query .= "ORDER BY p.birthday";
+		
 		$query = ($this->prefix != '') ? str_replace('#__', $this->prefix, $query) : $query;
 		$db->setQuery($query);
 		//echo($db->getQuery());
@@ -302,9 +303,9 @@ class JoomleagueConnector extends JLCalendar{
 
 	function getMatches($caldates, $ordering='ASC')
 	{
-	    $db = Factory::getDbo();
-	    $query = $db->getQuery(true);
-
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		
 		$teamCondition = '';
 		$clubCondition = '';
 		$favCondition = '';
@@ -312,7 +313,7 @@ class JoomleagueConnector extends JLCalendar{
 		$limitingconditions = array();
 		$favConds = array();
 
-		$customteam = Factory::getApplication()->input->post->get('jlcteam',0,'default','');
+		$customteam = Factory::getApplication()->input->post->get('jlcteam',0,'default');
 
 		$teamid		= $this->xparams->get('team_ids') ;
 
@@ -410,8 +411,9 @@ class JoomleagueConnector extends JLCalendar{
 
 	function getTeamsFromMatches( &$games )
 	{
-	    $db = Factory::getDbo();
-	    $query = $db->getQuery(true);
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+
 		if ( !count ($games) ) return Array();
 		foreach ( $games as $m )
 		{
@@ -447,6 +449,7 @@ class JoomleagueConnector extends JLCalendar{
 		$teamnames = $this->xparams->get('team_names', 'short_name');
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
+		
 		$query = "SELECT t.".$teamnames." AS name, t.id AS value
     FROM #__joomleague_teams t, #__joomleague p
     WHERE t.id IN(p.fav_team)";

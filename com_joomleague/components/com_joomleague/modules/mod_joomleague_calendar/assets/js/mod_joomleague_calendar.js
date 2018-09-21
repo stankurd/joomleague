@@ -1,22 +1,29 @@
-var jlcinjectcontainer = new Array();
-var jlcmodal = new Array();
-
-window.addEvent('domready', function() {
+var jlcinjectcontainer = [];
+var jlcmodal = [];
+/*
+document.addEventListener('DOMContentLoaded', function() {
 	SqueezeBox.initialize({});
 });
+*/
+jQuery(function($) {
+			SqueezeBox.initialize({});
+			SqueezeBox.assign($('a.modal').get(), {
+				parse: 'rel'
+			});
+		});
 
 function jlCalmod_setTitle(targetid, sourceids, thistitle, modid) {
 	var titleid = sourceids.replace('jlcal_', 'jlcaltitte_');
-	if ($(titleid)) {
-		$('jlCalListDayTitle-' + modid).innerHTML = $(titleid).innerHTML;
+	if (document.getElementById(titleid)) {
+		document.getElementById('jlCalListDayTitle-' + modid).innerHTML = document.getElementById(titleid).innerHTML;
 	}
 }
 
 function jlCalmod_setContent(targetid, tempcontentid, sourcecontent, thistitle, modid) {
-	$(targetid).innerHTML = sourcecontent;
-	$(tempcontentid).innerHTML = '<div class="componentheading">'
+	document.getElementById(targetid).innerHTML = sourcecontent;
+	document.getElementById(tempcontentid).innerHTML = '<div class="componentheading">'
 			+ thistitle.replace('<br />', ' - ') + '</div>' + sourcecontent;
-	$$('#' + tempcontentid + ' acronym').each(function(handle) {
+	jQuery('#' + tempcontentid + ' acronym').each(function(handle) {
 		var header = new Element('span').injectAfter(handle);
 		header.innerHTML = handle.title;
 		handle.dispose();
@@ -24,26 +31,33 @@ function jlCalmod_setContent(targetid, tempcontentid, sourcecontent, thistitle, 
 }
 
 function jlCalmod_injectContent(sourceid, destinationid, modid) {
-	var tmp = $(destinationid).innerHTML;
-	if (!$('temp_jlcal-' + modid)) {
-		$(destinationid).innerHTML = '<div id="temp_jlcal-' + modid	+
+	var tmp = document.getElementById(destinationid).innerHTML;
+	if (!document.getElementById('temp_jlcal-' + modid)) {
+		document.getElementById(destinationid).innerHTML = '<div id="temp_jlcal-' + modid	+
 									'" class="jcal_inject"></div>' + tmp;
 	}
-	var closer = '<span class="jcal_inject_close" onclick="$(\'temp_jlcal-'
+	var closer = '<span class="jcal_inject_close" onclick="document.getElementById(\'temp_jlcal-'
 			+ modid + '\').style.display=\'none\';">x</span>';
-	$('temp_jlcal-' + modid).innerHTML = closer + $(sourceid).innerHTML;
-	$('temp_jlcal-' + modid).style.display = 'block';
+	document.getElementById('temp_jlcal-' + modid).innerHTML = closer + document.getElementById(sourceid).innerHTML;
+	document.getElementById('temp_jlcal-' + modid).style.display = 'block';
+	 // document.getElementById('myModalbody' + modid).innerHTML = document.getElementById(sourceid).innerHTML;
+
+	  //jQuery("#myModal" + modid).modal();
+
 }
 function jlCalmod_showhide(targetid, sourceids, thistitle, inject, modid) {
 
-	if ($(targetid)) {
-		var targetcontent = $(targetid).innerHTML;
-		var sourcecontent = ($(sourceids)) ? $(sourceids).innerHTML	: 'Something went wrong this day';
+	if (jQuery(targetid)) {
+		var targetcontent = document.getElementById(targetid).innerHTML;
+		var sourcecontent = (document.getElementById(sourceids)) ? document.getElementById(sourceids).innerHTML	: 'Something went wrong this day';
 		var tempcontentid = 'jlCalList-' + modid + '_temp';
+		// bootstrap modalbox
+		//document.getElementById('myModalheader' + modid).innerHTML = thistitle;
+		
 		jlCalmod_setTitle(targetid, sourceids, thistitle, modid);
 		jlCalmod_setContent(targetid, 'jlCalList-' + modid + '_temp', sourcecontent, thistitle, modid);
 		var incont = jlcinjectcontainer[modid];
-		if ($(incont) && inject > 0) {
+		if (jQuery(incont) && inject > 0) {
 			jlCalmod_injectContent(tempcontentid, incont, modid);
 		}
 		if(jlcmodal[modid] == 1) {
@@ -73,22 +87,22 @@ function jlcnewAjax() {
 }
 
 function jlcHide(modid) {
-	if ($('jlCalListDayTitle-' + modid))
-		$('jlCalListDayTitle-' + modid).innerHTML = '';
-	if ($('jlCalListTitle-' + modid))
-		$('jlCalListTitle-' + modid).innerHTML = '';
-	if ($('jlcteam' + modid))
-		$('jlcteam' + modid).toggleClass('jcalbox_hidden');
-	if ($('jlCalList-' + modid))
-		$('jlCalList-' + modid).innerHTML = '';
+	if (jQuery('jlCalListDayTitle-' + modid))
+		document.getElementById('jlCalListDayTitle-' + modid).innerHTML = '';
+	if (jQuery('jlCalListTitle-' + modid))
+		document.getElementById('jlCalListTitle-' + modid).innerHTML = '';
+	if (jQuery('jlcteam' + modid))
+		jQuery('jlcteam' + modid).toggleClass('jcalbox_hidden');
+	if (jQuery('jlCalList-' + modid))
+		document.getElementById('jlCalList-' + modid).innerHTML = '';
 }
 
 function jlcnewDate(month, year, modid, day) {
 	if (!day)
 		day = 0;
 	var teamid = 0;
-	if ($('jlcteam' + modid))
-		teamid = $('jlcteam' + modid).options[$('jlcteam' + modid).selectedIndex].value;
+	if (jQuery('jlcteam' + modid))
+		teamid = jQuery('jlcteam' + modid).val();
 	var myFx = new Fx.Morph('jlctableCalendar-' + modid);
 	myFx.start({
 		'opacity' : 0
@@ -99,7 +113,7 @@ function jlcnewDate(month, year, modid, day) {
 	loadHtml += "<img src='" + calendar_baseurl +
 				"modules/mod_joomleague_calendar/assets/images/loading.gif'>";
 	loadHtml += "</p>";
-	$('jlccalendar-' + modid).innerHTML += loadHtml;
+	document.getElementById('jlccalendar-' + modid).innerHTML += loadHtml;
 	jlcHide(modid);
 	var myFx = new Fx.Morph('jlctableCalendar-' + modid);
 	myFx.start({
@@ -135,7 +149,7 @@ function jlcnewDate(month, year, modid, day) {
 			myFx.start({
 				'opacity' : 1
 			});
-			$('jlccalendar-' + modid).innerHTML = justTheCalendar;
+			document.getElementById('jlccalendar-' + modid).innerHTML = justTheCalendar;
 
 			var today = new Date();
 			var dd = today.getDate();
@@ -146,19 +160,19 @@ function jlcnewDate(month, year, modid, day) {
 				dd = '0' + dd;
 			var sc = 'jlCalList-' + modid;
 			var tc = 'jlcal_' + yy + '-' + mm + '-' + dd + '-' + modid;
-			if ($(tc))
+			if (jQuery(tc))
 				jlCalmod_showhide(sc, tc, dd + '.' + mm + '.' + yy, 1, modid);
 			if (SqueezeBox && jlcmodal[modid] == 1) {
 				SqueezeBox.initialize({});
 
-				$$('a.jlcmodal' + modid).each(function(el) {
-					el.addEvent('click', function(e) {
+				jQuery('a.jlcmodal' + modid).each(function(el) {
+					el.click (function(e) {
 						new Event(e).stop();
 						SqueezeBox.fromElement(el);
 					});
 				});
 			}
-			var JTooltips = new Tips($$('#jlccalendar-' + modid + ' .hasTip'),
+			var JTooltips = new Tips(jQuery('#jlccalendar-' + modid + ' .hasTip'),
 					{
 						maxTitleChars : 50,
 						fixed : false

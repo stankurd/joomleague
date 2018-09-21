@@ -31,7 +31,7 @@ $typel = $params->get('show_logo', 0);
 
 <script type="text/javascript">
 	(function(){
-	var Tips1 = new Tips($$('.logo'));
+	var Tips1 = new Tips(jQuery('.logo'));
 }); 
 </script>
 

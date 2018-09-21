@@ -9,6 +9,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Utilities\ArrayHelper;
 
@@ -227,12 +228,12 @@ abstract class modMatchesHelper {
 		1 => ''
 		),
 		1 => array (
-		0 => JText :: _('AET'),
-		1 => JText :: _('IET')
+		0 => Text :: _('AET'),
+		1 => Text :: _('IET')
 		),
 		2 => array (
-		0 => JText :: _('ONP'),
-		1 => JText :: _('INP')
+		0 => Text :: _('ONP'),
+		1 => Text :: _('INP')
 		)
 		);
 		$partresults = '';
@@ -269,7 +270,7 @@ abstract class modMatchesHelper {
 				$partresults .= ' - ';
 				if (is_null($match->team1_result))
 				$partresults .= '<span class="jlml_livescore">';
-				$partresults .= JText :: _('IET') . ' ' . $match->team1_result_ot . ':' . $match->team2_result_ot;
+				$partresults .= Text :: _('IET') . ' ' . $match->team1_result_ot . ':' . $match->team2_result_ot;
 				if (is_null($match->team1_result))
 				$partresults .= '</span>';
 			}
@@ -363,7 +364,7 @@ abstract class modMatchesHelper {
 					}
 				}
 			}
-			$rows[$match->match_id]['date'] = JoomleagueHelper::getMatchDate($match, JText::_($this->params->get('dateformat')));
+			$rows[$match->match_id]['date'] = JoomleagueHelper::getMatchDate($match, Text::_($this->params->get('dateformat')));
 			if ($useicons) {
 				$rows[$match->match_id]['date'] = HTMLHelper::_('image', $this->iconpath . 'date.png', 'Datum', array (
 						'title' => 'Datum',
@@ -372,7 +373,7 @@ abstract class modMatchesHelper {
 				)) .
 				' ' . $rows[$match->match_id]['date'];
 			}
-			$rows[$match->match_id]['time'] = JoomleagueHelper::getMatchTime($match, JText::_($this->params->get('timeformat')));
+			$rows[$match->match_id]['time'] = JoomleagueHelper::getMatchTime($match, Text::_($this->params->get('timeformat')));
 
 			if ($useicons) {
 				$rows[$match->match_id]['time'] = HTMLHelper :: _('image', $this->iconpath . 'time.png', 'Beginn', array (

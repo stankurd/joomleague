@@ -20,5 +20,7 @@ $list = modJLGResultsHelper::getData($params);
 
 $document = Factory::getDocument();
 $document->addStyleSheet(Uri::base().'modules/mod_joomleague_results/assets/css/mod_joomleague_results.css');
-
+// add the js script
+$baseurl = Uri::root();
+$document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/depend.js');
 require ModuleHelper::getLayoutPath('mod_joomleague_results', $params->get('layout', 'default'));

@@ -27,7 +27,7 @@ $results 		= $params->get('results');
 $round 			= $params->get('round');
 $ordering 		= $params->get('ordering');
 $matchstatus	= $params->get('matchstatus');
-$selectiondate 	= modJoomleagueTickerHelper::getSelectionDate($params->get('daysback'), $params->get('timezone', 'Europe/Amsterdam'));
+$selectiondate 	= modJoomleagueTickerHelper::getSelectionDate($params->get('daysback'), $params->get('timezone', 'Europe/Warsaw'));
 $bUseFav 		= $params->get('usefavteams');
 $matches 		= modJoomleagueTickerHelper::getMatches($results, $params->get('p'), $params->get('teamid'), $selectiondate, $ordering, $round, $matchstatus,$bUseFav);
 

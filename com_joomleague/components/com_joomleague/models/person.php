@@ -53,11 +53,15 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		{
 		    $db = Factory::getDbo();
 		    $query = $db->getQuery(true);
-			$query = '	SELECT p.*,  
-						CASE WHEN CHAR_LENGTH( p.alias ) THEN CONCAT_WS( \':\', p.id, p.alias ) ELSE p.id END AS slug  
-						FROM #__joomleague_person AS p 
-						WHERE p.id = '. $db->Quote($this->personid)
-					;
+		    $query
+		    //->select('p.*')
+		    ->select($db->quoteName('p.*'))
+		    //->select("CASE WHEN CHAR_LENGTH( p.alias ) THEN CONCAT_WS( \':\', p.id, p.alias ) ELSE p.id END AS slug")
+		    ->select($this->constructSlug($db, 'slug', 'p.alias', 'p.id'))
+		    ->from($db->quoteName('#__joomleague_person', 'p'))
+		    ->where($db->quoteName('p.id') . ' = ' . $db->Quote($this->personid));
+		    
+			
 			$db->setQuery($query);
 			$this->person = $db->loadObject();
 		}
@@ -70,12 +74,13 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		{
 		    $db = Factory::getDbo();
 		    $query = $db->getQuery(true);
-			$query = '	SELECT tp.*, pos.name AS position_name 
-						FROM #__joomleague_project_referee AS tp 
-						INNER JOIN #__joomleague_position AS pos ON pos.id = tp.project_position_id 
-						WHERE tp.project_id = '. $db->Quote($this->projectid) .'
-						AND tp.person_id = '. $db->Quote($this->personid)
-					;
+		    $query
+		          ->select($db->quoteName('tp.*'))
+		          ->select($db->quoteName('pos.name',' position_name'))
+		          ->from($db->quoteName('#__joomleague_project_referee',' tp'))
+		          ->join('INNER', $db->quoteName('#__joomleague_project_referee', 'tp'))
+		          ->where($db->quoteName('tp.project_id') . ' = ' . $db->quote($this->projectid))
+		          ->where($db->quoteName('tp.person_id') . ' = ' . $db->quote($this->personid));
 			$db->setQuery($query);
 			$this->_inproject = $db->loadObject();
 		}
@@ -87,6 +92,7 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		$result = array();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
+		
 		$query = '	SELECT	pet.*,
 					et.name,
 					et.icon
@@ -138,26 +144,34 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		$personid = $this->personid;
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		$query = ' SELECT	p.id AS person_id, '
-				. ' tt.project_id, '
-				. ' p.firstname AS fname, '
-				. ' p.lastname AS lname, '
-				. ' pj.name AS pname, '
-				. ' s.name AS sname, '
-				. ' pos.name AS position, '
-				. ' COUNT(mr.id) AS matchesCount '
-				. ' FROM #__joomleague_match_referee AS mr '
-				. ' INNER JOIN #__joomleague_match AS m ON m.id = mr.match_id '
-				. ' INNER JOIN #__joomleague_person AS p ON p.id = mr.project_referee_id '
-				. ' INNER JOIN #__joomleague_project_team AS tt ON tt.id = m.projectteam1_id '
-				. ' INNER JOIN #__joomleague_project AS pj ON pj.id = tt.project_id '
-				. ' INNER JOIN #__joomleague_season AS s ON s.id = pj.season_id '
-				. ' INNER JOIN #__joomleague_league AS l ON l.id = pj.league_id '
-				. ' LEFT JOIN #__joomleague_position AS pos ON pos.id = mr.project_position_id '
-				. ' WHERE p.id = ' . (int)$personid
-				. ' GROUP BY (tt.project_id) '
-				. ' ORDER BY s.ordering ASC, l.ordering ASC, pj.name ASC ';
-
+		$query
+		      ->select($db->quoteName('p.id' , 'person_id'))
+		      ->select($db->quoteName('tt.project_id')
+		      ->select($db->quoteName('p.firstname' , 'fname'))
+		      ->select($db->quoteName('p.lastname' , 'lname'))
+		      ->select($db->quoteName('pj.name' , 'pname'))
+		      ->select($db->quoteName('s.name' , 'sname'))
+		      ->select($db->quoteName('pos.name' , 'position'))
+		      ->select('COUNT(' . $db->quoteName('mr.id') . ') AS matchesCount'))
+		      ->from($db->quoteName('#__joomleague_match_referee', 'mr'))   
+		      ->join('INNER', $db->quoteName('#__joomleague_match', 'm') .
+		          ' ON ' . $db->quoteName('m.id') . ' = ' . $db->quoteName('mr.match_id'))
+		      ->join('INNER', $db->quoteName('#__joomleague_person' , 'p') . 
+		          ' ON ' . $db->quoteName('p.id') . ' = ' . $db->quoteName('mr.project_referee_id'))
+		      ->join('INNER', $db->quoteName('#__joomleague_project_team' , 'tt') .
+		          ' ON ' . $db->quoteName('tt.id') . ' = ' . $db->quoteName('m.projectteam1_id'))
+		      ->join('INNER', $db->quoteName('#__joomleague_project' , 'pj') .
+		          ' ON ' .$db->quoteName('pj.id') . ' = ' . $db->quoteName('tt.project_id'))
+		      ->join('INNER', $db->quoteName('#__joomleague_project' , 'pj') .
+		          ' ON ' . $db->quoteName('pj.id') . ' = ' . $db->quoteName('tt.project_id'))
+		      ->join('INNER', $db->quoteName('#__joomleague_league' , 'l') .
+		          ' ON ' . $db->quoteName('l.id') . ' = ' . $db->quoteName('pj.league_id'))
+		      ->join('LEFT', $db->quoteName('#__joomleague_position' , 'pos') .
+		          ' ON ' . $db->quoteName('pos.id') . ' = ' . $db->quoteName('mr.project_position_id')
+		       ->where($db->quoteName('p.id'). ' = ' . (int)$personid))
+		       ->group($db->quoteName('tt.project_id'))
+		       ->order($db->quoteName('s.ordering ASC, l.ordering ASC, pj.name ASC'));
+		
 		$db->setQuery( $query );
 		$results = $db->loadObjectList();
 		return $results;

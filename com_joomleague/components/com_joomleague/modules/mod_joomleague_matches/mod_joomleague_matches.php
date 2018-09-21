@@ -49,7 +49,7 @@ div.tool-tip div.tool-title a.sticky_close{
 	height:16px;
 }
 ');
-//JHtml::_('behavior.tooltip');
+JHtml::_('behavior.tooltip');
 $doc->addScriptDeclaration('
   window.addEvent(\'domready\', function() {
     if ($$(\'#modJLML'.$module->id.'holder .jlmlTeamname\')) addJLMLtips(\'#modJLML'.$module->id.'holder .jlmlTeamname\', \'over\');

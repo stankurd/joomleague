@@ -25,7 +25,7 @@ function jlml_loadMatch(usedteam, matchid, moduleid, nr, origin) {
   var classadd = 'modJLML'+moduleid+'_row'+nr;
   var myFx = new Fx.Morph(classadd);
   myFx.start({'opacity':0});
-  $(classadd).addClass('ajaxloading');
+  document.getElementById(classadd).addClass('ajaxloading');
   var myFx = new Fx.Morph(classadd);
   myFx.start({'opacity':1});
   var ajax=jlmlnewAjax();
@@ -110,7 +110,7 @@ var JLMLToolTip = new Class({
 
   showToolTip: function(ev){
     var event = new Event(ev);
-    $$('.tmp_sticky_tip').each(function(handle){handle.setStyles({'display': 'none'});});
+    jQuery('.tmp_sticky_tip').each(function(handle){handle.setStyles({'display': 'none'});});
     this.container.addClass('tmp_sticky_tip');
     this.elemHeight = this.el.getCoordinates().height;
 
@@ -145,12 +145,12 @@ var JLMLToolTip = new Class({
 });
 
 function addJLMLtips (els, suffix) {
-    $$(els).each(function(el) {
+    jQuery(els).each(function(el) {
       var tipsource = el.id+'_'+suffix;
-      if($(tipsource)) {
-        new JLMLToolTip({tipper: $(tipsource), 
+      if(document.getElementById(tipsource)) {
+        new JLMLToolTip({tipper: document.getElementById(tipsource), 
         				sticky: true,
-        				message: $(tipsource).innerHTML}
+        				message: document.getElementById(tipsource).innerHTML}
         );
       }
     });

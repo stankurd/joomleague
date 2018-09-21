@@ -10,10 +10,9 @@
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Layout\LayoutHelper;
 
 defined('_JEXEC') or die;
-HTMLHelper::_('formbehavior.chosen', 'select');
-
 ?>
 
 <div id="jl-nav-module">

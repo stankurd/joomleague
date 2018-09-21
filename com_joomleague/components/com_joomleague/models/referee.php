@@ -98,8 +98,8 @@ class JoomleagueModelReferee extends JoomleagueModelPerson
 				->where($db->quoteName('per.published') . ' = 1')
 				->where($db->quoteName('p.sports_type_id') . ' = ' . (int)$this->getSportsType())
 				->order($db->quoteName('s.ordering') . ' ' . $order)
-				->order($db->quoteName('l.ordering') . ' ASC')
-				->order($db->quoteName('p.name') . ' ASC');
+				->order($db->quoteName('l.ordering') . 'ASC')
+				->order($db->quoteName('p.name') . 'ASC');
 
 			$db->setQuery($query);
 			$this->refereeCareer = $db->loadObjectList();

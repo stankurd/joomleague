@@ -22,14 +22,16 @@ if (!$items) {
 <ul>
 <?php if ($params->get('show_project_name')):?>
 <li class="projectname"><?php echo $list['project']->name; ?></li>
-<?php endif; ?> <?php
+<?php endif; ?>
+<?php
 $person=$list['player'];
 $link = JoomleagueHelperRoute::getPlayerRoute( $list['project']->slug, 
 												$list['infoteam']->team_id, 
 												$person->slug );
 ?>
 
-<li class="modjlgrandomplayer"><?php
+<li class="modjlgrandomplayer">
+<?php
 $picturetext=JText::_( 'JL_PERSON_PICTURE' );
 $text = JoomleagueHelper::formatName(null, $person->firstname, 
 												$person->nickname, 
@@ -69,6 +71,7 @@ if(isset($list['inprojectinfo']->picture)) {
 											$params->get('team_picture_width',21),
 											$params->get('team_picture_height',0),
 											1)." ";
+	echo '<br />';
 	$text = $list['infoteam']->name;
 	if ($params->get('show_team_link'))
 	{
@@ -84,7 +87,8 @@ if(isset($list['inprojectinfo']->picture)) {
 </li>
 <?php endif; ?>
 <?php if ($params->get('show_position_name') && isset($list['inprojectinfo']->position_name)):?>
-<li class="positionname"><?php 
+<li class="positionname">
+<?php 
 	$positionName = $list['inprojectinfo']->position_name;
 	echo JText::_($positionName);?>
 </li>

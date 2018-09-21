@@ -25,9 +25,11 @@
 
 			<fieldset name="basic"
 				addfieldpath="/administrator/components/com_joomleague/models/fields">
+				
 				<field name="p" type="projects" required="true"
 					label="MOD_JOOMLEAGUE_TICKER_LABEL_PROJECT"
 					description="MOD_JOOMLEAGUE_TICKER_PROJECTID" />
+					
 				<field name="usefavteams" type="radio" class="btn-group btn-group-yesno" default="0"
 					label="MOD_JOOMLEAGUE_TICKER_LABEL_USE_FAV_TEAMS" 
 					description="MOD_JOOMLEAGUE_TICKER_DESC_USE_FAV_TEAMS">
@@ -37,10 +39,12 @@
 				<field name="teamid" type="teams" 
 					label="MOD_JOOMLEAGUE_TICKER_LABEL_TEAM"
 					description="MOD_JOOMLEAGUE_TICKER_TEAMID" />
+				
 				<field name="round" type="dependsql" default="0" depends="p"
 					task="roundsoptions" 
 					label="MOD_JOOMLEAGUE_TICKER_LABEL_ROUND" 
 					description="MOD_JOOMLEAGUE_TICKER_DESC_ROUND" />
+
 				<field name="daysback" type="text" default="14" 
 					label="MOD_JOOMLEAGUE_TICKER_LABEL_DAYS_BACK"
 					description="MOD_JOOMLEAGUE_TICKER_DESC_DAYS_BACK" />
@@ -50,6 +54,7 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+			
 				<field name="refresh" type="radio" class="btn-group btn-group-yesno" default="0" 
 					label="MOD_JOOMLEAGUE_TICKER_LABEL_REFRESH"
 					description="MOD_JOOMLEAGUE_TICKER_DESC_REFRESH">
@@ -160,7 +165,6 @@
 					description="MOD_JOOMLEAGUE_TICKER_DESC_TICKER_WIDTH">
 				</field>
 			</fieldset>
-
 			<fieldset name="advanced">
 				<field name="moduleclass_sfx" type="text" default=""
 					label="MOD_JOOMLEAGUE_TICKER_MODULE_CLASS_SUFFIX_LABEL"

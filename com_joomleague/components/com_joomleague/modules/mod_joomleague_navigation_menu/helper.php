@@ -9,6 +9,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -27,7 +28,7 @@ class modJoomleagueNavigationMenuHelper {
 	{
 	    $app = Factory::getApplication();
 		$this->_params = $params;
-		$this->_db = Factory::getDbo();
+		$db = Factory::getDbo();
 		
 		if ($app->input->getCmd('option') == 'com_joomleague') {
 			$p = $app->input->getInt('p', $params->get('default_project_id'));
@@ -79,13 +80,16 @@ class modJoomleagueNavigationMenuHelper {
 	 */
 	public function getSeasonSelect()
 	{
-		$options = array(HTMLHelper::_('select.option', 0, JText::_($this->getParam('seasons_text'))));
+		$app = Factory::getApplication();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		$options = array(HTMLHelper::_('select.option', 0, Text::_($this->getParam('seasons_text'))));
 		$query = ' SELECT s.id AS value, s.name AS text '
 				. ' FROM #__joomleague_season AS s '
 				. ' ORDER BY s.name DESC'
 				;
-		$this->_db->setQuery($query);
-		$res = $this->_db->loadObjectList();
+		$db->setQuery($query);
+		$res = $db->loadObjectList();
 		if ($res) {
 			$options = array_merge($options, $res);
 		}
@@ -98,21 +102,24 @@ class modJoomleagueNavigationMenuHelper {
 	 * @return string html select
 	 */
 	public function getDivisionSelect()
-	{		
+	{
+		$app = Factory::getApplication();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);		
 		$project = $this->getProject();
 		if(!is_object($project)) return false;
 		if(!$this->_project_id && !($this->_project_id>0) && $project->project_type!='DIVISION_LEAGUE') {
 			return false;
 		}
-		$options = array(HTMLHelper::_('select.option', 0, JText::_($this->getParam('divisions_text'))));
+		$options = array(HTMLHelper::_('select.option', 0, Text::_($this->getParam('divisions_text'))));
 		$query = ' SELECT d.id AS value, d.name AS text ' 
 		       . ' FROM #__joomleague_division AS d ' 
 		       . ' WHERE d.project_id = ' .  $project->id 
 		       . ($this->getParam("show_only_subdivisions", 0) ? ' AND parent_id > 0' : '') 
 		       . ' ORDER BY d.name'
 		       ;
-		$this->_db->setQuery($query);
-		$res = $this->_db->loadObjectList();
+		$db->setQuery($query);
+		$res = $db->loadObjectList();
 		if ($res) {
 			$options = array_merge($options, $res);
 		}
@@ -125,13 +132,16 @@ class modJoomleagueNavigationMenuHelper {
 	 * @return string html select
 	 */
 	public function getLeagueSelect()
-	{		
-		$options = array(HTMLHelper::_('select.option', 0, JText::_($this->getParam('leagues_text'))));
+	{
+		$app = Factory::getApplication();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		$options = array(HTMLHelper::_('select.option', 0, Text::_($this->getParam('leagues_text'))));
 		$query = ' SELECT id AS value, name AS text ' 
 		       . ' FROM #__joomleague_league AS l ' 
 		       ;
-		$this->_db->setQuery($query);
-		$res = $this->_db->loadObjectList();
+		$db->setQuery($query);
+		$res = $db->loadObjectList();
 		if ($res) {
 			$options = array_merge($options, $res);
 		}
@@ -145,7 +155,10 @@ class modJoomleagueNavigationMenuHelper {
 	 */
 	public function getProjectSelect()
 	{
-		$options = array(HTMLHelper::_('select.option', 0, JText::_($this->getParam('text_project_dropdown'))));
+		$app = Factory::getApplication();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+		$options = array(HTMLHelper::_('select.option', 0, Text::_($this->getParam('text_project_dropdown'))));
 		$query_base = ' SELECT p.id AS value, p.name AS text, s.name AS season_name, st.name as sports_type_name ' 
 		       . ' FROM #__joomleague_project AS p ' 
 		       . ' INNER JOIN #__joomleague_season AS s on s.id = p.season_id '
@@ -195,8 +208,8 @@ class modJoomleagueNavigationMenuHelper {
 				$query .= ' ORDER BY l.ordering DESC, p.ordering DESC, s.ordering DESC';
 				break;			
 		}
-		$this->_db->setQuery($query);
-		$res = $this->_db->loadObjectList();
+		$db->setQuery($query);
+		$res = $db->loadObjectList();
 		
 		if ($res) 
 		{
@@ -205,14 +218,14 @@ class modJoomleagueNavigationMenuHelper {
 				case 2:
 					foreach ($res as $p)
 					{
-						$stText = ($this->getParam('project_include_sports_type_name', 0) ==1) ? ' ('.JText::_($p->sports_type_name). ')': '';
+						$stText = ($this->getParam('project_include_sports_type_name', 0) ==1) ? ' ('.Text::_($p->sports_type_name). ')': '';
 						$options[] = HTMLHelper::_('select.option', $p->value, $p->text.' - '.$p->season_name . $stText);
 					}
 					break;
 				case 1:
 					foreach ($res as $p)
 					{
-						$stText = ($this->getParam('project_include_sports_type_name', 0) ==1) ? ' ('.JText::_($p->sports_type_name). ')': '';
+						$stText = ($this->getParam('project_include_sports_type_name', 0) ==1) ? ' ('.Text::_($p->sports_type_name). ')': '';
 						$options[] = HTMLHelper::_('select.option', $p->value, $p->season_name .' - '. $p->text. $stText);
 					}
 					break;
@@ -220,7 +233,7 @@ class modJoomleagueNavigationMenuHelper {
 				default:
 					foreach ($res as $p)
 					{
-						$stText = ($this->getParam('project_include_sports_type_name', 0) ==1) ? ' ('.JText::_($p->sports_type_name). ')': '';
+						$stText = ($this->getParam('project_include_sports_type_name', 0) ==1) ? ' ('.Text::_($p->sports_type_name). ')': '';
 						$options[] = HTMLHelper::_('select.option', $p->value, $p->text. $stText);
 					}
 				}
@@ -238,7 +251,7 @@ class modJoomleagueNavigationMenuHelper {
 		if (!$this->_project_id) {
 			return false;
 		}
-		$options = array(HTMLHelper::_('select.option', 0, JText::_($this->getParam('text_teams_dropdown'))));
+		$options = array(HTMLHelper::_('select.option', 0, Text::_($this->getParam('text_teams_dropdown'))));
 		$res = $this->getTeamsOptions();
 		if ($res) 
 		{
@@ -254,6 +267,9 @@ class modJoomleagueNavigationMenuHelper {
 	 */
 	protected function getTeamsOptions()
 	{
+		$app = Factory::getApplication();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		if (empty($this->_teamoptions))
 		{
 			if (!$this->_project_id) {
@@ -266,11 +282,11 @@ class modJoomleagueNavigationMenuHelper {
 		       . ($this->_division_id ? ' AND pt.division_id = '.intval($this->_division_id) : '')
 		       . ' ORDER BY t.name ASC '
 		       ;
-			$this->_db->setQuery($query);
-			$res = $this->_db->loadObjectList();
+			$db->setQuery($query);
+			$res = $db->loadObjectList();
 
 			if (!$res) {
-				Jerror::raiseWarning(0, $this->_db->getErrorMsg());
+				Jerror::raiseWarning(0, $db->getErrorMsg());
 			}
 			$this->_teamoptions = $res;			
 		}
@@ -284,6 +300,9 @@ class modJoomleagueNavigationMenuHelper {
 	 */
 	public function getProject()
 	{
+		$app = Factory::getApplication();
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		if (!$this->_project)
 		{
 			if (!$this->_project_id) {
@@ -293,8 +312,8 @@ class modJoomleagueNavigationMenuHelper {
 			$query = ' SELECT p.id, p.name, p.season_id, p.league_id ' 
 			       . ' FROM #__joomleague_project AS p ' 
 			       . ' WHERE id = ' . $this->_project_id;
-			$this->_db->setQuery($query);
-			$this->_project = $this->_db->loadObject();
+			$db->setQuery($query);
+			$this->_project = $db->loadObject();
 		}
 		return $this->_project;
 	}

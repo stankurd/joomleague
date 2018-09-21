@@ -15,8 +15,8 @@ defined('_JEXEC') or die();
 // include of person model
 // this will include project-data+specific functions
 //require_once('person.php');
-require_once JLG_PATH_SITE.'/models/person.php';
-//JLoader::register('JoomleagueModelPerson', JLG_PATH_SITE.'/models/person.php');
+//require_once JLG_PATH_SITE.'/models/person.php';
+JLoader::register('JoomleagueModelPerson', JLG_PATH_SITE.'/models/person.php');
 
 class JoomleagueModelPlayer extends JoomleagueModelPerson
 {
@@ -83,8 +83,8 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 						LEFT JOIN #__joomleague_round AS rsuspto ON tp.suspension_end=rsuspto.id
 						LEFT JOIN #__joomleague_round AS rawayfrom ON tp.away_date=rawayfrom.id
 						LEFT JOIN #__joomleague_round AS rawayto ON tp.away_end=rawayto.id
-						WHERE pt.project_id='.$db->Quote($this->projectid).'
-						  AND tp.person_id='.$db->q($this->personid).'
+						WHERE pt.project_id='.$db->quote($this->projectid).'
+						  AND tp.person_id='.$db->quote($this->personid).'
 						  AND p.published = 1';
 			$db->setQuery($query);
 			$this->_teamplayers = $db->loadObjectList('projectteam_id');

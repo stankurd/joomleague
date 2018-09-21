@@ -12,10 +12,7 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
-use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
-use Joomla\CMS\Router\Router;
-use Joomla\CMS\Component\Router\RouterBase;
 
 defined('_JEXEC') or die;
 
