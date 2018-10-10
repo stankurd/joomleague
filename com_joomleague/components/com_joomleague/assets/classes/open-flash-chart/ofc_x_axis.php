@@ -2,7 +2,7 @@
 
 class x_axis
 {
-	function x_axis(){}
+    public function __construct(){}
 
 	/**
 	 * @param $stroke as integer, with of the line and ticks
@@ -102,7 +102,7 @@ class x_axis
 	function set_3d( $val )
 	{
 		$tmp = '3d';
-		$this->$tmp				= $val;		
+		$this->$tmp = $val;	
 	}
 	
 	/**

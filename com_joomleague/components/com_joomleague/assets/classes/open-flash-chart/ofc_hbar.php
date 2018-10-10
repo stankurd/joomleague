@@ -2,8 +2,8 @@
 
 class hbar_value
 {
-	function hbar_value( $left, $right=null )
-	{
+    public function __construct( $left, $right=null )
+    {
 		if( isset( $right ) )
 		{
 			$this->left = $left;
@@ -26,8 +26,8 @@ class hbar_value
 
 class hbar
 {
-	function hbar( $colour )
-	{
+    public function __construct( $colour )
+    {
 		$this->type      = "hbar";
 		$this->values    = array();
 		$this->set_colour( $colour );
@@ -58,7 +58,7 @@ class hbar
 	
 	function set_tooltip( $tip )
 	{
-		$this->tip = $tip;	
+		$this->tip = $tip;
 	}
 }
 

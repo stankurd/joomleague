@@ -2,8 +2,8 @@
 
 class line_hollow extends line_base
 {
-	function line_hollow()
-	{
+    public function __construct()
+    {
 		$this->type      = "line_hollow";
 	}
 }

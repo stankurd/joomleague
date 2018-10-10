@@ -59,7 +59,7 @@ include_once 'ofc_menu.php';
 
 class open_flash_chart
 {
-	function open_flash_chart()
+    public function __construct()
 	{
 		//$this->title = new title( "Many data lines" );
 		$this->elements = array();

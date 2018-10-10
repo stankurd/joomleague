@@ -2,7 +2,7 @@
 
 class y_axis_base
 {
-	function y_axis_base(){}
+    public function __construct(){}
 	
 	/**
 	 * @param $s as integer, thickness of the Y axis line
@@ -83,7 +83,7 @@ class y_axis_base
 	/**
 	 * Pass in some text for each label. This can contain magic variables "#val#" which
 	 * will get replaced with the value for that Y axis label. Useful for:
-	 * - "£#val#"
+	 * - "ï¿½#val#"
 	 * - "#val#%"
 	 * - "#val# million"
 	 * 
@@ -103,7 +103,7 @@ class y_axis_base
 	 */
 	function set_steps( $steps )
 	{
-		$this->steps = $steps;	
+		$this->steps = $steps;
 	}
 	
 	/**

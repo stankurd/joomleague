@@ -24,8 +24,8 @@ class line_on_show
 
 class line
 {
-	function line()
-	{
+    public function __construct()
+    {
 		$this->type      = "line";
 		$this->values    = array();
 	}
@@ -53,7 +53,7 @@ class line
 	 */
 	function set_values( $v )
 	{
-		$this->values = $v;		
+		$this->values = $v;	
 	}
 	
 	/**
@@ -63,7 +63,7 @@ class line
      */
     function append_value($v)
     {
-        $this->values[] = $v;       
+        $this->values[] = $v;     
     }
 	
 	function set_width( $width )
@@ -88,7 +88,7 @@ class line
 	function set_halo_size( $size )
 	{
 		$tmp = 'halo-size';
-		$this->$tmp = $size;		
+		$this->$tmp = $size;	
 	}
 	
 	function set_key( $text, $font_size )
