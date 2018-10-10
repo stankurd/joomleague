@@ -30,7 +30,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 
 		if (($this->config['show_preview'])==1)
 		{
-			//echo $this->loadTemplate('preview');
+			echo $this->loadTemplate('preview');
 		}
 
 		if (($this->config['show_stats'])==1)

@@ -144,7 +144,7 @@ class JoomleagueModelItem extends AdminModel
 		{
 		    try
 		    {
-		        $db->execute();
+		        //$db->execute();
 		    }
 		    catch (RuntimeException $e)
 		    {
@@ -158,7 +158,7 @@ class JoomleagueModelItem extends AdminModel
 		{
 		    try
 		    {
-		        $db->execute();
+		        //$db->execute();
 		    }
 		    catch (RuntimeException $e)
 		    {
@@ -185,7 +185,7 @@ class JoomleagueModelItem extends AdminModel
 		{
 		    try
 		    {
-		        $db->execute();
+		        //$db->execute();
 		    }
 		    catch (RuntimeException $e)
 		    {
@@ -197,7 +197,7 @@ class JoomleagueModelItem extends AdminModel
 		{
 		    try
 		    {
-		        $db->execute();
+		        //$db->execute();
 		    }
 		    catch (RuntimeException $e)
 		    {

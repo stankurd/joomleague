@@ -230,7 +230,7 @@ if (!empty($this->rows))
 
 		if ($this->config['show_player_icon'])
 		{
-			$picture = $row->picture;
+			$picture = &$row->picture;
 			if ((empty($picture)) || ($picture == JoomleagueHelper::getDefaultPlaceholder("player") ))
 			{
 				$picture = $row->ppic;

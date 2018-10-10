@@ -60,7 +60,7 @@ class JoomleagueViewJoomleague extends JLGView
 		{
 			parent::display();
 		}
-		$this->addSidebar();
+		//$this->addSidebar();
 
 	}
 

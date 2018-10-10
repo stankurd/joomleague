@@ -15,6 +15,7 @@
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Table\Table;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -68,8 +69,7 @@ if($task != '' && $option == 'com_joomleague')  {
 		if (in_array($task, $ignoreTask)) {
 			// pass as they are handled by the controller
 		} else {
-			/* return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task); */
-		    $app->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'warning');
+		    $app->enqueueMessage(Text::_('JERROR_ALERTNOAUTHOR'), 'warning');
 		}
 	}
 }

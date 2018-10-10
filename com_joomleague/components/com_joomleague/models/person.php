@@ -54,14 +54,10 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		    $db = Factory::getDbo();
 		    $query = $db->getQuery(true);
 		    $query
-		    //->select('p.*')
-		    ->select($db->quoteName('p.*'))
-		    //->select("CASE WHEN CHAR_LENGTH( p.alias ) THEN CONCAT_WS( \':\', p.id, p.alias ) ELSE p.id END AS slug")
-		    ->select($this->constructSlug($db, 'slug', 'p.alias', 'p.id'))
-		    ->from($db->quoteName('#__joomleague_person', 'p'))
-		    ->where($db->quoteName('p.id') . ' = ' . $db->Quote($this->personid));
-		    
-			
+        		    ->select($db->quoteName('p.*'))
+        		    ->select($this->constructSlug($db, 'slug', 'p.alias', 'p.id'))		    
+        		    ->from($db->quoteName('#__joomleague_person', 'p'))
+        		    ->where($db->quoteName('p.id') . ' = ' . $db->quote($this->personid));
 			$db->setQuery($query);
 			$this->person = $db->loadObject();
 		}
@@ -76,8 +72,8 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		    $query = $db->getQuery(true);
 		    $query
 		          ->select($db->quoteName('tp.*'))
-		          ->select($db->quoteName('pos.name',' position_name'))
-		          ->from($db->quoteName('#__joomleague_project_referee',' tp'))
+		          ->select($db->quoteName('pos.name' , 'position_name'))
+		          ->from($db->quoteName('#__joomleague_project_referee' , 'tp'))
 		          ->join('INNER', $db->quoteName('#__joomleague_project_referee', 'tp'))
 		          ->where($db->quoteName('tp.project_id') . ' = ' . $db->quote($this->projectid))
 		          ->where($db->quoteName('tp.person_id') . ' = ' . $db->quote($this->personid));
@@ -92,21 +88,19 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		$result = array();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		
-		$query = '	SELECT	pet.*,
-					et.name,
-					et.icon
-	
-					FROM #__joomleague_position_eventtype AS pet
-					INNER JOIN #__joomleague_eventtype AS et ON et.id = pet.eventtype_id
-					INNER JOIN #__joomleague_match_event AS me ON et.id = me.event_type_id
-					WHERE me.project_id=' . $this->projectid;
-
+		$query
+		      ->select($db->quoteName('pet.*'))
+		      ->select($db->quoteName('et.name'))
+		      ->select($db->quoteName('et.icon'))
+		      ->from($db->quoteName('#__joomleague_position_eventtype' , 'pet'))
+		      ->innerJoin($db->quoteName('#__joomleague_eventtype AS et ON et.id = pet.eventtype_id'))
+		      ->innerJoin($db->quoteName('#__joomleague_match_event AS me ON et.id = me.event_type_id'))
+		      ->where($db->quoteName('me.project_id=' . $this->projectid));
 		if ( $positionId > 0 )
 		{
-			$query .= ' AND pet.position_id = ' . (int)$positionId;
+		    $query->where($db->quoteName('pet.position_id = ' . (int)$positionId));
 		}
-		$query .= ' ORDER BY pet.ordering';
+		$query->order('pet.ordering');
 
 		$db->setQuery( $query );
 		$result = $db->loadObjectList();
@@ -168,10 +162,10 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		          ' ON ' . $db->quoteName('l.id') . ' = ' . $db->quoteName('pj.league_id'))
 		      ->join('LEFT', $db->quoteName('#__joomleague_position' , 'pos') .
 		          ' ON ' . $db->quoteName('pos.id') . ' = ' . $db->quoteName('mr.project_position_id')
-		       ->where($db->quoteName('p.id'). ' = ' . (int)$personid))
+		          ->where($db->quoteName('p.id'). ' = ' . (int)$personid))
 		       ->group($db->quoteName('tt.project_id'))
 		       ->order($db->quoteName('s.ordering ASC, l.ordering ASC, pj.name ASC'));
-		
+		       
 		$db->setQuery( $query );
 		$results = $db->loadObjectList();
 		return $results;
@@ -182,11 +176,11 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		$person = $this->getPerson();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		$query = '	SELECT	id
-					FROM #__contact_details
-					WHERE user_id = ' . $person->jl_user_id . '
-					AND catid=' . $catid;
-
+		$query
+		      ->select('id')
+		      ->from('#__contact_details')
+		      ->where('user_id = ' . $person->jl_user_id)
+		      ->where('catid=' . $catid);
 		$db->setQuery( $query );
 		$contact_id = $db->loadResult();
 		return $contact_id;
@@ -210,13 +204,13 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		}
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		$query = ' SELECT et.* '
-				. ' FROM #__joomleague_eventtype AS et '
-				. ' INNER JOIN #__joomleague_position_eventtype AS pet ON pet.eventtype_id = et.id '
-				. ' WHERE published = 1 '
-				. '   AND pet.position_id IN ('. implode(',', $positionhistory) .')'
-				. ' ORDER BY et.ordering '
-				;
+		$query
+		      ->select('et.*')
+		      ->from('#__joomleague_eventtype AS et')
+		      ->innerJoin('#__joomleague_position_eventtype AS pet ON pet.eventtype_id = et.id')
+		      ->where('published = 1')
+		      ->where('pet.position_id IN ('. implode(',', $positionhistory) .')')
+		      ->order('et.ordering');
 				$db->setQuery( $query );
 				$info = $db->loadObjectList();
 		return $info;
@@ -232,22 +226,22 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query = ' SELECT	SUM(me.event_sum) as total '
-				. ' FROM #__joomleague_match_event AS me '
-				. ' INNER JOIN #__joomleague_team_player AS tp ON me.teamplayer_id = tp.id '
-				. ' INNER JOIN #__joomleague_project_team AS pt ON pt.id = tp.projectteam_id '
-				. ' WHERE me.event_type_id=' . $db->Quote((int) $eventid)
-				. ' AND tp.person_id = ' . $db->Quote((int) $this->personid)
-				;
+	    $query
+	           ->select('SUM(me.event_sum) as total')
+	           ->from('#__joomleague_match_event AS me')
+	           ->innerJoin('#__joomleague_team_player AS tp ON me.teamplayer_id = tp.id')
+	           ->innerJoin('#__joomleague_project_team AS pt ON pt.id = tp.projectteam_id')
+	           ->where('me.event_type_id=' . $db->Quote((int) $eventid))
+	           ->where('tp.person_id = ' . $db->Quote((int) $this->personid));
 				if ($projectteamid)
 				{
-					$query .= ' AND pt.id='.$db->Quote((int) $projectteamid);
+				    $query->where('pt.id='.$db->quote((int) $projectteamid));
 				}
 				if ($projectid)
 				{
-					$query .= ' AND pt.project_id=' . $db->Quote((int) $projectid);
+				    $query->where('pt.project_id=' . $db->quote((int) $projectid));
 				}
-				$query .= ' GROUP BY tp.person_id';
+				$query->group('tp.person_id');
 
 				$db->setQuery($query);
 				$result = $db->loadResult();
@@ -258,16 +252,16 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query = ' SELECT	sum(IF(came_in=0,1,0)+max(came_in=1)) AS played, '
-				. ' sum(mp.came_in) AS sub_in, '
-				. ' sum(mp.out = 1) AS sub_out '
-				. ' FROM #__joomleague_match_player AS mp '
-				. ' INNER JOIN #__joomleague_match AS m ON mp.match_id = m.id '
-				. ' INNER JOIN #__joomleague_team_player AS tp ON tp.id = mp.teamplayer_id '
-				. ' INNER JOIN #__joomleague_project_team AS pt ON m.projectteam1_id = pt.id '
-				. ' WHERE tp.person_id=' . $db->Quote((int)$person_id)
-				. ' AND pt.project_id=' . $db->Quote((int)$project_id)
-				. ' AND tp.published = 1 ';
+	    $query
+	           ->select('sum(IF(came_in=0,1,0)+max(came_in=1)) AS played')
+	           ->select('sum(mp.came_in) AS sub_in')
+	           ->select('sum(mp.out = 1) AS sub_out')
+	           ->innerJoin('#__joomleague_match AS m ON mp.match_id = m.id')
+	           ->innerJoin('#__joomleague_team_player AS tp ON tp.id = mp.teamplayer_id')
+	           ->innerJoin('#__joomleague_project_team AS pt ON m.projectteam1_id = pt.id')
+	           ->where('tp.person_id=' . $db->quote((int)$person_id))
+	           ->where('pt.project_id=' . $db->quote((int)$project_id))
+	           ->where('tp.published = 1');
 		$db->setQuery( $query );
 		$inoutstat = $db->loadObjectList();
 
@@ -361,24 +355,26 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
 		// team_player
-		$query = '	SELECT tp.projectteam_id
-					FROM #__joomleague_person AS pr
-					INNER JOIN #__joomleague_team_player AS tp ON tp.person_id=pr.id
-					LEFT JOIN #__contact_details AS cd ON cd.id=pr.contact_id
-					WHERE cd.user_id='.$userId.'
-					AND pr.published = 1
-					AND tp.published = 1 ';
+		$query
+		      ->select('tp.projectteam_id')
+		      ->from('#__joomleague_person AS pr')
+		      ->innerJoin('#__joomleague_team_player AS tp ON tp.person_id=pr.id')
+		      ->leftJoin('#__contact_details AS cd ON cd.id=pr.contact_id')
+		      ->where('cd.user_id='.$userId)
+		      ->where('pr.published = 1')
+		      ->where('tp.published = 1');
 		$db->setQuery($query);
 		$projectTeamIds = array();
 		$projectTeamIds = $db->loadColumn();
 		// team_staff
-		$query='	SELECT ts.projectteam_id
-				FROM #__joomleague_person pr
-				INNER JOIN #__joomleague_team_staff AS ts ON ts.person_id=pr.id
-				LEFT JOIN #__contact_details AS cd ON cd.id=pr.contact_id
-				WHERE cd.user_id='.$userId.'
-						AND pr.published = 1
-						AND ts.published = 1';
+		$query
+		      ->select('ts.projectteam_id')
+		      ->from('#__joomleague_person pr')
+		      ->innerJoin('#__joomleague_team_staff AS ts ON ts.person_id=pr.id')
+		      ->leftJoin('#__contact_details AS cd ON cd.id=pr.contact_id')
+		      ->where('cd.user_id='.$userId)
+		      ->where('pr.published = 1')
+              ->where('ts.published = 1');
 		$db->setQuery($query);
 		if(!empty($projectTeamIds)) {
 			$projectTeamIds = array_merge($projectTeamIds, $db->loadColumn());

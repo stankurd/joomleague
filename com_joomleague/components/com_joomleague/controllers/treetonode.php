@@ -28,7 +28,7 @@ class JoomleagueControllerTreetonode extends JoomleagueController
 		// Get the joomleague model
 		$jl = $this->getModel( 'project', 'JoomleagueModel' );
 		$jl->set( '_name', 'project' );
-		if (!JError::isError( $jl ) )
+		if (!Error::isError( $jl ) )
 		{
 			$view->setModel ( $jl );
 		}
@@ -36,7 +36,7 @@ class JoomleagueControllerTreetonode extends JoomleagueController
 		// Get the joomleague model
 		$sm = $this->getModel( 'treetonode', 'JoomleagueModel' );
 		$sm->set( '_name', 'treetonode' );
-		if ( !JError::isError( $sm ) )
+		if ( !Error::isError( $sm ) )
 		{
 			$view->setModel ( $sm );
 		}

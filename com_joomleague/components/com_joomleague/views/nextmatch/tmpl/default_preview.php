@@ -42,7 +42,7 @@ if (!empty($this->match->preview))
 
 <?php
 }
-
+/*
 // Comments integration
 if (!$commentsDisabled) {
 
@@ -70,4 +70,4 @@ if (!$commentsDisabled) {
 			echo $comments;
 		}
 	}
-}
+}*/

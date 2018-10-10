@@ -28,12 +28,12 @@ class JoomleagueControllerEventsRanking extends JoomleagueController
 		// Get the joomleague model
 		$jl = $this->getModel('project','JoomleagueModel');
 		$jl->set('_name','project');
-		if (!JError::isError($jl)){$view->setModel($jl);}
+		if (!Error::isError($jl)){$view->setModel($jl);}
 
 		// Get the joomleague model
 		$sr = $this->getModel('eventsranking','JoomleagueModel');
 		$sr->set('_name','eventsranking');
-		if (!JError::isError($sr)){$view->setModel($sr);}
+		if (!Error::isError($sr)){$view->setModel($sr);}
 
 		$this->showprojectheading();
 		$view->display();

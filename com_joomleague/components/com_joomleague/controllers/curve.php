@@ -28,7 +28,7 @@ class JoomleagueControllerCurve extends JoomleagueController
         // Get the joomleague model
         $jl = $this->getModel( "joomleague", "JoomleagueModel" );
         $jl->set( "_name", "joomleague" );
-        if (!JError::isError( $jl ) )
+        if (!Error::isError( $jl ) )
         {
             $view->setModel ( $jl );
         }
@@ -36,7 +36,7 @@ class JoomleagueControllerCurve extends JoomleagueController
         // Get the joomleague model
         $sr = $this->getModel( "curve", "JoomleagueModel" );
         $sr->set( "_name", "curve" );
-        if (!JError::isError( $sr ) )
+        if (!Error::isError( $sr ) )
         {
             $view->setModel ( $sr );
         }
@@ -59,7 +59,7 @@ class JoomleagueControllerCurve extends JoomleagueController
         // Get the joomleague model
         $jl = $this->getModel( "joomleague", "JoomleagueModel" );
         $jl->set( "_name", "joomleague" );
-        if (!JError::isError( $jl ) )
+        if (!Error::isError( $jl ) )
         {
             $view->setModel ( $jl );
         }
@@ -67,7 +67,7 @@ class JoomleagueControllerCurve extends JoomleagueController
         // Get the joomleague model
         $sr = $this->getModel( "curve", "JoomleagueModel" );
         $sr->set( "_name", "curve" );
-        if (!JError::isError( $sr ) )
+        if (!Error::isError( $sr ) )
         {
             $view->setModel ( $sr );
         }

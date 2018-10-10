@@ -1,6 +1,6 @@
 <?php
 /**
- * Joomleague
+DISTINCT( * Joomleague
 *
 * @copyright	Copyright (C) 2006-2015 joomleague.at. All rights reserved.
 * @license		GNU General Public License version 2 or later; see LICENSE.txt
@@ -79,7 +79,7 @@ class JoomleagueModelProjectteamform extends JoomleagueModelProjectteam
 		}
 
 		$properties = $table->getProperties(1);
-		$value = ArrayHelper::toObject($properties, 'JObject');
+		$value = ArrayHelper::toObject($properties, 'CMSObject');
 
 		// Convert attrib field to Registry.
 		$value->params = new Registry;

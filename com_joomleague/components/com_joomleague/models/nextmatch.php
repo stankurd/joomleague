@@ -61,47 +61,48 @@ class JoomleagueModelNextMatch extends JoomleagueModelProject
 		    $query = $db->getQuery(true);
 			$config = $this->getTemplateConfig($this->getName());
 			$expiry_time = $config ? $config['expiry_time'] : 0;
-			$query =  ' SELECT m.*, DATE_FORMAT(m.time_present, "%H:%i") time_present, 
-						pt1.project_id, r.roundcode, p.timezone, pt1.division_id   
-				FROM #__joomleague_match AS m 
-			    INNER JOIN #__joomleague_round AS r ON r.id = m.round_id 
-				INNER JOIN #__joomleague_project_team AS pt1 ON pt1.id = m.projectteam1_id 
-				INNER JOIN #__joomleague_project_team AS pt2 ON pt2.id = m.projectteam2_id 
-				INNER JOIN #__joomleague_team AS t1 ON t1.id = pt1.team_id 
-				INNER JOIN #__joomleague_team AS t2 ON t2.id = pt2.team_id 
-				INNER JOIN #__joomleague_project AS p ON p.id = pt1.project_id 
-				WHERE DATE_ADD(m.match_date, INTERVAL '.$db->Quote($expiry_time).' MINUTE) >= NOW()
-				AND m.cancel=0
-				AND m.published = 1';
+			$query
+			     ->select('m.*')
+			     ->select('DATE_FORMAT(m.time_present, "%H:%i") time_present')
+			     ->select('pt1.project_id')
+			     ->select('r.roundcode')
+			     ->select('p.timezone')
+			     ->select('pt1.division_id')
+			     ->from('#__joomleague_match AS m ')
+			     ->innerJoin('#__joomleague_round AS r ON r.id = m.round_id')
+			     ->innerJoin('#__joomleague_project_team AS pt1 ON pt1.id = m.projectteam1_id')
+			     ->innerJoin('#__joomleague_project_team AS pt2 ON pt2.id = m.projectteam2_id')
+			     ->innerJoin('#__joomleague_team AS t1 ON t1.id = pt1.team_id')
+			     ->innerJoin('#__joomleague_team AS t2 ON t2.id = pt2.team_id')
+			     ->innerJoin('#__joomleague_project AS p ON p.id = pt1.project_id')
+			     ->where('DATE_ADD(m.match_date, INTERVAL '.$db->Quote($expiry_time).' MINUTE) >= NOW()')
+			     ->where('m.cancel=0')
+			     ->where('m.published = 1');
 			if ($matchId)
 			{
-				$query .= ' AND m.id = ' . $db->Quote($matchId);
+				$query->where('m.id = ' . $db->Quote($matchId));
 			}
 			else
 			{
-				$query .= ' AND (team1_result is null  OR  team2_result is null) ';
+				$query->where('(team1_result is null  OR  team2_result is null)');
 				if ($teamId)
 				{
-					$query .= ' AND '
-						. ' ( '
-						. '       t1.id = '. $db->Quote($teamId).' OR '
-						. '       t2.id = '. $db->Quote($teamId)
-						. ' ) ';
+					$query->where('t1.id = '. $db->Quote($teamId).' OR ' . 't2.id = '. $db->Quote($teamId));
 				}
 				else
 				{
-					$query .= ' AND (m.projectteam1_id > 0  OR  m.projectteam2_id > 0) ';
+					$query->where('(m.projectteam1_id > 0  OR  m.projectteam2_id > 0)');
 				}
 			}
 			if ($projectId)
 			{
-				$query .= ' AND p.id = '.$db->Quote($projectId);
+				$query->where('p.id = '.$db->Quote($projectId));
 			}
 			if ($divisionId)
 			{
-				$query .= ' AND pt1.division_id = '.$db->Quote($divisionId);
+				$query->where('pt1.division_id = '.$db->Quote($divisionId));
 			}
-			$query .= ' ORDER BY m.match_date';
+			$query->order('m.match_date');
 			$db->setQuery($query, 0, 1);
 			$this->_match = $db->loadObject();
 			if($this->_match)
@@ -125,13 +126,18 @@ class JoomleagueModelNextMatch extends JoomleagueModelProject
 		{
 		    $db = Factory::getDbo();
 		    $query = $db->getQuery(true);
-			$query = ' SELECT m.*, DATE_FORMAT(m.time_present, "%H:%i") time_present, pt1.project_id, r.roundcode, p.timezone '
-			. ' FROM #__joomleague_match AS m '
-			. ' INNER JOIN #__joomleague_project_team AS pt1 ON pt1.id = m.projectteam1_id '
-			. ' INNER JOIN #__joomleague_round AS r ON r.id = m.round_id '
-			. ' INNER JOIN #__joomleague_project AS p ON p.id = r.project_id '
-			. ' WHERE m.id = '. $db->Quote($this->matchid)
-			. '   AND m.published = 1';
+		    $query
+		          ->select('m.*')
+		          ->select('DATE_FORMAT(m.time_present, "%H:%i") time_present')
+		          ->select('pt1.project_id')
+		          ->select('r.roundcode')
+		          ->select('p.timezone')
+		          ->from('#__joomleague_match AS m')
+		          ->innerJoin('#__joomleague_project_team AS pt1 ON pt1.id = m.projectteam1_id')
+		          ->innerJoin('#__joomleague_round AS r ON r.id = m.round_id')
+		          ->innerJoin('#__joomleague_project AS p ON p.id = r.project_id')
+		          ->where(' m.id = '. $db->Quote($this->matchid))
+		          ->where('m.published = 1');
 			$db->setQuery($query, 0, 1);
 			$this->_match = $db->loadObject();
 			if ($this->_match)
@@ -172,15 +178,20 @@ class JoomleagueModelNextMatch extends JoomleagueModelProject
 		$match = $this->getMatch();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		$query = ' SELECT p.firstname, p.nickname, p.lastname, p.country, pos.name AS position_name, p.id as person_id '
-		. ' FROM #__joomleague_match_referee AS mr '
-		. ' LEFT JOIN #__joomleague_project_referee AS pref ON mr.project_referee_id=pref.id '
-		. ' INNER JOIN #__joomleague_person AS p ON p.id = pref.person_id '
-		. ' INNER JOIN #__joomleague_project_position ppos ON ppos.id = mr.project_position_id'
-		. ' INNER JOIN #__joomleague_position AS pos ON pos.id = ppos.position_id '
-		. ' WHERE mr.match_id = '. $db->Quote($match->id)
-		. '  AND p.published = 1 '
-		;
+		$query
+		      ->select('p.firstname')
+		      ->select('p.nickname')
+		      ->select('p.lastname')
+		      ->select('p.country')
+		      ->select('pos.name AS position_name')
+		      ->select('p.id as person_id')
+		      ->from('#__joomleague_match_referee AS mr')
+		      ->leftJoin('#__joomleague_project_referee AS pref ON mr.project_referee_id=pref.id')
+		      ->innerJoin('#__joomleague_person AS p ON p.id = pref.person_id')
+		      ->innerJoin('#__joomleague_project_position ppos ON ppos.id = mr.project_position_id')
+		      ->innerJoin('#__joomleague_position AS pos ON pos.id = ppos.position_id')
+		      ->where('mr.match_id = '. $db->Quote($match->id))
+		      ->where('p.published = 1');
 		$db->setQuery($query);
 		return $db->loadObjectList();
 	}
@@ -230,24 +241,24 @@ class JoomleagueModelNextMatch extends JoomleagueModelProject
 		$match = $this->getMatch();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		$query = ' SELECT t1.name AS hometeam, '
-		. ' t2.name AS awayteam, '
-		. ' team1_result AS homegoals, '
-		. ' team2_result AS awaygoals, '
-		. ' pt1.project_id AS pid, '
-		. ' m.id AS mid '
-		. ' FROM #__joomleague_match as m '
-		. ' INNER JOIN #__joomleague_project_team pt1 ON pt1.id = m.projectteam1_id '
-		. ' INNER JOIN #__joomleague_team t1 ON t1.id = pt1.team_id '
-		. ' INNER JOIN #__joomleague_project_team pt2 ON pt2.id = m.projectteam2_id '
-		. ' INNER JOIN #__joomleague_team t2 ON t2.id = pt2.team_id '
-		. ' WHERE pt1.project_id = ' . $db->Quote($match->project_id)
-		. ' AND m.published = 1 '
-		. ' AND m.alt_decision = 0 '
-		. ' AND t1.id = '. $db->Quote($teamid)
-		. ' AND (team1_result - team2_result > 0) '
-		. ' ORDER BY (team1_result - team2_result) DESC '
-		;
+		$query
+		      ->select('t1.name AS hometeam')
+		      ->select('t2.name AS awayteam')
+		      ->select('team1_result AS homegoals')
+		      ->select('team2_result AS awaygoals')
+		      ->select('pt1.project_id AS pid')
+		      ->select('m.id AS mid')
+		      ->from('#__joomleague_match as m')
+		      ->innerJoin('#__joomleague_project_team pt1 ON pt1.id = m.projectteam1_id')
+		      ->innerJoin('#__joomleague_team t1 ON t1.id = pt1.team_id')
+		      ->innerJoin('#__joomleague_project_team pt2 ON pt2.id = m.projectteam2_id')
+		      ->innerJoin('#__joomleague_team t2 ON t2.id = pt2.team_id')
+		      ->where('pt1.project_id = ' . $db->Quote($match->project_id))
+		      ->where('m.published = 1')
+		      ->where('m.alt_decision = 0')
+		      ->where('t1.id = '. $db->Quote($teamid))
+		      ->where('(team1_result - team2_result > 0)')
+		      ->order('(team1_result - team2_result) DESC');
 		$db->setQuery($query, 0, 1);
 		return $db->loadObject();
 	}
@@ -277,24 +288,24 @@ class JoomleagueModelNextMatch extends JoomleagueModelProject
 		$match = $this->getMatch();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		$query = ' SELECT t1.name AS hometeam, '
-		. ' t2.name AS awayteam, '
-		. ' team1_result AS homegoals, '
-		. ' team2_result AS awaygoals, '
-		. ' pt1.project_id AS pid, '
-		. ' m.id AS mid '
-		. ' FROM #__joomleague_match as m '
-		. ' INNER JOIN #__joomleague_project_team pt1 ON pt1.id = m.projectteam1_id '
-		. ' INNER JOIN #__joomleague_team t1 ON t1.id = pt1.team_id '
-		. ' INNER JOIN #__joomleague_project_team pt2 ON pt2.id = m.projectteam2_id '
-		. ' INNER JOIN #__joomleague_team t2 ON t2.id = pt2.team_id '
-		. ' WHERE pt1.project_id = ' . $db->Quote($match->project_id)
-		. ' AND m.published = 1 '
-		. ' AND m.alt_decision = 0 '
-		. ' AND t1.id = '. $db->Quote($teamid)
-		. ' AND (team1_result - team2_result < 0) '
-		. ' ORDER BY (team1_result - team2_result) ASC '
-		;
+		$query
+		      ->select('t1.name AS hometeam')
+		      ->select('t2.name AS awayteam')
+		      ->select('team1_result AS homegoals')
+		      ->select('team2_result AS awaygoals')
+		      ->select('pt1.project_id AS pid')
+		      ->select('m.id AS mid')
+		      ->from('#__joomleague_match as m')
+		      ->innerJoin('#__joomleague_project_team pt1 ON pt1.id = m.projectteam1_id')
+		      ->innerJoin('#__joomleague_team t1 ON t1.id = pt1.team_id')
+		      ->innerJoin('#__joomleague_project_team pt2 ON pt2.id = m.projectteam2_id')
+		      ->innerJoin('#__joomleague_team t2 ON t2.id = pt2.team_id')
+		      ->where('pt1.project_id = ' . $db->Quote($match->project_id))
+		      ->where('m.published = 1')
+		      ->where('m.alt_decision = 0')
+		      ->where('t1.id = '. $db->Quote($teamid))
+		      ->where('(team1_result - team2_result < 0)')
+		      ->order('(team1_result - team2_result) ASC');
 		$db->setQuery($query, 0, 1);
 		return $db->loadObject();
 	}
@@ -324,24 +335,24 @@ class JoomleagueModelNextMatch extends JoomleagueModelProject
 		$match = $this->getMatch();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		$query = ' SELECT t1.name AS hometeam, '
-		. ' t2.name AS awayteam, '
-		. ' team1_result AS homegoals, '
-		. ' team2_result AS awaygoals, '
-		. ' pt1.project_id AS pid, '
-		. ' m.id AS mid '
-		. ' FROM #__joomleague_match as m '
-		. ' INNER JOIN #__joomleague_project_team pt1 ON pt1.id = m.projectteam1_id '
-		. ' INNER JOIN #__joomleague_team t1 ON t1.id = pt1.team_id '
-		. ' INNER JOIN #__joomleague_project_team pt2 ON pt2.id = m.projectteam2_id '
-		. ' INNER JOIN #__joomleague_team t2 ON t2.id = pt2.team_id '
-		. ' WHERE pt1.project_id = ' . $db->Quote($match->project_id)
-		. ' AND m.published = 1 '
-		. ' AND m.alt_decision = 0 '
-		. ' AND t2.id = '. $db->Quote($teamid)
-		. ' AND (team2_result - team1_result > 0) '
-		. ' ORDER BY (team2_result - team1_result) DESC '
-		;
+		$query
+		      ->select('t1.name AS hometeam')
+		      ->select('t2.name AS awayteam')
+		      ->select('team1_result AS homegoals')
+		      ->select('team2_result AS awaygoals')
+		      ->select('pt1.project_id AS pid')
+		      ->select('m.id AS mid')
+		      ->from('#__joomleague_match as m')
+		      ->innerJoin('#__joomleague_project_team pt1 ON pt1.id = m.projectteam1_id')
+		      ->innerJoin('#__joomleague_team t1 ON t1.id = pt1.team_id')
+		      ->innerJoin('#__joomleague_project_team pt2 ON pt2.id = m.projectteam2_id')
+		      ->innerJoin('#__joomleague_team t2 ON t2.id = pt2.team_id')
+		      ->where('pt1.project_id = ' . $db->Quote($match->project_id))
+		      ->where('m.published = 1')
+		      ->where('m.alt_decision = 0')
+		      ->where('t2.id = '. $db->Quote($teamid))
+		      ->where('(team2_result - team1_result > 0)')
+		      ->order('(team2_result - team1_result) DESC');
 		$db->setQuery($query, 0, 1);
 		return $db->loadObject();
 	}
@@ -371,24 +382,24 @@ class JoomleagueModelNextMatch extends JoomleagueModelProject
 		$match = $this->getMatch();
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		$query = ' SELECT t1.name AS hometeam, '
-		. ' t2.name AS awayteam, '
-		. ' team1_result AS homegoals, '
-		. ' team2_result AS awaygoals, '
-		. ' pt1.project_id AS pid, '
-		. ' m.id AS mid '
-		. ' FROM #__joomleague_match as m '
-		. ' INNER JOIN #__joomleague_project_team pt1 ON pt1.id = m.projectteam1_id '
-		. ' INNER JOIN #__joomleague_team t1 ON t1.id = pt1.team_id '
-		. ' INNER JOIN #__joomleague_project_team pt2 ON pt2.id = m.projectteam2_id '
-		. ' INNER JOIN #__joomleague_team t2 ON t2.id = pt2.team_id '
-		. ' WHERE pt1.project_id = ' . $db->Quote($match->project_id)
-		. ' AND m.published = 1 '
-		. ' AND m.alt_decision = 0 '
-		. ' AND t2.id = '. $db->Quote($teamid)
-		. ' AND (team1_result - team2_result > 0) '
-		. ' ORDER BY (team2_result - team1_result) ASC '
-		;
+		$query
+		      ->select('t1.name AS hometeam')
+		      ->select('t2.name AS awayteam')
+		      ->select('team1_result AS homegoals')
+		      ->select('team2_result AS awaygoals')
+		      ->select('pt1.project_id AS pid')
+		      ->select('m.id AS mid')
+		      ->from('#__joomleague_match as m')
+		      ->innerJoin('#__joomleague_project_team pt1 ON pt1.id = m.projectteam1_id')
+		      ->innerJoin('#__joomleague_team t1 ON t1.id = pt1.team_id')
+		      ->innerJoin('#__joomleague_project_team pt2 ON pt2.id = m.projectteam2_id')
+		      ->innerJoin('#__joomleague_team t2 ON t2.id = pt2.team_id')
+		      ->where('pt1.project_id = ' . $db->Quote($match->project_id))
+		      ->where('m.published = 1')
+		      ->where('m.alt_decision = 0')
+		      ->where('t2.id = '. $db->Quote($teamid))
+		      ->where('(team1_result - team2_result > 0)')
+		      ->order('(team2_result - team1_result) ASC');
 		$db->setQuery($query, 0, 1);
 		return $db->loadObject();
 	}
@@ -428,24 +439,29 @@ class JoomleagueModelNextMatch extends JoomleagueModelProject
 		}
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		$query = ' SELECT m.*, DATE_FORMAT(m.time_present, "%H:%i") time_present, pt1.project_id, p.timezone, '
-		. ' p.name AS project_name, '
-		. ' r.id AS roundid, pt1.division_id, '
-		. ' r.roundcode AS roundcode, '
-		. ' r.name AS mname, '
-		. ' p.id AS prid '
-		. ' FROM #__joomleague_match as m '
-		. ' INNER JOIN #__joomleague_project_team pt1 ON pt1.id = m.projectteam1_id '
-		. ' INNER JOIN #__joomleague_project_team pt2 ON pt2.id = m.projectteam2_id '
-		. ' INNER JOIN #__joomleague_project AS p ON p.id = pt1.project_id '
-		. ' INNER JOIN #__joomleague_round r ON m.round_id=r.id '
-		. ' WHERE ((pt1.team_id = '. $teams[0]->team_id .' AND pt2.team_id = '.$teams[1]->team_id .') '
-		. '        OR (pt1.team_id = '.$teams[1]->team_id .' AND pt2.team_id = '.$teams[0]->team_id .')) '
-		. ' AND p.published = 1 '
-		. ' AND m.published = 1 '
-		. ' AND m.team1_result IS NOT NULL AND m.team2_result IS NOT NULL';
-
-		$query .= " GROUP BY m.id ORDER BY p.ordering, m.match_date ASC";
+		$query
+		      ->select('m.*')
+		      ->select('DATE_FORMAT(m.time_present, "%H:%i") time_present')
+		      ->select('pt1.project_id')
+		      ->select('p.timezone')
+		      ->select('p.name AS project_name')
+		      ->select('r.id AS roundid')
+		      ->select('pt1.division_id')
+		      ->select('r.roundcode AS roundcode')
+		      ->select('r.name AS mname')
+		      ->select('p.id AS prid')
+		      ->from('#__joomleague_match as m')
+		      ->innerJoin('#__joomleague_project_team pt1 ON pt1.id = m.projectteam1_id')
+		      ->innerJoin('#__joomleague_project_team pt2 ON pt2.id = m.projectteam2_id')
+		      ->innerJoin('#__joomleague_project AS p ON p.id = pt1.project_id')
+		      ->innerJoin('#__joomleague_round r ON m.round_id=r.id')
+		      ->where('((pt1.team_id = '. $teams[0]->team_id .' AND pt2.team_id = '.$teams[1]->team_id .') '
+		      . ' OR (pt1.team_id = '.$teams[1]->team_id .' AND pt2.team_id = '.$teams[0]->team_id .'))')
+		      ->where('p.published = 1')
+		      ->where('m.published = 1')
+		      ->where('m.team1_result IS NOT NULL AND m.team2_result IS NOT NULL')
+		      ->group('m.id')
+		      ->order('p.ordering, m.match_date ASC');
 		$db->setQuery( $query );
 		$result = $db->loadObjectList();
 		if ($result)
@@ -476,10 +492,13 @@ class JoomleagueModelNextMatch extends JoomleagueModelProject
 		$listProjectTeamId = implode( ",", array_unique( $projectTeamIds ) );
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		$query = "SELECT t.id, t.name, pt.id as ptid
-                 FROM #__joomleague_project_team AS pt
-                 INNER JOIN #__joomleague_team AS t ON t.id = pt.team_id
-                 WHERE pt.id IN (".$listProjectTeamId.")";
+		$query
+		      ->select('t.id')
+		      ->select('t.name')
+		      ->select('pt.id as ptid')
+		      ->from('#__joomleague_project_team AS pt')
+		      ->innerJoin('#__joomleague_team AS t ON t.id = pt.team_id')
+		      ->where('pt.id IN ('.$listProjectTeamId.')');
 		$db->setQuery( $query );
 		$result = $db->loadObjectList();
 
@@ -495,8 +514,10 @@ class JoomleagueModelNextMatch extends JoomleagueModelProject
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query = 'SELECT * FROM #__joomleague_playground
-					WHERE id = '. $db->Quote($pgid);
+	    $query
+	           ->select('*')
+	           ->from('#__joomleague_playground')
+	           ->where('id = '. $db->Quote($pgid));
 		$db->setQuery($query, 0, 1);
 		return $db->loadObject();
 	}
@@ -505,17 +526,19 @@ class JoomleagueModelNextMatch extends JoomleagueModelProject
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query = "SELECT m.*, t1.name t1name,  t2.name t2name, p.timezone
-					FROM #__joomleague_match AS m
-					INNER JOIN #__joomleague_project_team AS pt1 ON m.projectteam1_id = pt1.id
-					INNER JOIN #__joomleague_project_team AS pt2 ON m.projectteam2_id = pt2.id
-					INNER JOIN #__joomleague_team AS t1 ON pt1.team_id=t1.id
-					INNER JOIN #__joomleague_team AS t2 ON pt2.team_id=t2.id
-				    INNER JOIN #__joomleague_project AS p ON p.id=pt1.project_id
-					WHERE m.id = " . $match_id . "
-					AND m.published = 1
-					ORDER BY m.match_date, t1.short_name"
-					;
+	    $query
+	           ->select('m.*')
+	           ->select('t1.name t1name')
+	           ->select('t2.name t2name')
+	           ->select('p.timezone')
+	           ->from('#__joomleague_match AS m')
+	           ->innerJoin('#__joomleague_project_team AS pt1 ON m.projectteam1_id = pt1.id')
+	           ->innerJoin('#__joomleague_project_team AS pt2 ON m.projectteam2_id = pt2.id')
+	           ->innerJoin('#__joomleague_team AS t1 ON pt1.team_id=t1.id')
+	           ->innerJoin('#__joomleague_project AS p ON p.id=pt1.project_id')
+	           ->where('m.id = ' . $match_id)
+	           ->where('m.published = 1')
+	           ->order('m.match_date, t1.short_name');
 		$db->setQuery($query);
 		$matchText = $db->loadObject();
 		if ($matchText)
@@ -601,19 +624,22 @@ class JoomleagueModelNextMatch extends JoomleagueModelProject
 	    $query = $db->getQuery(true);
 		$config = $this->getTemplateConfig('nextmatch');
 		$nblast = $config['nb_previous'];
-		$query = ' SELECT m.*, r.project_id, r.id AS roundid, r.roundcode, p.timezone, pt1.division_id '
-				. ' FROM #__joomleague_match AS m '
-				. ' INNER JOIN #__joomleague_round AS r ON r.id = m.round_id '
-				. ' INNER JOIN #__joomleague_project AS p ON p.id = r.project_id '
-				. ' INNER JOIN #__joomleague_project_team AS pt1 ON p.id = m.projectteam1_id '
-				. ' WHERE (m.projectteam1_id = ' . $ptid
-				. '       OR m.projectteam2_id = ' . $ptid.')'
-				. '   AND r.roundcode < '.$current_roundcode
-				. '   AND m.published = 1 '
-				//. ' GROUP BY m.id '
-				. ' ORDER BY r.roundcode DESC '
-				. ' LIMIT 0, '.$nblast
-				;
+		$query
+		      ->select('m.*')
+		      ->select('r.project_id')
+		      ->select('r.id AS roundid')
+		      ->select('r.roundcode')
+		      ->select('p.timezone')
+		      ->select('pt1.division_id')
+		      ->from('#__joomleague_match AS m')
+		      ->innerJoin('#__joomleague_round AS r ON r.id = m.round_id')
+		      ->innerJoin('#__joomleague_project AS p ON p.id = r.project_id')
+		      ->innerJoin('#__joomleague_project_team AS pt1 ON p.id = m.projectteam1_id')
+		      ->where('(m.projectteam1_id = ' . $ptid . ' OR m.projectteam2_id = ' . $ptid.')')
+		      ->where('r.roundcode < '.$current_roundcode)
+		      ->where('m.published = 1')
+		      ->group('m.id')
+		      ->order('r.roundcode DESC ' . ' LIMIT 0, '.$nblast);
 		$db->setQuery($query);
 		$res = $db->loadObjectList();
 		if ($res) {

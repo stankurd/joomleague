@@ -28,7 +28,7 @@ class JoomleagueControllerMatchReport extends JoomleagueController
         // Get the joomleague model
         $jl = $this->getModel( "joomleague", "JoomleagueModel" );
         $jl->set( "_name", "joomleague" );
-        if (!JError::isError( $jl ) )
+        if (!Error::isError( $jl ) )
         {
             $view->setModel ( $jl );
         }
@@ -36,7 +36,7 @@ class JoomleagueControllerMatchReport extends JoomleagueController
         // Get the joomleague model
         $sr = $this->getModel( "matchreport", "JoomleagueModel" );
         $sr->set( "_name", "matchreport" );
-        if (!JError::isError( $sr ) )
+        if (!Error::isError( $sr ) )
         {
             $view->setModel ( $sr );
         }

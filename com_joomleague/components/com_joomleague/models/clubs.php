@@ -83,9 +83,9 @@ class JoomleagueModelClubs extends JoomleagueModelProject
 		}
 		else
 		{
-		    //throw new Exception($e->getMessage());
+		    throw new Exception($e->getMessage());
 		    
-		  echo $db->getErrorMsg();
+		  //echo $db->getErrorMsg();
 		}
 		return $clubs;
 	}
@@ -113,7 +113,7 @@ class JoomleagueModelClubs extends JoomleagueModelProject
 			$teams = $db->loadObjectList();
 			if (empty($teams))
 			{
-				echo $db->getErrorMsg();
+			    throw new RuntimeException($e->getMessage());
 			}
 			$clubs[$index]->teams = $teams;
 		}

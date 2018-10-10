@@ -99,7 +99,7 @@ class JoomleagueModelProject extends JLGModelItem
 		return $form;
 	}
 
-	protected function preprocessForm(Form $form, $data, $group = 'content')
+	protected function preprocessForm(JForm $form, $data, $group = 'content')
 	{
 		if (empty($data->id))
 		{

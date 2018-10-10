@@ -1,4 +1,4 @@
-<?php
+ <?php
 /*
  * @package         Joomleague
  * @subpackage		Module-Matches
@@ -94,8 +94,8 @@ class JoomleagueModelStaff extends JoomleagueModelPerson
 					' ON ' . $db->quoteName('rawayfrom.id') . ' = ' . $db->quoteName('ts.away_date'))
 				->join('LEFT', $db->quoteName('#__joomleague_round', 'rawayto') .
 					' ON ' . $db->quoteName('rawayto.id') . ' = ' . $db->quoteName('ts.away_end'))
-				->where($db->quoteName('r.id') . ' = ' . (int)$round_id)
-				->where($db->quoteName('pr.id') . ' = ' . (int)$person_id)
+				->where($db->quoteName('r.id') . ' = ' . $db->quote((int)$round_id))
+				->where($db->quoteName('pr.id') . ' = ' . $db->quote((int)$person_id))
 				->where($db->quoteName('pr.published') . ' = 1')
 				->where($db->quoteName('ts.published') . ' = 1')
 				->order($db->quoteName('ts.id') . ' DESC');

@@ -85,25 +85,30 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		// previous games of each team, until current round
-		$query = ' SELECT m.*, r.roundcode, '
-		       . ' CASE WHEN CHAR_LENGTH(t1.alias) AND CHAR_LENGTH(t2.alias) THEN CONCAT_WS(\':\',m.id,CONCAT_WS("_",t1.alias,t2.alias)) ELSE m.id END AS slug, '
-		       . ' CASE WHEN CHAR_LENGTH(p.alias) THEN CONCAT_WS(\':\',p.id,p.alias) ELSE p.id END AS project_slug '
-		       . ' FROM #__joomleague_match AS m '
-		       . ' INNER JOIN #__joomleague_round AS r ON r.id = m.round_id '
-		       . ' INNER JOIN #__joomleague_project AS p ON p.id = r.project_id '
-		       . ' INNER JOIN #__joomleague_project_team AS pt1 ON m.projectteam1_id=pt1.id '
-		       . ' INNER JOIN #__joomleague_project_team AS pt2 ON m.projectteam2_id=pt2.id '
-		       . ' INNER JOIN #__joomleague_team AS t1 ON pt1.team_id = t1.id '
-		       . ' INNER JOIN #__joomleague_team AS t2 ON pt2.team_id = t2.id '
-		       . ' WHERE r.project_id = ' . $db->Quote($this->projectid)
-		       . '   AND r.roundcode <= ' . $db->Quote($current->roundcode)
-		       . '   AND m.team1_result IS NOT NULL ';
-		       if($this->selDivision>0) {
-		       	$query .= '   AND (pt1.division_id = ' . $db->Quote($this->selDivision);
-				$query .= '   OR pt2.division_id = ' . $db->Quote($this->selDivision) . ')';
-		       }
-		       $query .= ' ORDER BY r.roundcode ASC '
-		       ;
+		$query
+		      ->select('m.*')
+		      ->select('r.roundcode')
+		      ->select('CASE WHEN CHAR_LENGTH(' . $db->quoteName('t1.alias') . ')' .
+		          ' AND CHAR_LENGTH(' . $db->quoteName('t2.alias') . ')' .
+		          ' THEN CONCAT_WS(\':\',' . $db->quoteName('m.id') . ', CONCAT_WS("_",' . $db->quoteName('t1.alias') .
+		          ', ' . $db->quoteName('t2.alias') . '))' .
+		          ' ELSE ' . $db->quoteName('m.id') .  ' END AS slug')
+		      ->select($this->constructSlug($db, 'project_slug', 'p.alias', 'p.id'))
+		      ->from('#__joomleague_match AS m')
+		      ->innerJoin('#__joomleague_round AS r ON r.id = m.round_id')
+		      ->innerJoin('#__joomleague_project AS p ON p.id = r.project_id')
+		      ->innerJoin('#__joomleague_project_team AS pt1 ON m.projectteam1_id=pt1.id')
+		      ->innerJoin('#__joomleague_project_team AS pt2 ON m.projectteam2_id=pt2.id')
+		      ->innerJoin('#__joomleague_team AS t1 ON pt1.team_id = t1.id')
+		      ->innerJoin('#__joomleague_team AS t2 ON pt2.team_id = t2.id')
+		      ->where('r.project_id = ' . $db->Quote($this->projectid))
+		      ->where('r.roundcode <= ' . $db->Quote($current->roundcode))
+		      ->where('m.team1_result IS NOT NULL');
+		      if($this->selDivision>0) {
+		          $query->where('(pt1.division_id = ' . $db->Quote($this->selDivision). ' OR pt2.division_id = ' . $db->Quote($this->selDivision) . ')');
+		      }
+		      $query->order('r.roundcode ASC');
+		          ;
 		$db->setQuery($query);
 		$games = $db->loadObjectList();
 
@@ -314,10 +319,11 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query = ' SELECT id ' 
-		       . ' FROM #__joomleague_round ' 
-		       . ' WHERE project_id = ' . $this->projectid
-		       . ' ORDER BY roundcode ASC ';
+	    $query
+	           ->select('id')
+	           ->from('#__joomleague_round')
+	           ->where('project_id = ' . $this->projectid)
+	           ->order('roundcode ASC');
 		$db->setQuery($query);
 		$res = $db->loadColumn();
 		

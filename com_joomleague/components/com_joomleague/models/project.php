@@ -93,19 +93,23 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		    $db = Factory::getDbo();
 		    $query = $db->getQuery(true);
 			//fs_sport_type_name = sport_type folder name
-			$query='SELECT p.*, l.country, st.id AS sport_type_id, st.name AS sport_type_name,
-					LOWER(SUBSTR(st.name, CHAR_LENGTH( "COM_JOOMLEAGUE_ST_")+1)) AS fs_sport_type_name,
-					CASE WHEN CHAR_LENGTH( p.alias )
-					THEN CONCAT_WS( \':\', p.id, p.alias )
-					ELSE p.id
-					END AS slug,
-					l.name AS league_name,
-					s.name AS season_name
-					FROM #__joomleague_project AS p
-					INNER JOIN #__joomleague_sports_type AS st ON p.sports_type_id = st.id
-					LEFT JOIN #__joomleague_league AS l ON p.league_id = l.id
-					LEFT JOIN #__joomleague_season AS s ON p.season_id = s.id
-					WHERE p.id='. $db->Quote($this->projectid);
+			$query
+			     ->select('p.*')
+			     ->select('l.country')
+			     ->select('st.id AS sport_type_id')
+			     ->select('st.name AS sport_type_name')
+			     ->select('LOWER(SUBSTR(st.name, CHAR_LENGTH( "COM_JOOMLEAGUE_ST_")+1)) AS fs_sport_type_name')
+				 //->select('CONCAT_WS( \':\', p.id, p.alias ) AS slug')
+				 ->select($this->constructSlug($db, 'slug', 'p.alias', 'p.id'))
+				 ->select($this->constructSlug($db, 'league_slug', 'l.alias', 'l.id'))
+				 ->select($this->constructSlug($db, 'season_slug', 's.alias', 's.id'))
+				 ->select('l.name AS league_name')
+			     ->select('s.name AS season_name')
+			     ->from('#__joomleague_project AS p')
+			     ->innerJoin('#__joomleague_sports_type AS st ON p.sports_type_id = st.id')
+			     ->leftJoin('#__joomleague_league AS l ON p.league_id = l.id')
+			     ->leftJoin('#__joomleague_season AS s ON p.season_id = s.id')
+			     ->where('p.id='. $db->Quote($this->projectid));
 			$db->setQuery($query,0,1);
 			$this->_project = $db->loadObject();
 		}
@@ -173,42 +177,59 @@ class JoomleagueModelProject extends BaseDatabaseModel
 			{
 				case 0 :	 // manual mode
 				    $query = $db->getQuery(true);
-					$query="SELECT r.id, r.roundcode FROM #__joomleague_round AS r
-							 WHERE r.id =".$project->current_round;
+				    $query
+				            ->select('r.id')
+				            ->select('r.roundcode')
+				            ->from('#__joomleague_round AS r')
+				            ->where('r.id ='.$project->current_round);
 					break;
 
 				case 1 :	 // get current round from round_date_first
 				    $query = $db->getQuery(true);
-					$query="SELECT r.id, r.roundcode FROM #__joomleague_round AS r
-							 WHERE r.project_id=".$project->id."
-								AND (r.round_date_first - INTERVAL ".($project->auto_time)." MINUTE < '".$current_date."')
-							 ORDER BY r.round_date_first DESC LIMIT 1";
+				    $query
+				            ->select('r.id')
+				            ->select('r.roundcode')
+				            ->from('#__joomleague_round AS r')
+				            ->where('r.project_id='.$project->id)
+				            ->where("(r.round_date_first - INTERVAL ".($project->auto_time)." MINUTE < '".$current_date."')")
+				            ->order('r.round_date_first DESC LIMIT 1');
 					break;
 
 				case 2 : // get current round from round_date_last
 				    $query = $db->getQuery(true);
-					$query="SELECT r.id, r.roundcode FROM #__joomleague_round AS r
-							  WHERE r.project_id=".$project->id."
-								AND (r.round_date_last + INTERVAL ".($project->auto_time)." MINUTE > '".$current_date."')
-							  ORDER BY r.round_date_first ASC LIMIT 1";
+				    $query
+        				    ->select('r.id')
+        				    ->select('r.roundcode')
+        				    ->from('#__joomleague_round AS r')
+        				    ->where('r.project_id='.$project->id)
+        				    ->where("(r.round_date_last + INTERVAL ".($project->auto_time)." MINUTE > '".$current_date."')")
+        				    ->order('r.round_date_first ASC LIMIT 1');
 					break;
 
 				case 3 : // get current round from first game of the round
 				    $query = $db->getQuery(true);
-					$query="SELECT r.id, r.roundcode FROM #__joomleague_round AS r,#__joomleague_match AS m
-							WHERE r.project_id=".$project->id."
-								AND m.round_id=r.id
-								AND (m.match_date - INTERVAL ".($project->auto_time)." MINUTE < '".$current_date."')
-							ORDER BY m.match_date DESC LIMIT 1";
+				    $query
+        				    ->select('r.id')
+        				    ->select('r.roundcode')
+        				    ->from('#__joomleague_round AS r')
+				            ->from('#__joomleague_match AS m')
+				            ->where('r.project_id='.$project->id)
+				            ->where('m.round_id=r.id')
+				            ->where("(m.match_date - INTERVAL ".($project->auto_time)." MINUTE < '".$current_date."')")
+				            ->order('m.match_date DESC LIMIT 1');
 					break;
 
 				case 4 : // get current round from last game of the round
 				    $query = $db->getQuery(true);
-					$query="SELECT r.id, r.roundcode FROM #__joomleague_round AS r, #__joomleague_match AS m
-							WHERE r.project_id=".$project->id."
-								AND m.round_id=r.id
-								AND (m.match_date + INTERVAL ".($project->auto_time)." MINUTE > '".$current_date."')
-							ORDER BY m.match_date ASC LIMIT 1";
+				    $query
+        				    ->select('r.id')
+        				    ->select('r.roundcode')
+        				    ->from('#__joomleague_round AS r')
+        				    ->from('#__joomleague_match AS m')
+        				    ->where('r.project_id='.$project->id)
+        				    ->where('m.round_id=r.id')
+        				    ->where("(m.match_date - INTERVAL ".($project->auto_time)." MINUTE < '".$current_date."')")
+        				    ->order('m.match_date ASC LIMIT 1');
 					break;
 			}
 			$db->setQuery($query);
@@ -219,9 +240,11 @@ class JoomleagueModelProject extends BaseDatabaseModel
 			if (!$result)
 			{
 			    $query = $db->getQuery(true);
-				$query = ' SELECT r.id, r.roundcode FROM #__joomleague_round AS r '
-				       . ' WHERE r.project_id = '. $project->current_round
-				       ;
+			    $query
+			         ->select('r.id')
+			         ->select('r.roundcode')
+			         ->from('#__joomleague_round AS r')
+			         ->where('r.project_id = '. $project->current_round);
 				$db->setQuery($query);
 				$result = $db->loadObject();
 
@@ -230,19 +253,23 @@ class JoomleagueModelProject extends BaseDatabaseModel
 					if ($project->current_round_auto == 2) {
 					    // the current value is invalid... saison is over, just take the last round
 					    $query = $db->getQuery(true);
-					    $query = ' SELECT r.id, r.roundcode FROM #__joomleague_round AS r '
-						    . ' WHERE r.project_id = '. $project->id
-						    . ' ORDER BY . r.roundcode DESC '
-						    ;
+					    $query
+        					    ->select('r.id')
+        					    ->select('r.roundcode')
+        					    ->from('#__joomleague_round AS r')
+        					    ->where('r.project_id = '. $project->id)
+        					    ->order("r.roundcode DESC");
 					    $db->setQuery($query);
 					    $result = $db->loadObject();
 					} else {
 					    // the current value is invalid... just take the first round
 					    $query = $db->getQuery(true);
-					    $query = ' SELECT r.id, r.roundcode FROM #__joomleague_round AS r '
-						    . ' WHERE r.project_id = '. $project->id
-						    . ' ORDER BY . r.roundcode ASC '
-						    ;
+					    $query
+        					    ->select('r.id')
+        					    ->select('r.roundcode')
+        					    ->from('#__joomleague_round AS r')
+        					    ->where('r.project_id = '. $project->id)
+        					    ->order('r.roundcode ASC');
 					    $db->setQuery($query);
 					    $result = $db->loadObject();
 					}
@@ -254,10 +281,13 @@ class JoomleagueModelProject extends BaseDatabaseModel
 			if ($result && ($project->current_round <> $result->id))
 			{
 			    $query = $db->getQuery(true);
-				$query = ' UPDATE #__joomleague_project SET current_round = '.$result->id
-				       . ' WHERE id = ' . $db->Quote($project->id);
+			    $query
+			         ->update('#__joomleague_project')
+			         ->set('current_round = '.$result->id)
+			         ->where('id = ' . $db->Quote($project->id));
 				$db->setQuery($query);
-				if (!$db->execute()) {
+				if (!$db->execute())
+				{
 				    Factory::getApplication()->enqueueMessage( Text::_('COM_JOOMLEAGUE_ERROR_CURRENT_ROUND_UPDATE_FAILED'));
 				}
 			}
@@ -304,17 +334,20 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query="SELECT id from #__joomleague_division
-				  WHERE project_id=".$this->projectid;
+	    $query
+	           ->select('id')
+	           ->from('#__joomleague_division')
+	           ->where('project_id='.$this->projectid);
 		if ($divLevel==1)
 		{
-			$query .= " AND (parent_id=0 OR parent_id IS NULL) ";
+		    $query = $db->getQuery(true);
+		    $query->where('(parent_id=0 OR parent_id IS NULL)');
 		}
 		else if ($divLevel==2)
 		{
-			$query .= " AND parent_id>0";
+			$query->where('parent_id>0');
 		}
-		$query .= " ORDER BY ordering";
+		$query->order('ordering');
 		$db->setQuery($query);
 		$res = $db->loadColumn();
 		if(count($res) == 0) {
@@ -365,8 +398,10 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		{
 			if (empty($this->_divisions))
 			{
-				$query="SELECT * from #__joomleague_division
-						  WHERE project_id=".$this->projectid;
+			    $query
+			         ->select('*')
+			         ->from('#__joomleague_division')
+			         ->where('project_id='.$this->projectid);
 				$db->setQuery($query);
 				$this->_divisions=$db->loadObjectList('id');
 			}
@@ -399,16 +434,13 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	    $query = $db->getQuery(true);
 		if (empty($this->_rounds))
 		{
-			$query=" 	SELECT id,round_date_first,round_date_last,
-				   			CASE LENGTH(name)
-				    			when 0 then roundcode
-				    			else name
-				    		END as name,
-				   			roundcode
-			       		FROM #__joomleague_round
-			         	WHERE project_id=". $this->projectid.
-			       		" ORDER BY roundcode ASC ";
-
+		    $query
+		          ->select('id,round_date_first,round_date_last')
+		          ->select('CASE LENGTH(name) when 0 then roundcode else name END as name')
+		          ->select('roundcode')
+		          ->from('#__joomleague_round')
+		          ->where('project_id='. $this->projectid)
+		          ->order('roundcode '.$ordering);
 			$db->setQuery($query);
 			$this->_rounds=$db->loadObjectList();
 		}
@@ -428,16 +460,12 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query="SELECT
-					id as value,
-				    CASE LENGTH(name)
-				    	when 0 then CONCAT('".Text::_('COM_JOOMLEAGUE_MATCHDAY_NAME'). "',' ', id)
-				    	else name
-				    END as text
-				  FROM #__joomleague_round
-				  WHERE project_id=".(int)$this->projectid."
-				  ORDER BY roundcode ".$ordering;
-
+	    $query
+	           ->select('id as value')
+	           ->select("(CASE LENGTH(name) when 0 then CONCAT('".Text::_('COM_JOOMLEAGUE_MATCHDAY_NAME'). "',' ', id) else name END as text")
+	           ->from('#__joomleague_round')
+	           ->where('project_id='.(int)$this->projectid)
+	           ->order('roundcode' .$ordering);
 		$db->setQuery($query);
 		return $db->loadObjectList();
 	}
@@ -446,21 +474,25 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query=' SELECT t.*, pt.division_id, t.id as team_id,
-				pt.picture AS projectteam_picture,
-				pt.notes AS projectteam_notes,
-				t.picture as team_picture,
-				c.logo_small,
-				c.logo_middle,
-				c.logo_big,
-				c.country,
-				IF((ISNULL(pt.picture) OR (pt.picture="")),
-					(IF((ISNULL(t.picture) OR (t.picture="")), c.logo_big , t.picture)) , pt.picture) as picture,
-				t.extended as teamextended, pt.project_id AS project_id, pt.id AS ptid
-				FROM #__joomleague_project_team AS pt
-				INNER JOIN #__joomleague_team AS t ON pt.team_id=t.id
-				LEFT JOIN #__joomleague_club AS c ON t.club_id=c.id
-				WHERE pt.id='. $db->Quote($projectteamid);
+	    $query
+	           ->select('t.*')
+	           ->select('pt.division_id')
+	           ->select('t.id as team_id')
+	           ->select('pt.picture AS projectteam_picture')
+	           ->select('pt.notes AS projectteam_notes')
+	           ->select('t.picture as team_picture')
+	           ->select('c.logo_small')
+	           ->select('c.logo_middle')
+	           ->select('c.logo_big')
+	           ->select('c.country')
+	           ->select('IF((ISNULL(pt.picture) OR (pt.picture="")), (IF((ISNULL(t.picture) OR (t.picture="")), c.logo_big , t.picture)) , pt.picture) as picture')
+	           ->select('t.extended as teamextended')
+	           ->select('pt.project_id AS project_id')
+	           ->select('pt.id AS ptid')
+	           ->from('#__joomleague_project_team AS pt')
+	           ->innerJoin('#__joomleague_team AS t ON pt.team_id=t.id')
+	           ->leftJoin('#__joomleague_club AS c ON t.club_id=c.id')
+	           ->where('pt.id='. $db->Quote($projectteamid));
 		$db->setQuery($query);
 		return $db->loadObject();
 	}
@@ -471,66 +503,66 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	    $query = $db->getQuery(true);
 		if (empty($this->_teams))
 		{
-			$query='	SELECT	tl.id AS projectteamid,
-								tl.division_id,
-								tl.standard_playground,
-								tl.start_points,
-								tl.points_finally,
-								tl.neg_points_finally,
-								tl.matches_finally,
-								tl.won_finally,
-								tl.draws_finally,
-								tl.lost_finally,
-								tl.homegoals_finally,
-								tl.guestgoals_finally,
-								tl.diffgoals_finally,
-								tl.info,
-								tl.reason,
-								tl.team_id,
-								tl.checked_out,
-								tl.checked_out_time,
-								tl.is_in_score,
-								tl.picture AS projectteam_picture,
-								t.picture as team_picture,
-								IF((ISNULL(tl.picture) OR (tl.picture="")),
-									(IF((ISNULL(t.picture) OR (t.picture="")), c.logo_small , t.picture)) , t.picture) as picture,
-								tl.project_id,
-
-								t.id,t.name,
-								t.short_name,
-								t.middle_name,
-								t.notes,
-								t.club_id,
-
-								c.email as club_email,
-								c.logo_small,
-								c.logo_middle,
-								c.logo_big,
-								c.country,
-								c.website,
-
-								d.name AS division_name,
-								d.picture AS division_picture,
-								d.shortname AS division_shortname,
-								d.parent_id AS parent_division_id,
-
-								plg.name AS playground_name,
-								plg.short_name AS playground_short_name,
-
-								CASE WHEN CHAR_LENGTH(p.alias) THEN CONCAT_WS(\':\',p.id,p.alias) ELSE p.id END AS project_slug,
-								CASE WHEN CHAR_LENGTH(t.alias) THEN CONCAT_WS(\':\',t.id,t.alias) ELSE t.id END AS team_slug,
-								CASE WHEN CHAR_LENGTH(d.alias) THEN CONCAT_WS(\':\',d.id,d.alias) ELSE d.id END AS division_slug,
-								CASE WHEN CHAR_LENGTH(c.alias) THEN CONCAT_WS(\':\',c.id,c.alias) ELSE c.id END AS club_slug
-
-						FROM #__joomleague_project_team tl
-							LEFT JOIN #__joomleague_team t ON tl.team_id=t.id
-							LEFT JOIN #__joomleague_club c ON t.club_id=c.id
-							LEFT JOIN #__joomleague_division d ON d.id=tl.division_id
-							LEFT JOIN #__joomleague_playground plg ON plg.id=tl.standard_playground
-							LEFT JOIN #__joomleague_project AS p ON p.id=tl.project_id
-
-						WHERE tl.project_id='.(int)$this->projectid;
-
+		    $query
+		    ->select('tl.id AS projectteamid')
+		          ->select('tl.division_id')
+		          ->select('tl.standard_playground')
+		          ->select('tl.start_points')
+		          ->select('tl.points_finally')
+		          ->select('tl.neg_points_finally')
+		          ->select('tl.matches_finally')
+		          ->select('tl.won_finally')
+		          ->select('tl.draws_finally')
+		          ->select('tl.lost_finally')
+		          ->select('tl.homegoals_finally')
+		          ->select('tl.guestgoals_finally')
+		          ->select('tl.diffgoals_finally')
+		          ->select('tl.info')
+		          ->select('tl.reason')
+		          ->select('tl.team_id')
+		          ->select('tl.checked_out')
+		          ->select('tl.checked_out_time')
+		          ->select('tl.is_in_score')
+		          ->select('tl.picture AS projectteam_picture')
+		          ->select('t.picture as team_picture')
+		          ->select('IF((ISNULL(tl.picture) OR (tl.picture="")),(IF((ISNULL(t.picture) OR (t.picture="")), c.logo_small , t.picture)) , t.picture) as picture')
+		          ->select('tl.project_id')
+		          ->select('t.id')
+		          ->select('t.name')
+		          ->select('t.short_name')
+		          ->select('t.middle_name')
+		          ->select('t.notes')
+		          ->select('t.club_id')
+		          ->select('c.email as club_email')
+		          ->select('c.logo_small')
+		          ->select('c.logo_middle')
+		          ->select('c.logo_big')
+		          ->select('c.country')
+		          ->select('c.website')
+		          ->select('d.name AS division_name')
+		          ->select('d.picture AS division_picture')
+		          ->select('d.shortname AS division_shortname')
+		          ->select('d.parent_id AS parent_division_id')
+		          ->select('plg.name AS playground_name')
+		          ->select('plg.short_name AS playground_short_name')
+		          ->select($this->constructSlug($db, 'project_slug', 'p.alias', 'p.id'))
+		          ->select($this->constructSlug($db, 'team_slug', 't.alias', 't.id'))
+		          ->select($this->constructSlug($db, 'division_slug', 'd.alias', 'd.id'))
+		          ->select($this->constructSlug($db, 'club_slug', 'c.alias', 'c.id'))
+		          ->select($this->constructSlug($db, 'projectteam_slug', 't.alias', 'tl.id'))
+		          
+        		    //->select('CONCAT_WS(\':\',p.id,p.alias) AS project_slug')
+        		    //->select('CONCAT_WS(\':\',t.id,t.alias) AS team_slug')
+        		    //->select('CONCAT_WS(\':\',tl.id,t.alias) AS projectteam_slug')        		    
+        		    //->select('CONCAT_WS(\':\',d.id,d.alias) AS division_slug')
+        		    //->select('CONCAT_WS(\':\',c.id,c.alias) AS club_slug')
+		          ->from('#__joomleague_project_team tl')
+		          ->leftJoin('#__joomleague_team t ON tl.team_id=t.id')
+		          ->leftJoin('#__joomleague_club c ON t.club_id=c.id')
+		          ->leftJoin('#__joomleague_division d ON d.id=tl.division_id')
+		          ->leftJoin('#__joomleague_playground plg ON plg.id=tl.standard_playground')
+		          ->leftJoin('#__joomleague_project AS p ON p.id=tl.project_id')
+		          ->where('tl.project_id='.(int)$this->projectid);
 			$db->setQuery($query);
 			$this->_teams=$db->loadObjectList();
 		}
@@ -625,11 +657,12 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query="SELECT	et.id AS etid,
-							me.event_type_id AS id,
-							et.*
-							FROM #__joomleague_eventtype AS et
-							LEFT JOIN #__joomleague_match_event AS me ON et.id=me.event_type_id";
+	    $query
+	           ->select('et.id AS etid')
+	           ->select('me.event_type_id AS id')
+	           ->select('et.*')
+	           ->from('#__joomleague_eventtype AS et')
+	           ->leftJoin('#__joomleague_match_event AS me ON et.id=me.event_type_id');          
 		if ($evid != 0)
 		{
 			if ($this->projectid > 0)
@@ -651,11 +684,11 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query="SELECT id
-				  FROM #__joomleague_project_team
-				  WHERE team_id=".(int)$teamid."
-					AND project_id=".(int)$this->projectid;
-
+	    $query
+	           ->select('id')
+	           ->from('#__joomleague_project_team')
+	           ->where('team_id='.(int)$teamid)
+	           ->where('project_id='.(int)$this->projectid);
 		$db->setQuery($query);
 		$result=$db->loadResult();
 
@@ -672,10 +705,11 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query='	SELECT	id AS value,
-							name AS text
-					FROM #__joomleague_playground
-					ORDER BY text ASC ';
+	    $query
+	           ->select('id AS value')
+	           ->select('name AS text')
+	           ->from('#__joomleague_playground')
+	           ->select('text ASC');
 		$db->setQuery($query);
 		try {
 		    $result = $db->loadObjectList();
@@ -693,23 +727,19 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		$project=$this->getProject();
 		if ($project->teams_as_referees)
 		{
-			$query='	SELECT	id AS value,
-								name AS text
-						FROM #__joomleague_team
-						ORDER BY name';
-
+		    $query
+		          ->select('id AS value, name AS text')
+		          ->from('#__joomleague_team')
+		          ->order('name');
 			$db->setQuery($query);
 			$refs=$db->loadObjectList();
 		}
 		else
 		{
-			$query='	SELECT	id AS value,
-								firstname,
-								lastname
-
-						FROM #__joomleague_project_referee
-						ORDER BY lastname';
-
+		    $query
+		          ->select('id AS value, firstname, lastname')
+		          ->from('#__joomleague_project_referee')
+		          ->order('lastname');
 			$db->setQuery($query);
 			$refs=$db->loadObjectList();
 			foreach($refs as $ref)
@@ -756,24 +786,25 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		if($this->projectid == 0) return $arrStandardSettings;
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
-		$query= "SELECT t.params
-				   FROM #__joomleague_template_config AS t
-				   INNER JOIN #__joomleague_project AS p ON p.id=t.project_id
-				   WHERE t.template=".$db->Quote($template)."
-				   AND p.id=".$db->Quote($this->projectid);
-
+		$query
+		      ->select('t.params')
+		      ->from('#__joomleague_template_config AS t')
+		      ->innerJoin('#__joomleague_project AS p ON p.id=t.project_id')
+		      ->where('t.template='.$db->Quote($template))
+		      ->where('p.id='.$db->Quote($this->projectid));
 		$db->setQuery($query);
 		if (! $result=$db->loadResult())
 		{
 			$project=$this->getProject();
 			if (!empty($project) && $project->master_template>0)
 			{
-				$query="SELECT t.params
-						  FROM #__joomleague_template_config AS t
-						  INNER JOIN #__joomleague_project AS p ON p.id=t.project_id
-						  WHERE t.template=".$db->Quote($template)."
-						  AND p.id=".$db->Quote($project->master_template);
-
+			    $query = $db->getQuery(true);
+			    $query
+			         ->select('t.params')
+			         ->from('#__joomleague_template_config AS t')
+			         ->innerJoin('#__joomleague_project AS p ON p.id=t.project_id')
+			         ->where('t.template='.$db->Quote($template))
+			         ->where('p.id='.$db->Quote($project->master_template));
 				$db->setQuery($query);
 				if (! $result=$db->loadResult())
 				{
@@ -785,7 +816,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 			}
 			else
 			{
-				//JError::raiseNotice(500,'project ' . $this->projectid . '  setting not found');
+			    Factory::getApplication()->enqueueMessage(Text::_('setting not found').  'project ' . $this->projectid . 'notice');
 				//there are no saved settings found, use the standard xml file default values
 				return $arrStandardSettings;
 			}
@@ -819,11 +850,11 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		 $query = 'SELECT l.country
-					from #__joomleague_league as l
-					inner join #__joomleague_project as pro
-					on pro.league_id = l.id
-					WHERE pro.id = '. $db->Quote($this->projectid);
+	    $query
+	           ->select('l.country')
+	           ->from('#__joomleague_league as l')
+	           ->innerJoin('#__joomleague_project as pro' . ' ON '. ' pro.league_id = l.id')
+	           ->where('pro.id = '. $db->Quote($this->projectid));
 		  $db->setQuery( $query );
 		  $this->country = $db->loadResult();
 		  return $this->country;
@@ -838,18 +869,17 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query=' SELECT	et.id,
-						et.name,
-						et.icon
-						FROM #__joomleague_eventtype AS et
-						INNER JOIN #__joomleague_position_eventtype AS pet ON pet.eventtype_id=et.id
-						INNER JOIN #__joomleague_project_position AS ppos ON ppos.position_id=pet.position_id
-						WHERE ppos.project_id='.$db->Quote($this->projectid);
+	    $query
+	           ->select('et.id,et.name,et.icon')
+	           ->from('#__joomleague_eventtype AS et')
+	           ->innerJoin('#__joomleague_position_eventtype AS pet' . ' ON ' . ' pet.eventtype_id=et.id')
+	           ->innerJoin('#__joomleague_project_position AS ppos' . ' ON ' . ' ppos.position_id=pet.position_id')
+	           ->where('ppos.project_id='.$db->Quote($this->projectid));
 		if ($position_id)
 		{
-			$query=' AND ppos.position_id='. $db->Quote($position_id);
+		    $query->where('ppos.position_id='. $db->Quote($position_id));
 		}
-		$query .= ' GROUP BY et.id, et.name, et.icon';
+		$query->group('et.id, et.name, et.icon');
 		$db->setQuery($query);
 		$events=$db->loadObjectList('id');
 		return $events;
@@ -870,24 +900,24 @@ class JoomleagueModelProject extends BaseDatabaseModel
 			require_once JLG_PATH_ADMIN.'/statistics/base.php';
 			$project = $this->getProject();
 			$project_id=$project->id;
-			$query='	SELECT	stat.id,
-								stat.name,
-								stat.short,
-								stat.class,
-								stat.icon,
-								stat.calculated,
-								ppos.id as pposid,
-								ppos.position_id AS position_id,
-								stat.params, stat.baseparams
-						FROM #__joomleague_statistic AS stat
-						INNER JOIN #__joomleague_position_statistic AS ps ON ps.statistic_id=stat.id
-						INNER JOIN #__joomleague_project_position AS ppos ON ppos.position_id=ps.position_id
-						  AND ppos.project_id='.$project_id.'
-						INNER JOIN #__joomleague_position AS pos ON pos.id=ps.position_id
-						WHERE stat.published=1
-						  AND pos.published =1
-						  ';
-			$query .= ' ORDER BY pos.ordering,ps.ordering ';
+			$query
+			     ->select('stat.id')
+			     ->select('stat.name')
+			     ->select('stat.short')
+			     ->select('stat.class')
+			     ->select('stat.icon')
+			     ->select('stat.calculated')
+			     ->select('ppos.id AS pposid')
+			     ->select('ppos.position_id AS position_id')
+			     ->select('stat.params')
+			     ->select('stat.baseparams')
+			     ->from('#__joomleague_statistic AS stat')
+			     ->innerJoin('#__joomleague_position_statistic AS ps' . ' ON ' . ' ps.statistic_id=stat.id')
+			     ->innerJoin('#__joomleague_project_position AS ppos' . ' ON ' . ' ppos.position_id=ps.position_id' . ' AND ' . ' ppos.project_id='.$project_id)
+			     ->innerJoin('#__joomleague_position AS pos' . ' ON ' . ' pos.id=ps.position_id')
+			     ->where('stat.published=1')
+			     ->where('pos.published =1')
+			     ->order('pos.ordering,ps.ordering');
 			$db->setQuery($query);
 			$this->_stats=$db->loadObjectList();
 
@@ -933,15 +963,16 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	    $query = $db->getQuery(true);
 		if (empty($this->_positions))
 		{
-			$query='	SELECT	pos.id,
-								pos.persontype,
-								pos.name,
-								pos.ordering,
-								pos.published,
-								ppos.id AS pposid
-						FROM #__joomleague_project_position AS ppos
-						INNER JOIN #__joomleague_position AS pos ON ppos.position_id=pos.id
-						WHERE ppos.project_id='.$db->Quote($this->projectid);
+		    $query
+		          ->select('pos.id')
+		          ->select('pos.persontype')
+		          ->select('pos.name')
+		          ->select('pos.ordering')
+		          ->select('pos.published')
+		          ->select('ppos.id AS pposid')
+		          ->from('#__joomleague_project_position AS ppos')
+		          ->innerJoin('#__joomleague_position AS pos ON ppos.position_id=pos.id')
+		          ->where('ppos.project_id='.$db->Quote($this->projectid));
 			$db->setQuery($query);
 			$this->_positions=$db->loadObjectList('id');
 		}
@@ -1014,14 +1045,14 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		// Make sure the item is valid
 		if (!$row->check())
 		{
-			$this->setError($db->getErrorMsg());
-			return false;
+		    throw new Exception($e->getMessage());
+		    return false;
 		}
 
 		// Store the item to the database
 		if (!$row->store())
 		{
-			$this->setError($db->getErrorMsg());
+		    throw new Exception($e->getMessage());
 			return false;
 		}
 		return $row->id;
@@ -1050,34 +1081,35 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query=' SELECT	mp.in_out_time,
-							pt.team_id,
-							pt.id AS ptid,
-							p2.id AS out_ptid,
-							p.firstname,
-							p.nickname,
-							p.lastname,
-							pos.name AS in_position,
-							pos2.name AS out_position,
-							p2.firstname AS out_firstname,
-							p2.nickname AS out_nickname,
-							p2.lastname AS out_lastname
-						FROM #__joomleague_match_player AS mp
-							LEFT JOIN #__joomleague_team_player AS tp ON mp.teamplayer_id=tp.id
-							  AND tp.published=1
-							LEFT JOIN #__joomleague_project_team AS pt ON tp.projectteam_id=pt.id
-							LEFT JOIN #__joomleague_person AS p ON tp.person_id=p.id
-							LEFT JOIN #__joomleague_team_player AS tp2 ON mp.in_for=tp2.id
-							  AND tp2.published=1
-							LEFT JOIN #__joomleague_person AS p2 ON tp2.person_id=p2.id
-							LEFT JOIN #__joomleague_project_position AS ppos ON ppos.id=mp.project_position_id
-							LEFT JOIN #__joomleague_position AS pos ON ppos.position_id=pos.id
-							LEFT JOIN #__joomleague_match_player AS mp2 ON mp.match_id=mp2.match_id and mp.in_for=mp2.teamplayer_id
-							LEFT JOIN #__joomleague_project_position AS ppos2 ON ppos2.id=mp2.project_position_id
-							LEFT JOIN #__joomleague_position AS pos2 ON ppos2.position_id=pos2.id
-						WHERE	mp.match_id='.(int)$match_id.' 
-						AND mp.came_in=1 AND p.published = 1 AND p2.published = 1
-						ORDER by (mp.in_out_time+0) ';
+	    $query
+	           ->select('mp.in_out_time')
+	           ->select('pt.team_id')
+	           ->select('pt.id AS ptid')
+	           ->select('p2.id AS out_ptid')
+	           ->select('p.firstname')
+	           ->select('p.firstname')
+	           ->select('p.lastname')
+	           ->select('pos.name AS in_position')
+	           ->select('pos2.name AS out_position')
+	           ->select('p2.firstname AS out_firstname')
+	           ->select('p2.nickname AS out_nickname')
+	           ->select('p2.lastname AS out_lastname')
+	           ->from('#__joomleague_match_player AS mp')
+	           ->leftJoin('#__joomleague_team_player AS tp' . ' ON ' . 'mp.teamplayer_id=tp.id' . ' AND ' . 'tp.published=1')
+	           ->leftJoin('#__joomleague_project_team AS pt' . ' ON ' . 'tp.projectteam_id=pt.id')
+	           ->leftJoin('#__joomleague_person AS p' . ' ON ' . 'tp.person_id=p.id')
+	           ->leftJoin('#__joomleague_team_player AS tp2' . ' ON ' . 'mp.in_for=tp2.id AND tp2.published=1')
+	           ->leftJoin('#__joomleague_person AS p2' . ' ON ' . 'tp2.person_id=p2.id')
+	           ->leftJoin('#__joomleague_project_position AS ppos' . ' ON ' . 'ppos.id=mp.project_position_id')
+	           ->leftJoin('#__joomleague_position AS pos' . ' ON ' . 'ppos.position_id=pos.id')
+	           ->leftJoin('#__joomleague_match_player AS mp2' . ' ON ' . 'mp.match_id=mp2.match_id' . ' AND ' . 'mp.in_for=mp2.teamplayer_id')
+	           ->leftJoin('#__joomleague_project_position AS ppos2' . ' ON ' . 'ppos2.id=mp2.project_position_id')
+	           ->leftJoin('#__joomleague_position AS pos2' . ' ON ' . 'ppos2.position_id=pos2.id')
+	           ->where('mp.match_id='.(int)$match_id)
+	           ->where('mp.came_in=1')
+	           ->where('p.published = 1')
+	           ->where('p2.published = 1')
+	           ->order('mp.in_out_time+0');
 		$db->setQuery( $query );
 		return $db->loadObjectList();
 	}
@@ -1093,14 +1125,14 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	    $query = $db->getQuery(true);
 		if ($showcomments == 1) {
 		    $join = 'LEFT';
-		    $addline = ' me.notes,';
+		    $addline = 'me.notes,';
 		} else {
 		    $join = 'INNER';
 		    $addline = '';
 		}
 		$esort = '';
 		if ($sortdesc == 1) {
-		    $esort = ' DESC';
+		    $esort = 'DESC';
 		}
 		$query = ' 	SELECT 	me.event_type_id,
 							me.id as event_id,
@@ -1182,4 +1214,27 @@ class JoomleagueModelProject extends BaseDatabaseModel
 				$db->quoteName($alias1FieldName) . ', ' . $db->quoteName($alias2FieldName) . '))' .
 			' ELSE ' . $db->quoteName($idFieldName) . ' END AS ' . $slugName;
 	}
+	/**
+	 * Generate column expression for slug .
+	 *
+	 * @param   \JDatabaseQuery  $query  Current query instance.
+	 * @param   string           $id     Column id name.
+	 * @param   string           $alias  Column alias name.
+	 *
+	 * @return  string
+	 *
+	 * @since   4.0.0
+	 */
+	function getSlugColumn($query, $id, $alias)
+	{
+	    $db = Factory::getDbo();
+	    $query = $db->getQuery(true);
+	    return 'CASE WHEN '
+	        . $query->charLength($alias, '!=', '0')
+	        . ' THEN '
+	            . $query->concatenate(array($query->castAsChar($id), $alias), ':')
+	            . ' ELSE '
+	                . $id . ' END';
+	}
+	
 }

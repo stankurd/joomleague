@@ -79,25 +79,30 @@ class JoomleagueModelCurve extends JoomleagueModelProject
 		// When (one of) the teams are not specified, search for the next unplayed or the latest played match
 		if (($this->teamid1 == 0) || ($this->teamid2 == 0))
 		{
-			$query  = ' SELECT t1.id AS teamid1, t2.id AS teamid2'
-				. ' FROM #__joomleague_match AS m'
-				. ' INNER JOIN #__joomleague_project_team AS pt1 ON m.projectteam1_id=pt1.id'
-				. ' AND pt1.project_id='.$db->Quote($this->projectid);
+		    $query
+		          ->select('t1.id AS teamid1')
+		          ->select('t2.id AS teamid2')
+		          ->from('#__joomleague_match AS m')
+		          ->innerJoin('#__joomleague_project_team AS pt1' . ' ON ' . 'm.projectteam1_id=pt1.id' .
+		              ' AND ' . ' pt1.project_id='.$db->Quote($this->projectid));
+			
 			if ($this->division)
 			{
-				$query .= ' AND pt1.division_id='.$db->Quote($this->division);
+				$query->where('pt1.division_id='.$db->Quote($this->division));
 			}
-			$query .= ' INNER JOIN #__joomleague_team AS t1 ON pt1.team_id=t1.id'
-				. ' INNER JOIN #__joomleague_project_team AS pt2 ON m.projectteam2_id=pt2.id'
-				. ' AND pt2.project_id='.$db->Quote($this->projectid);
+			$query
+			     ->innerJoin('#__joomleague_team AS t1' . ' ON ' . 'pt1.team_id=t1.id')
+			     ->innerJoin('#__joomleague_project_team AS pt2' . ' ON ' . 'm.projectteam2_id=pt2.id'.
+			         ' AND ' . 'pt2.project_id='.$db->Quote($this->projectid));
 			if ($this->division)
 			{
-				$query .= ' AND pt2.division_id='.$db->Quote($this->division);
+				$query->where('pt2.division_id='.$db->Quote($this->division));
 			}
-			$query .= ' INNER JOIN #__joomleague_team AS t2 ON pt2.team_id=t2.id'
-				. ' INNER JOIN #__joomleague_project AS p ON pt1.project_id=p.id AND pt2.project_id=p.id';
-
+			$query
+			     ->innerJoin('#__joomleague_team AS t2' . ' ON ' . 'pt2.team_id=t2.id')
+			     ->innerJoin('#__joomleague_project AS p ON pt1.project_id=p.id AND pt2.project_id=p.id');
 			$where = ' WHERE m.published=1 AND m.cancel=0';
+			    //$query->where('m.published = 1 AND m.cancel = 0'));
 			if ($this->teamid1)
 			{
 				$quoted_team_id = $db->Quote($this->teamid1);
@@ -110,6 +115,7 @@ class JoomleagueModelCurve extends JoomleagueModelProject
 			}
 			if ($this->both)
 			{
+			    //$query->where('(t1.id='.$quoted_team_id.' OR t2.id='.$quoted_team_id.')');
 				$where .= ' AND (t1.id='.$quoted_team_id.' OR t2.id='.$quoted_team_id.')';
 			}
 			else
@@ -118,6 +124,7 @@ class JoomleagueModelCurve extends JoomleagueModelProject
 			}
 			$config = $this->getTemplateConfig($this->getName());
 			$expiry_time = $config ? $config['expiry_time'] : 0;
+			
 			$where_unplayed = ' AND (m.team1_result IS NULL OR m.team2_result IS NULL)'
 					. ' AND DATE_ADD(m.match_date, INTERVAL '.$db->Quote($expiry_time).' MINUTE)'
 					. '    >= CONVERT_TZ(UTC_TIMESTAMP(), '.$db->Quote('UTC').', p.timezone)';

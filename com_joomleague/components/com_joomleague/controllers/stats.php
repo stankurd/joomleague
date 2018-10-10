@@ -28,7 +28,7 @@ class JoomleagueControllerStats extends JoomleagueController
         // Get the joomleague model
         $jl = $this->getModel( "joomleague", "JoomleagueModel" );
         $jl->set( "_name", "joomleague" );
-        if (!JError::isError( $jl ) )
+        if (!Error::isError( $jl ) )
         {
             $view->setModel ( $jl );
         }
@@ -36,7 +36,7 @@ class JoomleagueControllerStats extends JoomleagueController
         // Get the joomleague model
         $sr = $this->getModel( "stats", "JoomleagueModel" );
         $sr->set( "_name", "stats" );
-        if (!JError::isError( $sr ) )
+        if (!Error::isError( $sr ) )
         {
             $view->setModel ( $sr );
         }
@@ -44,7 +44,7 @@ class JoomleagueControllerStats extends JoomleagueController
         // Get the joomleague model
         $sr = $this->getModel( "eventsranking", "JoomleagueModel" );
         $sr->set( "_name", "eventsranking" );
-        if (!JError::isError( $sr ) )
+        if (!Error::isError( $sr ) )
         {
             $view->setModel ( $sr );
         }
@@ -67,7 +67,7 @@ class JoomleagueControllerStats extends JoomleagueController
         // Get the joomleague model
         $jl = $this->getModel( "joomleague", "JoomleagueModel" );
         $jl->set( "_name", "joomleague" );
-        if (!JError::isError( $jl ) )
+        if (!Error::isError( $jl ) )
         {
             $view->setModel ( $jl );
         }
@@ -75,7 +75,7 @@ class JoomleagueControllerStats extends JoomleagueController
         // Get the joomleague model
         $sr = $this->getModel( "stats", "JoomleagueModel" );
         $sr->set( "_name", "stats" );
-        if (!JError::isError( $sr ) )
+        if (!Error::isError( $sr ) )
         {
             $view->setModel ( $sr );
         }
@@ -83,7 +83,7 @@ class JoomleagueControllerStats extends JoomleagueController
         // Get the joomleague model
         $sr = $this->getModel( "eventsranking", "JoomleagueModel" );
         $sr->set( "_name", "eventsranking" );
-        if (!JError::isError( $sr ) )
+        if (!Error::isError( $sr ) )
         {
             $view->setModel ( $sr );
         }

@@ -36,7 +36,7 @@ class JoomleagueControllerMatrix extends JoomleagueController
         // Get the joomleague model
         $jl = $this->getModel( "joomleague", "JoomleagueModel" );
         $jl->set( "_name", "joomleague" );
-        if (!JError::isError( $jl ) )
+        if (!Error::isError( $jl ) )
         {
             $view->setModel ( $jl );
         }
@@ -44,7 +44,7 @@ class JoomleagueControllerMatrix extends JoomleagueController
         // Get the joomleague model
         $sm = $this->getModel( "matrix", "JoomleagueModel" );
         $sm->set( "_name", "matrix" );
-        if (!JError::isError( $sm ) )
+        if (!Error::isError( $sm ) )
         {
             $view->setModel ( $sm );
         }

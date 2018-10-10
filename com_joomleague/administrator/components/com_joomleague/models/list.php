@@ -76,7 +76,7 @@ class JoomleagueModelList extends JLGModel
 	function getData()
 	{
 		$app = Factory::getApplication();
-		$db = $this->getDbo();
+		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		// Lets load the content if it doesn't already exist
 		if ( empty($this->_data) )

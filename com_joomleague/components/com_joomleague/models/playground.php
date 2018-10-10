@@ -243,7 +243,7 @@ class JoomleagueModelPlayground extends JoomleagueModelProject
     		$db->setQuery($query);
     		if (!$referees = $db->loadObjectList())
     		{
-    			$this->setError($this->_db->getErrorMsg());
+    			//$this->setError($this->_db->getErrorMsg());
 				return false;
     		}
     		$matches[$index]->referees = $referees;

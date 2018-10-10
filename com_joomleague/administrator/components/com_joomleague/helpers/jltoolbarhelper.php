@@ -86,7 +86,7 @@ class JLToolBarHelper extends ToolBarHelper {
 		}
 	}
 
-	public static function custom($task = '', $icon = '', $iconOver = '', $alt = '', $listSelect = true)
+	public static function custom($task = '', $icon = '', $iconOver = '', $alt = '', $listSelect = true,  $formId = NULL)
 	{
 		$allowed = true;
 		if (!Factory::getUser()->authorise($task, 'com_joomleague')) {

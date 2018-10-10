@@ -67,6 +67,7 @@ class JoomleagueModelTeamStats extends JoomleagueModelProject
 
 	private function getGenericQueryForHighest($db)
 	{
+	    $db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		$query
 			->select($db->quoteName('m.id', 'matchid'))

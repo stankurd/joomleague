@@ -28,7 +28,7 @@ class JoomleagueControllerRivals extends JoomleagueController
 		// Get the joomleague model
 		$jl = $this->getModel( 'project', 'JoomleagueModel' );
 		$jl->set( '_name', 'project' );
-		if (!JError::isError( $jl ) )
+		if (!Error::isError( $jl ) )
 		{
 			$view->setModel ( $jl );
 		}
@@ -36,7 +36,7 @@ class JoomleagueControllerRivals extends JoomleagueController
 		// Get the joomleague model
 		$sr = $this->getModel( 'rivals', 'JoomleagueModel' );
 		$sr->set( '_name', 'rivals' );
-		if ( !JError::isError( $sr ) )
+		if ( !Error::isError( $sr ) )
 		{
 			$view->setModel ( $sr );
 		}

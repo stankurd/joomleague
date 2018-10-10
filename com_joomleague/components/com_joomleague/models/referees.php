@@ -68,7 +68,6 @@ class JoomleagueModelReferees extends JoomleagueModelProject
 				->order($db->quoteName('pos.id'));
 
 			$db->setQuery($query);
-//		print_r($query->dump());
 			$this->referees = $db->loadObjectList();
 		}
 		return $this->referees;

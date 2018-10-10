@@ -8,11 +8,10 @@
  * other free or open source software licenses.
  * See COPYRIGHT.php for copyright notices and details.
  */
-
-// Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Pagination\Pagination;
-
+use Joomla\CMS\Language\Text;
+// Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die;
 
 require_once JLG_PATH_SITE.'/models/project.php';
@@ -37,16 +36,16 @@ class JoomleagueModelEventsRanking extends JoomleagueModelProject
 		$app = Factory::getApplication();
 		$input = $app->input;
 		
-		$this->projectid=$input->getInt('p',0);
-		$this->divisionid = $input->getInt('division', 0);
-		$this->teamid = $input->getInt('tid', 0);
-		$this->setEventid($input->getString('evid', '0'));
-		$this->matchid = $input->getInt('mid',0);
+		$this->projectid=$input->get('p',0, 'INT');
+		$this->divisionid = $input->get('division', 0, 'INT');
+		$this->teamid = $input->get('tid', 0, 'INT');
+		$this->setEventid($input->get('evid', '0', 'String'));
+		$this->matchid = $input->get('mid',0, 'INT');
 		$config = $this->getTemplateConfig($this->getName());
 		$defaultLimit = $this->eventid != 0 ? $config['max_events'] : $config['count_events'];
-		$this->limit=$input->getInt('limit',$defaultLimit);
-		$this->limitstart=$input->getInt('limitstart',0);
-		$this->setOrder($input->getString('order','desc'));
+		$this->limit=$input->get('limit',$defaultLimit, 'INT');
+		$this->limitstart=$input->get('limitstart',0, 'INT');
+		$this->setOrder($input->get('order','desc', 'String'));
 	}
 
 	function getDivision()
@@ -126,34 +125,33 @@ class JoomleagueModelEventsRanking extends JoomleagueModelProject
 	 */
 	function getEventTypes()
 	{
+	    $app = Factory::getApplication();
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
 	    $query
 	           ->select('et.id as etid,me.event_type_id as id,et.*')
 	           ->from('#__joomleague_eventtype as et')
-	           ->join('INNER', '#__joomleague_match_event as me ON  et.id=me.event_type_id')
-	           ->join('INNER', '#__joomleague_match as m ON m.id=me.match_id ')
-	           ->join('INNER', '#__joomleague_round as r ON m.round_id=r.id ');
-	       
-		if ($this->projectid > 0)
-		{
-			$query
-			->where(' r.project_id='.$this->projectid);
-		}
-		if ($this->eventid != 0)
-		{
-			if ($this->projectid > 0)
-			{
-				$query .= " AND";
-			}
-			else
-			{
-				$query .= " WHERE";
-			}
-			$query .= " me.event_type_id IN (".implode(",", $this->eventid).")";
-		}
-		$query
-		  ->order('et.ordering');
+	           ->innerJoin('#__joomleague_match_event as me ON et.id=me.event_type_id')
+	           ->innerJoin('#__joomleague_match as m ON m.id=me.match_id')
+	           ->innerJoin('#__joomleague_round as r ON m.round_id=r.id');
+	           
+	           if ($this->projectid > 0)
+	           {
+	               $query->where('r.project_id = ' .$this->projectid);
+	           }
+	           if ($this->eventid != 0)
+	           {
+	               if ($this->projectid > 0)
+	               {
+	                   $query .= " AND";
+	               }
+	               else
+	               {
+	                   $query .= " WHERE";
+	               }
+	               $query .= " me.event_type_id IN (".implode(",", $this->eventid).")";
+	           }
+	           $query .= " ORDER BY et.ordering";
 		$db->setQuery($query);
 		$result=$db->loadObjectList('etid');
 		return $result;
@@ -161,6 +159,7 @@ class JoomleagueModelEventsRanking extends JoomleagueModelProject
 
 	function getTotal()
 	{
+	    $app = Factory::getApplication();
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
 		if (empty($this->_total))
@@ -168,77 +167,88 @@ class JoomleagueModelEventsRanking extends JoomleagueModelProject
 			$eventids = is_array($this->eventid) ? $this->eventid : array($this->eventid); 
 
 			// Make sure the same restrictions are used here as in statistics/basic.php in getPlayersRanking()
-			$query=	 ' SELECT	COUNT(DISTINCT(teamplayer_id)) as count_player'
-					.' FROM #__joomleague_match_event AS me '
-					.' INNER JOIN #__joomleague_team_player AS tp ON tp.id=me.teamplayer_id '
-					.' INNER JOIN #__joomleague_person pl ON tp.person_id=pl.id '
-					.' INNER JOIN #__joomleague_project_team AS pt ON pt.id=tp.projectteam_id '
-					.' INNER JOIN #__joomleague_team AS t ON t.id=pt.team_id '
-					.' WHERE me.event_type_id IN('.implode("," ,$eventids).")"
-					.'   AND pl.published = 1 '
-					;
-			if ($this->projectid > 0)
-			{
-				$query .= " AND pt.project_id=".$this->projectid;
-			}
-			if ($this->divisionid > 0)
-			{
-				$query .= " AND pt.division_id=".$this->divisionid;
-			}
-			if ($this->teamid > 0)
-			{
-				$query .= " AND pt.team_id = ".$this->teamid;
-			}
-			if ($this->matchid > 0)
-			{
-				$query .= " AND me.match_id=".$this->matchid;
-			}
+			$query
+			     ->select('COUNT(DISTINCT(teamplayer_id)) as count_player')
+			     ->from('#__joomleague_match_event AS me')
+			     ->innerJoin('#__joomleague_team_player AS tp ON tp.id=me.teamplayer_id')
+			     ->innerJoin('#__joomleague_person pl ON tp.person_id=pl.id')
+			     ->innerJoin('#__joomleague_project_team AS pt ON pt.id=tp.projectteam_id')
+			     ->innerJoin('#__joomleague_team AS t ON t.id=pt.team_id')
+			     ->where('me.event_type_id IN('.implode(',' ,$eventids).')')
+			     ->where('pl.published = 1');
+			     if ($this->projectid > 0)
+			     {
+			         $query->where('pt.project_id='.$this->projectid);
+			     }
+			     if ($this->divisionid > 0)
+			     {
+			         $query->where('pt.division_id='.$this->divisionid);
+			     }
+			     if ($this->teamid > 0)
+			     {
+			         $query->where('pt.team_id = '.$this->teamid);
+			     }
+			     if ($this->matchid > 0)
+			     {
+			         $query->where('me.match_id='.$this->matchid);
+			     }
+			     try{
 			$db->setQuery($query);
-			$this->_total = $db->loadResult();
+			$this->_total = $db->loadResult();			    
+			}
+			catch (RuntimeException $e)
+			{
+			    $app->enqueueMessage(Text::_(__METHOD__.' '.' '.$e->getMessage()), 'error');
+			    return false;
+			}
+			
 		}
 		return $this->_total;
+			
 	}
 
-	function _getEventsRanking($eventtype_id, $order='desc', $limit=10, $limitstart=0)
+	function _getEventsRanking($eventtype_id, $order='desc', $limit=20, $limitstart=0)
 	{
+	    $app = Factory::getApplication();
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-		$query=	 ' SELECT SUM(me.event_sum) as p,'
-				.' pl.firstname AS fname,'
-				.' pl.nickname AS nname,'
-				.' pl.lastname AS lname,'
-				.' pl.country,'
-				.' pl.id AS pid,'
-				.' pl.picture,'
-				.' tp.picture AS teamplayerpic,'
-				.' t.id AS tid,'
-				.' t.name AS tname '
-				.' FROM #__joomleague_match_event AS me '
-				.' INNER JOIN #__joomleague_team_player AS tp ON tp.id=me.teamplayer_id '
-				.' INNER JOIN #__joomleague_person pl ON tp.person_id=pl.id '
-				.' INNER JOIN #__joomleague_project_team AS pt ON pt.id=tp.projectteam_id '
-				.' INNER JOIN #__joomleague_team AS t ON t.id=pt.team_id '
-				.' WHERE me.event_type_id='.$eventtype_id
-				.' AND pl.published = 1 '
-				;
-		if ($this->projectid > 0)
-		{
-			$query .= " AND pt.project_id=".$this->projectid;
-		}
-		if ($this->divisionid > 0)
-		{
-			$query .= " AND pt.division_id=".$this->divisionid;
-		}
-		if ($this->teamid > 0)
-		{
-			$query .= " AND pt.team_id=".$this->teamid;
-		}
-		if ($this->matchid > 0)
-		{
-			$query .= " AND me.match_id=".$this->matchid;
-		}
-		$query .= " GROUP BY me.teamplayer_id, me.match_id ORDER BY p $order, me.match_id";
-		
+	    $query
+	           ->select('SUM(me.event_sum) as p')
+	           ->select('pl.firstname AS fname')
+	           ->select('pl.nickname AS nname')
+	           ->select('pl.lastname AS lname')
+	           ->select('pl.lastname AS lname')
+	           ->select('pl.country')
+	           ->select('pl.id AS pid')
+	           ->select('pl.picture')
+	           ->select('tp.picture AS teamplayerpic')
+	           ->select('t.id AS tid')
+	           ->select('t.name AS tname')
+	           ->from('#__joomleague_match_event AS me')
+	           ->innerJoin('#__joomleague_team_player AS tp ON tp.id=me.teamplayer_id')
+	           ->innerJoin('#__joomleague_person pl ON tp.person_id=pl.id')
+	           ->innerJoin('#__joomleague_project_team AS pt ON pt.id=tp.projectteam_id')
+	           ->innerJoin('#__joomleague_team AS t ON t.id=pt.team_id')
+	           ->where('me.event_type_id='.$eventtype_id)
+	           ->where('pl.published = 1');
+	           if ($this->projectid > 0)
+	           {
+	               $query->where('pt.project_id='.$this->projectid);
+	           }
+	           if ($this->divisionid > 0)
+	           {
+	               $query->where('pt.division_id='.$this->divisionid);
+	           }
+	           if ($this->teamid > 0)
+	           {
+	               $query->where('pt.team_id='.$this->teamid);
+	           }
+	           if ($this->matchid > 0)
+	           {
+	               $query->where('me.match_id='.$this->matchid);
+	           }
+	           $query->group('me.teamplayer_id') 
+	           ->order('p ' .$order. ', me.match_id');
 		$db->setQuery($query, $this->getlimitStart(), $this->getlimit());
 		$rows=$db->loadObjectList();
 
