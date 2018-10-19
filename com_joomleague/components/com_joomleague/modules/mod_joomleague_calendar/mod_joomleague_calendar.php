@@ -32,7 +32,7 @@ $document = Factory::getDocument();
 // add the js script
 $baseurl = Uri::root();
 $document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/depend.js');
-HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 $ajax= $input->post->get('ajaxCalMod',0,'default');
 $ajaxmod= $input->post->get('ajaxmodid',0,'default');
 if(!$params->get('cal_start_date')){

@@ -40,9 +40,10 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	if ( $this->config['show_goals_stats_flash'] )
 	{
 		$document= Factory::getDocument();
-		$version = urlencode(JoomleagueHelper::getVersion());
-		$document->addScript( Uri::base(true).'/components/com_joomleague/assets/js/json2.js?v='.$version);
-		$document->addScript( Uri::base(true).'/components/com_joomleague/assets/js/swfobject.js?v='.$version);
+		$baseurl = Uri::root();
+		//$version = urlencode(JoomleagueHelper::getVersion());
+		$document->addScript($baseurl . 'components/com_joomleague/assets/js/json2.js');
+		$document->addScript($baseurl . 'components/com_joomleague/assets/js/swfobject.js');
 		echo $this->loadTemplate('flashchart'); 
 	}
 	?>

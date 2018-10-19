@@ -103,8 +103,7 @@ class modJLGRandomplayerHelper
 		}
 
 		// Player model + info
-		$mdlPerson 	= BaseDatabaseModel::getInstance('Player', 'JoomleagueModel');
-
+		$mdlPerson 	= new JoomleagueModelPlayer();
 		$person 	= $mdlPerson->getPerson();
 		$project	= $mdlPerson->getProject();
 		$current_round = isset($project->current_round) ? $project->current_round : 0;

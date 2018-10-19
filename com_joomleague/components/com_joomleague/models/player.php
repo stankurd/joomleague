@@ -104,6 +104,7 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 	 */
 	public function getTeamPlayerByRound($round_id=0, $player_id=0)
 	{
+	    $app = Factory::getApplication();
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
 		if (is_null($this->_inproject))
@@ -148,8 +149,18 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 				  ->where('pr.published = 1')
 				  ->where('tp.published = 1')
 				  ->order('tp.id DESC');
-			$db->setQuery($query);
-			$this->_inproject=$db->loadObjectList();
+				  
+				  try
+				  { 
+				      $db->setQuery($query);
+				      $this->_inproject=$db->loadObjectList();
+				  }
+				  catch (RuntimeException $e)
+				  {
+				      $app->enqueueMessage(Text::_($e->getMessage()), 'error');
+				      
+				      return false;
+				  }
 		}
 		return $this->_inproject;
 	}

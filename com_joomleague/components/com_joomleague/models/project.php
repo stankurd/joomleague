@@ -340,14 +340,14 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	           ->where('project_id='.$this->projectid);
 		if ($divLevel==1)
 		{
-		    $query = $db->getQuery(true);
 		    $query->where('(parent_id=0 OR parent_id IS NULL)');
 		}
 		else if ($divLevel==2)
 		{
 			$query->where('parent_id>0');
 		}
-		$query->order('ordering');
+		//$query->order('ordering');
+		$query .= " ORDER BY ordering";
 		$db->setQuery($query);
 		$res = $db->loadColumn();
 		if(count($res) == 0) {
@@ -893,6 +893,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	 */
 	public function getProjectStats($statid=0,$positionid=0)
 	{
+	    $app = Factory::getApplication();
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
 		if (empty($this->_stats))
@@ -918,8 +919,17 @@ class JoomleagueModelProject extends BaseDatabaseModel
 			     ->where('stat.published=1')
 			     ->where('pos.published =1')
 			     ->order('pos.ordering,ps.ordering');
-			$db->setQuery($query);
-			$this->_stats=$db->loadObjectList();
+			     try
+			     {
+			         $db->setQuery($query);
+			         $this->_stats=$db->loadObjectList();
+			     }
+			     catch (RuntimeException $e)
+			     {
+			         $app->enqueueMessage(Text::_($e->getMessage()), 'error');
+			         
+			         return false;
+			     }
 
 		}
 		// sort into positions

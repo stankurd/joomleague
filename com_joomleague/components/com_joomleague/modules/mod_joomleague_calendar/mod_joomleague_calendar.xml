@@ -27,7 +27,7 @@
 			<fieldset name="basic"
 				addfieldpath="/administrator/components/com_joomleague/models/fields">
 
-<field name="project_ids" type="project" default=""
+<field name="project_ids" type="projects" default=""
 					label="MOD_JOOMLEAGUE_CALENDAR_LIMITPROJECTSLBL" description="MOD_JOOMLEAGUE_CALENDAR_LIMITPROJECTSDESC">
 				</field>
 

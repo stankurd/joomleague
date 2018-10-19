@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 /**
  * Joomleague
@@ -41,7 +42,7 @@ if (!$items) {
 ?>
 
 	<div class="mod_jl_results<?php echo $params->get( 'moduleclass_sfx' ) ?>">
-		<?php echo JText::_($params->get('no_items_text')); ?>
+		<?php echo Text::_($params->get('no_items_text')); ?>
 	</div>
 	
 <?php
@@ -85,7 +86,7 @@ else {
 			<?php if ($params->get('show_date_heading', 1)): ?>
 				<tr>
 					<th colspan="5" class="mod_jl_results_date<?php echo $params->get( 'moduleclass_sfx' ) ?>">
-						<?php echo JoomleagueHelper::getMatchDate($items[0], JText::_($params->get('date_format'))); ?>
+						<?php echo JoomleagueHelper::getMatchDate($items[0], Text::_($params->get('date_format'))); ?>
 					</th>
 				</tr>
 			<?php endif; ?>
@@ -96,13 +97,13 @@ else {
 			
 						<?php if ($params->get('show_date', 1)): ?>
 							<td class="mod_jl_results_date<?php echo $params->get( 'moduleclass_sfx' ) ?>">
-								<?php echo JoomleagueHelper::getMatchDate($match, JText::_($params->get('date_format'))); ?>
+								<?php echo JoomleagueHelper::getMatchDate($match, Text::_($params->get('date_format'))); ?>
 							</td>
 						<?php endif; ?>
 				
 						<?php if ($params->get('show_time', 1)): ?>
 							<td class="mod_jl_results_time<?php echo $params->get( 'moduleclass_sfx' ) ?>">
-								<?php echo JoomleagueHelper::getMatchTime($match, JText::_($params->get('time_format'))); ?>
+								<?php echo JoomleagueHelper::getMatchTime($match, Text::_($params->get('time_format'))); ?>
 							</td>
 						<?php endif; ?>
 				
@@ -229,7 +230,7 @@ else {
 
 
 	<?php if ($params->get('show_full_link', 1)):?>
-		<div class="mod_jl_results_fulltablelink<?php echo $params->get( 'moduleclass_sfx' ) ?>"><?php echo HTMLHelper::link(JoomleagueHelperRoute::getResultsRoute($list['project']->id, $list['round']->id, $list['divisionid']), JText::_('MOD_JOOMLEAGUE_RESULTS_VIEW_FULL')); ?></div>
+		<div class="mod_jl_results_fulltablelink<?php echo $params->get( 'moduleclass_sfx' ) ?>"><?php echo HTMLHelper::link(JoomleagueHelperRoute::getResultsRoute($list['project']->id, $list['round']->id, $list['divisionid']), Text::_('MOD_JOOMLEAGUE_RESULTS_VIEW_FULL')); ?></div>
 	<?php endif; ?>
 	
 	

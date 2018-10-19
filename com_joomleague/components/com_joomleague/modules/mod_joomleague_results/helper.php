@@ -8,6 +8,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
 
@@ -15,7 +16,7 @@ defined('_JEXEC') or die;
 /**
  * Ranking Module helper
  */
-abstract class modJLGResultsHelper
+class modJLGResultsHelper
 {
 
 	/**
@@ -29,12 +30,10 @@ abstract class modJLGResultsHelper
 		if (!class_exists('JoomleagueModelResults')) {
 			require_once JLG_PATH_SITE.'/models/results.php';
 		}
-		//$model = new JoomleagueModelResults;
-		$model = JLGModel::getInstance('Results', 'JoomleagueModel');
+		$model = new JoomleagueModelResults;
 		$model->setProjectId($params->get('p'));
 		
 		$project = $model->getProject();
-		
 		switch ($params->get('round_selection', 0))
 		{
 			case 0: // latest

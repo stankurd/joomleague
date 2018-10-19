@@ -1,25 +1,27 @@
-var jlcinjectcontainer = [];
-var jlcmodal = [];
-/*
-document.addEventListener('DOMContentLoaded', function() {
-	SqueezeBox.initialize({});
-});
-*/
+var jlcinjectcontainer = new Array();
+var jlcmodal = new Array();
+
+//window.addEvent('domready', function() {
+//	SqueezeBox.initialize({});
+//});
+
 jQuery(function($) {
 			SqueezeBox.initialize({});
 			SqueezeBox.assign($('a.modal').get(), {
 				parse: 'rel'
 			});
 		});
-
+    
 function jlCalmod_setTitle(targetid, sourceids, thistitle, modid) {
 	var titleid = sourceids.replace('jlcal_', 'jlcaltitte_');
-	if (document.getElementById(titleid)) {
+	if (document.getElementById(titleid)) 
+  {
 		document.getElementById('jlCalListDayTitle-' + modid).innerHTML = document.getElementById(titleid).innerHTML;
 	}
 }
 
-function jlCalmod_setContent(targetid, tempcontentid, sourcecontent, thistitle, modid) {
+function jlCalmod_setContent(targetid, tempcontentid, sourcecontent, thistitle, modid) 
+{
 	document.getElementById(targetid).innerHTML = sourcecontent;
 	document.getElementById(tempcontentid).innerHTML = '<div class="componentheading">'
 			+ thistitle.replace('<br />', ' - ') + '</div>' + sourcecontent;
@@ -30,37 +32,57 @@ function jlCalmod_setContent(targetid, tempcontentid, sourcecontent, thistitle, 
 	});
 }
 
-function jlCalmod_injectContent(sourceid, destinationid, modid) {
-	var tmp = document.getElementById(destinationid).innerHTML;
-	if (!document.getElementById('temp_jlcal-' + modid)) {
-		document.getElementById(destinationid).innerHTML = '<div id="temp_jlcal-' + modid	+
-									'" class="jcal_inject"></div>' + tmp;
-	}
-	var closer = '<span class="jcal_inject_close" onclick="document.getElementById(\'temp_jlcal-'
-			+ modid + '\').style.display=\'none\';">x</span>';
-	document.getElementById('temp_jlcal-' + modid).innerHTML = closer + document.getElementById(sourceid).innerHTML;
-	document.getElementById('temp_jlcal-' + modid).style.display = 'block';
-	 // document.getElementById('myModalbody' + modid).innerHTML = document.getElementById(sourceid).innerHTML;
+function jlCalmod_injectContent(sourceid, destinationid, modid) 
+{
 
-	 // jQuery("#myModal" + modid).modal();
+//alert ('destinationid -> ' + destinationid);
+//alert ('sourceid -> ' + sourceid);
 
+//	var tmp = document.getElementById(destinationid).innerHTML;
+
+//	if (!document.getElementById('temp_jlcal-' + modid)) 
+//  {
+//		document.getElementById(destinationid).innerHTML = '<div id="temp_jlcal-' + modid	+	'" class="jcal_inject"></div>' + tmp;
+//	}
+//	var closer = '<span class="jcal_inject_close" onclick="document.getElementById(\'temp_jlcal-'	+ modid + '\').style.display=\'none\';">x</span>';
+//	document.getElementById('temp_jlcal-' + modid).innerHTML = closer + document.getElementById(sourceid).innerHTML;
+  
+// der text in der modalbox für bootstrap
+  document.getElementById('myModalbody' + modid).innerHTML = document.getElementById(sourceid).innerHTML;
+
+// öffnet die moadalbox für bootstrap  
+  jQuery("#myModal" + modid).modal();
+  
+	
+  	//jQuery('temp_jlcal-' + modid).css("display", "block");
 }
-function jlCalmod_showhide(targetid, sourceids, thistitle, inject, modid) {
 
-	if (jQuery(targetid)) {
+function jlCalmod_showhide(targetid, sourceids, thistitle, inject, modid) 
+{
+
+//alert ('sourceids -> ' + sourceids);
+
+	if (jQuery(targetid)) 
+  {
 		var targetcontent = document.getElementById(targetid).innerHTML;
 		var sourcecontent = (document.getElementById(sourceids)) ? document.getElementById(sourceids).innerHTML	: 'Something went wrong this day';
 		var tempcontentid = 'jlCalList-' + modid + '_temp';
-		// bootstrap modalbox
-		//document.getElementById('myModalheader' + modid).innerHTML = thistitle;
-		
+    
+// die überschrift in der modalbox für bootstrap
+  document.getElementById('myModalheader' + modid).innerHTML = thistitle;
+  
 		jlCalmod_setTitle(targetid, sourceids, thistitle, modid);
-		jlCalmod_setContent(targetid, 'jlCalList-' + modid + '_temp', sourcecontent, thistitle, modid);
-		var incont = jlcinjectcontainer[modid];
-		if (jQuery(incont) && inject > 0) {
+		
+    jlCalmod_setContent(targetid, 'jlCalList-' + modid + '_temp', sourcecontent, thistitle, modid);
+		
+    var incont = jlcinjectcontainer[modid];
+		
+    if (jQuery(incont) && inject > 0) 
+    {
 			jlCalmod_injectContent(tempcontentid, incont, modid);
 		}
-		if(jlcmodal[modid] == 1) {
+		if(jlcmodal[modid] == 1) 
+    {
 			SqueezeBox.setContent('string', sourcecontent);
 		}
 	}
@@ -86,39 +108,41 @@ function jlcnewAjax() {
 	return xmlhttp;
 }
 
-function jlcHide(modid) {
-	if (document.getElementById('jlCalListDayTitle-' + modid))
+function jlcHide(modid) 
+{
+	if (jQuery('jlCalListDayTitle-' + modid))
 		document.getElementById('jlCalListDayTitle-' + modid).innerHTML = '';
-	if (document.getElementById('jlCalListTitle-' + modid))
+	if (jQuery('jlCalListTitle-' + modid))
 		document.getElementById('jlCalListTitle-' + modid).innerHTML = '';
-	if (document.getElementById('jlcteam' + modid))
-		document.getElementById('jlcteam' + modid).toggleClass('jcalbox_hidden');
-	if (document.getElementById('jlCalList-' + modid))
+	if (jQuery('jlcteam' + modid))
+		jQuery('jlcteam' + modid).toggleClass('jcalbox_hidden');
+	if (jQuery('jlCalList-' + modid))
 		document.getElementById('jlCalList-' + modid).innerHTML = '';
 }
 
-function jlcnewDate(month, year, modid, day) {
+function jlcnewDate(month, year, modid, day) 
+{
 	if (!day)
 		day = 0;
 	var teamid = 0;
-	if (document.getElementById('jlcteam' + modid))
-		teamid = document.getElementById('jlcteam' + modid).options[document.getElementById('jlcteam' + modid).selectedIndex].value;;
+	if (jQuery('jlcteam' + modid))
+		teamid = jQuery('#jlcteam' + modid).val();
 	//var myFx = new Fx.Morph('jlctableCalendar-' + modid);
 	//myFx.start({
-	//	'opacity' : 0
+//		'opacity' : 0
 	//});
 	loadHtml = "<p id='loadingDiv-"
 			+ modid
 			+ "' style='margin-left: 10px; margin-top: -10px; margin-bottom: 10px;'>";
 	loadHtml += "<img src='" + calendar_baseurl +
-				"modules/mod_joomleague_calendar/assets/images/loading.gif'>";
+				"modules/mod_sportsmanagement_calendar/assets/images/loading.gif'>";
 	loadHtml += "</p>";
 	document.getElementById('jlccalendar-' + modid).innerHTML += loadHtml;
 	jlcHide(modid);
 	//var myFx = new Fx.Morph('jlctableCalendar-' + modid);
 	//myFx.start({
-	//	'opacity' : 1
-	//});
+//		'opacity' : 1
+//	});
 
 	if (month <= 0) {
 		month += 12;
@@ -129,6 +153,8 @@ function jlcnewDate(month, year, modid, day) {
 		year++;
 	}
 
+  // alert('jlcteam ' + teamid + ' year ' + year + ' month ' + month);
+  
 	var ajax = jlcnewAjax();
 	ajax.open("POST", location.href, true);
 	ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -147,8 +173,8 @@ function jlcnewDate(month, year, modid, day) {
 
 			//var myFx = new Fx.Morph('jlctableCalendar-' + modid);
 			//myFx.start({
-			//	'opacity' : 1
-			//});
+//				'opacity' : 1
+//			});
 			document.getElementById('jlccalendar-' + modid).innerHTML = justTheCalendar;
 
 			var today = new Date();
@@ -161,12 +187,13 @@ function jlcnewDate(month, year, modid, day) {
 			var sc = 'jlCalList-' + modid;
 			var tc = 'jlcal_' + yy + '-' + mm + '-' + dd + '-' + modid;
 			if (jQuery(tc))
-				jlCalmod_showhide(sc, tc, dd + '.' + mm + '.' + yy, 1, modid);
-			if (SqueezeBox && jlcmodal[modid] == 1) {
+				//jlCalmod_showhide(sc, tc, dd + '.' + mm + '.' + yy, 1, modid);
+			if ( jlcmodal[modid] == 1) 
+      {
 				SqueezeBox.initialize({});
 
 				jQuery('a.jlcmodal' + modid).each(function(el) {
-					el.click (function(e) {
+					el.addEvent('click', function(e) {
 						new Event(e).stop();
 						SqueezeBox.fromElement(el);
 					});

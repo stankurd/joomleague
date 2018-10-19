@@ -28,7 +28,7 @@ class modJLCalendarHelper
 {
 	function showCal(&$params,$year,$month,$ajax=0,$modid) //this function returns the html of the calendar for a given month
 	{
-		// $offset = 0; //$mainframe->getCfg('offset');
+		// $offset = 0; //$app->getCfg('offset');
 		$language= Factory::getLanguage(); //get the current language
 		$language->load( 'mod_joomleague_calendar' ); //load the language ini file of the module
 		$article= $language->_('MOD_JOOMLEAGUE_CALENDAR_VALUEMATCH');
@@ -236,9 +236,7 @@ class JLCalendar extends PHPCalendar
 	    // @todo check/fix!
 	    /*$getquery = JRequest::get('GET'); //get the GET query*/
 	    $getquery = Factory::getApplication()->input->get('GET'); //get the GET query
-	   // var_dump($getquery);
 		$calendarLink= Uri::current().'?'; //get the current url, without the GET query; and add "?", to set the GET vars
-		//var_dump($calendarLink);
 		foreach($getquery as $key => $value){  /*this bucle goes through every GET variable that was in the url*/
 			if($key!='month' && $key!='year' && $key!='day' && $value){ /*the month,year, and day Variables must be diferent of the current ones, because this is a link for a diferent month */
 				$calendarLink.= $key . '=' . $value . '&amp;';
@@ -356,7 +354,7 @@ class JLCalendar extends PHPCalendar
 		$today = $now->format('Y-m-d');
 		$todaytitle = '';
 		$pm='';
-		//$offset = 0; // $mainframe->getCfg('offset');
+		//$offset = 0; // $app->getCfg('offset');
 		$update_module = $this->params->get('update_module', 0);
 		$totalgamesstring = (count($matches)>0) ? count($matches) : $noarticle;
 		$totalgamesstring .= ' ';

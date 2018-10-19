@@ -8,13 +8,14 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
 // check if any player returned
 $items = count($list['player']);
 if (!$items) {
-	echo '<p class="modjlgrandomplayer">' . JText::_('MOD_JOOMLEAGUE_RANDOMPLAYER_NOITEMS') . '</p>';
+	echo '<p class="modjlgrandomplayer">' . Text::_('MOD_JOOMLEAGUE_RANDOMPLAYER_NOITEMS') . '</p>';
 	return;
 }?>
 
@@ -32,13 +33,13 @@ $link = JoomleagueHelperRoute::getPlayerRoute( $list['project']->slug,
 
 <li class="modjlgrandomplayer">
 <?php
-$picturetext=JText::_( 'JL_PERSON_PICTURE' );
+$picturetext=Text::_( 'JL_PERSON_PICTURE' );
 $text = JoomleagueHelper::formatName(null, $person->firstname, 
 												$person->nickname, 
 												$person->lastname, 
 												$params->get("name_format"));
 	
-$imgTitle = JText::sprintf( $picturetext .' %1$s', $text);
+$imgTitle = Text::sprintf( $picturetext .' %1$s', $text);
 if(isset($list['inprojectinfo']->picture)) {
 	$picture = $list['inprojectinfo']->picture;
 	$pic = JoomleagueHelper::getPictureThumb($picture, $imgTitle, $params->get('picture_width'), $params->get('picture_heigth'));
@@ -59,7 +60,7 @@ if(isset($list['inprojectinfo']->picture)) {
 	}
 	else
 	{
-		echo JText::sprintf( '%1$s', $text);
+		echo Text::sprintf( '%1$s', $text);
 	}
 ?>
 </li>
@@ -81,7 +82,7 @@ if(isset($list['inprojectinfo']->picture)) {
 	}
 	else
 	{
-		echo JText::sprintf( '%1$s', $text);
+		echo Text::sprintf( '%1$s', $text);
 	}
 ?>
 </li>
@@ -90,7 +91,7 @@ if(isset($list['inprojectinfo']->picture)) {
 <li class="positionname">
 <?php 
 	$positionName = $list['inprojectinfo']->position_name;
-	echo JText::_($positionName);?>
+	echo Text::_($positionName);?>
 </li>
 <?php endif; ?>
 </ul>

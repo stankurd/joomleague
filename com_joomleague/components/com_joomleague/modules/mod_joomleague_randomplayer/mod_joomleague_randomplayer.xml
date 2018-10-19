@@ -7,7 +7,7 @@
 	<authorUrl>http://www.joomleague.at</authorUrl>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<copyright>(C) 2005-2016 joomleague.at. All rights reserved.</copyright>
-	<version>3.0.22.57ae969</version>
+	<version>3.0.21.124789c</version>
 	<description>MOD_JOOMLEAGUE_RANDOMPLAYER_XML_DESC</description>
 
 	<files>
@@ -25,7 +25,7 @@
 			<fieldset name="basic"
 				addfieldpath="/administrator/components/com_joomleague/models/fields">
 
-				<field name="project" type="project" default="" required="true"
+				<field name="projects" type="projects" default="" required="true"
 					label="MOD_JOOMLEAGUE_RANDOMPLAYER_PROJECT_ID_LABEL" 
 					description="MOD_JOOMLEAGUE_RANDOMPLAYER_PROJECT_ID_LABEL_DESC" />
 				<field name="team" type="team" default=""

@@ -7,7 +7,7 @@
 	<authorUrl>http://www.joomleague.at</authorUrl>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<copyright>(C) 2005-2016 joomleague.at. All rights reserved.</copyright>
-	<version>3.0.22.57ae969</version>
+	<version>3.0.21.124789c</version>
 	<description>MOD_JOOMLEAGUE_RESULTS_XML_DESC</description>
 
 	<files>
@@ -28,7 +28,7 @@
 
 				<field name="sportstype" type="sportstypes" required="true"
 					label="MOD_JOOMLEAGUE_RESULTS_SPORTSTYPE_ID_LABEL" description="MOD_JOOMLEAGUE_RESULTS_SPORTSTYPE_ID_DESCR" />
-				<field name="project" type="project" required="true" depend="sportstypes"
+				<field name="p" type="dependsql" required="true" depends="sportstype"
 					task="projectsbysportstypesoptions" label="MOD_JOOMLEAGUE_RESULTS_PROJECT_ID_LABEL"
 					description="MOD_JOOMLEAGUE_RESULTS_PROJECT_ID_DESCR" />
 				<field name="division_id" type="dependsql" required="false" depends="p" task="projectdivisionsoptions" 
