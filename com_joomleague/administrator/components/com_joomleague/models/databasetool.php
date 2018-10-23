@@ -13,6 +13,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die('Restricted access');
 
@@ -87,10 +88,10 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 	
 		$imports=explode(';',$imports);
 		$cntPanel=0;
-		//echo JHtml::_('sliders.start','tables',array(
-		//				'allowAllClose' => true,
-		//				'startTransition' => true,
-		//				true));
+		echo HTMLHelper::_('bootstrap.startAccordion','tables',array(
+						'allowAllClose' => true,
+						'startTransition' => true,
+						true)); );
 		foreach ($imports as $import)
 		{
 			$import=trim($import);
@@ -101,7 +102,7 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 				$DummyStr=substr($DummyStr,0,strpos($DummyStr,'`'));
 				$db->setQuery($import);
 				$panelName = substr(str_replace('joomleague','',str_replace('_','',$DummyStr)),1);
-				//echo JHtml::_('sliders.panel',$DummyStr,'panel-'.$panelName);
+				echo HTMLHelper::_('bootstrap.addSlide',$DummyStr, 'panel-'.$panelName);
 					
 				echo '<table class="adminlist" style="width:100%; " border="0"><thead><tr><td colspan="2" class="key" style="text-align:center;"><h3>';
 				echo "Checking existence of table [$DummyStr] - <span style='color:";
@@ -329,8 +330,11 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 			}
 			unset($import);
 		}
-		//echo JHtml::_('sliders.end');
+		echo HTMLHelper::_('bootstrap.endSlide');
+		echo HTMLHelper::_('bootstrap.endAccordion');
 		return '';
+		//echo HTMLHelper::_('bootstrap.endAccordion');
+
 	}
 	
 	public static function migratePicturePath() {

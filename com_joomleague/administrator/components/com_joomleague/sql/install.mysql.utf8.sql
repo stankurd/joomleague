@@ -691,7 +691,7 @@ CREATE TABLE IF NOT EXISTS `#__joomleague_statistic` (
   `short` varchar(10) NOT NULL DEFAULT '',
   `icon` varchar(128) NOT NULL DEFAULT '',
   `class` varchar(50) NOT NULL COMMENT 'must be the name of the class handling it',
-  `calculated` tinyint(4) NOT NULL DEFAULT '',
+  `calculated` tinyint(4) DEFAULT NULL,
   `params` text DEFAULT NULL,
   `baseparams` text DEFAULT NULL,
   `note` varchar(100) DEFAULT NULL,
