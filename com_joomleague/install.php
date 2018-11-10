@@ -426,7 +426,7 @@ class com_joomleagueInstallerScript
 	}
 
 	private function _versionCompare () {
-		if (version_compare(phpversion(), '5.3.0', '<')===true) {
+		if (version_compare(phpversion(), '7.0.0', '<')===true) {
 			echo  '<div style="font:12px/1.35em arial, helvetica, sans-serif;"><div style="margin:0 0 25px 0; border-bottom:1px solid #ccc;"><h3 style="margin:0; font-size:1.7em; font-weight:normal; text-transform:none; text-align:left; color:#2f2f2f;">Whoops, it looks like you have an invalid PHP version.</h3></div><p>JoomLeague requires PHP 5.2.4 or newer.</p><p>PHP4 is no longer supported by its developers and your webhost almost certainly offers PHP5.  Please contact your webhost for advice on how to enable PHP5 on your website.</p></div>';
 			return false;
 		}

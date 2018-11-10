@@ -16,22 +16,15 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
 use Joomla\CMS\Factory;
-use Joomla\CMS\Access\Access;
 use Joomla\CMS\Cache\Cache;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Dispatcher;
 use Joomla\CMS\Table\Table;
-use Joomla\CMS\Filesystem\Folder;
-use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\HTML\HTMLHelper;
-<<<<<<< HEAD
 use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Filesystem\Folder;
-=======
-use Joomla\CMS\Language\Text;
->>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 // create a link like https://opentranslators.transifex.com/projects/p/joomleague/language/en_GB/
 function createTXLink($lang) {
 	return '<a href="https://opentranslators.transifex.com/projects/p/joomleague/language/'.$lang.'/" target="_blank">'.$lang.'</a>';
@@ -397,11 +390,7 @@ class com_joomleagueInstallerScript
 		$time = $time_end - $time_start;
 		echo 'Duration: '.round($time).'s<br>';
 	}
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 	public function updateDatabase() {
 		$time_start = microtime(true);
 
@@ -437,7 +426,7 @@ class com_joomleagueInstallerScript
 	}
 
 	private function _versionCompare () {
-		if (version_compare(phpversion(), '5.3.0', '<')===true) {
+		if (version_compare(phpversion(), '7.0.0', '<')===true) {
 			echo  '<div style="font:12px/1.35em arial, helvetica, sans-serif;"><div style="margin:0 0 25px 0; border-bottom:1px solid #ccc;"><h3 style="margin:0; font-size:1.7em; font-weight:normal; text-transform:none; text-align:left; color:#2f2f2f;">Whoops, it looks like you have an invalid PHP version.</h3></div><p>JoomLeague requires PHP 5.2.4 or newer.</p><p>PHP4 is no longer supported by its developers and your webhost almost certainly offers PHP5.  Please contact your webhost for advice on how to enable PHP5 on your website.</p></div>';
 			return false;
 		}
@@ -503,11 +492,7 @@ class com_joomleagueInstallerScript
 		if(Folder::exists($src)) {
 			$ret = Folder::copy($src, $dest, '', true);
 		}
-<<<<<<< HEAD
 		File::copy(JPATH_ROOT.'/media/index.html', JPATH_ROOT.'/images/com_joomleague/index.html', '', true);
-=======
-		JFile::copy(JPATH_ROOT.'/media/index.html', JPATH_ROOT.'/images/com_joomleague/index.html', '', true);
->>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 		$folders = Folder::folders($dest,'.',true);
 		foreach ($folders as $folder) {
 			$src = Path::clean(JPATH_ROOT.'/media/com_joomleague/'.$folder);
