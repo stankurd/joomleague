@@ -53,9 +53,13 @@ class JoomleagueConnector extends JLCalendar{
 	{
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
-	    
-		$query = "SELECT id, fav_team FROM #__joomleague_project
-      where fav_team != '' ";
+	    $query
+	           ->select('id')
+	           ->select('fav_team')
+	           ->from('#__joomleague_project')
+	           ->where("fav_team != ''");
+		/*$query = "SELECT id, fav_team FROM #__joomleague_project
+      where fav_team != '' ";*/
 
 		$projectid		= $this->xparams->get('project_ids') ;
 
@@ -63,7 +67,8 @@ class JoomleagueConnector extends JLCalendar{
 		{
 			$projectids = (is_array($projectid)) ? implode(",", $projectid) : $projectid;
 
-			$query .= " AND id IN(".$projectids.")";
+			//$query .= " AND id IN(".$projectids.")";
+			$query->where("id IN(".$projectids.")");
 		}
 
 		$query = ($this->prefix != '') ? str_replace('#__', $this->prefix, $query) : $query;
@@ -140,27 +145,36 @@ class JoomleagueConnector extends JLCalendar{
 
 		if (count($limitingconditions) > 0)
 		{
-			$limitingcondition .=' AND (';
-			$limitingcondition .= implode(' OR ', $limitingconditions);
-			$limitingcondition .=')';
+			//$limitingcondition .=' AND (';
+			//$limitingcondition .= implode(' OR ', $limitingconditions);
+			//$limitingcondition .=')';
+		    $query->where(" ( ".implode(' OR ', $limitingconditions)." ) ");
 		}
 
-
-		$query="SELECT p.id, p.firstname, p.lastname, p.picture, p.country,
-                     DATE_FORMAT(p.birthday, '%m-%d') AS month_day,
-                     YEAR( CURRENT_DATE( ) ) as year,
-                     DATE_FORMAT('".$caldates['start']."', '%Y') - YEAR( p.birthday ) AS age,
-                     DATE_FORMAT(p.birthday,'%Y-%m-%d') AS date_of_birth,
-                     pt.project_id as project_id,
-                     'showPlayer' AS func_to_call,
-                     'pid' AS id_to_append,
-                     team.short_name, team.id as teamid
-              FROM #__joomleague_person AS p
-              inner JOIN #__joomleague_team_player AS tp ON (p.id = tp.person_id)
-              inner JOIN #__joomleague_project_team AS pt ON (pt.id = tp.projectteam_id)
-              inner JOIN #__joomleague_team AS team ON (team.id = pt.team_id )
-              inner JOIN #__joomleague_club AS club ON (club.id = team.club_id )
-              WHERE p.published = 1 AND p.birthday != '0000-00-00' and DATE_FORMAT(p.birthday, '%m') = DATE_FORMAT('".$caldates['start']."', '%m')";
+		$query = $db->getQuery(true);
+		$query
+		      ->select('p.id')
+		      ->select('p.firstname')
+		      ->select('p.lastname')
+		      ->select('p.picture')
+		      ->select('p.country')
+		      ->select("DATE_FORMAT(p.birthday, '%m-%d') AS month_day")
+		      ->select("YEAR( CURRENT_DATE( ) ) as year")
+		      ->select("DATE_FORMAT('".$caldates['start']."', '%Y') - YEAR( p.birthday ) AS age")
+		      ->select("DATE_FORMAT(p.birthday,'%Y-%m-%d') AS date_of_birth")
+		      ->select('pt.project_id as project_id')
+		      ->select("'showPlayer' AS func_to_call")
+		      ->select("'pid' AS id_to_append")
+		      ->select('team.short_name')
+		      ->select('team.id as teamid')
+		      ->from('#__joomleague_person AS p')
+		      ->innerJoin('#__joomleague_team_player AS tp ON (p.id = tp.person_id)')
+		      ->innerJoin('#__joomleague_project_team AS pt ON (pt.id = tp.projectteam_id)')
+		      ->innerJoin('#__joomleague_team AS team ON (team.id = pt.team_id )')
+		      ->innerJoin('#__joomleague_club AS club ON (club.id = team.club_id )')
+		      ->where('p.published = 1')
+		      ->where('p.birthday != \'0000-00-00\'')
+		      ->where("DATE_FORMAT(p.birthday, '%m') = DATE_FORMAT('".$caldates['start']."', '%m')");
 
 		$projectid		= $this->xparams->get('project_ids') ;
 
@@ -168,13 +182,13 @@ class JoomleagueConnector extends JLCalendar{
 		if ($projectid)
 		{
 			$projectids = (is_array($projectid)) ? implode(",", $projectid) : $projectid;
-			if($projectids > 0) 	$query .= " AND (pt.project_id IN (".$projectids.") )";
+			if($projectids > 0) 	$query->where("(pt.project_id IN (".$projectids.") )");
 
 		}
 
-		$query .= $limitingcondition;
-		//$query .= "GROUP BY p.id";
-		$query .= "ORDER BY p.birthday";
+		//$query .= $limitingcondition;
+		$query->group('p.id');
+		$query->order('p.birthday');
 		
 		$query = ($this->prefix != '') ? str_replace('#__', $this->prefix, $query) : $query;
 		$db->setQuery($query);
@@ -356,14 +370,32 @@ class JoomleagueConnector extends JLCalendar{
 
 		if (count($limitingconditions) > 0)
 		{
-			$limitingcondition .=' AND (';
-			$limitingcondition .= implode(' OR ', $limitingconditions);
-			$limitingcondition .=')';
+			//$limitingcondition .=' AND (';
+			//$limitingcondition .= implode(' OR ', $limitingconditions);
+			//$limitingcondition .=')';
+		    $query->where(" ( ".implode(' OR ', $limitingconditions)." ) ");
 		}
 
 		$limit = (isset($caldates['limitstart'])&&isset($caldates['limitend'])) ? ' LIMIT '.$caldates['limitstart'].', '.$caldates['limitend'] :'';
 
-
+        $query
+                ->select('m.*,p.*')
+                //->select('m.id,m.round_id,m.projectteam1_id,m.projectteam2_id,m.match_date,m.team1_result,m.team2_result,m.match_date as gamematchdate')
+                //->select('p.timezone,p.name')
+                ->select('match_date AS caldate')
+                ->select('r.roundcode')
+                ->select('r.name AS roundname')
+                ->select('r.round_date_first')
+                ->select('r.round_date_last')
+                ->select('m.id as matchcode')
+                ->select('p.id as project_id')
+                ->from('#__joomleague_match m')
+                ->innerJoin('#__joomleague_round r ON r.id = m.round_id')
+                ->innerJoin('#__joomleague_project p ON p.id = r.project_id')
+                ->innerJoin('#__joomleague_project_team pt ON (pt.id = m.projectteam1_id OR pt.id = m.projectteam2_id)')
+                ->innerJoin('#__joomleague_team team ON team.id = pt.team_id')
+                ->innerJoin('#__joomleague_club club ON club.id = team.club_id');
+        /*        
 		$query = "SELECT  m.*,p.*,
                       match_date AS caldate,
                       r.roundcode, r.name AS roundname, r.round_date_first, r.round_date_last,
@@ -375,7 +407,7 @@ class JoomleagueConnector extends JLCalendar{
               inner JOIN #__joomleague_team team ON team.id = pt.team_id
               inner JOIN #__joomleague_club club ON club.id = team.club_id
                ";
-
+*/
 		$where = " WHERE m.published = 1
                AND p.published = 1 ";
 		if (isset($caldates['start'])) $where .= " AND m.match_date >= '".$caldates['start']."'";
@@ -422,17 +454,60 @@ class JoomleagueConnector extends JLCalendar{
 		}
 
 		$listTeamId = implode( ",", array_unique($teamsId) );
-
-		$query = "SELECT tl.id AS teamtoolid, tl.division_id, tl.standard_playground, tl.start_points,
-                     tl.info, tl.team_id, tl.checked_out, tl.checked_out_time, tl.picture, tl.project_id,
-                     t.id, t.name, t.short_name, t.middle_name, t.info, t.club_id,
-                     c.logo_small, c.logo_middle, c.logo_big, c.country,
+        $query
+                ->select('tl.id AS teamtoolid')
+                ->select('tl.division_id')
+                ->select('tl.standard_playground')
+                ->select('tl.start_points')
+                ->select('tl.info')
+                ->select('tl.team_id')
+                ->select('tl.checked_out')
+                ->select('tl.checked_out_time')
+                ->select('tl.picture')
+                ->select('tl.project_id')
+                ->select('t.id')
+                ->select('t.name')
+                ->select('t.short_name')
+                ->select('t.middle_name')
+                ->select('t.info')
+                ->select('t.club_id')
+                ->select('c.logo_small')
+                ->select('c.logo_middle')
+                ->select('c.logo_big')
+                ->select('c.country')
+                ->select('p.name AS project_name')
+                ->from('#__joomleague_team t')
+                ->innerJoin('#__joomleague_project_team tl on tl.team_id = t.id')
+                ->innerJoin('#__joomleague_project p on p.id = tl.project_id')
+                ->leftJoin('#__joomleague_club c on t.club_id = c.id')
+                ->where('tl.id IN ('.$listTeamId.')')
+                ->where('tl.project_id = p.id');
+        
+        /*
+		$query = "SELECT tl.id AS teamtoolid,
+                         tl.division_id,
+                         tl.standard_playground,
+                         tl.start_points,
+                     tl.info,
+                     tl.team_id,
+                     tl.checked_out,
+                     tl.checked_out_time,
+                     tl.picture,
+                     tl.project_id,
+                     t.id, t.name,
+                     t.short_name,
+                     t.middle_name,
+                     t.info, t.club_id,
+                     c.logo_small,
+                     c.logo_middle,
+                     c.logo_big,
+                     c.country,
                      p.name AS project_name
                 FROM #__joomleague_team t
                 INNER JOIN #__joomleague_project_team tl on tl.team_id = t.id
                 INNER JOIN #__joomleague_project p on p.id = tl.project_id
                 LEFT JOIN #__joomleague_club c on t.club_id = c.id
-                WHERE tl.id IN (".$listTeamId.") AND tl.project_id = p.id";
+                WHERE tl.id IN (".$listTeamId.") AND tl.project_id = p.id";*/
 		$query = ($this->prefix != '') ? str_replace('#__', $this->prefix, $query) : $query;
 		$db->setQuery($query);
 		if ( !$result = $db->loadObjectList('teamtoolid') ) $result = Array();

@@ -9,6 +9,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -34,12 +35,14 @@ abstract class modJLGTeamPlayersHelper
 		$t = explode(":", $t);
 		$t = $t[0];
 		$db  = Factory::getDbo();
-
-		$query = "SELECT tt.id AS id, t.name AS team_name
-					FROM #__joomleague_project_team tt
-					INNER JOIN #__joomleague_team t ON t.id = tt.team_id
-					WHERE tt.project_id = ". $p . "
-					AND tt.team_id = ". $t;
+		$query = $db->getQuery(true);
+	    $query
+	           ->select('tt.id AS id')
+	           ->select('t.name AS team_name')
+	           ->from('#__joomleague_project_team tt')
+	           ->innerJoin('#__joomleague_team t ON t.id = tt.team_id')
+	           ->where('tt.project_id = '. $p)
+	           ->where('tt.team_id = '. $t);
 		$query .= " LIMIT 1";
 		$db->setQuery( $query );
 		$result = $db->loadRow();
@@ -54,7 +57,7 @@ abstract class modJLGTeamPlayersHelper
 		if (!class_exists('JoomleagueModelRoster')) {
 			require_once JLG_PATH_SITE.'/models/roster.php';
 		}
-		$model 	= JLGModel::getInstance('Roster', 'JoomleagueModel');
+		$model = new JoomleagueModelRoster ();
 		$model->setProjectId($p);
 		$project = $model->getProject();
 		$project->team_name = $team_name;
@@ -80,7 +83,7 @@ abstract class modJLGTeamPlayersHelper
 		}
 		else
 		{
-			echo '<i>' . JText::sprintf( '%1$s', $flag . $text) . '</i>';
+			echo '<i>' . Text::sprintf( '%1$s', $flag . $text) . '</i>';
 		}
 
 	}

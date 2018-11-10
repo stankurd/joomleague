@@ -158,7 +158,7 @@ class JoomleagueModelSportsType extends JoomleagueModelItem
 		      ->from('#__joomleague_sports_type AS st')
 		      ->innerJoin('#__joomleague_project AS p ON p.sports_type_id = st.id')
 		      ->innerJoin('#__joomleague_project_team AS ptt ON ptt.project_id = p.id')
-		      ->innerJoin('#__joomleague_project_team AS ptt ON ptt.project_id = p.id')
+		      ->innerJoin('#__joomleague_team_player AS ptp ON ptp.projectteam_id = ptt.id')
 		      ->where('st.id='.(int) $this->_id);
 		      try
 		      {
@@ -184,7 +184,7 @@ class JoomleagueModelSportsType extends JoomleagueModelItem
 		      ->from('#__joomleague_sports_type AS st')
 		      ->innerJoin('#__joomleague_project AS p ON p.sports_type_id = st.id')
 		      ->innerJoin('#__joomleague_division AS d ON d.project_id = p.id')
-		      ->where('WHERE st.id='.(int) $this->_id);
+		      ->where('st.id='.(int) $this->_id);
 		      try
 		      {
 		          $db->setQuery($query)->execute();

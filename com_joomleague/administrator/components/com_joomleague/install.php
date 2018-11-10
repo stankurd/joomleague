@@ -23,6 +23,10 @@ use Joomla\CMS\Dispatcher\Dispatcher;
 use Joomla\CMS\Table\Table;
 use Joomla\CMS\Installer\InstallerScript;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Filesystem\Path;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Filesystem\Folder;
 // create a link like https://opentranslators.transifex.com/projects/p/joomleague/language/en_GB/
 function createTXLink($lang) {
 	return '<a href="https://opentranslators.transifex.com/projects/p/joomleague/language/'.$lang.'/" target="_blank">'.$lang.'</a>';
@@ -38,7 +42,7 @@ class com_joomleagueInstallerScript
 		if ((int)ini_get('max_input_time') < $maxInputTime){
 			@set_time_limit($maxInputTime);
 		}
-		$this->install_admin_rootfolder	= JPATH::clean($parent->getParent()->getPath('source').'/administrator');
+		$this->install_admin_rootfolder	= Path::clean($parent->getParent()->getPath('source').'/administrator');
 		$this->install_rootfolder 		= $parent->getParent()->getPath('source');
 		$this->debug = false;
 		$time_start = microtime(true);
@@ -52,16 +56,16 @@ class com_joomleagueInstallerScript
         ?>
     	<ul class="nav nav-tabs" id="joomleague-install-tabs">
         	<li class="active">
-        		<a data-toggle="tab" href="#jlgcomponent"><?php echo $img_com.' '.JText::_('COM_JOOMLEAGUE_INSTALL_COMPONENT'); ?></a>
+        		<a data-toggle="tab" href="#jlgcomponent"><?php echo $img_com.' '.Text::_('COM_JOOMLEAGUE_INSTALL_COMPONENT'); ?></a>
         	</li>
         	<li>
-        		<a data-toggle="tab" href="#jlgdatabase"><?php echo $img_esp.' '.JText::_('COM_JOOMLEAGUE_INSTALL_DATABASE'); ?></a>
+        		<a data-toggle="tab" href="#jlgdatabase"><?php echo $img_esp.' '.Text::_('COM_JOOMLEAGUE_INSTALL_DATABASE'); ?></a>
     		</li>
         	<li>
-        		<a data-toggle="tab" href="#jlgmodules"><?php echo $img_mod.' '.JText::_('COM_JOOMLEAGUE_INSTALL_MODULES'); ?></a>
+        		<a data-toggle="tab" href="#jlgmodules"><?php echo $img_mod.' '.Text::_('COM_JOOMLEAGUE_INSTALL_MODULES'); ?></a>
     		</li>
     		<li>
-        		<a data-toggle="tab" href="#jlgplugins"><?php echo $img_plg.' '.JText::_('COM_JOOMLEAGUE_INSTALL_PLUGINS'); ?></a>
+        		<a data-toggle="tab" href="#jlgplugins"><?php echo $img_plg.' '.Text::_('COM_JOOMLEAGUE_INSTALL_PLUGINS'); ?></a>
     		</li>
     	</ul>
             
@@ -73,9 +77,9 @@ class com_joomleagueInstallerScript
 		echo HTMLHelper::_('bootstrap.addTab', $selector, 'jlgcomponent', 'jlgcomponent');
 		
 		if($update) {
-			echo '<h1>'.JText::_('COM_JOOMLEAGUE_INSTALL_JOOMLEAGUE_UPDATE').'</h1>';
+			echo '<h1>'.Text::_('COM_JOOMLEAGUE_INSTALL_JOOMLEAGUE_UPDATE').'</h1>';
 		} else {
-			echo '<h1>'.JText::_('COM_JOOMLEAGUE_INSTALL_JOOMLEAGUE_INSTALL').'</h1>';
+			echo '<h1>'.Text::_('COM_JOOMLEAGUE_INSTALL_JOOMLEAGUE_INSTALL').'</h1>';
 		}
 
 		echo $img_jlg;
@@ -152,9 +156,9 @@ class com_joomleagueInstallerScript
 		if($this->debug) {
 			echo '<br>copy ' . $src.'/language' . ' -> ' . JPATH_ADMINISTRATOR.'/language';
 		}
-		JFolder::copy($src.'/language', JPATH_ADMINISTRATOR.'/language', '', true);
+		Folder::copy($src.'/language', JPATH_ADMINISTRATOR.'/language', '', true);
 		
-		$languages = JFolder::folders($src.'/language');
+		$languages = Folder::folders($src.'/language');
 		foreach ($languages as $lang)
 		{
 			$arrAdminLanguages[] = str_replace('-', '_', $lang);
@@ -165,8 +169,8 @@ class com_joomleagueInstallerScript
 		if($this->debug) {
 			echo '<br>copy ' . $src.'/language' . ' -> ' . JPATH_SITE.'/language';
 		}
-		JFolder::copy($src.'/language', JPATH_SITE.'/language', '', true);
-		$languages = JFolder::folders($src.'/language');
+		Folder::copy($src.'/language', JPATH_SITE.'/language', '', true);
+		$languages = Folder::folders($src.'/language');
 		foreach ($languages as $lang)
 		{
 			$arrLanguages[] = str_replace('-', '_', $lang);
@@ -178,7 +182,7 @@ class com_joomleagueInstallerScript
 		} else {
 			echo 'none';
 		}
-		echo ' - <span style="color:green">'.JText::_('Success').'</span><br>';
+		echo ' - <span style="color:green">'.Text::_('Success').'</span><br>';
 
 		echo '<br>Available frontend translations: ';
 		if(count($arrLanguages)) {
@@ -186,7 +190,7 @@ class com_joomleagueInstallerScript
 		} else {
 			echo 'none';
 		}
-		echo ' - <span style="color:green">'.JText::_('Success').'</span><br>';
+		echo ' - <span style="color:green">'.Text::_('Success').'</span><br>';
 		
 		$time_end = microtime(true);
 		$time = $time_end - $time_start;
@@ -204,52 +208,52 @@ class com_joomleagueInstallerScript
 		$arrAdminModules = array(); 
 		$arrModules = array(); 
 		$src=$this->install_admin_rootfolder.'/components/com_joomleague/modules';
-		if(JFolder::exists($src)) {
+		if(Folder::exists($src)) {
 			$dest=JPATH_ADMINISTRATOR.'/modules';
-			$modules = JFolder::folders($src);
+			$modules = Folder::folders($src);
 			foreach ($modules as $module)
 			{
 				$arrAdminModules[$module] = array();
-				if(JFolder::exists($src.'/'.$module.'/language')) {
-					$langs = JFolder::folders($src.'/'. $module . '/language');
+				if(Folder::exists($src.'/'.$module.'/language')) {
+					$langs = Folder::folders($src.'/'. $module . '/language');
 					foreach ($langs as $lang)
 					{
 						$arrAdminModules[$module][] = str_replace('-', '_', $lang);
 					}
-					JFolder::copy($src.'/'.$module.'/language', JPATH_ADMINISTRATOR.'/language', '', true);
+					Folder::copy($src.'/'.$module.'/language', JPATH_ADMINISTRATOR.'/language', '', true);
 				}
 			}
-			JFolder::copy($src, $dest, '', true);
+			Folder::copy($src, $dest, '', true);
 		} else {
 			echo "No administration Module(s) copied<br>";
 		}
 		
 		$src = $this->install_rootfolder.'/components/com_joomleague/modules';
-		if(JFolder::exists($src)) {
+		if(Folder::exists($src)) {
 			$dest=JPATH_SITE.'/modules';
-			$modules = JFolder::folders($src);
+			$modules = Folder::folders($src);
 			foreach ($modules as $module)
 			{
 				$arrModules[$module] = array();
-				if(JFolder::exists($src.'/'.$module.'/language')) {
-					$langs = JFolder::folders($src.'/'. $module . '/language');
+				if(Folder::exists($src.'/'.$module.'/language')) {
+					$langs = Folder::folders($src.'/'. $module . '/language');
 					foreach ($langs as $lang)
 					{
 						$arrModules[$module][] = str_replace('-', '_', $lang);
 					}
-					JFolder::copy($src.'/'.$module.'/language', JPATH_SITE.'/language', '', true);
+					Folder::copy($src.'/'.$module.'/language', JPATH_SITE.'/language', '', true);
 				}
 			}
-			JFolder::copy($src, $dest, '', true);
+			Folder::copy($src, $dest, '', true);
 			$selector = "joomleagueaccordionadminmodules";
 			echo HTMLHelper::_('bootstrap.startAccordion', $selector);
-			$text =  JText::_('COM_JOOMLEAGUE_INSTALL_ADMINISTRATOR_MODULES');
+			$text =  Text::_('COM_JOOMLEAGUE_INSTALL_ADMINISTRATOR_MODULES');
 			echo HTMLHelper::_('bootstrap.addSlide', $selector, $text, 'adminslide');
 				
 			$m=0;
 			foreach($arrAdminModules as $k => $mod)
 			{
-				$text = JText::_('COM_JOOMLEAGUE_INSTALL_ADMINISTRATOR_MODULE_'.strtoupper($k)); 
+				$text = Text::_('COM_JOOMLEAGUE_INSTALL_ADMINISTRATOR_MODULE_'.strtoupper($k)); 
 				echo HTMLHelper::_('bootstrap.addSlide', $selector, $text, 'adminslide'.$m++);
 				echo 'Available translations: ';
 				if(isset($arrModules[$k]) && count($arrModules[$k])) {
@@ -257,7 +261,7 @@ class com_joomleagueInstallerScript
 				} else {
 					echo 'none';
 				}
-				echo ' - <span style="color:green">'.JText::_('Success').'</span>';
+				echo ' - <span style="color:green">'.Text::_('Success').'</span>';
 				echo HTMLHelper::_('bootstrap.endSlide');
 			}
 			
@@ -266,13 +270,13 @@ class com_joomleagueInstallerScript
 			
 			$selector = "joomleagueaccordionsitemodules";
 			echo HTMLHelper::_('bootstrap.startAccordion', $selector);
-			$text =  JText::_('COM_JOOMLEAGUE_INSTALL_SITE_MODULES');
+			$text =  Text::_('COM_JOOMLEAGUE_INSTALL_SITE_MODULES');
 			echo HTMLHelper::_('bootstrap.addSlide', $selector, $text, 'siteslide');
 				
 			$m=0;
 			foreach($arrModules as $k => $mod)
 			{
-				$text = JText::_('COM_JOOMLEAGUE_INSTALL_SITE_MODULE_'.strtoupper($k)); 
+				$text = Text::_('COM_JOOMLEAGUE_INSTALL_SITE_MODULE_'.strtoupper($k)); 
 				echo HTMLHelper::_('bootstrap.addSlide', $selector, $text, 'siteslide'.$m++);
 				echo 'Available translations: ';
 				if(isset($arrModules[$k]) && count($arrModules[$k])) {
@@ -280,7 +284,7 @@ class com_joomleagueInstallerScript
 				} else {
 					echo 'none';
 				}
-				echo ' - <span style="color:green">'.JText::_('Success').'</span>';
+				echo ' - <span style="color:green">'.Text::_('Success').'</span>';
 				echo HTMLHelper::_('bootstrap.endSlide');
 			}
 			echo HTMLHelper::_('bootstrap.endSlide');
@@ -305,37 +309,37 @@ class com_joomleagueInstallerScript
 		$time_start = microtime(true);
 		$arrPlugins = array(); 
 		$src = $this->install_rootfolder.'/components/com_joomleague/plugins';
-		if(JFolder::exists($src)) {
+		if(Folder::exists($src)) {
 			$dest=JPATH_SITE.'/plugins';
-			$groups = JFolder::folders($src);
+			$groups = Folder::folders($src);
 			foreach ($groups as $group)
 			{
-				$plugins = JFolder::folders($src.'/'.$group);
+				$plugins = Folder::folders($src.'/'.$group);
 				foreach ($plugins as $plugin)
 				{
 					$arrPlugins[$group.'/'.$plugin] = array();
-					if(JFolder::exists($src.'/'.$group.'/'.$plugin.'/language')) 
+					if(Folder::exists($src.'/'.$group.'/'.$plugin.'/language')) 
 					{
-						$langs = JFolder::folders($src.'/'.$group.'/'.$plugin.'/language');
+						$langs = Folder::folders($src.'/'.$group.'/'.$plugin.'/language');
 						foreach ($langs as $lang)
 						{
 							$arrPlugins[$group.'/'.$plugin][] = $lang;
 						}
-						JFolder::copy($src.'/'.$group.'/'.$plugin.'/language', JPATH_ADMINISTRATOR.'/language', '', true);
+						Folder::copy($src.'/'.$group.'/'.$plugin.'/language', JPATH_ADMINISTRATOR.'/language', '', true);
 					}
 				}
 			}
-			JFolder::copy($src, $dest, '', true);
+			Folder::copy($src, $dest, '', true);
 			
 			$selector = "joomleagueaccordionplugins";
 			echo HTMLHelper::_('bootstrap.startAccordion', $selector);
-			$text =  JText::_('COM_JOOMLEAGUE_INSTALL_PLUGINS');
+			$text =  Text::_('COM_JOOMLEAGUE_INSTALL_PLUGINS');
 			echo HTMLHelper::_('bootstrap.addSlide', $selector, $text, 'pluginsslide');
 				
 			$p=0;
 			foreach($arrPlugins as $k => $plg) 
 			{
-				$text = JText::_('COM_JOOMLEAGUE_INSTALL_PLUGIN_'.str_replace('/', '_', strtoupper($k))); 
+				$text = Text::_('COM_JOOMLEAGUE_INSTALL_PLUGIN_'.str_replace('/', '_', strtoupper($k))); 
 				echo HTMLHelper::_('bootstrap.addSlide', $selector, $text, 'pluginsslide'.$p++);
 				
 				echo 'Available translations: ';
@@ -344,7 +348,7 @@ class com_joomleagueInstallerScript
 				} else {
 					echo 'none';
 				}
-				echo ' - <span style="color:green">'.JText::_('Success').'</span>';
+				echo ' - <span style="color:green">'.Text::_('Success').'</span>';
 				echo HTMLHelper::_('bootstrap.endSlide');
 			}
 			
@@ -366,7 +370,7 @@ class com_joomleagueInstallerScript
 		$app = Factory::getApplication();
 	
 		// Get the root rules
-		$root = JTable::getInstance('asset');
+		$root = Table::getInstance('asset');
 		$root->loadByName('root.1');
 		$root_rules = new JAccessRules($root->rules);
 	
@@ -379,45 +383,23 @@ class com_joomleagueInstallerScript
 		$root->rules = (string)$root_rules;
 		if ( $root->store() ) {
 			echo 'Installed ACL Permissions';
-			echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
+			echo ' - <span style="color:green">'.Text::_('Success').'</span><br />';
 		}
 		else {
-			echo ' - <span style="color:red">'.JText::_('Failed').'</span><br />';
+			echo ' - <span style="color:red">'.Text::_('Failed').'</span><br />';
 		}
 		$time_end = microtime(true);
 		$time = $time_end - $time_start;
 		echo 'Duration: '.round($time).'s<br>';
 	}
 	
-	/*
 	public function updateDatabase() {
 		$time_start = microtime(true);
 
 		echo 'Updating Database';
-		echo ' - <span style="color:green">'.JText::_('Success').'</span>';
-		echo HTMLHelper::_('sliders.start','details',array(
-						'allowAllClose' => true,
-						'startTransition' => true,
-						true));
-		echo HTMLHelper::_('sliders.panel', 'Details', 'panel-details');
-
-		echo '<div style="width:100%; height: 200px; overflow: auto">';
-		JoomleagueModelDatabaseTools::ImportTables();
-		echo '</div>';
-		echo HTMLHelper::_('sliders.end');
-		echo '<br />';
-		$time_end = microtime(true);
-		$time = $time_end - $time_start;
-		echo '<br>Duration: '.round($time).'s<br>';
-	}
-	*/
-	public function updateDatabase() {
-		$time_start = microtime(true);
-
-		echo 'Updating Database';
-		echo ' - <span style="color:green">'.JText::_('Success').'</span>';
+		echo ' - <span style="color:green">'.Text::_('Success').'</span>';
 		$selector = "dbupdate";
-		$text =  JText::_('COM_JOOMLEAGUE_DB_UPDATE');
+		$text =  Text::_('COM_JOOMLEAGUE_DB_UPDATE');
 		
 		echo HTMLHelper::_('bootstrap.startAccordion', $selector);
 		echo HTMLHelper::_('bootstrap.addSlide',$selector, $text, 'db-details');
@@ -479,19 +461,19 @@ class com_joomleagueInstallerScript
 	
 	public function uninstall($adapter)
 	{
-		$params = JComponentHelper::getParams('com_joomleague');
+		$params = ComponentHelper::getParams('com_joomleague');
 		//Also uninstall db tables of JoomLeague?
 		$uninstallDB = $params->get('cfg_drop_joomleague_tables_when_uninstalled',0); 
 		
 		if ($uninstallDB)
 		{
-			echo JText::_('Also removing database tables of JoomLeague');
+			echo Text::_('Also removing database tables of JoomLeague');
 			include_once(JPATH_ADMINISTRATOR.'/components/com_joomleague/models/databasetools.php');
 			JoomleagueModelDatabaseTools::dropJoomLeagueTables();
 		}
 		else
 		{
-			echo JText::_('Database tables of JoomLeague are not removed');
+			echo Text::_('Database tables of JoomLeague are not removed');
 		}
 		?>
 		<div class="header">JoomLeague has been removed from your system!</div>
@@ -505,30 +487,30 @@ class com_joomleagueInstallerScript
 	public function createImagesFolder()
 	{
 		$time_start = microtime(true);
-		echo JText::_('Creating new Image Folder structure');
-		$src = JPath::clean($this->install_rootfolder.'/media/com_joomleague/database');
-		$dest = JPath::clean(JPATH_ROOT.'/images/com_joomleague/database');
+		echo Text::_('Creating new Image Folder structure');
+		$src = Path::clean($this->install_rootfolder.'/media/com_joomleague/database');
+		$dest = Path::clean(JPATH_ROOT.'/images/com_joomleague/database');
 	
-		if(JFolder::exists($src)) {
-			$ret = JFolder::copy($src, $dest, '', true);
+		if(Folder::exists($src)) {
+			$ret = Folder::copy($src, $dest, '', true);
 		}
-		JFile::copy(JPATH_ROOT.'/media/index.html', JPATH_ROOT.'/images/com_joomleague/index.html', '', true);
-		$folders = JFolder::folders($dest,'.',true);
+		File::copy(JPATH_ROOT.'/media/index.html', JPATH_ROOT.'/images/com_joomleague/index.html', '', true);
+		$folders = Folder::folders($dest,'.',true);
 		foreach ($folders as $folder) {
-			$src = JPath::clean(JPATH_ROOT.'/media/com_joomleague/'.$folder);
-			if(JFolder::exists($src)) {
-				$to = JPath::clean($dest.'/'.$folder);
-				if(!JFolder::exists($to)) {
-					$ret = JFolder::move($src, $to);
+			$src = Path::clean(JPATH_ROOT.'/media/com_joomleague/'.$folder);
+			if(Folder::exists($src)) {
+				$to = Path::clean($dest.'/'.$folder);
+				if(!Folder::exists($to)) {
+					$ret = Folder::move($src, $to);
 				} else {
-					$ret = JFolder::copy($src, $to, '', true);
-					$ret = JFolder::delete($src);
+					$ret = Folder::copy($src, $to, '', true);
+					$ret = Folder::delete($src);
 				}
 			}
 		}
-		//$from = JPath::clean(JPATH_ROOT.'/media/com_joomleague/database');
-		//$ret = JFolder::delete($from);
-		echo ' - <span style="color:green">'.JText::_('Success').'</span>';
+		//$from = Path::clean(JPATH_ROOT.'/media/com_joomleague/database');
+		//$ret = Folder::delete($from);
+		echo ' - <span style="color:green">'.Text::_('Success').'</span>';
 		$time_end = microtime(true);
 		$time = $time_end - $time_start;
 		echo '<br>Duration: '.round($time).'s<br>';
@@ -536,7 +518,7 @@ class com_joomleagueInstallerScript
 	
 	private function _addJoomLeagueBugtrackerModule() {
 		$title = 'JoomLeague Bugtracker';
-		$tblModules = JTable::getInstance('module');
+		$tblModules = Table::getInstance('module');
 		$tblModules->load(array('title'=>$title));
 		$tblModules->title			= $title;
 		$tblModules->module			= 'mod_feed';
@@ -562,13 +544,13 @@ class com_joomleagueInstallerScript
 			
 		// Initialise variables
 		$conf = Factory::getConfig();
-		$dispatcher = JDispatcher::getInstance();
+		$dispatcher = Dispatcher::getInstance();
 			
 		$options = array(
 				'defaultgroup' => ($tblModules->module) ? $tblModules->module : (isset($this->option) ? $this->option : Factory::getApplication()->input->get('option')),
 				'cachebase' => ($tblModules->client_id) ? JPATH_ADMINISTRATOR . '/cache' : $conf->get('cache_path', JPATH_SITE . '/cache'));
 			
-		$cache = JCache::getInstance('callback', $options);
+		$cache = Cache::getInstance('callback', $options);
 		$cache->clean();
 	}
 	

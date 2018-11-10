@@ -31,11 +31,9 @@ abstract class modJLGRankingHelper
 		if (!class_exists('JoomleagueModelRanking')) {
 			require_once JLG_PATH_SITE.'/models/ranking.php';
 		}
-		$model = BaseDatabaseModel::getInstance('project', 'JoomleagueModel');
+		$model = new JoomleagueModelRanking ();
 		$model->setProjectId($params->get('p'));
-
 		$project = $model->getProject();
-
 		$ranking = JLGRanking::getInstance($project);
 		$ranking->setProjectId($params->get('p'));
 		$divisionid = explode(':', $params->get('division_id', 0));
@@ -55,7 +53,7 @@ abstract class modJLGRankingHelper
 		}
 		$colors = array();
 		if ($params->get('show_rank_colors', 0)) {
-			$mdlRanking = JLGModel::getInstance("Ranking", "JoomleagueModel");
+		    $mdlRanking = new JoomleagueModelRanking ();
 			$mdlRanking->setProjectid($params->get('p'));
 			$config = $mdlRanking->getTemplateConfig("ranking");
 			$colors = $mdlRanking->getColors($config["colors"]);

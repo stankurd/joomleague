@@ -306,10 +306,23 @@ class JoomleagueModelMatchReport extends JoomleagueModelProject
 	           ->leftJoin('#__joomleague_match_event AS me ON et.id=me.event_type_id')
 	           ->where('me.match_id='.(int)$this->matchid)
 	           ->order('pet.ordering');
-		$db->setQuery($query);
+		/*$db->setQuery($query);
 		return $db->loadObjectList();
 	}
-
+*/
+	           try{
+	               $db->setQuery($query);
+	               $result = $db->loadObjectList();
+	               $result = array_unique($result, SORT_REGULAR );
+	           }
+	           catch (Exception $e)
+	           {
+	               $app->enqueueMessage(Text::_(__METHOD__.' '.__LINE__.' '.$e->getMessage()), 'error');
+	               $result = false;
+	           }
+	           $db->disconnect();
+	           return $result;
+	}
 	function getPlayground($pgid)
 	{
 		$this->playground = $this->getTable('Playground','Table');
@@ -424,9 +437,6 @@ class JoomleagueModelMatchReport extends JoomleagueModelProject
 			     ->select('*')
 			     ->from('#__joomleague_match_staff_statistic')
 			     ->where('match_id='. $db->Quote($match->id));
-			/*
-			$query=' SELECT * FROM #__joomleague_match_staff_statistic '
-			      .' WHERE match_id='. $db->Quote($match->id);*/
 			$db->setQuery($query);
 			$res=$db->loadObjectList();
 

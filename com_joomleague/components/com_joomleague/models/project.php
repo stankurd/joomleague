@@ -1055,14 +1055,14 @@ class JoomleagueModelProject extends BaseDatabaseModel
 		// Make sure the item is valid
 		if (!$row->check())
 		{
-		    throw new Exception($e->getMessage());
+		    throw new RuntimeException($e->getMessage());
 		    return false;
 		}
 
 		// Store the item to the database
 		if (!$row->store())
 		{
-		    throw new Exception($e->getMessage());
+		    throw new RuntimeException($e->getMessage());
 			return false;
 		}
 		return $row->id;
@@ -1227,7 +1227,7 @@ class JoomleagueModelProject extends BaseDatabaseModel
 	/**
 	 * Generate column expression for slug .
 	 *
-	 * @param   \JDatabaseQuery  $query  Current query instance.
+	 * @param   DatabaseQuery  $query  Current query instance.
 	 * @param   string           $id     Column id name.
 	 * @param   string           $alias  Column alias name.
 	 *

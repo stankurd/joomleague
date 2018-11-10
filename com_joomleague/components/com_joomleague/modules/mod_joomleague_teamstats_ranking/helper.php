@@ -9,6 +9,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -32,7 +33,7 @@ abstract class modJLGTeamStatHelper
 		if (!class_exists('JoomleagueModelProject')) {
 			require_once JLG_PATH_SITE.'/models/project.php';
 		}
-		$model = JLGModel::getInstance('project', 'JoomleagueModel');
+		$model = new JoomleagueModelProject ();
 		$model->setProjectId($params->get('p'));
 		$stat_id		= (int)$params->get('sid');
 				
@@ -52,6 +53,7 @@ abstract class modJLGTeamStatHelper
 		{
 			$ids[] = $db->Quote($r->team_id);
 		}
+		$query = $db->getQuery(true);
 		$query = ' SELECT t.*, c.logo_small '
 				   . '  , CASE WHEN CHAR_LENGTH( t.alias ) THEN CONCAT_WS( \':\', t.id, t.alias ) ELSE t.id END AS team_slug '
 				   . '  , CASE WHEN CHAR_LENGTH( c.alias ) THEN CONCAT_WS( \':\', c.id, c.alias ) ELSE c.id END AS club_slug '
@@ -112,7 +114,7 @@ abstract class modJLGTeamStatHelper
 		}
 		else
 		{
-			$imgTitle=JText::_($stat->name);
+			$imgTitle=Text::_($stat->name);
 			$imgTitle2=array(' title' => $imgTitle, ' alt' => $imgTitle);
 			$txt=HTMLHelper::image($stat->icon, $imgTitle, $imgTitle2);
 		}

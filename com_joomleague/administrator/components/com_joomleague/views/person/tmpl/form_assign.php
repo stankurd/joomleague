@@ -34,7 +34,7 @@ defined('_JEXEC') or die;
 			echo Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_ASSIGN_PID');
 			?>
 			</label></td>
-			<td><input onblur="$('project_name').value=''" type="text"
+			<td><input onblur="document.getElementById('project_name').value=''" type="text"
 				name="project_id" id="project_id" value="" size="5" maxlength="6" />
 				<input type="text" readonly name="project_name" id="project_name"
 				value="" size="50" /></td>
@@ -45,7 +45,7 @@ defined('_JEXEC') or die;
 			echo Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_ASSIGN_TID');
 			?>
 			</label></td>
-			<td><input onblur="$('team_name').value=''" type="text"
+			<td><input onblur="document.getElementById('team_name').value=''" type="text"
 				name="team_id" id="team_id" value="" size="5" maxlength="6" /> <input
 				type="text" readonly name="team_name" id="team_name" value=""
 				size="50" /></td>

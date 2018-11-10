@@ -15,7 +15,7 @@ use Joomla\Utilities\ArrayHelper;
 
 defined('_JEXEC') or die;
 
-abstract class modMatchesHelper {
+class modMatchesHelper {
 
 	public function __construct(& $params, $id, $match_id = 0) {
 		$this->module_id = $id;
@@ -442,7 +442,7 @@ abstract class modMatchesHelper {
 		else {
 		$this->next_last($row);
 		}
-		$origin = Factory ::getApplication()->input-> get('origin', $row->match_id, 'default', 'POST');
+		$origin = Factory ::getApplication()->input->get('origin', $row->match_id, 'default', 'POST');
 		$jsfunc = "jlml_loadMatch('%s', '%s', '" . $this->module_id . "', '" . $cnt . "', '%s')";
 		$options = array (
 			'height' => '16',

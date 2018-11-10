@@ -85,7 +85,6 @@ class JoomleagueControllerPersons extends JLGControllerAdmin
 			{
 			    $this->setMessage(Text::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_ERROR_PERSON_UPDATE').$model->getError(),'error');
 			}
-			//$app->enqueueMessage($msg);
 		}
 		$link = 'index.php?option=com_joomleague&view=persons';
 		$this->setRedirect($link);

@@ -58,7 +58,6 @@ class JoomleagueModelPosition extends JLGModelItem
 	{
 		$app = Factory::getApplication();
 		$db = Factory::getDbo();
-		$query = $db->getQuery(true);
 		$return = array();
 		if($pks)
 		{
@@ -69,10 +68,12 @@ class JoomleagueModelPosition extends JLGModelItem
 				$result = array();
 
 				// Project-position table
-				$query->select('ppos.id');
-				$query->from('#__joomleague_project_position AS ppos');
-				$query->join('LEFT','#__joomleague_position AS pos ON pos.id = ppos.position_id');
-				$query->where('pos.id = '.$pk);
+				$query = $db->getQuery(true);
+				$query
+        				->select($db->quoteName('ppos.id'))
+        				->from($db->quoteName('#__joomleague_project_position' , 'ppos'))
+        				->leftJoin($db->quoteName('#__joomleague_position' , 'pos') . ' ON ' .$db->quoteName('pos.id') . ' = ' .$db->quoteName('ppos.position_id'))
+        				->where($db->quoteName('pos.id') . ' = ' .$pk);
 				$db->setQuery($query);
 				if($db->loadResult())
 				{
@@ -80,11 +81,13 @@ class JoomleagueModelPosition extends JLGModelItem
 				}
 				
 				// Project-Referee table
-				$query->select('pref.id');
-				$query->from('#__joomleague_project_referee AS pref');
-				$query->join('LEFT','#__joomleague_project_position AS ppos ON ppos.id = pref.project_position_id');
-				$query->join('LEFT','#__joomleague_position AS pos ON pos.id = ppos.position_id');
-				$query->where('pos.id = '.$pk);
+				$query = $db->getQuery(true);
+				$query
+				        ->select($db->quoteName('pref.id'))
+				        ->from($db->quoteName('#__joomleague_project_referee' , 'pref'))
+				        ->leftJoin($db->quoteName('#__joomleague_project_position' , 'ppos') . ' ON ' .$db->quoteName('ppos.id') . ' = ' .$db->quoteName('pref.project_position_id'))
+				        ->leftJoin($db->quoteName('#__joomleague_position' , 'pos') . ' ON ' .$db->quoteName('pos.id') . ' = ' .$db->quoteName('ppos.position_id'))
+				        ->where($db->quoteName('pos.id') . ' = '  .$pk);
 				$db->setQuery($query);
 				if ($db->loadResult()) 
 				{
@@ -93,11 +96,12 @@ class JoomleagueModelPosition extends JLGModelItem
 
 				// Team-Player table
 				$query = $db->getQuery(true);
-				$query->select('tp.id');
-				$query->from('#__joomleague_team_player AS tp');
-				$query->join('LEFT','#__joomleague_project_position AS ppos ON ppos.id = tp.project_position_id');
-				$query->join('LEFT','#__joomleague_position AS pos ON pos.id = ppos.position_id');
-				$query->where('pos.id = '.$pk);
+				$query
+				        ->select($db->quoteName('tp.id'))
+				        ->from($db->quoteName('#__joomleague_team_player' , 'tp'))
+				        ->leftJoin($db->quoteName('#__joomleague_project_position' , 'ppos'). ' ON ' .$db->quoteName('ppos.id') . ' = ' .$db->quoteName('tp.project_position_id'))
+				        ->leftJoin($db->quoteName('#__joomleague_position' , 'pos') . ' ON ' .$db->quoteName('pos.id') . ' = ' .$db->quoteName('ppos.position_id'))
+				        ->where($db->quoteName('pos.id') . ' = ' .$pk);
 				$db->setQuery($query);
 				if ($db->loadResult())
 				{
@@ -106,11 +110,12 @@ class JoomleagueModelPosition extends JLGModelItem
 				
 				// Team-Staff table
 				$query = $db->getQuery(true);
-				$query->select('ts.id');
-				$query->from('#__joomleague_team_staff AS ts');
-				$query->join('INNER','#__joomleague_project_position AS ppos ON ppos.id = ts.project_position_id');
-				$query->join('INNER','#__joomleague_position AS pos ON pos.id = ppos.position_id');
-				$query->where('pos.id = '.$pk);
+				$query
+				        ->select($db->quoteName('ts.id'))
+				        ->from($db->quoteName('#__joomleague_team_staff' , 'ts'))
+				        ->innerJoin($db->quoteName('#__joomleague_project_position' , 'ppos') . ' ON ' .$db->quoteName('ppos.id') . ' = ' .$db->quoteName('ts.project_position_id'))
+				        ->innerJoin($db->quoteName('#__joomleague_position' , 'pos') . ' ON ' .$db->quoteName('pos.id') . ' = ' .$db->quoteName('ppos.position_id'))
+				        ->where($db->quoteName('pos.id') . ' = ' .$pk);
 				$db->setQuery($query);
 				if ($db->loadResult())
 				{
@@ -158,7 +163,7 @@ class JoomleagueModelPosition extends JLGModelItem
 					$db->setQuery($query);
 					$db->execute();
 				}
-				catch (Exception $e)
+				catch (RuntimeException $e)
 					{
 						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						return false;
@@ -173,7 +178,7 @@ class JoomleagueModelPosition extends JLGModelItem
 					$db->setQuery($query);
 					$db->execute();
 				}
-				catch (Exception $e)
+				catch (RuntimeException $e)
 					{
 						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						return false;
@@ -375,7 +380,7 @@ class JoomleagueModelPosition extends JLGModelItem
 				{
 					$db->execute();
 				}
-				catch (Exception $e)
+				catch (RuntimeException $e)
 					{
 						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						return false;
@@ -410,7 +415,7 @@ class JoomleagueModelPosition extends JLGModelItem
 					{
 						$db->execute();
 					}
-					catch (Exception $e)
+					catch (RuntimeException $e)
 					{
 						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						return false;
@@ -436,7 +441,7 @@ class JoomleagueModelPosition extends JLGModelItem
 				{
 					$db->execute();
 				}
-				catch (Exception $e)
+				catch (RuntimeException $e)
 					{
 						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						return false;
@@ -475,7 +480,7 @@ class JoomleagueModelPosition extends JLGModelItem
 					{
 						$db->execute();
 					}
-					catch (Exception $e)
+					catch (RuntimeException $e)
 					{
 						$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 						return false;
@@ -533,7 +538,7 @@ class JoomleagueModelPosition extends JLGModelItem
 			$db->setQuery($query);
 			$result = $db->loadObjectList();
 		}
-		catch (Exception $e)
+		catch (RuntimeException $e)
 		{
 			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
@@ -576,7 +581,7 @@ class JoomleagueModelPosition extends JLGModelItem
 			$db->setQuery($query);
 			$result = $db->loadObjectList();
 		}
-		catch (Exception $e)
+		catch (RuntimeException $e)
 		{
 			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			return false;
@@ -617,7 +622,7 @@ class JoomleagueModelPosition extends JLGModelItem
 				$db->setQuery($query);
 				$result = $db->loadObjectList();
 			}
-		catch (Exception $e)
+			catch (RuntimeException $e)
 			{
 				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
@@ -664,7 +669,7 @@ class JoomleagueModelPosition extends JLGModelItem
 				$db->setQuery($query);
 				$result = $db->loadObjectList();
 			}
-		catch (Exception $e)
+			catch (RuntimeException $e)
 			{
 				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;
@@ -709,7 +714,7 @@ class JoomleagueModelPosition extends JLGModelItem
 				$db->setQuery($query);
 				$result = $db->loadObjectList();
 			}
-		catch (Exception $e)
+			catch (RuntimeException $e)
 			{
 				$app->enqueueMessage(Text::_($e->getMessage()), 'error');
 				return false;

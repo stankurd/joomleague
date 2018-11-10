@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
 /**
  * Logo Module helper
  */
-abstract class modJLGLogoHelper
+class modJLGLogoHelper
 {
 
 	/**
@@ -30,7 +30,7 @@ abstract class modJLGLogoHelper
 		if (!class_exists('JoomleagueModelTeams')) {
 			require_once JLG_PATH_SITE.'/models/teams.php';
 		}
-		$model = JLGModel::getInstance('teams', 'JoomleagueModel');
+		$model = new JoomleagueModelTeams();
 		$model->setProjectId($params->get('p'));
 		
 		$project = $model->getProject();

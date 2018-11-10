@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -201,7 +202,7 @@ class JoomleagueViewResults extends JLGView
 			$attribs = array_merge(array('title' => $title, $attribs));
 			if ($type == 1)
 			{
-				if (!empty($team->logo_small) && JFile::exists($team->logo_small))
+				if (!empty($team->logo_small) && File::exists($team->logo_small))
 				{
 					$image=HTMLHelper::image($team->logo_small, $title, $attribs);
 				}

@@ -28,7 +28,7 @@ abstract class modJLGEventsrankingHelper
 		if (!class_exists('JoomleagueModelEventsRanking')) {
 			require_once JLG_PATH_SITE.'/models/eventsranking.php';
 		}
-		$model = JLGModel::getInstance('eventsranking', 'JoomleagueModel');
+		$model = new JoomleagueModelEventsRanking();
 		$model->projectid	= modJLGEventsrankingHelper::getId($params, 'p');
 		$model->divisionid  = modJLGEventsrankingHelper::getId($params, 'divisionid');
 		$model->teamid		= modJLGEventsrankingHelper::getId($params, 'tid');

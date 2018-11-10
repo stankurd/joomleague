@@ -104,10 +104,11 @@ class modJLGResultsHelper
 	{
 		$db = Factory::getDbo();
 		$query =$db->getQuery(true);
-		$query = ' SELECT * FROM #__joomleague_round '
-		       . ' WHERE id = '. $db->Quote($roundid)
-		       . '   AND project_id = '. $db->Quote($project_id)
-		            ;
+		$query
+		      ->select('*')
+		      ->from('#__joomleague_round')
+		      ->where('id = '. $db->Quote($roundid))
+		      ->where('project_id = '. $db->Quote($project_id));
 		$db->setQuery($query);
 		$res = $db->loadObject();
 		return $res;
@@ -155,12 +156,13 @@ class modJLGResultsHelper
 	{		
 		$db = Factory::getDbo();
 		$query =$db->getQuery(true);
-		$query = ' SELECT r.id AS roundid, r.round_date_first '
-		       . ' FROM #__joomleague_round AS r '
-		       . ' WHERE project_id = '. $db->Quote($project_id)
-		       . '   AND DATEDIFF(CURDATE(), CASE WHEN r.round_date_last IS NOT NULL THEN DATE(r.round_date_last) ELSE DATE(r.round_date_first) END) >= 0'
-		       . ' ORDER BY r.round_date_first DESC '
-		            ;
+		$query
+		      ->select('r.id AS roundid')
+		      ->select('r.round_date_first')
+		      ->from('#__joomleague_round AS r')
+		      ->where('project_id = '. $db->Quote($project_id))
+		      ->where('DATEDIFF(CURDATE(), CASE WHEN r.round_date_last IS NOT NULL THEN DATE(r.round_date_last) ELSE DATE(r.round_date_first) END) >= 0')
+		      ->order('r.round_date_first DESC');
 		$db->setQuery($query);
 		$res = $db->loadResult();
 		return $res;
@@ -171,12 +173,13 @@ class modJLGResultsHelper
 	{
 		$db = Factory::getDbo();
 		$query =$db->getQuery(true);
-		$query = ' SELECT r.id AS roundid, r.round_date_first '
-		       . ' FROM #__joomleague_round AS r '
-		       . ' WHERE project_id = '. $db->Quote($project_id)
-		       . '   AND DATEDIFF(CURDATE(), DATE(r.round_date_first)) < 0'
-		       . ' ORDER BY r.round_date_first ASC '
-		            ;
+		$query
+		      ->select('r.id AS roundid')
+		      ->select('r.round_date_first')
+		      ->from('#__joomleague_round AS r')
+		      ->where('project_id = '. $db->Quote($project_id))
+		      ->where('DATEDIFF(CURDATE(), DATE(r.round_date_first)) < 0')
+		      ->order('r.round_date_first ASC');
 		$db->setQuery($query);
 		$res = $db->loadResult();
 		return $res;		

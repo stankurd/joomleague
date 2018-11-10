@@ -543,6 +543,7 @@ class JoomleagueViewMatchReport extends JLGView
 
 	function getHtmlImageForTips($picture,$width=0,$height=0)
 	{
+	    //$picture = URI::root().$picture;
 		$picture = Uri::root(true).'/'.str_replace(JPATH_SITE.'/', "", $picture);
 		if($width > 0 && $height==0) {
 			return '&lt;img src=\''.$picture.'\' width=\''.$width.'\' /&gt;';
@@ -556,3 +557,20 @@ class JoomleagueViewMatchReport extends JLGView
 		return '&lt;img src=\''.$picture.'\' /&gt;';
 	}
 }
+	/*function getHtmlImageForTips($picture,$width=0,$height=0)
+	{
+	    $picture = JURI::root().$picture;
+	    if($width > 0 && $height==0) {
+	        return '&lt;img src=&quot;'.$picture.'&quot; width=&quot;'.$width.'&quot; /&gt;';
+	    }
+	    if($height>0 && $width==0) {
+	        return '&lt;img src=&quot;'.$picture.'&quot;height=&quot;'.$height.'&quot;/&gt;';
+	    }
+	    if($height > 0 && $width > 0) {
+	        return '&lt;img src=&quot;'.$picture.'&quot;height=&quot;'.$height.'&quot; width=&quot;'.$width.'&quot; /&gt;';
+	    }
+	    return '&lt;img src=&quot;'.$picture.'&quot; /&gt;';
+	}
+	
+}
+*/

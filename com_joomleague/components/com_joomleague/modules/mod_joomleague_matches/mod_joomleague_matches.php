@@ -12,6 +12,7 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Helper\ModuleHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
@@ -49,10 +50,10 @@ div.tool-tip div.tool-title a.sticky_close{
 	height:16px;
 }
 ');
-JHtml::_('behavior.tooltip');
+HTMLHelper::_('behavior.tooltip');
 $doc->addScriptDeclaration('
-  window.addEvent(\'domready\', function() {
-    if ($$(\'#modJLML'.$module->id.'holder .jlmlTeamname\')) addJLMLtips(\'#modJLML'.$module->id.'holder .jlmlTeamname\', \'over\');
+  jQuery(\'domready\', function() {
+    if (jQuery(\'#modJLML'.$module->id.'holder .jlmlTeamname\')) addJLMLtips(\'#modJLML'.$module->id.'holder .jlmlTeamname\', \'over\');
   }
   );
   ');

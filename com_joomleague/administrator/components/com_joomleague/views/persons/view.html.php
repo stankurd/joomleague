@@ -127,7 +127,7 @@ class JoomleagueViewPersons extends JLGView
 		JLToolBarHelper::publishList('persons.publish');
 		JLToolBarHelper::unpublishList('persons.unpublish');
 		JLToolBarHelper::divider();
-		ToolbarHelper::saveGroup(
+		JLToolbarHelper::saveGroup(
 		    [
 		        ['apply', 'persons.saveshort'],
 		    ],

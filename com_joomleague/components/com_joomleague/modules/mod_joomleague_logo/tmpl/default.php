@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 /**
  * Joomleague
@@ -14,7 +15,7 @@ defined('_JEXEC') or die;
 // check if any results returned
 $items = count($list['teams']);
 if (!$items) {
-	echo '<p class="modjlglogo">' . JText::_('MOD_JOOMLEAGUE_LOGO_NO_ITEMS') . '</p>';
+	echo '<p class="modjlglogo">' . Text::_('MOD_JOOMLEAGUE_LOGO_NO_ITEMS') . '</p>';
 	return;
 }
 $nametype = $params->get('nametype');

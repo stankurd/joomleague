@@ -1,6 +1,7 @@
 <?php
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\Controller\BaseController;
 use Joomla\CMS\MVC\Controller\FormController;
 use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Filter\InputFilter;
@@ -27,7 +28,7 @@ class JLGControllerForm extends FormController
 
 	/**
 	 * Override CreateModel so we can point to the JLGModel
-	 * @see JControllerLegacy::createModel()
+	 * @see BaseController::createModel()
 	 */
 	protected function createModel($name, $prefix = '', $config = array())
 	{
@@ -42,7 +43,7 @@ class JLGControllerForm extends FormController
 
 	/**
 	 * override default createView function
-	 * @see JControllerLegacy::createView()
+	 * @see BaseController::createView()
 	 */
 	protected function createView($name, $prefix = '', $type = '', $config = array())
 	{

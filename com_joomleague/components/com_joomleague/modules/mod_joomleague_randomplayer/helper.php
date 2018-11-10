@@ -96,7 +96,7 @@ class modJLGRandomplayerHelper
 		// Setting variables
 		Factory :: getApplication()->input->set('p', $result->project_id); 		// projectid
 		Factory :: getApplication()->input->set('pid', $result->person_id); 	// personid
-		Factory :: getApplication()->input->set('pt', $projectteamid); // project-team
+		Factory :: getApplication()->input->set('pt', $projectteamid);          // project-team
 
 		if (!class_exists('JoomleagueModelPlayer')) {
 			require_once JLG_PATH_SITE.'/models/player.php';

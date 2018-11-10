@@ -26,7 +26,7 @@ abstract class modJLGSportsHelper
 		if (!class_exists('JoomleagueModelSportsType')) {
 			require_once JLG_PATH_SITE.'/models/sportstype.php';
 		}
-		$model = JLGModel::getInstance('sportstype', 'JoomleagueModel');
+		$model = new JoomleagueModelSportsType ();
 		$model->setId($params->get('sportstypes'));
 		
 		return array(

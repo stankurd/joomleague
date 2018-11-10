@@ -76,45 +76,47 @@ $dateformat = "DATE_FORMAT(p.birthday,'%Y-%m-%d') AS date_of_birth";
 if ($params->get('use_which') <= 1)
 {
     $query = $db->getQuery(true);
-	$query="SELECT p.id, p.birthday, p.firstname, p.nickname, p.lastname,
-			p.picture AS default_picture, p.country, 
-			DATE_FORMAT(p.birthday, '%m-%d')AS daymonth,
-			YEAR( CURRENT_DATE( ) ) as year,
-
-			(YEAR( CURRENT_DATE( ) ) - YEAR( p.birthday ) +
-			IF(DATE_FORMAT(CURDATE(), '%m.%d') > DATE_FORMAT(p.birthday, '%m.%d'), 1, 0)) AS age,
-
-			$dateformat, tp.picture,
-
-			(TO_DAYS(DATE_ADD(p.birthday, INTERVAL
-			(YEAR(CURDATE()) - YEAR(p.birthday) +
-			IF(DATE_FORMAT(CURDATE(), '%m.%d') >
-			DATE_FORMAT(p.birthday, '%m.%d'), 1, 0))
-			YEAR)) - TO_DAYS( CURDATE())+0) AS days_to_birthday,
-
-			'person' AS func_to_call, '' project_id, '' team_id,
-			'pid' AS id_to_append, 1 AS type,
-
-			pt.team_id, pt.project_id
-
-			FROM #__joomleague_person p 
-			INNER JOIN #__joomleague_team_player tp ON tp.person_id = p.id 
-			INNER JOIN #__joomleague_project_team pt ON pt.id = tp.projectteam_id 
-			WHERE p.published = 1 AND p.birthday != '0000-00-00'";
-			
-	if ($usedteams!='') $query .= " AND pt.team_id IN (".$usedteams.") ";
-
-	if ($p!='' && $p>0) $query .= " AND pt.project_id IN (".$p.") ";
-
-	$query .= " GROUP BY p.id, tp.picture, pt.team_id, pt.project_id ";
+    $query
+            ->select('p.id')
+            ->select('p.birthday')
+            ->select('p.firstname')
+            ->select('p.nickname')
+            ->select('p.lastname')
+            ->select('p.picture AS default_picture')
+            ->select('p.country')
+            ->select('DATE_FORMAT(p.birthday, \'%m-%d\')AS daymonth')
+            ->select('YEAR( CURRENT_DATE( ) ) as year')
+            ->select('(YEAR( CURRENT_DATE( ) ) - YEAR( p.birthday ) + IF(DATE_FORMAT(CURDATE(), \'%m.%d\') > DATE_FORMAT(p.birthday, \'%m.%d\'), 1, 0)) AS age')
+            ->select($dateformat)
+            ->select('tp.picture')
+            ->select('(TO_DAYS(DATE_ADD(p.birthday, INTERVAL (YEAR(CURDATE()) - YEAR(p.birthday) +
+			IF(DATE_FORMAT(CURDATE(), \'%m.%d\') > DATE_FORMAT(p.birthday, \'%m.%d\'), 1, 0)) YEAR)) - TO_DAYS( CURDATE())+0) AS days_to_birthday')
+            ->select('\'person\' AS func_to_call')
+            ->select('\'\' project_id')
+            ->select('\'\' team_id')
+            ->select('\'pid\' AS id_to_append')
+            ->select('1 AS type')
+            ->select('pt.team_id')
+            ->select('pt.project_id')
+            ->from('#__joomleague_person p')
+            ->innerJoin('#__joomleague_team_player tp ON tp.person_id = p.id')
+            ->innerJoin('#__joomleague_project_team pt ON pt.id = tp.projectteam_id')
+            ->where('p.published = 1')
+            ->where('p.birthday != \'0000-00-00\'');
+            if ($usedteams!=''){
+	    $query->where('pt.team_id IN (' .$usedteams. ')');
+            }
+            if ($p!='' && $p>0){
+                $query->where('pt.project_id IN ('.$p.')');
+            }
+            $query->group('p.id');
 
 	$maxDays = $params->get('maxdays');
 	if ((strlen($maxDays) > 0) && (intval($maxDays) >= 0))
 	{
-		$query .= " HAVING days_to_birthday <= " . intval($maxDays);
+	    $query->having('days_to_birthday <= ' . intval($maxDays));
 	}
-
-	$query .= " ORDER BY days_to_birthday ASC ";
+	$query->order('days_to_birthday ASC');
 
 	if ($params->get('limit') > 0) $query .= " LIMIT " . $params->get('limit');
 
@@ -126,32 +128,33 @@ if ($params->get('use_which') <= 1)
 if ($params->get('use_which') == 2 || $params->get('use_which') == 0)
 {
     $query = $db->getQuery(true);
-	$query="SELECT p.id, p.birthday, p.firstname, p.nickname, p.lastname,
-			p.picture AS default_picture, p.country, 
-			DATE_FORMAT(p.birthday, '%m-%d')AS daymonth,
-			YEAR( CURRENT_DATE( ) ) as year,
-
-			(YEAR( CURRENT_DATE( ) ) - YEAR( p.birthday ) +
-			IF(DATE_FORMAT(CURDATE(), '%m.%d') > DATE_FORMAT(p.birthday, '%m.%d'), 1, 0)) AS age,
-
-			$dateformat, ts.picture,
-
-			(TO_DAYS(DATE_ADD(p.birthday, INTERVAL
-			(YEAR(CURDATE()) - YEAR(p.birthday) +
-			IF(DATE_FORMAT(CURDATE(), '%m.%d') >
-			DATE_FORMAT(p.birthday, '%m.%d'), 1, 0))
-			YEAR)) - TO_DAYS( CURDATE())+0) AS days_to_birthday,
-
-			'staff' AS func_to_call, '' project_id, '' team_id,
-			'tsid' AS id_to_append, 2 AS type, 
-
-			pt.team_id, pt.project_id
-
-			FROM #__joomleague_person p
-			INNER JOIN #__joomleague_team_staff ts ON ts.person_id = p.id 
-			INNER JOIN #__joomleague_project_team pt ON pt.id = ts.projectteam_id 
-			WHERE p.published = 1 AND p.birthday != '0000-00-00'";
-
+    $query
+    ->select('p.id')
+    ->select('p.birthday')
+    ->select('p.firstname')
+    ->select('p.nickname')
+    ->select('p.lastname')
+    ->select('p.picture AS default_picture')
+    ->select('p.country')
+    ->select('DATE_FORMAT(p.birthday, \'%m-%d\')AS daymonth')
+    ->select('YEAR( CURRENT_DATE( ) ) as year')
+    ->select('(YEAR( CURRENT_DATE( ) ) - YEAR( p.birthday ) + IF(DATE_FORMAT(CURDATE(), \'%m.%d\') > DATE_FORMAT(p.birthday, \'%m.%d\'), 1, 0)) AS age')
+    ->select($dateformat)
+    ->select('ts.picture')
+    ->select('(TO_DAYS(DATE_ADD(p.birthday, INTERVAL (YEAR(CURDATE()) - YEAR(p.birthday) +
+			IF(DATE_FORMAT(CURDATE(), \'%m.%d\') > DATE_FORMAT(p.birthday, \'%m.%d\'), 1, 0)) YEAR)) - TO_DAYS( CURDATE())+0) AS days_to_birthday')
+			->select('\'staff\' AS func_to_call')
+			->select('\'\' project_id')
+			->select('\'\' team_id')
+			->select('\'tsid\' AS id_to_append')
+			->select('2 AS type')
+			->select('pt.team_id')
+			->select('pt.project_id')
+			->from('#__joomleague_person p')
+			->innerJoin('#__joomleague_team_staff ts ON ts.person_id = p.id')
+			->innerJoin('#__joomleague_project_team pt ON pt.id = ts.projectteam_id')
+			->where('p.published = 1')
+			->where('p.birthday != \'0000-00-00\'');
 	// Exclude players from the staff query to avoid duplicate persons (if a person is both player and staff)
 	if(count($players) > 0)
 	{
@@ -160,23 +163,24 @@ if ($params->get('use_which') == 2 || $params->get('use_which') == 0)
 		{
 			$ids .= "," . $player['id'];
 		}
-		$query .= " AND p.id NOT IN (" . $ids . ") ";
+		$query->where('p.id NOT IN (' . $ids . ')');
 	}
 
-	if ($usedteams!='') $query .= " AND pt.team_id IN (".$usedteams.") ";
-
-	if ($p!='' && $p>0) $query .= " AND pt.project_id IN (".$p.") ";
-
-	$query .= " GROUP BY p.id, ts.picture, pt.team_id, pt.project_id ";
+	if ($usedteams!=''){
+	    $query->where('pt.team_id IN (' .$usedteams. ')');
+	}
+	if ($p!='' && $p>0){
+	    $query->where('pt.project_id IN (' . $p . ')');
+	}
+	$query->group('p.id');
+	//$query .= " GROUP BY p.id, ts.picture, pt.team_id, pt.project_id ";
 
 	$maxDays = $params->get('maxdays');
 	if ((strlen($maxDays) > 0) && (intval($maxDays) >= 0))
 	{
-		$query .= " HAVING days_to_birthday <= " . intval($maxDays);
+		$query->having('days_to_birthday <= ' . intval($maxDays));
 	}
-
-	$query .= " ORDER BY days_to_birthday ASC";
-
+	$query->order('days_to_birthday ASC');
 	if ($params->get('limit') > 0) $query .= " LIMIT " . $params->get('limit');
 
 	$db->setQuery($query);
