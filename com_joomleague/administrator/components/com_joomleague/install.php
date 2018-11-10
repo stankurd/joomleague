@@ -19,14 +19,19 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Access\Access;
 use Joomla\CMS\Cache\Cache;
 use Joomla\CMS\Component\ComponentHelper;
-use Joomla\CMS\Dispatcher\Dispatcher;
+use Joomla\CMS\Dispatcher;
 use Joomla\CMS\Table\Table;
-use Joomla\CMS\Installer\InstallerScript;
+use Joomla\CMS\Filesystem\Folder;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\HTML\HTMLHelper;
+<<<<<<< HEAD
 use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Filesystem\Folder;
+=======
+use Joomla\CMS\Language\Text;
+>>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 // create a link like https://opentranslators.transifex.com/projects/p/joomleague/language/en_GB/
 function createTXLink($lang) {
 	return '<a href="https://opentranslators.transifex.com/projects/p/joomleague/language/'.$lang.'/" target="_blank">'.$lang.'</a>';
@@ -392,7 +397,11 @@ class com_joomleagueInstallerScript
 		$time = $time_end - $time_start;
 		echo 'Duration: '.round($time).'s<br>';
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 	public function updateDatabase() {
 		$time_start = microtime(true);
 
@@ -494,7 +503,11 @@ class com_joomleagueInstallerScript
 		if(Folder::exists($src)) {
 			$ret = Folder::copy($src, $dest, '', true);
 		}
+<<<<<<< HEAD
 		File::copy(JPATH_ROOT.'/media/index.html', JPATH_ROOT.'/images/com_joomleague/index.html', '', true);
+=======
+		JFile::copy(JPATH_ROOT.'/media/index.html', JPATH_ROOT.'/images/com_joomleague/index.html', '', true);
+>>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 		$folders = Folder::folders($dest,'.',true);
 		foreach ($folders as $folder) {
 			$src = Path::clean(JPATH_ROOT.'/media/com_joomleague/'.$folder);
