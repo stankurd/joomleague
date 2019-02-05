@@ -63,15 +63,19 @@
 			type="calendar"
 			label="COM_JOOMLEAGUE_ADMIN_PERSON_BIRTHDAY"
 			class="inputbox"
-			format="%Y-%m-%d"
-			default="0000-00-00"/>
+			translateformat="true"
+			showtime="true"
+			size="22"
+			filter="user_utc""/>
 		<field
 			name="deathday"
 			type="calendar"
 			label="COM_JOOMLEAGUE_ADMIN_PERSON_DEATHDAY"
 			class="inputbox"
-			format="%Y-%m-%d"
-			default="0000-00-00"/>
+			translateformat="true"
+			showtime="true"
+			size="22"
+			filter="user_utc"/>
 		<field
 			name="height"
 			type="text"

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.1" client="site" method="upgrade">
+<extension type="module" version="4.0" client="site" method="upgrade">
 	<name>mod_joomleague_teamplayers</name>
 	<creationDate>July 2015</creationDate>
 	<author>JoomLeague Developers</author>
 	<authorEmail>andone@mfga.at</authorEmail>
 	<authorUrl>http://www.joomleague.at</authorUrl>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<copyright>(C) 2005-2016 joomleague.at. All rights reserved.</copyright>
-	<version>3.0.22.57ae969</version>
+	<copyright>(C) 2005-2019 joomleague.at. All rights reserved.</copyright>
+	<version>4.0.01.57ae969</version>
 	<description>MOD_JOOMLEAGUE_TEAMPLAYERS_XML_DESC</description>
 
 	<files>

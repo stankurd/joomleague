@@ -10,10 +10,13 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Mail\Mail;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
 
 require_once JLG_PATH_SITE.'/models/project.php';
+
 
 class JoomleagueModelPerson extends JoomleagueModelProject
 {
@@ -54,8 +57,43 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		    $db = Factory::getDbo();
 		    $query = $db->getQuery(true);
 		    $query
-        		    ->select($db->quoteName('p.*'))
-        		    ->select($this->constructSlug($db, 'slug', 'p.alias', 'p.id'))		    
+        		    ->select($db->quoteName('p.id'))
+        		    ->select($db->quoteName('p.contact_id'))
+        		    ->select($db->quoteName('p.firstname'))
+        		    ->select($db->quoteName('p.lastname'))
+        		    ->select($db->quoteName('p.nickname'))
+        		    ->select($db->quoteName('p.alias'))
+        		    ->select($db->quoteName('p.country'))
+        		    ->select($db->quoteName('p.knvbnr'))
+        		    ->select($db->quoteName('p.birthday'))
+        		    ->select($db->quoteName('p.deathday'))
+        		    ->select($db->quoteName('p.height'))
+        		    ->select($db->quoteName('p.weight'))
+        		    ->select($db->quoteName('p.picture'))
+        		    ->select($db->quoteName('p.show_pic'))
+        		    ->select($db->quoteName('p.show_persdata'))
+           		    ->select($db->quoteName('p.show_teamdata'))
+        		    ->select($db->quoteName('p.show_on_frontend'))
+        		    ->select($db->quoteName('p.info'))
+        		    ->select($db->quoteName('p.notes'))
+        		    ->select($db->quoteName('p.phone'))
+        		    ->select($db->quoteName('p.mobile'))
+        		    ->select($db->quoteName('p.email'))
+        		    ->select($db->quoteName('p.website'))
+        		    ->select($db->quoteName('p.address'))
+        		    ->select($db->quoteName('p.zipcode'))
+        		    ->select($db->quoteName('p.location'))
+        		    ->select($db->quoteName('p.state'))
+        		    ->select($db->quoteName('p.address_country'))
+        		    ->select($db->quoteName('p.extended'))
+        		    ->select($db->quoteName('p.position_id'))
+        		    ->select($db->quoteName('p.published'))
+        		    ->select($db->quoteName('p.ordering'))
+        		    ->select($db->quoteName('p.checked_out'))
+        		    ->select($db->quoteName('p.checked_out_time'))
+        		    ->select($db->quoteName('p.modified'))
+        		    ->select($db->quoteName('p.modified_by'))
+           		    ->select($this->constructSlug($db, 'slug', 'p.alias', 'p.id'))		    
         		    ->from($db->quoteName('#__joomleague_person', 'p'))
         		    ->where($db->quoteName('p.id') . ' = ' . $db->quote($this->personid));
 			$db->setQuery($query);
@@ -71,7 +109,21 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		    $db = Factory::getDbo();
 		    $query = $db->getQuery(true);
 		    $query
-		          ->select($db->quoteName('tp.*'))
+		          ->select($db->quoteName('tp.id'))
+		          ->select($db->quoteName('tp.project_id'))
+		          ->select($db->quoteName('tp.person_id'))
+		          ->select($db->quoteName('tp.project_position_id'))
+		          ->select($db->quoteName('tp.notes'))
+		          ->select($db->quoteName('tp.picture'))
+		          ->select($db->quoteName('tp.published'))
+		          ->select($db->quoteName('tp.extended'))
+		          ->select($db->quoteName('tp.ordering'))
+		          ->select($db->quoteName('tp.checked_out'))
+		          ->select($db->quoteName('tp.checked_out_time'))
+		          ->select($db->quoteName('tp.modified'))
+		          ->select($db->quoteName('tp.modified_by'))
+		          ->select($db->quoteName('tp.asset_id'))
+		          ->select($db->quoteName('tp.alias'))
 		          ->select($db->quoteName('pos.name' , 'position_name'))
 		          ->from($db->quoteName('#__joomleague_project_referee' , 'tp'))
 		          ->join('INNER', $db->quoteName('#__joomleague_project_referee', 'tp'))
@@ -89,7 +141,14 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		$query
-		      ->select($db->quoteName('pet.*'))
+		      ->select($db->quoteName('pet.id'))
+		      ->select($db->quoteName('pet.position_id'))
+		      ->select($db->quoteName('pet.eventtype_id'))
+		      ->select($db->quoteName('pet.ordering'))
+		      ->select($db->quoteName('pet.checked_out'))
+		      ->select($db->quoteName('pet.checked_out_time'))
+		      ->select($db->quoteName('pet.modified'))
+		      ->select($db->quoteName('pet.modified_by'))
 		      ->select($db->quoteName('et.name'))
 		      ->select($db->quoteName('et.icon'))
 		      ->from($db->quoteName('#__joomleague_position_eventtype' , 'pet'))
@@ -205,7 +264,22 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		$query
-		      ->select('et.*')
+		      ->select('et.id')
+		      ->select('et.name')
+		      ->select('et.alias')
+		      ->select('et.icon')
+		      ->select('et.parent')
+		      ->select('et.splitt')
+		      ->select('et.direction')
+		      ->select('et.double')
+		      ->select('et.suspension')
+		      ->select('et.sports_type_id')
+		      ->select('et.published')
+		      ->select('et.ordering')
+		      ->select('et.checked_out')
+		      ->select('et.checked_out_time')
+		      ->select('et.modified')
+		      ->select('et.modified_by')		      
 		      ->from('#__joomleague_eventtype AS et')
 		      ->innerJoin('#__joomleague_position_eventtype AS pet ON pet.eventtype_id = et.id')
 		      ->where('published = 1')
@@ -349,40 +423,85 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		}
 		return false;
 	}
-
+	/*
 	function _getProjectTeamIds4UserId($userId)
 	{
+	    // team_player
+	    $query = '	SELECT tp.projectteam_id
+					FROM #__joomleague_person AS pr
+					INNER JOIN #__joomleague_team_player AS tp ON tp.person_id=pr.id
+					LEFT JOIN #__contact_details AS cd ON cd.id=pr.contact_id
+					WHERE cd.user_id='.$userId.'
+					AND pr.published = 1
+					AND tp.published = 1 ';
+	    $this->_db->setQuery($query);
+	    $projectTeamIds = array();
+	    $projectTeamIds = $this->_db->loadColumn();
+	    // team_staff
+	    $query='	SELECT ts.projectteam_id
+				FROM #__joomleague_person pr
+				INNER JOIN #__joomleague_team_staff AS ts ON ts.person_id=pr.id
+				LEFT JOIN #__contact_details AS cd ON cd.id=pr.contact_id
+				WHERE cd.user_id='.$userId.'
+						AND pr.published = 1
+						AND ts.published = 1';
+	    $this->_db->setQuery($query);
+	    if(!empty($projectTeamIds)) {
+	        $projectTeamIds = array_merge($projectTeamIds, $this->_db->loadColumn());
+	    } else {
+	        $projectTeamIds = $this->_db->loadColumn();
+	    }
+	    return $projectTeamIds;
+	}
+*/
+	function _getProjectTeamIds4UserId($userId)
+	{
+	    $app = Factory::getApplication();
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
 		// team_player
 		$query
-		      ->select('tp.projectteam_id')
-		      ->from('#__joomleague_person AS pr')
-		      ->innerJoin('#__joomleague_team_player AS tp ON tp.person_id=pr.id')
-		      ->leftJoin('#__contact_details AS cd ON cd.id=pr.contact_id')
-		      ->where('cd.user_id='.$userId)
-		      ->where('pr.published = 1')
-		      ->where('tp.published = 1');
-		$db->setQuery($query);
-		$projectTeamIds = array();
-		$projectTeamIds = $db->loadColumn();
+        	  ->select($db->quoteName('tp.projectteam_id'))
+		      ->from($db->quoteName('#__joomleague_person' , 'pr'))
+		      ->innerJoin($db->quoteName('#__joomleague_team_player' , 'tp') . ' ON ' .$db->quoteName('tp.person_id') . ' = ' . $db->quoteName('pr.id'))
+		      ->leftJoin($db->quoteName('#__contact_details' , 'cd') . ' ON ' . $db->quoteName('cd.id') . ' = ' . $db->quote('pr.contact_id'))
+		      ->where($db->quoteName('cd.user_id') . ' = ' . $db->quote($userId))
+		      ->andwhere($db->quoteName('pr.published') . '= 1')
+		      ->andwhere($db->quoteName('tp.published') . '= 1');
+		      try {
+		    $db->setQuery($query);
+		    $projectTeamIds = array();
+		    $projectTeamIds = $db->loadColumn();
+		} catch (RuntimeException $e) {
+		    $app->enqueueMessage(Text::_($e->getMessage()), 'error');
+	  
+		}
+		
 		// team_staff
+		$query = $db->getQuery(true);
 		$query
-		      ->select('ts.projectteam_id')
-		      ->from('#__joomleague_person pr')
-		      ->innerJoin('#__joomleague_team_staff AS ts ON ts.person_id=pr.id')
-		      ->leftJoin('#__contact_details AS cd ON cd.id=pr.contact_id')
-		      ->where('cd.user_id='.$userId)
-		      ->where('pr.published = 1')
-              ->where('ts.published = 1');
+		      ->select($db->quoteName('ts.projectteam_id'))
+		      ->from($db->quoteName('#__joomleague_person' , 'pr'))
+		      ->innerJoin($db->quoteName('#__joomleague_team_staff' , 'ts') . ' ON ' . $db->quoteName('ts.person_id') . ' = ' .$db->quoteName('pr.id'))
+		      ->leftJoin($db->quoteName('#__contact_details' , 'cd') . ' ON ' . $db->quoteName('cd.id') . ' = ' . $db->quote('pr.contact_id'))
+		      ->where($db->quoteName('cd.user_id') . ' = ' .$db->quote($userId))
+		      ->andwhere($db->quoteName('pr.published') . '= 1') 
+		      ->andwhere($db->quoteName('ts.published') . '= 1');
+		 try {
 		$db->setQuery($query);
 		if(!empty($projectTeamIds)) {
 			$projectTeamIds = array_merge($projectTeamIds, $db->loadColumn());
 		} else {
 			$projectTeamIds = $db->loadColumn();
 		}
+        }
+        catch (RuntimeException $e) {
+            $app->enqueueMessage(Text::_($e->getMessage()), 'error');
+            
+        }
 		return $projectTeamIds;
 	}
+	 
 
 	function isContactDataVisible($config_showContactDataOnlyTeamMembers)
 	{
@@ -396,7 +515,7 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 			{
 				// get project_team id to user-id from team-player or team-staff
 				$projectTeamIds= JoomleagueModelPerson::_getProjectTeamIds4UserId($user->id);
-				$teamplayer=JoomleagueModelPlayer::getTeamPlayer();
+				$teamplayer=JoomleagueModelPlayer::getTeamPlayers();
 				if(isset($teamplayer->projectteam_id)) {
 					$result=in_array($teamplayer->projectteam_id, $projectTeamIds);
 				}

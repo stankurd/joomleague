@@ -151,8 +151,7 @@ class JoomleagueModelTeamInfo extends JoomleagueModelProject
 		} else {
 			$query->where($db->quoteName('t.id') . ' = ' . (int)$this->teamid);
 		}
-		$query->order($db->quoteName('s.ordering') . ($config['ordering_teams_seasons'] == '1' ? ' DESC' : ' ASC'));
-
+		$query->order($db->quoteName('s.name') . ($config['ordering_teams_seasons'] == '1' ? ' DESC' : ' ASC'));
 	    $db->setQuery($query);
 	    $seasons = $db->loadObjectList();
 

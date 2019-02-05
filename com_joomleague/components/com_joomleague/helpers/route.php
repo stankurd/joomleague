@@ -12,7 +12,9 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Component\Router\RouterBase;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Menu\SiteMenu;
 
 defined('_JEXEC') or die;
 
@@ -24,8 +26,26 @@ jimport('joomla.application.component.helper');
  *
   * @since 2.5
  */
-class JoomleagueHelperRoute
+abstract class JoomleagueHelperRoute
 {
+    public $app;
+    public $menu;
+    
+    public function __construct($app = null, $menu = null)
+    {
+       
+    }
+    
+    /**
+     * Generic method to preprocess a URL
+     *
+     * @param   array  $query  An associative array of URL arguments
+     *
+     * @return  array  The URL arguments to use to assemble the subsequent URL.
+     *
+     * @since   3.3
+     */
+   
 	public static function getTeamInfoRoute( $projectid, $teamid )
 	{
 		$params = array(	"option" => "com_joomleague",
@@ -722,14 +742,21 @@ class JoomleagueHelperRoute
 	 */
 	public static function _findItem($query)
 	{
+	    $app = Factory::getApplication();
 		$component = ComponentHelper::getComponent('com_joomleague');
-		$site = new JSite();
-		$menus	= $site->getMenu();
+	    $menus		= Factory::getApplication()->getMenu();
 		$items	= $menus->getItems('component', $component->id);
 		$user 	=  Factory::getUser();
 		$access = (int)$user->get('aid');
-
-		if ($items) {
+		{
+		if (is_array($items))
+		{
+		    // If only the option and itemid are specified in the query, return that item.
+		    if (!isset($query['view']) && !isset($query['id']) && !isset($query['catid']) && isset($query['Itemid'])) {
+		        $itemid = (int) $query['Itemid'];
+		    }
+		    
+		if (!$items) {
 			foreach($items as $item)
 			{
 				if ((@$item->query['view'] == $query['view']) && ($item->published == 1) && ($item->access <= $access)) {
@@ -803,4 +830,5 @@ class JoomleagueHelperRoute
 
 		return false;
 	}
-}
+		}
+	}}

@@ -268,8 +268,18 @@ class JoomleagueViewCurve extends JLGView
 			$y_legend->set_style( '{font-size: 15px; color: #778877}' );
 			$chart->set_y_legend( $y_legend );
 
-			//$this->chartdata_ . $division->id =  $chart;
+			//$this->'chartdata_'.$division->id =  &$chart;
+			//$this->assignRef( 'chartdata_'.$division->id,  $chart);
+			//unset($chart);
 			
+			if ( $division->id )
+			{
+			$this->chartdata_.$division->id = $chart;
+			}
+			else
+			{
+			$this->chartdata_0 = $chart;
+			}
 			unset($chart);
 		}
 	}

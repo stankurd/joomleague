@@ -26,6 +26,7 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 	var $projectteamid=0;
 	var $projectteam=null;
 	var $team=null;
+	
 
 	/**
 	 * caching for team in out stats
@@ -113,10 +114,25 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 			$db = Factory::getDbo();
 			$query = $db->getQuery(true);
 			$query
-			     ->select($db->quoteName('t.*'))
+			     ->select($db->quoteName('t.id'))
+			     ->select($db->quoteName('t.club_id'))
+			     ->select($db->quoteName('t.name'))
+			     ->select($db->quoteName('t.short_name'))
+			     ->select($db->quoteName('t.middle_name'))
+			     ->select($db->quoteName('t.alias'))
+			     ->select($db->quoteName('t.website'))
+			     ->select($db->quoteName('t.info'))
+			     ->select($db->quoteName('t.notes'))
+			     ->select($db->quoteName('t.picture'))
+			     ->select($db->quoteName('t.extended'))
+			     ->select($db->quoteName('t.ordering'))
 			     ->select($this->constructSlug($db, 'slug', 't.alias', 't.id'))
 			     ->from($db->quoteName('#__joomleague_team' , 't'))
 			     ->where($db->quoteName('t.id')  . ' = ' .$db->quote($this->teamid));
+				/* $query='	SELECT	t.*,
+								CASE WHEN CHAR_LENGTH(t.alias) THEN CONCAT_WS(\':\',t.id,t.alias) ELSE t.id END AS slug
+						FROM #__joomleague_team AS t
+						WHERE t.id='.$db->Quote($this->teamid);*/
 			$db->setQuery($query);
 			$this->team=$db->loadObject();
 		}
@@ -149,7 +165,8 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 		    ->select($db->quoteName('tp.injury' , 'injury'))
 		    ->select($db->quoteName('tp.suspension' , 'suspension'))
 		    ->select($db->quoteName('pt.team_id'))
-		    ->select($db->quoteName('tp.away' , 'away,tp.picture'))
+		    ->select($db->quoteName('tp.away' , 'away'))
+		    ->select($db->quoteName('tp.picture'))
 		    ->select($db->quoteName('pos.name' , 'position'))
 		    ->select($db->quoteName('ppos.position_id'))
 		    ->select($db->quoteName('ppos.id' , 'pposid'))								
@@ -232,24 +249,40 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		$query
-		->select($db->quoteName('pet.*'))
+		->select($db->quoteName('pet.eventtype_id'))
+		->select($db->quoteName('pet.position_id'))
+		->select($db->quoteName('pet.ordering'))		
 		->select($db->quoteName('ppos.id' , 'pposid'))
 		->select($db->quoteName('ppos.position_id'))
 		->select($db->quoteName('et.name' , 'name'))
 		->select($db->quoteName('et.icon' , 'icon'))
+		->select($db->quoteName('et.ordering'))
 		->from($db->quoteName('#__joomleague_position_eventtype' , 'pet'))
 		->innerJoin($db->quoteName('#__joomleague_eventtype' , 'et') . ' ON ' . $db->quoteName('et.id') . ' = ' . $db->quoteName('eventtype_id'))
 		->innerJoin($db->quoteName('#__joomleague_project_position' , 'ppos') . ' ON ' . $db->quoteName('ppos.position_id') . ' = ' . $db->quoteName('pet.position_id'))
 		->where($db->quoteName('ppos.project_id') . ' = ' . $db->quote($this->projectid))
 		->where($db->quoteName('et.published') . ' = ' . ('1'));
-		
 		if ($positionId > 0)
 		{
 			$query->where($db->quoteName('pet.position_id') . ' = ' . (int)$positionId);
 			
 		}
-		$query->order($db->quoteName('pet.ordering') . ' , ' . $db->quote('et.ordering'));
-		
+		$query->order($db->quoteName('pet.ordering') . ' , ' . $db->quoteName('et.ordering'));
+		/*
+		$query='	SELECT	pet.*,
+							ppos.id AS pposid,
+							ppos.position_id,
+							et.name AS name,
+							et.icon AS icon
+					FROM #__joomleague_position_eventtype AS pet
+					INNER JOIN #__joomleague_eventtype AS et ON et.id=pet.eventtype_id
+					INNER JOIN #__joomleague_project_position AS ppos ON ppos.position_id=pet.position_id
+					WHERE ppos.project_id='.$this->projectid.' AND et.published=1 ';
+					if ($positionId > 0)
+		{
+			$query .= ' AND pet.position_id='.(int)$positionId;
+		}
+		$query .= ' ORDER BY pet.ordering, et.ordering';*/
 		$db->setQuery($query);
 		$result=$db->loadObjectList();
 		if ($result)
@@ -321,14 +354,12 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 				. '   AND tp.project_position_id = '.$db->Quote($projectPositionId)
 				. '   AND et.id = '.$db->Quote($eventTypeId)
 				;
-				           
 	    $db->setQuery('SELECT tp.person_id, COALESCE(sum(me.event_sum),0) AS value'.$query.' GROUP BY tp.person_id');
 		$result=$db->loadObjectList('person_id');
 
 		$db->setQuery('SELECT COALESCE(sum(me.event_sum),0) AS value'.$query);
 		$result["totals"] = $db->loadObject();
 		$result["totals"]->person_id = 0;
-
 		return $result;
 	}
 
@@ -351,19 +382,24 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 		if (empty($this->_teaminout))
 		{
 			$projectteam_id = $db->quote($this->projectteamid);
-			$query = '	SELECT	tp1.id AS tp_id1, tp1.person_id AS person_id1,
-						tp2.id AS tp_id2, tp2.person_id AS person_id2,
-						m.id AS mid, mp.came_in, mp.out, mp.in_for
-					FROM #__joomleague_match AS m
-					INNER JOIN #__joomleague_round r ON m.round_id=r.id
-					INNER JOIN #__joomleague_project AS p ON p.id=r.project_id
-					INNER JOIN #__joomleague_match_player AS mp ON mp.match_id=m.id
-					INNER JOIN #__joomleague_team_player AS tp1 ON tp1.id=mp.teamplayer_id
-					LEFT JOIN #__joomleague_team_player AS tp2 ON tp2.id = mp.in_for
-					WHERE tp1.projectteam_id = '.$projectteam_id.'
-					AND m.published = 1
-					AND p.published = 1
-					';
+			$query
+			     ->select('tp1.id AS tp_id1')
+			     ->select('tp1.person_id AS person_id1')
+			     ->select('tp2.id AS tp_id2')
+			     ->select('tp2.person_id AS person_id2')
+			     ->select('m.id AS mid')
+			     ->select('mp.came_in')
+			     ->select('mp.out')
+			     ->select('mp.in_for')
+			     ->from('#__joomleague_match AS m')
+			     ->innerJoin('#__joomleague_round r ON m.round_id=r.id')
+			     ->innerJoin('#__joomleague_project AS p ON p.id=r.project_id')
+			     ->innerJoin('#__joomleague_match_player AS mp ON mp.match_id=m.id')
+			     ->innerJoin('#__joomleague_team_player AS tp1 ON tp1.id=mp.teamplayer_id')
+			     ->leftJoin('#__joomleague_team_player AS tp2 ON tp2.id = mp.in_for')
+			     ->where('tp1.projectteam_id = '.$projectteam_id)
+			     ->where('m.published = 1')
+			     ->where('p.published = 1');
 			$db->setQuery($query);
 			$rows = $db->loadObjectList();
 			$played = array();
@@ -541,7 +577,37 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
 	    $query
-	    ->select($db->quoteName('tp.*'))
+	    ->select($db->quoteName('tp.id'))
+	    ->select($db->quoteName('tp.projectteam_id'))
+	    ->select($db->quoteName('tp.person_id'))
+	    ->select($db->quoteName('tp.project_position_id'))
+	    ->select($db->quoteName('tp.active'))
+	    ->select($db->quoteName('tp.jerseynumber'))
+	    ->select($db->quoteName('tp.notes'))
+	    ->select($db->quoteName('tp.picture'))
+	    ->select($db->quoteName('tp.extended'))
+	    ->select($db->quoteName('tp.injury'))
+	    ->select($db->quoteName('tp.injury_date'))
+	    ->select($db->quoteName('tp.injury_end'))
+	    ->select($db->quoteName('tp.injury_detail'))
+	    ->select($db->quoteName('tp.injury_date_start'))
+	    ->select($db->quoteName('tp.injury_date_end'))
+	    ->select($db->quoteName('tp.suspension'))
+	    ->select($db->quoteName('tp.suspension_date'))
+	    ->select($db->quoteName('tp.suspension_end'))
+	    ->select($db->quoteName('tp.suspension_detail'))
+	    ->select($db->quoteName('tp.susp_date_start'))
+	    ->select($db->quoteName('tp.susp_date_end'))
+	    ->select($db->quoteName('tp.away'))
+	    ->select($db->quoteName('tp.away_date'))
+	    ->select($db->quoteName('tp.away_end'))
+	    ->select($db->quoteName('tp.away_detail'))
+	    ->select($db->quoteName('tp.away_date_start'))
+	    ->select($db->quoteName('tp.away_date_end'))
+	    ->select($db->quoteName('tp.published'))
+	    ->select($db->quoteName('tp.ordering'))
+	    ->select($db->quoteName('tp.position_id'))
+	    ->select($db->quoteName('tp.alias'))
 	    ->select($db->quoteName('pt.picture'))
 	    ->select($db->quoteName('ppos.id' , 'pposid'))
 	    ->select($db->quoteName('pos.id' , 'position_id'))

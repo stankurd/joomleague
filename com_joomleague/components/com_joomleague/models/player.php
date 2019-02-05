@@ -16,8 +16,8 @@ defined('_JEXEC') or die();
 // include of person model
 // this will include project-data+specific functions
 //require_once('person.php');
-//require_once JLG_PATH_SITE.'/models/person.php';
-JLoader::register('JoomleagueModelPerson', JLG_PATH_SITE.'/models/person.php');
+require_once JLG_PATH_SITE.'/models/person.php';
+//JLoader::register('JoomleagueModelPerson', JLG_PATH_SITE.'/models/person.php');
 
 class JoomleagueModelPlayer extends JoomleagueModelPerson
 {

@@ -8,11 +8,36 @@
 * other free or open source software licenses.
 * See COPYRIGHT.php for copyright notices and details.
 */
+use Joomla\CMS\Factory;
 
 require_once 'joomleague.core.php';
 
-
-
+abstract class JoomleagueRouter
+{
+    public function __construct($app = null, $menu = null)
+    {
+        if ($app)
+        {
+            $this->app = $app;
+        }
+        else
+        {
+            $this->app = Factory::getApplication();
+        }
+        
+        if ($menu)
+        {
+            $this->menu = $menu;
+        }
+        else
+        {
+            $this->menu = $this->app->getMenu();
+        }
+    }
+    
+   
+    
+    
 /**
  * this array will be used to build and parse the segments
  *
@@ -232,4 +257,5 @@ function JoomleagueParseRoute($segments) {
 		}
 	}
 	return $vars;
+}
 }
