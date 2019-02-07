@@ -9,11 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die;
-use Joomla\CMS\Factory;
-use Joomla\CMS\Form\Form;
-use Joomla\CMS\Language\Text;
-use Joomla\CMS\Table\Table;
-use Joomla\Registry\Registry;
+
 require_once (JPATH_COMPONENT.'/models/list.php');
 
 /**
@@ -29,7 +25,7 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 
 	function __construct()
 	{
-		$app = Factory::getApplication();
+		$app = JFactory::getApplication();
 
 		parent::__construct();
 		$project_id=$app->getUserState('com_joomleague'.'project',0);
@@ -50,10 +46,10 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 
 	function _buildQuery()
 	{
-		$db		= Factory::getDbo();
-		$app	= Factory::getApplication();
-		$input	= $app->input;
-		$option = $input->get('option');
+		$db		= JFactory::getDbo();
+		$app	= JFactory::getApplication();
+		$jinput	= $app->input;
+		$option = $jinput->get('option');
 		$project_id = $app->getUserState($option.'project');
 		
 		$filter_order		= $app->getUserStateFromRequest($option.'tmpl_filter_order',		'filter_order',		'tmpl.template',	'cmd');
@@ -107,13 +103,12 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 	
 	/**
 	 * check that all templates in default location have a corresponding record,except if project has a master template
-	 *  @todo $form = JHtml::getInstance($file, $xmldir.'/'.$file);
 	 */
 	function checklist()
 	{
-		$app 		= Factory::getApplication();
-		$input		= $app->input;
-		$project_id	= $app->getUserState('com_joomleague'.'project',0);
+		$app 			= JFactory::getApplication();
+		$jinput			= $app->input;
+		$project_id		= $app->getUserState('com_joomleague'.'project',0);
 		
 		if (!$project_id){
 			return;
@@ -122,7 +117,9 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 		$defaultpath	= JPATH_COMPONENT_SITE.'/settings';
 		$predictionTemplatePrefix = 'prediction';
 		
-		$db 	= Factory::getDbo();
+		$db 	= JFactory::getDbo();
+		$app	= JFactory::getApplication();
+		$jinput = $app->input;
 
 		// get info from project
 		$query = $db->getQuery(true);
@@ -151,7 +148,7 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 		// add default folder
 		$xmldirs[] = $defaultpath.'/default';
 		
-		$extensions = JoomleagueHelper::getExtensions($input->getInt('p'));
+		$extensions = JoomleagueHelper::getExtensions($jinput->getInt('p'));
 		foreach ($extensions as $e => $extension) {
 			$extensiontpath =  JPATH_COMPONENT_SITE.'/extensions/'.$extension;
 			if (is_dir($extensiontpath.'/settings/default'))
@@ -181,8 +178,8 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 
 						if ((empty($records)) || (!in_array($template,$records)))
 						{
-							$jRegistry = new Registry();
-							$form = Form::getInstance($file, $xmldir.'/'.$file);
+							$jRegistry = new JRegistry();
+							$form = JForm::getInstance($file, $xmldir.'/'.$file);
 							$fieldsets = $form->getFieldsets();
 							foreach ($fieldsets as $fieldset) {
 								foreach($form->getFieldset($fieldset->name) as $field) {
@@ -191,31 +188,25 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 							}
 							$defaultvalues = $jRegistry->toString('ini');
 							
-							$tblTemplate_Config = Table::getInstance('TemplateConfig', 'Table');
+							$tblTemplate_Config = JTable::getInstance('TemplateConfig', 'Table');
 							$tblTemplate_Config->template = $template;
 							$tblTemplate_Config->title = $file;
 							$tblTemplate_Config->params = $defaultvalues;
 							$tblTemplate_Config->project_id = $project_id;
 							
 								// Make sure the item is valid
-							try{
-							$tblTemplate_Config->check();
-							}
-							catch (Exception $e)
+							if (!$tblTemplate_Config->check())
 							{
-								$app->enqueueMessage(Text::_($e->getMessage()), 'error');
+								$this->setError($this->_db->getErrorMsg());
 								return false;
 							}
 					
 							// Store the item to the database
-							try {
-							$tblTemplate_Config->store();
+							if (!$tblTemplate_Config->store())
+							{
+								$this->setError($this->_db->getErrorMsg());
+								return false;
 							}
-							catch (Exception $e)
-								{
-									$app->enqueueMessage(Text::_($e->getMessage()), 'error');
-									return false;
-								}
 							array_push($records,$template);
 						}
 					}
@@ -227,11 +218,11 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 
 	function getMasterTemplatesList()
 	{
-		$app 			= Factory::getApplication();
-		$input			= $app->input;
+		$app 			= JFactory::getApplication();
+		$jinput			= $app->input;
 		$project_id		= $app->getUserState('com_joomleague'.'project',0);
 		
-		$db = Factory::getDbo();
+		$db = JFactory::getDbo();
 		
 		// get current project settings
 		$query = $db->getQuery(true);
@@ -289,7 +280,7 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 		
 		$query->order('t.title');
 		
-		// Build in Text of template title here and sort it afterwards
+		// Build in JText of template title here and sort it afterwards
 		$db->setQuery($query);
 		
 		$current = $db->loadObjectList();
@@ -300,7 +291,7 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 
 	function getMasterName()
 	{
-		$db = Factory::getDbo();
+		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		
 		$query->select('master.name');

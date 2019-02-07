@@ -123,44 +123,12 @@ class JoomleagueModelTemplate extends JoomleagueModelItem
 	
 
 	function getAllTemplatesList($project_id,$master_id)
-	{/**
-		$db = Factory::getDbo();
-		
+	{
+		$db = Factory::getDbo();		
 		$query = $db->getQuery(true);
-		$query->select('template');
-		$query->from('#__joomleague_template_config');
-		$query->where('project_id = '.$project_id);
-		$db->setQuery($query);
-		$currentTemplates = $db->loadColumn();
-		
-		$currentTemplates2 = array();
-		foreach ($currentTemplates AS $currentTemplate) {
-			$currentTemplates2[] = $db->Quote($currentTemplate);
-		}
-		
-		$currentTemplates = implode(',', $currentTemplates2);
-		
-		$query = $db->getQuery(true);
-		$query->select(array('id AS value','title AS text'));
-		$query->from('#__joomleague_template_config');
-		$query->where(array('project_id = '.$master_id,'template NOT IN ('.$currentTemplates.')'));
-		$query->order('title');
-		$db->setQuery($query);
-		$result1 = $db->loadObjectList();
-		
-		$query = $db->getQuery(true);
-		$query->select(array('id as value','title as text'));
-		$query->from('#__joomleague_template_config');
-		$query->where('project_id = '.$project_id);
-		$query->order('title');
-		$db->setQuery($query);
-		$result2 = $db->loadObjectList();
-		
-		$return = array_merge($result2,$result1);
-		
-		return $return;*/
 	    $db = Factory::getDbo();
 	    $query = $db->getQuery(true);
+	    $query->select('template');
 	    $query='SELECT template FROM #__joomleague_template_config WHERE project_id='.$project_id;
 	    $db->setQuery($query);
 	    $current=$db->loadColumn();
@@ -176,7 +144,6 @@ class JoomleagueModelTemplate extends JoomleagueModelItem
 				ORDER BY title";
 	    $db->setQuery($query);
 	    $result2=$db->loadObjectList();
-	    //return array_merge($result2,$result1);
 	    $return = array_merge($result2,$result1);  
 	    return $return;
 	}
