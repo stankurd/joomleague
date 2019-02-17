@@ -7,6 +7,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -20,7 +21,7 @@ defined('_JEXEC') or die;
 	<?php if ($this->project->project_type == 'DIVISIONS_LEAGUE') :?>
 
 	<div class="control-group">
-		<div class="control-label"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_DIV');	?></div>
+		<div class="control-label"><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_DIV');	?></div>
 		<div class="controls">
 			<?php
 		$inputappend = '';

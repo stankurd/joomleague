@@ -92,13 +92,13 @@ class JoomleagueViewTemplates extends JLGView
 	{
 		// Set toolbar items for the page
 		JLToolbarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_TITLE'),'jl-FrontendSettings');
-		ToolbarHelper::saveGroup(
+		/*ToolbarHelper::saveGroup(
 		    [
 		        ['save', 'template.save'],
 		    ],
 		    'btn-success'
-		    );
-		//JLToolBarHelper::save('template.save');
+		    );*/
+		JLToolBarHelper::save('template.save');
 		if ($this->project->master_template)
 		{
 			JLToolBarHelper::deleteList('COM_JOOMLEAGUE_GLOBAL_CONFIRM_DELETE','template.remove');

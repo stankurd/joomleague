@@ -1,5 +1,8 @@
-<?php use Joomla\CMS\Factory;
+<?php
+
+use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die; ?>
 <!-- START: matches -->
@@ -9,22 +12,22 @@ if ($this->config['type_matches'] != 0) {
 ?>
 	<tr class='sectiontableheader'>
 		<?php if ($this->config['show_matchday'] == 1) { ?>
-		<th><?php echo JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDAY'); ?></th>
+		<th><?php echo Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDAY'); ?></th>
 		<?php } ;?>
 		<?php if ($this->config['show_match_nr'] == 1) { ?>
-		<th><?php echo JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_NR'); ?></th>
+		<th><?php echo Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_NR'); ?></th>
 		<?php } ;?>		
 		<?php if ($this->config['show_match_date'] == 1) { ?>
-		<th><?php echo JText::_('COM_JOOMLEAGUE_CLUBPLAN_DATE');?></th>
+		<th><?php echo Text::_('COM_JOOMLEAGUE_CLUBPLAN_DATE');?></th>
 		<?php } ;?>
 		<?php if ($this->config['show_match_time'] == 1) { ?>
-		<th><?php echo JText::_('COM_JOOMLEAGUE_CLUBPLAN_TIME'); ?></th>
+		<th><?php echo Text::_('COM_JOOMLEAGUE_CLUBPLAN_TIME'); ?></th>
 		<?php } ;?>
 		<?php if ($this->config['show_time_present'] == 1) { ?>
-		<th><?php echo JText::_('COM_JOOMLEAGUE_CLUBPLAN_TIME_PRESENT'); ?></th>
+		<th><?php echo Text::_('COM_JOOMLEAGUE_CLUBPLAN_TIME_PRESENT'); ?></th>
 		<?php } ;?>
 		<?php if ($this->config['show_league'] == 1) { ?>
-		<th><?php echo JText::_('COM_JOOMLEAGUE_CLUBPLAN_LEAGUE'); ?></th>
+		<th><?php echo Text::_('COM_JOOMLEAGUE_CLUBPLAN_LEAGUE'); ?></th>
 		<?php } ;?>		
 		<?php if ($this->config['show_club_logo'] == 1) { ?>
 		<th></th>
@@ -36,12 +39,12 @@ if ($this->config['type_matches'] != 0) {
 		<?php } ?>
 		<th>&nbsp;</th>
 		<?php if ($this->config['show_referee'] == 1) { ?>
-		<th><?php echo JText::_('COM_JOOMLEAGUE_CLUBPLAN_REFEREE'); ?></th>
+		<th><?php echo Text::_('COM_JOOMLEAGUE_CLUBPLAN_REFEREE'); ?></th>
 		<?php } ;?>
 		<?php if ($this->config['show_playground'] == 1) { ?>
-		<th><?php echo JText::_('COM_JOOMLEAGUE_CLUBPLAN_PLAYGROUND'); ?></th>
+		<th><?php echo Text::_('COM_JOOMLEAGUE_CLUBPLAN_PLAYGROUND'); ?></th>
 		<?php } ;?>
-		<th colspan=3 align='center'><?php echo JText::_('COM_JOOMLEAGUE_CLUBPLAN_RESULT'); ?></th>
+		<th colspan=3 align='center'><?php echo Text::_('COM_JOOMLEAGUE_CLUBPLAN_RESULT'); ?></th>
 		<?php if ($this->config['show_thumbs_picture'] == 1) { ?>
 		<th align='center'>&nbsp;</th>
 		<?php } ;?>
@@ -56,7 +59,7 @@ $club_id = $jinput->getInt('cid') != -1 ? $jinput->getInt('cid') : false;
 $prevDate = '';
 foreach ($this->matches as $game)
 {
-	$gameDate = JoomleagueHelper::getMatchDate($game, JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDATE'));
+	$gameDate = JoomleagueHelper::getMatchDate($game, Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDATE'));
 	if ($this->config['type_matches'] == 0) {
 		if ($gameDate != $prevDate) {
 			if($this->config['showMatchDateLine']) {
@@ -422,14 +425,14 @@ foreach ($this->matches as $game)
 		<td>
 			<?php if(isset($team1) && isset($team2) && ($team1 == $team2)) {
 				echo HTMLHelper::image('media/com_joomleague/jl_images/draw.png', 'draw.png',
-					array('title' => JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_DRAW'))) . '&nbsp;';
+					array('title' => Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_DRAW'))) . '&nbsp;';
 			} else {
 				if($team1 > $team2) {
 					echo HTMLHelper::image("media/com_joomleague/jl_images/thumbs_up.png", "thumbs_up.png",
-						array("title" => JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_WON'))) . "&nbsp;";
+						array("title" => Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_WON'))) . "&nbsp;";
 				} elseif($team2 > $team1) {
 					echo HTMLHelper::image("media/com_joomleague/jl_images/thumbs_down.png", "thumbs_down.png",
-						array("title" => JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_LOST'))) . "&nbsp;";
+						array("title" => Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_LOST'))) . "&nbsp;";
 				}
 				else
 				{

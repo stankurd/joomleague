@@ -8,6 +8,9 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 defined('_JEXEC') or die;
 
@@ -37,30 +40,30 @@ class JoomleagueViewProjectteam extends JLGView
 		$model = $this->getModel();
 		$lists = array();
 
-		$mdlProject = JModelLegacy::getInstance('project','JoomleagueModel');
+		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
 		$project = $mdlProject->getItem($project_id);
 
 		// build the html select list for days of week
 		if($trainingData = $model->getTrainingData($this->item->id))
 		{
 			$daysOfWeek = array(
-					0 => JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT'),
-					1 => JText::_('COM_JOOMLEAGUE_GLOBAL_MONDAY'),
-					2 => JText::_('COM_JOOMLEAGUE_GLOBAL_TUESDAY'),
-					3 => JText::_('COM_JOOMLEAGUE_GLOBAL_WEDNESDAY'),
-					4 => JText::_('COM_JOOMLEAGUE_GLOBAL_THURSDAY'),
-					5 => JText::_('COM_JOOMLEAGUE_GLOBAL_FRIDAY'),
-					6 => JText::_('COM_JOOMLEAGUE_GLOBAL_SATURDAY'),
-					7 => JText::_('COM_JOOMLEAGUE_GLOBAL_SUNDAY')
+					0 => Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT'),
+					1 => Text::_('COM_JOOMLEAGUE_GLOBAL_MONDAY'),
+					2 => Text::_('COM_JOOMLEAGUE_GLOBAL_TUESDAY'),
+					3 => Text::_('COM_JOOMLEAGUE_GLOBAL_WEDNESDAY'),
+					4 => Text::_('COM_JOOMLEAGUE_GLOBAL_THURSDAY'),
+					5 => Text::_('COM_JOOMLEAGUE_GLOBAL_FRIDAY'),
+					6 => Text::_('COM_JOOMLEAGUE_GLOBAL_SATURDAY'),
+					7 => Text::_('COM_JOOMLEAGUE_GLOBAL_SUNDAY')
 			);
 			$dwOptions = array();
 			foreach($daysOfWeek as $key=>$value)
 			{
-				$dwOptions[] = JHtml::_('select.option',$key,$value);
+				$dwOptions[] = HTMLHelper::_('select.option',$key,$value);
 			}
 			foreach($trainingData as $td)
 			{
-				$lists['dayOfWeek'][$td->id] = JHtml::_('select.genericlist',$dwOptions,'dw_' . $td->id,'class="input-medium"','value','text',
+				$lists['dayOfWeek'][$td->id] = HTMLHelper::_('select.genericlist',$dwOptions,'dw_' . $td->id,'class="input-medium"','value','text',
 						$td->dayofweek);
 			}
 			unset($daysOfWeek);
@@ -70,8 +73,8 @@ class JoomleagueViewProjectteam extends JLGView
 		if($project->project_type == 'DIVISIONS_LEAGUE') // No divisions
 		{
 			// build the html options for divisions
-			$division[] = JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
-			$mdlDivisions = JModelLegacy::getInstance('divisions','JoomLeagueModel');
+			$division[] = HTMLHelper::_('select.option','0',Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DIVISION'));
+			$mdlDivisions = BaseDatabaseModel::getInstance('divisions','JoomLeagueModel');
 			if($res = $mdlDivisions->getDivisions($project_id))
 			{
 				$division = array_merge($division,$res);
@@ -100,11 +103,11 @@ class JoomleagueViewProjectteam extends JLGView
 	 */
 	protected function addToolbar()
 	{
-		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_TITLE').': '.$this->item->name);
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_TITLE').': '.$this->item->name);
 		JLToolBarHelper::apply('projectteam.apply');
 		JLToolBarHelper::save('projectteam.save');
 		JLToolBarHelper::cancel('projectteam.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
-		JToolBarHelper::divider();
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::divider();
+		JLToolBarHelper::help('screen.joomleague',true);
 	}
 }

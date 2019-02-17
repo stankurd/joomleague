@@ -1,4 +1,5 @@
 <?php use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -9,7 +10,7 @@ defined('_JEXEC') or die;
 			<td><?php
 				echo HTMLHelper::calendar(JoomleagueHelper::convertDate($this->startdate,1),'startdate','startdate',$dateformat);
 				echo ' - '.HTMLHelper::calendar(JoomleagueHelper::convertDate($this->enddate,1),'enddate','enddate',$dateformat);
-				?><input type='submit' class='button' name='reload View' value='<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_FILTER'); ?>' /></td>
+				?><input type='submit' class='button' name='reload View' value='<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_FILTER'); ?>' /></td>
 			<td><?php
 			if($this->club)
 			{

@@ -11,6 +11,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Helper\ModuleHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 //HTMLHelper::_('behavior.framework'); // mootools
@@ -33,7 +34,7 @@ $matches 		= modJoomleagueTickerHelper::getMatches($results, $params->get('p'), 
 
 if(empty($matches) || count($matches) == 0)
 {
-	echo JText::_("MOD_JOOMLEAGUE_TICKER_NOMATCHES");
+	echo Text::_("MOD_JOOMLEAGUE_TICKER_NOMATCHES");
 	return;
 } else {
 	$timezone 	= new DateTimeZone($params->get('timezone'));

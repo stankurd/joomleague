@@ -91,7 +91,7 @@ class JoomleagueModelDatabaseTool extends BaseDatabaseModel
 		echo HTMLHelper::_('bootstrap.startAccordion','tables',array(
 						'allowAllClose' => true,
 						'startTransition' => true,
-						true)); );
+						true));
 		foreach ($imports as $import)
 		{
 			$import=trim($import);

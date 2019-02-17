@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\Language\Text;
+
 /**
  * Joomleague
  *
@@ -10,7 +12,7 @@ defined('_JEXEC') or die;
 ?>
 <div>
 	<fieldset class="form-vertical">
-		<legend><?php echo JText::_('JCONFIG_PERMISSIONS_LABEL'); ?></legend>
+		<legend><?php echo Text::_('JCONFIG_PERMISSIONS_LABEL'); ?></legend>
 		<?php echo $this->form->getInput('rules'); ?>
 	</fieldset>
 </div>

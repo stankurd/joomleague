@@ -257,12 +257,12 @@ $document->addScript(Uri::root().'includes/js/joomla.javascript.js');
 			<legend><?php echo Text::_('COM_JOOMLEAGUE_PRED_USERS_EDIT_LABEL_AVATAR' );?>
 			</legend>
 			<table class="admintable">
-					<?php //foreach ($this->form->getFieldset('media') as $field): ?>
+					<?php foreach ($this->form->getFieldset('media') as $field): ?>
 					<tr>
-						<td class="key"><?php //echo $field->label; ?></td>
-						<td><?php //echo $field->input; ?></td>
+						<td class="key"><?php echo $field->label; ?></td>
+						<td><?php echo $field->input; ?></td>
 					</tr>					
-					<?php //endforeach; ?>
+					<?php endforeach; ?>
 			</table>
 		</fieldset>
 

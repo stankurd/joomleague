@@ -8,6 +8,11 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Factory;
+use Joomla\CMS\Form\Form;
+use Joomla\CMS\HTML\Registry;
+use Joomla\CMS\Table\Table;
+
 defined('_JEXEC') or die;
 
 require_once (JPATH_COMPONENT.'/models/list.php');
@@ -25,7 +30,7 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 
 	function __construct()
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 
 		parent::__construct();
 		$project_id=$app->getUserState('com_joomleague'.'project',0);
@@ -46,8 +51,8 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 
 	function _buildQuery()
 	{
-		$db		= JFactory::getDbo();
-		$app	= JFactory::getApplication();
+		$db		= Factory::getDbo();
+		$app	= Factory::getApplication();
 		$jinput	= $app->input;
 		$option = $jinput->get('option');
 		$project_id = $app->getUserState($option.'project');
@@ -106,7 +111,7 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 	 */
 	function checklist()
 	{
-		$app 			= JFactory::getApplication();
+		$app 			= Factory::getApplication();
 		$jinput			= $app->input;
 		$project_id		= $app->getUserState('com_joomleague'.'project',0);
 		
@@ -117,8 +122,8 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 		$defaultpath	= JPATH_COMPONENT_SITE.'/settings';
 		$predictionTemplatePrefix = 'prediction';
 		
-		$db 	= JFactory::getDbo();
-		$app	= JFactory::getApplication();
+		$db 	= Factory::getDbo();
+		$app	= Factory::getApplication();
 		$jinput = $app->input;
 
 		// get info from project
@@ -178,8 +183,8 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 
 						if ((empty($records)) || (!in_array($template,$records)))
 						{
-							$jRegistry = new JRegistry();
-							$form = JForm::getInstance($file, $xmldir.'/'.$file);
+							$jRegistry = new Registry();
+							$form = Form::getInstance($file, $xmldir.'/'.$file);
 							$fieldsets = $form->getFieldsets();
 							foreach ($fieldsets as $fieldset) {
 								foreach($form->getFieldset($fieldset->name) as $field) {
@@ -188,7 +193,7 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 							}
 							$defaultvalues = $jRegistry->toString('ini');
 							
-							$tblTemplate_Config = JTable::getInstance('TemplateConfig', 'Table');
+							$tblTemplate_Config = Table::getInstance('TemplateConfig', 'Table');
 							$tblTemplate_Config->template = $template;
 							$tblTemplate_Config->title = $file;
 							$tblTemplate_Config->params = $defaultvalues;
@@ -218,11 +223,11 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 
 	function getMasterTemplatesList()
 	{
-		$app 			= JFactory::getApplication();
+		$app 			= Factory::getApplication();
 		$jinput			= $app->input;
 		$project_id		= $app->getUserState('com_joomleague'.'project',0);
 		
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		
 		// get current project settings
 		$query = $db->getQuery(true);
@@ -291,7 +296,7 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 
 	function getMasterName()
 	{
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 		
 		$query->select('master.name');

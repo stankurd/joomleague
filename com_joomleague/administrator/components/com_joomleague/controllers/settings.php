@@ -13,6 +13,7 @@ use Joomla\CMS\Form\Form;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Table\Table;
+use Joomla\CMS\Access\Rules;
 
 defined('_JEXEC') or die;
 
@@ -176,7 +177,7 @@ class JoomleagueControllerSettings extends JoomleagueController
 		$data['params'] = $model->validate($form, $params);
 		// Save the rules.
 		if (isset($data['params']['rules'])) {
-		    $rules	= new JAccessRules($data['params']['rules']);
+		    $rules	= new Rules($data['params']['rules']);
 			$asset	= Table::getInstance('Asset');
 		
 			if (!$asset->loadByName($data['option'])) {

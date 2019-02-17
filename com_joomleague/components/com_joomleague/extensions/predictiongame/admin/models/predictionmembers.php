@@ -273,7 +273,7 @@ class JoomleagueModelPredictionMembers extends JoomleagueModelList
   $result = $db->loadResult(); 
 
 if ( !$result )
-  $app->enqueueMessage(JText::_('<br />memberlist id<pre>~' . print_r($value,true) . '~</pre><br />'),'Notice');
+  $app->enqueueMessage(Text::_('<br />memberlist id<pre>~' . print_r($value,true) . '~</pre><br />'),'Notice');
   //$table = 'predictionmember';
   $table = 'predictionentry';
   $rowproject = Table::getInstance( $table, 'Table' );

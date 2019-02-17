@@ -138,7 +138,7 @@ class JoomleagueModelPlayground extends JLGModelItem
 	 * @param	type The table type to instantiate
 	 * @param	string A prefix for the table class name. Optional.
 	 * @param	array Configuration array for model. Optional.
-	 * @return JTable database object
+	 * @return Table database object
 	 */
 	public function getTable($type = 'Playground',$prefix = 'Table',$config = array())
 	{
@@ -202,7 +202,7 @@ class JoomleagueModelPlayground extends JLGModelItem
 	/**
 	 * Prepare and sanitise the table prior to saving.
 	 *
-	 * @param   JTable  $table  A JTable object.
+	 * @param   Table  $table  A Table object.
 	 *
 	 * @return  void
 	 */

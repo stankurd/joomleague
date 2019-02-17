@@ -72,7 +72,7 @@ function setUpdatePart($val=1)
 <hr>
 <?php
 	$output=Text::sprintf('JoomLeague v%1$s - %2$s - Filedate: %3$s / %4$s',$version,$updateDescription,$updateFileDate,$updateFileTime);
-	JToolBarHelper::title($output);
+	JLToolBarHelper::title($output);
 
 	$totalUpdateParts=2; //2
 	setUpdatePart();

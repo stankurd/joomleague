@@ -8,6 +8,7 @@
 */
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -35,7 +36,7 @@ class JoomleagueViewAbout extends JLGView
 	 */
 	protected function addToolbar()
 	{
-	    JLToolbarHelper::title(JText::_('About'));
+	    JLToolbarHelper::title(Text::_('About'));
 		JLToolbarHelper::custom('about.back','back','back','Back',false);
 	}
 }

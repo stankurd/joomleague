@@ -10,6 +10,7 @@
 */
 
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die(Text::_('Restricted access'));
 
@@ -54,7 +55,7 @@ $visible = 'hidden';
 			<input type='<?php echo $visible; ?>' name='task' 			value='predictionentry.register' />
 			<input type='<?php echo $visible; ?>' name='option'			value='com_joomleague' />
 			
-			<?php echo JHTML::_('form.token'); ?>
+			<?php echo HTMLHelper::_('form.token'); ?>
 		</form><?php
 	}
 	?></p><br />

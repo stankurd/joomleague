@@ -15,17 +15,16 @@ defined('_JEXEC') or die;
 ?>
 <script type="text/javascript">
 <!--
-(function()
+jQuery('domready', function()
 {
-	$('templateid').addEvent('change', function()
-	{
+	jQuery('#templateid').change(function()
+	{		
 		if (this.value)
-		{
-			$('importform').submit();
+		{		
+			jQuery('#importform').submit();
 		}
 	});
 });
-)();
 //-->
 </script>
 <div id="masterimport">

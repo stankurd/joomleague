@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 /**
  * Joomleague
@@ -53,7 +54,7 @@ if (count($list['eventtypes']) > 0)
 			$rankingforevent = $list['ranking'][$eventtype->etid];
 			?>
 		<tr class="sectiontableheader">
-			<td class="eventtype"><?php echo JText::_($eventtype->name); ?></td>
+			<td class="eventtype"><?php echo Text::_($eventtype->name); ?></td>
 		</tr>
 		<tr>
 			<td>
@@ -64,19 +65,19 @@ if (count($list['eventtypes']) > 0)
 				<table class="eventsranking">
 					<thead>
 						<tr class="sectiontableheader">
-							<th class="rank"><?php echo JText::_('MOD_JOOMLEAGUE_EVENTSRANKING_COL_RANK')?></th>
+							<th class="rank"><?php echo Text::_('MOD_JOOMLEAGUE_EVENTSRANKING_COL_RANK')?></th>
 							<?php if ($showPicture == 1) : ?>
-							<th class="picture"><?php echo JText::_('MOD_JOOMLEAGUE_EVENTSRANKING_COL_PICTURE');?></th>
+							<th class="picture"><?php echo Text::_('MOD_JOOMLEAGUE_EVENTSRANKING_COL_PICTURE');?></th>
 							<?php endif; ?>
-							<th class="personname"><?php echo JText::_('MOD_JOOMLEAGUE_EVENTSRANKING_COL_NAME')?></th>
+							<th class="personname"><?php echo Text::_('MOD_JOOMLEAGUE_EVENTSRANKING_COL_NAME')?></th>
 							<?php if ($showTeam == 1) : ?>
-							<th class="team"><?php echo JText::_('MOD_JOOMLEAGUE_EVENTSRANKING_COL_TEAM');?></th>
+							<th class="team"><?php echo Text::_('MOD_JOOMLEAGUE_EVENTSRANKING_COL_TEAM');?></th>
 							<?php endif; ?>
 							<th class="td_c">
 							<?php if ($params->get('show_event_icon', 1)) : ?>
 								<?php echo modJLGEventsrankingHelper::getEventIcon($eventtype);?>
 							<?php else: ?>
-								<?php echo JText::_($eventtype->name);?>
+								<?php echo Text::_($eventtype->name);?>
 							<?php endif; ?>
 							</th>
 						</tr>
@@ -158,7 +159,7 @@ if (count($list['eventtypes']) > 0)
 			else
 			{
 				?>
-				<p class="modjlgstat"><?php echo JText::_('MOD_JOOMLEAGUE_EVENTSRANKING_NO_ITEMS');?></p>
+				<p class="modjlgstat"><?php echo Text::_('MOD_JOOMLEAGUE_EVENTSRANKING_NO_ITEMS');?></p>
 				<?php
 			}
 			?>
@@ -175,14 +176,14 @@ if (count($list['eventtypes']) > 0)
 else
 {
 ?>
-<p class="modjlgstat"><?php echo JText::_("MOD_JOOMLEAGUE_EVENTSRANKING_NO_EVENTS_SELECTED"); ?></p>
+<p class="modjlgstat"><?php echo Text::_("MOD_JOOMLEAGUE_EVENTSRANKING_NO_EVENTS_SELECTED"); ?></p>
 <?php
 }
 ?>
 <?php if ($params->get('show_full_link', 1)):?>
 <p class="fulltablelink">
 	<?php echo HTMLHelper::link(	JoomleagueHelperRoute::getEventsRankingRoute($list['project']->slug, $params->get('divisionid',0) , $params->get('tid',0), $params->get('evid',0), $params->get('mid',0)),
-							JText::_('MOD_JOOMLEAGUE_EVENTSRANKING_VIEW_FULL_TABLE')); ?>
+							Text::_('MOD_JOOMLEAGUE_EVENTSRANKING_VIEW_FULL_TABLE')); ?>
 </p>
 <?php endif; ?>
 </div>

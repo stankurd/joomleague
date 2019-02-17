@@ -11,6 +11,7 @@
  */
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -104,7 +105,7 @@ abstract class modJLGTeamStaffsHelper
 		}
 		else
 		{
-			echo '<i>' . JText::sprintf( '%1$s', $flag . $text) . '</i>';
+			echo '<i>' . Text::sprintf( '%1$s', $flag . $text) . '</i>';
 		}
 
 	}

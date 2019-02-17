@@ -29,7 +29,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 
 					<?php echo Text::_('COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_FTP_DESC'); ?>
 					
-					<?php if(JError::isError($this->ftp)): ?>
+					<?php if(Error::isError($this->ftp)): ?>
 						<p><?php echo Text::_($this->ftp->message); ?></p>
 					<?php endif; ?>
 

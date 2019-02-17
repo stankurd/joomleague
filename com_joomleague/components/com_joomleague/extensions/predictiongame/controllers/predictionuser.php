@@ -145,7 +145,7 @@ class JoomleagueControllerPredictionUsers extends FormController
 	    $set_pj = $jinput->getVar('set_pj','0');
 	    $set_r = $jinput->getVar('set_r','0');
 	    
-	    $link = PredictionHelperRoute:::getPredictionMemberRoute($pID,$uID,null,$pjID,$pggroup ,$rID );
+	    $link = PredictionHelperRoute::getPredictionMemberRoute($pID,$uID,null,$pjID,$pggroup ,$rID );
 	    //echo '<br />' . $link . '<br />';
 	    $this->setRedirect($link);
 	}

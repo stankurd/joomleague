@@ -1,6 +1,7 @@
 <?php use Joomla\CMS\Factory;
 use Joomla\CMS\Date\Date;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die; ?>
 
@@ -46,18 +47,18 @@ foreach ($this->matches as $game)
 	<table class='clubplan'>
 	<?php
 	if ($this->config['showMatchDateLine'] && 
-		$MatchDateLine != JoomleagueHelper::getMatchDate($game, JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDATE')))
+		$MatchDateLine != JoomleagueHelper::getMatchDate($game, Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDATE')))
 	{
 		?>
 		<tr class='sectiontableheader'>
 			<th colspan='16'>
 				<?php
 				if (JoomleagueHelper::getMatchDate($game, 'Y-m-d') == '9999-12-31') {
-					echo JText::_('COM_JOOMLEAGUE_TEAMPLAN_NOT_YET_TERMINATED');
+					echo Text::_('COM_JOOMLEAGUE_TEAMPLAN_NOT_YET_TERMINATED');
 				}
 				else
 				{
-					echo JoomleagueHelper::getMatchDate($game, JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDATE'));
+					echo JoomleagueHelper::getMatchDate($game, Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDATE'));
 				}
 				?>
 			</th>
@@ -167,7 +168,7 @@ foreach ($this->matches as $game)
 			<td nowrap="nowrap">
 			<?php
 			if (JoomleagueHelper::getMatchDate($game, 'Y-m-d') == '9999-12-31') {
-				$timeSuffix=JText::_('COM_JOOMLEAGUE_GLOBAL_CLOCK');
+				$timeSuffix=Text::_('COM_JOOMLEAGUE_GLOBAL_CLOCK');
 				if ($timeSuffix == 'COM_JOOMLEAGUE_GLOBAL_CLOCK') {
 					$timeSuffix = '%1$s&nbsp;h';
 				}
@@ -429,14 +430,14 @@ foreach ($this->matches as $game)
 				<?php
 				if(isset($team1) && isset($team2) && ($team1 == $team2)) {
 					echo HTMLHelper::image("media/com_joomleague/jl_images/draw.png", "draw.png",
-						array("title" => JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_DRAW')))."&nbsp;";
+						array("title" => Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_DRAW')))."&nbsp;";
 				} else {
 					if($team1 > $team2) {
 						echo HTMLHelper::image("media/com_joomleague/jl_images/thumbs_up.png", "thumbs_up.png",
-							array("title" => JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_WON')))."&nbsp;";
+							array("title" => Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_WON')))."&nbsp;";
 					} elseif($team2 > $team1) {
 						echo HTMLHelper::image("media/com_joomleague/jl_images/thumbs_down.png", "thumbs_down.png",
-							array("title" => JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_LOST')))."&nbsp;";
+							array("title" => Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCH_LOST')))."&nbsp;";
 					}
 					else
 					{
@@ -450,7 +451,7 @@ foreach ($this->matches as $game)
 	<?php
 	$k = 1 - $k;
 	$counter++;
-	$MatchDateLine = JoomleagueHelper::getMatchDate($game, JText::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDATE'));
+	$MatchDateLine = JoomleagueHelper::getMatchDate($game, Text::_('COM_JOOMLEAGUE_CLUBPLAN_MATCHDATE'));
 	$MatchDay = $game->roundname;
 }
 ?>

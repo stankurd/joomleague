@@ -119,7 +119,7 @@ class JoomleagueViewTreetonodes extends JLGView
 	
 	protected function addToolbar()
 	{
-		JToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TITLE'));
+		JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TITLE'));
 		$isleafed = $this->treeto->leafed;
 		if($isleafed == 1)
 		{
@@ -135,6 +135,6 @@ class JoomleagueViewTreetonodes extends JLGView
 			}
 		JLToolBarHelper::custom('treetonodes.removenode','delete.png','delete_f2.png',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_DELETE'),false);
 		}
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::help('screen.joomleague',true);
 	}
 }

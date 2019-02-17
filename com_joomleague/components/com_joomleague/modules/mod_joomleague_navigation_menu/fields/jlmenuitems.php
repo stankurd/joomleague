@@ -7,8 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
-use Joomla\CMS\Form\FormField;
 use Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\Form\Field\ListField;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 
@@ -20,7 +20,7 @@ FormHelper::loadFieldClass('list');
 /**
  * JLMenuItems form field class
  */
-class JFormFieldJLMenuItems extends JFormFieldList
+class JFormFieldJLMenuItems extends ListField
 {
 	/**
 	 * field type

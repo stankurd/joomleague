@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Factory;
+
 defined('_JEXEC') or die;
 
 class LivescoreConnector extends JLCalendar{
@@ -40,7 +42,7 @@ class LivescoreConnector extends JLCalendar{
 		return $newrows;
   }
   function getRows($caldates, $ordering='ASC'){
-    $database = JFactory::getDbo();
+    $database = Factory::getDbo();
       $query = "SELECT  * FROM #__livescore_games";
       $where = ' WHERE ';
       $where .= " mdate >= '".$caldates['start']."'";

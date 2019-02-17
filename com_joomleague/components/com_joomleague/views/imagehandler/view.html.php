@@ -1,12 +1,12 @@
 <?php
-/** SportsManagement ein Programm zur Verwaltung für alle Sportarten
- * @version   1.0.05
- * @file      view.html.php
- * @author    diddipoeler, stony, svdoldie und donclumsy (diddipoeler@arcor.de)
- * @copyright Copyright: © 2013 Fussball in Europa http://fussballineuropa.de/ All rights reserved.
- * @license   This file is part of SportsManagement.
- * @package   sportsmanagement
- * @subpackage imagehandler
+/**
+ * @copyright	Copyright (C) 2006-2012 JoomLeague.net. All rights reserved.
+ * @license		GNU/GPL, see LICENSE.php
+ * Joomla! is free software. This version may have been modified pursuant
+ * to the GNU General Public License, and as distributed it includes or
+ * is derivative of works licensed under the GNU General Public License or
+ * other free or open source software licenses.
+ * See COPYRIGHT.php for copyright notices and details.
  */
  
 // Check to ensure this file is included in Joomla!
@@ -45,12 +45,8 @@ class JoomleagueViewImagehandler extends JLGView {
         $folder = ImageSelect::getfolder($type);
         $field = Factory::getApplication()->input->getVar('field');
         $fieldid = Factory::getApplication()->input->getVar('fieldid');
-        $search = $app->getUserStateFromRequest('COM_JOOMLEAGUE.imageselect', 'search', '', 'string');
+        $search = $app->getUserStateFromRequest('com_joomleague.imageselect', 'search', '', 'string');
         $search = trim(StringHelper::strtolower($search));
-
-        //add css
-        //$version = urlencode(sportsmanagementHelper::getVersion());
-        //$document->addStyleSheet('components/com_joomleague/assets/css/imageselect.css?v='.$version);
 
         Factory::getApplication()->input->setVar('folder', $folder);
 
@@ -75,7 +71,7 @@ class JoomleagueViewImagehandler extends JLGView {
             parent::display($tpl);
         } else {
             //no images in the folder, redirect to uploadscreen and raise notice
-            //JError::raiseNotice('SOME_ERROR_CODE', Text::_('COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_NO_IMAGES'));
+            Factory::getApplication()->enqueueMessage('SOME_ERROR_CODE', Text::_('COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_NO_IMAGES'),'notice');
             $this->setLayout('upload');
             $this->form = $this->get('form');
             $this->_displayupload($tpl);
@@ -99,20 +95,21 @@ class JoomleagueViewImagehandler extends JLGView {
      * @since 0.9
      */
     function _displayupload($tpl = null) {
-        $option = Factory::getApplication()->input->getCmd('option');
         $app = Factory::getApplication();
+        $option = $app->input->getCmd('option');
+        
 
         //initialise variables
         $document = Factory::getDocument();
         $uri = Uri::getInstance();
         $params = ComponentHelper::getParams($option);
-        $type = Factory::getApplication()->input->getVar('type');
+        $type = $app->input->getVar('type');
         $folder = ImageSelect::getfolder($type);
-        $field = Factory::getApplication()->input->getVar('field');
-        $fieldid = Factory::getApplication()->input->getVar('fieldid');
-        $menu = Factory::getApplication()->input->setVar('hidemainmenu', 1);
+        $field = $app->input->getVar('field');
+        $fieldid = $app->input->getVar('fieldid');
+        $menu = $app->input->setVar('hidemainmenu', 1);
         //get vars
-        $task = Factory::getApplication()->input->getVar('task');
+        $task = $app->input->getVar('task');
 
         jimport('joomla.client.helper');
         $ftp = ClientHelper::setCredentialsFromRequest('ftp');

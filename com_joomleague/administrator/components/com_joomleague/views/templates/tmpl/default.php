@@ -17,7 +17,7 @@ defined('_JEXEC') or die;
 <script>
 	function searchTemplate(val,key)
 	{
-		var f = $('adminForm');
+		var f = jQuery('#adminForm');
 		if(f){
 			f.elements['search'].value=val;
 			f.elements['search_mode'].value= 'matchfirst';

@@ -311,7 +311,7 @@ class Countries
 		$options = array();
 		foreach ($countries AS $k => $c)
 		{
-			$options[] = HTMLHelper::_('select.option',$k,JText::_($c['name']),$value_tag,$text_tag);
+			$options[] = HTMLHelper::_('select.option',$k,Text::_($c['name']),$value_tag,$text_tag);
 		}
 		
 		// Sort
@@ -889,7 +889,7 @@ class Countries
 		self::includeLanguageFile();
 		$countries=Countries::getCountries();
 		if(isset($countries[$iso3]['name']))
-		return JText::_($countries[$iso3]['name']);
+		return Text::_($countries[$iso3]['name']);
 	}
 
 	
@@ -956,7 +956,7 @@ Türkiye
 		{
 			$countryFlag = Countries::getCountryFlag($country);
 			$countryName = Countries::getCountryName($country);
-			$dummy=Countries::removeEmptyFields($name, $address, $state, $zipcode, $location, $countryFlag, $countryName, JText::_($addressString));
+			$dummy=Countries::removeEmptyFields($name, $address, $state, $zipcode, $location, $countryFlag, $countryName, Text::_($addressString));
 			$dummy=str_replace('%NAME%',$name,$dummy);
 			$dummy=str_replace('%ADDRESS%',$address,$dummy);
 			$dummy=str_replace('%STATE%',$state,$dummy);

@@ -61,8 +61,8 @@ class JoomleagueControllerImagehandler extends JoomleagueController
         ClientHelper::setCredentialsFromRequest('ftp');
         //$ftp = ClientHelper::getCredentials( 'ftp' );
         //set the target directory
-        $base_Dir = JPATH_SITE . '/images/com_joomleague/database/ . $folder . /';
-
+        $base_Dir = JPATH_SITE . DS . 'images' . DS . 'com_joomleague' . DS . $folder . DS;
+        
         $app->enqueueMessage(Text::_($type), '');
         $app->enqueueMessage(Text::_($folder), '');
         $app->enqueueMessage(Text::_($base_Dir), '');

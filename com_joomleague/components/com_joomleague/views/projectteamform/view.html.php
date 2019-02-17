@@ -16,6 +16,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Registry\Registry;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
@@ -135,7 +136,7 @@ class JoomleagueViewProjectteamform extends BaseHtmlView
 			$JLGPATH_EXTENSION = JPATH_COMPONENT_SITE.'/extensions/'.$extension.'/admin';
 			//General extension extended xml
 			$file = $JLGPATH_EXTENSION.'/assets/extended/'.$file.'.xml';
-			if(file_exists(JPath::clean($file))) {
+			if(file_exists(Path::clean($file))) {
 				$xmlfile = $file;
 				break; //first extension file will win
 			}

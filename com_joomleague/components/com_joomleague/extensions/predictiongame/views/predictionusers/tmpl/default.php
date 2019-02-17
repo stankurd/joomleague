@@ -1,4 +1,6 @@
 <?php 
+use Joomla\CMS\Language\Text;
+
 /**
 * @copyright	Copyright (C) 2007-2012 JoomLeague.net. All rights reserved.
 * @license		GNU/GPL, see LICENSE.php
@@ -37,12 +39,12 @@ $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'footer' . DS
 		}
 		else
 		{
-			echo JText::_('COM_JOOMLEAGUE_PRED_USERS_MEMBER_NO_PROFILE_SHOW');
+			echo Text::_('COM_JOOMLEAGUE_PRED_USERS_MEMBER_NO_PROFILE_SHOW');
 		}
 	}
 	else
 	{
-		?><h3><?php echo JText::_('COM_JOOMLEAGUE_PRED_USERS_SELECT_EXISTING_MEMBER'); ?></h3><?php
+		?><h3><?php echo Text::_('COM_JOOMLEAGUE_PRED_USERS_SELECT_EXISTING_MEMBER'); ?></h3><?php
 	}
 	echo '<div>';
 		//backbutton

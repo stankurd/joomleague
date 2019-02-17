@@ -11,6 +11,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die('Restricted access');
 
@@ -36,7 +37,7 @@ class JoomleagueControllerPredictionResults extends JLGController
 	function selectprojectround()
 	{
 	    $app = Factory::getApplication();
-		$app->input->checkToken() or jexit(JText::_('JL_PRED_INVALID_TOKEN_REFUSED'));
+		$app->input->checkToken() or jexit(Text::_('JL_PRED_INVALID_TOKEN_REFUSED'));
 		$post	= $app->input->post->getArray();
 		//echo '<br /><pre>~' . print_r($post,true) . '~</pre><br />'; die();
 		$pID	= $app->input->getVar('prediction_id',	null,	'post',	'int');

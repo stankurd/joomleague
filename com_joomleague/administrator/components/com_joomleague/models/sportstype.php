@@ -9,6 +9,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
@@ -164,9 +165,9 @@ class JoomleagueModelSportsType extends JLGModelItem
 	 **/
 	function addSportsType($newSportsTypeName)
 	{
-		$path = Path::clean(JPATH_ROOT.'/images/com_joomleague/database/events/'.JFolder::makesafe($newSportsTypeName));
-		if(!JFolder::exists($path)) {
-			JFolder::create($path);
+		$path = Path::clean(JPATH_ROOT.'/images/com_joomleague/database/events/'.Folder::makesafe($newSportsTypeName));
+		if(!Folder::exists($path)) {
+			Folder::create($path);
 		}
 		//SportsType does NOT exist and has to be created
 		$tblSportsType = $this->getTable();

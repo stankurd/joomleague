@@ -1,6 +1,15 @@
 <?php
-
-
+/**
+ * @version    $Id: imagehandler.php 4905 2010-01-30 08:51:33Z and_one $
+ * @package    JoomlaTracks
+ * @copyright  Copyright (C) 2008 Julien Vonthron. All rights reserved.
+ * @license    GNU/GPL, see LICENSE.php
+ * Joomla Tracks is free software. This version may have been modified pursuant
+ * to the GNU General Public License, and as distributed it includes or
+ * is derivative of works licensed under the GNU General Public License or
+ * other free or open source software licenses.
+ * See COPYRIGHT.php for copyright notices and details.
+ */
 defined( '_JEXEC' ) or die( 'Restricted access' );
 use Joomla\CMS\Factory;
 use Joomla\CMS\Table\Table;
@@ -113,8 +122,8 @@ class JoomleagueModelImagehandler extends BaseDatabaseModel
 	 */
 	function getList()
 	{
-		$option = Factory::getApplication()->input->getCmd('option');
-		$app	= Factory::getApplication();
+	    $app	= Factory::getApplication();
+		$option = $app->input->getCmd('option');
         static $list;
 
 		// Only process the list once per request
@@ -235,61 +244,5 @@ class JoomleagueModelImagehandler extends BaseDatabaseModel
 			}
 		}
 	}
-	
-	/**
-	 * Method to get the record form.
-	 *
-	 * @param	array	$data		Data for the form.
-	 * @param	boolean	$loadData	True if the form is to load its own data (default case), false if not.
-	 * @return	mixed	A JForm object on success, false on failure
-	 * @since	1.7
-	 */
-	/*
-    public function getForm($data = array(), $loadData = true)
-	{
-		// Get the form.
-		$form = $this->loadForm('com_joomleague.'.$this->name, $this->name,
-				array('load_data' => $loadData) );
-		if (empty($form))
-		{
-			return false;
-		}
-		return $form;
-	}
-	*/
-    
-	/**
-	 * Method to get the data that should be injected in the form.
-	 *
-	 * @return	mixed	The data for the form.
-	 * @since	1.7
-	 */
-     /*
-	protected function loadFormData()
-	{
-		// Check the session for previously entered form data.
-		$data = Factory::getApplication()->getUserState('com_joomleague.edit.'.$this->name.'.data', array());
-		if (empty($data))
-		{
-			$data = $this->getData();
-		}
-		return $data;
-	}
-    /*
-	/**
-	 * Returns a Table object, always creating it
-	 *
-	 * @param	type	The table type to instantiate
-	 * @param	string	A prefix for the table class name. Optional.
-	 * @param	array	Configuration array for model. Optional.
-	 * @return	Table	A database object
-	 * @since	1.6
-	 */
-     /*
-	public function getTable($type = 'club', $prefix = 'table', $config = array())
-	{
-		return Table::getInstance($type, $prefix, $config);
-	}
-    */
 }
 ?>

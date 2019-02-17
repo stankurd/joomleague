@@ -1254,38 +1254,15 @@ class JoomleagueHelper extends ContentHelper
 	    $date = $date ? $date : 'now';
 	    $app = Factory::getApplication();
 	    $res = Factory::getDate(strtotime($date));
-	    
-	    //$app->enqueueMessage(Text::_(__METHOD__.' '.__LINE__.' date<br><pre>'.print_r($date,true).'</pre>'),'');
-	    //$app->enqueueMessage(Text::_(__METHOD__.' '.__LINE__.' use_offset<br><pre>'.print_r($use_offset,true).'</pre>'),'');
-	    //$app->enqueueMessage(Text::_(__METHOD__.' '.__LINE__.' offset<br><pre>'.print_r($offset,true).'</pre>'),'');
-	    //$app->enqueueMessage(Text::_(__METHOD__.' '.__LINE__.' res<br><pre>'.print_r($res,true).'</pre>'),'');
-	    
 	    if ($use_offset) {
 	        if ($offset) {
-	            $serveroffset = explode(':', $offset);
-	            
-	            //$app->enqueueMessage(Text::_(__METHOD__.' '.__LINE__.' serveroffset<br><pre>'.print_r($serveroffset,true).'</pre>'),'');
-	            
-	            //if (version_compare(JVERSION, '3.0.0', 'ge')) {
-	                //$res->setTimezone($serveroffset[0]);
-	                $res->setTimezone(new DateTimeZone($serveroffset[0]));
-	           // } else {
-	                //$res->setOffset($serveroffset[0]);
+	            $serveroffset = explode(':', $offset);	            	          
+	            $res->setTimezone(new DateTimeZone($serveroffset[0]));	          
 	            }
-	        } else {
-	            
-	            //$app->enqueueMessage(Text::_(__METHOD__.' '.__LINE__.' offset<br><pre>'.print_r($app->getCfg('offset'),true).'</pre>'),'');
-	            
-	            //if (version_compare(JVERSION, '3.0.0', 'ge')) {
-	                //$res->setTimezone($app->getCfg('offset'));
+	        } else {	           
 	                $res->setTimezone(new DateTimeZone($app->getCfg('offset')));
-	           // } else {
-	               // $res->setOffset($app->getCfg('offset'));
-	           // }
-	       //}
 	    }
 	    
-	    //$app->enqueueMessage(Text::_(__METHOD__.' '.__LINE__.' res<br><pre>'.print_r($res,true).'</pre>'),'');
 	    
 	    return $res->toUnix('true');
 }

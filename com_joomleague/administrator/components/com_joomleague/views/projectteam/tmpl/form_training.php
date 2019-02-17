@@ -6,12 +6,14 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 ?>
 <fieldset class="adminform">
 	<legend>
 					<?php
-					echo JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_TITLE_TRAINING');
+					echo Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_TITLE_TRAINING');
 					?>
 				</legend>
 	<table class="table table-striped" id="projectteamTrainingList">
@@ -21,11 +23,11 @@ defined('_JEXEC') or die;
 						echo $this->form->renderField('add_trainingData');
 						?>
 						</td>
-			<td class="center"><b><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_DAY'); ?></b></td>
-			<td class="center"><b><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_STARTTIME'); ?></b></td>
-			<td class="center"><b><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_ENDTIME'); ?></b></td>
-			<td class="center"><b><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_PLACE'); ?></b></td>
-			<td class="center"><b><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_NOTES'); ?></b></td>
+			<td class="center"><b><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_DAY'); ?></b></td>
+			<td class="center"><b><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_STARTTIME'); ?></b></td>
+			<td class="center"><b><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_ENDTIME'); ?></b></td>
+			<td class="center"><b><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_PLACE'); ?></b></td>
+			<td class="center"><b><?php echo Text::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_NOTES'); ?></b></td>
 		</tr>
 					<?php
 					if(! empty($this->trainingData))
@@ -48,7 +50,7 @@ defined('_JEXEC') or die;
 							?>
 							<tr>
 			<td class='key' nowrap='nowrap'>
-									<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DELETE');?>&nbsp;<input
+									<?php echo Text::_('COM_JOOMLEAGUE_GLOBAL_DELETE');?>&nbsp;<input
 				type='checkbox' name='delete_<?php echo $td->id; ?>' value=''
 				onchange='javascript:Joomla.submitform("projectteam.apply");' />
 			</td>

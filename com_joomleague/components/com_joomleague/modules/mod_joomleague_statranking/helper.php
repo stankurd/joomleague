@@ -8,6 +8,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -118,11 +119,11 @@ abstract class modJLGStatHelper
 	{
 		if ($stat->icon == 'media/com_joomleague/event_icons/event.gif')
 		{
-			$txt = JText::_($stat->name);
+			$txt = Text::_($stat->name);
 		}
 		else
 		{
-			$imgTitle=JText::_($stat->name);
+			$imgTitle=Text::_($stat->name);
 			$imgTitle2=array(' title' => $imgTitle, ' alt' => $imgTitle);
 			$txt=HTMLHelper::image($stat->icon, $imgTitle, $imgTitle2);
 		}

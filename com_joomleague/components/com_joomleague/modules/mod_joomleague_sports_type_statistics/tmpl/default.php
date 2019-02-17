@@ -7,11 +7,13 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 
 // check if there is a project
 if ($data['projectscount'] == 0) {
-	echo '<p class="modjlgsports">' . JText::_('MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_NO_PROJECTS') . '</p>';
+	echo '<p class="modjlgsports">' . Text::_('MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_NO_PROJECTS') . '</p>';
 	return;
 } else {
 	?>
@@ -21,7 +23,7 @@ if ($data['projectscount'] == 0) {
     <div class="Title">
         <h4>
 		<?php 
-		if($data['sportstype']->icon) { ?><img src="<?php echo $data['sportstype']->icon; ?>"><?php } ?> <?php echo JText::_($data['sportstype']->name); 
+		if($data['sportstype']->icon) { ?><img src="<?php echo $data['sportstype']->icon; ?>"><?php } ?> <?php echo Text::_($data['sportstype']->name); 
 		?>
 		</h4>
     </div>
@@ -32,10 +34,10 @@ if ($data['projectscount'] == 0) {
         <div class="Cell">
             <span class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
 		if($params->get('show_icon',1)==1) {
-			echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PROJECTS").'" src="administrator/components/com_joomleague/assets/images/projects.png">';
-			echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PROJECTS"); 
+			echo '<img alt="'.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PROJECTS").'" src="administrator/components/com_joomleague/assets/images/projects.png">';
+			echo ' '.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PROJECTS"); 
 		} else {
-			echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PROJECTS"); 
+			echo Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PROJECTS"); 
 		}
 		?></span>
         </div>
@@ -51,10 +53,10 @@ if ($data['projectscount'] == 0) {
 		<div class="Cell">
 			<span class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
 			if($params->get('show_icon',1)==1) {
-				echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_LEAGUES").'" src="administrator/components/com_joomleague/assets/images/leagues.png">';
-				echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_LEAGUES");
+				echo '<img alt="'.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_LEAGUES").'" src="administrator/components/com_joomleague/assets/images/leagues.png">';
+				echo ' '.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_LEAGUES");
 			} else {
-				echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_LEAGUES"); 
+				echo Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_LEAGUES"); 
 			}
 			?>
 			</span>
@@ -71,10 +73,10 @@ if ($data['projectscount'] == 0) {
 		<div class="Cell">
 			<span class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php
 				if($params->get('show_icon',1)==1) {
-					echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SEASONS").'" src="administrator/components/com_joomleague/assets/images/seasons.png">';
-					echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SEASONS");
+					echo '<img alt="'.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SEASONS").'" src="administrator/components/com_joomleague/assets/images/seasons.png">';
+					echo ' '.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SEASONS");
 				} else {
-					echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SEASONS");
+					echo Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SEASONS");
 				}
 				?>
 			</span>
@@ -91,10 +93,10 @@ if ($data['projectscount'] == 0) {
 		<div class="Cell">
 			<span class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
 				if($params->get('show_icon',1)==1) {
-					echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_TEAMS").'" src="administrator/components/com_joomleague/assets/images/teams.png">';
-					echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_TEAMS"); 
+					echo '<img alt="'.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_TEAMS").'" src="administrator/components/com_joomleague/assets/images/teams.png">';
+					echo ' '.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_TEAMS"); 
 				} else {
-					echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_TEAMS");
+					echo Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_TEAMS");
 				}
 				?>
 			</span>
@@ -111,10 +113,10 @@ if ($data['projectscount'] == 0) {
 		<div class="Cell">
 			<span class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
 				if($params->get('show_icon',1)==1) {
-					echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYERS").'" src="administrator/components/com_joomleague/assets/images/players.png">';
-					echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYERS"); 
+					echo '<img alt="'.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYERS").'" src="administrator/components/com_joomleague/assets/images/players.png">';
+					echo ' '.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYERS"); 
 				} else {
-					echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYERS");
+					echo Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYERS");
 				}
 				?>
 			</span>
@@ -131,10 +133,10 @@ if ($data['projectscount'] == 0) {
 		<div class="Cell">
 			<span class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
 				if($params->get('show_icon',1)==1) {
-					echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_DIVISIONS").'" src="administrator/components/com_joomleague/assets/images/division.png">';
-					echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_DIVISIONS");
+					echo '<img alt="'.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_DIVISIONS").'" src="administrator/components/com_joomleague/assets/images/division.png">';
+					echo ' '.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_DIVISIONS");
 				} else {
-					echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_DIVISIONS");
+					echo Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_DIVISIONS");
 				} 
 				?>
 			</span>
@@ -151,10 +153,10 @@ if ($data['projectscount'] == 0) {
 		<div class="Cell">
 			<span class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
 				if($params->get('show_icon',1)==1) {
-					echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_ROUNDS").'" src="administrator/components/com_joomleague/assets/images/icon-16-Matchdays.png">';
-					echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_ROUNDS"); 
+					echo '<img alt="'.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_ROUNDS").'" src="administrator/components/com_joomleague/assets/images/icon-16-Matchdays.png">';
+					echo ' '.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_ROUNDS"); 
 				} else {
-					echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_ROUNDS");
+					echo Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_ROUNDS");
 				}
 				?>
 			</span>
@@ -171,10 +173,10 @@ if ($data['projectscount'] == 0) {
 		<div class="Cell">
 			<span class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
 				if($params->get('show_icon',1)==1) {
-					echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_MATCHES").'" src="administrator/components/com_joomleague/assets/images/matches.png">';
-					echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_MATCHES");
+					echo '<img alt="'.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_MATCHES").'" src="administrator/components/com_joomleague/assets/images/matches.png">';
+					echo ' '.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_MATCHES");
 				} else {
-					echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_MATCHES");
+					echo Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_MATCHES");
 				} 
 				?>
 			</span>
@@ -191,10 +193,10 @@ if ($data['projectscount'] == 0) {
 		<div class="Cell">
 			<span class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php
 				if($params->get('show_icon',1)==1) {
-					echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_EVENTS").'" src="administrator/components/com_joomleague/assets/images/events.png">';
-					echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_EVENTS"); 
+					echo '<img alt="'.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_EVENTS").'" src="administrator/components/com_joomleague/assets/images/events.png">';
+					echo ' '.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_EVENTS"); 
 				} else {
-					echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_EVENTS");
+					echo Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_EVENTS");
 				}	
 				?>
 			</span>
@@ -214,10 +216,10 @@ if ($data['projectscount'] == 0) {
     		<span class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>">
     			<?php
 				if($params->get('show_icon',1)==1) {
-					echo '<img alt="'.JText::_($event->name).'" src="'.$event->icon.'">';
-					echo ' '.JText::_($event->name); 
+					echo '<img alt="'.Text::_($event->name).'" src="'.$event->icon.'">';
+					echo ' '.Text::_($event->name); 
 				} else {
-					echo JText::_($event->name);
+					echo Text::_($event->name);
 				}	
 				?>
 			</span>
@@ -236,10 +238,10 @@ if ($data['projectscount'] == 0) {
 		<div class="Cell">
 			<span class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
 				if($params->get('show_icon',1)==1) {
-					echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_STATS").'" src="administrator/components/com_joomleague/assets/images/icon-48-statistics.png">';
-					echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_STATS"); 
+					echo '<img alt="'.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_STATS").'" src="administrator/components/com_joomleague/assets/images/icon-48-statistics.png">';
+					echo ' '.Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_STATS"); 
 				} else {
-					echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_STATS");
+					echo Text::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_STATS");
 				} 
 				?>
 			</span>

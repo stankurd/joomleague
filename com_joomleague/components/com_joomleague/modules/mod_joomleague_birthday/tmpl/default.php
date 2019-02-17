@@ -9,6 +9,7 @@
  */
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die; 
 
@@ -71,11 +72,11 @@ if(count($persons) > 0) {
 
 		}
 		switch ($person['days_to_birthday']) {
-			case 0: $whenmessage = JText::_($params->get('todaymessage'));break;
-			case 1: $whenmessage = JText::_($params->get('tomorrowmessage'));break;
-			default: $whenmessage = str_replace('%DAYS_TO%', $person['days_to_birthday'], trim(JText::_($params->get('futuremessage'))));break;
+			case 0: $whenmessage = Text::_($params->get('todaymessage'));break;
+			case 1: $whenmessage = Text::_($params->get('tomorrowmessage'));break;
+			default: $whenmessage = str_replace('%DAYS_TO%', $person['days_to_birthday'], trim(Text::_($params->get('futuremessage'))));break;
 		}
-		$birthdaytext = htmlentities(trim(JText::_($params->get('birthdaytext'))), ENT_COMPAT , 'UTF-8');
+		$birthdaytext = htmlentities(trim(Text::_($params->get('birthdaytext'))), ENT_COMPAT , 'UTF-8');
 		$dayformat = htmlentities(trim($params->get('dayformat')));
 		$birthdayformat = htmlentities(trim($params->get('birthdayformat')));
 		$birthdaytext = str_replace('%WHEN%', $whenmessage, $birthdaytext);

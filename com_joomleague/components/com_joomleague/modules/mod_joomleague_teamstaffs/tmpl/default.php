@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\Language\Text;
+
 /**
  * Joomleague
  * @subpackage	Module-Teamstaffs
@@ -12,7 +14,7 @@ defined('_JEXEC') or die;
 // check if any players returned
 $itemscount = count($list['staffs']);
 if (!$itemscount) {
-	echo '<p class="modjlgteamplayers">' . JText::_('MOD_JOOMLEAGUE_TEAMSTAFFS_NOITEMS') . '</p>';
+	echo '<p class="modjlgteamplayers">' . Text::_('MOD_JOOMLEAGUE_TEAMSTAFFS_NOITEMS') . '</p>';
 	return;
 }?>
 

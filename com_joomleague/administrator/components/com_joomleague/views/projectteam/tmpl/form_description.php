@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\Language\Text;
+
 /**
  * Joomleague
  *
@@ -10,7 +12,7 @@ defined('_JEXEC') or die;
 ?>
 <fieldset class="form-vertical">
 	<legend>
-		<?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_P_TEAM_TITLE_DESCR','<i>'.$this->item->name.'</i>','<i>'.$this->project->name.'</i>');?>
+		<?php echo Text::sprintf('COM_JOOMLEAGUE_ADMIN_P_TEAM_TITLE_DESCR','<i>'.$this->item->name.'</i>','<i>'.$this->project->name.'</i>');?>
 	</legend>
 	<?php
 	echo $this->form->renderField('info');
