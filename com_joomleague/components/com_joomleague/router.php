@@ -9,10 +9,12 @@
 * See COPYRIGHT.php for copyright notices and details.
 */
 use Joomla\CMS\Factory;
+use Joomla\CMS\Component\Router\RouterView;
+use Joomla\CMS\Component\Router\RouterBase;
 
 require_once 'joomleague.core.php';
 
-abstract class JoomleagueRouter
+class JoomleagueRouter extends RouterView
 {
     public function __construct($app = null, $menu = null)
     {
@@ -45,7 +47,7 @@ abstract class JoomleagueRouter
  * 
  * @return object
  */
-function getRouteParametersObject() {
+public function getRouteParametersObject() {
 	$params = null;
 	$params ['clubs'] = array (
 			'p' => 0,
@@ -191,7 +193,7 @@ function getRouteParametersObject() {
 	
 	return $params;
 }
-function JoomleagueBuildRoute(&$query) {
+function build(&$query) {
 	$segments = array ();
 	
 	// include extensions routers for custom views - if extension does have a route file, use it
@@ -201,7 +203,7 @@ function JoomleagueBuildRoute(&$query) {
 		if (file_exists ( $file )) {
 			require_once ($file);
 			$obj = new $classname ();
-			$func = 'JoomleagueBuildRoute' . ucfirst ( $type );
+			$func = 'build' . ucfirst ( $type );
 			if ($segs = $func ( $query )) {
 				return $segs;
 			}
@@ -216,7 +218,7 @@ function JoomleagueBuildRoute(&$query) {
 		return $segments;
 	}
 	
-	$params = getRouteParametersObject ();
+	$params = $this->getRouteParametersObject ();
 	if (isset ( $params [$view] )) {
 		foreach ( $params [$view] as $key => $value ) {
 			if (isset ( $query [$key] )) {
@@ -228,16 +230,19 @@ function JoomleagueBuildRoute(&$query) {
 		}
 	}
 	return $segments;
+	
 }
-function JoomleagueParseRoute($segments) {
-	// include extensions routers for custom views - if extension route file exists, use it
+public function parse(&$segments) {
+    $app = Factory::getApplication();
+    
+    // include extensions routers for custom views - if extension route file exists, use it
 	$extensions = JoomleagueHelper::getExtensions ( 0 );
 	foreach ( $extensions as $type ) {
 		$file = JLG_PATH_SITE.'/extensions/'.$type.'/route.php';
 		if (file_exists ( $file )) {
 			require_once ($file);
 			$obj = new $classname ();
-			$func = 'JoomleagueParseRoute' . ucfirst ( $type );
+			$func = 'parse' . ucfirst ( $type );
 			if ($vars = $func ( $segments )) {
 				return $vars;
 			}
@@ -247,7 +252,7 @@ function JoomleagueParseRoute($segments) {
 	$vars = array ();
 	$vars ['view'] = $segments [0];
 	
-	$params = getRouteParametersObject ();
+	$params = $this->getRouteParametersObject ();
 	if (isset ( $params [$vars ['view']] )) {
 		$i = 1;
 		foreach ( $params [$vars ['view']] as $key => $value ) {
@@ -257,5 +262,16 @@ function JoomleagueParseRoute($segments) {
 		}
 	}
 	return $vars;
+	
 }
+function joomleagueBuildRoute(&$query) {
+    
+    $router = new JoomleagueRouter;
+    return $router->build($query);
+}
+function joomleagueParseRoute($segments) {
+    $router = new JoomleagueRouter;
+    return $router->parse($segments);
+}
+
 }

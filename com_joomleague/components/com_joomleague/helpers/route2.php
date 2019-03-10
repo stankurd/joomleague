@@ -12,10 +12,8 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
-use Joomla\CMS\Component\Router\RouterBase;
-use Joomla\CMS\Uri\Uri;
-use Joomla\CMS\Menu\SiteMenu;
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
 
@@ -29,6 +27,13 @@ jimport('joomla.application.component.helper');
  */
 abstract class JoomleagueHelperRoute
 {
+  /*  public $app;
+    public $menu;
+    
+    public function __construct($app = null, $menu = null)
+    {
+    }
+  */
     public static function getJoomleagueRoute($view='',$parameter = array(), $task='')
     {
         $app = Factory::getApplication();
@@ -57,15 +62,6 @@ abstract class JoomleagueHelperRoute
         
         return $link;
     }
-    
-    
-    
-    /**
-     * joomleagueHelperRoute::joomleagueBuildRoute()
-     *
-     * @param mixed $query
-     * @return
-     */
     public static function joomleagueBuildRoute(&$query)
     {
         $app = Factory::getApplication();
@@ -105,7 +101,8 @@ abstract class JoomleagueHelperRoute
 				"tid" => $teamid );
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+				$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -128,7 +125,8 @@ abstract class JoomleagueHelperRoute
 			$link = "administrator/index.php?" . $query;
 		} else {
 			$query = JoomleagueHelperRoute::buildQuery( $params );
-			$link = "index.php?" . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 		}
 		return $link;
 	}
@@ -141,7 +139,8 @@ abstract class JoomleagueHelperRoute
 					"tid" => $teamid );
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+				$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -165,7 +164,8 @@ abstract class JoomleagueHelperRoute
 			$link = "administrator/index.php?" . $query;
 		} else {
 			$query = JoomleagueHelperRoute::buildQuery( $params );
-			$link = "index.php?" . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 		}
 		return $link;
 	}
@@ -180,8 +180,8 @@ abstract class JoomleagueHelperRoute
 		if ( ! is_null( $task ) ) { $params["task"] = $task; }
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = "index.php?" . $query;
-
+		$link = Route::_( 'index.php?' . $query, false );
+		
 		return $link;
 	}
 
@@ -193,7 +193,8 @@ abstract class JoomleagueHelperRoute
 					"pgid" => $playgroundid );
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+				$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -218,7 +219,8 @@ abstract class JoomleagueHelperRoute
 		$params["to"] = $to;
 		$params["division"] = $division;
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+				$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -245,7 +247,8 @@ abstract class JoomleagueHelperRoute
 			$params['mode'] 	= $mode;
 			$params['order'] 	= $order;
 			$query = JoomleagueHelperRoute::buildQuery( $params );
-			$link = "index.php?" . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 		}
 
 		return $link;
@@ -261,7 +264,8 @@ abstract class JoomleagueHelperRoute
 		$params["r"] = $round;
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -276,7 +280,8 @@ abstract class JoomleagueHelperRoute
 		$params["division"] = $division;
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -291,7 +296,8 @@ abstract class JoomleagueHelperRoute
 		$params["division"] = $division;
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -306,7 +312,8 @@ abstract class JoomleagueHelperRoute
 		$params["division"] = $division;
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -321,7 +328,8 @@ abstract class JoomleagueHelperRoute
 		$params["division"] = $division;
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -337,8 +345,8 @@ abstract class JoomleagueHelperRoute
 		if ( ! is_null( $mode ) ) { $params["mode"] = $mode; }
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = "index.php?" . $query;
-
+		$link = Route::_( 'index.php?' . $query, false );
+		
 		return $link;
 	}
 
@@ -351,7 +359,8 @@ abstract class JoomleagueHelperRoute
 		if ( ! is_null( $matchid ) ) { $params["mid"] = $matchid; }
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -384,7 +393,8 @@ abstract class JoomleagueHelperRoute
 			$link = "administrator/index.php?" . $query;
 		} else {
 			$query = JoomleagueHelperRoute::buildQuery( $params );
-			$link = "index.php?" . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 		}
 
 		return $link;
@@ -419,7 +429,8 @@ abstract class JoomleagueHelperRoute
 			$link = "administrator/index.php?" . $query;
 		} else {
 			$query = JoomleagueHelperRoute::buildQuery( $params );
-			$link = "index.php?" . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 		}
 
 		return $link;
@@ -442,7 +453,8 @@ abstract class JoomleagueHelperRoute
 					"pt" => $showType );
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -470,7 +482,8 @@ abstract class JoomleagueHelperRoute
 			$link = "administrator/index.php?" . $query;
 		} else {
 			$query = JoomleagueHelperRoute::buildQuery( $params );
-			$link = "index.php?" . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 		}
 
 		return $link;
@@ -484,7 +497,8 @@ abstract class JoomleagueHelperRoute
 					"division" => $divisionid );
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -497,7 +511,8 @@ abstract class JoomleagueHelperRoute
 					"p" => $projectid );
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -520,7 +535,8 @@ abstract class JoomleagueHelperRoute
 			$link = "administrator/index.php?" . $query;
 		} else {
 			$query = JoomleagueHelperRoute::buildQuery( $params );
-			$link = "index.php?" . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 		}
 		return $link;
 	}
@@ -532,7 +548,8 @@ abstract class JoomleagueHelperRoute
 					"p" => $projectid );
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -549,7 +566,8 @@ abstract class JoomleagueHelperRoute
 		$params["mid"] = $matchid;
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -565,7 +583,8 @@ abstract class JoomleagueHelperRoute
 		$params["division"] = $division;
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -580,7 +599,8 @@ abstract class JoomleagueHelperRoute
 		$params["division"] = $division;
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -594,7 +614,8 @@ abstract class JoomleagueHelperRoute
 					"tid" => $teamid );
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -608,7 +629,8 @@ abstract class JoomleagueHelperRoute
 		$params["division"] = $division;
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -620,7 +642,8 @@ abstract class JoomleagueHelperRoute
 					"p" => $projectid );
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -637,7 +660,8 @@ abstract class JoomleagueHelperRoute
 		if (strcasecmp($order, 'asc') === 0 || strcasecmp($order, 'desc') === 0) { $params['order'] = strtolower($order); }
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -651,7 +675,8 @@ abstract class JoomleagueHelperRoute
 		if ( isset( $divisionid ) ) { $params["division"] = $divisionid; }
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -665,7 +690,8 @@ abstract class JoomleagueHelperRoute
 		if ( isset( $divisionid ) ) { $params["division"] = $divisionid; }
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -678,8 +704,8 @@ abstract class JoomleagueHelperRoute
 					"tid" => $teamid );
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = "index.php?" . $query;
-
+		$link = Route::_( 'index.php?' . $query, false );
+		
 		return $link;
 	}
 
@@ -692,7 +718,8 @@ abstract class JoomleagueHelperRoute
 					"pt" => $showType );
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -705,7 +732,8 @@ abstract class JoomleagueHelperRoute
 					"mid" => $matchid );
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -717,7 +745,8 @@ abstract class JoomleagueHelperRoute
 					"id" => $contactid );
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -733,7 +762,8 @@ abstract class JoomleagueHelperRoute
 					"jlpid" => $pl_id );
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -745,7 +775,8 @@ abstract class JoomleagueHelperRoute
 					"user" => $userid );
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = 'index.php?' . $query;
+		$link = Route::_( 'index.php?' . $query, false );
+
 
 		return $link;
 	}
@@ -760,8 +791,8 @@ abstract class JoomleagueHelperRoute
 		if ( !is_null( $teamid ) ) { $params["teamid"] = $teamid; }
 
 		$query = JoomleagueHelperRoute::buildQuery( $params );
-		$link = "index.php?" . $query;
-
+		$link = Route::_( 'index.php?' . $query, false );
+		
 		return $link;
 	}
 

@@ -13,6 +13,7 @@ defined('_JEXEC') or die; ?>
 			"teamstats_chart", "100%", "200", "9.0.0", false, {"get-data": "get_teamstats_chart"} );
 </script>
 
+
 <table width='100%' cellspacing='0' border='0'>
 	<tbody>
 	<tr class='sectiontableheader'>

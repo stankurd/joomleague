@@ -61,7 +61,7 @@ class JoomleagueViewRanking extends JLGView {
 			$config['colors'] = '';
 		}
 
-		$this->colors = $model->getColors($config['colors']);
+		$this->colors = $model->getColors($this->config['colors']);
 		//		$this->result=$model->getTeamInfo());
 		//		$this->pageNav=$model->pagenav( "ranking", count( $rounds ), $sr->to ) );
 		//		$this->pageNav2=$model->pagenav2( "ranking", count( $rounds ), $sr->to ) );
