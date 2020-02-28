@@ -29,7 +29,7 @@ class JoomleagueViewPersons extends JLGView
 
 	public function display($tpl = null)
 	{
-		HTMLHelper::_('behavior.calendar');
+		//HTMLHelper::_('behavior.calendar');
 
 		$app = Factory::getApplication();
 		$jinput = $app->input;

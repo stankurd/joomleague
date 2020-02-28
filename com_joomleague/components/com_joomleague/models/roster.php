@@ -129,10 +129,6 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 			     ->select($this->constructSlug($db, 'slug', 't.alias', 't.id'))
 			     ->from($db->quoteName('#__joomleague_team' , 't'))
 			     ->where($db->quoteName('t.id')  . ' = ' .$db->quote($this->teamid));
-				/* $query='	SELECT	t.*,
-								CASE WHEN CHAR_LENGTH(t.alias) THEN CONCAT_WS(\':\',t.id,t.alias) ELSE t.id END AS slug
-						FROM #__joomleague_team AS t
-						WHERE t.id='.$db->Quote($this->teamid);*/
 			$db->setQuery($query);
 			$this->team=$db->loadObject();
 		}
@@ -268,21 +264,6 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 			
 		}
 		$query->order($db->quoteName('pet.ordering') . ' , ' . $db->quoteName('et.ordering'));
-		/*
-		$query='	SELECT	pet.*,
-							ppos.id AS pposid,
-							ppos.position_id,
-							et.name AS name,
-							et.icon AS icon
-					FROM #__joomleague_position_eventtype AS pet
-					INNER JOIN #__joomleague_eventtype AS et ON et.id=pet.eventtype_id
-					INNER JOIN #__joomleague_project_position AS ppos ON ppos.position_id=pet.position_id
-					WHERE ppos.project_id='.$this->projectid.' AND et.published=1 ';
-					if ($positionId > 0)
-		{
-			$query .= ' AND pet.position_id='.(int)$positionId;
-		}
-		$query .= ' ORDER BY pet.ordering, et.ordering';*/
 		$db->setQuery($query);
 		$result=$db->loadObjectList();
 		if ($result)

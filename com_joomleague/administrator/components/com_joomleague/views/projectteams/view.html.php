@@ -13,9 +13,9 @@ use Joomla\CMS\Uri\Uri;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
-HTMLHelper::_('jquery.framework');
-HTMLHelper::_('bootstrap.framework');
-HTMLHelper::_('bootstrap.tooltip');
+//HTMLHelper::_('jquery.framework');
+//HTMLHelper::_('bootstrap.framework');
+//HTMLHelper::_('bootstrap.tooltip');
 
 defined('_JEXEC') or die;
 

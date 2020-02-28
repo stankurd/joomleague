@@ -11,7 +11,7 @@ use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
-HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 jimport('joomla.html.pane');
 
 JLToolBarHelper::title(Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_TITLE'));

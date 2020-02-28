@@ -18,7 +18,7 @@ use Joomla\CMS\Uri\Uri;
 defined('_JEXEC') or die;
 
 jimport('joomla.filesystem.file');
-HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 
 $app = Factory::getApplication();
 $user = Factory::getUser();

@@ -27,7 +27,6 @@ use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Filesystem\Folder;
-use Joomla\CMS\Access\Rules;
 // create a link like https://opentranslators.transifex.com/projects/p/joomleague/language/en_GB/
 function createTXLink($lang) {
 	return '<a href="https://opentranslators.transifex.com/projects/p/joomleague/language/'.$lang.'/" target="_blank">'.$lang.'</a>';
@@ -373,11 +372,11 @@ class com_joomleagueInstallerScript
 		// Get the root rules
 		$root = Table::getInstance('asset');
 		$root->loadByName('root.1');
-		$root_rules = new Rules($root->rules);
+		$root_rules = new JAccessRules($root->rules);
 	
 		// Define the new rules
 		$ACL_PERMISSIONS = '{"core.admin":[],"core.manage":[],"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"settings.edit":[],"settings.save":[]}';
-		$new_rules = new Rules($ACL_PERMISSIONS);
+		$new_rules = new JAccessRules($ACL_PERMISSIONS);
 	
 		// Merge the rules into default rules and save it
 		$root_rules->merge($new_rules);

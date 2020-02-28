@@ -4,7 +4,7 @@
 		group="COM_JOOMLEAGUE_FES_PARAMS_GROUP_PAGE_ELEMENTS" description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_PAGE_ELEMENTS">
 
 		<field name="show_sectionheader" type="radio" default="1"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_SHOW_SECTIONHEADER"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_SHOW_SECTIONHEADER">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -12,7 +12,7 @@
 		</field>
 
 		<field name="show_playground" type="radio" default="1"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_LABEL_SHOW_INFO"
 			description="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_DESCR_SHOW_INFO">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -20,7 +20,7 @@
 		</field>
 
 		<field name="show_extended" type="radio" default="1"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_LABEL_SHOW_EXTENDED"
 			description="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_DESCR_SHOW_EXTENDED">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -28,7 +28,7 @@
 		</field>
 
 		<field name="show_picture" type="radio" default="1"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_LABEL_SHOW_VENUE_PICTURE"
 			description="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_DESCR_SHOW_VENUE_PICTURE">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -36,7 +36,7 @@
 		</field>
 
 		<field name="show_maps" type="radio" default="1"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_LABEL_SHOW_MAPS"
 			description="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_DESCR_SHOW_MAPS">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -44,7 +44,7 @@
 		</field>
 
 		<field name="show_description" type="radio" default="1"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_LABEL_SHOW_DESCRIPTION"
 			description="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_DESCR_SHOW_DESCRIPTION">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -52,7 +52,7 @@
 		</field>
 
 		<field name="show_teams" type="radio" default="1"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_LABEL_SHOW_TEAMS"
 			description="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_DESCR_SHOW_TEAMS">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -60,14 +60,14 @@
 		</field>
 
 		<field name="show_matches" type="radio" default="1"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_LABEL_SHOW_MATCHES"
 			description="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_DESCR_SHOW_MATCHES">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 		<field name="show_ical_link" type="radio" default="0"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_LABEL_SHOW_ICAL_LINK" description="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_DESCR_SHOW_ICAL_LINK">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
@@ -85,7 +85,7 @@
 		</field>
 
 	    <field name="show_route" type="radio" default="1"
-	    	class="switcher"
+	    	layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_LABEL_SHOW_ROUTE"
 			description="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_DESCR_SHOW_ROUTE">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -93,7 +93,7 @@
 		</field>
 
 		<field name="show_logo" type="radio" default="1"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_LABEL_SHOW_LOGO"
 			description="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_DESCR_SHOW_LOGO">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -101,7 +101,7 @@
 		</field>
 
 		<field name="show_logo" type="radio" default="1"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_LABEL_SHOW_LOGO" 
 			description="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_DESCR_SHOW_LOGO">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -109,14 +109,14 @@
 		</field>
                 
         <field 	name="show_shortname" type="radio" default="0" 
-        	class="switcher"
+        	layout="joomla.form.field.radio.switcher"
             label="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_LABEL_SHOW_SHORTNAME" 
             description="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_DESCR_SHOW_SHORTNAME">
             <option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
             <option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
         </field>
         <field 	name="show_match_number" type="radio" default="0" 
-        	class="switcher"
+        	layout="joomla.form.field.radio.switcher"
             label="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_LABEL_SHOW_MATCH_NUMBER" 
             description="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_DESCR_SHOW_MATCH_NUMBER">
             <option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -131,7 +131,7 @@
 			<option value="2">COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_OPTION2_SHOW_REFEREE</option>
 		</field>
 		<field name="show_referee_link" type="radio" default="1"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_LABEL_SHOW_REFEREE_LINK" 
 			description="COM_JOOMLEAGUE_FES_PLAYGROUND_PARAM_DESCR_SHOW_REFEREE_LINK">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>

@@ -14,9 +14,9 @@ defined('_JEXEC') or die;
 ?>
 <script type="text/javascript">
 (function() {
-	$('csv-file-upload-submit').addEvent('click', function(){
-		$('task').value = 'import.csv<?php echo $this->table; ?>import';
-		$('adminForm').submit();
+	document.getElementById('csv-file-upload-submit').addEvent('click', function(){
+		document.getElementById('task').value = 'import.csv<?php echo $this->table; ?>import';
+		document.getElementById('adminForm').submit();
 	});
 });
 

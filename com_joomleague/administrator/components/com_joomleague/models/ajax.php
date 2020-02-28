@@ -19,7 +19,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 /**
  * Ajax Model
  */
-class JoomleagueModelAjax extends JLGModel
+class JoomleagueModelAjax extends BaseDatabaseModel
 {
 	public function addGlobalSelectElement($elements, $required=false) {
 		if(!$required)  {
@@ -344,5 +344,41 @@ class JoomleagueModelAjax extends JLGModel
 		return self::addGlobalSelectElement($db->loadObjectList(), $required);
 		$app->close();
 	}
+	  function getseasons($db = false, $required = false, $slug = false)
+        {
+        // Reference global application object
+        $app = Factory::getApplication();
+        // JInput object
+        $option = $app->input->getCmd('option');
+        //$required = 0;
+        $lang		= Factory::getLanguage();
+		$extension 	= "com_joomleague";
+		$source 	= Path::clean(JPATH_SITE. '/components/' . $extension);
+		$lang->load($extension, JPATH_SITE, null, false, false)
+		||	$lang->load($extension, $source, null, false, false)
+		||	$lang->load($extension, JPATH_SITE, $lang->getDefault(), false, false)
+		||	$lang->load($extension, $source, $lang->getDefault(), false, false);
+        // Get a db connection.
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
+        // Select some fields
+        if ( $slug )
+        {
+        $query->select('CONCAT_WS(\':\', id, alias) AS value,name AS text');
+        }
+        else
+        {
+        $query->select('id AS value,name AS text');
+        }
+        // From 
+		$query->from('#__joomleague_season');
+        $query->order('name DESC'); 
+        
+        $db->setQuery($query);
+                //return $db->loadObjectList();
+                return self::addGlobalSelectElement($db->loadObjectList(), $required);    
+            
+            
+        }
 }
 ?>

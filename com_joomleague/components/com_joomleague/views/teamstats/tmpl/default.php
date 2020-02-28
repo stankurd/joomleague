@@ -35,14 +35,14 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		echo $this->loadTemplate('attendance_stats'); 
 	}	
 	?>
-	<div style='width:100%; height:400px; float:left'>
+	<div style='width:100%; float:left'>
 	<?php
 	if ( $this->config['show_goals_stats_flash'] )
 	{
 	    $document= Factory::getDocument();
-	    $version = urlencode(JoomleagueHelper::getVersion());
-	    $document->addScript( Uri::base(true).'/components/com_joomleague/assets/js/json2.js?v='.$version);
-	    $document->addScript( Uri::base(true).'/components/com_joomleague/assets/js/swfobject.js?v='.$version);
+	    //$version = urlencode(JoomleagueHelper::getVersion());
+	    //$document->addScript( Uri::base(true).'/components/com_joomleague/assets/js/json2.js?v='.$version);
+	    //$document->addScript( Uri::base(true).'/components/com_joomleague/assets/js/swfobject.js?v='.$version);
 	    echo $this->loadTemplate('flashchart'); 
 	}
 	?>

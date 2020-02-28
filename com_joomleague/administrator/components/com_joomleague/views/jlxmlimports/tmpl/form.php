@@ -14,8 +14,7 @@ use Joomla\CMS\Factory;
 
 defined('_JEXEC') or die;
 
-HTMLHelper::_('behavior.tooltip');
-
+HTMLHelper::_('bootstrap.tooltip');
 if (isset($this->xml) && is_array($this->xml))
 {
 	{

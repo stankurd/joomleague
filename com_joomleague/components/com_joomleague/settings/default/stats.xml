@@ -6,7 +6,7 @@
 		<field name="show_sectionheader" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_SHOW_SECTIONHEADER"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_SHOW_SECTIONHEADER"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -14,7 +14,7 @@
 		<field name="show_general_stats" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_STATS_PARAM_LABEL_SHOW_GENERAL_STATS"
 			description="COM_JOOMLEAGUE_FES_STATS_PARAM_DESCR_SHOW_GENERAL_STATS"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -22,7 +22,7 @@
 		<field 	name="show_general_stats" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_STATS_PARAM_LABEL_SHOW_GENERAL_STATS" 
 				description="COM_JOOMLEAGUE_FES_STATS_PARAM_DESCR_SHOW_GENERAL_STATS"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -30,7 +30,7 @@
 		<field 	name="home_away_stats" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_STATS_PARAM_LABEL_SHOW_HA_STATS" 
 				description="COM_JOOMLEAGUE_FES_STATS_PARAM_DESCR_SHOW_HA_STATS"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -38,7 +38,7 @@
 		<field 	name="show_goals_stats" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_STATS_PARAM_LABEL_SHOW_GOAL_STATS" 
 				description="COM_JOOMLEAGUE_FES_STATS_PARAM_DESCR_SHOW_GOAL_STATS"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -46,7 +46,7 @@
 		<field 	name="show_attendance_stats" type="radio" default="0" 
 				label="COM_JOOMLEAGUE_FES_STATS_PARAM_LABEL_SHOW_ATTENDANCE_STATS" 
 				description="Shows various attendance statistics, e.g. average number of spectators."
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -54,7 +54,7 @@
 		<field 	name="show_goals_stats_flash" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_STATS_PARAM_LABEL_SHOW_FLASH" 
 				description="COM_JOOMLEAGUE_FES_STATS_PARAM_DESCR_SHOW_FLASH"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -62,7 +62,7 @@
 		<field 	name="show_attendance_ranking" type="radio" default="0" 
 				label="COM_JOOMLEAGUE_FES_STATS_PARAM_LABEL_SHOW_ATTENDANCE_RANK" 
 				description="COM_JOOMLEAGUE_FES_STATS_PARAM_DESCR_SHOW_ATTENDANCE_RANK"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -70,7 +70,7 @@
 		<field name="show_teaminfo_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAMINFO_LINK"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAMINFO_LINK"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>

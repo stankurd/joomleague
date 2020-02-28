@@ -1,0 +1,25 @@
+To Do for the predictions game tool;
+2010-08-08 - 15:50
+
+General:
+-	Fix making predictions for only general favourite teams of a project
+-	How shall prediction communities really work??? Can anyone give me an idea???
+-	Do we need different points if a match result is not normal but a decision???
+-	And what if we have overtime and shootouts??? Also different points for correct match result???
+
+Frontend:
+-	Computing of exact Member-Rank could be optimized
+ok-	Fix check routine on the user profile page to show the selected Champion
+
+Backend:
+-	TO BE FIXED: Save old settings of a prediction project even if joker or champtipp is unselected or the project is unpublished
+
+For the Future:
+-	Add handling of Member AliasName in prediction outputs and check if this aliasname is already used by another member
+-	Output of the predictions-form (down/same/up pictures) of a member in the members-view. The same with the
+	last-round tipps. This can only be done after we know what the user has done in the last round. And this only works
+	after predictions ranking routine works and only if we have a project selector in user view
+-	Add the selector for prediction games to results/users/ranking
+-	Maybe: Add matchday navigator to ranking and entry view
+-	Maybe: ADD also matchday / rounds navigator to the users view but this should normally be useless after the flash-stats on user view work
+-	Maybe: Add a log function into a text logfile for all changes done by admins depending the predictions and member info

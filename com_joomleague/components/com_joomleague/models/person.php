@@ -423,37 +423,7 @@ class JoomleagueModelPerson extends JoomleagueModelProject
 		}
 		return false;
 	}
-	/*
-	function _getProjectTeamIds4UserId($userId)
-	{
-	    // team_player
-	    $query = '	SELECT tp.projectteam_id
-					FROM #__joomleague_person AS pr
-					INNER JOIN #__joomleague_team_player AS tp ON tp.person_id=pr.id
-					LEFT JOIN #__contact_details AS cd ON cd.id=pr.contact_id
-					WHERE cd.user_id='.$userId.'
-					AND pr.published = 1
-					AND tp.published = 1 ';
-	    $this->_db->setQuery($query);
-	    $projectTeamIds = array();
-	    $projectTeamIds = $this->_db->loadColumn();
-	    // team_staff
-	    $query='	SELECT ts.projectteam_id
-				FROM #__joomleague_person pr
-				INNER JOIN #__joomleague_team_staff AS ts ON ts.person_id=pr.id
-				LEFT JOIN #__contact_details AS cd ON cd.id=pr.contact_id
-				WHERE cd.user_id='.$userId.'
-						AND pr.published = 1
-						AND ts.published = 1';
-	    $this->_db->setQuery($query);
-	    if(!empty($projectTeamIds)) {
-	        $projectTeamIds = array_merge($projectTeamIds, $this->_db->loadColumn());
-	    } else {
-	        $projectTeamIds = $this->_db->loadColumn();
-	    }
-	    return $projectTeamIds;
-	}
-*/
+	
 	function _getProjectTeamIds4UserId($userId)
 	{
 	    $app = Factory::getApplication();

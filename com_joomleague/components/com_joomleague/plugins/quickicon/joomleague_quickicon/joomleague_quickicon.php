@@ -47,6 +47,7 @@ class plgQuickiconJoomLeague_Quickicon extends CMSPlugin
 		return array(array(
 			'link' => 'index.php?option=com_joomleague',
 			'image' => '../../../components/com_joomleague/assets/images/jl_icon.png',
+			'icon'  => '',
 			'text' => $text,
 			'id' => 'plg_quickicon_joomleague'
 		));

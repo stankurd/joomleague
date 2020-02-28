@@ -14,13 +14,15 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Filesystem\File;
+
 
 defined('_JEXEC') or die;
 
 jimport('joomla.filesystem.file');
-HTMLHelper::_('bootstrap.framework');
+//HTMLHelper::_('bootstrap.framework');
 HTMLHelper::_('bootstrap.tooltip');
-HTMLHelper::_('jquery.framework');
+//HTMLHelper::_('jquery.framework');
 
 
 $app = Factory::getApplication();
@@ -429,7 +431,7 @@ jQuery(document).ready(function() {
 					?>
 					<td class="center">
 					<?php
-					if(empty($row->picture) || ! JFile::exists(JPATH_SITE . '/' . $row->picture))
+					if(empty($row->picture) || ! File::exists(JPATH_SITE . '/' . $row->picture))
 					{
 						$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_NO_IMAGE') . $row->picture;
 						echo HTMLHelper::image('administrator/components/com_joomleague/assets/images/delete.png',$imageTitle,'title= "'.$imageTitle.'"');
@@ -441,7 +443,7 @@ jQuery(document).ready(function() {
 					}
 					else
 					{
-						if(JFile::exists(JPATH_SITE.'/'.$row->picture))
+						if(File::exists(JPATH_SITE.'/'.$row->picture))
 						{
 							$imageTitle = Text::_('COM_JOOMLEAGUE_ADMIN_TEAMS_CUSTOM_IMAGE');
 							echo HTMLHelper::_('image','administrator/components/com_joomleague/assets/images/ok.png',$imageTitle,'title= "'.$imageTitle.'"');

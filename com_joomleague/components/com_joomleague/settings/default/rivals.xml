@@ -6,7 +6,7 @@
 		<field 	name="show_projectheader" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_SHOW_PROJECTHEADER" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_SHOW_PROJECTHEADER"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -14,7 +14,7 @@
 		<field 	name="show_sectionheader" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_SHOW_SECTIONHEADER" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_SHOW_SECTIONHEADER"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -22,7 +22,7 @@
 		<field 	name="show_description" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_RIVALS_PARAM_LABEL_SHOW_DESCRIPTION" 
 				description="COM_JOOMLEAGUE_FES_RIVALS_PARAM_DESCR_SHOW_DESCRIPTION"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -47,7 +47,7 @@
 		<field	name="highlight_fav" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_RESULTS_PARAM_LABEL_HIGHLIGHT_FAV"
 				description="COM_JOOMLEAGUE_FES_RESULTS_PARAM_DESCR_HIGHLIGHT_FAV"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -102,7 +102,7 @@
 		<field name="show_club_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_CLUBINFO_LINK"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_CLUBINFO_LINK"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -110,7 +110,7 @@
 		<field name="show_team_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_LINK"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_LINK"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -118,7 +118,7 @@
 		<field name="show_teaminfo_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAMINFO_LINK"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAMINFO_LINK"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -126,7 +126,7 @@
 		<field name="show_teamstats_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAMSTATS_LINK"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAMSTATS_LINK"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -134,7 +134,7 @@
 		<field name="show_plan_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAMPLAN_LINK"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAMPLAN_LINK"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -142,7 +142,7 @@
 		<field name="show_clubplan_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_CLUBPLAN_LINK"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_CLUBPLAN_LINK"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -150,7 +150,7 @@
 		<field name="show_rivals_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_RIVALS_LINK"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_RIVALS_LINK"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -158,7 +158,7 @@
 		<field name="show_curve_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_CURVE_LINK"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_CURVE_LINK"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>

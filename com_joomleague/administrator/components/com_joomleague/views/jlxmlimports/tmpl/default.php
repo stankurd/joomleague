@@ -11,7 +11,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
-HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 ?>
 <div id="editcell">
 	<form enctype='multipart/form-data' action='<?php echo $this->request_url; ?>' method='post' id='adminForm'>

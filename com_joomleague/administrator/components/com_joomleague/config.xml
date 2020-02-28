@@ -7,13 +7,13 @@
 		<field name="cfg_edit_club_info_update_notify" type="radio"
 			default="0" label="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_NOTIFY_CLUBADMINS_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_NOTIFY_CLUBADMINS_DESCR"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			>
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 		<field name="cfg_edit_person_info_update_notify" type="radio"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			default="0" label="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_PERSON_CLUBADMINS_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_PERSON_CLUBADMINS_DESCR">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -24,7 +24,8 @@
 			label="COM_JOOMLEAGUE_SETTINGS_GROUP_SYSTEM"
 	>
 		<field name="cfg_drop_joomleague_tables_when_uninstalled" type="radio"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
+
 			default="0" label="COM_JOOMLEAGUE_SETTINGS_UNINSTALL_TABLES_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_UNINSTALL_TABLES_DESCR">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -32,7 +33,7 @@
 		</field>
 		<field name="show_debug_info" type="radio" default="0"
 			label="COM_JOOMLEAGUE_SETTINGS_SHOW_DEBUG_TITLE"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			description="COM_JOOMLEAGUE_SETTINGS_SHOW_DEBUG_DESCR">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
@@ -55,20 +56,21 @@
 			label="COM_JOOMLEAGUE_SETTINGS_GROUP_FRONTEND">
 		<field name="force_ranking_cache" type="radio" default="0"
 			label="COM_JOOMLEAGUE_SETTINGS_FORCE_RANKING_CACHE" 
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			description="COM_JOOMLEAGUE_SETTINGS_FORCE_RANKING_CACHE_DESC">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 		<field name="use_highslide" type="radio" default="0"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
+
 			label="COM_JOOMLEAGUE_SETTINGS_USE_HIGHSLIDE_LIBRARY"
 			description="COM_JOOMLEAGUE_SETTINGS_USE_HIGHSLIDE_LIBRARY_DESC">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 		<field name="usethumblib" type="radio" default="0"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_SETTINGS_USE_SERVERSIDE_THUMBCREATION"
 			description="COM_JOOMLEAGUE_SETTINGS_USE_SERVERSIDE_THUMBCREATION_DESC">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -81,7 +83,7 @@
 			<option value="PNG">PNG</option>
 		</field>
 		<field name="usethumbnailcache" type="radio" default="0"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_SETTINGS_USE_SERVERSIDE_THUMBCREATION_CACHE"
 			description="COM_JOOMLEAGUE_SETTINGS_USE_SERVERSIDE_THUMBCREATION_CACHE_DESC">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -121,14 +123,14 @@
 			<option value="DESC">COM_JOOMLEAGUE_GLOBAL_DESC</option>
 		</field>
         <field name="cfg_show_seasons_in_project_drop_down" type="radio"
-        	class="switcher"
+        	layout="joomla.form.field.radio.switcher"
 			default="0" label="COM_JOOMLEAGUE_SETTINGS_SHOW_SEASON_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_SHOW_SEASON_DESCR">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 		<field name="on_prefill_delete_current_match_roster" type="radio"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			default="0"
 			label="COM_JOOMLEAGUE_SETTINGS_ON_PREFILL_DELETE_CURRENT_MATCH_ROSTER"
 			description="COM_JOOMLEAGUE_SETTINGS_ON_PREFILL_DELETE_CURRENT_MATCH_ROSTER_DESCR">

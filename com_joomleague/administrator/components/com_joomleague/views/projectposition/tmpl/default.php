@@ -13,7 +13,7 @@ use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
 
-//HTMLHelper::_('bootstrap.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 ?>
 <script>
 	function searchposition(val,key)

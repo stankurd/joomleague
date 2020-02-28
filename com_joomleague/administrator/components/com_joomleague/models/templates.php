@@ -10,8 +10,9 @@
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
-use Joomla\CMS\HTML\Registry;
 use Joomla\CMS\Table\Table;
+use Joomla\Registry\Registry;
+
 
 defined('_JEXEC') or die;
 

@@ -352,19 +352,19 @@ class JoomleagueHelperHtml {
 
 		if ($res == 0)
 		{
-			$img = 'media/com_joomleague/jl_images/draw.png';
+			$img = 'images/com_joomleague/jl_images/draw.png';
 			$alt = Text::_('COM_JOOMLEAGUE_GLOBAL_DRAW');
 			$title = $alt;
 		}
 		else if ($res < 0)
 		{
-			$img = 'media/com_joomleague/jl_images/thumbs_down.png';
+			$img = 'images/com_joomleague/jl_images/thumbs_down.png';
 			$alt = Text::_('COM_JOOMLEAGUE_GLOBAL_LOST');
 			$title = $alt;
 		}
 		else
 		{
-			$img = 'media/com_joomleague/jl_images/thumbs_up.png';
+			$img = 'images/com_joomleague/jl_images/thumbs_up.png';
 			$alt = Text::_('COM_JOOMLEAGUE_GLOBAL_WON');
 			$title = $alt;
 		}
@@ -416,7 +416,7 @@ class JoomleagueHelperHtml {
 	{
 		if ( isset( $previous[$ptid]->rank ) )
 		{
-			$imgsrc = 'media/com_joomleague/jl_images/';
+			$imgsrc = 'images/com_joomleague/jl_images/';
 			if ( ( $team->rank == $previous[$ptid]->rank ) || ( $previous[$ptid]->rank == "" ) )
 			{
 				$imgsrc .= "same.png";
@@ -468,7 +468,7 @@ class JoomleagueHelperHtml {
 				$params["dir"] = ( $app->input->getVar( 'dir', '') == 'ASC' ) ? 'DESC' : 'ASC';
 				$imgname = 'sort'.($app->input->getVar( 'dir', '') == 'ASC' ? "02" :"01" ).'.gif';
 				$img = HTMLHelper::image(
-										'media/com_joomleague/jl_images/' . $imgname,
+										'images/com_joomleague/jl_images/' . $imgname,
 				$params["dir"] );
 			}
 			else
@@ -554,6 +554,47 @@ class JoomleagueHelperHtml {
 		echo '</tr>';
 		echo '</table>';
 		echo '</center>';
+	}
+	 public static function printColumnHeadingSortAllTimeRanking( $columnTitle, $paramName, $config = null, $default="DESC" )
+	{
+	    $app = Factory::getApplication();
+		$output = "";
+		$img='';
+		if ( $config['column_sorting'] || $config == null)
+		{
+			$params = array(
+					"option" => "com_joomleague",
+					"view"   => $app->input->getVar("view", "rankingalltime"),
+					"p" => $app->input->getInt( "p", 0 ),
+                    "l" => $app->input->getInt( "l", 0 ),
+					"r" => $app->input->getInt( "r", 0 ),
+                    "points" => $app->input->getVar( "points", "" ),
+					"type" => $app->input->getVar( "type", "" ) );
+	
+			if ( $app->input->getVar( 'order', '' ) == $paramName )
+			{
+				$params["order"] = $paramName;
+				$params["dir"] = ( $app->input->getVar( 'dir', '') == 'ASC' ) ? 'DESC' : 'ASC';
+				$imgname = 'sort'.($app->input->getVar( 'dir', '') == 'ASC' ? "02" :"01" ).'.gif';
+				$img = HTMLHelper::image(
+										'images/com_joomleague/jl_images/' . $imgname,
+				$params["dir"] );
+			}
+			else
+			{
+				$params["order"] = $paramName;
+				$params["dir"] = $default;
+			}
+			$query = Uri::buildQuery( $params );
+			echo HTMLHelper::link(
+			Route::_( "index.php?".$query ),
+			Text::_($columnTitle),
+			array( "class" => "jl_rankingheader" ) ).$img;
+		}
+		else
+		{
+			echo Text::_($columnTitle);
+		}
 	}
 
 }

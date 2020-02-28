@@ -16,7 +16,7 @@ HTMLHelper::_('bootstrap.tooltip');
 <script>
 	function submitbutton(pressbutton)
 	{
-		var form = $('adminForm');
+		var form = document.getElementById('adminForm');
 		if (pressbutton == 'cancel')
 		{
 			submitform( pressbutton );

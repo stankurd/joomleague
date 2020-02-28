@@ -9,15 +9,17 @@
 * See COPYRIGHT.php for copyright notices and details.
 */
 use Joomla\CMS\Factory;
-use Joomla\CMS\Component\Router\RouterView;
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Component\Router\RouterBase;
 
 require_once 'joomleague.core.php';
 
-class JoomleagueRouter extends RouterView
+class JoomleagueRouter extends RouterBase
 {
     public function __construct($app = null, $menu = null)
     {
+        $params = ComponentHelper::getParams('com_joomleague');
+        
         if ($app)
         {
             $this->app = $app;
@@ -35,6 +37,7 @@ class JoomleagueRouter extends RouterView
         {
             $this->menu = $this->app->getMenu();
         }
+        parent::__construct($app, $menu);
     }
     
    
@@ -57,6 +60,11 @@ public function getRouteParametersObject() {
 			'p' => 0,
 			'cid' => 0,
 			'task'=>'' 
+	);
+	$params ['clubplan'] = array (
+	    'p' => 0,
+	    'cid' => 0,
+	    'task'=>''
 	);
 	$params ['curve'] = array (
 			'p' => 0,
@@ -108,6 +116,9 @@ public function getRouteParametersObject() {
 			'to' => 0,
 			'division' => 0 
 	);
+	$params ['referees'] = array (
+	    'p' => 0,
+	);
 	$params ['referee'] = array (
 			'p' => 0,
 			'pid' => 0 
@@ -145,6 +156,11 @@ public function getRouteParametersObject() {
 			'tid' => 0,
 			'task'=>'',
 			'division'=>0 
+	);
+	$params ['rosteralltime'] = array (
+	    'p' => 0,
+	    'tid' => 0,
+	    'task'=>'',
 	);
 	$params ['teams'] = array (
 			'p' => 0,
@@ -190,6 +206,13 @@ public function getRouteParametersObject() {
 			'division' => 0,
 			'tid' => 0 
 	);
+	$params ['rankingalltime'] = array (
+	    'p' => 0,
+	    'l' => 0,
+	    'points' => 0,
+	    
+	);
+	
 	
 	return $params;
 }
@@ -265,12 +288,13 @@ public function parse(&$segments) {
 	
 }
 function joomleagueBuildRoute(&$query) {
-    
-    $router = new JoomleagueRouter;
+    $app = Factory::getApplication();
+    $router = new JoomleagueRouter($app, $app->getMenu());
     return $router->build($query);
 }
 function joomleagueParseRoute($segments) {
-    $router = new JoomleagueRouter;
+    $app = Factory::getApplication();
+    $router = new JoomleagueRouter($app, $app->getMenu());
     return $router->parse($segments);
 }
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.0" type="plugin" group="quickicon" method="upgrade">	<name>plg_quickicon_joomleague_quickicon</name>
+<extension version="4.0" type="plugin" group="quickicon" method="upgrade">	<name>plg_quickicon_joomleague_quickicon</name>
 	<creationDate>2015</creationDate>
 	<author>JoomLeague Developers</author>
 	<authorEmail>andone@mfga.at</authorEmail>
 	<authorUrl>http://www.joomleague.at</authorUrl>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<copyright>(C) 2005-2016 joomleague.at. All rights reserved.</copyright>
-	<version>3.0.22.57ae969</version>
+	<version>4.0.22.57ae969</version>
 	<description>PLG_QUICKICON_JOOMLEAGUE_QUICKICON_XML_DESC</description>
 
 	<files>

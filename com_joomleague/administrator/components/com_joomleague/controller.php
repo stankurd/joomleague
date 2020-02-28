@@ -113,8 +113,8 @@ class JoomleagueController extends JLGControllerAdmin
 		$hidemainmenu = $input->get('hidemainmenu',false);
 
 		// display left menu
-		$viewName = $this->input->getCmd('view','');
-		$layoutName = $this->input->getCmd('layout','default');
+		$viewName = $app->input->getCmd('view','');
+		$layoutName = $app->input->getCmd('layout','default');
 
 
 		if($hidemainmenu)
@@ -183,7 +183,7 @@ class JoomleagueController extends JLGControllerAdmin
 
 		$view->setModel($model,true);
 		$view->display();
-		parent::display($cachable,$urlparams);
+		//parent::display($cachable,$urlparams);
 	}
 
 	private function ShowMenu()

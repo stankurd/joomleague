@@ -13,7 +13,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
-HTMLHelper::_('behavior.framework');
+HTMLHelper::_('jquery.framework');
 HTMLHelper::_('formbehavior.chosen', 'select');
 
 ?>

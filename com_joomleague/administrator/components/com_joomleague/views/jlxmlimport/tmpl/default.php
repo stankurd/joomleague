@@ -11,8 +11,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die;
 
-HTMLHelper::_('behavior.tooltip');
-
+HTMLHelper::_('bootstrap.tooltip');
 $model = $this->getModel('jlxmlimport');
 echo $model->getXml;
 ?>

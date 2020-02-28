@@ -21,6 +21,8 @@ class JoomleagueViewTeamInfo extends JLGView
 		$this->team = $model->getTeamByProject();
 		$this->club = $model->getClub() ;
 		$this->seasons = $model->getSeasons( $this->config );
+		$this->leaguerankoverview = $model->getLeagueRankOverview( $this->seasons );
+		$this->leaguerankoverviewdetail = $model->getLeagueRankOverviewDetail( $this->seasons );
 		if ( isset($this->project->id) )
 		{
 			$this->trainingData = $model->getTrainingData($this->project->id);

@@ -6,7 +6,7 @@
 		<field name="show_sectionheader" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_SHOW_SECTIONHEADER"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_SHOW_SECTIONHEADER"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -14,7 +14,7 @@
 		<field name="show_teams" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_TEAMS_PARAM_LABEL_SHOW_TEAMS"
 			description="COM_JOOMLEAGUE_FES_TEAMS_PARAM_DESCR_SHOW_TEAMS"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -33,7 +33,7 @@
    		<field name="show_team_picture" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_TEAMS_PARAM_LABEL_SHOW_TEAM_PICTURE"
 			description="COM_JOOMLEAGUE_FES_TEAMS_PARAM_DESCR_SHOW_TEAM_PICTURE"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -71,7 +71,7 @@
 		<field name="show_club_picture" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_TEAMS_PARAM_LABEL_SHOW_CLUB_PICTURE"
 			description="COM_JOOMLEAGUE_FES_TEAMS_PARAM_DESCR_SHOW_CLUB_PICTURE"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>

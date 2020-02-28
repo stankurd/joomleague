@@ -15,7 +15,7 @@ use Joomla\CMS\Session\Session;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
-HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('behavior.multiselect');
 
 $app = Factory::getApplication();

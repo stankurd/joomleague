@@ -40,6 +40,11 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	if ($this->config['show_history'] == 1)
 	{
 		echo $this->loadTemplate('history');
+		//echo $this->loadTemplate('history_leagues');
+	}
+		  if ($this->config['show_history_leagues']==1)
+	{
+		echo $this->loadTemplate('history_leagues');
 	}
 	?>
 	<div>

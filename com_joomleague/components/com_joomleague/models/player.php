@@ -514,9 +514,7 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 		      ->where('teamplayer_id = '.$player_id)
 		      ->where('came_in = 1 and in_for IS NOT NULL');
 		if ( $match_id )
-		{
-		    //$query .= ' and match_id = '.$match_id;
-		    
+		{		    
 			$query->where('match_id = '.$match_id);
 		}
 		$db->setQuery($query);

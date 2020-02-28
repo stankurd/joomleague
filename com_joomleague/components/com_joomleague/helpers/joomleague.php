@@ -23,7 +23,7 @@ use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 if( !defined('THUMBLIB_BASE_PATH') ) {
-	require_once(JLG_PATH_SITE.'/assets/classes/PHPThumb/ThumbLib.inc.php');
+	//require_once(JLG_PATH_SITE.'/assets/classes/PHPThumb/ThumbLib.inc.php');
 }
 
 jimport('joomla.filesystem.file');

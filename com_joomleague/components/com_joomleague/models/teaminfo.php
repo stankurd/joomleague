@@ -98,7 +98,7 @@ class JoomleagueModelTeamInfo extends JoomleagueModelProject
 				$query = $db->getQuery(true);
 				$query
 					->select('*')
-					->select($this->constructSlug($db))
+					->select($this->constructSlug($db, 'slug', 'alias', 'id'))
 					->from($db->quoteName('#__joomleague_club'))
 					->where($db->quoteName('id') . ' = ' . (int)$team->club_id);
 				$db->setQuery($query);
@@ -303,6 +303,76 @@ class JoomleagueModelTeamInfo extends JoomleagueModelProject
 		$trainingData = $db->loadObjectList();
 		return $trainingData;
 	}
+	function getLeagueRankOverviewDetail($seasonsranking) {
+	    // Reference global application object
+	    $app = Factory::getApplication();
+	    // JInput object
+	    $input = $app->input;
+	    $option = $input->getCmd('option');
+	    
+	    $leaguesoverviewdetail = array();
+	    
+	    foreach ($seasonsranking as $season) {
+	        $temp = new stdClass();
+	        $temp->match = 0;
+	        $temp->won = 0;
+	        $temp->draw = 0;
+	        $temp->loss = 0;
+	        $temp->goalsfor = 0;
+	        $temp->goalsagain = 0;
+	        $leaguesoverviewdetail[$season->league] = $temp;
+	    }
+	    
+	    
+	    foreach ($seasonsranking as $season) {
+	        $leaguesoverviewdetail[$season->league]->match += $season->games;
+	        $teile = explode("/", $season->series);
+	        $leaguesoverviewdetail[$season->league]->won += $teile[0];
+	        
+	        if (array_key_exists('1', $teile)) {
+	            $leaguesoverviewdetail[$season->league]->draw += $teile[1];
+	        }
+	        if (array_key_exists('2', $teile)) {
+	            $leaguesoverviewdetail[$season->league]->loss += $teile[2];
+	        }
+	        $teile = explode(":", $season->goals);
+	        $leaguesoverviewdetail[$season->league]->goalsfor += $teile[0];
+	        
+	        if (array_key_exists('1', $teile)) {
+	            $leaguesoverviewdetail[$season->league]->goalsagain += $teile[1];
+	        }
+	    }
+	    
+	    
+	    return $leaguesoverviewdetail;
+	}
+	
+	function getLeagueRankOverview($seasonsranking) {
+	    // Reference global application object
+	    $app = Factory::getApplication();
+	    // JInput object
+	    $input = $app->input;
+	    $option = $input->getCmd('option');
+	    
+	    $leaguesoverview = array();
+	    
+	    foreach ($seasonsranking as $season) {
+	        
+	        if (isset($leaguesoverview[$season->league][(int) $season->rank])) {
+	            $leaguesoverview[$season->league][(int) $season->rank] += 1;
+	        } else {
+	            $leaguesoverview[$season->league][(int) $season->rank] = 0;
+	        }
+	    }
+	    
+	    ksort($leaguesoverview);
+	    
+	    foreach ($leaguesoverview as $key => $value) {
+	        ksort($leaguesoverview[$key]);
+	    }
+	    
+	    return $leaguesoverview;
+	}
 	
 	function hasEditPermission($task = null,$id = false,$view=false)
 	{
@@ -321,5 +391,5 @@ class JoomleagueModelTeamInfo extends JoomleagueModelProject
 		}
 		
 		return $edit;
-	}	
+	}
 }

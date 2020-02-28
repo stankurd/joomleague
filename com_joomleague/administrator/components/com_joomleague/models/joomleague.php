@@ -247,11 +247,11 @@ class JoomleagueModelJoomleague extends JoomleagueModelItem
 		$db->setQuery($query,0,1);
 		try
 			{
-			$result = $db->loadObjectList();
+			     $result = $db->loadObjectList();
 			}
 		catch (Exception $e)
 			{
-			$app->enqueueMessage(Text::_($e->getMessage()), 'error');
+			     $app->enqueueMessage(Text::_($e->getMessage()), 'error');
 			}
 		return $result;
 	}

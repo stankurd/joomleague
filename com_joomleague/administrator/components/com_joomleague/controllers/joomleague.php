@@ -203,7 +203,7 @@ class JoomleagueControllerJoomleague extends JLGControllerAdmin
 			case 'projects':
 				if($pid)
 				{
-					// $app->setUserState ( $option . 'project_team_id', '0' );
+					//$app->setUserState ( $option . 'project_team_id', '0' );
 					$this->setRedirect('index.php?option=com_joomleague&task=joomleague.panel&layout=panel&pid[]=' . $pid,
 							Text::_('COM_JOOMLEAGUE_ADMIN_CTRL_PROJECT_SELECTED'),'notice');
 				}
