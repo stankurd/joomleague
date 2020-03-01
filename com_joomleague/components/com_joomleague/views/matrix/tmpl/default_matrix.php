@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 ?>
@@ -27,7 +28,7 @@ defined('_JEXEC') or die;
 			}
 
 			foreach ($this->teams as $team_row_header) {
-				$title = JText :: _('COM_JOOMLEAGUE_MATRIX_CLUB_PAGE_LINK') . ' ' . $team_row_header->name;
+				$title = Text :: _('COM_JOOMLEAGUE_MATRIX_CLUB_PAGE_LINK') . ' ' . $team_row_header->name;
 				$link = JoomleagueHelperRoute :: getClubInfoRoute($this->project->id, $team_row_header->club_id);
 				$desc = $team_row_header->short_name;
 				if ($crosstable_icons_horizontal) // icons at the top of matrix
@@ -59,7 +60,7 @@ defined('_JEXEC') or die;
 		foreach ($this->teams as $team_col_id => $team_col) {
 			if ($k_c == 0) // Header columns
 				{
-				$title = JText :: _('COM_JOOMLEAGUE_MATRIX_PLAYERS_PAGE_LINK') . ' ' . $trow->name;
+				$title = Text :: _('COM_JOOMLEAGUE_MATRIX_PLAYERS_PAGE_LINK') . ' ' . $trow->name;
 				$link = JoomleagueHelperRoute :: getPlayersRoute($this->project->id, $trow->id);
 				$desc = $trow->short_name;
 
@@ -110,12 +111,12 @@ defined('_JEXEC') or die;
 
 						switch ($result->rtype) {
 								case 1 : // Overtime
-									$ResultType = ' ('.JText::_('COM_JOOMLEAGUE_RESULTS_OVERTIME');
+									$ResultType = ' ('.Text::_('COM_JOOMLEAGUE_RESULTS_OVERTIME');
                                     $ResultType .= ')';
 									break;
 
 								case 2 : // Shootout
-									$ResultType = ' ('.JText::_('COM_JOOMLEAGUE_RESULTS_SHOOTOUT');
+									$ResultType = ' ('.Text::_('COM_JOOMLEAGUE_RESULTS_SHOOTOUT');
                                     $ResultType .= ')';
 									break;
 
@@ -146,7 +147,7 @@ defined('_JEXEC') or die;
 							if (($this->config['highlight_fav_team'] != 2) || (!in_array($team_row->id, $this->favteams) && !in_array($team_col->id, $this->favteams))) {
 								#$resultStr = str_replace( "%TEAMHOME%",
 								#                           $this->teams[$result->projectteam1_id]->name,
-								#                           JText::_( 'COM_JOOMLEAGUE_STANDARD_MATCH_REPORT_FORM' ) );
+								#                           Text::_( 'COM_JOOMLEAGUE_STANDARD_MATCH_REPORT_FORM' ) );
 								#$title = str_replace( "%TEAMGUEST%", $this->teams[$result->projectteam2_id]->name, $title );
 								$resultStr = $e1 . $this->overallconfig['seperator'] . $e2 . $ResultType;
 								if (($this->config['highlight_fav_team'] > 0) && ($this->project->fav_team_text_color != "") && (in_array($team_row->id, $this->favteams) || in_array($team_col->id, $this->favteams))) {
@@ -171,12 +172,12 @@ defined('_JEXEC') or die;
 									//FIXME
 									// $title = str_replace( "%TEAMHOME%",
 									//                       $this->teams[$result->projectteam1_id]->name,
-									//                       JText::_( 'COM_JOOMLEAGUE_FORCED_MATCH_REPORT_NEXTPAGE_FORM' ) );
+									//                       Text::_( 'COM_JOOMLEAGUE_FORCED_MATCH_REPORT_NEXTPAGE_FORM' ) );
 									$title = str_replace("%TEAMGUEST%", $this->teams[$result->projectteam2_id]->name, $title);
 									break;
 
 								case 2 : // Link to Match report
-									$title = str_replace("%TEAMHOME%", $this->teams[$result->projectteam1_id]->name, JText :: _('COM_JOOMLEAGUE_FORCED_MATCH_REPORT_FORM'));
+									$title = str_replace("%TEAMHOME%", $this->teams[$result->projectteam1_id]->name, Text :: _('COM_JOOMLEAGUE_FORCED_MATCH_REPORT_FORM'));
 									$title = str_replace("%TEAMGUEST%", $this->teams[$result->projectteam2_id]->name, $title);
 									break;
 
@@ -220,7 +221,7 @@ defined('_JEXEC') or die;
 					} else {
 						// Any result available so "bullet_black.png" is shown with a link to the gameday of the match
 						$link = JoomleagueHelperRoute :: getResultsRoute($this->project->id, $result->roundid, $result->division_id);
-						$title = str_replace("%NR_OF_MATCHDAY%", $result->roundcode, JText :: _('COM_JOOMLEAGUE_MATCHDAY_FORM'));
+						$title = str_replace("%NR_OF_MATCHDAY%", $result->roundcode, Text :: _('COM_JOOMLEAGUE_MATCHDAY_FORM'));
 						$picture = 'media/com_joomleague/jl_images/bullet_black.png';
 						$desc = JoomleagueHelper::getPictureThumb($picture, $title, 16,16, 99);
 						if (($this->config['highlight_fav_team'] != 2) || (!in_array($team_row->id, $this->favteams)) && (!in_array($team_col->id, $this->favteams))) {

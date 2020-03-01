@@ -7,11 +7,10 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\Factory;
-use Joomla\CMS\Toolbar\ToolbarHelper;
-use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
-use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
 
@@ -90,11 +89,11 @@ class JoomleagueViewTreetonodes extends JLGView
 		$lrOptions = array();
 		foreach($createYesNo as $key=>$value)
 		{
-			$ynOptions[] = HTMLHelper::_('select.option',$key,$value);
+		    $ynOptions[] = HTMLHelper::_('select.option',$key,$value);
 		}
 		foreach($createLeftRight as $key=>$value)
 		{
-			$lrOptions[] = HTMLHelper::_('select.option',$key,$value);
+		    $lrOptions[] = HTMLHelper::_('select.option',$key,$value);
 		}
 		$lists['addToRound'] = HTMLHelper::_('select.radiolist',$ynOptions,'addToRound','class="inputbox"','value','text',1);
 		// build the html radio for auto publish new matches
@@ -103,7 +102,7 @@ class JoomleagueViewTreetonodes extends JLGView
 		$lists['LRreDepth'] = HTMLHelper::_('select.radiolist',$lrOptions,'LRreDepth','class="inputbox"','value','text',0);
 		// build the html radio for create new treeto
 		$lists['createNewTreeto'] = HTMLHelper::_('select.radiolist',$ynOptions,'createNewTreeto','class="inputbox"','value','text',1);
-
+		
 		$this->lists = $lists;
 		// @todo fix!
 		// $this->roundcode',$roundcode);
@@ -124,31 +123,15 @@ class JoomleagueViewTreetonodes extends JLGView
 		$isleafed = $this->treeto->leafed;
 		if($isleafed == 1)
 		{
-		    ToolbarHelper::saveGroup(
-		        [
-		            ['apply', 'treetonodes.saveshort',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_SAVE_APPLY'),false],
-		        ],
-		        'btn-success'
-		        );
-			//JLToolBarHelper::apply('treetonodes.saveshort',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_SAVE_APPLY'),false);
+			JLToolBarHelper::apply('treetonodes.saveshort',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_SAVE_APPLY'),false);
 			JLToolBarHelper::custom('treetonodes.removenode','delete.png','delete_f2.png',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_DELETE_ALL'),false);
 		}
 		elseif($isleafed)
 		{
-		    ToolbarHelper::saveGroup(
-		        [
-		            ['apply', 'treetonodes.saveshortleaf',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TEST_SHOW'),false],
-		        ],
-		        'btn-success'
-		        );
+			JLToolBarHelper::apply('treetonodes.saveshortleaf',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TEST_SHOW'),false);
 			if($isleafed == 3)
 			{
-			    ToolbarHelper::saveGroup(
-			        [
-			            ['apply', 'treetonodes.saveshortleaf',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TEST_SHOW'),false],
-			        ],
-			        'btn-success'
-			        );
+				JLToolBarHelper::apply('treetonodes.savefinishleaf',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_SAVE_LEAF'),false);
 			}
 		JLToolBarHelper::custom('treetonodes.removenode','delete.png','delete_f2.png',Text::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_DELETE'),false);
 		}

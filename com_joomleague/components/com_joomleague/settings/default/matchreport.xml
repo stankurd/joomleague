@@ -6,7 +6,7 @@
 		<field name="show_sectionheader" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_HEADER"
 			description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_HEADER"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -14,7 +14,7 @@
 		<field name="show_result" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_RESULT"
 			description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_RESULT"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -22,7 +22,7 @@
 		<field name="show_details" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_DETAILS"
 			description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_DETAILS"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -30,7 +30,7 @@
 		<field name="show_extended" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_EXTENDED"
 			description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_EXTENDED"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -38,7 +38,7 @@
 		<field 	name="show_extended" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_EXTENDED"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_EXTENDED"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>		
@@ -46,7 +46,7 @@
 		<field 	name="show_roster" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_ROSTER"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_ROSTER"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -54,7 +54,7 @@
 		<field 	name="show_events" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_EVENTS"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_EVENTS"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -62,7 +62,7 @@
 		<field 	name="show_stats" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_STATS"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_STATS"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -70,7 +70,7 @@
 		<field 	name="show_summary" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_SUMMARY"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_SUMMARY"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -78,7 +78,7 @@
 		<field 	name="show_timeline" type="radio" default="0"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_TIMELINE" 
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_TIMELINE"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -103,7 +103,7 @@
 		<field 	name="show_substitutions" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_SUBS" 
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_SUBS"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -119,7 +119,7 @@
 		<field 	name="sort_events_desc" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SORT_DESC"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SORT_DESC"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -127,7 +127,7 @@
 		<field	name="show_event_minute" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_EVENT_MINUTE"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_EVENT_MINUTE"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -135,7 +135,7 @@
 		<field	name="show_event_sum" type="radio" default="0"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_EVENT_SUM"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_EVENT_SUM"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -143,7 +143,7 @@
 		<field	name="show_event_notice" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_EVENT_NOTICE"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_EVENT_NOTICE"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -151,7 +151,7 @@
 		<field	name="event_link_player" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_EVENT_LINK_PLAYER"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_EVENT_LINK_PLAYER"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -159,7 +159,7 @@
 		<field	name="show_event_team_name" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_EVENT_TEAM_NAME"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_EVENT_TEAM_NAME"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -173,7 +173,7 @@
 		<field 	name="show_match_date" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_MATCH_DATE"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_MATCH_DATE"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -181,7 +181,7 @@
 		<field 	name="show_match_time" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_MATCH_TIME"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_MATCH_TIME"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -189,7 +189,7 @@
 		<field 	name="show_time_suffix" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_ADD_TIME_SUFFIX"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_ADD_TIME_SUFFIX"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -197,7 +197,7 @@
 		<field 	name="show_match_number" type="radio" default="0"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_MATCH_NUMBER"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_MATCH_NUMBER"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -205,7 +205,7 @@
 		<field 	name="show_match_playground" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_MATCH_PLAYGROUND"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_MATCH_PLAYGROUND"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -213,7 +213,7 @@
 		<field 	name="show_match_referees" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_MATCH_REFEREES"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_MATCH_REFEREES"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>		
@@ -221,7 +221,7 @@
 		<field 	name="show_referee_position" type="radio" default="0"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_REFEREE_POSITION"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_REFEREE_POSITION"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -229,7 +229,7 @@
 		<field 	name="show_match_crowd" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_MATCH_CROWD"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_MATCH_CROWD"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>	
@@ -241,7 +241,7 @@
 		<field 	name="show_period_result" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_PERIOD_RESULT"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_PERIOD_RESULT"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -249,7 +249,7 @@
 		<field 	name="show_overtime_result" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_OVERTIME_RESULT"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_OVERTIME_RESULT"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -257,7 +257,7 @@
 		<field 	name="show_shotout_result" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_SHOTOUT_RESULT"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_SHOTOUT_RESULT"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>	
@@ -277,7 +277,7 @@
 		<field 	name="show_team_logo" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_TEAM_LOGO"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_TEAM_LOGO"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -324,7 +324,7 @@
 		<field 	name="show_player_picture" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_PLAYER_PICTURE"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_PLAYER_PICTURE"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>

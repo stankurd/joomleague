@@ -8,7 +8,7 @@
  * @note
  * JSON.stringify(response) can be used to convert object to string
  */
-$(document).ready(function() {
+jQuery(document).ready(function() {
 	updatePlayerSelect();
 	if(jQuery('#team_id')) {
 		jQuery('#team_id').change(updatePlayerSelect);

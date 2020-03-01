@@ -8,11 +8,41 @@
 * other free or open source software licenses.
 * See COPYRIGHT.php for copyright notices and details.
 */
+use Joomla\CMS\Factory;
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Component\Router\RouterBase;
 
 require_once 'joomleague.core.php';
 
-
-
+class JoomleagueRouter extends RouterBase
+{
+    public function __construct($app = null, $menu = null)
+    {
+        $params = ComponentHelper::getParams('com_joomleague');
+        
+        if ($app)
+        {
+            $this->app = $app;
+        }
+        else
+        {
+            $this->app = Factory::getApplication();
+        }
+        
+        if ($menu)
+        {
+            $this->menu = $menu;
+        }
+        else
+        {
+            $this->menu = $this->app->getMenu();
+        }
+        parent::__construct($app, $menu);
+    }
+    
+   
+    
+    
 /**
  * this array will be used to build and parse the segments
  *
@@ -20,7 +50,7 @@ require_once 'joomleague.core.php';
  * 
  * @return object
  */
-function getRouteParametersObject() {
+public function getRouteParametersObject() {
 	$params = null;
 	$params ['clubs'] = array (
 			'p' => 0,
@@ -30,6 +60,11 @@ function getRouteParametersObject() {
 			'p' => 0,
 			'cid' => 0,
 			'task'=>'' 
+	);
+	$params ['clubplan'] = array (
+	    'p' => 0,
+	    'cid' => 0,
+	    'task'=>''
 	);
 	$params ['curve'] = array (
 			'p' => 0,
@@ -81,6 +116,9 @@ function getRouteParametersObject() {
 			'to' => 0,
 			'division' => 0 
 	);
+	$params ['referees'] = array (
+	    'p' => 0,
+	);
 	$params ['referee'] = array (
 			'p' => 0,
 			'pid' => 0 
@@ -118,6 +156,11 @@ function getRouteParametersObject() {
 			'tid' => 0,
 			'task'=>'',
 			'division'=>0 
+	);
+	$params ['rosteralltime'] = array (
+	    'p' => 0,
+	    'tid' => 0,
+	    'task'=>'',
 	);
 	$params ['teams'] = array (
 			'p' => 0,
@@ -163,10 +206,17 @@ function getRouteParametersObject() {
 			'division' => 0,
 			'tid' => 0 
 	);
+	$params ['rankingalltime'] = array (
+	    'p' => 0,
+	    'l' => 0,
+	    'points' => 0,
+	    
+	);
+	
 	
 	return $params;
 }
-function JoomleagueBuildRoute(&$query) {
+function build(&$query) {
 	$segments = array ();
 	
 	// include extensions routers for custom views - if extension does have a route file, use it
@@ -176,7 +226,7 @@ function JoomleagueBuildRoute(&$query) {
 		if (file_exists ( $file )) {
 			require_once ($file);
 			$obj = new $classname ();
-			$func = 'JoomleagueBuildRoute' . ucfirst ( $type );
+			$func = 'build' . ucfirst ( $type );
 			if ($segs = $func ( $query )) {
 				return $segs;
 			}
@@ -191,7 +241,7 @@ function JoomleagueBuildRoute(&$query) {
 		return $segments;
 	}
 	
-	$params = getRouteParametersObject ();
+	$params = $this->getRouteParametersObject ();
 	if (isset ( $params [$view] )) {
 		foreach ( $params [$view] as $key => $value ) {
 			if (isset ( $query [$key] )) {
@@ -203,16 +253,19 @@ function JoomleagueBuildRoute(&$query) {
 		}
 	}
 	return $segments;
+	
 }
-function JoomleagueParseRoute($segments) {
-	// include extensions routers for custom views - if extension route file exists, use it
+public function parse(&$segments) {
+    $app = Factory::getApplication();
+    
+    // include extensions routers for custom views - if extension route file exists, use it
 	$extensions = JoomleagueHelper::getExtensions ( 0 );
 	foreach ( $extensions as $type ) {
 		$file = JLG_PATH_SITE.'/extensions/'.$type.'/route.php';
 		if (file_exists ( $file )) {
 			require_once ($file);
 			$obj = new $classname ();
-			$func = 'JoomleagueParseRoute' . ucfirst ( $type );
+			$func = 'parse' . ucfirst ( $type );
 			if ($vars = $func ( $segments )) {
 				return $vars;
 			}
@@ -222,7 +275,7 @@ function JoomleagueParseRoute($segments) {
 	$vars = array ();
 	$vars ['view'] = $segments [0];
 	
-	$params = getRouteParametersObject ();
+	$params = $this->getRouteParametersObject ();
 	if (isset ( $params [$vars ['view']] )) {
 		$i = 1;
 		foreach ( $params [$vars ['view']] as $key => $value ) {
@@ -232,4 +285,17 @@ function JoomleagueParseRoute($segments) {
 		}
 	}
 	return $vars;
+	
+}
+function joomleagueBuildRoute(&$query) {
+    $app = Factory::getApplication();
+    $router = new JoomleagueRouter($app, $app->getMenu());
+    return $router->build($query);
+}
+function joomleagueParseRoute($segments) {
+    $app = Factory::getApplication();
+    $router = new JoomleagueRouter($app, $app->getMenu());
+    return $router->parse($segments);
+}
+
 }

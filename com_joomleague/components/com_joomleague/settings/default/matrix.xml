@@ -3,14 +3,14 @@
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_PAGE_ELEMENTS"
 		group="COM_JOOMLEAGUE_FES_PARAMS_GROUP_PAGE_ELEMENTS" description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_PAGE_ELEMENTS">
 		<field name="show_sectionheader" type="radio" default="1"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_MATRIX_PARAM_LABEL_SHOW_HEADER"
 			description="COM_JOOMLEAGUE_FES_MATRIX_PARAM_DESCR_SHOW_HEADER">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 		<field name="show_matrix" type="radio" default="1"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_MATRIX_PARAM_LABEL_SHOW_MATRIX"
 			description="COM_JOOMLEAGUE_FES_MATRIX_PARAM_DESCR_SHOW_MATRIX">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -44,21 +44,21 @@
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAM_PICTURE_HEIGHT">
 		</field>
 		<field name="crosstable_icons_horizontal" type="radio" default="0"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_MATRIX_PARAM_LABEL_SHOW_HORZ_ICONS"
 			description="COM_JOOMLEAGUE_FES_MATRIX_PARAM_DESCR_SHOW_HORZ_ICONS">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 		<field name="crosstable_icons_vertical" type="radio" default="0"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_MATRIX_PARAM_LABEL_SHOW_VERT_ICONS"
 			description="COM_JOOMLEAGUE_FES_MATRIX_PARAM_DESCR_SHOW_VERT_ICONS">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 		<field name="link_teams" type="radio" default="1"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_MATRIX_PARAM_LABEL_LINK_TEAMNAMES"
 			description="COM_JOOMLEAGUE_FES_MATRIX_PARAM_DESCR_LINK_TEAMNAMES">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
@@ -84,7 +84,7 @@
 			</option>
 		</field>
 		<field name="show_help" type="radio" default="0"
-			class="switcher"
+			layout="joomla.form.field.radio.switcher"
 			label="COM_JOOMLEAGUE_FES_MATRIX_PARAM_LABEL_SHOW_HELP" description="COM_JOOMLEAGUE_FES_MATRIX_PARAM_DESCR_SHOW_HELP">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>

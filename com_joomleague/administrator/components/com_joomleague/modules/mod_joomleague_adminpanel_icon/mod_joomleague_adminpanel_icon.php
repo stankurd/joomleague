@@ -1,5 +1,6 @@
 <?php use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die; // Protect from unauthorized access
 /**
@@ -19,14 +20,14 @@ jimport( 'joomla.application.component.helper' );
 
 if ( !ComponentHelper::isEnabled( 'com_joomleague') )
 {
-	throw new Exception( 'E_JLNOTENABLED', JText( 'JL_NOT_ENABLED' ) );
+    throw new Exception( 'E_JLNOTENABLED', Text::_( 'JL_NOT_ENABLED' ) );
 	return;
 }
 
 // Initialize defaults
 $lang = Factory::getLanguage();
 $image = "joomleague-48.png";
-$label = JText::_( 'MOD_JOOMLEAGUE_ADMINPANEL_ICON_LABEL' );
+$label = Text::_( 'MOD_JOOMLEAGUE_ADMINPANEL_ICON_LABEL' );
 ?>
 <div id="cpanel">
 	<div style="float:<?php echo ($lang->isRTL()) ? 'right' : 'left'; ?>;">

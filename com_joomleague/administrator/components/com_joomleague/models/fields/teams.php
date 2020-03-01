@@ -17,7 +17,7 @@ defined('_JEXEC') or die;
 
 FormHelper::loadFieldClass('list');
 
-class JFormFieldTeams extends JFormFieldList
+class JFormFieldTeams extends ListField
 {
 
 	Public $type = 'teams';

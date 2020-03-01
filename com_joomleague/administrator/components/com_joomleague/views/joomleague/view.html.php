@@ -17,11 +17,13 @@ use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
-jimport('joomla.html.pane');
+//jimport('joomla.html.pane');
 HTMLHelper::_('jquery.framework');
 HTMLHelper::_('behavior.core');
 require_once JPATH_COMPONENT . '/models/sportstypes.php';
 require_once JPATH_COMPONENT . '/models/leagues.php';
+require_once JPATH_COMPONENT . '/models/seasons.php';
+
 defined('_JEXEC') or die;
 
 /**
@@ -82,11 +84,11 @@ class JoomleagueViewJoomleague extends JLGView
 		$project_id = $currentData->project_id;
 		*/
 		
-		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
+		$mdlProject = BaseDatabaseModel::getInstance('Project','JoomleagueModel');
 		$project = $mdlProject->getItem($project_id);
 
 		$iProjectDivisionsCount = 0;
-		$mdlProjectDivisions = BaseDatabaseModel::getInstance("divisions","JoomleagueModel");
+		$mdlProjectDivisions = BaseDatabaseModel::getInstance("Divisions","JoomleagueModel");
 		$iProjectDivisionsCount = $mdlProjectDivisions->getProjectDivisionsCount($project->id);
 
 		$iProjectPositionsCount = 0;
@@ -118,7 +120,7 @@ class JoomleagueViewJoomleague extends JLGView
 	/**
 	 * display left Menu
 	 */
-	function _displayMenu($tpl = null)
+	public function _displayMenu($tpl = null)
 	{
 		$app = Factory::getApplication();
 		$input = $app->input;
@@ -132,7 +134,7 @@ class JoomleagueViewJoomleague extends JLGView
 		$document->addScript($baseurl . 'administrator/components/com_joomleague/assets/js/quickmenu.js');
 		
 		$mdlProject = BaseDatabaseModel::getInstance('project','JoomleagueModel');
-		$mdlJoomleague = BaseDatabaseModel::getInstance('Joomleague','JoomleagueModel');
+		$mdlJoomleague = BaseDatabaseModel::getInstance('joomleague','JoomleagueModel');
 		$params = ComponentHelper::getParams($option);
 
 		// catch Projectid (primary)

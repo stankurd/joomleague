@@ -9,6 +9,7 @@
  * See COPYRIGHT.php for copyright notices and details.
  */
 
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Plugin\CMSPlugin;
 
 defined('_JEXEC') or die;
@@ -41,11 +42,12 @@ class plgQuickiconJoomLeague_Quickicon extends CMSPlugin
 	public function onGetIcons($context)
 	{
 		$text = $this->params->get('displayedtext');
-		if(empty($text)) $text = JText::_('COM_JOOMLEAGUE');
+		if(empty($text)) $text = Text::_('COM_JOOMLEAGUE');
 
 		return array(array(
 			'link' => 'index.php?option=com_joomleague',
 			'image' => '../../../components/com_joomleague/assets/images/jl_icon.png',
+			'icon'  => '',
 			'text' => $text,
 			'id' => 'plg_quickicon_joomleague'
 		));

@@ -8,6 +8,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -47,15 +48,15 @@ foreach ( $list as $match ) {
 		
 		if ($params->get ( 'show_playground_link' )) {
 			$link = JoomleagueHelperRoute::getPlaygroundRoute ( $match->project_id, $playground_id );
-			$playgroundname = HTMLHelper::link ( $link, JText::sprintf ( '%1$s', $playgroundname ) );
+			$playgroundname = HTMLHelper::link ( $link, Text::sprintf ( '%1$s', $playgroundname ) );
 		} else {
-			$playgroundname = JText::sprintf ( '%1$s', $playgroundname );
+			$playgroundname = Text::sprintf ( '%1$s', $playgroundname );
 		}
 		$textdiv .= $playgroundname . '</div>';
 	}
 	$textdiv .= '<div class="jlplplanedate">';
 	$textdiv .= JoomleagueHelper::getMatchDate($match, $dateformat);
-	$textdiv .= " " . JText::_('MOD_JOOMLEAGUE_PLAYGROUNDPLAN_START_TIME')." ";
+	$textdiv .= " " . Text::_('MOD_JOOMLEAGUE_PLAYGROUNDPLAN_START_TIME')." ";
 	$textdiv .= JoomleagueHelper::getMatchTime($match, $timeformat);
 	$textdiv .= '</div>';
 	if ($params->get ( 'show_project_name', 0 )) {

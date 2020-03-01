@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\Language\Text;
+
 /**
  * Joomleague
  *
@@ -39,7 +41,7 @@ class TableMatchPlayer extends JLTable
 	{
 		if (!($this->match_id && $this->teamplayer_id))
 		{
-			$this->setError(JText::_('CHECK FAILED'));
+			$this->setError(Text::_('CHECK FAILED'));
 			return false;
 		}
 		return true;

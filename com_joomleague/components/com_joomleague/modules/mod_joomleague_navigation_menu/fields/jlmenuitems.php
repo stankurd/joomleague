@@ -49,6 +49,8 @@ class JFormFieldJLMenuItems extends JFormFieldList
 				HTMLHelper::_('select.option', 'resultsmatrix', Text::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_RESULTSMATRIX')),
 				HTMLHelper::_('select.option', 'resultsranking', Text::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_TABLE_AND_RESULTS')),
 				HTMLHelper::_('select.option', 'roster', Text::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_ROSTER')),
+				HTMLHelper::_('select.option', 'rosteralltime', Text::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_ROSTERALLTIME')),
+				HTMLHelper::_('select.option', 'rankingalltime', Text::_('MOD_JOOMEAGUE_NAVIGATION_NAVSELECT_TABLEALLTIME')),
 				HTMLHelper::_('select.option', 'stats', Text::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_STATS')),
 				HTMLHelper::_('select.option', 'statsranking', Text::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_STATSRANKING')),
 				HTMLHelper::_('select.option', 'teaminfo', Text::_('MOD_JOOMLEAGUE_NAVIGATION_NAVSELECT_TEAMINFO')),

@@ -8,6 +8,7 @@
  * @link		http://www.joomleague.at
  */
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -124,7 +125,7 @@ abstract class modJLGEventsrankingHelper
 		}
 		else
 		{
-			$imgTitle=JText::_($event->name);
+			$imgTitle=Text::_($event->name);
 			$imgTitle2=array(' title' => $imgTitle, ' alt' => $imgTitle);
 			$txt=HTMLHelper::image($event->icon, $imgTitle, $imgTitle2);
 		}

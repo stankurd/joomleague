@@ -9,11 +9,14 @@
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\MVC\Controller\AdminController;
 
 /**
  * Joomleague Common Controller
  */
 class JoomleagueController extends JLGControllerAdmin
+//class JoomleagueController extends AdminController
+
 {
 
 	public function __construct($config = array())
@@ -21,11 +24,11 @@ class JoomleagueController extends JLGControllerAdmin
 		parent::__construct($config);
 
 		$app = Factory::getApplication();
-		$jinput = $app->input;
-		$option = $jinput->getCmd('option');
+		$input = $app->input;
+		$option = $input->getCmd('option');
 
 		// Project_id
-		$pid = $jinput->get('pid',array(),'array');
+		$pid = $input->get('pid',array(),'array');
 		ArrayHelper::toInteger($pid);
 
 		if(empty($pid))
@@ -39,7 +42,7 @@ class JoomleagueController extends JLGControllerAdmin
 		}
 
 		// Roundid
-		$rid = $jinput->get('rid',array(),'array');
+		$rid = $input->get('rid',array(),'array');
 		ArrayHelper::toInteger($rid);
 		if(empty($rid))
 		{
@@ -56,7 +59,7 @@ class JoomleagueController extends JLGControllerAdmin
 		}
 
 		// Seasonid
-		$sid = $jinput->get('seasonid',array(),'array');
+		$sid = $input->get('seasonid',array(),'array');
 		ArrayHelper::toInteger($sid);
 		if(empty($sid))
 		{
@@ -69,7 +72,7 @@ class JoomleagueController extends JLGControllerAdmin
 		}
 
 		// Sporttype_id
-		$stid = $jinput->get('stid',array(),'array');
+		$stid = $input->get('stid',array(),'array');
 		ArrayHelper::toInteger($stid);
 		if(empty($stid))
 		{
@@ -82,7 +85,7 @@ class JoomleagueController extends JLGControllerAdmin
 		}
 
 		// Teamid
-		$tid = $jinput->get('tid',array(),'array');
+		$tid = $input->get('tid',array(),'array');
 		ArrayHelper::toInteger($tid);
 		if(empty($tid))
 		{
@@ -104,14 +107,14 @@ class JoomleagueController extends JLGControllerAdmin
 	public function display($cachable = false,$urlparams = false)
 	{
 		$app = Factory::getApplication();
-		$jinput = $app->input;
+		$input = $app->input;
 
 		// display the left menu only if hidemainmenu is not true
-		$hidemainmenu = $jinput->get('hidemainmenu',false);
+		$hidemainmenu = $input->get('hidemainmenu',false);
 
 		// display left menu
-		$viewName = $this->input->getCmd('view','');
-		$layoutName = $this->input->getCmd('layout','default');
+		$viewName = $app->input->getCmd('view','');
+		$layoutName = $app->input->getCmd('layout','default');
 
 
 		if($hidemainmenu)
@@ -127,29 +130,29 @@ class JoomleagueController extends JLGControllerAdmin
 		// define variables
 		if ($viewName == 'person' && $layoutName == 'assignperson') {
 			$show_menu = false;
-			$jinput->set('hidemainmenu',true);
+			$input->set('hidemainmenu',true);
 		}
 
 		// match views
 		if ($viewName == 'match' && $layoutName == 'editevents') {
 			$show_menu = false;
-			$jinput->set('hidemainmenu',true);
+			$input->set('hidemainmenu',true);
 		}
 		if ($viewName == 'match' && $layoutName == 'editeventsbb') {
 			$show_menu = false;
-			$jinput->set('hidemainmenu',true);
+			$input->set('hidemainmenu',true);
 		}
 		if ($viewName == 'match' && $layoutName == 'editlineup') {
 			$show_menu = false;
-			$jinput->set('hidemainmenu',true);
+			$input->set('hidemainmenu',true);
 		}
 		if ($viewName == 'match' && $layoutName == 'editreferees') {
 			$show_menu = false;
-			$jinput->set('hidemainmenu',true);
+			$input->set('hidemainmenu',true);
 		}
 		if ($viewName == 'match' && $layoutName == 'editstats') {
 			$show_menu = false;
-			$jinput->set('hidemainmenu',true);
+			$input->set('hidemainmenu',true);
 		}
 
 		if($viewName == '' && $layoutName == 'default')
@@ -168,7 +171,6 @@ class JoomleagueController extends JLGControllerAdmin
 			),'','array');
 			if($pid[0] > 0)
 			{
-				$app = Factory::getApplication();
 				$option = $app->input->getCmd('option');
 				$app->setUserState($option . 'project',$pid[0]);
 			}
@@ -181,7 +183,7 @@ class JoomleagueController extends JLGControllerAdmin
 
 		$view->setModel($model,true);
 		$view->display();
-		parent::display($cachable,$urlparams);
+		//parent::display($cachable,$urlparams);
 	}
 
 	private function ShowMenu()
@@ -193,7 +195,7 @@ class JoomleagueController extends JLGControllerAdmin
 		$view = $this->getView('joomleague',$viewType);
 		if($model = $this->getModel('project'))
 		{
-			// $model->setId($app->getUserState($option.'project',0));
+			$model->setId($app->getUserState($option.'project',0));
 			$app->getUserState($option . 'project',0);
 			$view->setModel($model,true);
 		}

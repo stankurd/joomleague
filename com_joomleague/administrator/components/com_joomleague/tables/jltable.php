@@ -8,25 +8,26 @@
  */
 
 // Check to ensure this file is included in Joomla!
+use Joomla\CMS\Factory;
+use Joomla\CMS\Access\Rules;
+use Joomla\CMS\Table\Table;
+use Joomla\Registry\Registry;
+
 defined('_JEXEC') or die;
 
 // Include library dependencies
 jimport('joomla.filter.input');
-use Joomla\CMS\Factory;
-use Joomla\CMS\Access\Access;
-use Joomla\CMS\Table\Table;
-use Joomla\Registry\Registry;
 
 /**
  * JLTable Table class
  */
 class JLTable extends Table 
 {
-	
+
 	public function bind($array, $ignore = '') 
 	{
 		if (isset($array['extended']) && is_array($array['extended'])) {
-			$registry = new Registry;
+			$registry = new Registry();
 			$registry->loadArray($array['extended']);
 			$array['extended'] = (string) $registry;
 		}
@@ -34,7 +35,7 @@ class JLTable extends Table
 		// Bind the rules
 		if (isset($array['rules']) && is_array($array['rules']))
 		{
-		    $rules = new JAccessRules($array['rules']);
+			$rules = new Rules($array['rules']);
 			$this->setRules($rules);
 		}
 		
@@ -87,7 +88,7 @@ class JLTable extends Table
 			$values[] = $this->getDbo()->isQuoted($k) ? $this->getDbo()->Quote($v) : (int) $v;
 		}
 		$this->getDbo()->setQuery(sprintf($fmtsql, implode(",", $fields), implode(",", $values)));
-		if (!$this->getDbo()->execute()) {
+		if (!$this->getDbo()->query()) {
 			return false;
 		}
 		$id = $this->getDbo()->insertid();
@@ -110,7 +111,7 @@ class JLTable extends Table
 	 *
 	 * @return  boolean  True if checked out.
 	 *
-	 * @link    http://docs.joomla.org/JTable/isCheckedOut
+	 * @link    http://docs.joomla.org/Table/isCheckedOut
 
 	 * @todo    This either needs to be static or not.
 	 */
@@ -129,6 +130,7 @@ class JLTable extends Table
 		}
 	
 		$db = Factory::getDbo();
+		$query = $db->getQuery(true);
 		$db->setQuery('SELECT COUNT(userid)' . 
 						' FROM ' . $db->quoteName('#__session') . 
 						' WHERE ' . $db->quoteName('userid') . ' = ' . (int) $against);
@@ -137,21 +139,19 @@ class JLTable extends Table
 		// If a session exists for the user then it is checked out.
 		return $checkedOut;
 	}
-
-
-
+	
 /**'
 	 * Override Store function
 	 * @see Table::store()
 	 */
 	public function store($updateNulls = false)
 	{
-		$db = Factory::getDbo();
-		$query = $db->getQuery(true);
+	    $db = Factory::getDbo();
+	    $query = $db->getQuery(true);
 		$k = $this->_tbl_keys;
 
 		// Implement JObservableInterface: Pre-processing by observers
-		//$this->_observers->->update('onBeforeStore', array($updateNulls, $k));
+		//$this->_observers->update('onBeforeStore', array($updateNulls, $k));
 
 		$currentAssetId = 0;
 
@@ -224,7 +224,7 @@ class JLTable extends Table
 				$asset->name      = $name;
 				$asset->title     = $title;
 				
-				if ($this->_rules instanceof Access)
+				if ($this->_rules instanceof Rules)
 				{
 					$asset->rules = (string) $this->_rules;
 				}
@@ -247,15 +247,14 @@ class JLTable extends Table
 							->update($db->quoteName($this->_tbl))
 							->set('asset_id = ' . (int) $this->asset_id);
 						$this->appendPrimaryKeys($query);
-						$db->setQuery($query);
-						$db->execute();
+						$db->setQuery($query)->execute();
 					}
 				}
 			}
 		}
 
 		// Implement JObservableInterface: Post-processing by observers
-		//$this->_observers->->update('onAfterStore', array(&$result));
+		//$this->_observers->update('onAfterStore', array(&$result));
 
 		return $result;
 	}

@@ -1,6 +1,7 @@
 <?php 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Log\Log;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -26,7 +27,7 @@ class JoomleagueViewAbout extends JLGView
 			return false;
 		}
 
-		$this->pageTitle = JText::_('COM_JOOMLEAGUE_ABOUT_PAGE_TITLE');
+		$this->pageTitle = Text::_('COM_JOOMLEAGUE_ABOUT_PAGE_TITLE');
 		$document = Factory::getDocument();
 		$document->setTitle($this->pageTitle);
 

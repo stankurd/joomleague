@@ -16,8 +16,8 @@ defined('_JEXEC') or die();
 // include of person model
 // this will include project-data+specific functions
 //require_once('person.php');
-//require_once JLG_PATH_SITE.'/models/person.php';
-JLoader::register('JoomleagueModelPerson', JLG_PATH_SITE.'/models/person.php');
+require_once JLG_PATH_SITE.'/models/person.php';
+//JLoader::register('JoomleagueModelPerson', JLG_PATH_SITE.'/models/person.php');
 
 class JoomleagueModelPlayer extends JoomleagueModelPerson
 {
@@ -514,9 +514,7 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 		      ->where('teamplayer_id = '.$player_id)
 		      ->where('came_in = 1 and in_for IS NOT NULL');
 		if ( $match_id )
-		{
-		    //$query .= ' and match_id = '.$match_id;
-		    
+		{		    
 			$query->where('match_id = '.$match_id);
 		}
 		$db->setQuery($query);

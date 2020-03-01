@@ -196,7 +196,7 @@ class JLGView extends BaseHtmlView
 			}
 
 			// Only for admin side
-			if($app->isAdmin()) {
+		if ($app->isClient('administrator')) {
 				$JLGPATH_EXTENSION = JPATH_COMPONENT_SITE.'/extensions/'.$extension.'/admin';
 
 				// General extension CSS include

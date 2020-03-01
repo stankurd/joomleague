@@ -12,8 +12,7 @@ use Joomla\CMS\Router\Route;
 use Joomla\CMS\Session\Session;
 
 defined('_JEXEC') or die;
-HTMLHelper::_('behavior.tooltip');
-
+HTMLHelper::_('bootstrap.tooltip');
 $inplaceEditing = $this->params->get('inplaceEditing',0);
 $inplaceEditing = 1;
 

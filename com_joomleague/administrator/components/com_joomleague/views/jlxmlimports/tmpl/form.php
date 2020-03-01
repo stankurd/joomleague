@@ -14,8 +14,7 @@ use Joomla\CMS\Factory;
 
 defined('_JEXEC') or die;
 
-HTMLHelper::_('behavior.tooltip');
-
+HTMLHelper::_('bootstrap.tooltip');
 if (isset($this->xml) && is_array($this->xml))
 {
 	{
@@ -778,7 +777,7 @@ if (isset($this->xml) && is_array($this->xml))
 											echo "onclick='javascript:alertAndRestore($key, 10, \"".Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_NO_CLUBS_TEAMS_IN_DB')."\")' />";
 										}
 									echo Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_EXISTING_CLUB_AND_TEAM'); 
-									?>
+									?>/>
 									<br /><br />
 									<!--
 									Clicking on the second radiobutton will show a selector selector with "club" info in a popup window.
@@ -802,7 +801,7 @@ if (isset($this->xml) && is_array($this->xml))
 											echo "onclick='javascript:alertAndRestore($key, 10, \"".Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_NO_CLUBS_IN_DB')."\")' />";
 										}
 									echo Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_EXISTING_CLUB_NEW_TEAM');
-									?>
+									?>/>
 									<br /><br />
 									<!--
 									Clicking the third radiobutton will result in the club and  team being taken over from the import file.
@@ -815,7 +814,7 @@ if (isset($this->xml) && is_array($this->xml))
 										echo ")' />";
 										
 									echo Text::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_NEW_CLUB_NEW_TEAM');
-									?>
+									?>/>
 									<br /><br />
 									
 								</td>

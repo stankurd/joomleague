@@ -170,4 +170,19 @@
 		<action name="core.edit" title="JACTION_EDIT" description="JACTION_EDIT_COMPONENT_DESC" />
 		<action name="core.edit.state" title="JACTION_EDITSTATE" description="JACTION_EDITSTATE_COMPONENT_DESC" />
 	</section>
+		<section name="prediction">
+<!-- prediction -->
+		<action name="predictionentry.addtipp" title="COM_JOOMLEAGUE_SETTINGS_PRED_ENTRY_ACCESS_ADDTIP" description="COM_JOOMLEAGUE_SETTINGS_PRED_ENTRY_ACCESS_ADDTIP_DESC" />
+		<action name="predictionentry.selectprojectround" title="COM_JOOMLEAGUE_SETTINGS_PRED_ENTRY_SELECT_ROUNDS" description="COM_JOOMLEAGUE_SETTINGS_PRED_ENTRY_SELECT_ROUNDS_DESC" />
+		<action name="predictionranking.selectprojectround" title="COM_JOOMLEAGUE_SETTINGS_PRED_RANKING_SELECT_ROUNDS" description="COM_JOOMLEAGUE_SETTINGS_PRED_RANKING_SELECT_ROUNDS_DESC" />
+		<action name="predictionresults.selectprojectround" title="COM_SPORTSMANAGEMENT_SETTINGS_PRED_RESULTS_SELECT_ROUNDS" description="COM_JOOMLEAGUE_SETTINGS_PRED_RESULTS_SELECT_ROUNDS_DESC" />
+		<action name="predictionusers.selectprojectround" title="COM_JOOMLEAGUE_SETTINGS_PRED_USERS_SELECT_ROUNDS" description="COM_JOOMLEAGUE_SETTINGS_PRED_USERS_SELECT_ROUNDS_DESC" />
+		<action name="predictionusers.savememberdata" title="COM_JOOMLEAGUE_SETTINGS_PRED_USERS_SAVE_MEMBER_DATA" description="COM_JOOMLEAGUE_SETTINGS_PRED_USERS_SAVE_MEMBER_DATA_DESC" />		
+		<action name="predictionusers.cancel" title="COM_JOOMLEAGUE_SETTINGS_PRED_USERS_CANCEL_MEMBER_DATA" description="COM_JOOMLEAGUE_SETTINGS_PRED_USERS_CANCEL_MEMBER_DATA_DESC" />
+		<action name="predictionusers.select" title="COM_JOOMLEAGUE_SETTINGS_PRED_USERS_SELECT_MEMBER_DATA" description="COM_JOOMLEAGUE_SETTINGS_PRED_USERS_SELECT_MEMBER_DATA_DESC" />
+		<action name="predictiongame.unpublish" title="COM_JOOMLEAGUE_SETTINGS_PRED_ACCESS_UNPUBLISH" description="COM_JOOMLEAGUE_SETTINGS_PRED_ACCESS_UNPUBLISH_DESC" />
+		<action name="predictiongame.publish" title="COM_JOOMLEAGUE_SETTINGS_PRED_ACCESS_PUBLISH" description="COM_JOOMLEAGUE_SETTINGS_PRED_ACCESS_PUBLISH_DESC" />
+		<action name="predictiongame.register" title="COM_JOOMLEAGUE_SETTINGS_PRED_ACCESS_REGISTER" description="COM_JOOMLEAGUE_SETTINGS_PRED_ACCESS_REGISTER_DESC" />
+</section>
+
 </access>

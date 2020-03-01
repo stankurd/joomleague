@@ -20,7 +20,7 @@ use Joomla\CMS\Language\Text;
 defined('_JEXEC') or die;
 
 if (version_compare(phpversion(), '7.0.0', '<')===true) {
-	echo  '<div style="font:12px/1.35em arial, helvetica, sans-serif;"><div style="margin:0 0 25px 0; border-bottom:1px solid #ccc;"><h3 style="margin:0; font-size:1.7em; font-weight:normal; text-transform:none; text-align:left; color:#2f2f2f;">'.JText::_("COM_JOOMLEAGUE_INVALID_PHP1").'</h3></div>'.JText::_("COM_JOOMLEAGUE_INVALID_PHP2").'</div>';
+	echo  '<div style="font:12px/1.35em arial, helvetica, sans-serif;"><div style="margin:0 0 25px 0; border-bottom:1px solid #ccc;"><h3 style="margin:0; font-size:1.7em; font-weight:normal; text-transform:none; text-align:left; color:#2f2f2f;">'.Text::_("COM_JOOMLEAGUE_INVALID_PHP1").'</h3></div>'.Text::_("COM_JOOMLEAGUE_INVALID_PHP2").'</div>';
 	return;
 }
 

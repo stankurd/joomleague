@@ -13,8 +13,7 @@ use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
 
-HTMLHelper::_('behavior.tooltip');
-
+HTMLHelper::_('bootstrap.tooltip');
 $app = Factory::getApplication();
 $user = Factory::getUser();
 $userId = $user->get('id');

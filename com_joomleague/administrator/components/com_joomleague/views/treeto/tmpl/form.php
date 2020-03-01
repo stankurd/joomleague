@@ -13,7 +13,6 @@ use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
 HTMLHelper::_('bootstrap.tooltip');
-
 HTMLHelper::_('behavior.formvalidator');
 
 Factory::getDocument()->addScriptDeclaration(

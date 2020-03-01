@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.0" type="plugin" group="search" method="upgrade">
+<extension version="4.0" type="plugin" group="search" method="upgrade">
 	<name>plg_search_joomleague</name>
 	<creationDate>2015</creationDate>
 	<author>JoomLeague Developers</author>
@@ -8,7 +8,7 @@
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<copyright>(C) 2005-2016 joomleague.at. All rights reserved.
 	</copyright>
-	<version>3.0.22.57ae969</version>
+	<version>4.0.01.57ae969</version>
 	<description>PLG_SEARCH_JOOMLEAGUE_XML_DESC</description>
 	
 	<files>
@@ -25,37 +25,37 @@
 		<fields name="params">
 			<fieldset name="basic">
 				<field name="search_clubs" type="radio" default="1" label="Clubs"
-					description="Search Clubs ?">
+					description="Search Clubs ?" class="switcher">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
 				<field name="search_players" type="radio" default="1" label="Players"
-					description="Search Players ?">
+					description="Search Players ?" class="switcher">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
 				<field name="search_playgrounds" type="radio" default="1"
-					label="Playground" description="Search Playground ?">
+					label="Playground" description="Search Playground ?" class="switcher">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
 				<field name="search_referees" type="radio" default="1" label="Referees"
-					description="Search Referees ?">
+					description="Search Referees ?" class="switcher">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
 				<field name="search_staffs" type="radio" default="1" label="Staffs"
-					description="Search Staffs ?">
+					description="Search Staffs ?" class="switcher">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
 				<field name="search_teams" type="radio" default="1" label="Teams"
-					description="Search Teams ?">
+					description="Search Teams ?" class="switcher">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
 				<field name="search_projects" type="radio" default="1" label="Projects"
-					description="Search Projects ?">
+					description="Search Projects ?" class="switcher">
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>

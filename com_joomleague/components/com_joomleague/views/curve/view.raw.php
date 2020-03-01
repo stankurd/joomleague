@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -142,7 +143,7 @@ class JoomleagueViewCurve extends JLGView
 		$x->set_labels($xlabels);
 		$x->set_colours($config['x_axis_colour'], $config['x_axis_colour_inner']);
 		$chart->set_x_axis( $x );
-		$x_legend = new x_legend( JText::_('COM_JOOMLEAGUE_CURVE_ROUNDS') );
+		$x_legend = new x_legend( Text::_('COM_JOOMLEAGUE_CURVE_ROUNDS') );
 		$x_legend->set_style( '{font-size: 15px; color: #778877}' );
 		$chart->set_x_legend( $x_legend );
 
@@ -150,7 +151,7 @@ class JoomleagueViewCurve extends JLGView
 		$y->set_range( count($data), 1, -1);
 		$y->set_colours($config['x_axis_colour'], $config['x_axis_colour_inner']);
 		$chart->set_y_axis( $y );
-		$y_legend = new y_legend( JText::_('COM_JOOMLEAGUE_CURVE_RANK') );
+		$y_legend = new y_legend( Text::_('COM_JOOMLEAGUE_CURVE_RANK') );
 		$y_legend->set_style( '{font-size: 15px; color: #778877}' );
 		$chart->set_y_legend( $y_legend );
 		

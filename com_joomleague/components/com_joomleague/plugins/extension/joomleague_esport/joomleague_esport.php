@@ -9,6 +9,8 @@
  */
 
 // No direct access.
+use Joomla\CMS\Plugin\CMSPlugin;
+
 defined('_JEXEC') or die;
 
 /**
@@ -18,7 +20,7 @@ defined('_JEXEC') or die;
  * @subpackage	Extension.JoomLeague_Clan
  * @since		2.5
  */
-class plgExtensionJoomLeague_Clan extends JPlugin
+class plgExtensionJoomLeague_Clan extends CMSPlugin
 {
 	/**
 	 * Constructor

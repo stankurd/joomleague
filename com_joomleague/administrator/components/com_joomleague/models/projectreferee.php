@@ -28,7 +28,7 @@ class JoomleagueModelProjectReferee extends JLGModelItem
 	 * @param	type The table type to instantiate
 	 * @param	string A prefix for the table class name. Optional.
 	 * @param	array Configuration array for model. Optional.
-	 * @return JTable database object
+	 * @return Table database object
 	 */
 	public function getTable($type = 'Projectreferee',$prefix = 'Table',$config = array())
 	{

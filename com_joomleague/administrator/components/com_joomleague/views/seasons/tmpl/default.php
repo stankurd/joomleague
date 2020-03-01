@@ -20,7 +20,7 @@ HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 
 HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('behavior.multiselect');
-HTMLHelper::_('behavior.tabstate');
+//HTMLHelper::_('behavior.tabstate');
 
 $app = Factory::getApplication();
 $user = Factory::getUser();

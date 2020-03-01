@@ -6,7 +6,7 @@
 		<field name="show_sectionheader" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_SHOW_SECTIONHEADER"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_SHOW_SECTIONHEADER"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -14,7 +14,7 @@
 		<field name="show_treeoverlib" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_TREE_PARAM_LABEL_SHOW_OVERLIB"
 			description="COM_JOOMLEAGUE_FES_TREE_PARAM_DESCR_SHOW_OVERLIB"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -22,7 +22,7 @@
 		<field name="show_treeheader" type="radio" default="0"
 			label="COM_JOOMLEAGUE_FES_TREE_PARAM_LABEL_SHOW_TREEHEADER"
 			description="COM_JOOMLEAGUE_FES_TREE_PARAM_DESCR_SHOW_TREEHEADER"
-			class="switcher">
+			layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -89,7 +89,7 @@
 		<field	name="highlight_fav" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_RESULTS_PARAM_LABEL_HIGHLIGHT_FAV"
 				description="COM_JOOMLEAGUE_FES_RESULTS_PARAM_DESCR_HIGHLIGHT_FAV"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -155,7 +155,7 @@
 		<field 	name="show_overlib_seed" type="radio" default="0" 
 				label="COM_JOOMLEAGUE_FES_TREE_PARAM_LABEL_SHOW_OVERLIB_SEED" 
 				description="COM_JOOMLEAGUE_FES_TREE_PARAM_DESCR_SHOW_OVERLIB_SEED"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -178,7 +178,7 @@
 		<field	name="show_playground" type="radio" default="0"
 				label="COM_JOOMLEAGUE_FES_RESULTS_PARAM_LABEL_SHOW_PLAYGROUND"
 				description="COM_JOOMLEAGUE_FES_RESULTS_PARAM_DESCR_SHOW_PLAYGROUND"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
@@ -197,7 +197,7 @@
 		<field 	name="show_round_date" type="radio" default="0" 
 				label="COM_JOOMLEAGUE_FES_TREE_PARAM_LABEL_SHOW_ROUND_DATE" 
 				description="COM_JOOMLEAGUE_FES_TREE_PARAM_DESCR_SHOW_ROUND_DATE"
-				class="switcher">
+				layout="joomla.form.field.radio.switcher">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>

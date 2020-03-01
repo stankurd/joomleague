@@ -18,8 +18,12 @@ jimport('joomla.filesystem.folder');
 use Joomla\CMS\Factory;
 use Joomla\CMS\Cache\Cache;
 use Joomla\CMS\Component\ComponentHelper;
-use Joomla\CMS\Dispatcher;
+use Joomla\CMS\Dispatcher\Dispatcher;
 use Joomla\CMS\Table\Table;
+<<<<<<< HEAD
+=======
+use Joomla\CMS\Installer\InstallerScript;
+>>>>>>> branch 'master' of https://github.com/stankurd/joomleague.git
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Filesystem\Path;

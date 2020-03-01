@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 /**
  * Joomleague
@@ -54,7 +55,7 @@ if (count($list['stattypes']) > 0)
 			$rankingforstat = $list['ranking'][$stattype->id]->ranking;
 			?>
 		<tr class="sectiontableheader">
-			<td class="stattype"><?php echo JText::_($stattype->name); ?></td>
+			<td class="stattype"><?php echo Text::_($stattype->name); ?></td>
 		</tr>
 		<tr>
 			<td>
@@ -65,19 +66,19 @@ if (count($list['stattypes']) > 0)
 				<table class="statranking">
 					<thead>
 						<tr class="sectiontableheader">
-							<th class="rank"><?php echo JText::_('MOD_JOOMLEAGUE_STATRANKING_COL_RANK')?></th>
+							<th class="rank"><?php echo Text::_('MOD_JOOMLEAGUE_STATRANKING_COL_RANK')?></th>
 							<?php if ($showPicture == 1) : ?>
-							<th class="picture"><?php echo JText::_('MOD_JOOMLEAGUE_STATRANKING_COL_PIC');?></th>
+							<th class="picture"><?php echo Text::_('MOD_JOOMLEAGUE_STATRANKING_COL_PIC');?></th>
 							<?php endif; ?>
-							<th class="personname"><?php echo JText::_('MOD_JOOMLEAGUE_STATRANKING_COL_TEAM')?></th>
+							<th class="personname"><?php echo Text::_('MOD_JOOMLEAGUE_STATRANKING_COL_TEAM')?></th>
 							<?php if ($showTeam == 1) : ?>
-							<th class="team"><?php echo JText::_('MOD_JOOMLEAGUE_STATRANKING_COL_NAME');?></th>
+							<th class="team"><?php echo Text::_('MOD_JOOMLEAGUE_STATRANKING_COL_NAME');?></th>
 							<?php endif; ?>
 							<th class="td_c">
 							<?php if ($params->get('show_event_icon', 1)) : ?>
 								<?php echo modJLGStatHelper::getStatIcon($stattype); ?>
 							<?php else : ?>
-								<?php echo JText::_($stattype->name); ?>
+								<?php echo Text::_($stattype->name); ?>
 							<?php endif; ?>
 							</th>
 						</tr>
@@ -159,7 +160,7 @@ if (count($list['stattypes']) > 0)
 			else
 			{
 				?>
-				<p class="modjlgstat"><?php echo JText::_('MOD_JOOMLEAGUE_STATRANKING_NOITEMS');?></p>
+				<p class="modjlgstat"><?php echo Text::_('MOD_JOOMLEAGUE_STATRANKING_NOITEMS');?></p>
 				<?php
 			}
 			?>
@@ -176,7 +177,7 @@ if (count($list['stattypes']) > 0)
 else
 {
 ?>
-<p class="modjlgstat"><?php echo JText::_("MOD_JOOMLEAGUE_STATRANKING_NOEVENTSSELECTED"); ?></p>
+<p class="modjlgstat"><?php echo Text::_("MOD_JOOMLEAGUE_STATRANKING_NOEVENTSSELECTED"); ?></p>
 <?php
 }
 ?>
@@ -186,7 +187,7 @@ else
 //	$divisionid = explode(':', $params->get('division_id', 0));
 //	$divisionid = $divisionid[0];
 //	$teamid = (int)$params->get('tid', 0);
-	echo HTMLHelper::link(JoomleagueHelperRoute::getStatsRankingRoute($list['project']->slug, $params->get('divisionid',0), $params->get('tid',0), $params->get('sid',0), $params->get('ranking_order')), JText::_('VIEW FULL TABLE')); ?>
+	echo HTMLHelper::link(JoomleagueHelperRoute::getStatsRankingRoute($list['project']->slug, $params->get('divisionid',0), $params->get('tid',0), $params->get('sid',0), $params->get('ranking_order')), Text::_('VIEW FULL TABLE')); ?>
 </p>
 <?php endif; ?>
 </div>

@@ -11,8 +11,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
-HTMLHelper::_('behavior.tooltip');
-
+HTMLHelper::_('bootstrap.tooltip');
 $istree = $this->treeto->tree_i;
 $isleafed = $this->treeto->leafed;
 

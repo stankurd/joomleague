@@ -43,11 +43,11 @@ Factory::getDocument()->addScriptDeclaration('
 	echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,Text::_('COM_JOOMLEAGUE_TABS_EXTENDED',true));
 	echo $this->loadTemplate('extended');
 	echo HTMLHelper::_('bootstrap.endTab');
-
+/**  todo fix permission for old team can't edit*/
 	if(Factory::getUser()->authorise('core.admin','com_joomleague') || Factory::getUser()->authorise('core.admin','com_joomleague.team'))
 	{
 		echo HTMLHelper::_('bootstrap.addTab','tabs','panel' . $p ++,Text::_('JCONFIG_PERMISSIONS_LABEL',true));
-		echo $this->loadTemplate('permissions');
+		//echo $this->loadTemplate('permissions');
 		echo HTMLHelper::_('bootstrap.endTab');
 	}
 

@@ -13,7 +13,7 @@ use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
 
-HTMLHelper::_('behavior.tooltip');
+HTMLHelper::_('bootstrap.tooltip');
 ?>
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm" name="adminForm">
 	<div class="j-main-container">	

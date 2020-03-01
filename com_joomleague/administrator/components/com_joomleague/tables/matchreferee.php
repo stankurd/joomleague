@@ -1,4 +1,6 @@
 <?php
+use Joomla\CMS\Language\Text;
+
 /**
  * Joomleague
  *
@@ -39,7 +41,7 @@ class TableMatchReferee extends JLTable
 	{
 		if (!($this->match_id && $this->project_referee_id))
 		{
-			$this->setError(JText::_('CHECK FAILED'));
+			$this->setError(Text::_('CHECK FAILED'));
 			return false;
 		}
 		return true;

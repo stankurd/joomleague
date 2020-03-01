@@ -202,7 +202,7 @@ class JoomleagueViewMatchReport extends JLGView
 		//$imgTitle2=array(' title' => $imgTitle);
 		//$result=HTMLHelper::image($pic_time,$imgTitle,$imgTitle2).'&nbsp;'.$sub->in_out_time;
 		$result='<b>'.$sub->in_out_time.'. '. Text::_('COM_JOOMLEAGUE_MATCHREPORT_MINUTE') .'</b>';
-		$result .= '<br />';
+		$result .= '<br/>';
 		$outName = JoomleagueHelper::formatName(null, $sub->out_firstname, $sub->out_nickname, $sub->out_lastname, $this->config["name_format"]);
 		if($outName != '') {
 			$imgTitle=Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT');
@@ -221,7 +221,7 @@ class JoomleagueViewMatchReport extends JLGView
 			if($sub->out_position!='') {
 				$result .= '&nbsp;('.Text::_($sub->out_position).')';
 			}
-			$result .= '<br />';
+			$result .= '<br/>';
 		}
 		$inName = JoomleagueHelper::formatName(null, $sub->firstname, $sub->nickname, $sub->lastname, $this->config["name_format"]);
 		if($inName!='') {
@@ -241,7 +241,7 @@ class JoomleagueViewMatchReport extends JLGView
 			if($sub->in_position!='') {
 				$result .= '&nbsp;('.Text::_($sub->in_position).')';
 			}
-			$result .= '<br /><br />';
+			$result .= '<br/><br/>';
 		}
 		return $result;
 	}
@@ -416,7 +416,7 @@ class JoomleagueViewMatchReport extends JLGView
 		}
 
 		$result .= ' src="'.$pic_time.'" alt="'.$tiptext.'" title="'.$tiptext;
-		$result .= '" />';
+		$result .= '"/>';
 
 		return $result;
 	}
@@ -519,7 +519,7 @@ class JoomleagueViewMatchReport extends JLGView
 																		$this->config['player_picture_width'],
 																		$this->config['player_picture_height']);
 		}
-		$tiptext .= '&lt;br /&gt;'.JoomleagueHelper::formatName(null, $firstname, $nickname, $lastname, $this->config["name_format"]);
+		$tiptext .= '&lt;br/&gt;'.JoomleagueHelper::formatName(null, $firstname, $nickname, $lastname, $this->config["name_format"]);
 		$time=($matchEvent->event_time / $this->getTimelineMatchTime()) *100;
 		if ($two_events_per_minute == 1) // there were two events in one minute in timelinetop
 		{
@@ -540,7 +540,7 @@ class JoomleagueViewMatchReport extends JLGView
 		$result.= '" />';
 		return $result;
 	}
-
+/*
 	function getHtmlImageForTips($picture,$width=0,$height=0)
 	{
 	    //$picture = URI::root().$picture;
@@ -556,10 +556,10 @@ class JoomleagueViewMatchReport extends JLGView
 		}
 		return '&lt;img src=\''.$picture.'\' /&gt;';
 	}
-}
-	/*function getHtmlImageForTips($picture,$width=0,$height=0)
+}*/
+	function getHtmlImageForTips($picture,$width=0,$height=0)
 	{
-	    $picture = JURI::root().$picture;
+	    $picture = URI::root().$picture;
 	    if($width > 0 && $height==0) {
 	        return '&lt;img src=&quot;'.$picture.'&quot; width=&quot;'.$width.'&quot; /&gt;';
 	    }
@@ -573,4 +573,3 @@ class JoomleagueViewMatchReport extends JLGView
 	}
 	
 }
-*/

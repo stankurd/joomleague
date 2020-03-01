@@ -308,7 +308,7 @@ class modJoomleagueNavigationMenuHelper {
 		}
 		return $this->_teamoptions;
 	}
-	
+
 	/**
 	 * return info for current project
 	 * 
@@ -386,6 +386,17 @@ class modJoomleagueNavigationMenuHelper {
 				$link = JoomleagueHelperRoute::getResultsRankingMatrixRoute( $this->_project_id, $this->_round_id, $this->_division_id  );
 				break;
 				
+			case "rankingalltime":
+            $link = JoomleagueHelperRoute::getRankingAllTimeRoute( $this->_league_id, $this->getParam('show_alltimetable_points'), $this->_project_id );
+ 		         break;
+				 
+            case "rosteralltime":
+				if (!$this->_team_id) {
+					return false;
+				}
+				$link = JoomleagueHelperRoute::getPlayersRouteAllTime( $this->_project_id, $this->_team_id );
+				break;	
+					
 			case "roster":
 				if (!$this->_team_id) {
 					return false;

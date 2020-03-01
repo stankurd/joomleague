@@ -18,10 +18,8 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport( 'joomla.application.component.model' );
 
-require_once( JLG_PATH_SITE . '/helpers/ranking.php' );
-require_once( JLG_PATH_SITE . '/models/project.php' );
-//JLoader::register('JLGRanking', JLG_PATH_SITE.'/helpers/ranking.php');
-//JLoader::register('JoomleagueModelProject', JLG_PATH_SITE.'/models/project.php');
+JLoader::register('JLGRanking', JLG_PATH_SITE.'/helpers/ranking.php');
+JLoader::register('JoomleagueModelProject', JLG_PATH_SITE.'/models/project.php');
 
 class JoomleagueModelRanking extends JoomleagueModelProject
 {

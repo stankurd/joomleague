@@ -6,8 +6,8 @@ defined('_JEXEC') or die; ?>
 <!-- START of match timeline -->
 
 <script type="text/javascript">
-	jQuery('domready', function() {
-		var Tips1 = new Tips(jQuery('.imgzev'));
+	    document.addEventListener('DOMContentLoaded', () => {
+		var Tips1 = new Tips (document.querySelectorAll('.imgzev'));
 	});
 	function gotoevent(row) {
         var t=document.getElementById('event-' + row)

@@ -1,6 +1,7 @@
 <?php 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
 
@@ -89,7 +90,15 @@ class JoomleagueViewTeamStats extends JLGView
 	function _setChartdata($config)
 	{
 		require_once JLG_PATH_SITE.'/assets/classes/open-flash-chart/open-flash-chart.php';
-
+		$app = Factory::getApplication();
+		$option = $app->input->get('option');
+		// Get a reference of the page instance in joomla
+		$document = Factory::getDocument();
+		$uri      = Uri::getInstance();
+		$js = $this->baseurl . '/components/'.$option.'/assets/js/json2.js';
+		$document->addScript($js);
+		$js = $this->baseurl . '/components/'.$option.'/assets/js/swfobject.js';
+		$document->addScript($js);
 		$data = $this->get('ChartData');
 
 		// Calculate Values for Chart Object

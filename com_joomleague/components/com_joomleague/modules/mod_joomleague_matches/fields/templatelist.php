@@ -10,6 +10,8 @@
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Filesystem\Folder;
 
 defined('_JEXEC') or die;
  
@@ -27,7 +29,7 @@ class JFormFieldTemplatelist extends FormField
 		$path		= JPATH_ROOT.'/'.$this->element['directory'];
 		$filter		= $this->element['filter'];
 		$exclude	= $this->element['exclude'];
-		$folders	= JFolder::folders($path, $filter);
+		$folders	= Folder::folders($path, $filter);
 		
 		$options = array ();
 		foreach ($folders as $folder)
@@ -45,12 +47,12 @@ class JFormFieldTemplatelist extends FormField
 		$lang->load("com_joomleague", JPATH_ADMINISTRATOR);
 		if (!$this->element['hide_none'])
 		{
-			array_unshift($options, HTMLHelper::_('select.option', '-1', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DO_NOT_USE')));
+			array_unshift($options, HTMLHelper::_('select.option', '-1', Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_DO_NOT_USE')));
 		}
 		
 		if (!$this->element['hide_default'])
 		{
-			array_unshift($options, HTMLHelper::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_USE_DEFAULT')));
+			array_unshift($options, HTMLHelper::_('select.option', '', Text::_('COM_JOOMLEAGUE_GLOBAL_SELECT_USE_DEFAULT')));
 		}
 		
 		$doc = Factory::getDocument();
@@ -94,7 +96,7 @@ class JFormFieldTemplatelist extends FormField
 						   .'/modules/mod_joomleague_matches/tmpl/\'+this.options[this.selectedIndex].value+\'/template.png\';"', 
 						   'value', 'text', $this->value, $this->id)
 				. '<br /><br />'
-				. JText::_($this->element['details'])
+				. Text::_($this->element['details'])
 				. '</td>'
 				. '</tr>'
 				. '<tr>'

@@ -5,6 +5,7 @@ use Joomla\CMS\Application\CMSApplication;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die();
 
@@ -17,7 +18,7 @@ class JElementJLMLItemid extends FormField
 	{
 		$db = Factory::getDbo();
 
-		$options 	= array(HTMLHelper::_('select.option', '', '- '.JText::_('Select Item').' -'));
+		$options 	= array(HTMLHelper::_('select.option', '', '- '.Text::_('Select Item').' -'));
 
 		$query = "SELECT menutype, title FROM #__menu_types ORDER BY title";
 		$db->setQuery( $query );

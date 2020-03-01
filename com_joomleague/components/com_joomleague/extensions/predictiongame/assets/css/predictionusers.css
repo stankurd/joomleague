@@ -1,0 +1,36 @@
+@import url('person.css');
+
+.plgeneralinfo td.picture {
+width:18%;
+text-align:center;
+vertical-align:top;
+}
+.plgeneralinfo td.info {
+width:40%;
+text-align:center;
+vertical-align:top;
+}
+.plinfo {
+width:100%;
+border-top: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+}
+.plinfo td.label {
+width:50%;
+text-align:left;
+font-weight:bold;
+vertical-align:top;
+}
+.plinfo td.data {
+width:50%;
+text-align:left;
+vertical-align:bottom;
+
+}
+.plinfo td.labelEdit {
+background-color: #f6f6f6;
+color:#666666;
+text-align:right;
+font-weight:bold;
+vertical-align:top;
+}

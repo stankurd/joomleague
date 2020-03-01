@@ -9,7 +9,7 @@
 			description="COM_JOOMLEAGUE_TEMPLATE_TEMPLATE_DESC" readonly="true" required="false" />
 		<field name="project_id" type="text" class="readonly" label="COM_JOOMLEAGUE_TEMPLATE_PROJECTID"
 		description ="COM_JOOMLEAGUE_TEMPLATE_PROJECTID_DESC" size="10" default="0" readonly="true" />
-		<field name="published" type="radio" class="switcher"
+		<field name="published" type="radio" layout="joomla.form.field.radio.switcher"
 			default="1" size="1" label="JSTATUS" description="JFIELD_PUBLISHED_DESC">
 			<option value="1">JPUBLISHED</option>
 			<option value="0">JUNPUBLISHED</option>

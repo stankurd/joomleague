@@ -11,6 +11,7 @@
 
 // Check to ensure this file is included in Joomla!
 use Joomla\CMS\Form\FormField;
+use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
@@ -48,8 +49,8 @@ abstract class JLGExtraParams extends FormField {
 		$obj->backendonly = $node->element['backendonly'];
 		$obj->name        = $node->element['name'];
 		$obj->type        = $node->element['type'];
-		$obj->label       = JText::_($node->element['label']);
-		$obj->description = JText::_($node->element['description']);
+		$obj->label       = Text::_($node->element['label']);
+		$obj->description = Text::_($node->element['description']);
 		$cssclass = $node->element['cssclass'];
 		$cssclass = !empty($cssclass) ? 'class="'. $node->element['cssclass'] .'"' : "";
 		$value = $this->get($node->element['name'], $node->element['default'], $group);

@@ -1,5 +1,6 @@
 <?php
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 /**
  * Joomleague
@@ -14,7 +15,7 @@ defined('_JEXEC') or die;
 // check if any results returned
 $items = count($list['ranking']);
 if (!$items) {
-   echo '<p class="modjlgteamstat">' . JText::_('MOD_JOOMLEAGUE_TEAMSTATS_RANKING_NOITEMS') . '</p>';
+   echo '<p class="modjlgteamstat">' . Text::_('MOD_JOOMLEAGUE_TEAMSTATS_RANKING_NOITEMS') . '</p>';
    return;
 }
 
@@ -30,9 +31,9 @@ $teamnametype = $params->get('teamnametype', 'short_name');
 <table class="statranking">
 	<thead>
 		<tr class="sectiontableheader">
-			<th class="rank"><?php echo JText::_('MOD_JOOMLEAGUE_TEAMSTATS_RANKING_COL_RANK')?></th>
+			<th class="rank"><?php echo Text::_('MOD_JOOMLEAGUE_TEAMSTATS_RANKING_COL_RANK')?></th>
 			<th class="teamlogo"></th>
-			<th class="team"><?php echo JText::_('MOD_JOOMLEAGUE_TEAMSTATS_RANKING_COL_TEAM')?></th>
+			<th class="team"><?php echo Text::_('MOD_JOOMLEAGUE_TEAMSTATS_RANKING_COL_TEAM')?></th>
 			<th class="td_c">
 			<?php
 			if ($params->get('show_event_icon', 1))
@@ -41,7 +42,7 @@ $teamnametype = $params->get('teamnametype', 'short_name');
 			}
 			else
 			{
-				echo JText::_($list['stat']->name);
+				echo Text::_($list['stat']->name);
 			}
 			?>
 			</th>

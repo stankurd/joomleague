@@ -1,0 +1,18 @@
+@import url('results.css');
+
+.td_c {
+	text-align:center;
+}
+.td_r {
+	text-align:right;
+}
+.td_l {
+	text-align:left;
+}
+.readonly {
+	background-color: #EAEAEC;
+}
+
+.tipp_tendence{
+
+}

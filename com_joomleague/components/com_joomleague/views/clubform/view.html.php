@@ -10,9 +10,11 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Form\Form;
 use Joomla\Registry\Registry;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
+use Joomla\CMS\Language\Text;
 
 /**
  * HTML View class
@@ -46,7 +48,7 @@ class JoomleagueViewClubform extends BaseHtmlView
 		
 		if ($authorised !== true)
 		{
-			JError::raiseError(403, JText::_('JERROR_ALERTNOAUTHOR'));
+			Error::raiseError(403, Text::_('JERROR_ALERTNOAUTHOR'));
 		
 			return false;
 		}
@@ -57,7 +59,7 @@ class JoomleagueViewClubform extends BaseHtmlView
 		// Check for errors.
 		if(count($errors = $this->get('Errors')))
 		{
-			JError::raiseError(500,implode("\n",$errors));
+			Error::raiseError(500,implode("\n",$errors));
 			return false;
 		}
 		
@@ -77,7 +79,7 @@ class JoomleagueViewClubform extends BaseHtmlView
 			$JLGPATH_EXTENSION = JPATH_COMPONENT_SITE.'/extensions/'.$extension.'/admin';
 			//General extension extended xml
 			$file = $JLGPATH_EXTENSION.'/assets/extended/'.$file.'.xml';
-			if(file_exists(JPath::clean($file))) {
+			if(file_exists(Path::clean($file))) {
 				$xmlfile = $file;
 				break; //first extension file will win
 			}

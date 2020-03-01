@@ -17,7 +17,7 @@
 		<field name="jerseynumber" type="text"
 			label="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_JERSEYNR" description="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_JERSEYNR_DESC"
 			class="inputbox" />
-		<field name="injury" type="radio" class="switcher"
+		<field name="injury" type="radio" layout="joomla.form.field.radio.switcher"
 			default="0" label="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_INJURED"
 			description="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_INJURED_DESC">
 			<option value="0">JNO</option>
@@ -37,7 +37,7 @@
 		<field name="injury_detail" type="text"
 			label="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_INJURY_TYPE" description="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_INJURY_TYPE_DESC"
 			class="inputbox" />
-		<field name="suspension" type="radio" class="switcher"
+		<field name="suspension" type="radio" layout="joomla.form.field.radio.switcher"
 			default="0" label="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_SUSPENDED"
 			description="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_SUSPENDED_DESC">
 			<option value="0">JNO</option>
@@ -58,7 +58,7 @@
 		<field name="suspension_detail" type="text"
 			label="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_SUSPENSION_TYPE" description="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_SUSPENSION_TYPE_DESC"
 			class="inputbox" />
-		<field name="away" type="radio" class="switcher"
+		<field name="away" type="radio" layout="joomla.form.field.radio.switcher"
 			default="0" label="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_AWAY" description="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_AWAY_DESC">
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>

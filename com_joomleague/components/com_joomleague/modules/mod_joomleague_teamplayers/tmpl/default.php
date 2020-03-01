@@ -7,13 +7,15 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  * @link		http://www.joomleague.at
  */
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 
 // check if any players returned
 $itemscount = count($list['roster']);
 
 if (!$itemscount) {
-	echo '<p class="modjlgteamplayers">' . JText::_('MOD_JOOMLEAGUE_TEAMPLAYERS_NOITEMS') . '</p>';
+	echo '<p class="modjlgteamplayers">' . Text::_('MOD_JOOMLEAGUE_TEAMPLAYERS_NOITEMS') . '</p>';
 	return;
 }?>
 
