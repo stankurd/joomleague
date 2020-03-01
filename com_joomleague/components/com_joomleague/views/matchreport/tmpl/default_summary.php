@@ -9,6 +9,7 @@
 
 defined('_JEXEC') or die; 
 
+use Joomla\CMS\Dispatcher;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\Registry\Registry;
@@ -55,7 +56,8 @@ if (!empty($this->match->summary))
 // Comments integration
 if (!$commentsDisabled) {
 
-	$dispatcher = JEventDispatcher::getInstance();
+	//$dispatcher = JEventDispatcher::getInstance();
+    $dispatcher = Dispatcher::getInstance();
 	$comments = '';
 
 	$plugin = JoomleagueFrontHelper::getCommentsIntegrationPlugin();
