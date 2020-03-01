@@ -1,5 +1,6 @@
 <?php 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
@@ -8,7 +9,7 @@ use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die;
 
-jimport('joomla.html.pane');
+//jimport('joomla.html.pane');
 
 require_once JLG_PATH_ADMIN.'/models/match.php';
 require_once JPATH_COMPONENT.'/models/results.php';
@@ -201,8 +202,8 @@ class JoomleagueViewMatchReport extends JLGView
 		//$imgTitle=Text::_('COM_JOOMLEAGUE_MATCHREPORT_MINUTE');
 		//$imgTitle2=array(' title' => $imgTitle);
 		//$result=HTMLHelper::image($pic_time,$imgTitle,$imgTitle2).'&nbsp;'.$sub->in_out_time;
-		$result='<b>'.$sub->in_out_time.'. '. Text::_('COM_JOOMLEAGUE_MATCHREPORT_MINUTE') .'</b>';
-		$result .= '<br/>';
+		$result='<b>'.$sub->in_out_time.'. '. Text::_('COM_JOOMLEAGUE_MATCHREPORT_MINUTE') .'< /b>';
+		$result .= '<br />';
 		$outName = JoomleagueHelper::formatName(null, $sub->out_firstname, $sub->out_nickname, $sub->out_lastname, $this->config["name_format"]);
 		if($outName != '') {
 			$imgTitle=Text::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTION_WENT_OUT');
@@ -221,7 +222,7 @@ class JoomleagueViewMatchReport extends JLGView
 			if($sub->out_position!='') {
 				$result .= '&nbsp;('.Text::_($sub->out_position).')';
 			}
-			$result .= '<br/>';
+			$result .= '<br />';
 		}
 		$inName = JoomleagueHelper::formatName(null, $sub->firstname, $sub->nickname, $sub->lastname, $this->config["name_format"]);
 		if($inName!='') {
@@ -241,7 +242,7 @@ class JoomleagueViewMatchReport extends JLGView
 			if($sub->in_position!='') {
 				$result .= '&nbsp;('.Text::_($sub->in_position).')';
 			}
-			$result .= '<br/><br/>';
+			$result .= '<br /><br />';
 		}
 		return $result;
 	}
@@ -394,7 +395,7 @@ class JoomleagueViewMatchReport extends JLGView
                 $time2=($time / $matchtime) *100;
 		$tiptext=Text::_('COM_JOOMLEAGUE_MATCHREPORT_TIMELINE_SUBSTITUTION_MIN').' ';
 		$tiptext .= $time;
-		$tiptext .= ' ::';
+		$tiptext .= ' :: &lt;br&gt;';
 		$tiptext .= JoomleagueViewMatchReport::getHtmlImageForTips($pic_in);
 		$tiptext .= JoomleagueHelper::formatName(null, $firstname, $nickname, $lastname, $this->config["name_format"]);
 		$tiptext .= ' &lt;br&gt; ';
@@ -404,19 +405,19 @@ class JoomleagueViewMatchReport extends JLGView
 
 		if ($two_substitutions_per_minute == 1) // there were two substitutions in one minute in timelinetop
 		{
-			$result .= "\n".'<img class="imgzev" style="position: absolute; left: '.$time2.'%; top: -25px;"';
+			$result .= "\n".'<img class="hasTooltip" data-html="true" style="position: absolute; left: '.$time2.'%; top: -25px;"';
 		}
 		elseif ($two_substitutions_per_minute == 2) // there were two substitutions in one minute in timelinebottom
 		{
-			$result .= "\n".'<img class="imgzev" style="position: absolute; left: '.$time2.'%; top: 25px;"';
+			$result .= "\n".'<img class="hasTooltip" data-html="true" style="position: absolute; left: '.$time2.'%; top: 25px;"';
 		}
 		else
 		{
-			$result .= "\n".'<img class="imgzev" style="position: absolute; left: '.$time2.'%;"';
+			$result .= "\n".'<img class="hasTooltip" data-html="true"" style="position: absolute; left: '.$time2.'%;"';
 		}
 
-		$result .= ' src="'.$pic_time.'" alt="'.$tiptext.'" title="'.$tiptext;
-		$result .= '"/>';
+		$result .= ' src="'.$pic_time.'"  alt="'.$tiptext.'" title="'.$tiptext;
+		$result .= '" />';
 
 		return $result;
 	}
@@ -436,6 +437,10 @@ class JoomleagueViewMatchReport extends JLGView
 					if ( ($me->tppicture1 != $placeholder) && (!empty($me->tppicture1)) )
 					{
 						$picture = $me->tppicture1;
+						if ( !File::exists(JPATH_SITE.DS.$picture) )
+						{
+						    $picture = $placeholder;
+						}
 					}
 					// when teamplayer picture is empty or a placeholder icon look for the general player picture
 					elseif
@@ -478,6 +483,10 @@ class JoomleagueViewMatchReport extends JLGView
 					if ( ($me->tppicture1 != $placeholder) && (!empty($me->tppicture1)) )
 					{
 						$picture = $me->tppicture1;
+						if ( !File::exists(JPATH_SITE.DS.$picture) )
+						{
+						    $picture = $placeholder;
+						} 
 					}
 					// when teamplayer picture is empty or a placeholder icon look for the general player picture
 					elseif
@@ -509,29 +518,29 @@ class JoomleagueViewMatchReport extends JLGView
 	{
 		$result='';
 		if(empty($event->icon)) {
-			$event->icon = Uri::Base() . "media/com_joomleague/jl_images/same.png";
+			$event->icon = Uri::Base() . "images/com_joomleague/jl_images/same.png";
 		}
 		$tiptext=Text::_($event->name).' '.Text::_('COM_JOOMLEAGUE_MATCHREPORT_MINUTE_SHORT').' '.$matchEvent->event_time;
-		$tiptext .= ' ::';
+		$tiptext .= ' :: &lt;br /&gt';
 		if (file_exists($picture))
 		{
 			$tiptext .= JoomleagueViewMatchReport::getHtmlImageForTips($picture,
 																		$this->config['player_picture_width'],
 																		$this->config['player_picture_height']);
 		}
-		$tiptext .= '&lt;br/&gt;'.JoomleagueHelper::formatName(null, $firstname, $nickname, $lastname, $this->config["name_format"]);
+		$tiptext .= '&lt;br /&gt;'.JoomleagueHelper::formatName(null, $firstname, $nickname, $lastname, $this->config["name_format"]);
 		$time=($matchEvent->event_time / $this->getTimelineMatchTime()) *100;
 		if ($two_events_per_minute == 1) // there were two events in one minute in timelinetop
 		{
-			$result .= "\n".'<img class="imgzev" style="position: absolute;left: '.$time.'%; top: -25px;" src="'.$event->icon.'" alt="'.$tiptext.'" title="'.$tiptext;
+			$result .= "\n".'<img class="hasTooltip" data-html="true" style="position: absolute;left: '.$time.'%; top: -25px;" src="'.$event->icon.'" alt="'.$tiptext.'" title="'.$tiptext;
 		}
 		elseif ($two_events_per_minute == 2) // there were two events in one minute in timelinebottom
 		{
-			$result .= "\n".'<img class="imgzev" style="position: absolute;left: '.$time.'%; top: 25px;" src="'.$event->icon.'" alt="'.$tiptext.'" title="'.$tiptext;
+			$result .= "\n".'<img class="hasTooltip" data-html="true"" style="position: absolute;left: '.$time.'%; top: 25px;" src="'.$event->icon.'" alt="'.$tiptext.'" title="'.$tiptext;
 		}
 		else
 		{
-			$result .= "\n".'<img class="imgzev" style="position: absolute;left: '.$time.'%;" src="'.$event->icon.'" alt="'.$tiptext.'" title="'.$tiptext;
+			$result .= "\n".'<img class="hasTooltip" data-html="true"" style="position: absolute;left: '.$time.'%;" src="'.$event->icon.'" alt="'.$tiptext.'" title="'.$tiptext;
 		}
 
 		if ($this->config['use_tabs_events'] == 2) {
@@ -540,36 +549,19 @@ class JoomleagueViewMatchReport extends JLGView
 		$result.= '" />';
 		return $result;
 	}
-/*
 	function getHtmlImageForTips($picture,$width=0,$height=0)
 	{
-	    //$picture = URI::root().$picture;
-		$picture = Uri::root(true).'/'.str_replace(JPATH_SITE.'/', "", $picture);
-		if($width > 0 && $height==0) {
-			return '&lt;img src=\''.$picture.'\' width=\''.$width.'\' /&gt;';
-		}
-		if($height>0 && $width==0) {
-			return '&lt;img src=\''.$picture.'\' height=\''.$height.'\' /&gt;';
-		}
-		if($height > 0 && $width > 0) {
-			return '&lt;img src=\''.$picture.'\' height=\''.$height.'\' width=\''.$width.'\' /&gt;';
-		}
-		return '&lt;img src=\''.$picture.'\' /&gt;';
-	}
-}*/
-	function getHtmlImageForTips($picture,$width=0,$height=0)
-	{
-	    $picture = URI::root().$picture;
+	    $picture = Uri::root().''.str_replace(JPATH_SITE.'/', "", $picture);
 	    if($width > 0 && $height==0) {
-	        return '&lt;img src=&quot;'.$picture.'&quot; width=&quot;'.$width.'&quot; /&gt;';
+	        return '&lt;img src=\''.$picture.'\' width=\''.$width.'\' /&gt;';
 	    }
 	    if($height>0 && $width==0) {
-	        return '&lt;img src=&quot;'.$picture.'&quot;height=&quot;'.$height.'&quot;/&gt;';
+	        return '&lt;img src=\''.$picture.'\' height=\''.$height.'\' /&gt;';
 	    }
 	    if($height > 0 && $width > 0) {
-	        return '&lt;img src=&quot;'.$picture.'&quot;height=&quot;'.$height.'&quot; width=&quot;'.$width.'&quot; /&gt;';
+	        return '&lt;img src=\''.$picture.'\' height=\''.$height.'\' width=\''.$width.'\' /&gt;';
 	    }
-	    return '&lt;img src=&quot;'.$picture.'&quot; /&gt;';
+	    return '&lt;img src=\''.$picture.'\' /&gt;';
 	}
-	
 }
+?>

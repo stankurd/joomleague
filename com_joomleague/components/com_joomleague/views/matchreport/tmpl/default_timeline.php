@@ -1,15 +1,14 @@
 <?php
-
 use Joomla\CMS\Language\Text;
 
 defined('_JEXEC') or die; ?>
 <!-- START of match timeline -->
 
 <script type="text/javascript">
-	    document.addEventListener('DOMContentLoaded', () => {
-		var Tips1 = new Tips (document.querySelectorAll('.imgzev'));
-	});
-	function gotoevent(row) {
+jQuery(document).ready(function() {
+  JQuery('[data-toggle="tooltip"]').tooltip()
+})
+function gotoevent(row) {
         var t=document.getElementById('event-' + row)
         t.scrollIntoView()
     }
@@ -29,7 +28,7 @@ defined('_JEXEC') or die; ?>
 			echo JoomleagueModelProject::getClubIconHtml($this->team1,1);
 		}
 		?>
-		
+		</td>
 		<td id="timeline-top">
 			<div id="timelinetop">
 			<?php

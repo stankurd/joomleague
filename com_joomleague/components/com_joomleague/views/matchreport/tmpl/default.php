@@ -1,6 +1,8 @@
-<?php defined('_JEXEC') or die;
-//JHtml::_('behavior.tooltip');
+<?php use Joomla\CMS\HTML\HTMLHelper;
 
+defined('_JEXEC') or die;
+//HTMLHelper::_('bootstrap.tooltip');
+HTMLHelper::_('bootstrap.tooltip', '.hasTooltip', array('placement' => 'top'));
 // Make sure that in case extensions are written for mentioned (common) views,
 // that they are loaded i.s.o. of the template of this view
 $templatesToLoad = array('projectheading', 'backbutton', 'footer');
